@@ -1,0 +1,17 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL}
+    container_name: ${CONTAINER_NAME:-DK_DEVTOOLS}
+    restart: unless-stopped
+    expose:
+      - "80"
+    networks:
+      - docker-base_default
+
+networks:
+  docker-base_default:
+    external: true
