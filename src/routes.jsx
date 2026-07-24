@@ -16,6 +16,19 @@ import SkeletonShimmerPage from './pages/SkeletonShimmerPage'
 import TimestampConverterPage from './pages/TimestampConverterPage'
 import GradientBorderButtonPage from './pages/GradientBorderButtonPage'
 import UseMediaQuerySnippetPage from './pages/UseMediaQuerySnippetPage'
+import ContrastCheckerPage from './pages/ContrastCheckerPage'
+import CurlGeneratorPage from './pages/CurlGeneratorPage'
+import GitignoreGeneratorPage from './pages/GitignoreGeneratorPage'
+import RateLimitCalculatorPage from './pages/RateLimitCalculatorPage'
+import ArnParserPage from './pages/ArnParserPage'
+import PasswordStrengthPage from './pages/PasswordStrengthPage'
+import JsonTreeViewerPage from './pages/JsonTreeViewerPage'
+import SubnetCalculatorPage from './pages/SubnetCalculatorPage'
+import AnthropicCostCalculatorPage from './pages/AnthropicCostCalculatorPage'
+import DeepLinkTesterPage from './pages/DeepLinkTesterPage'
+import WordCounterPage from './pages/WordCounterPage'
+import GitCommandsPage from './pages/GitCommandsPage'
+import DaysUntilPage from './pages/DaysUntilPage'
 
 const router = createBrowserRouter([
   {
@@ -37,6 +50,19 @@ const router = createBrowserRouter([
       { path: 'snippets/use-local-storage', element: <UseLocalStorageSnippetPage /> },
       { path: 'snippets/use-click-outside', element: <UseClickOutsideSnippetPage /> },
       { path: 'snippets/use-media-query', element: <UseMediaQuerySnippetPage /> },
+      { path: 'frontend/contrast-checker', element: <ContrastCheckerPage /> },
+      { path: 'apis/curl-generator', element: <CurlGeneratorPage /> },
+      { path: 'devops/gitignore-generator', element: <GitignoreGeneratorPage /> },
+      { path: 'database/rate-limit-calculator', element: <RateLimitCalculatorPage /> },
+      { path: 'cloud/arn-parser', element: <ArnParserPage /> },
+      { path: 'security/password-strength', element: <PasswordStrengthPage /> },
+      { path: 'data/json-tree-viewer', element: <JsonTreeViewerPage /> },
+      { path: 'network/subnet-calculator', element: <SubnetCalculatorPage /> },
+      { path: 'ai/anthropic-cost-calculator', element: <AnthropicCostCalculatorPage /> },
+      { path: 'mobile/deep-link-tester', element: <DeepLinkTesterPage /> },
+      { path: 'text/word-counter', element: <WordCounterPage /> },
+      { path: 'references/git-commands', element: <GitCommandsPage /> },
+      { path: 'extras/days-until', element: <DaysUntilPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

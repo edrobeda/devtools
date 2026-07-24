@@ -78,7 +78,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] CSS Specificity Calculator 🔥
 - [ ] CSS Performance Analyzer 🔥
 - [ ] Conversor de unidades CSS (px ↔ rem ↔ em ↔ vh/vw)
-- [ ] Checador de contraste de cores (WCAG AA/AAA) 🔥
+- [x] Checador de contraste de cores (WCAG AA/AAA) 🔥 — `/frontend/contrast-checker`
 - [ ] Gerador de paleta de cores a partir de uma cor base
 
 ## 🌐 APIs
@@ -89,7 +89,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] SSE Tester (Server-Sent Events)
 - [ ] Webhook Tester (recebe e mostra payloads)
 - [ ] HTTP Header Inspector
-- [ ] cURL Generator (monta comando curl a partir de uma requisição)
+- [x] cURL Generator (monta comando curl a partir de uma requisição) — `/apis/curl-generator`
 - [ ] HTTP Request Replay 🔥
 - [ ] Postman Import/Export
 - [ ] OpenAPI Viewer
@@ -111,7 +111,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Caddyfile Generator
 - [ ] Apache Config Builder
 - [ ] PM2 Config Generator
-- [ ] `.gitignore` Generator (por linguagem/framework)
+- [x] `.gitignore` Generator (por linguagem/framework) — `/devops/gitignore-generator`
 - [ ] License Generator
 - [ ] README Generator
 - [ ] Changelog Generator (a partir de commits colados)
@@ -139,11 +139,11 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Mongo Query Builder
 - [ ] Redis Command Helper
 - [ ] Redis TTL Simulator 🔥
-- [ ] Rate Limit Calculator 🔥
+- [x] Rate Limit Calculator 🔥 — `/database/rate-limit-calculator`
 
 ## ☁ Cloud
 
-- [ ] AWS ARN Parser
+- [x] AWS ARN Parser — `/cloud/arn-parser`
 - [ ] IAM Policy Visualizer
 - [ ] S3 Policy Generator
 - [ ] Cloudflare Rules Helper
@@ -158,7 +158,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] CSR Generator
 - [ ] Robots.txt Generator
 - [ ] Security Headers Checker
-- [ ] Checador de força de senha
+- [x] Checador de força de senha — `/security/password-strength`
 
 ## 📁 Arquivos & 📊 Dados
 
@@ -171,7 +171,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] QR Code Generator (incl. QR pra Wi-Fi)
 - [ ] Gerador/leitor de código de barras
 - [ ] ZIP Preview
-- [ ] JSON Viewer / Tree Viewer
+- [x] JSON Viewer / Tree Viewer — `/data/json-tree-viewer`
 - [ ] XML Tree / YAML Tree
 
 ## 🌍 Rede
@@ -184,7 +184,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] HTTP Status Checker
 - [ ] Redirect Checker
 - [ ] User-Agent Parser
-- [ ] Calculadora de sub-rede IP (CIDR, máscara, range)
+- [x] Calculadora de sub-rede IP (CIDR, máscara, range) — `/network/subnet-calculator`
 - [ ] Simulador de latência de rede (throttling visual) 🔥
 - [ ] Referência pesquisável de HTTP status codes
 - [ ] Lookup de MIME type por extensão
@@ -196,14 +196,14 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Token Counter
 - [ ] Embedding Visualizer
 - [ ] OpenAI Cost Calculator
-- [ ] Anthropic Cost Calculator
+- [x] Anthropic Cost Calculator — `/ai/anthropic-cost-calculator`
 - [ ] Ollama Playground
 - [ ] RAG Chunk Visualizer
 
 ## 📱 Mobile
 
 - [ ] Android Intent Generator
-- [ ] Deep Link Tester
+- [x] Deep Link Tester — `/mobile/deep-link-tester`
 - [ ] APK Manifest Viewer
 - [ ] QR for App Links
 
@@ -214,7 +214,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Remove Duplicates (linhas)
 - [ ] Sort Lines
 - [ ] Line Number Generator
-- [ ] Contador de palavras/caracteres/linhas
+- [x] Contador de palavras/caracteres/linhas — `/text/word-counter`
 
 ## ✨ Estilos — componentes e padrões visuais (UI)
 
@@ -281,10 +281,8 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 
 ## 📚 Referências rápidas — cheat sheets, tabelas, atalhos
 
-*(categoria ainda sem nenhum item — boa candidata pra próximas rodadas)*
-
 - [ ] Atalhos de teclado do VSCode (Windows/Mac lado a lado)
-- [ ] Comandos git essenciais (com exemplos)
+- [x] Comandos git essenciais (com exemplos) — `/references/git-commands`
 - [ ] Comandos Docker/Docker Compose essenciais
 - [ ] Cheat sheet de Flexbox (visual, interativo)
 - [ ] Cheat sheet de CSS Grid (visual, interativo)
@@ -300,7 +298,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 
 Itens que quase ninguém oferece — bons candidatos pra se destacar:
 
-- [ ] "Quantos dias até sexta" (ou até qualquer data escolhida)
+- [x] "Quantos dias até sexta" (ou até qualquer data escolhida) — `/extras/days-until`
 - [ ] Roleta/sorteio simples (ex.: "quem revisa esse PR")
 - [ ] CSS Specificity Calculator 🔥 *(ver também em Front-end)*
 - [ ] SQL Explain Visualizer 🔥 *(ver também em Banco de Dados)*

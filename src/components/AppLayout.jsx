@@ -11,6 +11,17 @@ import {
   FieldTimeOutlined,
   NumberOutlined,
   FileTextOutlined,
+  ApiOutlined,
+  DatabaseOutlined,
+  CloudOutlined,
+  SafetyCertificateOutlined,
+  FolderOutlined,
+  GlobalOutlined,
+  RobotOutlined,
+  MobileOutlined,
+  FontSizeOutlined,
+  ReadOutlined,
+  CalendarOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -26,6 +37,19 @@ const LABELS = {
     tools: 'Ferramentas',
     styles: 'Estilos',
     snippets: 'Snippets',
+    frontend: 'Front-end',
+    apis: 'APIs',
+    devops: 'DevOps',
+    database: 'Banco de Dados',
+    cloud: 'Cloud',
+    security: 'Segurança',
+    data: 'Arquivos & Dados',
+    network: 'Rede',
+    ai: 'IA',
+    mobile: 'Mobile',
+    text: 'Texto',
+    references: 'Referências',
+    extras: 'Fora da caixa',
     'jwt-decoder': 'Decodificador JWT',
     'cron-parser': 'Explicador de Cron',
     'hash-generator': 'Gerador de Hash',
@@ -40,12 +64,38 @@ const LABELS = {
     'use-local-storage': 'useLocalStorage',
     'use-click-outside': 'useClickOutside',
     'use-media-query': 'useMediaQuery',
+    'contrast-checker': 'Checador de Contraste',
+    'curl-generator': 'Gerador de cURL',
+    'gitignore-generator': 'Gerador de .gitignore',
+    'rate-limit-calculator': 'Calculadora de Rate Limit',
+    'arn-parser': 'AWS ARN Parser',
+    'password-strength': 'Força de Senha',
+    'json-tree-viewer': 'Visualizador de Árvore JSON',
+    'subnet-calculator': 'Calculadora de Sub-rede',
+    'anthropic-cost-calculator': 'Calculadora de Custo Anthropic',
+    'deep-link-tester': 'Testador de Deep Link',
+    'word-counter': 'Contador de Palavras',
+    'git-commands': 'Comandos Git',
+    'days-until': 'Quantos dias até...',
   },
   en: {
     home: 'Home',
     tools: 'Tools',
     styles: 'Styles',
     snippets: 'Snippets',
+    frontend: 'Front-end',
+    apis: 'APIs',
+    devops: 'DevOps',
+    database: 'Database',
+    cloud: 'Cloud',
+    security: 'Security',
+    data: 'Files & Data',
+    network: 'Network',
+    ai: 'AI',
+    mobile: 'Mobile',
+    text: 'Text',
+    references: 'References',
+    extras: 'Out of the box',
     'jwt-decoder': 'JWT Decoder',
     'cron-parser': 'Cron Expression Explainer',
     'hash-generator': 'Hash Generator',
@@ -60,6 +110,19 @@ const LABELS = {
     'use-local-storage': 'useLocalStorage',
     'use-click-outside': 'useClickOutside',
     'use-media-query': 'useMediaQuery',
+    'contrast-checker': 'Contrast Checker',
+    'curl-generator': 'cURL Generator',
+    'gitignore-generator': '.gitignore Generator',
+    'rate-limit-calculator': 'Rate Limit Calculator',
+    'arn-parser': 'AWS ARN Parser',
+    'password-strength': 'Password Strength',
+    'json-tree-viewer': 'JSON Tree Viewer',
+    'subnet-calculator': 'Subnet Calculator',
+    'anthropic-cost-calculator': 'Anthropic Cost Calculator',
+    'deep-link-tester': 'Deep Link Tester',
+    'word-counter': 'Word Counter',
+    'git-commands': 'Git Commands',
+    'days-until': 'Days Until...',
   },
 }
 
@@ -101,6 +164,110 @@ function buildMenuItems(l) {
         { key: '/snippets/use-media-query', label: l['use-media-query'] },
       ],
     },
+    {
+      key: 'group-frontend',
+      icon: <BgColorsOutlined />,
+      label: l.frontend,
+      children: [
+        { key: '/frontend/contrast-checker', label: l['contrast-checker'] },
+      ],
+    },
+    {
+      key: 'group-apis',
+      icon: <ApiOutlined />,
+      label: l.apis,
+      children: [
+        { key: '/apis/curl-generator', label: l['curl-generator'] },
+      ],
+    },
+    {
+      key: 'group-devops',
+      icon: <ToolOutlined />,
+      label: l.devops,
+      children: [
+        { key: '/devops/gitignore-generator', label: l['gitignore-generator'] },
+      ],
+    },
+    {
+      key: 'group-database',
+      icon: <DatabaseOutlined />,
+      label: l.database,
+      children: [
+        { key: '/database/rate-limit-calculator', label: l['rate-limit-calculator'] },
+      ],
+    },
+    {
+      key: 'group-cloud',
+      icon: <CloudOutlined />,
+      label: l.cloud,
+      children: [
+        { key: '/cloud/arn-parser', label: l['arn-parser'] },
+      ],
+    },
+    {
+      key: 'group-security',
+      icon: <SafetyCertificateOutlined />,
+      label: l.security,
+      children: [
+        { key: '/security/password-strength', label: l['password-strength'] },
+      ],
+    },
+    {
+      key: 'group-data',
+      icon: <FolderOutlined />,
+      label: l.data,
+      children: [
+        { key: '/data/json-tree-viewer', label: l['json-tree-viewer'] },
+      ],
+    },
+    {
+      key: 'group-network',
+      icon: <GlobalOutlined />,
+      label: l.network,
+      children: [
+        { key: '/network/subnet-calculator', label: l['subnet-calculator'] },
+      ],
+    },
+    {
+      key: 'group-ai',
+      icon: <RobotOutlined />,
+      label: l.ai,
+      children: [
+        { key: '/ai/anthropic-cost-calculator', label: l['anthropic-cost-calculator'] },
+      ],
+    },
+    {
+      key: 'group-mobile',
+      icon: <MobileOutlined />,
+      label: l.mobile,
+      children: [
+        { key: '/mobile/deep-link-tester', label: l['deep-link-tester'] },
+      ],
+    },
+    {
+      key: 'group-text',
+      icon: <FontSizeOutlined />,
+      label: l.text,
+      children: [
+        { key: '/text/word-counter', label: l['word-counter'] },
+      ],
+    },
+    {
+      key: 'group-references',
+      icon: <ReadOutlined />,
+      label: l.references,
+      children: [
+        { key: '/references/git-commands', label: l['git-commands'] },
+      ],
+    },
+    {
+      key: 'group-extras',
+      icon: <CalendarOutlined />,
+      label: l.extras,
+      children: [
+        { key: '/extras/days-until', label: l['days-until'] },
+      ],
+    },
   ]
 }
 
@@ -133,7 +300,11 @@ export default function AppLayout() {
           theme="dark"
           mode="inline"
           selectedKeys={[location.pathname]}
-          defaultOpenKeys={['group-tools', 'group-styles', 'group-snippets']}
+          defaultOpenKeys={[
+            'group-tools', 'group-styles', 'group-snippets', 'group-frontend', 'group-apis',
+            'group-devops', 'group-database', 'group-cloud', 'group-security', 'group-data',
+            'group-network', 'group-ai', 'group-mobile', 'group-text', 'group-references', 'group-extras',
+          ]}
           items={menuItems}
           onClick={({ key }) => {
             if (key.startsWith('/')) navigate(key)
