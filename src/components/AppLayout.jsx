@@ -10,6 +10,7 @@ import {
   KeyOutlined,
   FieldTimeOutlined,
   NumberOutlined,
+  FileTextOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 
@@ -25,6 +26,8 @@ const menuItems = [
       { key: '/tools/jwt-decoder', icon: <KeyOutlined />, label: 'Decodificador JWT' },
       { key: '/tools/cron-parser', icon: <FieldTimeOutlined />, label: 'Explicador de Cron' },
       { key: '/tools/hash-generator', icon: <NumberOutlined />, label: 'Gerador de Hash' },
+      { key: '/tools/json-formatter', icon: <FileTextOutlined />, label: 'Formatador de JSON' },
+      { key: '/tools/color-converter', icon: <BgColorsOutlined />, label: 'Conversor de Cor' },
     ],
   },
   {
@@ -34,6 +37,7 @@ const menuItems = [
     children: [
       { key: '/styles/glass-card', label: 'Glass Card' },
       { key: '/styles/copy-button', label: 'Botão de Copiar Animado' },
+      { key: '/styles/skeleton-shimmer', label: 'Skeleton Shimmer' },
     ],
   },
   {
@@ -43,6 +47,7 @@ const menuItems = [
     children: [
       { key: '/snippets/use-debounce', label: 'useDebounce' },
       { key: '/snippets/use-local-storage', label: 'useLocalStorage' },
+      { key: '/snippets/use-click-outside', label: 'useClickOutside' },
     ],
   },
 ]

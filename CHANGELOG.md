@@ -11,6 +11,10 @@ sentido adicionar (pode ser 1 item ou vários).
 -->
 
 ## 2026-07-24
+- Ferramenta: Formatador e Validador de JSON — `/tools/json-formatter` (formata com indentação, minifica e valida sintaxe via `JSON.parse`/`JSON.stringify`, mostra contagem de chaves e tamanho em bytes, com botão de copiar; tudo client-side)
+- Ferramenta: Conversor de Cor — `/tools/color-converter` (converte HEX ↔ RGB ↔ HSL em tempo real a partir de um seletor de cor nativo ou input de texto, com swatch de preview e botão de copiar por formato)
+- Estilo: Skeleton Shimmer — `/styles/skeleton-shimmer` (placeholder de carregamento com brilho animado via gradiente CSS e `@keyframes`, alternativa mais viva ao `Skeleton` padrão do Ant Design; demo com toggle carregando/carregado e código-fonte exibido na página)
+- Snippet: `useClickOutside` — `/snippets/use-click-outside` (hook em `src/hooks/useClickOutside.js` que dispara um callback ao clicar fora de um elemento via `ref`, útil pra fechar dropdowns/menus customizados; página mostra o código e uma demo com um menu que fecha ao clicar fora)
 - Ferramenta: Explicador de Expressão Cron — `/tools/cron-parser` (parser próprio de expressões cron de 5 campos com suporte a `*`, `,`, `-`, `/`, nomes de mês/dia e atalhos `@daily`/`@hourly`/etc.; gera descrição em português e lista as próximas 5 execuções, respeitando a regra OR entre dia-do-mês e dia-da-semana quando ambos são restritos)
 - Ferramenta: Gerador de Hash — `/tools/hash-generator` (calcula SHA-1/256/384/512 de um texto via `crypto.subtle`, com botão de copiar por hash; tudo local, nenhum dado sai do navegador)
 - Estilo: Botão de Copiar Animado — `/styles/copy-button` (componente `CopyButton` reutilizável com micro-interação de ícone copiar → check via transição CSS de escala/rotação; código-fonte exibido na página)
