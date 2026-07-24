@@ -1,12 +1,44 @@
 import React, { useState } from 'react'
 import { Layout, Menu, theme } from 'antd'
-import { HomeOutlined, MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
+import {
+  HomeOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  ToolOutlined,
+  BgColorsOutlined,
+  CodeOutlined,
+  KeyOutlined,
+} from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 
 const { Header, Sider, Content } = Layout
 
 const menuItems = [
   { key: '/', icon: <HomeOutlined />, label: 'Home' },
+  {
+    key: 'group-tools',
+    icon: <ToolOutlined />,
+    label: 'Ferramentas',
+    children: [
+      { key: '/tools/jwt-decoder', icon: <KeyOutlined />, label: 'Decodificador JWT' },
+    ],
+  },
+  {
+    key: 'group-styles',
+    icon: <BgColorsOutlined />,
+    label: 'Estilos',
+    children: [
+      { key: '/styles/glass-card', label: 'Glass Card' },
+    ],
+  },
+  {
+    key: 'group-snippets',
+    icon: <CodeOutlined />,
+    label: 'Snippets',
+    children: [
+      { key: '/snippets/use-debounce', label: 'useDebounce' },
+    ],
+  },
 ]
 
 export default function AppLayout() {
@@ -35,8 +67,11 @@ export default function AppLayout() {
           theme="dark"
           mode="inline"
           selectedKeys={[location.pathname]}
+          defaultOpenKeys={['group-tools', 'group-styles', 'group-snippets']}
           items={menuItems}
-          onClick={({ key }) => navigate(key)}
+          onClick={({ key }) => {
+            if (key.startsWith('/')) navigate(key)
+          }}
         />
       </Sider>
       <Layout>
