@@ -8,6 +8,8 @@ import {
   BgColorsOutlined,
   CodeOutlined,
   KeyOutlined,
+  FieldTimeOutlined,
+  NumberOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 
@@ -21,6 +23,8 @@ const menuItems = [
     label: 'Ferramentas',
     children: [
       { key: '/tools/jwt-decoder', icon: <KeyOutlined />, label: 'Decodificador JWT' },
+      { key: '/tools/cron-parser', icon: <FieldTimeOutlined />, label: 'Explicador de Cron' },
+      { key: '/tools/hash-generator', icon: <NumberOutlined />, label: 'Gerador de Hash' },
     ],
   },
   {
@@ -29,6 +33,7 @@ const menuItems = [
     label: 'Estilos',
     children: [
       { key: '/styles/glass-card', label: 'Glass Card' },
+      { key: '/styles/copy-button', label: 'Botão de Copiar Animado' },
     ],
   },
   {
@@ -37,6 +42,7 @@ const menuItems = [
     label: 'Snippets',
     children: [
       { key: '/snippets/use-debounce', label: 'useDebounce' },
+      { key: '/snippets/use-local-storage', label: 'useLocalStorage' },
     ],
   },
 ]
