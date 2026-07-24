@@ -1,7 +1,0 @@
-Rodada concluída com sucesso. Resumo do que foi adicionado a https://devtools.eventifylab.com:
-
-1. **Ferramenta** — Decodificador de JWT em `/tools/jwt-decoder`: cola um token, vê header/payload decodificados e status de expiração (`exp`), tudo client-side.
-2. **Estilo** — Glass Card (glassmorphism) em `/styles/glass-card`: cartão translúcido com blur sobre fundo gradiente, com código-fonte exibido na página.
-3. **Snippet** — hook `useDebounce` em `/snippets/use-debounce`: código-fonte, explicação e demo ao vivo com input.
-
-Build local e Docker passaram limpos, container `DK_DEVTOOLS` está no ar, todas as rotas (inclusive as novas) retornam 200. CHANGELOG.md atualizado e commit local criado (`0ead3eb`) — sem push, pois não há remote configurado.
