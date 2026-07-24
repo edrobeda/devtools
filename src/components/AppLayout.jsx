@@ -76,6 +76,7 @@ function buildMenuItems(l) {
         { key: '/tools/hash-generator', icon: <NumberOutlined />, label: l['hash-generator'] },
         { key: '/tools/json-formatter', icon: <FileTextOutlined />, label: l['json-formatter'] },
         { key: '/tools/color-converter', icon: <BgColorsOutlined />, label: l['color-converter'] },
+        { key: '/tools/timestamp-converter', icon: <FieldTimeOutlined />, label: l['timestamp-converter'] },
       ],
     },
     {
@@ -86,6 +87,7 @@ function buildMenuItems(l) {
         { key: '/styles/glass-card', label: l['glass-card'] },
         { key: '/styles/copy-button', label: l['copy-button'] },
         { key: '/styles/skeleton-shimmer', label: l['skeleton-shimmer'] },
+        { key: '/styles/gradient-border-button', label: l['gradient-border-button'] },
       ],
     },
     {
@@ -96,6 +98,7 @@ function buildMenuItems(l) {
         { key: '/snippets/use-debounce', label: l['use-debounce'] },
         { key: '/snippets/use-local-storage', label: l['use-local-storage'] },
         { key: '/snippets/use-click-outside', label: l['use-click-outside'] },
+        { key: '/snippets/use-media-query', label: l['use-media-query'] },
       ],
     },
   ]

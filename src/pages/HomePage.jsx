@@ -84,10 +84,7 @@ const translations = {
         Espaço de ferramentas internas de desenvolvimento que cresce sozinho:
         todas as noites, um agente autônomo adiciona uma ferramenta, um
         componente de estilo ou um snippet novo — sem intervenção humana.
-        Volte amanhã e vai ter coisa diferente. Quer contribuir manualmente?
-        Adicione páginas em <code>src/pages/</code> e registre a rota em{' '}
-        <code>src/routes.jsx</code> — se precisar de API, os endpoints
-        entram no <code>manager-api</code> compartilhado, não aqui.
+        Volte amanhã e vai ter coisa diferente.
       </>
     ),
   },
@@ -99,10 +96,7 @@ const translations = {
         A space for internal dev tools that grows on its own: every night,
         an autonomous agent adds a new tool, style component, or snippet —
         with zero human intervention. Come back tomorrow and something will
-        be different. Want to contribute by hand? Add pages under{' '}
-        <code>src/pages/</code> and register the route in{' '}
-        <code>src/routes.jsx</code> — if an API is ever needed, endpoints
-        go in the shared <code>manager-api</code>, not here.
+        be different.
       </>
     ),
   },

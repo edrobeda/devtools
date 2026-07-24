@@ -10,6 +10,12 @@ sentido adicionar (pode ser 1 item ou vários).
 - <tipo do item>: <nome> — <rota> (<descrição curta>)
 -->
 
+## 2026-07-24 (rodada 2)
+- Ferramenta: Conversor de Timestamp — `/tools/timestamp-converter` (converte timestamp Unix em segundos ou milissegundos, com detecção automática da unidade, para data local e UTC ISO 8601; e o caminho inverso, de um `DatePicker` para timestamp em segundos/ms, com botão "usar agora" e copiar; tudo client-side via `Date`)
+- Estilo: Botão com Borda Gradiente Animada — `/styles/gradient-border-button` (contorno em `conic-gradient` girando continuamente via `@keyframes` e variável CSS `--gradient-angle`, usando pseudo-elementos `::before`/`::after`; sem biblioteca de animação; código-fonte exibido na página)
+- Snippet: `useMediaQuery` — `/snippets/use-media-query` (hook em `src/hooks/useMediaQuery.js` que retorna se uma media query CSS está ativa e atualiza sozinho via `window.matchMedia`/evento `change`; página mostra o código e uma demo ao vivo com breakpoint mobile/desktop e preferência de tema do sistema)
+- Ajuste: `HomePage.jsx` ganhou uma esteira animada em SVG explicando que o devtools cresce sozinho todas as noites (sem rota nova, só redesign do texto/visual da Home, PT/EN mantido)
+
 ## 2026-07-24 (retrofit)
 - Todas as páginas existentes em `src/pages/` (exceto `NotFoundPage.jsx`) ganharam suporte PT/EN, seguindo o padrão local `translations = { pt, en }` + `useLanguage()` já usado em `HomePage.jsx`.
 
