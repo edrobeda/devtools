@@ -10,6 +10,13 @@ sentido adicionar (pode ser 1 item ou vários).
 - <tipo do item>: <nome> — <rota> (<descrição curta>)
 -->
 
+## 2026-07-24 (rodada 3)
+- Ferramenta: Regex Tester — `/tools/regex-tester` (testa uma expressão regular contra um texto colado, destacando as correspondências ao vivo via `String.matchAll`; mostra grupos capturados por match e traz padrões prontos — e-mail, URL, IPv4, cor hex, CPF, telefone BR — pra inserir rápido; flags g/i/m/s/u/y selecionáveis)
+- Ferramenta: Base64 Encode/Decode — `/tools/base64-tool` (codifica/decodifica texto com truque unicode-safe via `encodeURIComponent`, e também arquivos: lê um arquivo local via `FileReader`/`readAsDataURL` e mostra o Base64, ou decodifica um Base64 colado de volta em arquivo baixável via `Blob`/`URL.createObjectURL`; tudo client-side)
+- Ferramenta: Gerador de UUID — `/tools/uuid-generator` (gera N UUIDs v4 via `crypto.randomUUID()`, com opções de maiúsculas/sem hífen e formato de saída — lista, array JS/JSON, separado por vírgula —, copiar tudo ou um por um)
+- Ferramenta: Conversor de Case — `/tools/case-converter` (converte um texto entre camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, Title Case, dot.case e path/case, detectando limites de palavra tanto por separador quanto por transição minúscula→maiúscula)
+- Ajuste: adiciona `src/newItems.js` (`NEW_ITEM_KEYS`) como fonte única de quais rotas foram alteradas na rodada mais recente; `AppLayout.jsx` agora lê esse array e mostra uma `Tag` "Novo"/"New" ao lado do item de menu correspondente, substituída por completo a cada rodada
+
 ## 2026-07-24 (pontapé inicial de categorias)
 Rodada especial: cobre as 13 categorias que estavam totalmente zeradas em `IDEAS.md` (incluindo Front-end, que também não tinha nenhum `[x]`), pegando um item de cada uma. Categorias já com itens (Código, Estilos, Snippets) foram puladas de propósito. Nenhuma categoria precisou ser abandonada — todos os itens escolhidos são 100% client-side.
 - Front-end: Checador de Contraste de Cores (WCAG) — `/frontend/contrast-checker` (calcula razão de contraste via luminância relativa entre duas cores e mostra se passa AA/AAA pra texto normal/grande, fórmula da própria spec WCAG)

@@ -1,7 +1,7 @@
 #!/bin/bash
 # Agente noturno autônomo do devtools — disparado via cron do usuário
-# devtools-bot às 00:00. Só deve tocar em /home/devtools-bot/devtools
-# (ver .agent-prompt.md pro escopo completo).
+# devtools-bot às 03:00 UTC (= 00:00 horário de Brasília). Só deve tocar em
+# /home/devtools-bot/devtools (ver .agent-prompt.md pro escopo completo).
 set -uo pipefail
 
 cd /home/devtools-bot/devtools || exit 1

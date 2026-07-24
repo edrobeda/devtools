@@ -15,8 +15,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] Conversor de Cor (HEX/RGB/HSL) — `/tools/color-converter`
 - [x] Conversor de Timestamp Unix — `/tools/timestamp-converter`
 - [ ] Snippets favoritos/compartilháveis (biblioteca pessoal de trechos de código)
-- [ ] Regex Tester (com highlight de matches)
-- [ ] Regex Library (padrões comuns prontos: email, telefone, CPF, URL)
+- [x] Regex Tester (com highlight de matches, inclui padrões comuns prontos: email, telefone, CPF, URL) — `/tools/regex-tester`
 - [ ] SQL Formatter
 - [ ] XML Formatter
 - [ ] YAML Formatter
@@ -24,12 +23,12 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Markdown Preview (ao vivo)
 - [ ] Diff Checker (texto x texto, lado a lado)
 - [ ] JSON Diff (estrutural, não linha a linha)
-- [ ] Base64 Encode/Decode (texto e arquivo)
+- [x] Base64 Encode/Decode (texto e arquivo) — `/tools/base64-tool`
 - [ ] URL Encode/Decode
 - [ ] HTML Entity Encode/Decode
 - [ ] JWT Generator (pra testes, monta um JWT válido a partir de payload)
 - [ ] JWT Timeline 🔥 (linha do tempo visual mostrando quando expira)
-- [ ] UUID Generator (v4, vários de uma vez)
+- [x] UUID Generator (v4, vários de uma vez) — `/tools/uuid-generator`
 - [ ] NanoID Generator
 - [ ] UUID Collision Simulator 🔥
 - [ ] HMAC Generator
@@ -45,7 +44,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] HTML Minify/Beautify
 - [ ] JSON Path Explorer 🔥 (testa expressões JSONPath contra um JSON colado)
 - [ ] Conversor de base numérica (bin/oct/dec/hex)
-- [ ] Conversor de case (camelCase, snake_case, kebab-case, PascalCase, Title Case)
+- [x] Conversor de case (camelCase, snake_case, kebab-case, PascalCase, Title Case) — `/tools/case-converter`
 - [ ] Gerador de slug (texto → url-slug)
 - [ ] Conversor CSV ↔ JSON
 - [ ] Gerador/validador de CPF e CNPJ fake (dígitos verificadores corretos)

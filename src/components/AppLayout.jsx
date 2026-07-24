@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Layout, Menu, Segmented, theme } from 'antd'
+import { Layout, Menu, Segmented, Tag, theme } from 'antd'
 import {
   HomeOutlined,
   MenuFoldOutlined,
@@ -22,9 +22,13 @@ import {
   FontSizeOutlined,
   ReadOutlined,
   CalendarOutlined,
+  SearchOutlined,
+  SwapOutlined,
+  IdcardOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
+import { NEW_ITEM_KEYS } from '../newItems'
 
 const { Header, Sider, Content } = Layout
 
@@ -50,6 +54,7 @@ const LABELS = {
     text: 'Texto',
     references: 'Referências',
     extras: 'Fora da caixa',
+    new: 'Novo',
     'jwt-decoder': 'Decodificador JWT',
     'cron-parser': 'Explicador de Cron',
     'hash-generator': 'Gerador de Hash',
@@ -77,6 +82,10 @@ const LABELS = {
     'word-counter': 'Contador de Palavras',
     'git-commands': 'Comandos Git',
     'days-until': 'Quantos dias até...',
+    'regex-tester': 'Regex Tester',
+    'base64-tool': 'Base64 Encode/Decode',
+    'uuid-generator': 'Gerador de UUID',
+    'case-converter': 'Conversor de Case',
   },
   en: {
     home: 'Home',
@@ -96,6 +105,7 @@ const LABELS = {
     text: 'Text',
     references: 'References',
     extras: 'Out of the box',
+    new: 'New',
     'jwt-decoder': 'JWT Decoder',
     'cron-parser': 'Cron Expression Explainer',
     'hash-generator': 'Hash Generator',
@@ -123,7 +133,20 @@ const LABELS = {
     'word-counter': 'Word Counter',
     'git-commands': 'Git Commands',
     'days-until': 'Days Until...',
+    'regex-tester': 'Regex Tester',
+    'base64-tool': 'Base64 Encode/Decode',
+    'uuid-generator': 'UUID Generator',
+    'case-converter': 'Case Converter',
   },
+}
+
+function withNewBadge(key, label, l) {
+  if (!NEW_ITEM_KEYS.includes(key)) return label
+  return (
+    <span>
+      {label} <Tag color="green" style={{ marginLeft: 4, lineHeight: '16px', fontSize: 11 }}>{l.new}</Tag>
+    </span>
+  )
 }
 
 function buildMenuItems(l) {
@@ -140,6 +163,10 @@ function buildMenuItems(l) {
         { key: '/tools/json-formatter', icon: <FileTextOutlined />, label: l['json-formatter'] },
         { key: '/tools/color-converter', icon: <BgColorsOutlined />, label: l['color-converter'] },
         { key: '/tools/timestamp-converter', icon: <FieldTimeOutlined />, label: l['timestamp-converter'] },
+        { key: '/tools/regex-tester', icon: <SearchOutlined />, label: withNewBadge('/tools/regex-tester', l['regex-tester'], l) },
+        { key: '/tools/base64-tool', icon: <SwapOutlined />, label: withNewBadge('/tools/base64-tool', l['base64-tool'], l) },
+        { key: '/tools/uuid-generator', icon: <IdcardOutlined />, label: withNewBadge('/tools/uuid-generator', l['uuid-generator'], l) },
+        { key: '/tools/case-converter', icon: <FontSizeOutlined />, label: withNewBadge('/tools/case-converter', l['case-converter'], l) },
       ],
     },
     {
