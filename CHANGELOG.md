@@ -1,14 +1,13 @@
 # Changelog do devtools
 
 Histórico do que o agente noturno (cron 00:00) adicionou em cada execução.
-Lido por ele mesmo no início de cada rodada, pra nunca repetir a mesma
-ferramenta/estilo/snippet duas vezes.
+Lido por ele mesmo no início de cada rodada, pra nunca repetir algo que já
+existe. Sem categorias fixas — cada rodada decide livremente o que faz
+sentido adicionar (pode ser 1 item ou vários).
 
 <!-- NOVAS ENTRADAS ENTRAM NO TOPO, formato:
 ## AAAA-MM-DD
-- Ferramenta: <nome> — <rota>
-- Estilo: <nome> — <rota/onde>
-- Snippet: <nome> — <onde>
+- <tipo do item>: <nome> — <rota> (<descrição curta>)
 -->
 
 ## 2026-07-24
