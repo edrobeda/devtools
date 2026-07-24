@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Layout, Menu, theme } from 'antd'
+import { Layout, Menu, Segmented, theme } from 'antd'
 import {
   HomeOutlined,
   MenuFoldOutlined,
@@ -13,50 +13,96 @@ import {
   FileTextOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const { Header, Sider, Content } = Layout
 
-const menuItems = [
-  { key: '/', icon: <HomeOutlined />, label: 'Home' },
-  {
-    key: 'group-tools',
-    icon: <ToolOutlined />,
-    label: 'Ferramentas',
-    children: [
-      { key: '/tools/jwt-decoder', icon: <KeyOutlined />, label: 'Decodificador JWT' },
-      { key: '/tools/cron-parser', icon: <FieldTimeOutlined />, label: 'Explicador de Cron' },
-      { key: '/tools/hash-generator', icon: <NumberOutlined />, label: 'Gerador de Hash' },
-      { key: '/tools/json-formatter', icon: <FileTextOutlined />, label: 'Formatador de JSON' },
-      { key: '/tools/color-converter', icon: <BgColorsOutlined />, label: 'Conversor de Cor' },
-    ],
+// Labels do menu por idioma — rótulos apenas, a lista de rotas/ícones fica
+// fixa abaixo. Rodadas futuras do agente: ao adicionar uma página nova,
+// adicione o par pt/en aqui também.
+const LABELS = {
+  pt: {
+    home: 'Home',
+    tools: 'Ferramentas',
+    styles: 'Estilos',
+    snippets: 'Snippets',
+    'jwt-decoder': 'Decodificador JWT',
+    'cron-parser': 'Explicador de Cron',
+    'hash-generator': 'Gerador de Hash',
+    'json-formatter': 'Formatador de JSON',
+    'color-converter': 'Conversor de Cor',
+    'glass-card': 'Glass Card',
+    'copy-button': 'Botão de Copiar Animado',
+    'skeleton-shimmer': 'Skeleton Shimmer',
+    'use-debounce': 'useDebounce',
+    'use-local-storage': 'useLocalStorage',
+    'use-click-outside': 'useClickOutside',
   },
-  {
-    key: 'group-styles',
-    icon: <BgColorsOutlined />,
-    label: 'Estilos',
-    children: [
-      { key: '/styles/glass-card', label: 'Glass Card' },
-      { key: '/styles/copy-button', label: 'Botão de Copiar Animado' },
-      { key: '/styles/skeleton-shimmer', label: 'Skeleton Shimmer' },
-    ],
+  en: {
+    home: 'Home',
+    tools: 'Tools',
+    styles: 'Styles',
+    snippets: 'Snippets',
+    'jwt-decoder': 'JWT Decoder',
+    'cron-parser': 'Cron Expression Explainer',
+    'hash-generator': 'Hash Generator',
+    'json-formatter': 'JSON Formatter',
+    'color-converter': 'Color Converter',
+    'glass-card': 'Glass Card',
+    'copy-button': 'Animated Copy Button',
+    'skeleton-shimmer': 'Skeleton Shimmer',
+    'use-debounce': 'useDebounce',
+    'use-local-storage': 'useLocalStorage',
+    'use-click-outside': 'useClickOutside',
   },
-  {
-    key: 'group-snippets',
-    icon: <CodeOutlined />,
-    label: 'Snippets',
-    children: [
-      { key: '/snippets/use-debounce', label: 'useDebounce' },
-      { key: '/snippets/use-local-storage', label: 'useLocalStorage' },
-      { key: '/snippets/use-click-outside', label: 'useClickOutside' },
-    ],
-  },
-]
+}
+
+function buildMenuItems(l) {
+  return [
+    { key: '/', icon: <HomeOutlined />, label: l.home },
+    {
+      key: 'group-tools',
+      icon: <ToolOutlined />,
+      label: l.tools,
+      children: [
+        { key: '/tools/jwt-decoder', icon: <KeyOutlined />, label: l['jwt-decoder'] },
+        { key: '/tools/cron-parser', icon: <FieldTimeOutlined />, label: l['cron-parser'] },
+        { key: '/tools/hash-generator', icon: <NumberOutlined />, label: l['hash-generator'] },
+        { key: '/tools/json-formatter', icon: <FileTextOutlined />, label: l['json-formatter'] },
+        { key: '/tools/color-converter', icon: <BgColorsOutlined />, label: l['color-converter'] },
+      ],
+    },
+    {
+      key: 'group-styles',
+      icon: <BgColorsOutlined />,
+      label: l.styles,
+      children: [
+        { key: '/styles/glass-card', label: l['glass-card'] },
+        { key: '/styles/copy-button', label: l['copy-button'] },
+        { key: '/styles/skeleton-shimmer', label: l['skeleton-shimmer'] },
+      ],
+    },
+    {
+      key: 'group-snippets',
+      icon: <CodeOutlined />,
+      label: l.snippets,
+      children: [
+        { key: '/snippets/use-debounce', label: l['use-debounce'] },
+        { key: '/snippets/use-local-storage', label: l['use-local-storage'] },
+        { key: '/snippets/use-click-outside', label: l['use-click-outside'] },
+      ],
+    },
+  ]
+}
 
 export default function AppLayout() {
   const [collapsed, setCollapsed] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
+  const { lang, setLang } = useLanguage()
   const { token: { colorBgContainer, borderRadiusLG } } = theme.useToken()
+
+  const menuItems = buildMenuItems(LABELS[lang])
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
@@ -91,11 +137,20 @@ export default function AppLayout() {
           background: colorBgContainer,
           display: 'flex',
           alignItems: 'center',
+          justifyContent: 'space-between',
         }}>
           {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
             onClick: () => setCollapsed(!collapsed),
             style: { fontSize: 18, cursor: 'pointer' },
           })}
+          <Segmented
+            value={lang}
+            onChange={setLang}
+            options={[
+              { label: 'PT', value: 'pt' },
+              { label: 'EN', value: 'en' },
+            ]}
+          />
         </Header>
         <Content style={{
           margin: 24,
