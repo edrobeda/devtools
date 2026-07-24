@@ -10,6 +10,9 @@ sentido adicionar (pode ser 1 item ou vários).
 - <tipo do item>: <nome> — <rota> (<descrição curta>)
 -->
 
+## 2026-07-24 (fix manual, fora de rodada — Edson)
+- Ajuste: `AppLayout.jsx` — Sider e Content agora rolam em containers independentes (`height: 100vh` + `overflow: auto` cada um), em vez do scroll único da página inteira. Antes, com o menu já tendo muitos grupos, rolar até o último item do menu rolava a página toda; ao clicar, o conteúdo novo renderizava fora da área visível e parecia que "nada tinha acontecido". Content também reseta o próprio scroll pro topo a cada troca de rota (`useEffect` em `location.pathname`).
+
 ## 2026-07-24 (rodada 3)
 - Ferramenta: Regex Tester — `/tools/regex-tester` (testa uma expressão regular contra um texto colado, destacando as correspondências ao vivo via `String.matchAll`; mostra grupos capturados por match e traz padrões prontos — e-mail, URL, IPv4, cor hex, CPF, telefone BR — pra inserir rápido; flags g/i/m/s/u/y selecionáveis)
 - Ferramenta: Base64 Encode/Decode — `/tools/base64-tool` (codifica/decodifica texto com truque unicode-safe via `encodeURIComponent`, e também arquivos: lê um arquivo local via `FileReader`/`readAsDataURL` e mostra o Base64, ou decodifica um Base64 colado de volta em arquivo baixável via `Blob`/`URL.createObjectURL`; tudo client-side)

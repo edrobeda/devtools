@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Layout, Menu, Segmented, Tag, theme } from 'antd'
 import {
   HomeOutlined,
@@ -304,12 +304,20 @@ export default function AppLayout() {
   const location = useLocation()
   const { lang, setLang } = useLanguage()
   const { token: { colorBgContainer, borderRadiusLG } } = theme.useToken()
+  const contentRef = useRef(null)
 
   const menuItems = buildMenuItems(LABELS[lang])
 
+  // O menu (Sider) e o conteúdo rolam em containers separados — ao trocar
+  // de rota, o scroll do conteúdo precisa voltar pro topo mesmo que o menu
+  // continue rolado onde o usuário clicou.
+  useEffect(() => {
+    contentRef.current?.scrollTo(0, 0)
+  }, [location.pathname])
+
   return (
-    <Layout style={{ minHeight: '100vh' }}>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
+    <Layout style={{ height: '100vh' }}>
+      <Sider trigger={null} collapsible collapsed={collapsed} style={{ height: '100vh', overflow: 'auto' }}>
         <div style={{
           height: 32,
           margin: 16,
@@ -338,7 +346,7 @@ export default function AppLayout() {
           }}
         />
       </Sider>
-      <Layout>
+      <Layout style={{ height: '100vh' }}>
         <Header style={{
           padding: '0 16px',
           background: colorBgContainer,
@@ -364,9 +372,14 @@ export default function AppLayout() {
           padding: 24,
           background: colorBgContainer,
           borderRadius: borderRadiusLG,
-          minHeight: 280,
+          minHeight: 0,
+          overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'column',
         }}>
-          <Outlet />
+          <div ref={contentRef} style={{ overflow: 'auto', flex: 1 }}>
+            <Outlet />
+          </div>
         </Content>
       </Layout>
     </Layout>
