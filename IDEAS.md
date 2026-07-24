@@ -1,68 +1,222 @@
 # Ideias para o devtools
 
-Lista abrangente de possibilidades pra crescer o projeto — ferramentas,
-estilos, snippets, referências e qualquer outra coisa útil pra quem
-desenvolve. `[x]` = já existe no projeto. `[ ]` = ainda não.
+Lista abrangente de possibilidades pra crescer o projeto. `[x]` = já existe
+no projeto. `[ ]` = ainda não.
 
 Serve como banco de ideias pra rodadas manuais ou pro agente noturno puxar
 quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 
-## Ferramentas — geradores, conversores, validadores, calculadoras
+## 📋 Código — formatadores, encoders, geradores
 
 - [x] Decodificador de JWT — `/tools/jwt-decoder`
-- [x] Explicador de expressão Cron — `/tools/cron-parser`
-- [x] Gerador de Hash (SHA-1/256/384/512) — `/tools/hash-generator`
+- [x] Explicador de expressão Cron (Cron Human Reader) — `/tools/cron-parser`
+- [x] Gerador de Hash (MD5/SHA-1/256/384/512) — `/tools/hash-generator`
 - [x] Formatador/Validador de JSON — `/tools/json-formatter`
 - [x] Conversor de Cor (HEX/RGB/HSL) — `/tools/color-converter`
-- [x] Conversor de Timestamp — `/tools/timestamp-converter`
-- [ ] Gerador/validador de CPF e CNPJ fake (dígitos verificadores corretos)
-- [ ] Gerador de UUID/GUID (v4, com opção de vários de uma vez)
-- [ ] Gerador de senha aleatória (com opções de comprimento/símbolos)
-- [ ] Gerador de Lorem Ipsum (parágrafos/palavras/frases)
-- [ ] Base64 encode/decode (texto e arquivo)
-- [ ] URL encode/decode
-- [ ] HTML entity encode/decode
-- [ ] Testador/construtor de regex com highlight de matches
-- [ ] Preview de Markdown ao vivo
-- [ ] Conversor de unidades CSS (px ↔ rem ↔ em ↔ vh/vw), com base configurável
-- [ ] Diff checker (comparação de dois textos, lado a lado)
-- [ ] Conversor JSON ↔ YAML ↔ XML
-- [ ] Formatador de SQL
-- [ ] Conversor de base numérica (binário/octal/decimal/hexadecimal)
+- [x] Conversor de Timestamp Unix — `/tools/timestamp-converter`
+- [ ] Snippets favoritos/compartilháveis (biblioteca pessoal de trechos de código)
+- [ ] Regex Tester (com highlight de matches)
+- [ ] Regex Library (padrões comuns prontos: email, telefone, CPF, URL)
+- [ ] SQL Formatter
+- [ ] XML Formatter
+- [ ] YAML Formatter
+- [ ] TOML Formatter
+- [ ] Markdown Preview (ao vivo)
+- [ ] Diff Checker (texto x texto, lado a lado)
+- [ ] JSON Diff (estrutural, não linha a linha)
+- [ ] Base64 Encode/Decode (texto e arquivo)
+- [ ] URL Encode/Decode
+- [ ] HTML Entity Encode/Decode
+- [ ] JWT Generator (pra testes, monta um JWT válido a partir de payload)
+- [ ] JWT Timeline 🔥 (linha do tempo visual mostrando quando expira)
+- [ ] UUID Generator (v4, vários de uma vez)
+- [ ] NanoID Generator
+- [ ] UUID Collision Simulator 🔥
+- [ ] HMAC Generator
+- [ ] Password Generator (com opções de comprimento/símbolos)
+- [ ] Password Entropy Checker 🔥
+- [ ] Lorem Ipsum Generator
+- [ ] Faker (nomes, CPF/CNPJ, endereços, emails, telefones)
+- [ ] Faker Dataset Generator 🔥 (gera um CSV/JSON inteiro de dados fake)
+- [ ] Cron Expression Builder (visual, o inverso do que já existe)
+- [ ] Cron Timeline 🔥 (mostra visualmente as próximas execuções numa linha do tempo)
+- [ ] CSS Minify/Beautify
+- [ ] JS Minify/Beautify
+- [ ] HTML Minify/Beautify
+- [ ] JSON Path Explorer 🔥 (testa expressões JSONPath contra um JSON colado)
+- [ ] Conversor de base numérica (bin/oct/dec/hex)
 - [ ] Conversor de case (camelCase, snake_case, kebab-case, PascalCase, Title Case)
-- [ ] Contador de palavras/caracteres/linhas com estatísticas de leitura
 - [ ] Gerador de slug (texto → url-slug)
 - [ ] Conversor CSV ↔ JSON
-- [ ] Gerador de QR code
-- [ ] Gerador/leitor de código de barras
-- [ ] Gerador de `.gitignore` por linguagem/framework
-- [ ] Validador/formatador de `docker-compose.yml`
-- [ ] Calculadora de sub-rede IP (CIDR, máscara, range)
-- [ ] Parser de User-Agent (identifica navegador/OS/dispositivo)
-- [ ] Referência pesquisável de HTTP status codes (com descrição)
-- [ ] Lookup de MIME type por extensão
+- [ ] Gerador/validador de CPF e CNPJ fake (dígitos verificadores corretos)
 - [ ] Comparador/validador de SemVer
-- [ ] Gerador de dados fake (nomes, emails, endereços, telefones — além do CPF/CNPJ)
-- [ ] Parser/validador de arquivo `.env`
 - [ ] Validador de JSON Schema
+- [ ] JSON Schema Generator (a partir de um JSON de exemplo)
 - [ ] Formatador de query GraphQL
-- [ ] Minificador/formatador de JS/CSS colado
+
+## 🎨 Front-end — CSS, design, playgrounds
+
+- [ ] CSS Playground
+- [ ] Tailwind Playground
+- [ ] Flexbox Builder (visual, interativo)
+- [ ] Grid Builder (visual, interativo)
+- [ ] Box Shadow Generator (visual, com camadas)
+- [ ] Border Radius Generator (cantos independentes)
+- [ ] Glassmorphism Generator
+- [ ] Neumorphism Generator
+- [ ] Gradient Generator
+- [ ] SVG Background Generator
+- [ ] SVG Blob Generator
+- [ ] SVG Wave Generator
+- [ ] SVG Icon Browser
+- [ ] Google Fonts Preview
+- [ ] Breakpoint Preview / Responsive Preview (site num iframe redimensionável)
+- [ ] Favicon Generator
+- [ ] OpenGraph Preview (como o link aparece ao compartilhar)
+- [ ] CSS Animation Builder
+- [ ] Keyframe Generator
+- [ ] CSS Specificity Calculator 🔥
+- [ ] CSS Performance Analyzer 🔥
+- [ ] Conversor de unidades CSS (px ↔ rem ↔ em ↔ vh/vw)
+- [ ] Checador de contraste de cores (WCAG AA/AAA) 🔥
 - [ ] Gerador de paleta de cores a partir de uma cor base
-- [ ] Gerador de gradiente CSS (visual, com preview)
-- [ ] Gerador de `box-shadow` (visual, com preview e camadas)
-- [ ] Gerador/visualizador de `border-radius` (todos os cantos independentes)
-- [ ] Checador de contraste de cores (acessibilidade, WCAG AA/AAA)
-- [ ] Checador de força de senha
-- [ ] Calculadora de diferença entre datas
-- [ ] Conversor de fuso horário (vários fusos lado a lado)
-- [ ] Gerador de nome de branch git a partir de uma descrição de feature
-- [ ] Gerador de mensagem de commit seguindo Conventional Commits
+
+## 🌐 APIs
+
+- [ ] REST Client (tipo mini Postman)
+- [ ] GraphQL Playground
+- [ ] WebSocket Tester
+- [ ] SSE Tester (Server-Sent Events)
+- [ ] Webhook Tester (recebe e mostra payloads)
+- [ ] HTTP Header Inspector
+- [ ] cURL Generator (monta comando curl a partir de uma requisição)
+- [ ] HTTP Request Replay 🔥
+- [ ] Postman Import/Export
+- [ ] OpenAPI Viewer
+- [ ] API Mock Server instantâneo 🔥
+- [ ] API Flow Designer 🔥 (desenha visualmente uma sequência de chamadas)
 - [ ] Simulador de mock de resposta de API (cola um JSON, vira endpoint fake local)
-- [ ] Editor de HTML com preview ao vivo (tipo mini CodePen)
+
+## 🛠 Desenvolvimento & DevOps
+
+- [ ] Environment Variables Manager
+- [ ] Parser/validador de arquivo `.env`
+- [ ] Docker Compose Generator
+- [ ] Docker Compose Visualizer 🔥
+- [ ] Dockerfile Generator
+- [ ] Docker Logs Viewer
+- [ ] Docker Layer Explorer 🔥
+- [ ] Bundle Size Estimator 🔥
+- [ ] nginx Config Generator
+- [ ] Caddyfile Generator
+- [ ] Apache Config Builder
+- [ ] PM2 Config Generator
+- [ ] `.gitignore` Generator (por linguagem/framework)
+- [ ] License Generator
+- [ ] README Generator
+- [ ] Changelog Generator (a partir de commits colados)
+- [ ] Semantic Version Helper (quando sobe major/minor/patch)
+- [ ] Gerador de nome de branch git a partir de descrição de feature
+- [ ] Gerador de mensagem de commit (Conventional Commits)
+- [ ] Git Commit Generator por IA 🔥
+- [ ] GitHub Actions YAML Validator
+- [ ] GitLab CI Validator
+- [ ] Kubernetes Manifest Explorer
+- [ ] Kubernetes YAML Validator
+- [ ] Editor de HTML com preview ao vivo (mini CodePen)
 - [ ] Timer Pomodoro
 - [ ] Teste de digitação (WPM)
 
-## Estilos — componentes e padrões visuais
+## 💾 Banco de Dados
+
+- [ ] SQL Runner
+- [ ] SQL Formatter / Query Formatter
+- [ ] Explain Visualizer / SQL Explain Visualizer 🔥
+- [ ] ER Diagram Generator
+- [ ] JSON → SQL Insert
+- [ ] CSV → SQL / SQL → CSV
+- [ ] SQL Data Generator 🔥
+- [ ] Mongo Query Builder
+- [ ] Redis Command Helper
+- [ ] Redis TTL Simulator 🔥
+- [ ] Rate Limit Calculator 🔥
+
+## ☁ Cloud
+
+- [ ] AWS ARN Parser
+- [ ] IAM Policy Visualizer
+- [ ] S3 Policy Generator
+- [ ] Cloudflare Rules Helper
+- [ ] Docker Hub Tags (lookup de tags disponíveis de uma imagem)
+
+## 🔒 Segurança
+
+- [ ] CORS Tester
+- [ ] CSP Generator / CSP Validator
+- [ ] SSL Checker
+- [ ] Certificate Decoder
+- [ ] CSR Generator
+- [ ] Robots.txt Generator
+- [ ] Security Headers Checker
+- [ ] Checador de força de senha
+
+## 📁 Arquivos & 📊 Dados
+
+- [ ] CSV Viewer / Editor / Merge
+- [ ] Excel Viewer
+- [ ] PDF Metadata
+- [ ] Image Compressor
+- [ ] SVG Optimizer
+- [ ] Image Metadata (EXIF)
+- [ ] QR Code Generator (incl. QR pra Wi-Fi)
+- [ ] Gerador/leitor de código de barras
+- [ ] ZIP Preview
+- [ ] JSON Viewer / Tree Viewer
+- [ ] XML Tree / YAML Tree
+
+## 🌍 Rede
+
+- [ ] IP Lookup
+- [ ] DNS Lookup
+- [ ] WHOIS
+- [ ] Port Checker
+- [ ] Ping / Traceroute
+- [ ] HTTP Status Checker
+- [ ] Redirect Checker
+- [ ] User-Agent Parser
+- [ ] Calculadora de sub-rede IP (CIDR, máscara, range)
+- [ ] Simulador de latência de rede (throttling visual) 🔥
+- [ ] Referência pesquisável de HTTP status codes
+- [ ] Lookup de MIME type por extensão
+
+## 🤖 IA
+
+- [ ] Prompt Library
+- [ ] Prompt Variables / Versioning / Compare
+- [ ] Token Counter
+- [ ] Embedding Visualizer
+- [ ] OpenAI Cost Calculator
+- [ ] Anthropic Cost Calculator
+- [ ] Ollama Playground
+- [ ] RAG Chunk Visualizer
+
+## 📱 Mobile
+
+- [ ] Android Intent Generator
+- [ ] Deep Link Tester
+- [ ] APK Manifest Viewer
+- [ ] QR for App Links
+
+## 🔤 Texto
+
+- [ ] Case Converter
+- [ ] Remove Accents
+- [ ] Remove Duplicates (linhas)
+- [ ] Sort Lines
+- [ ] Line Number Generator
+- [ ] Contador de palavras/caracteres/linhas
+
+## ✨ Estilos — componentes e padrões visuais (UI)
 
 - [x] Glass Card (glassmorphism) — `/styles/glass-card`
 - [x] Botão de Copiar Animado — `/styles/copy-button`
@@ -94,11 +248,11 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Header sticky com efeito de blur ao rolar
 - [ ] Texto com efeito de revelação (reveal on scroll)
 - [ ] Efeito de máquina de escrever (typewriter)
-- [ ] Efeito confete/celebração (ex.: ao completar uma ação)
-- [ ] Carrossel/marquee infinito (logos, texto)
+- [ ] Efeito confete/celebração
+- [ ] Carrossel/marquee infinito
 - [ ] Cursor customizado que reage a elementos interativos
 
-## Snippets — hooks, algoritmos, padrões de código
+## 🧩 Snippets — hooks, algoritmos, padrões de código
 
 - [x] `useDebounce` — `/snippets/use-debounce`
 - [x] `useLocalStorage` — `/snippets/use-local-storage`
@@ -125,14 +279,13 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Verificador de palíndromo (com variações: ignorar acentos/espaços)
 - [ ] Fibonacci memoizado vs. não-memoizado (comparação de performance)
 
-## Referências rápidas — cheat sheets, tabelas, atalhos
+## 📚 Referências rápidas — cheat sheets, tabelas, atalhos
 
 *(categoria ainda sem nenhum item — boa candidata pra próximas rodadas)*
 
 - [ ] Atalhos de teclado do VSCode (Windows/Mac lado a lado)
 - [ ] Comandos git essenciais (com exemplos)
 - [ ] Comandos Docker/Docker Compose essenciais
-- [ ] Cheat sheet de regex (padrões comuns: email, telefone, CPF, URL)
 - [ ] Cheat sheet de Flexbox (visual, interativo)
 - [ ] Cheat sheet de CSS Grid (visual, interativo)
 - [ ] Atalhos do terminal/bash
@@ -140,18 +293,32 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Comandos SQL essenciais
 - [ ] npm vs yarn vs pnpm — tabela comparativa de comandos
 - [ ] Conventional Commits — tabela de tipos e quando usar cada um
-- [ ] Semantic Versioning — quando sobe major/minor/patch
 - [ ] Atalhos do DevTools do navegador
 - [ ] Tabela de métodos HTTP e quando usar cada um
-- [ ] Códigos de status HTTP organizados por categoria com exemplos de uso
 
-## Ideias fora da caixa
+## 💡 Fora da caixa / "diferentonas"
+
+Itens que quase ninguém oferece — bons candidatos pra se destacar:
 
 - [ ] "Quantos dias até sexta" (ou até qualquer data escolhida)
-- [ ] Simulador de latência de rede (throttling visual de uma requisição)
-- [ ] Visualizador de JWT com cada parte destacada em cor diferente
 - [ ] Roleta/sorteio simples (ex.: "quem revisa esse PR")
-- [ ] Gerador de changelog a partir de uma lista de commits colada
+- [ ] CSS Specificity Calculator 🔥 *(ver também em Front-end)*
+- [ ] SQL Explain Visualizer 🔥 *(ver também em Banco de Dados)*
+- [ ] Docker Compose Visualizer 🔥 *(ver também em DevOps)*
+- [ ] API Flow Designer 🔥 *(ver também em APIs)*
+- [ ] JWT Timeline 🔥 *(ver também em Código)*
+- [ ] Redis TTL Simulator 🔥 *(ver também em Banco de Dados)*
+- [ ] Rate Limit Calculator 🔥 *(ver também em Banco de Dados)*
+- [ ] Password Entropy Checker 🔥 *(ver também em Código)*
+- [ ] HTTP Request Replay 🔥 *(ver também em APIs)*
+- [ ] Git Commit Generator por IA 🔥 *(ver também em DevOps)*
+- [ ] API Mock Server instantâneo 🔥 *(ver também em APIs)*
+- [ ] SQL Data Generator 🔥 / Faker Dataset Generator 🔥 *(ver também em Banco de Dados/Código)*
+- [ ] Cron Timeline 🔥 *(ver também em Código)*
+- [ ] UUID Collision Simulator 🔥 *(ver também em Código)*
+- [ ] Docker Layer Explorer 🔥 *(ver também em DevOps)*
+- [ ] CSS Performance Analyzer 🔥 *(ver também em Front-end)*
+- [ ] Bundle Size Estimator 🔥 *(ver também em DevOps)*
 
 ---
 
