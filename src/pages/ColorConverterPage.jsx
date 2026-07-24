@@ -1,10 +1,28 @@
 import React, { useMemo, useState } from 'react'
 import { Typography, Card, Input, Space, Button, message, Row, Col } from 'antd'
 import { BgColorsOutlined, CopyOutlined } from '@ant-design/icons'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const { Title, Paragraph, Text } = Typography
 
 const HEX_RE = /^#?([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/
+
+const translations = {
+  pt: {
+    title: 'Conversor de Cor',
+    intro: 'Converte entre HEX, RGB e HSL em tempo real. Digite um HEX ou use o seletor de cor — tudo calculado localmente, sem dependências.',
+    invalidHex: 'HEX inválido',
+    copy: 'Copiar',
+    copiedMessage: (text) => `${text} copiado`,
+  },
+  en: {
+    title: 'Color Converter',
+    intro: 'Converts between HEX, RGB and HSL in real time. Type a HEX value or use the color picker — everything is computed locally, no dependencies.',
+    invalidHex: 'Invalid HEX',
+    copy: 'Copy',
+    copiedMessage: (text) => `${text} copied`,
+  },
+}
 
 function normalizeHex(hex) {
   const match = HEX_RE.exec(hex.trim())
@@ -45,12 +63,9 @@ function rgbToHsl({ r, g, b }) {
   return { h, s: Math.round(s * 100), l: Math.round(l * 100) }
 }
 
-function copy(text) {
-  navigator.clipboard.writeText(text)
-  message.success(`${text} copiado`)
-}
-
 export default function ColorConverterPage() {
+  const { lang } = useLanguage()
+  const t = translations[lang]
   const [hexInput, setHexInput] = useState('#1677ff')
 
   const normalized = normalizeHex(hexInput)
@@ -60,13 +75,15 @@ export default function ColorConverterPage() {
   const rgbText = rgb ? `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})` : null
   const hslText = hsl ? `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)` : null
 
+  function copy(text) {
+    navigator.clipboard.writeText(text)
+    message.success(t.copiedMessage(text))
+  }
+
   return (
     <Space direction="vertical" size="large" style={{ width: '100%' }}>
-      <Title level={2}><BgColorsOutlined /> Conversor de Cor</Title>
-      <Paragraph type="secondary">
-        Converte entre HEX, RGB e HSL em tempo real. Digite um HEX ou use o
-        seletor de cor — tudo calculado localmente, sem dependências.
-      </Paragraph>
+      <Title level={2}><BgColorsOutlined /> {t.title}</Title>
+      <Paragraph type="secondary">{t.intro}</Paragraph>
 
       <Card>
         <Space align="center" size="large" wrap>
@@ -83,7 +100,7 @@ export default function ColorConverterPage() {
             style={{ width: 160, fontFamily: 'monospace' }}
             status={normalized ? '' : 'error'}
           />
-          {!normalized && <Text type="danger">HEX inválido</Text>}
+          {!normalized && <Text type="danger">{t.invalidHex}</Text>}
         </Space>
       </Card>
 
@@ -114,7 +131,7 @@ export default function ColorConverterPage() {
                       <Text code>{value}</Text>
                     </Space>
                     <Button size="small" icon={<CopyOutlined />} onClick={() => copy(value)}>
-                      Copiar
+                      {t.copy}
                     </Button>
                   </Space>
                 ))}

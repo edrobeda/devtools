@@ -10,6 +10,9 @@ sentido adicionar (pode ser 1 item ou vários).
 - <tipo do item>: <nome> — <rota> (<descrição curta>)
 -->
 
+## 2026-07-24 (retrofit)
+- Todas as páginas existentes em `src/pages/` (exceto `NotFoundPage.jsx`) ganharam suporte PT/EN, seguindo o padrão local `translations = { pt, en }` + `useLanguage()` já usado em `HomePage.jsx`.
+
 ## 2026-07-24
 - Ferramenta: Formatador e Validador de JSON — `/tools/json-formatter` (formata com indentação, minifica e valida sintaxe via `JSON.parse`/`JSON.stringify`, mostra contagem de chaves e tamanho em bytes, com botão de copiar; tudo client-side)
 - Ferramenta: Conversor de Cor — `/tools/color-converter` (converte HEX ↔ RGB ↔ HSL em tempo real a partir de um seletor de cor nativo ou input de texto, com swatch de preview e botão de copiar por formato)

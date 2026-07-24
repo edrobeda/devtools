@@ -1,9 +1,51 @@
 import React, { useState } from 'react'
 import { Typography, Card, Input, Space, Button, Alert, message, Descriptions } from 'antd'
 import { FileTextOutlined, CopyOutlined } from '@ant-design/icons'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const { Title, Paragraph, Text } = Typography
 const { TextArea } = Input
+
+const translations = {
+  pt: {
+    title: 'Formatador e Validador de JSON',
+    intro: (
+      <>
+        Cola um JSON, formata com indentação ou minifica, e valida a sintaxe
+        — tudo local via <Text code>JSON.parse</Text>/<Text code>JSON.stringify</Text>,
+        nenhum dado sai do navegador.
+      </>
+    ),
+    placeholder: 'Cole o JSON aqui, ex: {"nome": "teste", "ativo": true}',
+    format: 'Formatar',
+    minify: 'Minificar',
+    invalidTitle: 'JSON inválido',
+    resultTitle: 'Resultado',
+    copy: 'Copiar',
+    copiedMessage: 'Copiado',
+    keys: 'Chaves',
+    size: 'Tamanho',
+  },
+  en: {
+    title: 'JSON Formatter & Validator',
+    intro: (
+      <>
+        Paste a JSON, format it with indentation or minify it, and validate
+        the syntax — all local via <Text code>JSON.parse</Text>/<Text code>JSON.stringify</Text>,
+        no data leaves the browser.
+      </>
+    ),
+    placeholder: 'Paste the JSON here, e.g.: {"name": "test", "active": true}',
+    format: 'Format',
+    minify: 'Minify',
+    invalidTitle: 'Invalid JSON',
+    resultTitle: 'Result',
+    copy: 'Copy',
+    copiedMessage: 'Copied',
+    keys: 'Keys',
+    size: 'Size',
+  },
+}
 
 function countKeys(value) {
   if (Array.isArray(value)) {
@@ -19,6 +61,8 @@ function countKeys(value) {
 }
 
 export default function JsonFormatterPage() {
+  const { lang } = useLanguage()
+  const t = translations[lang]
   const [input, setInput] = useState('')
   const [output, setOutput] = useState('')
   const [error, setError] = useState(null)
@@ -67,43 +111,39 @@ export default function JsonFormatterPage() {
 
   function handleCopy() {
     navigator.clipboard.writeText(output)
-    message.success('Copiado')
+    message.success(t.copiedMessage)
   }
 
   return (
     <Space direction="vertical" size="large" style={{ width: '100%' }}>
-      <Title level={2}><FileTextOutlined /> Formatador e Validador de JSON</Title>
-      <Paragraph type="secondary">
-        Cola um JSON, formata com indentação ou minifica, e valida a sintaxe
-        — tudo local via <Text code>JSON.parse</Text>/<Text code>JSON.stringify</Text>,
-        nenhum dado sai do navegador.
-      </Paragraph>
+      <Title level={2}><FileTextOutlined /> {t.title}</Title>
+      <Paragraph type="secondary">{t.intro}</Paragraph>
 
       <Card>
         <TextArea
           rows={10}
-          placeholder='Cole o JSON aqui, ex: {"nome": "teste", "ativo": true}'
+          placeholder={t.placeholder}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           style={{ fontFamily: 'monospace' }}
         />
         <Space style={{ marginTop: 12 }}>
-          <Button type="primary" onClick={handleFormat}>Formatar</Button>
-          <Button onClick={handleMinify}>Minificar</Button>
+          <Button type="primary" onClick={handleFormat}>{t.format}</Button>
+          <Button onClick={handleMinify}>{t.minify}</Button>
         </Space>
       </Card>
 
-      {error && <Alert type="error" showIcon message="JSON inválido" description={error} />}
+      {error && <Alert type="error" showIcon message={t.invalidTitle} description={error} />}
 
       {output && (
         <Card
-          title="Resultado"
-          extra={<Button size="small" icon={<CopyOutlined />} onClick={handleCopy}>Copiar</Button>}
+          title={t.resultTitle}
+          extra={<Button size="small" icon={<CopyOutlined />} onClick={handleCopy}>{t.copy}</Button>}
         >
           {stats && (
             <Descriptions size="small" column={2} style={{ marginBottom: 12 }}>
-              <Descriptions.Item label="Chaves">{stats.keys}</Descriptions.Item>
-              <Descriptions.Item label="Tamanho">{stats.bytes} bytes</Descriptions.Item>
+              <Descriptions.Item label={t.keys}>{stats.keys}</Descriptions.Item>
+              <Descriptions.Item label={t.size}>{stats.bytes} bytes</Descriptions.Item>
             </Descriptions>
           )}
           <pre style={{ margin: 0, overflowX: 'auto', maxHeight: 400, overflowY: 'auto' }}>
