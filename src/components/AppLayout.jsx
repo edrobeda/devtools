@@ -86,6 +86,11 @@ const LABELS = {
     'base64-tool': 'Base64 Encode/Decode',
     'uuid-generator': 'Gerador de UUID',
     'case-converter': 'Conversor de Case',
+    'password-generator': 'Gerador de Senha',
+    'url-encoder': 'URL Encode/Decode',
+    'gradient-generator': 'Gerador de Gradiente CSS',
+    'use-copy-to-clipboard': 'useCopyToClipboard',
+    'http-status-codes': 'HTTP Status Codes',
   },
   en: {
     home: 'Home',
@@ -137,6 +142,11 @@ const LABELS = {
     'base64-tool': 'Base64 Encode/Decode',
     'uuid-generator': 'UUID Generator',
     'case-converter': 'Case Converter',
+    'password-generator': 'Password Generator',
+    'url-encoder': 'URL Encode/Decode',
+    'gradient-generator': 'CSS Gradient Generator',
+    'use-copy-to-clipboard': 'useCopyToClipboard',
+    'http-status-codes': 'HTTP Status Codes',
   },
 }
 
@@ -167,6 +177,8 @@ function buildMenuItems(l) {
         { key: '/tools/base64-tool', icon: <SwapOutlined />, label: withNewBadge('/tools/base64-tool', l['base64-tool'], l) },
         { key: '/tools/uuid-generator', icon: <IdcardOutlined />, label: withNewBadge('/tools/uuid-generator', l['uuid-generator'], l) },
         { key: '/tools/case-converter', icon: <FontSizeOutlined />, label: withNewBadge('/tools/case-converter', l['case-converter'], l) },
+        { key: '/tools/password-generator', icon: <KeyOutlined />, label: withNewBadge('/tools/password-generator', l['password-generator'], l) },
+        { key: '/tools/url-encoder', icon: <SwapOutlined />, label: withNewBadge('/tools/url-encoder', l['url-encoder'], l) },
       ],
     },
     {
@@ -189,6 +201,7 @@ function buildMenuItems(l) {
         { key: '/snippets/use-local-storage', label: l['use-local-storage'] },
         { key: '/snippets/use-click-outside', label: l['use-click-outside'] },
         { key: '/snippets/use-media-query', label: l['use-media-query'] },
+        { key: '/snippets/use-copy-to-clipboard', label: withNewBadge('/snippets/use-copy-to-clipboard', l['use-copy-to-clipboard'], l) },
       ],
     },
     {
@@ -197,6 +210,7 @@ function buildMenuItems(l) {
       label: l.frontend,
       children: [
         { key: '/frontend/contrast-checker', label: l['contrast-checker'] },
+        { key: '/frontend/gradient-generator', label: withNewBadge('/frontend/gradient-generator', l['gradient-generator'], l) },
       ],
     },
     {
@@ -285,6 +299,7 @@ function buildMenuItems(l) {
       label: l.references,
       children: [
         { key: '/references/git-commands', label: l['git-commands'] },
+        { key: '/references/http-status-codes', label: withNewBadge('/references/http-status-codes', l['http-status-codes'], l) },
       ],
     },
     {

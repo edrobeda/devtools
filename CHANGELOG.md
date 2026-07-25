@@ -10,6 +10,14 @@ sentido adicionar (pode ser 1 item ou vários).
 - <tipo do item>: <nome> — <rota> (<descrição curta>)
 -->
 
+## 2026-07-25 (rodada 4)
+- Ferramenta: Gerador de Senha — `/tools/password-generator` (gera senhas aleatórias via `crypto.getRandomValues`, com comprimento ajustável, seleção de tipos de caractere, opção de excluir caracteres ambíguos — i/l/1/L/o/0/O —, geração em lote e copiar individual/tudo; tudo local)
+- Ferramenta: URL Encode/Decode — `/tools/url-encoder` (codifica/decodifica texto com `encodeURIComponent`/`decodeURIComponent` para uso em query strings, ou `encodeURI`/`decodeURI` para URLs completas preservando caracteres reservados; detecta e avisa sobre %-encoding malformado)
+- Front-end: Gerador de Gradiente CSS — `/frontend/gradient-generator` (construtor visual de `linear-gradient`/`radial-gradient` com N stops de cor editáveis por posição e ângulo ajustável para o modo linear, preview ao vivo e CSS pronto pra copiar)
+- Snippet: `useCopyToClipboard` — `/snippets/use-copy-to-clipboard` (hook em `src/hooks/useCopyToClipboard.js` que encapsula `navigator.clipboard.writeText` e devolve um estado `copied` que reseta sozinho após um tempo, pra dar feedback visual em botões de copiar sem repetir `useState`/`setTimeout`; página mostra o código e uma demo ao vivo)
+- Referências: HTTP Status Codes — `/references/http-status-codes` (cheat sheet pesquisável e filtrável por categoria — 1xx a 5xx — dos códigos de status HTTP mais usados no dia a dia, com descrição PT/EN de cada um)
+- Ajuste: `routes.jsx` ganhou as 5 rotas acima, `AppLayout.jsx` ganhou os itens de menu correspondentes (com badge "Novo"/"New"), `src/newItems.js` substituído para marcar só essas 5 rotas nesta rodada
+
 ## 2026-07-24 (fix manual, fora de rodada — Edson)
 - Ajuste: `AppLayout.jsx` — Sider e Content agora rolam em containers independentes (`height: 100vh` + `overflow: auto` cada um), em vez do scroll único da página inteira. Antes, com o menu já tendo muitos grupos, rolar até o último item do menu rolava a página toda; ao clicar, o conteúdo novo renderizava fora da área visível e parecia que "nada tinha acontecido". Content também reseta o próprio scroll pro topo a cada troca de rota (`useEffect` em `location.pathname`).
 

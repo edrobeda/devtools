@@ -33,6 +33,11 @@ import RegexTesterPage from './pages/RegexTesterPage'
 import Base64ToolPage from './pages/Base64ToolPage'
 import UuidGeneratorPage from './pages/UuidGeneratorPage'
 import CaseConverterPage from './pages/CaseConverterPage'
+import PasswordGeneratorPage from './pages/PasswordGeneratorPage'
+import UrlEncoderPage from './pages/UrlEncoderPage'
+import GradientGeneratorPage from './pages/GradientGeneratorPage'
+import UseCopyToClipboardSnippetPage from './pages/UseCopyToClipboardSnippetPage'
+import HttpStatusCodesPage from './pages/HttpStatusCodesPage'
 
 const router = createBrowserRouter([
   {
@@ -71,6 +76,11 @@ const router = createBrowserRouter([
       { path: 'tools/base64-tool', element: <Base64ToolPage /> },
       { path: 'tools/uuid-generator', element: <UuidGeneratorPage /> },
       { path: 'tools/case-converter', element: <CaseConverterPage /> },
+      { path: 'tools/password-generator', element: <PasswordGeneratorPage /> },
+      { path: 'tools/url-encoder', element: <UrlEncoderPage /> },
+      { path: 'frontend/gradient-generator', element: <GradientGeneratorPage /> },
+      { path: 'snippets/use-copy-to-clipboard', element: <UseCopyToClipboardSnippetPage /> },
+      { path: 'references/http-status-codes', element: <HttpStatusCodesPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
