@@ -25,6 +25,7 @@ import {
   SearchOutlined,
   SwapOutlined,
   IdcardOutlined,
+  DiffOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -91,6 +92,10 @@ const LABELS = {
     'gradient-generator': 'Gerador de Gradiente CSS',
     'use-copy-to-clipboard': 'useCopyToClipboard',
     'http-status-codes': 'HTTP Status Codes',
+    'diff-checker': 'Comparador de Texto (Diff)',
+    'box-shadow-generator': 'Gerador de Box Shadow',
+    'csv-json-converter': 'Conversor CSV ↔ JSON',
+    'use-interval': 'useInterval',
   },
   en: {
     home: 'Home',
@@ -147,6 +152,10 @@ const LABELS = {
     'gradient-generator': 'CSS Gradient Generator',
     'use-copy-to-clipboard': 'useCopyToClipboard',
     'http-status-codes': 'HTTP Status Codes',
+    'diff-checker': 'Text Diff Checker',
+    'box-shadow-generator': 'Box Shadow Generator',
+    'csv-json-converter': 'CSV ↔ JSON Converter',
+    'use-interval': 'useInterval',
   },
 }
 
@@ -179,6 +188,7 @@ function buildMenuItems(l) {
         { key: '/tools/case-converter', icon: <FontSizeOutlined />, label: withNewBadge('/tools/case-converter', l['case-converter'], l) },
         { key: '/tools/password-generator', icon: <KeyOutlined />, label: withNewBadge('/tools/password-generator', l['password-generator'], l) },
         { key: '/tools/url-encoder', icon: <SwapOutlined />, label: withNewBadge('/tools/url-encoder', l['url-encoder'], l) },
+        { key: '/tools/diff-checker', icon: <DiffOutlined />, label: withNewBadge('/tools/diff-checker', l['diff-checker'], l) },
       ],
     },
     {
@@ -202,6 +212,7 @@ function buildMenuItems(l) {
         { key: '/snippets/use-click-outside', label: l['use-click-outside'] },
         { key: '/snippets/use-media-query', label: l['use-media-query'] },
         { key: '/snippets/use-copy-to-clipboard', label: withNewBadge('/snippets/use-copy-to-clipboard', l['use-copy-to-clipboard'], l) },
+        { key: '/snippets/use-interval', label: withNewBadge('/snippets/use-interval', l['use-interval'], l) },
       ],
     },
     {
@@ -211,6 +222,7 @@ function buildMenuItems(l) {
       children: [
         { key: '/frontend/contrast-checker', label: l['contrast-checker'] },
         { key: '/frontend/gradient-generator', label: withNewBadge('/frontend/gradient-generator', l['gradient-generator'], l) },
+        { key: '/frontend/box-shadow-generator', label: withNewBadge('/frontend/box-shadow-generator', l['box-shadow-generator'], l) },
       ],
     },
     {
@@ -259,6 +271,7 @@ function buildMenuItems(l) {
       label: l.data,
       children: [
         { key: '/data/json-tree-viewer', label: l['json-tree-viewer'] },
+        { key: '/data/csv-json-converter', label: withNewBadge('/data/csv-json-converter', l['csv-json-converter'], l) },
       ],
     },
     {

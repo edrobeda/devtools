@@ -38,6 +38,10 @@ import UrlEncoderPage from './pages/UrlEncoderPage'
 import GradientGeneratorPage from './pages/GradientGeneratorPage'
 import UseCopyToClipboardSnippetPage from './pages/UseCopyToClipboardSnippetPage'
 import HttpStatusCodesPage from './pages/HttpStatusCodesPage'
+import DiffCheckerPage from './pages/DiffCheckerPage'
+import BoxShadowGeneratorPage from './pages/BoxShadowGeneratorPage'
+import CsvJsonConverterPage from './pages/CsvJsonConverterPage'
+import UseIntervalSnippetPage from './pages/UseIntervalSnippetPage'
 
 const router = createBrowserRouter([
   {
@@ -81,6 +85,10 @@ const router = createBrowserRouter([
       { path: 'frontend/gradient-generator', element: <GradientGeneratorPage /> },
       { path: 'snippets/use-copy-to-clipboard', element: <UseCopyToClipboardSnippetPage /> },
       { path: 'references/http-status-codes', element: <HttpStatusCodesPage /> },
+      { path: 'tools/diff-checker', element: <DiffCheckerPage /> },
+      { path: 'frontend/box-shadow-generator', element: <BoxShadowGeneratorPage /> },
+      { path: 'data/csv-json-converter', element: <CsvJsonConverterPage /> },
+      { path: 'snippets/use-interval', element: <UseIntervalSnippetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

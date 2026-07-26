@@ -10,6 +10,13 @@ sentido adicionar (pode ser 1 item ou vários).
 - <tipo do item>: <nome> — <rota> (<descrição curta>)
 -->
 
+## 2026-07-26 (rodada 5)
+- Ferramenta: Comparador de Texto (Diff) — `/tools/diff-checker` (compara duas versões de um texto linha a linha via algoritmo LCS próprio, destacando adicionadas/removidas/iguais; opções pra ignorar maiúsculas/minúsculas e espaços extras; guarda contra travar a aba em textos gigantes limitando o tamanho da tabela de programação dinâmica)
+- Front-end: Gerador de Box Shadow — `/frontend/box-shadow-generator` (construtor visual de `box-shadow` com N camadas editáveis — deslocamento X/Y, desfoque, expansão, cor, opacidade e inset —, preview ao vivo e CSS combinando as camadas por vírgula pronto pra copiar)
+- Arquivos & Dados: Conversor CSV ↔ JSON — `/data/csv-json-converter` (parser CSV próprio no estilo RFC4180 — suporta campos entre aspas com vírgulas, quebras de linha e aspas escapadas — convertendo pra array JSON de objetos e vice-versa, com delimitador vírgula/ponto-e-vírgula/tab selecionável)
+- Snippet: `useInterval` — `/snippets/use-interval` (hook em `src/hooks/useInterval.js`, no padrão clássico de callback sempre atualizado via `useRef` pra evitar closures desatualizadas dentro do `setInterval`; passar `null` como delay pausa sem desmontar; página mostra o código e uma demo com contador play/pause e slider de intervalo)
+- Ajuste: `routes.jsx` ganhou as 4 rotas acima, `AppLayout.jsx` ganhou os itens de menu correspondentes (com badge "Novo"/"New"), `src/newItems.js` substituído para marcar só essas 4 rotas nesta rodada
+
 ## 2026-07-25 (rodada 4)
 - Ferramenta: Gerador de Senha — `/tools/password-generator` (gera senhas aleatórias via `crypto.getRandomValues`, com comprimento ajustável, seleção de tipos de caractere, opção de excluir caracteres ambíguos — i/l/1/L/o/0/O —, geração em lote e copiar individual/tudo; tudo local)
 - Ferramenta: URL Encode/Decode — `/tools/url-encoder` (codifica/decodifica texto com `encodeURIComponent`/`decodeURIComponent` para uso em query strings, ou `encodeURI`/`decodeURI` para URLs completas preservando caracteres reservados; detecta e avisa sobre %-encoding malformado)
