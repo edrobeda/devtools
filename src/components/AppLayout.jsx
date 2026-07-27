@@ -26,6 +26,7 @@ import {
   SwapOutlined,
   IdcardOutlined,
   DiffOutlined,
+  FileMarkdownOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -96,6 +97,11 @@ const LABELS = {
     'box-shadow-generator': 'Gerador de Box Shadow',
     'csv-json-converter': 'Conversor CSV ↔ JSON',
     'use-interval': 'useInterval',
+    'markdown-previewer': 'Markdown → HTML (Preview)',
+    'neumorphic-card': 'Cartão Neumórfico',
+    'use-previous': 'usePrevious',
+    'fake-data-generator': 'Gerador de Dados Fake',
+    'webhook-payload-generator': 'Gerador de Payload de Webhook',
   },
   en: {
     home: 'Home',
@@ -156,6 +162,11 @@ const LABELS = {
     'box-shadow-generator': 'Box Shadow Generator',
     'csv-json-converter': 'CSV ↔ JSON Converter',
     'use-interval': 'useInterval',
+    'markdown-previewer': 'Markdown → HTML (Preview)',
+    'neumorphic-card': 'Neumorphic Card',
+    'use-previous': 'usePrevious',
+    'fake-data-generator': 'Fake Data Generator',
+    'webhook-payload-generator': 'Webhook Payload Generator',
   },
 }
 
@@ -189,6 +200,7 @@ function buildMenuItems(l) {
         { key: '/tools/password-generator', icon: <KeyOutlined />, label: withNewBadge('/tools/password-generator', l['password-generator'], l) },
         { key: '/tools/url-encoder', icon: <SwapOutlined />, label: withNewBadge('/tools/url-encoder', l['url-encoder'], l) },
         { key: '/tools/diff-checker', icon: <DiffOutlined />, label: withNewBadge('/tools/diff-checker', l['diff-checker'], l) },
+        { key: '/tools/markdown-previewer', icon: <FileMarkdownOutlined />, label: withNewBadge('/tools/markdown-previewer', l['markdown-previewer'], l) },
       ],
     },
     {
@@ -200,6 +212,7 @@ function buildMenuItems(l) {
         { key: '/styles/copy-button', label: l['copy-button'] },
         { key: '/styles/skeleton-shimmer', label: l['skeleton-shimmer'] },
         { key: '/styles/gradient-border-button', label: l['gradient-border-button'] },
+        { key: '/styles/neumorphic-card', label: withNewBadge('/styles/neumorphic-card', l['neumorphic-card'], l) },
       ],
     },
     {
@@ -213,6 +226,7 @@ function buildMenuItems(l) {
         { key: '/snippets/use-media-query', label: l['use-media-query'] },
         { key: '/snippets/use-copy-to-clipboard', label: withNewBadge('/snippets/use-copy-to-clipboard', l['use-copy-to-clipboard'], l) },
         { key: '/snippets/use-interval', label: withNewBadge('/snippets/use-interval', l['use-interval'], l) },
+        { key: '/snippets/use-previous', label: withNewBadge('/snippets/use-previous', l['use-previous'], l) },
       ],
     },
     {
@@ -231,6 +245,7 @@ function buildMenuItems(l) {
       label: l.apis,
       children: [
         { key: '/apis/curl-generator', label: l['curl-generator'] },
+        { key: '/apis/webhook-payload-generator', label: withNewBadge('/apis/webhook-payload-generator', l['webhook-payload-generator'], l) },
       ],
     },
     {
@@ -272,6 +287,7 @@ function buildMenuItems(l) {
       children: [
         { key: '/data/json-tree-viewer', label: l['json-tree-viewer'] },
         { key: '/data/csv-json-converter', label: withNewBadge('/data/csv-json-converter', l['csv-json-converter'], l) },
+        { key: '/data/fake-data-generator', label: withNewBadge('/data/fake-data-generator', l['fake-data-generator'], l) },
       ],
     },
     {

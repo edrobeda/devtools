@@ -10,6 +10,14 @@ sentido adicionar (pode ser 1 item ou vários).
 - <tipo do item>: <nome> — <rota> (<descrição curta>)
 -->
 
+## 2026-07-27 (rodada 6)
+- Ferramenta: Markdown → HTML (Preview) — `/tools/markdown-previewer` (parser Markdown próprio, sem dependência externa, cobrindo títulos, negrito/itálico, código inline/bloco, listas, citação, link e linha horizontal; preview renderizado lado a lado com o textarea e HTML gerado pronto pra copiar)
+- Estilo: Cartão Neumórfico (Soft UI) — `/styles/neumorphic-card` (cartão e botão em estilo neumórfico via duas sombras opostas — clara e escura — sobre fundo da mesma cor do elemento, com variante clara/escura selecionável e estado pressionado com sombra inset; código-fonte exibido na página)
+- Snippet: `usePrevious` — `/snippets/use-previous` (hook em `src/hooks/usePrevious.js` que guarda o valor anterior de uma variável entre renders via `useRef` atualizado num `useEffect`; página mostra o código e uma demo com contador comparando valor atual vs. anterior)
+- Arquivos & Dados: Gerador de Dados Fake — `/data/fake-data-generator` (gera N objetos fake com campos configuráveis — nome, e-mail, uuid, booleano, inteiro, float, data, telefone, cidade, país, palavra, frase, cor hex — via `Math.random`/`crypto.randomUUID`, saída em JSON ou CSV)
+- APIs: Gerador de Payload de Webhook — `/apis/webhook-payload-generator` (templates estáticos de payloads de exemplo pra webhooks comuns — GitHub push/pull_request, Stripe charge/invoice/checkout, Slack message event — preenchidos com dados fictícios a cada clique, sem disparar nenhuma requisição real)
+- Ajuste: `routes.jsx` ganhou as 5 rotas acima, `AppLayout.jsx` ganhou os itens de menu correspondentes (com badge "Novo"/"New"), `src/newItems.js` substituído para marcar só essas 5 rotas nesta rodada
+
 ## 2026-07-26 (rodada 5)
 - Ferramenta: Comparador de Texto (Diff) — `/tools/diff-checker` (compara duas versões de um texto linha a linha via algoritmo LCS próprio, destacando adicionadas/removidas/iguais; opções pra ignorar maiúsculas/minúsculas e espaços extras; guarda contra travar a aba em textos gigantes limitando o tamanho da tabela de programação dinâmica)
 - Front-end: Gerador de Box Shadow — `/frontend/box-shadow-generator` (construtor visual de `box-shadow` com N camadas editáveis — deslocamento X/Y, desfoque, expansão, cor, opacidade e inset —, preview ao vivo e CSS combinando as camadas por vírgula pronto pra copiar)
