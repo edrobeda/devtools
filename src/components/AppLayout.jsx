@@ -102,6 +102,12 @@ const LABELS = {
     'use-previous': 'usePrevious',
     'fake-data-generator': 'Gerador de Dados Fake',
     'webhook-payload-generator': 'Gerador de Payload de Webhook',
+    'cpf-cnpj-generator': 'Gerador de CPF/CNPJ',
+    'base-converter': 'Conversor de Base Numérica',
+    'use-toggle': 'useToggle',
+    'use-window-size': 'useWindowSize',
+    'bouncing-dots-loader': 'Loading de Dots Saltitantes',
+    'docker-commands': 'Comandos Docker',
   },
   en: {
     home: 'Home',
@@ -167,6 +173,12 @@ const LABELS = {
     'use-previous': 'usePrevious',
     'fake-data-generator': 'Fake Data Generator',
     'webhook-payload-generator': 'Webhook Payload Generator',
+    'cpf-cnpj-generator': 'CPF/CNPJ Generator',
+    'base-converter': 'Number Base Converter',
+    'use-toggle': 'useToggle',
+    'use-window-size': 'useWindowSize',
+    'bouncing-dots-loader': 'Bouncing Dots Loader',
+    'docker-commands': 'Docker Commands',
   },
 }
 
@@ -201,6 +213,8 @@ function buildMenuItems(l) {
         { key: '/tools/url-encoder', icon: <SwapOutlined />, label: withNewBadge('/tools/url-encoder', l['url-encoder'], l) },
         { key: '/tools/diff-checker', icon: <DiffOutlined />, label: withNewBadge('/tools/diff-checker', l['diff-checker'], l) },
         { key: '/tools/markdown-previewer', icon: <FileMarkdownOutlined />, label: withNewBadge('/tools/markdown-previewer', l['markdown-previewer'], l) },
+        { key: '/tools/cpf-cnpj-generator', icon: <IdcardOutlined />, label: withNewBadge('/tools/cpf-cnpj-generator', l['cpf-cnpj-generator'], l) },
+        { key: '/tools/base-converter', icon: <NumberOutlined />, label: withNewBadge('/tools/base-converter', l['base-converter'], l) },
       ],
     },
     {
@@ -213,6 +227,7 @@ function buildMenuItems(l) {
         { key: '/styles/skeleton-shimmer', label: l['skeleton-shimmer'] },
         { key: '/styles/gradient-border-button', label: l['gradient-border-button'] },
         { key: '/styles/neumorphic-card', label: withNewBadge('/styles/neumorphic-card', l['neumorphic-card'], l) },
+        { key: '/styles/bouncing-dots-loader', label: withNewBadge('/styles/bouncing-dots-loader', l['bouncing-dots-loader'], l) },
       ],
     },
     {
@@ -227,6 +242,8 @@ function buildMenuItems(l) {
         { key: '/snippets/use-copy-to-clipboard', label: withNewBadge('/snippets/use-copy-to-clipboard', l['use-copy-to-clipboard'], l) },
         { key: '/snippets/use-interval', label: withNewBadge('/snippets/use-interval', l['use-interval'], l) },
         { key: '/snippets/use-previous', label: withNewBadge('/snippets/use-previous', l['use-previous'], l) },
+        { key: '/snippets/use-toggle', label: withNewBadge('/snippets/use-toggle', l['use-toggle'], l) },
+        { key: '/snippets/use-window-size', label: withNewBadge('/snippets/use-window-size', l['use-window-size'], l) },
       ],
     },
     {
@@ -329,6 +346,7 @@ function buildMenuItems(l) {
       children: [
         { key: '/references/git-commands', label: l['git-commands'] },
         { key: '/references/http-status-codes', label: withNewBadge('/references/http-status-codes', l['http-status-codes'], l) },
+        { key: '/references/docker-commands', label: withNewBadge('/references/docker-commands', l['docker-commands'], l) },
       ],
     },
     {

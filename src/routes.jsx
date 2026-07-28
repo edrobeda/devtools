@@ -47,6 +47,12 @@ import NeumorphicCardPage from './pages/NeumorphicCardPage'
 import UsePreviousSnippetPage from './pages/UsePreviousSnippetPage'
 import FakeDataGeneratorPage from './pages/FakeDataGeneratorPage'
 import WebhookPayloadGeneratorPage from './pages/WebhookPayloadGeneratorPage'
+import CpfCnpjGeneratorPage from './pages/CpfCnpjGeneratorPage'
+import BaseConverterPage from './pages/BaseConverterPage'
+import UseToggleSnippetPage from './pages/UseToggleSnippetPage'
+import UseWindowSizeSnippetPage from './pages/UseWindowSizeSnippetPage'
+import BouncingDotsLoaderPage from './pages/BouncingDotsLoaderPage'
+import DockerCommandsPage from './pages/DockerCommandsPage'
 
 const router = createBrowserRouter([
   {
@@ -99,6 +105,12 @@ const router = createBrowserRouter([
       { path: 'snippets/use-previous', element: <UsePreviousSnippetPage /> },
       { path: 'data/fake-data-generator', element: <FakeDataGeneratorPage /> },
       { path: 'apis/webhook-payload-generator', element: <WebhookPayloadGeneratorPage /> },
+      { path: 'tools/cpf-cnpj-generator', element: <CpfCnpjGeneratorPage /> },
+      { path: 'tools/base-converter', element: <BaseConverterPage /> },
+      { path: 'snippets/use-toggle', element: <UseToggleSnippetPage /> },
+      { path: 'snippets/use-window-size', element: <UseWindowSizeSnippetPage /> },
+      { path: 'styles/bouncing-dots-loader', element: <BouncingDotsLoaderPage /> },
+      { path: 'references/docker-commands', element: <DockerCommandsPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

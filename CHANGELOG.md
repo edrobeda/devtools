@@ -10,6 +10,15 @@ sentido adicionar (pode ser 1 item ou vários).
 - <tipo do item>: <nome> — <rota> (<descrição curta>)
 -->
 
+## 2026-07-28 (rodada 7)
+- Ferramenta: Gerador de CPF/CNPJ Fake — `/tools/cpf-cnpj-generator` (gera números fictícios de CPF e CNPJ com dígitos verificadores matematicamente válidos — algoritmo módulo 11, fórmulas distintas para cada documento —, quantidade em lote e copiar individual/tudo; nunca representam pessoas/empresas reais)
+- Ferramenta: Conversor de Base Numérica — `/tools/base-converter` (converte um número entre binário, octal, decimal e hexadecimal em tempo real via `BigInt`, editando qualquer um dos quatro campos)
+- Snippet: `useToggle` — `/snippets/use-toggle` (hook em `src/hooks/useToggle.js` pra estado booleano com toggle/set explícito num único setter — sem argumento inverte, com `true`/`false` força o valor; página mostra o código e uma demo com switch e botões)
+- Snippet: `useWindowSize` — `/snippets/use-window-size` (hook em `src/hooks/useWindowSize.js` que retorna largura/altura da janela e se atualiza sozinho no evento `resize`; página mostra o código e uma demo ao vivo)
+- Estilo: Loading de Dots Saltitantes — `/styles/bouncing-dots-loader` (três pontos animados em sequência via `@keyframes` e `animation-delay` escalonado, cor e tamanho configuráveis por variável CSS; código-fonte exibido na página)
+- Referências: Comandos Docker & Docker Compose — `/references/docker-commands` (cheat sheet pesquisável dos comandos Docker e Docker Compose mais usados no dia a dia, com descrição PT/EN de cada um)
+- Ajuste: `routes.jsx` ganhou as 6 rotas acima, `AppLayout.jsx` ganhou os itens de menu correspondentes (com badge "Novo"/"New"), `src/newItems.js` substituído para marcar só essas 6 rotas nesta rodada
+
 ## 2026-07-27 (rodada 6)
 - Ferramenta: Markdown → HTML (Preview) — `/tools/markdown-previewer` (parser Markdown próprio, sem dependência externa, cobrindo títulos, negrito/itálico, código inline/bloco, listas, citação, link e linha horizontal; preview renderizado lado a lado com o textarea e HTML gerado pronto pra copiar)
 - Estilo: Cartão Neumórfico (Soft UI) — `/styles/neumorphic-card` (cartão e botão em estilo neumórfico via duas sombras opostas — clara e escura — sobre fundo da mesma cor do elemento, com variante clara/escura selecionável e estado pressionado com sombra inset; código-fonte exibido na página)

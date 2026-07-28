@@ -43,11 +43,11 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] JS Minify/Beautify
 - [ ] HTML Minify/Beautify
 - [ ] JSON Path Explorer 🔥 (testa expressões JSONPath contra um JSON colado)
-- [ ] Conversor de base numérica (bin/oct/dec/hex)
+- [x] Conversor de base numérica (bin/oct/dec/hex) — `/tools/base-converter`
 - [x] Conversor de case (camelCase, snake_case, kebab-case, PascalCase, Title Case) — `/tools/case-converter`
 - [ ] Gerador de slug (texto → url-slug)
 - [ ] Conversor CSV ↔ JSON
-- [ ] Gerador/validador de CPF e CNPJ fake (dígitos verificadores corretos)
+- [x] Gerador/validador de CPF e CNPJ fake (dígitos verificadores corretos) — `/tools/cpf-cnpj-generator`
 - [ ] Comparador/validador de SemVer
 - [ ] Validador de JSON Schema
 - [ ] JSON Schema Generator (a partir de um JSON de exemplo)
@@ -227,7 +227,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Input com label flutuante (floating label)
 - [ ] Input OTP (código de verificação, um dígito por caixa)
 - [ ] Input de busca com sugestões animadas
-- [ ] Loading: dots pulando (bouncing dots)
+- [x] Loading: dots pulando (bouncing dots) — `/styles/bouncing-dots-loader`
 - [ ] Loading: anel de progresso circular animado
 - [ ] Card com efeito flip (vira ao clicar/hover)
 - [ ] Card com hover-lift (sombra e elevação suave)
@@ -258,10 +258,10 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] `useClickOutside` — `/snippets/use-click-outside`
 - [x] `useMediaQuery` — `/snippets/use-media-query`
 - [ ] `useFetch`/`useAsync` — hook simples de requisição com loading/erro
-- [ ] `usePrevious` — guarda o valor anterior de uma prop/state
-- [ ] `useToggle` — boolean com toggle/set/reset
-- [ ] `useCopyToClipboard` — copia texto com feedback de sucesso
-- [ ] `useWindowSize` — largura/altura da janela reativas
+- [x] `usePrevious` — guarda o valor anterior de uma prop/state — `/snippets/use-previous`
+- [x] `useToggle` — boolean com toggle/set/reset — `/snippets/use-toggle`
+- [x] `useCopyToClipboard` — copia texto com feedback de sucesso — `/snippets/use-copy-to-clipboard`
+- [x] `useWindowSize` — largura/altura da janela reativas — `/snippets/use-window-size`
 - [ ] `useOnScreen` — Intersection Observer, sabe se um elemento está visível
 - [ ] `useKeyPress` — detecta tecla específica pressionada
 - [ ] `useInterval`/`useTimeout` declarativos (padrão Dan Abramov)
