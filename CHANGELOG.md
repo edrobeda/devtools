@@ -10,6 +10,15 @@ sentido adicionar (pode ser 1 item ou vários).
 - <tipo do item>: <nome> — <rota> (<descrição curta>)
 -->
 
+## 2026-07-29 (rodada 8)
+- Ferramenta: Comparador/Validador de SemVer — `/tools/semver-comparator` (valida uma string contra o regex oficial de Semantic Versioning 2.0.0 e compara duas versões pelas regras de precedência da spec — incluindo comparação alfanumérica de identificadores de prerelease e a regra de que uma versão sem prerelease é sempre maior que a mesma com prerelease —, além de gerar o próximo major/minor/patch a partir de uma versão base)
+- Ferramenta: Gerador de Slug — `/tools/slug-generator` (converte texto livre em slug seguro pra URL — remove acentos via `normalize('NFD')`, troca espaços por separador configurável `-`/`_`, remove caracteres especiais e duplicados nas pontas; complementa o conversor de case, que não trata acentuação)
+- Front-end: Gerador de Paleta de Cores — `/frontend/palette-generator` (gera paleta complementar, análoga, triádica ou monocromática a partir de uma cor base, girando o matiz em HSL; conversão HEX↔HSL própria, sem dependência)
+- Estilo: Botão com Efeito Ripple — `/styles/ripple-button` (cria dinamicamente um `<span>` circular na posição exata do clique via `getBoundingClientRect` e coordenadas do evento, anima com `@keyframes` e remove o nó sozinho no `animationend`; código-fonte exibido na página)
+- Snippet: `useOnScreen` — `/snippets/use-on-screen` (hook em `src/hooks/useOnScreen.js` que usa `IntersectionObserver` pra saber se um elemento está visível na viewport/container com scroll; página mostra o código e uma demo com caixa scrollável)
+- Referências: Cheat Sheet Interativo de Flexbox — `/references/flexbox-cheatsheet` (playground ao vivo pra `flex-direction`/`justify-content`/`align-items`/`flex-wrap`/`gap` com preview de caixas coloridas e CSS gerado pronto pra copiar, mais tabela de referência rápida das propriedades de container vs. item)
+- Ajuste: `routes.jsx` ganhou as 6 rotas acima, `AppLayout.jsx` ganhou os itens de menu correspondentes (com badge "Novo"/"New"), `src/newItems.js` substituído para marcar só essas 6 rotas nesta rodada, `IDEAS.md` marcado com `[x]` nos 6 itens correspondentes
+
 ## 2026-07-28 (rodada 7)
 - Ferramenta: Gerador de CPF/CNPJ Fake — `/tools/cpf-cnpj-generator` (gera números fictícios de CPF e CNPJ com dígitos verificadores matematicamente válidos — algoritmo módulo 11, fórmulas distintas para cada documento —, quantidade em lote e copiar individual/tudo; nunca representam pessoas/empresas reais)
 - Ferramenta: Conversor de Base Numérica — `/tools/base-converter` (converte um número entre binário, octal, decimal e hexadecimal em tempo real via `BigInt`, editando qualquer um dos quatro campos)

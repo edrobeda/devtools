@@ -27,6 +27,8 @@ import {
   IdcardOutlined,
   DiffOutlined,
   FileMarkdownOutlined,
+  BranchesOutlined,
+  LinkOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -108,6 +110,12 @@ const LABELS = {
     'use-window-size': 'useWindowSize',
     'bouncing-dots-loader': 'Loading de Dots Saltitantes',
     'docker-commands': 'Comandos Docker',
+    'semver-comparator': 'Comparador de SemVer',
+    'slug-generator': 'Gerador de Slug',
+    'palette-generator': 'Gerador de Paleta de Cores',
+    'ripple-button': 'Botão com Efeito Ripple',
+    'use-on-screen': 'useOnScreen',
+    'flexbox-cheatsheet': 'Cheat Sheet de Flexbox',
   },
   en: {
     home: 'Home',
@@ -179,6 +187,12 @@ const LABELS = {
     'use-window-size': 'useWindowSize',
     'bouncing-dots-loader': 'Bouncing Dots Loader',
     'docker-commands': 'Docker Commands',
+    'semver-comparator': 'SemVer Comparator',
+    'slug-generator': 'Slug Generator',
+    'palette-generator': 'Color Palette Generator',
+    'ripple-button': 'Ripple Effect Button',
+    'use-on-screen': 'useOnScreen',
+    'flexbox-cheatsheet': 'Flexbox Cheat Sheet',
   },
 }
 
@@ -215,6 +229,8 @@ function buildMenuItems(l) {
         { key: '/tools/markdown-previewer', icon: <FileMarkdownOutlined />, label: withNewBadge('/tools/markdown-previewer', l['markdown-previewer'], l) },
         { key: '/tools/cpf-cnpj-generator', icon: <IdcardOutlined />, label: withNewBadge('/tools/cpf-cnpj-generator', l['cpf-cnpj-generator'], l) },
         { key: '/tools/base-converter', icon: <NumberOutlined />, label: withNewBadge('/tools/base-converter', l['base-converter'], l) },
+        { key: '/tools/semver-comparator', icon: <BranchesOutlined />, label: withNewBadge('/tools/semver-comparator', l['semver-comparator'], l) },
+        { key: '/tools/slug-generator', icon: <LinkOutlined />, label: withNewBadge('/tools/slug-generator', l['slug-generator'], l) },
       ],
     },
     {
@@ -228,6 +244,7 @@ function buildMenuItems(l) {
         { key: '/styles/gradient-border-button', label: l['gradient-border-button'] },
         { key: '/styles/neumorphic-card', label: withNewBadge('/styles/neumorphic-card', l['neumorphic-card'], l) },
         { key: '/styles/bouncing-dots-loader', label: withNewBadge('/styles/bouncing-dots-loader', l['bouncing-dots-loader'], l) },
+        { key: '/styles/ripple-button', label: withNewBadge('/styles/ripple-button', l['ripple-button'], l) },
       ],
     },
     {
@@ -244,6 +261,7 @@ function buildMenuItems(l) {
         { key: '/snippets/use-previous', label: withNewBadge('/snippets/use-previous', l['use-previous'], l) },
         { key: '/snippets/use-toggle', label: withNewBadge('/snippets/use-toggle', l['use-toggle'], l) },
         { key: '/snippets/use-window-size', label: withNewBadge('/snippets/use-window-size', l['use-window-size'], l) },
+        { key: '/snippets/use-on-screen', label: withNewBadge('/snippets/use-on-screen', l['use-on-screen'], l) },
       ],
     },
     {
@@ -254,6 +272,7 @@ function buildMenuItems(l) {
         { key: '/frontend/contrast-checker', label: l['contrast-checker'] },
         { key: '/frontend/gradient-generator', label: withNewBadge('/frontend/gradient-generator', l['gradient-generator'], l) },
         { key: '/frontend/box-shadow-generator', label: withNewBadge('/frontend/box-shadow-generator', l['box-shadow-generator'], l) },
+        { key: '/frontend/palette-generator', label: withNewBadge('/frontend/palette-generator', l['palette-generator'], l) },
       ],
     },
     {
@@ -347,6 +366,7 @@ function buildMenuItems(l) {
         { key: '/references/git-commands', label: l['git-commands'] },
         { key: '/references/http-status-codes', label: withNewBadge('/references/http-status-codes', l['http-status-codes'], l) },
         { key: '/references/docker-commands', label: withNewBadge('/references/docker-commands', l['docker-commands'], l) },
+        { key: '/references/flexbox-cheatsheet', label: withNewBadge('/references/flexbox-cheatsheet', l['flexbox-cheatsheet'], l) },
       ],
     },
     {

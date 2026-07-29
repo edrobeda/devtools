@@ -53,6 +53,12 @@ import UseToggleSnippetPage from './pages/UseToggleSnippetPage'
 import UseWindowSizeSnippetPage from './pages/UseWindowSizeSnippetPage'
 import BouncingDotsLoaderPage from './pages/BouncingDotsLoaderPage'
 import DockerCommandsPage from './pages/DockerCommandsPage'
+import SemverComparatorPage from './pages/SemverComparatorPage'
+import SlugGeneratorPage from './pages/SlugGeneratorPage'
+import PaletteGeneratorPage from './pages/PaletteGeneratorPage'
+import RippleButtonPage from './pages/RippleButtonPage'
+import UseOnScreenSnippetPage from './pages/UseOnScreenSnippetPage'
+import FlexboxCheatsheetPage from './pages/FlexboxCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -111,6 +117,12 @@ const router = createBrowserRouter([
       { path: 'snippets/use-window-size', element: <UseWindowSizeSnippetPage /> },
       { path: 'styles/bouncing-dots-loader', element: <BouncingDotsLoaderPage /> },
       { path: 'references/docker-commands', element: <DockerCommandsPage /> },
+      { path: 'tools/semver-comparator', element: <SemverComparatorPage /> },
+      { path: 'tools/slug-generator', element: <SlugGeneratorPage /> },
+      { path: 'frontend/palette-generator', element: <PaletteGeneratorPage /> },
+      { path: 'styles/ripple-button', element: <RippleButtonPage /> },
+      { path: 'snippets/use-on-screen', element: <UseOnScreenSnippetPage /> },
+      { path: 'references/flexbox-cheatsheet', element: <FlexboxCheatsheetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

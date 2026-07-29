@@ -45,10 +45,10 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] JSON Path Explorer 🔥 (testa expressões JSONPath contra um JSON colado)
 - [x] Conversor de base numérica (bin/oct/dec/hex) — `/tools/base-converter`
 - [x] Conversor de case (camelCase, snake_case, kebab-case, PascalCase, Title Case) — `/tools/case-converter`
-- [ ] Gerador de slug (texto → url-slug)
+- [x] Gerador de slug (texto → url-slug) — `/tools/slug-generator`
 - [ ] Conversor CSV ↔ JSON
 - [x] Gerador/validador de CPF e CNPJ fake (dígitos verificadores corretos) — `/tools/cpf-cnpj-generator`
-- [ ] Comparador/validador de SemVer
+- [x] Comparador/validador de SemVer — `/tools/semver-comparator`
 - [ ] Validador de JSON Schema
 - [ ] JSON Schema Generator (a partir de um JSON de exemplo)
 - [ ] Formatador de query GraphQL
@@ -78,7 +78,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] CSS Performance Analyzer 🔥
 - [ ] Conversor de unidades CSS (px ↔ rem ↔ em ↔ vh/vw)
 - [x] Checador de contraste de cores (WCAG AA/AAA) 🔥 — `/frontend/contrast-checker`
-- [ ] Gerador de paleta de cores a partir de uma cor base
+- [x] Gerador de paleta de cores a partir de uma cor base — `/frontend/palette-generator`
 
 ## 🌐 APIs
 
@@ -222,7 +222,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] Skeleton Shimmer — `/styles/skeleton-shimmer`
 - [x] Botão com Borda Gradiente Animada — `/styles/gradient-border-button`
 - [ ] Botão neumórfico (soft UI)
-- [ ] Botão com efeito ripple ao clicar
+- [x] Botão com efeito ripple ao clicar — `/styles/ripple-button`
 - [ ] Botão com hover magnético (segue o cursor levemente)
 - [ ] Input com label flutuante (floating label)
 - [ ] Input OTP (código de verificação, um dígito por caixa)
@@ -262,7 +262,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] `useToggle` — boolean com toggle/set/reset — `/snippets/use-toggle`
 - [x] `useCopyToClipboard` — copia texto com feedback de sucesso — `/snippets/use-copy-to-clipboard`
 - [x] `useWindowSize` — largura/altura da janela reativas — `/snippets/use-window-size`
-- [ ] `useOnScreen` — Intersection Observer, sabe se um elemento está visível
+- [x] `useOnScreen` — Intersection Observer, sabe se um elemento está visível — `/snippets/use-on-screen`
 - [ ] `useKeyPress` — detecta tecla específica pressionada
 - [ ] `useInterval`/`useTimeout` declarativos (padrão Dan Abramov)
 - [ ] `useEventListener` genérico
@@ -283,7 +283,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Atalhos de teclado do VSCode (Windows/Mac lado a lado)
 - [x] Comandos git essenciais (com exemplos) — `/references/git-commands`
 - [ ] Comandos Docker/Docker Compose essenciais
-- [ ] Cheat sheet de Flexbox (visual, interativo)
+- [x] Cheat sheet de Flexbox (visual, interativo) — `/references/flexbox-cheatsheet`
 - [ ] Cheat sheet de CSS Grid (visual, interativo)
 - [ ] Atalhos do terminal/bash
 - [ ] Referência de sintaxe Markdown
