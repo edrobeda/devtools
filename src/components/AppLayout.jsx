@@ -29,6 +29,8 @@ import {
   FileMarkdownOutlined,
   BranchesOutlined,
   LinkOutlined,
+  ColumnWidthOutlined,
+  OrderedListOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -116,6 +118,11 @@ const LABELS = {
     'ripple-button': 'Botão com Efeito Ripple',
     'use-on-screen': 'useOnScreen',
     'flexbox-cheatsheet': 'Cheat Sheet de Flexbox',
+    'css-unit-converter': 'Conversor de Unidades CSS',
+    'css-specificity-calculator': 'Calculadora de Especificidade CSS',
+    'floating-label-input': 'Input com Label Flutuante',
+    'use-key-press': 'useKeyPress',
+    'sql-commands': 'Comandos SQL',
   },
   en: {
     home: 'Home',
@@ -193,6 +200,11 @@ const LABELS = {
     'ripple-button': 'Ripple Effect Button',
     'use-on-screen': 'useOnScreen',
     'flexbox-cheatsheet': 'Flexbox Cheat Sheet',
+    'css-unit-converter': 'CSS Unit Converter',
+    'css-specificity-calculator': 'CSS Specificity Calculator',
+    'floating-label-input': 'Floating Label Input',
+    'use-key-press': 'useKeyPress',
+    'sql-commands': 'SQL Commands',
   },
 }
 
@@ -231,6 +243,8 @@ function buildMenuItems(l) {
         { key: '/tools/base-converter', icon: <NumberOutlined />, label: withNewBadge('/tools/base-converter', l['base-converter'], l) },
         { key: '/tools/semver-comparator', icon: <BranchesOutlined />, label: withNewBadge('/tools/semver-comparator', l['semver-comparator'], l) },
         { key: '/tools/slug-generator', icon: <LinkOutlined />, label: withNewBadge('/tools/slug-generator', l['slug-generator'], l) },
+        { key: '/tools/css-unit-converter', icon: <ColumnWidthOutlined />, label: withNewBadge('/tools/css-unit-converter', l['css-unit-converter'], l) },
+        { key: '/tools/css-specificity-calculator', icon: <OrderedListOutlined />, label: withNewBadge('/tools/css-specificity-calculator', l['css-specificity-calculator'], l) },
       ],
     },
     {
@@ -245,6 +259,7 @@ function buildMenuItems(l) {
         { key: '/styles/neumorphic-card', label: withNewBadge('/styles/neumorphic-card', l['neumorphic-card'], l) },
         { key: '/styles/bouncing-dots-loader', label: withNewBadge('/styles/bouncing-dots-loader', l['bouncing-dots-loader'], l) },
         { key: '/styles/ripple-button', label: withNewBadge('/styles/ripple-button', l['ripple-button'], l) },
+        { key: '/styles/floating-label-input', label: withNewBadge('/styles/floating-label-input', l['floating-label-input'], l) },
       ],
     },
     {
@@ -262,6 +277,7 @@ function buildMenuItems(l) {
         { key: '/snippets/use-toggle', label: withNewBadge('/snippets/use-toggle', l['use-toggle'], l) },
         { key: '/snippets/use-window-size', label: withNewBadge('/snippets/use-window-size', l['use-window-size'], l) },
         { key: '/snippets/use-on-screen', label: withNewBadge('/snippets/use-on-screen', l['use-on-screen'], l) },
+        { key: '/snippets/use-key-press', label: withNewBadge('/snippets/use-key-press', l['use-key-press'], l) },
       ],
     },
     {
@@ -367,6 +383,7 @@ function buildMenuItems(l) {
         { key: '/references/http-status-codes', label: withNewBadge('/references/http-status-codes', l['http-status-codes'], l) },
         { key: '/references/docker-commands', label: withNewBadge('/references/docker-commands', l['docker-commands'], l) },
         { key: '/references/flexbox-cheatsheet', label: withNewBadge('/references/flexbox-cheatsheet', l['flexbox-cheatsheet'], l) },
+        { key: '/references/sql-commands', label: withNewBadge('/references/sql-commands', l['sql-commands'], l) },
       ],
     },
     {

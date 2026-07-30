@@ -74,9 +74,9 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] OpenGraph Preview (como o link aparece ao compartilhar)
 - [ ] CSS Animation Builder
 - [ ] Keyframe Generator
-- [ ] CSS Specificity Calculator 🔥
+- [x] CSS Specificity Calculator 🔥 — `/tools/css-specificity-calculator`
 - [ ] CSS Performance Analyzer 🔥
-- [ ] Conversor de unidades CSS (px ↔ rem ↔ em ↔ vh/vw)
+- [x] Conversor de unidades CSS (px ↔ rem ↔ em ↔ vh/vw) — `/tools/css-unit-converter`
 - [x] Checador de contraste de cores (WCAG AA/AAA) 🔥 — `/frontend/contrast-checker`
 - [x] Gerador de paleta de cores a partir de uma cor base — `/frontend/palette-generator`
 
@@ -224,7 +224,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Botão neumórfico (soft UI)
 - [x] Botão com efeito ripple ao clicar — `/styles/ripple-button`
 - [ ] Botão com hover magnético (segue o cursor levemente)
-- [ ] Input com label flutuante (floating label)
+- [x] Input com label flutuante (floating label) — `/styles/floating-label-input`
 - [ ] Input OTP (código de verificação, um dígito por caixa)
 - [ ] Input de busca com sugestões animadas
 - [x] Loading: dots pulando (bouncing dots) — `/styles/bouncing-dots-loader`
@@ -263,7 +263,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] `useCopyToClipboard` — copia texto com feedback de sucesso — `/snippets/use-copy-to-clipboard`
 - [x] `useWindowSize` — largura/altura da janela reativas — `/snippets/use-window-size`
 - [x] `useOnScreen` — Intersection Observer, sabe se um elemento está visível — `/snippets/use-on-screen`
-- [ ] `useKeyPress` — detecta tecla específica pressionada
+- [x] `useKeyPress` — detecta tecla específica pressionada — `/snippets/use-key-press`
 - [ ] `useInterval`/`useTimeout` declarativos (padrão Dan Abramov)
 - [ ] `useEventListener` genérico
 - [ ] `useThrottle`
@@ -287,7 +287,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Cheat sheet de CSS Grid (visual, interativo)
 - [ ] Atalhos do terminal/bash
 - [ ] Referência de sintaxe Markdown
-- [ ] Comandos SQL essenciais
+- [x] Comandos SQL essenciais — `/references/sql-commands`
 - [ ] npm vs yarn vs pnpm — tabela comparativa de comandos
 - [ ] Conventional Commits — tabela de tipos e quando usar cada um
 - [ ] Atalhos do DevTools do navegador
@@ -299,7 +299,7 @@ Itens que quase ninguém oferece — bons candidatos pra se destacar:
 
 - [x] "Quantos dias até sexta" (ou até qualquer data escolhida) — `/extras/days-until`
 - [ ] Roleta/sorteio simples (ex.: "quem revisa esse PR")
-- [ ] CSS Specificity Calculator 🔥 *(ver também em Front-end)*
+- [x] CSS Specificity Calculator 🔥 *(ver também em Front-end)* — `/tools/css-specificity-calculator`
 - [ ] SQL Explain Visualizer 🔥 *(ver também em Banco de Dados)*
 - [ ] Docker Compose Visualizer 🔥 *(ver também em DevOps)*
 - [ ] API Flow Designer 🔥 *(ver também em APIs)*

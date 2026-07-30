@@ -59,6 +59,11 @@ import PaletteGeneratorPage from './pages/PaletteGeneratorPage'
 import RippleButtonPage from './pages/RippleButtonPage'
 import UseOnScreenSnippetPage from './pages/UseOnScreenSnippetPage'
 import FlexboxCheatsheetPage from './pages/FlexboxCheatsheetPage'
+import CssUnitConverterPage from './pages/CssUnitConverterPage'
+import CssSpecificityCalculatorPage from './pages/CssSpecificityCalculatorPage'
+import FloatingLabelInputPage from './pages/FloatingLabelInputPage'
+import UseKeyPressSnippetPage from './pages/UseKeyPressSnippetPage'
+import SqlCommandsPage from './pages/SqlCommandsPage'
 
 const router = createBrowserRouter([
   {
@@ -123,6 +128,11 @@ const router = createBrowserRouter([
       { path: 'styles/ripple-button', element: <RippleButtonPage /> },
       { path: 'snippets/use-on-screen', element: <UseOnScreenSnippetPage /> },
       { path: 'references/flexbox-cheatsheet', element: <FlexboxCheatsheetPage /> },
+      { path: 'tools/css-unit-converter', element: <CssUnitConverterPage /> },
+      { path: 'tools/css-specificity-calculator', element: <CssSpecificityCalculatorPage /> },
+      { path: 'styles/floating-label-input', element: <FloatingLabelInputPage /> },
+      { path: 'snippets/use-key-press', element: <UseKeyPressSnippetPage /> },
+      { path: 'references/sql-commands', element: <SqlCommandsPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

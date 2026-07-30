@@ -10,6 +10,14 @@ sentido adicionar (pode ser 1 item ou vários).
 - <tipo do item>: <nome> — <rota> (<descrição curta>)
 -->
 
+## 2026-07-30 (rodada 9)
+- Ferramenta: Conversor de Unidades CSS — `/tools/css-unit-converter` (converte um valor entre `px`/`rem`/`em`/`pt`/`vw`/`vh` em tempo real a partir de bases ajustáveis — tamanho de fonte raiz, tamanho de fonte do pai e dimensões da viewport —, editando qualquer um dos seis campos)
+- Ferramenta: Calculadora de Especificidade CSS — `/tools/css-specificity-calculator` (cola um ou mais seletores CSS, um por linha ou separados por vírgula, e calcula a especificidade `(a, b, c)` de cada um — IDs, classes/atributos/pseudo-classes, tags/pseudo-elementos —, seguindo a spec; trata `:where()` como zero e desembrulha `:not()`/`:is()` somando os tokens internos; tabela ordenada da maior pra menor especificidade)
+- Estilo: Input com Label Flutuante (Floating Label) — `/styles/floating-label-input` (padrão clássico só com CSS via truque `placeholder=" "` + `:not(:placeholder-shown)` combinado com `:focus`, sem nenhum JavaScript; código-fonte exibido na página)
+- Snippet: `useKeyPress` — `/snippets/use-key-press` (hook em `src/hooks/useKeyPress.js` que escuta `keydown`/`keyup` na `window` e retorna se uma tecla específica — pelo nome de `KeyboardEvent.key` — está pressionada agora; página mostra o código e uma demo com quatro teclas diferentes acesas ao segurar)
+- Referências: Comandos SQL Essenciais — `/references/sql-commands` (cheat sheet pesquisável de comandos SQL — consultas, agregação, todos os tipos de JOIN, escrita, DDL, transações e recursos avançados como CTE e window functions —, com descrição PT/EN de cada um)
+- Ajuste: `routes.jsx` ganhou as 5 rotas acima, `AppLayout.jsx` ganhou os itens de menu correspondentes (com badge "Novo"/"New"), `src/newItems.js` substituído para marcar só essas 5 rotas nesta rodada, `IDEAS.md` marcado com `[x]` nos itens correspondentes
+
 ## 2026-07-29 (rodada 8)
 - Ferramenta: Comparador/Validador de SemVer — `/tools/semver-comparator` (valida uma string contra o regex oficial de Semantic Versioning 2.0.0 e compara duas versões pelas regras de precedência da spec — incluindo comparação alfanumérica de identificadores de prerelease e a regra de que uma versão sem prerelease é sempre maior que a mesma com prerelease —, além de gerar o próximo major/minor/patch a partir de uma versão base)
 - Ferramenta: Gerador de Slug — `/tools/slug-generator` (converte texto livre em slug seguro pra URL — remove acentos via `normalize('NFD')`, troca espaços por separador configurável `-`/`_`, remove caracteres especiais e duplicados nas pontas; complementa o conversor de case, que não trata acentuação)
