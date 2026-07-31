@@ -25,11 +25,11 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] JSON Diff (estrutural, não linha a linha)
 - [x] Base64 Encode/Decode (texto e arquivo) — `/tools/base64-tool`
 - [ ] URL Encode/Decode
-- [ ] HTML Entity Encode/Decode
+- [x] HTML Entity Encode/Decode — `/tools/html-entity-encoder`
 - [ ] JWT Generator (pra testes, monta um JWT válido a partir de payload)
 - [ ] JWT Timeline 🔥 (linha do tempo visual mostrando quando expira)
 - [x] UUID Generator (v4, vários de uma vez) — `/tools/uuid-generator`
-- [ ] NanoID Generator
+- [x] NanoID Generator — `/tools/nanoid-generator`
 - [ ] UUID Collision Simulator 🔥
 - [ ] HMAC Generator
 - [ ] Password Generator (com opções de comprimento/símbolos)
@@ -60,7 +60,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Flexbox Builder (visual, interativo)
 - [ ] Grid Builder (visual, interativo)
 - [ ] Box Shadow Generator (visual, com camadas)
-- [ ] Border Radius Generator (cantos independentes)
+- [x] Border Radius Generator (cantos independentes) — `/frontend/border-radius-generator`
 - [ ] Glassmorphism Generator
 - [ ] Neumorphism Generator
 - [ ] Gradient Generator
@@ -232,7 +232,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Card com efeito flip (vira ao clicar/hover)
 - [ ] Card com hover-lift (sombra e elevação suave)
 - [ ] Badge/tag com animação de entrada
-- [ ] Switch/toggle customizado (estilo iOS, ou com ícones)
+- [x] Switch/toggle customizado (estilo iOS, ou com ícones) — `/styles/ios-toggle-switch`
 - [ ] Tooltip customizado com seta e animação
 - [ ] Modal com animação de entrada (scale/slide/fade combinados)
 - [ ] Toast/notificação estilizada com barra de progresso de auto-dismiss
@@ -265,7 +265,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] `useOnScreen` — Intersection Observer, sabe se um elemento está visível — `/snippets/use-on-screen`
 - [x] `useKeyPress` — detecta tecla específica pressionada — `/snippets/use-key-press`
 - [ ] `useInterval`/`useTimeout` declarativos (padrão Dan Abramov)
-- [ ] `useEventListener` genérico
+- [x] `useEventListener` genérico — `/snippets/use-event-listener`
 - [ ] `useThrottle`
 - [ ] `useUndo` — histórico de estado com undo/redo
 - [ ] Busca binária explicada com visualização passo a passo
@@ -288,7 +288,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Atalhos do terminal/bash
 - [ ] Referência de sintaxe Markdown
 - [x] Comandos SQL essenciais — `/references/sql-commands`
-- [ ] npm vs yarn vs pnpm — tabela comparativa de comandos
+- [x] npm vs yarn vs pnpm — tabela comparativa de comandos — `/references/package-manager-commands`
 - [ ] Conventional Commits — tabela de tipos e quando usar cada um
 - [ ] Atalhos do DevTools do navegador
 - [ ] Tabela de métodos HTTP e quando usar cada um

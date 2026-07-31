@@ -123,6 +123,12 @@ const LABELS = {
     'floating-label-input': 'Input com Label Flutuante',
     'use-key-press': 'useKeyPress',
     'sql-commands': 'Comandos SQL',
+    'nanoid-generator': 'Gerador de NanoID',
+    'html-entity-encoder': 'HTML Entity Encode/Decode',
+    'border-radius-generator': 'Gerador de Border Radius',
+    'ios-toggle-switch': 'Switch Estilo iOS',
+    'use-event-listener': 'useEventListener',
+    'package-manager-commands': 'npm vs yarn vs pnpm',
   },
   en: {
     home: 'Home',
@@ -205,6 +211,12 @@ const LABELS = {
     'floating-label-input': 'Floating Label Input',
     'use-key-press': 'useKeyPress',
     'sql-commands': 'SQL Commands',
+    'nanoid-generator': 'NanoID Generator',
+    'html-entity-encoder': 'HTML Entity Encode/Decode',
+    'border-radius-generator': 'Border Radius Generator',
+    'ios-toggle-switch': 'iOS-style Switch',
+    'use-event-listener': 'useEventListener',
+    'package-manager-commands': 'npm vs yarn vs pnpm',
   },
 }
 
@@ -245,6 +257,8 @@ function buildMenuItems(l) {
         { key: '/tools/slug-generator', icon: <LinkOutlined />, label: withNewBadge('/tools/slug-generator', l['slug-generator'], l) },
         { key: '/tools/css-unit-converter', icon: <ColumnWidthOutlined />, label: withNewBadge('/tools/css-unit-converter', l['css-unit-converter'], l) },
         { key: '/tools/css-specificity-calculator', icon: <OrderedListOutlined />, label: withNewBadge('/tools/css-specificity-calculator', l['css-specificity-calculator'], l) },
+        { key: '/tools/nanoid-generator', icon: <IdcardOutlined />, label: withNewBadge('/tools/nanoid-generator', l['nanoid-generator'], l) },
+        { key: '/tools/html-entity-encoder', icon: <SwapOutlined />, label: withNewBadge('/tools/html-entity-encoder', l['html-entity-encoder'], l) },
       ],
     },
     {
@@ -260,6 +274,7 @@ function buildMenuItems(l) {
         { key: '/styles/bouncing-dots-loader', label: withNewBadge('/styles/bouncing-dots-loader', l['bouncing-dots-loader'], l) },
         { key: '/styles/ripple-button', label: withNewBadge('/styles/ripple-button', l['ripple-button'], l) },
         { key: '/styles/floating-label-input', label: withNewBadge('/styles/floating-label-input', l['floating-label-input'], l) },
+        { key: '/styles/ios-toggle-switch', label: withNewBadge('/styles/ios-toggle-switch', l['ios-toggle-switch'], l) },
       ],
     },
     {
@@ -278,6 +293,7 @@ function buildMenuItems(l) {
         { key: '/snippets/use-window-size', label: withNewBadge('/snippets/use-window-size', l['use-window-size'], l) },
         { key: '/snippets/use-on-screen', label: withNewBadge('/snippets/use-on-screen', l['use-on-screen'], l) },
         { key: '/snippets/use-key-press', label: withNewBadge('/snippets/use-key-press', l['use-key-press'], l) },
+        { key: '/snippets/use-event-listener', label: withNewBadge('/snippets/use-event-listener', l['use-event-listener'], l) },
       ],
     },
     {
@@ -289,6 +305,7 @@ function buildMenuItems(l) {
         { key: '/frontend/gradient-generator', label: withNewBadge('/frontend/gradient-generator', l['gradient-generator'], l) },
         { key: '/frontend/box-shadow-generator', label: withNewBadge('/frontend/box-shadow-generator', l['box-shadow-generator'], l) },
         { key: '/frontend/palette-generator', label: withNewBadge('/frontend/palette-generator', l['palette-generator'], l) },
+        { key: '/frontend/border-radius-generator', label: withNewBadge('/frontend/border-radius-generator', l['border-radius-generator'], l) },
       ],
     },
     {
@@ -384,6 +401,7 @@ function buildMenuItems(l) {
         { key: '/references/docker-commands', label: withNewBadge('/references/docker-commands', l['docker-commands'], l) },
         { key: '/references/flexbox-cheatsheet', label: withNewBadge('/references/flexbox-cheatsheet', l['flexbox-cheatsheet'], l) },
         { key: '/references/sql-commands', label: withNewBadge('/references/sql-commands', l['sql-commands'], l) },
+        { key: '/references/package-manager-commands', label: withNewBadge('/references/package-manager-commands', l['package-manager-commands'], l) },
       ],
     },
     {

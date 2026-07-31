@@ -10,6 +10,15 @@ sentido adicionar (pode ser 1 item ou vários).
 - <tipo do item>: <nome> — <rota> (<descrição curta>)
 -->
 
+## 2026-07-31 (rodada 10)
+- Ferramenta: Gerador de NanoID — `/tools/nanoid-generator` (gera IDs curtos aleatórios via `crypto.getRandomValues` com rejection sampling — descarta bytes fora do intervalo pra evitar viés de módulo, mesma técnica do pacote `nanoid` —, comprimento e alfabeto configuráveis — padrão, alfanumérico, minúsculas, maiúsculas, números, hex ou personalizado —, geração em lote e copiar individual/tudo)
+- Ferramenta: HTML Entity Encode/Decode — `/tools/html-entity-encoder` (codifica `& < > " '` em entidades nomeadas, com opção de converter todo caractere não-ASCII em entidade numérica `&#code;`; decodifica no sentido inverso via `DOMParser` sobre um documento sem scripting habilitado, seguro contra XSS mesmo com HTML de origem desconhecida)
+- Front-end: Gerador de Border Radius — `/frontend/border-radius-generator` (ajusta o raio de cada canto independentemente com preview ao vivo; modo avançado gera a sintaxe elíptica completa de `border-radius` com valores horizontal/vertical distintos por canto, separados por `/`)
+- Estilo: Switch Estilo iOS — `/styles/ios-toggle-switch` (checkbox nativo visualmente escondido, ainda acessível por teclado/leitor de tela, controlando uma trilha com bolinha posicionada via `::before` que desliza em `cubic-bezier` com leve overshoot; cor de "ligado" configurável por variável CSS; código-fonte exibido na página)
+- Snippet: `useEventListener` — `/snippets/use-event-listener` (hook em `src/hooks/useEventListener.js` genérico pra registrar listener em `window` ou em qualquer elemento via `ref`, guardando o handler mais recente num `useRef` pra evitar closures desatualizadas sem precisar re-registrar o listener a cada render; página mostra o código e uma demo de rastreamento de mouse dentro de uma caixa)
+- Referências: npm vs yarn vs pnpm — `/references/package-manager-commands` (tabela comparativa pesquisável dos comandos mais usados no dia a dia nos três gerenciadores de pacote do ecossistema Node.js — install, add, remove, update, scripts, workspaces, audit, link, etc.)
+- Ajuste: `routes.jsx` ganhou as 6 rotas acima, `AppLayout.jsx` ganhou os itens de menu correspondentes (com badge "Novo"/"New"), `src/newItems.js` substituído para marcar só essas 6 rotas nesta rodada, `IDEAS.md` marcado com `[x]` nos itens correspondentes
+
 ## 2026-07-30 (rodada 9)
 - Ferramenta: Conversor de Unidades CSS — `/tools/css-unit-converter` (converte um valor entre `px`/`rem`/`em`/`pt`/`vw`/`vh` em tempo real a partir de bases ajustáveis — tamanho de fonte raiz, tamanho de fonte do pai e dimensões da viewport —, editando qualquer um dos seis campos)
 - Ferramenta: Calculadora de Especificidade CSS — `/tools/css-specificity-calculator` (cola um ou mais seletores CSS, um por linha ou separados por vírgula, e calcula a especificidade `(a, b, c)` de cada um — IDs, classes/atributos/pseudo-classes, tags/pseudo-elementos —, seguindo a spec; trata `:where()` como zero e desembrulha `:not()`/`:is()` somando os tokens internos; tabela ordenada da maior pra menor especificidade)
