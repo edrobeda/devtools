@@ -22,7 +22,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] TOML Formatter
 - [ ] Markdown Preview (ao vivo)
 - [ ] Diff Checker (texto x texto, lado a lado)
-- [ ] JSON Diff (estrutural, não linha a linha)
+- [x] JSON Diff (estrutural, não linha a linha) — `/data/json-diff`
 - [x] Base64 Encode/Decode (texto e arquivo) — `/tools/base64-tool`
 - [ ] URL Encode/Decode
 - [x] HTML Entity Encode/Decode — `/tools/html-entity-encoder`
@@ -31,10 +31,10 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] UUID Generator (v4, vários de uma vez) — `/tools/uuid-generator`
 - [x] NanoID Generator — `/tools/nanoid-generator`
 - [ ] UUID Collision Simulator 🔥
-- [ ] HMAC Generator
+- [x] HMAC Generator — `/tools/hmac-generator`
 - [ ] Password Generator (com opções de comprimento/símbolos)
 - [ ] Password Entropy Checker 🔥
-- [ ] Lorem Ipsum Generator
+- [x] Lorem Ipsum Generator — `/tools/lorem-ipsum-generator`
 - [ ] Faker (nomes, CPF/CNPJ, endereços, emails, telefones)
 - [ ] Faker Dataset Generator 🔥 (gera um CSV/JSON inteiro de dados fake)
 - [ ] Cron Expression Builder (visual, o inverso do que já existe)
@@ -46,7 +46,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] Conversor de base numérica (bin/oct/dec/hex) — `/tools/base-converter`
 - [x] Conversor de case (camelCase, snake_case, kebab-case, PascalCase, Title Case) — `/tools/case-converter`
 - [x] Gerador de slug (texto → url-slug) — `/tools/slug-generator`
-- [ ] Conversor CSV ↔ JSON
+- [x] Conversor CSV ↔ JSON — `/data/csv-json-converter`
 - [x] Gerador/validador de CPF e CNPJ fake (dígitos verificadores corretos) — `/tools/cpf-cnpj-generator`
 - [x] Comparador/validador de SemVer — `/tools/semver-comparator`
 - [ ] Validador de JSON Schema
@@ -242,7 +242,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Progress bar linear com gradiente animado
 - [ ] Avatar com indicador de status (online/ausente/offline)
 - [ ] Empty state ilustrado (SVG + texto)
-- [ ] Dark mode toggle animado (sol/lua)
+- [x] Dark mode toggle animado (sol/lua) — `/styles/dark-mode-toggle`
 - [ ] Indicador de progresso de scroll da página
 - [ ] Header sticky com efeito de blur ao rolar
 - [ ] Texto com efeito de revelação (reveal on scroll)
@@ -266,7 +266,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] `useKeyPress` — detecta tecla específica pressionada — `/snippets/use-key-press`
 - [ ] `useInterval`/`useTimeout` declarativos (padrão Dan Abramov)
 - [x] `useEventListener` genérico — `/snippets/use-event-listener`
-- [ ] `useThrottle`
+- [x] `useThrottle` — `/snippets/use-throttle`
 - [ ] `useUndo` — histórico de estado com undo/redo
 - [ ] Busca binária explicada com visualização passo a passo
 - [ ] Quicksort visualizado (array animando durante a ordenação)
@@ -280,7 +280,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 
 ## 📚 Referências rápidas — cheat sheets, tabelas, atalhos
 
-- [ ] Atalhos de teclado do VSCode (Windows/Mac lado a lado)
+- [x] Atalhos de teclado do VSCode (Windows/Mac lado a lado) — `/references/vscode-shortcuts`
 - [x] Comandos git essenciais (com exemplos) — `/references/git-commands`
 - [ ] Comandos Docker/Docker Compose essenciais
 - [x] Cheat sheet de Flexbox (visual, interativo) — `/references/flexbox-cheatsheet`

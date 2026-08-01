@@ -70,6 +70,12 @@ import BorderRadiusGeneratorPage from './pages/BorderRadiusGeneratorPage'
 import IosToggleSwitchPage from './pages/IosToggleSwitchPage'
 import UseEventListenerSnippetPage from './pages/UseEventListenerSnippetPage'
 import PackageManagerCommandsPage from './pages/PackageManagerCommandsPage'
+import HmacGeneratorPage from './pages/HmacGeneratorPage'
+import LoremIpsumGeneratorPage from './pages/LoremIpsumGeneratorPage'
+import JsonDiffPage from './pages/JsonDiffPage'
+import DarkModeTogglePage from './pages/DarkModeTogglePage'
+import UseThrottleSnippetPage from './pages/UseThrottleSnippetPage'
+import VscodeShortcutsPage from './pages/VscodeShortcutsPage'
 
 const router = createBrowserRouter([
   {
@@ -145,6 +151,12 @@ const router = createBrowserRouter([
       { path: 'styles/ios-toggle-switch', element: <IosToggleSwitchPage /> },
       { path: 'snippets/use-event-listener', element: <UseEventListenerSnippetPage /> },
       { path: 'references/package-manager-commands', element: <PackageManagerCommandsPage /> },
+      { path: 'tools/hmac-generator', element: <HmacGeneratorPage /> },
+      { path: 'tools/lorem-ipsum-generator', element: <LoremIpsumGeneratorPage /> },
+      { path: 'data/json-diff', element: <JsonDiffPage /> },
+      { path: 'styles/dark-mode-toggle', element: <DarkModeTogglePage /> },
+      { path: 'snippets/use-throttle', element: <UseThrottleSnippetPage /> },
+      { path: 'references/vscode-shortcuts', element: <VscodeShortcutsPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

@@ -10,6 +10,15 @@ sentido adicionar (pode ser 1 item ou vários).
 - <tipo do item>: <nome> — <rota> (<descrição curta>)
 -->
 
+## 2026-08-01 (rodada 11)
+- Ferramenta: Gerador de HMAC — `/tools/hmac-generator` (calcula HMAC-SHA1/256/384/512 de uma mensagem a partir de uma chave secreta via `crypto.subtle.importKey`/`sign`; útil pra conferir assinaturas de webhook como GitHub/Stripe ou gerar tokens de teste, tudo local)
+- Ferramenta: Gerador de Lorem Ipsum — `/tools/lorem-ipsum-generator` (gera texto de preenchimento em pseudo-latim por palavras/frases/parágrafos, quantidade configurável e opção de começar com "Lorem ipsum dolor sit amet")
+- Arquivos & Dados: JSON Diff (estrutural) — `/data/json-diff` (compara dois JSONs por estrutura — chaves e valores, não linha de texto — via percurso recursivo em paralelo dos dois valores, listando adicionado/removido/alterado por caminho tipo `root.a.b[0]`; complementa o `/tools/diff-checker`, que compara texto linha a linha)
+- Estilo: Dark Mode Toggle Animado — `/styles/dark-mode-toggle` (switch sol/lua sobre o mesmo padrão de checkbox nativo escondido do switch iOS já existente — trilha troca de gradiente claro→escuro, estrelinhas surgem via opacity e a bolinha desliza com `translateX` girando 360° em `cubic-bezier` trocando ícone `SunOutlined`/`MoonOutlined` e cor de fundo; código-fonte exibido na página)
+- Snippet: `useThrottle` — `/snippets/use-throttle` (hook em `src/hooks/useThrottle.js` que limita a propagação de um valor a no máximo uma atualização a cada `limitMs`, mesmo com mudanças mais frequentes — diferente do `useDebounce`, que só reage após o valor parar de mudar; página mostra o código e uma demo com contador bruto vs. contador com throttle e slider de intervalo)
+- Referências: Atalhos de Teclado do VSCode — `/references/vscode-shortcuts` (cheat sheet pesquisável dos atalhos mais usados do VSCode, com a combinação Windows/Linux e Mac lado a lado, agrupados por categoria — geral, edição, navegação, busca, exibição)
+- Ajuste: `routes.jsx` ganhou as 6 rotas acima, `AppLayout.jsx` ganhou os itens de menu correspondentes (com badge "Novo"/"New"), `src/newItems.js` substituído para marcar só essas 6 rotas nesta rodada, `IDEAS.md` marcado com `[x]` nos itens correspondentes
+
 ## 2026-07-31 (rodada 10)
 - Ferramenta: Gerador de NanoID — `/tools/nanoid-generator` (gera IDs curtos aleatórios via `crypto.getRandomValues` com rejection sampling — descarta bytes fora do intervalo pra evitar viés de módulo, mesma técnica do pacote `nanoid` —, comprimento e alfabeto configuráveis — padrão, alfanumérico, minúsculas, maiúsculas, números, hex ou personalizado —, geração em lote e copiar individual/tudo)
 - Ferramenta: HTML Entity Encode/Decode — `/tools/html-entity-encoder` (codifica `& < > " '` em entidades nomeadas, com opção de converter todo caractere não-ASCII em entidade numérica `&#code;`; decodifica no sentido inverso via `DOMParser` sobre um documento sem scripting habilitado, seguro contra XSS mesmo com HTML de origem desconhecida)

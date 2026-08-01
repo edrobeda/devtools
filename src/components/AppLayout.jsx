@@ -129,6 +129,12 @@ const LABELS = {
     'ios-toggle-switch': 'Switch Estilo iOS',
     'use-event-listener': 'useEventListener',
     'package-manager-commands': 'npm vs yarn vs pnpm',
+    'hmac-generator': 'Gerador de HMAC',
+    'lorem-ipsum-generator': 'Gerador de Lorem Ipsum',
+    'json-diff': 'JSON Diff',
+    'dark-mode-toggle': 'Dark Mode Toggle',
+    'use-throttle': 'useThrottle',
+    'vscode-shortcuts': 'Atalhos VSCode',
   },
   en: {
     home: 'Home',
@@ -217,6 +223,12 @@ const LABELS = {
     'ios-toggle-switch': 'iOS-style Switch',
     'use-event-listener': 'useEventListener',
     'package-manager-commands': 'npm vs yarn vs pnpm',
+    'hmac-generator': 'HMAC Generator',
+    'lorem-ipsum-generator': 'Lorem Ipsum Generator',
+    'json-diff': 'JSON Diff',
+    'dark-mode-toggle': 'Dark Mode Toggle',
+    'use-throttle': 'useThrottle',
+    'vscode-shortcuts': 'VSCode Shortcuts',
   },
 }
 
@@ -259,6 +271,8 @@ function buildMenuItems(l) {
         { key: '/tools/css-specificity-calculator', icon: <OrderedListOutlined />, label: withNewBadge('/tools/css-specificity-calculator', l['css-specificity-calculator'], l) },
         { key: '/tools/nanoid-generator', icon: <IdcardOutlined />, label: withNewBadge('/tools/nanoid-generator', l['nanoid-generator'], l) },
         { key: '/tools/html-entity-encoder', icon: <SwapOutlined />, label: withNewBadge('/tools/html-entity-encoder', l['html-entity-encoder'], l) },
+        { key: '/tools/hmac-generator', icon: <KeyOutlined />, label: withNewBadge('/tools/hmac-generator', l['hmac-generator'], l) },
+        { key: '/tools/lorem-ipsum-generator', icon: <FileTextOutlined />, label: withNewBadge('/tools/lorem-ipsum-generator', l['lorem-ipsum-generator'], l) },
       ],
     },
     {
@@ -275,6 +289,7 @@ function buildMenuItems(l) {
         { key: '/styles/ripple-button', label: withNewBadge('/styles/ripple-button', l['ripple-button'], l) },
         { key: '/styles/floating-label-input', label: withNewBadge('/styles/floating-label-input', l['floating-label-input'], l) },
         { key: '/styles/ios-toggle-switch', label: withNewBadge('/styles/ios-toggle-switch', l['ios-toggle-switch'], l) },
+        { key: '/styles/dark-mode-toggle', label: withNewBadge('/styles/dark-mode-toggle', l['dark-mode-toggle'], l) },
       ],
     },
     {
@@ -294,6 +309,7 @@ function buildMenuItems(l) {
         { key: '/snippets/use-on-screen', label: withNewBadge('/snippets/use-on-screen', l['use-on-screen'], l) },
         { key: '/snippets/use-key-press', label: withNewBadge('/snippets/use-key-press', l['use-key-press'], l) },
         { key: '/snippets/use-event-listener', label: withNewBadge('/snippets/use-event-listener', l['use-event-listener'], l) },
+        { key: '/snippets/use-throttle', label: withNewBadge('/snippets/use-throttle', l['use-throttle'], l) },
       ],
     },
     {
@@ -357,6 +373,7 @@ function buildMenuItems(l) {
         { key: '/data/json-tree-viewer', label: l['json-tree-viewer'] },
         { key: '/data/csv-json-converter', label: withNewBadge('/data/csv-json-converter', l['csv-json-converter'], l) },
         { key: '/data/fake-data-generator', label: withNewBadge('/data/fake-data-generator', l['fake-data-generator'], l) },
+        { key: '/data/json-diff', label: withNewBadge('/data/json-diff', l['json-diff'], l) },
       ],
     },
     {
@@ -402,6 +419,7 @@ function buildMenuItems(l) {
         { key: '/references/flexbox-cheatsheet', label: withNewBadge('/references/flexbox-cheatsheet', l['flexbox-cheatsheet'], l) },
         { key: '/references/sql-commands', label: withNewBadge('/references/sql-commands', l['sql-commands'], l) },
         { key: '/references/package-manager-commands', label: withNewBadge('/references/package-manager-commands', l['package-manager-commands'], l) },
+        { key: '/references/vscode-shortcuts', label: withNewBadge('/references/vscode-shortcuts', l['vscode-shortcuts'], l) },
       ],
     },
     {
