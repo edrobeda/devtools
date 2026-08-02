@@ -10,6 +10,13 @@ sentido adicionar (pode ser 1 item ou vários).
 - <tipo do item>: <nome> — <rota> (<descrição curta>)
 -->
 
+## 2026-08-02 (rodada 12)
+- Arquivos & Dados: JSON Path Explorer — `/data/json-path-explorer` (testa uma expressão JSONPath colada contra um JSON, com tokenizer/avaliador próprio cobrindo um subconjunto prático da sintaxe — `$`, `.prop`, `..prop` recursive descent, `[*]`, `[n]`, `[n,m]`, `[start:end]`, `['prop']` — sem filtros `?()` nem `eval`; tabela de resultados com caminho e valor de cada match, mais referência da sintaxe suportada)
+- Referências: Cheat Sheet Interativo de CSS Grid — `/references/css-grid-cheatsheet` (playground ao vivo pra `grid-template-columns`/`gap`/`justify-content`/`align-content`/`justify-items`/`align-items` com preview de caixas coloridas, exemplo de item ocupando várias colunas via `grid-column: span N`, CSS gerado pronto pra copiar e tabela de referência rápida das propriedades de container vs. item; complementa o cheat sheet de Flexbox já existente)
+- Snippet: Fisher-Yates Shuffle — `/snippets/fisher-yates-shuffle` (implementação do algoritmo de embaralhamento uniforme, com demo de cartas e uma simulação visual comparando a distribuição de posições do Fisher-Yates contra o `array.sort(() => Math.random() - 0.5)` ingênuo e enviesado — roda N vezes e mostra a frequência de cada item cair na posição 0 num gráfico de barras pareado)
+- Fora da caixa: Roleta de Sorteio — `/extras/team-roulette` (adiciona nomes — ex. "quem revisa esse PR" — e gira uma roleta em CSS `conic-gradient` que sorteia um deles com chance uniforme via `Math.random`; ângulo final calculado pra alinhar a fatia sorteada com o ponteiro fixo no topo, com voltas extras pro efeito de giro)
+- Ajuste: `routes.jsx` ganhou as 4 rotas acima, `AppLayout.jsx` ganhou os itens de menu correspondentes (com badge "Novo"/"New"), `src/newItems.js` substituído para marcar só essas 4 rotas nesta rodada, `IDEAS.md` marcado com `[x]` nos itens correspondentes, novo `src/utils/shuffle.js` com `fisherYatesShuffle`/`naiveSortShuffle`
+
 ## 2026-08-01 (rodada 11)
 - Ferramenta: Gerador de HMAC — `/tools/hmac-generator` (calcula HMAC-SHA1/256/384/512 de uma mensagem a partir de uma chave secreta via `crypto.subtle.importKey`/`sign`; útil pra conferir assinaturas de webhook como GitHub/Stripe ou gerar tokens de teste, tudo local)
 - Ferramenta: Gerador de Lorem Ipsum — `/tools/lorem-ipsum-generator` (gera texto de preenchimento em pseudo-latim por palavras/frases/parágrafos, quantidade configurável e opção de começar com "Lorem ipsum dolor sit amet")

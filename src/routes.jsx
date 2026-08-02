@@ -76,6 +76,10 @@ import JsonDiffPage from './pages/JsonDiffPage'
 import DarkModeTogglePage from './pages/DarkModeTogglePage'
 import UseThrottleSnippetPage from './pages/UseThrottleSnippetPage'
 import VscodeShortcutsPage from './pages/VscodeShortcutsPage'
+import JsonPathExplorerPage from './pages/JsonPathExplorerPage'
+import CssGridCheatsheetPage from './pages/CssGridCheatsheetPage'
+import FisherYatesShufflePage from './pages/FisherYatesShufflePage'
+import TeamRoulettePage from './pages/TeamRoulettePage'
 
 const router = createBrowserRouter([
   {
@@ -157,6 +161,10 @@ const router = createBrowserRouter([
       { path: 'styles/dark-mode-toggle', element: <DarkModeTogglePage /> },
       { path: 'snippets/use-throttle', element: <UseThrottleSnippetPage /> },
       { path: 'references/vscode-shortcuts', element: <VscodeShortcutsPage /> },
+      { path: 'data/json-path-explorer', element: <JsonPathExplorerPage /> },
+      { path: 'references/css-grid-cheatsheet', element: <CssGridCheatsheetPage /> },
+      { path: 'snippets/fisher-yates-shuffle', element: <FisherYatesShufflePage /> },
+      { path: 'extras/team-roulette', element: <TeamRoulettePage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

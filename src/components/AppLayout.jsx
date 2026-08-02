@@ -135,6 +135,10 @@ export const LABELS = {
     'dark-mode-toggle': 'Dark Mode Toggle',
     'use-throttle': 'useThrottle',
     'vscode-shortcuts': 'Atalhos VSCode',
+    'json-path-explorer': 'JSON Path Explorer',
+    'css-grid-cheatsheet': 'Cheat Sheet de CSS Grid',
+    'fisher-yates-shuffle': 'Fisher-Yates Shuffle',
+    'team-roulette': 'Roleta de Sorteio',
   },
   en: {
     home: 'Home',
@@ -229,6 +233,10 @@ export const LABELS = {
     'dark-mode-toggle': 'Dark Mode Toggle',
     'use-throttle': 'useThrottle',
     'vscode-shortcuts': 'VSCode Shortcuts',
+    'json-path-explorer': 'JSON Path Explorer',
+    'css-grid-cheatsheet': 'CSS Grid Cheat Sheet',
+    'fisher-yates-shuffle': 'Fisher-Yates Shuffle',
+    'team-roulette': 'Team Roulette',
   },
 }
 
@@ -313,6 +321,7 @@ export function buildMenuItems(l) {
         { key: '/snippets/use-key-press', label: withNewBadge('/snippets/use-key-press', l['use-key-press'], l) },
         { key: '/snippets/use-event-listener', label: withNewBadge('/snippets/use-event-listener', l['use-event-listener'], l) },
         { key: '/snippets/use-throttle', label: withNewBadge('/snippets/use-throttle', l['use-throttle'], l) },
+        { key: '/snippets/fisher-yates-shuffle', label: withNewBadge('/snippets/fisher-yates-shuffle', l['fisher-yates-shuffle'], l) },
       ],
     },
     {
@@ -377,6 +386,7 @@ export function buildMenuItems(l) {
         { key: '/data/csv-json-converter', label: withNewBadge('/data/csv-json-converter', l['csv-json-converter'], l) },
         { key: '/data/fake-data-generator', label: withNewBadge('/data/fake-data-generator', l['fake-data-generator'], l) },
         { key: '/data/json-diff', label: withNewBadge('/data/json-diff', l['json-diff'], l) },
+        { key: '/data/json-path-explorer', label: withNewBadge('/data/json-path-explorer', l['json-path-explorer'], l) },
       ],
     },
     {
@@ -423,6 +433,7 @@ export function buildMenuItems(l) {
         { key: '/references/sql-commands', label: withNewBadge('/references/sql-commands', l['sql-commands'], l) },
         { key: '/references/package-manager-commands', label: withNewBadge('/references/package-manager-commands', l['package-manager-commands'], l) },
         { key: '/references/vscode-shortcuts', label: withNewBadge('/references/vscode-shortcuts', l['vscode-shortcuts'], l) },
+        { key: '/references/css-grid-cheatsheet', label: withNewBadge('/references/css-grid-cheatsheet', l['css-grid-cheatsheet'], l) },
       ],
     },
     {
@@ -431,6 +442,7 @@ export function buildMenuItems(l) {
       label: l.extras,
       children: [
         { key: '/extras/days-until', label: l['days-until'] },
+        { key: '/extras/team-roulette', label: withNewBadge('/extras/team-roulette', l['team-roulette'], l) },
       ],
     },
   ]

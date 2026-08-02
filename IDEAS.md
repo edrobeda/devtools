@@ -42,7 +42,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] CSS Minify/Beautify
 - [ ] JS Minify/Beautify
 - [ ] HTML Minify/Beautify
-- [ ] JSON Path Explorer 🔥 (testa expressões JSONPath contra um JSON colado)
+- [x] JSON Path Explorer 🔥 (testa expressões JSONPath contra um JSON colado) — `/data/json-path-explorer`
 - [x] Conversor de base numérica (bin/oct/dec/hex) — `/tools/base-converter`
 - [x] Conversor de case (camelCase, snake_case, kebab-case, PascalCase, Title Case) — `/tools/case-converter`
 - [x] Gerador de slug (texto → url-slug) — `/tools/slug-generator`
@@ -274,7 +274,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] LRU cache implementado do zero
 - [ ] Memoização manual (padrão de cache de função)
 - [ ] Deep clone e deep equal implementados do zero
-- [ ] Fisher-Yates shuffle
+- [x] Fisher-Yates shuffle — `/snippets/fisher-yates-shuffle`
 - [ ] Verificador de palíndromo (com variações: ignorar acentos/espaços)
 - [ ] Fibonacci memoizado vs. não-memoizado (comparação de performance)
 
@@ -284,7 +284,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] Comandos git essenciais (com exemplos) — `/references/git-commands`
 - [ ] Comandos Docker/Docker Compose essenciais
 - [x] Cheat sheet de Flexbox (visual, interativo) — `/references/flexbox-cheatsheet`
-- [ ] Cheat sheet de CSS Grid (visual, interativo)
+- [x] Cheat sheet de CSS Grid (visual, interativo) — `/references/css-grid-cheatsheet`
 - [ ] Atalhos do terminal/bash
 - [ ] Referência de sintaxe Markdown
 - [x] Comandos SQL essenciais — `/references/sql-commands`
@@ -298,7 +298,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 Itens que quase ninguém oferece — bons candidatos pra se destacar:
 
 - [x] "Quantos dias até sexta" (ou até qualquer data escolhida) — `/extras/days-until`
-- [ ] Roleta/sorteio simples (ex.: "quem revisa esse PR")
+- [x] Roleta/sorteio simples (ex.: "quem revisa esse PR") — `/extras/team-roulette`
 - [x] CSS Specificity Calculator 🔥 *(ver também em Front-end)* — `/tools/css-specificity-calculator`
 - [ ] SQL Explain Visualizer 🔥 *(ver também em Banco de Dados)*
 - [ ] Docker Compose Visualizer 🔥 *(ver também em DevOps)*
