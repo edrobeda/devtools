@@ -41,7 +41,7 @@ const { Header, Sider, Content } = Layout
 // Labels do menu por idioma — rótulos apenas, a lista de rotas/ícones fica
 // fixa abaixo. Rodadas futuras do agente: ao adicionar uma página nova,
 // adicione o par pt/en aqui também.
-const LABELS = {
+export const LABELS = {
   pt: {
     home: 'Home',
     tools: 'Ferramentas',
@@ -241,7 +241,10 @@ function withNewBadge(key, label, l) {
   )
 }
 
-function buildMenuItems(l) {
+// Exportado pra HomePage.jsx remontar a mesma árvore de categorias/itens na
+// grade da home, sem duplicar a fonte da verdade — o agente noturno só
+// mexe aqui, então a home fica sincronizada de graça.
+export function buildMenuItems(l) {
   return [
     { key: '/', icon: <HomeOutlined />, label: l.home },
     {

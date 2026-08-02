@@ -1,8 +1,12 @@
-import React from 'react'
-import { Typography, Space } from 'antd'
+import React, { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { Typography, Space, Input, Tag, Empty } from 'antd'
+import { SearchOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import { LABELS, buildMenuItems } from '../components/AppLayout'
+import { NEW_ITEM_KEYS } from '../newItems'
 
-const { Title, Paragraph } = Typography
+const { Title, Paragraph, Text } = Typography
 
 // ─── Linha de montagem animada ──────────────────────────────────
 // Caixas coloridas nascem à esquerda, andam pela esteira e "somem" à
@@ -12,7 +16,7 @@ const BOX_COLORS = ['#1677ff', '#52c41a', '#faad14', '#eb2f96', '#722ed1']
 
 function AssemblyLine() {
   return (
-    <div style={{ width: '100%', maxWidth: 640, margin: '0 auto' }}>
+    <div style={{ width: '100%', maxWidth: 480, margin: '0 auto' }}>
       <style>{`
         @keyframes devtools-belt-move {
           to { stroke-dashoffset: -36; }
@@ -79,47 +83,170 @@ const translations = {
   pt: {
     title: 'DevTools',
     tagline: 'Todo dia sai algo novo daqui — a esteira nunca para.',
-    body: (
-      <>
-        Espaço de ferramentas internas de desenvolvimento que cresce sozinho:
-        todas as noites, um agente autônomo adiciona uma ferramenta, um
-        componente de estilo ou um snippet novo — sem intervenção humana.
-        Volte amanhã e vai ter coisa diferente.
-      </>
-    ),
+    searchPlaceholder: 'Buscar ferramenta, estilo, snippet...',
+    whatsNew: 'Novidades de hoje',
+    noResults: 'Nada encontrado',
+    itemsCount: (n) => `${n} ${n === 1 ? 'item' : 'itens'}`,
+    totalSummary: (tools, cats) => `${tools} itens em ${cats} categorias`,
   },
   en: {
     title: 'DevTools',
     tagline: "Something new ships every day — the belt never stops.",
-    body: (
-      <>
-        A space for internal dev tools that grows on its own: every night,
-        an autonomous agent adds a new tool, style component, or snippet —
-        with zero human intervention. Come back tomorrow and something will
-        be different.
-      </>
-    ),
+    searchPlaceholder: 'Search tools, styles, snippets...',
+    whatsNew: "What's new today",
+    noResults: 'Nothing found',
+    itemsCount: (n) => `${n} ${n === 1 ? 'item' : 'items'}`,
+    totalSummary: (tools, cats) => `${tools} items across ${cats} categories`,
   },
+}
+
+// Slug é o último trecho da rota (ex.: '/tools/jwt-decoder' -> 'jwt-decoder'),
+// mesma chave usada em LABELS — convenção já seguida em todas as rotas
+// existentes e no prompt do agente noturno.
+function slugOf(key) {
+  return key.split('/').pop()
 }
 
 export default function HomePage() {
   const { lang } = useLanguage()
   const t = translations[lang]
+  const l = LABELS[lang]
+  const [query, setQuery] = useState('')
+
+  const groups = useMemo(
+    () => buildMenuItems(l).filter((g) => g.key !== '/'),
+    [l]
+  )
+
+  const totalItems = useMemo(
+    () => groups.reduce((sum, g) => sum + g.children.length, 0),
+    [groups]
+  )
+
+  const q = query.trim().toLowerCase()
+
+  const filteredGroups = useMemo(() => {
+    return groups
+      .map((g) => ({
+        key: g.key,
+        icon: g.icon,
+        title: g.label,
+        items: g.children
+          .map((c) => ({
+            key: c.key,
+            label: l[slugOf(c.key)] || slugOf(c.key),
+            isNew: NEW_ITEM_KEYS.includes(c.key),
+          }))
+          .filter((item) => !q || item.label.toLowerCase().includes(q)),
+      }))
+      .filter((g) => g.items.length > 0)
+  }, [groups, l, q])
+
+  const newItems = useMemo(
+    () =>
+      NEW_ITEM_KEYS.map((key) => ({
+        key,
+        label: l[slugOf(key)] || slugOf(key),
+      })),
+    [l]
+  )
 
   return (
-    <Space direction="vertical" size="large" style={{ width: '100%' }} align="center">
-      <Space direction="vertical" size="large" style={{ width: '100%', maxWidth: 720 }}>
+    <Space direction="vertical" size="large" style={{ width: '100%' }}>
+      <Space direction="vertical" size="middle" style={{ width: '100%', maxWidth: 640, margin: '0 auto' }} align="center">
         <div style={{ textAlign: 'center' }}>
           <Title level={2} style={{ marginBottom: 4 }}>{t.title}</Title>
-          <Paragraph type="secondary" style={{ fontSize: 16, marginBottom: 0 }}>
+          <Paragraph type="secondary" style={{ fontSize: 15, marginBottom: 0 }}>
             {t.tagline}
           </Paragraph>
+          <Text type="secondary" style={{ fontSize: 12 }}>
+            {t.totalSummary(totalItems, groups.length)}
+          </Text>
         </div>
 
         <AssemblyLine />
 
-        <Paragraph style={{ textAlign: 'center' }}>{t.body}</Paragraph>
+        <Input
+          allowClear
+          size="large"
+          prefix={<SearchOutlined style={{ color: '#bfbfbf' }} />}
+          placeholder={t.searchPlaceholder}
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          style={{ maxWidth: 480 }}
+        />
       </Space>
+
+      {!q && newItems.length > 0 && (
+        <div>
+          <Text strong style={{ display: 'block', marginBottom: 8 }}>{t.whatsNew}</Text>
+          <Space size={[8, 8]} wrap>
+            {newItems.map((item) => (
+              <Link key={item.key} to={item.key}>
+                <Tag color="green" style={{ fontSize: 13, padding: '4px 10px', cursor: 'pointer' }}>
+                  {item.label}
+                </Tag>
+              </Link>
+            ))}
+          </Space>
+        </div>
+      )}
+
+      {filteredGroups.length === 0 ? (
+        <Empty description={t.noResults} />
+      ) : (
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
+            gap: 16,
+          }}
+        >
+          {filteredGroups.map((g) => (
+            <div
+              key={g.key}
+              style={{
+                border: '1px solid #f0f0f0',
+                borderRadius: 8,
+                padding: '12px 16px',
+                background: '#fafafa',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 4,
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+                <span style={{ color: '#1677ff', fontSize: 16 }}>{g.icon}</span>
+                <Text strong>{g.title}</Text>
+                <Text type="secondary" style={{ fontSize: 12, marginLeft: 'auto' }}>
+                  {g.items.length}
+                </Text>
+              </div>
+              {g.items.map((item) => (
+                <Link
+                  key={item.key}
+                  to={item.key}
+                  style={{
+                    fontSize: 13,
+                    lineHeight: '22px',
+                    color: 'rgba(0, 0, 0, 0.75)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 6,
+                  }}
+                >
+                  {item.label}
+                  {item.isNew && (
+                    <Tag color="green" style={{ marginLeft: 0, lineHeight: '16px', fontSize: 10, padding: '0 4px' }}>
+                      {lang === 'pt' ? 'Novo' : 'New'}
+                    </Tag>
+                  )}
+                </Link>
+              ))}
+            </div>
+          ))}
+        </div>
+      )}
     </Space>
   )
 }
