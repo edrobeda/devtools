@@ -139,6 +139,10 @@ export const LABELS = {
     'css-grid-cheatsheet': 'Cheat Sheet de CSS Grid',
     'fisher-yates-shuffle': 'Fisher-Yates Shuffle',
     'team-roulette': 'Roleta de Sorteio',
+    'jwt-generator': 'Gerador de JWT',
+    'toast-notification': 'Toast com Auto-Dismiss',
+    'use-undo': 'useUndo',
+    'bash-shortcuts': 'Atalhos de Terminal/Bash',
   },
   en: {
     home: 'Home',
@@ -237,6 +241,10 @@ export const LABELS = {
     'css-grid-cheatsheet': 'CSS Grid Cheat Sheet',
     'fisher-yates-shuffle': 'Fisher-Yates Shuffle',
     'team-roulette': 'Team Roulette',
+    'jwt-generator': 'JWT Generator',
+    'toast-notification': 'Toast with Auto-Dismiss',
+    'use-undo': 'useUndo',
+    'bash-shortcuts': 'Terminal/Bash Shortcuts',
   },
 }
 
@@ -284,6 +292,7 @@ export function buildMenuItems(l) {
         { key: '/tools/html-entity-encoder', icon: <SwapOutlined />, label: withNewBadge('/tools/html-entity-encoder', l['html-entity-encoder'], l) },
         { key: '/tools/hmac-generator', icon: <KeyOutlined />, label: withNewBadge('/tools/hmac-generator', l['hmac-generator'], l) },
         { key: '/tools/lorem-ipsum-generator', icon: <FileTextOutlined />, label: withNewBadge('/tools/lorem-ipsum-generator', l['lorem-ipsum-generator'], l) },
+        { key: '/tools/jwt-generator', icon: <KeyOutlined />, label: withNewBadge('/tools/jwt-generator', l['jwt-generator'], l) },
       ],
     },
     {
@@ -301,6 +310,7 @@ export function buildMenuItems(l) {
         { key: '/styles/floating-label-input', label: withNewBadge('/styles/floating-label-input', l['floating-label-input'], l) },
         { key: '/styles/ios-toggle-switch', label: withNewBadge('/styles/ios-toggle-switch', l['ios-toggle-switch'], l) },
         { key: '/styles/dark-mode-toggle', label: withNewBadge('/styles/dark-mode-toggle', l['dark-mode-toggle'], l) },
+        { key: '/styles/toast-notification', label: withNewBadge('/styles/toast-notification', l['toast-notification'], l) },
       ],
     },
     {
@@ -322,6 +332,7 @@ export function buildMenuItems(l) {
         { key: '/snippets/use-event-listener', label: withNewBadge('/snippets/use-event-listener', l['use-event-listener'], l) },
         { key: '/snippets/use-throttle', label: withNewBadge('/snippets/use-throttle', l['use-throttle'], l) },
         { key: '/snippets/fisher-yates-shuffle', label: withNewBadge('/snippets/fisher-yates-shuffle', l['fisher-yates-shuffle'], l) },
+        { key: '/snippets/use-undo', label: withNewBadge('/snippets/use-undo', l['use-undo'], l) },
       ],
     },
     {
@@ -434,6 +445,7 @@ export function buildMenuItems(l) {
         { key: '/references/package-manager-commands', label: withNewBadge('/references/package-manager-commands', l['package-manager-commands'], l) },
         { key: '/references/vscode-shortcuts', label: withNewBadge('/references/vscode-shortcuts', l['vscode-shortcuts'], l) },
         { key: '/references/css-grid-cheatsheet', label: withNewBadge('/references/css-grid-cheatsheet', l['css-grid-cheatsheet'], l) },
+        { key: '/references/bash-shortcuts', label: withNewBadge('/references/bash-shortcuts', l['bash-shortcuts'], l) },
       ],
     },
     {

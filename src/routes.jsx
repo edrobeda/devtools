@@ -80,6 +80,10 @@ import JsonPathExplorerPage from './pages/JsonPathExplorerPage'
 import CssGridCheatsheetPage from './pages/CssGridCheatsheetPage'
 import FisherYatesShufflePage from './pages/FisherYatesShufflePage'
 import TeamRoulettePage from './pages/TeamRoulettePage'
+import JwtGeneratorPage from './pages/JwtGeneratorPage'
+import ToastNotificationPage from './pages/ToastNotificationPage'
+import UseUndoSnippetPage from './pages/UseUndoSnippetPage'
+import BashShortcutsPage from './pages/BashShortcutsPage'
 
 const router = createBrowserRouter([
   {
@@ -165,6 +169,10 @@ const router = createBrowserRouter([
       { path: 'references/css-grid-cheatsheet', element: <CssGridCheatsheetPage /> },
       { path: 'snippets/fisher-yates-shuffle', element: <FisherYatesShufflePage /> },
       { path: 'extras/team-roulette', element: <TeamRoulettePage /> },
+      { path: 'tools/jwt-generator', element: <JwtGeneratorPage /> },
+      { path: 'styles/toast-notification', element: <ToastNotificationPage /> },
+      { path: 'snippets/use-undo', element: <UseUndoSnippetPage /> },
+      { path: 'references/bash-shortcuts', element: <BashShortcutsPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

@@ -26,7 +26,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] Base64 Encode/Decode (texto e arquivo) — `/tools/base64-tool`
 - [ ] URL Encode/Decode
 - [x] HTML Entity Encode/Decode — `/tools/html-entity-encoder`
-- [ ] JWT Generator (pra testes, monta um JWT válido a partir de payload)
+- [x] JWT Generator (pra testes, monta um JWT válido a partir de payload) — `/tools/jwt-generator`
 - [ ] JWT Timeline 🔥 (linha do tempo visual mostrando quando expira)
 - [x] UUID Generator (v4, vários de uma vez) — `/tools/uuid-generator`
 - [x] NanoID Generator — `/tools/nanoid-generator`
@@ -235,7 +235,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] Switch/toggle customizado (estilo iOS, ou com ícones) — `/styles/ios-toggle-switch`
 - [ ] Tooltip customizado com seta e animação
 - [ ] Modal com animação de entrada (scale/slide/fade combinados)
-- [ ] Toast/notificação estilizada com barra de progresso de auto-dismiss
+- [x] Toast/notificação estilizada com barra de progresso de auto-dismiss — `/styles/toast-notification`
 - [ ] Dropdown/menu customizado com submenu animado
 - [ ] Tabs com indicador animado deslizando
 - [ ] Accordion customizado com altura animada
@@ -267,7 +267,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] `useInterval`/`useTimeout` declarativos (padrão Dan Abramov)
 - [x] `useEventListener` genérico — `/snippets/use-event-listener`
 - [x] `useThrottle` — `/snippets/use-throttle`
-- [ ] `useUndo` — histórico de estado com undo/redo
+- [x] `useUndo` — histórico de estado com undo/redo — `/snippets/use-undo`
 - [ ] Busca binária explicada com visualização passo a passo
 - [ ] Quicksort visualizado (array animando durante a ordenação)
 - [ ] Implementação de debounce/throttle do zero (sem hook, só a função)
@@ -285,7 +285,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Comandos Docker/Docker Compose essenciais
 - [x] Cheat sheet de Flexbox (visual, interativo) — `/references/flexbox-cheatsheet`
 - [x] Cheat sheet de CSS Grid (visual, interativo) — `/references/css-grid-cheatsheet`
-- [ ] Atalhos do terminal/bash
+- [x] Atalhos do terminal/bash — `/references/bash-shortcuts`
 - [ ] Referência de sintaxe Markdown
 - [x] Comandos SQL essenciais — `/references/sql-commands`
 - [x] npm vs yarn vs pnpm — tabela comparativa de comandos — `/references/package-manager-commands`

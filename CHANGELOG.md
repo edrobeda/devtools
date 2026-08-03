@@ -10,6 +10,13 @@ sentido adicionar (pode ser 1 item ou vários).
 - <tipo do item>: <nome> — <rota> (<descrição curta>)
 -->
 
+## 2026-08-03 (rodada 13)
+- Ferramenta: Gerador de JWT — `/tools/jwt-generator` (monta e assina um JSON Web Token válido — HS256/384/512 — a partir de um payload JSON e uma chave secreta, via `crypto.subtle.sign` no navegador; complementa o `/tools/jwt-decoder`, que faz o caminho inverso)
+- Estilo: Toast com Barra de Auto-Dismiss — `/styles/toast-notification` (notificação empilhável que entra deslizando via `@keyframes` e some sozinha após um tempo, com barra de progresso na base sincronizada por `animation-duration`; JS só empilha/remove cada toast do array de estado com um `setTimeout` individual por item; código-fonte exibido na página)
+- Snippet: `useUndo` — `/snippets/use-undo` (hook em `src/hooks/useUndo.js` que dá histórico de undo/redo a qualquer valor de estado via pilhas `past`/`present`/`future` — `set()` empilha e limpa o redo pendente, `undo()`/`redo()` movem um item entre as pilhas; página mostra o código e uma demo com input de texto)
+- Referências: Atalhos de Terminal/Bash — `/references/bash-shortcuts` (cheat sheet pesquisável de atalhos de edição de linha readline — movimento, edição, histórico —, controle de processos, jobs/background e pipes/redirecionamento, com descrição PT/EN de cada um)
+- Ajuste: `routes.jsx` ganhou as 4 rotas acima, `AppLayout.jsx` ganhou os itens de menu correspondentes (com badge "Novo"/"New"), `src/newItems.js` substituído para marcar só essas 4 rotas nesta rodada, `IDEAS.md` marcado com `[x]` nos itens correspondentes
+
 ## 2026-08-02 (rodada 12)
 - Arquivos & Dados: JSON Path Explorer — `/data/json-path-explorer` (testa uma expressão JSONPath colada contra um JSON, com tokenizer/avaliador próprio cobrindo um subconjunto prático da sintaxe — `$`, `.prop`, `..prop` recursive descent, `[*]`, `[n]`, `[n,m]`, `[start:end]`, `['prop']` — sem filtros `?()` nem `eval`; tabela de resultados com caminho e valor de cada match, mais referência da sintaxe suportada)
 - Referências: Cheat Sheet Interativo de CSS Grid — `/references/css-grid-cheatsheet` (playground ao vivo pra `grid-template-columns`/`gap`/`justify-content`/`align-content`/`justify-items`/`align-items` com preview de caixas coloridas, exemplo de item ocupando várias colunas via `grid-column: span N`, CSS gerado pronto pra copiar e tabela de referência rápida das propriedades de container vs. item; complementa o cheat sheet de Flexbox já existente)
