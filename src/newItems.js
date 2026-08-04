@@ -2,8 +2,9 @@
 // recente do agente noturno. Substituído por inteiro a cada rodada — nunca
 // acrescente aos itens de rodadas anteriores.
 export const NEW_ITEM_KEYS = [
-  '/tools/jwt-generator',
-  '/styles/toast-notification',
-  '/snippets/use-undo',
-  '/references/bash-shortcuts',
+  '/devops/commit-message-generator',
+  '/security/robots-txt-generator',
+  '/styles/scroll-progress-bar',
+  '/styles/confetti-effect',
+  '/snippets/debounce-throttle-functions',
 ]

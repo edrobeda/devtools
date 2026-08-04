@@ -10,6 +10,14 @@ sentido adicionar (pode ser 1 item ou vários).
 - <tipo do item>: <nome> — <rota> (<descrição curta>)
 -->
 
+## 2026-08-04 (rodada 14)
+- DevOps: Gerador de Mensagem de Commit — `/devops/commit-message-generator` (monta uma mensagem no padrão Conventional Commits — tipo(escopo)!: descrição, corpo, breaking change, rodapé — a partir de um formulário, com tabela de referência dos 11 tipos padrão e quando usar cada um; tudo local, só montagem de texto)
+- Segurança: Gerador de robots.txt — `/security/robots-txt-generator` (monta um `robots.txt` a partir de N grupos de regras por user-agent — Disallow/Allow/Crawl-delay — mais sitemap(s) opcionais; atalhos prontos pra bloquear tudo, permitir tudo ou bloquear a lista de crawlers de IA mais conhecidos — GPTBot, ClaudeBot, CCBot, Google-Extended etc.)
+- Estilo: Indicador de Progresso de Scroll — `/styles/scroll-progress-bar` (barra fina com `position: sticky` no topo de um container rolável, cuja largura reflete `scrollTop / (scrollHeight - clientHeight)` calculado no `onScroll`, sem lib nem `IntersectionObserver`; código-fonte exibido na página)
+- Estilo: Efeito de Confete — `/styles/confetti-effect` (explosão de partículas em `<canvas>` puro disparada por clique, com gravidade/arrasto constantes, rotação própria por partícula e fade perto do fim da vida útil; loop em `requestAnimationFrame` que se auto-encerra quando não sobra partícula viva; código-fonte exibido na página)
+- Snippet: `debounce`/`throttle` (função pura) — `/snippets/debounce-throttle-functions` (implementação em `src/utils/debounceThrottle.js` das duas técnicas como funções JS puras, sem depender de React — complementa os hooks `useDebounce`/`useThrottle` já existentes, que só funcionam dentro do ciclo de vida de um componente; throttle é "trailing", garante que a última chamada da rajada também executa)
+- Ajuste: `routes.jsx` ganhou as 5 rotas acima, `AppLayout.jsx` ganhou os itens de menu correspondentes (com badge "Novo"/"New"), `src/newItems.js` substituído para marcar só essas 5 rotas nesta rodada, `IDEAS.md` marcado com `[x]` nos itens correspondentes (incluindo a referência de tabela de Conventional Commits, coberta pela mesma página do gerador de commit)
+
 ## 2026-08-03 (rodada 13)
 - Ferramenta: Gerador de JWT — `/tools/jwt-generator` (monta e assina um JSON Web Token válido — HS256/384/512 — a partir de um payload JSON e uma chave secreta, via `crypto.subtle.sign` no navegador; complementa o `/tools/jwt-decoder`, que faz o caminho inverso)
 - Estilo: Toast com Barra de Auto-Dismiss — `/styles/toast-notification` (notificação empilhável que entra deslizando via `@keyframes` e some sozinha após um tempo, com barra de progresso na base sincronizada por `animation-duration`; JS só empilha/remove cada toast do array de estado com um `setTimeout` individual por item; código-fonte exibido na página)

@@ -116,7 +116,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Changelog Generator (a partir de commits colados)
 - [ ] Semantic Version Helper (quando sobe major/minor/patch)
 - [ ] Gerador de nome de branch git a partir de descrição de feature
-- [ ] Gerador de mensagem de commit (Conventional Commits)
+- [x] Gerador de mensagem de commit (Conventional Commits) — `/devops/commit-message-generator`
 - [ ] Git Commit Generator por IA 🔥
 - [ ] GitHub Actions YAML Validator
 - [ ] GitLab CI Validator
@@ -155,7 +155,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] SSL Checker
 - [ ] Certificate Decoder
 - [ ] CSR Generator
-- [ ] Robots.txt Generator
+- [x] Robots.txt Generator — `/security/robots-txt-generator`
 - [ ] Security Headers Checker
 - [x] Checador de força de senha — `/security/password-strength`
 
@@ -243,11 +243,11 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Avatar com indicador de status (online/ausente/offline)
 - [ ] Empty state ilustrado (SVG + texto)
 - [x] Dark mode toggle animado (sol/lua) — `/styles/dark-mode-toggle`
-- [ ] Indicador de progresso de scroll da página
+- [x] Indicador de progresso de scroll da página — `/styles/scroll-progress-bar`
 - [ ] Header sticky com efeito de blur ao rolar
 - [ ] Texto com efeito de revelação (reveal on scroll)
 - [ ] Efeito de máquina de escrever (typewriter)
-- [ ] Efeito confete/celebração
+- [x] Efeito confete/celebração — `/styles/confetti-effect`
 - [ ] Carrossel/marquee infinito
 - [ ] Cursor customizado que reage a elementos interativos
 
@@ -270,7 +270,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] `useUndo` — histórico de estado com undo/redo — `/snippets/use-undo`
 - [ ] Busca binária explicada com visualização passo a passo
 - [ ] Quicksort visualizado (array animando durante a ordenação)
-- [ ] Implementação de debounce/throttle do zero (sem hook, só a função)
+- [x] Implementação de debounce/throttle do zero (sem hook, só a função) — `/snippets/debounce-throttle-functions`
 - [ ] LRU cache implementado do zero
 - [ ] Memoização manual (padrão de cache de função)
 - [ ] Deep clone e deep equal implementados do zero
@@ -289,7 +289,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Referência de sintaxe Markdown
 - [x] Comandos SQL essenciais — `/references/sql-commands`
 - [x] npm vs yarn vs pnpm — tabela comparativa de comandos — `/references/package-manager-commands`
-- [ ] Conventional Commits — tabela de tipos e quando usar cada um
+- [x] Conventional Commits — tabela de tipos e quando usar cada um — `/devops/commit-message-generator`
 - [ ] Atalhos do DevTools do navegador
 - [ ] Tabela de métodos HTTP e quando usar cada um
 

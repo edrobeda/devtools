@@ -84,6 +84,11 @@ import JwtGeneratorPage from './pages/JwtGeneratorPage'
 import ToastNotificationPage from './pages/ToastNotificationPage'
 import UseUndoSnippetPage from './pages/UseUndoSnippetPage'
 import BashShortcutsPage from './pages/BashShortcutsPage'
+import CommitMessageGeneratorPage from './pages/CommitMessageGeneratorPage'
+import RobotsTxtGeneratorPage from './pages/RobotsTxtGeneratorPage'
+import ScrollProgressBarPage from './pages/ScrollProgressBarPage'
+import ConfettiEffectPage from './pages/ConfettiEffectPage'
+import DebounceThrottleFunctionsPage from './pages/DebounceThrottleFunctionsPage'
 
 const router = createBrowserRouter([
   {
@@ -173,6 +178,11 @@ const router = createBrowserRouter([
       { path: 'styles/toast-notification', element: <ToastNotificationPage /> },
       { path: 'snippets/use-undo', element: <UseUndoSnippetPage /> },
       { path: 'references/bash-shortcuts', element: <BashShortcutsPage /> },
+      { path: 'devops/commit-message-generator', element: <CommitMessageGeneratorPage /> },
+      { path: 'security/robots-txt-generator', element: <RobotsTxtGeneratorPage /> },
+      { path: 'styles/scroll-progress-bar', element: <ScrollProgressBarPage /> },
+      { path: 'styles/confetti-effect', element: <ConfettiEffectPage /> },
+      { path: 'snippets/debounce-throttle-functions', element: <DebounceThrottleFunctionsPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

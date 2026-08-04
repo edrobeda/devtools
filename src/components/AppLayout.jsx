@@ -143,6 +143,11 @@ export const LABELS = {
     'toast-notification': 'Toast com Auto-Dismiss',
     'use-undo': 'useUndo',
     'bash-shortcuts': 'Atalhos de Terminal/Bash',
+    'commit-message-generator': 'Gerador de Mensagem de Commit',
+    'robots-txt-generator': 'Gerador de robots.txt',
+    'scroll-progress-bar': 'Indicador de Progresso de Scroll',
+    'confetti-effect': 'Efeito de Confete',
+    'debounce-throttle-functions': 'debounce/throttle (função)',
   },
   en: {
     home: 'Home',
@@ -245,6 +250,11 @@ export const LABELS = {
     'toast-notification': 'Toast with Auto-Dismiss',
     'use-undo': 'useUndo',
     'bash-shortcuts': 'Terminal/Bash Shortcuts',
+    'commit-message-generator': 'Commit Message Generator',
+    'robots-txt-generator': 'robots.txt Generator',
+    'scroll-progress-bar': 'Scroll Progress Indicator',
+    'confetti-effect': 'Confetti Effect',
+    'debounce-throttle-functions': 'debounce/throttle (function)',
   },
 }
 
@@ -311,6 +321,8 @@ export function buildMenuItems(l) {
         { key: '/styles/ios-toggle-switch', label: withNewBadge('/styles/ios-toggle-switch', l['ios-toggle-switch'], l) },
         { key: '/styles/dark-mode-toggle', label: withNewBadge('/styles/dark-mode-toggle', l['dark-mode-toggle'], l) },
         { key: '/styles/toast-notification', label: withNewBadge('/styles/toast-notification', l['toast-notification'], l) },
+        { key: '/styles/scroll-progress-bar', label: withNewBadge('/styles/scroll-progress-bar', l['scroll-progress-bar'], l) },
+        { key: '/styles/confetti-effect', label: withNewBadge('/styles/confetti-effect', l['confetti-effect'], l) },
       ],
     },
     {
@@ -333,6 +345,7 @@ export function buildMenuItems(l) {
         { key: '/snippets/use-throttle', label: withNewBadge('/snippets/use-throttle', l['use-throttle'], l) },
         { key: '/snippets/fisher-yates-shuffle', label: withNewBadge('/snippets/fisher-yates-shuffle', l['fisher-yates-shuffle'], l) },
         { key: '/snippets/use-undo', label: withNewBadge('/snippets/use-undo', l['use-undo'], l) },
+        { key: '/snippets/debounce-throttle-functions', label: withNewBadge('/snippets/debounce-throttle-functions', l['debounce-throttle-functions'], l) },
       ],
     },
     {
@@ -362,6 +375,7 @@ export function buildMenuItems(l) {
       label: l.devops,
       children: [
         { key: '/devops/gitignore-generator', label: l['gitignore-generator'] },
+        { key: '/devops/commit-message-generator', label: withNewBadge('/devops/commit-message-generator', l['commit-message-generator'], l) },
       ],
     },
     {
@@ -386,6 +400,7 @@ export function buildMenuItems(l) {
       label: l.security,
       children: [
         { key: '/security/password-strength', label: l['password-strength'] },
+        { key: '/security/robots-txt-generator', label: withNewBadge('/security/robots-txt-generator', l['robots-txt-generator'], l) },
       ],
     },
     {
