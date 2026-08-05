@@ -27,7 +27,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] URL Encode/Decode
 - [x] HTML Entity Encode/Decode — `/tools/html-entity-encoder`
 - [x] JWT Generator (pra testes, monta um JWT válido a partir de payload) — `/tools/jwt-generator`
-- [ ] JWT Timeline 🔥 (linha do tempo visual mostrando quando expira)
+- [x] JWT Timeline 🔥 (linha do tempo visual mostrando quando expira) — `/tools/jwt-timeline`
 - [x] UUID Generator (v4, vários de uma vez) — `/tools/uuid-generator`
 - [x] NanoID Generator — `/tools/nanoid-generator`
 - [ ] UUID Collision Simulator 🔥
@@ -151,7 +151,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 ## 🔒 Segurança
 
 - [ ] CORS Tester
-- [ ] CSP Generator / CSP Validator
+- [x] CSP Generator / CSP Validator — `/security/csp-generator` (só o gerador; validar uma CSP colada continua em aberto)
 - [ ] SSL Checker
 - [ ] Certificate Decoder
 - [ ] CSR Generator
@@ -246,7 +246,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] Indicador de progresso de scroll da página — `/styles/scroll-progress-bar`
 - [ ] Header sticky com efeito de blur ao rolar
 - [ ] Texto com efeito de revelação (reveal on scroll)
-- [ ] Efeito de máquina de escrever (typewriter)
+- [x] Efeito de máquina de escrever (typewriter) — `/styles/typewriter-effect`
 - [x] Efeito confete/celebração — `/styles/confetti-effect`
 - [ ] Carrossel/marquee infinito
 - [ ] Cursor customizado que reage a elementos interativos
@@ -271,7 +271,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Busca binária explicada com visualização passo a passo
 - [ ] Quicksort visualizado (array animando durante a ordenação)
 - [x] Implementação de debounce/throttle do zero (sem hook, só a função) — `/snippets/debounce-throttle-functions`
-- [ ] LRU cache implementado do zero
+- [x] LRU cache implementado do zero — `/snippets/lru-cache`
 - [ ] Memoização manual (padrão de cache de função)
 - [ ] Deep clone e deep equal implementados do zero
 - [x] Fisher-Yates shuffle — `/snippets/fisher-yates-shuffle`
@@ -303,7 +303,7 @@ Itens que quase ninguém oferece — bons candidatos pra se destacar:
 - [ ] SQL Explain Visualizer 🔥 *(ver também em Banco de Dados)*
 - [ ] Docker Compose Visualizer 🔥 *(ver também em DevOps)*
 - [ ] API Flow Designer 🔥 *(ver também em APIs)*
-- [ ] JWT Timeline 🔥 *(ver também em Código)*
+- [x] JWT Timeline 🔥 *(ver também em Código)* — `/tools/jwt-timeline`
 - [ ] Redis TTL Simulator 🔥 *(ver também em Banco de Dados)*
 - [ ] Rate Limit Calculator 🔥 *(ver também em Banco de Dados)*
 - [ ] Password Entropy Checker 🔥 *(ver também em Código)*

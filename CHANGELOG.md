@@ -10,6 +10,13 @@ sentido adicionar (pode ser 1 item ou vários).
 - <tipo do item>: <nome> — <rota> (<descrição curta>)
 -->
 
+## 2026-08-05 (rodada 15)
+- Ferramenta: Timeline de Expiração do JWT — `/tools/jwt-timeline` (cola um JWT e vê as claims `iat`/`nbf`/`exp` plotadas numa linha do tempo, com marcador de "agora" que se move sozinho a cada segundo e contagem regressiva ao vivo até expirar ou desde que expirou; complementa o `/tools/jwt-decoder`, que mostra header/payload crus em vez da timeline)
+- Estilo: Efeito de Máquina de Escrever — `/styles/typewriter-effect` (hook `useTypewriter` que digita/apaga uma lista de frases em loop via `setTimeout` encadeado, sem lib; cursor piscando só em CSS com `@keyframes` alternando opacity; demo com frases, velocidade de digitação/apagar e pausa configuráveis)
+- Snippet: LRU Cache do zero — `/snippets/lru-cache` (implementação em `src/utils/lruCache.js` usando só um `Map` nativo — `delete`+`set` reinsere a chave no fim, então a primeira chave é sempre a menos recentemente usada —, `get`/`put` O(1) sem lista duplamente encadeada; demo interativa com capacidade ajustável, chips mostrando a ordem atual do cache, log de operações e uma sequência de exemplo pra ver a evicção acontecer)
+- Segurança: Gerador de Content-Security-Policy — `/security/csp-generator` (monta um cabeçalho `Content-Security-Policy` a partir de diretivas — `default-src`, `script-src`, `frame-ancestors` etc. — e listas de valores por linha, com atalhos pra inserir tokens comuns como `'self'`/`'unsafe-inline'`/`data:`, toggle de `upgrade-insecure-requests`, e saída tanto como cabeçalho HTTP quanto como tag `<meta>` equivalente)
+- Ajuste: `routes.jsx` ganhou as 4 rotas acima, `AppLayout.jsx` ganhou os itens de menu correspondentes (com badge "Novo"/"New"), `src/newItems.js` substituído para marcar só essas 4 rotas nesta rodada, `IDEAS.md` marcado com `[x]` nos itens correspondentes
+
 ## 2026-08-04 (rodada 14)
 - DevOps: Gerador de Mensagem de Commit — `/devops/commit-message-generator` (monta uma mensagem no padrão Conventional Commits — tipo(escopo)!: descrição, corpo, breaking change, rodapé — a partir de um formulário, com tabela de referência dos 11 tipos padrão e quando usar cada um; tudo local, só montagem de texto)
 - Segurança: Gerador de robots.txt — `/security/robots-txt-generator` (monta um `robots.txt` a partir de N grupos de regras por user-agent — Disallow/Allow/Crawl-delay — mais sitemap(s) opcionais; atalhos prontos pra bloquear tudo, permitir tudo ou bloquear a lista de crawlers de IA mais conhecidos — GPTBot, ClaudeBot, CCBot, Google-Extended etc.)

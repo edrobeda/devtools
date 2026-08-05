@@ -89,6 +89,10 @@ import RobotsTxtGeneratorPage from './pages/RobotsTxtGeneratorPage'
 import ScrollProgressBarPage from './pages/ScrollProgressBarPage'
 import ConfettiEffectPage from './pages/ConfettiEffectPage'
 import DebounceThrottleFunctionsPage from './pages/DebounceThrottleFunctionsPage'
+import JwtTimelinePage from './pages/JwtTimelinePage'
+import TypewriterEffectPage from './pages/TypewriterEffectPage'
+import LruCachePage from './pages/LruCachePage'
+import CspGeneratorPage from './pages/CspGeneratorPage'
 
 const router = createBrowserRouter([
   {
@@ -183,6 +187,10 @@ const router = createBrowserRouter([
       { path: 'styles/scroll-progress-bar', element: <ScrollProgressBarPage /> },
       { path: 'styles/confetti-effect', element: <ConfettiEffectPage /> },
       { path: 'snippets/debounce-throttle-functions', element: <DebounceThrottleFunctionsPage /> },
+      { path: 'tools/jwt-timeline', element: <JwtTimelinePage /> },
+      { path: 'styles/typewriter-effect', element: <TypewriterEffectPage /> },
+      { path: 'snippets/lru-cache', element: <LruCachePage /> },
+      { path: 'security/csp-generator', element: <CspGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

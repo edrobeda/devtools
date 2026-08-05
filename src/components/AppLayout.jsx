@@ -148,6 +148,10 @@ export const LABELS = {
     'scroll-progress-bar': 'Indicador de Progresso de Scroll',
     'confetti-effect': 'Efeito de Confete',
     'debounce-throttle-functions': 'debounce/throttle (função)',
+    'jwt-timeline': 'Timeline de Expiração do JWT',
+    'typewriter-effect': 'Efeito de Máquina de Escrever',
+    'lru-cache': 'LRU Cache',
+    'csp-generator': 'Gerador de CSP',
   },
   en: {
     home: 'Home',
@@ -255,6 +259,10 @@ export const LABELS = {
     'scroll-progress-bar': 'Scroll Progress Indicator',
     'confetti-effect': 'Confetti Effect',
     'debounce-throttle-functions': 'debounce/throttle (function)',
+    'jwt-timeline': 'JWT Expiration Timeline',
+    'typewriter-effect': 'Typewriter Effect',
+    'lru-cache': 'LRU Cache',
+    'csp-generator': 'CSP Generator',
   },
 }
 
@@ -303,6 +311,7 @@ export function buildMenuItems(l) {
         { key: '/tools/hmac-generator', icon: <KeyOutlined />, label: withNewBadge('/tools/hmac-generator', l['hmac-generator'], l) },
         { key: '/tools/lorem-ipsum-generator', icon: <FileTextOutlined />, label: withNewBadge('/tools/lorem-ipsum-generator', l['lorem-ipsum-generator'], l) },
         { key: '/tools/jwt-generator', icon: <KeyOutlined />, label: withNewBadge('/tools/jwt-generator', l['jwt-generator'], l) },
+        { key: '/tools/jwt-timeline', icon: <FieldTimeOutlined />, label: withNewBadge('/tools/jwt-timeline', l['jwt-timeline'], l) },
       ],
     },
     {
@@ -323,6 +332,7 @@ export function buildMenuItems(l) {
         { key: '/styles/toast-notification', label: withNewBadge('/styles/toast-notification', l['toast-notification'], l) },
         { key: '/styles/scroll-progress-bar', label: withNewBadge('/styles/scroll-progress-bar', l['scroll-progress-bar'], l) },
         { key: '/styles/confetti-effect', label: withNewBadge('/styles/confetti-effect', l['confetti-effect'], l) },
+        { key: '/styles/typewriter-effect', label: withNewBadge('/styles/typewriter-effect', l['typewriter-effect'], l) },
       ],
     },
     {
@@ -346,6 +356,7 @@ export function buildMenuItems(l) {
         { key: '/snippets/fisher-yates-shuffle', label: withNewBadge('/snippets/fisher-yates-shuffle', l['fisher-yates-shuffle'], l) },
         { key: '/snippets/use-undo', label: withNewBadge('/snippets/use-undo', l['use-undo'], l) },
         { key: '/snippets/debounce-throttle-functions', label: withNewBadge('/snippets/debounce-throttle-functions', l['debounce-throttle-functions'], l) },
+        { key: '/snippets/lru-cache', label: withNewBadge('/snippets/lru-cache', l['lru-cache'], l) },
       ],
     },
     {
@@ -401,6 +412,7 @@ export function buildMenuItems(l) {
       children: [
         { key: '/security/password-strength', label: l['password-strength'] },
         { key: '/security/robots-txt-generator', label: withNewBadge('/security/robots-txt-generator', l['robots-txt-generator'], l) },
+        { key: '/security/csp-generator', label: withNewBadge('/security/csp-generator', l['csp-generator'], l) },
       ],
     },
     {
