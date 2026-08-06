@@ -2,3 +2,5 @@ node_modules/
 dist/
 .agent-logs/
 .env
+.hourly-agent.lock
+.new-badge-day
