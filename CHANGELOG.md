@@ -1,9 +1,9 @@
 # Changelog do devtools
 
-Histórico do que o agente noturno (cron 00:00) adicionou em cada execução.
-Lido por ele mesmo no início de cada rodada, pra nunca repetir algo que já
-existe. Sem categorias fixas — cada rodada decide livremente o que faz
-sentido adicionar (pode ser 1 item ou vários).
+Histórico do que o agente adicionou em cada execução. Rodava 1x/dia até
+2026-08-05; a partir de 2026-08-06 roda de hora em hora (`hourly-agent.sh`,
+modelo free via opencode) com no máximo 1 item por rodada. Lido por ele
+mesmo no início de cada rodada, pra nunca repetir algo que já existe.
 
 <!-- NOVAS ENTRADAS ENTRAM NO TOPO, formato:
 ## AAAA-MM-DD
