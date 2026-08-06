@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Typography, Card, Space, Input, Slider } from 'antd'
 import { EditOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -161,7 +161,10 @@ export default function TypewriterEffectPage() {
     setPhrasesText(DEFAULT_PHRASES[lang].join('\n'))
   }, [lang])
 
-  const phrases = phrasesText.split('\n').map((p) => p.trim()).filter(Boolean)
+  const phrases = useMemo(
+    () => phrasesText.split('\n').map((p) => p.trim()).filter(Boolean),
+    [phrasesText]
+  )
   const text = useTypewriter(phrases, { typingMs, deletingMs, pauseMs })
 
   return (
