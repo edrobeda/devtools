@@ -122,8 +122,8 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] GitLab CI Validator
 - [ ] Kubernetes Manifest Explorer
 - [ ] Kubernetes YAML Validator
-- [ ] Editor de HTML com preview ao vivo (mini CodePen)
-- [ ] Timer Pomodoro
+- [x] Editor de HTML com preview ao vivo (mini CodePen)
+- [x] Timer Pomodoro — `/extras/pomodoro-timer`
 - [ ] Teste de digitação (WPM)
 
 ## 💾 Banco de Dados

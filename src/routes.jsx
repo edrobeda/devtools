@@ -94,6 +94,7 @@ import TypewriterEffectPage from './pages/TypewriterEffectPage'
 import LruCachePage from './pages/LruCachePage'
 import CspGeneratorPage from './pages/CspGeneratorPage'
 import TokenCounterPage from './pages/TokenCounterPage'
+import PomodoroTimerPage from './pages/PomodoroTimerPage'
 
 const router = createBrowserRouter([
   {
@@ -179,6 +180,7 @@ const router = createBrowserRouter([
       { path: 'references/css-grid-cheatsheet', element: <CssGridCheatsheetPage /> },
       { path: 'snippets/fisher-yates-shuffle', element: <FisherYatesShufflePage /> },
       { path: 'extras/team-roulette', element: <TeamRoulettePage /> },
+      { path: 'extras/pomodoro-timer', element: <PomodoroTimerPage /> },
       { path: 'tools/jwt-generator', element: <JwtGeneratorPage /> },
       { path: 'styles/toast-notification', element: <ToastNotificationPage /> },
       { path: 'snippets/use-undo', element: <UseUndoSnippetPage /> },

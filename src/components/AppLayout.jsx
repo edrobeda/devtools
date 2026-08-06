@@ -153,6 +153,7 @@ export const LABELS = {
     'lru-cache': 'LRU Cache',
     'csp-generator': 'Gerador de CSP',
     'token-counter': 'Contador de Tokens',
+    'pomodoro-timer': 'Timer Pomodoro',
   },
   en: {
     home: 'Home',
@@ -265,6 +266,7 @@ export const LABELS = {
     'lru-cache': 'LRU Cache',
     'csp-generator': 'CSP Generator',
     'token-counter': 'Token Counter',
+    'pomodoro-timer': 'Pomodoro Timer',
   },
 }
 
@@ -485,6 +487,7 @@ export function buildMenuItems(l) {
       children: [
         { key: '/extras/days-until', label: l['days-until'] },
         { key: '/extras/team-roulette', label: withNewBadge('/extras/team-roulette', l['team-roulette'], l) },
+        { key: '/extras/pomodoro-timer', icon: <FieldTimeOutlined />, label: withNewBadge('/extras/pomodoro-timer', l['pomodoro-timer'], l) },
       ],
     },
   ]
