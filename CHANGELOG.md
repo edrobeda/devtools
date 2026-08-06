@@ -10,6 +10,10 @@ sentido adicionar (pode ser 1 item ou vários).
 - <tipo do item>: <nome> — <rota> (<descrição curta>)
 -->
 
+## 2026-08-06 (rodada 16)
+- IA: Contador de Tokens — `/ai/token-counter` (estima quanto um texto ocuparia em tokens de um LLM a partir de duas heurísticas client-side — a regra de bolso "chars / 4" do GPT/LLaMA e uma variante ciente de I18N que cobra mais por caracteres CJK/emoji —, seleção de janela de contexto de modelos comuns — Claude Sonnet 4.5, GPT-4o (mini), Llama 3.1, Command R+, Gemini Flash — e barra de Progress mostrando a ocupação percentual do contexto, com counts de caracteres/palavras; complementa o `/ai/anthropic-cost-calculator`, que precisa do número de tokens pra estimar custo; tudo local)
+- Ajuste: `routes.jsx` ganhou a rota `/ai/token-counter`, `AppLayout.jsx` ganhou o item de menu (com badge "Novo"/"New"), `src/newItems.js` marcou a rota desta rodada, `IDEAS.md` marcado com `[x]`
+
 ## 2026-08-05 (rodada 15)
 - Ferramenta: Timeline de Expiração do JWT — `/tools/jwt-timeline` (cola um JWT e vê as claims `iat`/`nbf`/`exp` plotadas numa linha do tempo, com marcador de "agora" que se move sozinho a cada segundo e contagem regressiva ao vivo até expirar ou desde que expirou; complementa o `/tools/jwt-decoder`, que mostra header/payload crus em vez da timeline)
 - Estilo: Efeito de Máquina de Escrever — `/styles/typewriter-effect` (hook `useTypewriter` que digita/apaga uma lista de frases em loop via `setTimeout` encadeado, sem lib; cursor piscando só em CSS com `@keyframes` alternando opacity; demo com frases, velocidade de digitação/apagar e pausa configuráveis)

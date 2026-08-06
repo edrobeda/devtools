@@ -93,6 +93,7 @@ import JwtTimelinePage from './pages/JwtTimelinePage'
 import TypewriterEffectPage from './pages/TypewriterEffectPage'
 import LruCachePage from './pages/LruCachePage'
 import CspGeneratorPage from './pages/CspGeneratorPage'
+import TokenCounterPage from './pages/TokenCounterPage'
 
 const router = createBrowserRouter([
   {
@@ -191,6 +192,7 @@ const router = createBrowserRouter([
       { path: 'styles/typewriter-effect', element: <TypewriterEffectPage /> },
       { path: 'snippets/lru-cache', element: <LruCachePage /> },
       { path: 'security/csp-generator', element: <CspGeneratorPage /> },
+      { path: 'ai/token-counter', element: <TokenCounterPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

@@ -192,7 +192,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 
 - [ ] Prompt Library
 - [ ] Prompt Variables / Versioning / Compare
-- [ ] Token Counter
+- [x] Token Counter — `/ai/token-counter`
 - [ ] Embedding Visualizer
 - [ ] OpenAI Cost Calculator
 - [x] Anthropic Cost Calculator — `/ai/anthropic-cost-calculator`

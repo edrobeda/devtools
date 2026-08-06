@@ -152,6 +152,7 @@ export const LABELS = {
     'typewriter-effect': 'Efeito de Máquina de Escrever',
     'lru-cache': 'LRU Cache',
     'csp-generator': 'Gerador de CSP',
+    'token-counter': 'Contador de Tokens',
   },
   en: {
     home: 'Home',
@@ -263,6 +264,7 @@ export const LABELS = {
     'typewriter-effect': 'Typewriter Effect',
     'lru-cache': 'LRU Cache',
     'csp-generator': 'CSP Generator',
+    'token-counter': 'Token Counter',
   },
 }
 
@@ -441,6 +443,7 @@ export function buildMenuItems(l) {
       label: l.ai,
       children: [
         { key: '/ai/anthropic-cost-calculator', label: l['anthropic-cost-calculator'] },
+        { key: '/ai/token-counter', label: withNewBadge('/ai/token-counter', l['token-counter'], l) },
       ],
     },
     {
