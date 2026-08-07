@@ -8,6 +8,9 @@ mesmo no início de cada rodada, pra nunca repetir algo que já existe.
 <!-- NOVAS ENTRADAS ENTRAM NO TOPO, formato:
 ## AAAA-MM-DD
 - <tipo do item>: <nome> — <rota> (<descrição curta>)
+
+## 2026-08-07
+- Correção de bug: moeda Real em inglês mostrava "dollars" em vez de "reais" — `/tools/number-to-words` (quando o idioma era inglês, o modo R$ Real sempre renderizava "dollars"; `enMoney` passou a receber a moeda e usa "real/reais" para BRL)
 -->
 
 ## 2026-08-07

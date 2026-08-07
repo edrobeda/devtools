@@ -121,13 +121,17 @@ function ptMoney(intPart, cents, currency) {
   if (c > 0) out += (out ? ' e ' : '') + ptNumber(c) + ' ' + (c === 1 ? 'centavo' : 'centavos')
   return (neg ? 'menos ' : '') + out
 }
-function enMoney(intPart, cents) {
-  if (intPart === 0 && cents === 0) return 'zero dollars'
+function enMoney(intPart, cents, currency) {
+  const isBrl = currency === 'brl'
+  const noun = isBrl
+    ? { single: 'real', plural: 'reais' }
+    : { single: 'dollar', plural: 'dollars' }
+  if (intPart === 0 && cents === 0) return 'zero ' + noun.plural
   const neg = intPart < 0 || (intPart === 0 && cents < 0)
   const ip = Math.abs(intPart)
   const c = Math.abs(cents)
   let out = ''
-  if (ip > 0) out = enNumber(ip) + ' ' + (ip === 1 ? 'dollar' : 'dollars')
+  if (ip > 0) out = enNumber(ip) + ' ' + (ip === 1 ? noun.single : noun.plural)
   if (c > 0) out += (out ? ' and ' : '') + enNumber(c) + ' ' + (c === 1 ? 'cent' : 'cents')
   return (neg ? 'minus ' : '') + out
 }
@@ -266,7 +270,7 @@ export default function NumberToWordsPage() {
       const c = neg ? -cents : cents
       const sep = commaSep ? ',' : '.'
       display = groupInt(ip) + sep + String(Math.abs(c)).padStart(2, '0')
-      text = lang === 'pt' ? ptMoney(ip, c, mode) : enMoney(ip, c)
+      text = lang === 'pt' ? ptMoney(ip, c, mode) : enMoney(ip, c, mode)
     }
     return { display, text }
   }, [input, mode, lang, commaSep])

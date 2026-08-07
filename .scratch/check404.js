@@ -1,7 +1,0 @@
-import puppeteer from 'puppeteer'
-const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] })
-const page = await browser.newPage()
-page.on('response', (r) => { if (r.status() === 404) console.log('404:', r.url()) })
-await page.goto('https://devtools.eventifylab.com/', { waitUntil: 'networkidle0', timeout: 60000 })
-await new Promise((r) => setTimeout(r, 800))
-await browser.close()
