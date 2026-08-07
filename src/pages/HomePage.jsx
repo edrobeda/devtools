@@ -5,6 +5,7 @@ import { SearchOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import { LABELS, buildMenuItems } from '../components/AppLayout'
 import { NEW_ITEM_KEYS } from '../newItems'
+import { useNewItemKeys } from '../hooks/useNewItemKeys'
 
 const { Title, Paragraph, Text } = Typography
 
@@ -113,6 +114,12 @@ export default function HomePage() {
   const l = LABELS[lang]
   const [query, setQuery] = useState('')
 
+  // NEW_ITEM_KEYS (importado acima) é mutado in-place por useNewItemKeys —
+  // `newItemsVersion` muda quando os dados chegam e força os useMemo abaixo
+  // a recalcular, senão eles ficariam presos no valor da primeira renderização
+  // (array vazio, antes do fetch responder).
+  const newItemsVersion = useNewItemKeys()
+
   const groups = useMemo(
     () => buildMenuItems(l).filter((g) => g.key !== '/'),
     [l]
@@ -140,7 +147,7 @@ export default function HomePage() {
           .filter((item) => !q || item.label.toLowerCase().includes(q)),
       }))
       .filter((g) => g.items.length > 0)
-  }, [groups, l, q])
+  }, [groups, l, q, newItemsVersion])
 
   const newItems = useMemo(
     () =>
@@ -148,7 +155,7 @@ export default function HomePage() {
         key,
         label: l[slugOf(key)] || slugOf(key),
       })),
-    [l]
+    [l, newItemsVersion]
   )
 
   return (

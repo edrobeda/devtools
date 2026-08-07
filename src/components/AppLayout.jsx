@@ -35,6 +35,8 @@ import {
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
 import { NEW_ITEM_KEYS } from '../newItems'
+import { useNewItemKeys } from '../hooks/useNewItemKeys'
+import BugReportWidget from './BugReportWidget'
 
 const { Header, Sider, Content } = Layout
 
@@ -501,6 +503,12 @@ export default function AppLayout() {
   const { token: { colorBgContainer, borderRadiusLG } } = theme.useToken()
   const contentRef = useRef(null)
 
+  // Sincroniza NEW_ITEM_KEYS com os 24 itens mais recentes (ver
+  // useNewItemKeys.js) antes de montar o menu — não precisamos do valor de
+  // retorno aqui, só que o efeito rode e force este componente (e a
+  // HomePage, filha dele) a re-renderizar quando os dados chegarem.
+  useNewItemKeys()
+
   const menuItems = buildMenuItems(LABELS[lang])
 
   // O menu (Sider) e o conteúdo rolam em containers separados — ao trocar
@@ -577,6 +585,7 @@ export default function AppLayout() {
           </div>
         </Content>
       </Layout>
+      <BugReportWidget />
     </Layout>
   )
 }

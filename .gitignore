@@ -3,4 +3,4 @@ dist/
 .agent-logs/
 .env
 .hourly-agent.lock
-.new-badge-day
+data/

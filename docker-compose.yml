@@ -11,6 +11,21 @@ services:
       - "80"
     networks:
       - docker-base_default
+    depends_on:
+      - api
+
+  api:
+    build:
+      context: ./api
+    container_name: ${API_CONTAINER_NAME:-DK_DEVTOOLS_API}
+    restart: unless-stopped
+    user: "1000:1000"
+    expose:
+      - "3001"
+    volumes:
+      - ./data:/app/data
+    networks:
+      - docker-base_default
 
 networks:
   docker-base_default:

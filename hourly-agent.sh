@@ -1,11 +1,13 @@
 #!/bin/bash
 # Agente do devtools — disparado via cron do usuário devtools-bot, de hora
 # em hora. Só deve tocar em /home/devtools-bot/devtools (ver
-# .agent-prompt.md pro escopo completo).
+# .agent-prompt.md / .agent-prompt-bugfix.md pro escopo completo).
 #
-# Trocou de `claude -p` (nightly-agent.sh, 1x/dia) para `opencode run` com
-# um modelo free (sem custo, sem sessão OAuth pra expirar) rodando de hora
-# em hora, no máximo 1 item por rodada — ver .agent-prompt.md.
+# Roda `opencode run` com um modelo free (sem custo, sem sessão OAuth pra
+# expirar). Cada rodada é UMA das duas coisas, nunca as duas:
+#   - se existe bug pendente (tabela `bugs` em data/devtools.db), corrige
+#     só esse bug (.agent-prompt-bugfix.md) — prioridade sobre conteúdo novo;
+#   - senão, roda de conteúdo normal (.agent-prompt.md), no máximo 1 item.
 set -uo pipefail
 
 PROJECT_DIR="/home/devtools-bot/devtools"
@@ -29,36 +31,66 @@ if ! flock -n 200; then
     exit 0
 fi
 
-# Zera o selo "Novo"/"New" uma vez por dia, na primeira rodada depois da
-# meia-noite de Brasília — o agente só acrescenta ao array durante o dia,
-# nunca decide sozinho quando resetar (ver .agent-prompt.md).
-TODAY_BRT="$(TZ=America/Sao_Paulo date +%F)"
-BADGE_DAY_FILE="$PROJECT_DIR/.new-badge-day"
-LAST_BADGE_DAY="$(cat "$BADGE_DAY_FILE" 2>/dev/null || echo '')"
-if [ "$TODAY_BRT" != "$LAST_BADGE_DAY" ]; then
-    printf 'export const NEW_ITEM_KEYS = []\n' > "$PROJECT_DIR/src/newItems.js"
-    echo "$TODAY_BRT" > "$BADGE_DAY_FILE"
-    echo "$(date -Iseconds) — selo Novo/New zerado (novo dia BRT: $TODAY_BRT)" >> "$LOG_DIR/runs.log"
+# Checa bug pendente ANTES de decidir o prompt — ver scripts/pending_bug.py.
+mapfile -t BUG_LINES < <(python3 "$PROJECT_DIR/scripts/pending_bug.py")
+
+if [ "${BUG_LINES[0]:-NONE}" != "NONE" ]; then
+    ROUND_KIND="bugfix"
+    BUG_ID="${BUG_LINES[0]}"
+    BUG_ITEM_KEY="${BUG_LINES[1]}"
+    BUG_DESCRIPTION="$(printf '%s' "${BUG_LINES[2]}" | base64 -d)"
+
+    PROMPT="$(ITEM_KEY="$BUG_ITEM_KEY" BUG_DESCRIPTION="$BUG_DESCRIPTION" python3 - "$PROJECT_DIR/.agent-prompt-bugfix.md" <<'PYEOF'
+import os
+import sys
+
+with open(sys.argv[1], encoding="utf-8") as f:
+    template = f.read()
+
+print(
+    template
+    .replace("{{ITEM_KEY}}", os.environ["ITEM_KEY"])
+    .replace("{{BUG_DESCRIPTION}}", os.environ["BUG_DESCRIPTION"])
+)
+PYEOF
+)"
+    echo "$(date -Iseconds) — rodada de bugfix (bug #$BUG_ID, $BUG_ITEM_KEY)" >> "$LOG_DIR/runs.log"
+else
+    ROUND_KIND="content"
+    PROMPT="$(cat "$PROJECT_DIR/.agent-prompt.md")"
 fi
 
-PROMPT="$(cat "$PROJECT_DIR/.agent-prompt.md")"
+HEAD_BEFORE="$(git -C "$PROJECT_DIR" rev-parse HEAD 2>/dev/null)"
 
 "$OPENCODE_BIN" run --auto --dir "$PROJECT_DIR" -m "$MODEL" --title "devtools-hourly-$(date +%Y%m%d-%H%M%S)" "$PROMPT" \
     > "$LOG_FILE" 2>&1
 AGENT_EXIT=$?
 
-echo "$(date -Iseconds) — rodada concluída (exit $AGENT_EXIT), log em $LOG_FILE" >> "$LOG_DIR/runs.log"
+HEAD_AFTER="$(git -C "$PROJECT_DIR" rev-parse HEAD 2>/dev/null)"
+
+echo "$(date -Iseconds) — rodada concluída ($ROUND_KIND, exit $AGENT_EXIT), log em $LOG_FILE" >> "$LOG_DIR/runs.log"
+
+CONTAINER_UP=$(docker ps --filter "name=DK_DEVTOOLS" --filter "status=running" -q)
+
+# Só apaga a flag de bug se: rodada era de bugfix, o opencode saiu com
+# sucesso, o container está de pé, E rolou um commit novo (prova de que algo
+# realmente mudou — o agente é instruído a não commitar se não conseguir
+# corrigir com confiança). Sem isso, o bug continua pendente e a próxima
+# rodada tenta de novo.
+if [ "$ROUND_KIND" = "bugfix" ] && [ "$AGENT_EXIT" -eq 0 ] && [ -n "$CONTAINER_UP" ] && [ "$HEAD_BEFORE" != "$HEAD_AFTER" ]; then
+    python3 "$PROJECT_DIR/scripts/resolve_bug.py" "$BUG_ID" >> "$LOG_DIR/runs.log" 2>&1
+fi
 
 # Avisa por WhatsApp só se algo real quebrou (comando falhou, ex.: erro do
 # provider, ou o container caiu depois da rodada). O agente decidir não
-# adicionar nada nessa rodada é normal, não dispara alerta.
-CONTAINER_UP=$(docker ps --filter "name=DK_DEVTOOLS" --filter "status=running" -q)
+# adicionar nada ou não conseguir corrigir o bug nesta rodada é normal, não
+# dispara alerta.
 if [ "$AGENT_EXIT" -ne 0 ] || [ -z "$CONTAINER_UP" ]; then
     # shellcheck disable=SC1091
     source /home/devtools-bot/.notify-secrets
     INSTANCE_URL_ENC="${EVOLUTION_INSTANCE//+/%2B}"
     export EVOLUTION_NUMBER
-    export TEXTO="⚠️ Agente do devtools falhou (exit $AGENT_EXIT, container up: $([ -n "$CONTAINER_UP" ] && echo sim || echo não)).
+    export TEXTO="⚠️ Agente do devtools falhou (rodada $ROUND_KIND, exit $AGENT_EXIT, container up: $([ -n "$CONTAINER_UP" ] && echo sim || echo não)).
 
 Últimas linhas do log:
 $(tail -c 500 "$LOG_FILE")"
