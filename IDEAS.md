@@ -132,7 +132,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] SQL Formatter / Query Formatter
 - [ ] Explain Visualizer / SQL Explain Visualizer 🔥
 - [ ] ER Diagram Generator
-- [ ] JSON → SQL Insert
+- [x] JSON → SQL Insert — `/database/json-to-sql`
 - [ ] CSV → SQL / SQL → CSV
 - [ ] SQL Data Generator 🔥
 - [ ] Mongo Query Builder

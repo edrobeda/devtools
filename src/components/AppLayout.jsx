@@ -167,6 +167,7 @@ export const LABELS = {
     'html-to-jsx-converter': 'Conversor HTML → JSX',
     'uuid-collision-simulator': 'Simulador de Colisão de UUID',
     'unicode-inspector': 'Inspetor de Unicode',
+    'json-to-sql': 'JSON → SQL INSERT',
   },
   en: {
     home: 'Home',
@@ -289,6 +290,7 @@ export const LABELS = {
     'html-to-jsx-converter': 'HTML → JSX Converter',
     'uuid-collision-simulator': 'UUID Collision Simulator',
     'unicode-inspector': 'Unicode Inspector',
+    'json-to-sql': 'JSON → SQL INSERT',
   },
 }
 
@@ -427,6 +429,7 @@ export function buildMenuItems(l) {
       label: l.database,
       children: [
         { key: '/database/rate-limit-calculator', label: l['rate-limit-calculator'] },
+        { key: '/database/json-to-sql', icon: <DatabaseOutlined />, label: withNewBadge('/database/json-to-sql', l['json-to-sql'], l) },
       ],
     },
     {
