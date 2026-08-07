@@ -292,7 +292,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] npm vs yarn vs pnpm — tabela comparativa de comandos — `/references/package-manager-commands`
 - [x] Conventional Commits — tabela de tipos e quando usar cada um — `/devops/commit-message-generator`
 - [ ] Atalhos do DevTools do navegador
-- [ ] Tabela de métodos HTTP e quando usar cada um
+- [x] Tabela de métodos HTTP e quando usar cada um — `/references/http-methods`
 
 ## 💡 Fora da caixa / "diferentonas"
 

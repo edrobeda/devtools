@@ -111,6 +111,7 @@ import TimezoneConverterPage from './pages/TimezoneConverterPage'
 import UserAgentParserPage from './pages/UserAgentParserPage'
 import CronBuilderPage from './pages/CronBuilderPage'
 import MimeLookupPage from './pages/MimeLookupPage'
+import HttpMethodsPage from './pages/HttpMethodsPage'
 
 const router = createBrowserRouter([
   {
@@ -227,6 +228,7 @@ const router = createBrowserRouter([
       { path: 'network/user-agent-parser', element: <UserAgentParserPage /> },
       { path: 'tools/cron-builder', element: <CronBuilderPage /> },
       { path: 'network/mime-lookup', element: <MimeLookupPage /> },
+      { path: 'references/http-methods', element: <HttpMethodsPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

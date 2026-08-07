@@ -176,6 +176,7 @@ export const LABELS = {
     'user-agent-parser': 'Parser de User-Agent',
     'cron-builder': 'Construtor de Cron',
     'mime-lookup': 'Lookup de MIME Types',
+    'http-methods': 'Métodos HTTP',
   },
   en: {
     home: 'Home',
@@ -305,6 +306,7 @@ export const LABELS = {
     'user-agent-parser': 'User-Agent Parser',
     'cron-builder': 'Cron Builder',
     'mime-lookup': 'MIME Types Lookup',
+    'http-methods': 'HTTP Methods',
   },
 }
 
@@ -530,6 +532,7 @@ export function buildMenuItems(l) {
         { key: '/references/vscode-shortcuts', label: withNewBadge('/references/vscode-shortcuts', l['vscode-shortcuts'], l) },
         { key: '/references/css-grid-cheatsheet', label: withNewBadge('/references/css-grid-cheatsheet', l['css-grid-cheatsheet'], l) },
         { key: '/references/bash-shortcuts', label: withNewBadge('/references/bash-shortcuts', l['bash-shortcuts'], l) },
+        { key: '/references/http-methods', label: withNewBadge('/references/http-methods', l['http-methods'], l) },
       ],
     },
     {
