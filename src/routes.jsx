@@ -106,6 +106,7 @@ import UuidCollisionSimulatorPage from './pages/UuidCollisionSimulatorPage'
 import UnicodeInspectorPage from './pages/UnicodeInspectorPage'
 import JsonToSqlPage from './pages/JsonToSqlPage'
 import SortingVisualizerPage from './pages/SortingVisualizerPage'
+import OtpInputPage from './pages/OtpInputPage'
 
 const router = createBrowserRouter([
   {
@@ -217,6 +218,7 @@ const router = createBrowserRouter([
       { path: 'tools/unicode-inspector', element: <UnicodeInspectorPage /> },
       { path: 'database/json-to-sql', element: <JsonToSqlPage /> },
       { path: 'extras/sorting-visualizer', element: <SortingVisualizerPage /> },
+      { path: 'styles/otp-input', element: <OtpInputPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

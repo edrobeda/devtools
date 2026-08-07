@@ -169,6 +169,7 @@ export const LABELS = {
     'unicode-inspector': 'Inspetor de Unicode',
     'json-to-sql': 'JSON → SQL INSERT',
     'sorting-visualizer': 'Visualizador de Ordenação',
+    'otp-input': 'Input OTP (código de verificação)',
   },
   en: {
     home: 'Home',
@@ -293,6 +294,7 @@ export const LABELS = {
     'unicode-inspector': 'Unicode Inspector',
     'json-to-sql': 'JSON → SQL INSERT',
     'sorting-visualizer': 'Sorter Visualizer',
+    'otp-input': 'OTP Input (verification code)',
   },
 }
 
@@ -366,6 +368,7 @@ export function buildMenuItems(l) {
         { key: '/styles/scroll-progress-bar', label: withNewBadge('/styles/scroll-progress-bar', l['scroll-progress-bar'], l) },
         { key: '/styles/confetti-effect', label: withNewBadge('/styles/confetti-effect', l['confetti-effect'], l) },
         { key: '/styles/typewriter-effect', label: withNewBadge('/styles/typewriter-effect', l['typewriter-effect'], l) },
+        { key: '/styles/otp-input', icon: <NumberOutlined />, label: withNewBadge('/styles/otp-input', l['otp-input'], l) },
       ],
     },
     {
