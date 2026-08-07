@@ -10,6 +10,9 @@ mesmo no início de cada rodada, pra nunca repetir algo que já existe.
 - <tipo do item>: <nome> — <rota> (<descrição curta>)
 -->
 
+## 2026-08-07
+- Correção de bug: tela branca com texto muito grande — `/ai/token-counter` (reportado via o botão "Reportar um problema"; colar dezenas de milhões de caracteres derrubava a página porque `text.trim().split(/\s+/)`, `text.replace(/\s/g, '')` e o `split` dentro de `estimateTokensCJK` alocavam arrays/strings proporcionais ao tamanho do input a cada render; reescrito como varredura única — `trimLength`/`countWords`/`countCharsNoSpace` por índice e `estimateTokensCJK` com regex `/\S+/g` sem montar array de palavras —, mesma saída numérica de antes, sem alocação extra; reproduzido e verificado com Puppeteer contra o site real antes e depois da correção)
+
 ## 2026-08-06 (rodada 16)
 - IA: Contador de Tokens — `/ai/token-counter` (estima quanto um texto ocuparia em tokens de um LLM a partir de duas heurísticas client-side — a regra de bolso "chars / 4" do GPT/LLaMA e uma variante ciente de I18N que cobra mais por caracteres CJK/emoji —, seleção de janela de contexto de modelos comuns — Claude Sonnet 4.5, GPT-4o (mini), Llama 3.1, Command R+, Gemini Flash — e barra de Progress mostrando a ocupação percentual do contexto, com counts de caracteres/palavras; complementa o `/ai/anthropic-cost-calculator`, que precisa do número de tokens pra estimar custo; tudo local)
 - Ajuste: `routes.jsx` ganhou a rota `/ai/token-counter`, `AppLayout.jsx` ganhou o item de menu (com badge "Novo"/"New"), `src/newItems.js` marcou a rota desta rodada, `IDEAS.md` marcado com `[x]`

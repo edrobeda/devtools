@@ -6,26 +6,77 @@ import { useLanguage } from '../i18n/LanguageContext'
 const { Title, Paragraph, Text } = Typography
 const { TextArea } = Input
 
-// Heurística simples, sem depender de um tokenizer externo (que exigiria
-// baixar um vocab remoto). Para modelos da família GPT/LLaMA a regra de
-// bolso mais conhecida é ~1 token a cada 4 caracteres em texto em inglês
-// incluindo espaços. Ainda é aproximação — só o tokenizer real do modelo
-// dá o número exato.
+// As heurísticas abaixo são calculadas em varredura única e sem alocar
+// arrays/strings intermediárias (ex.: `text.split(/\s+/)` ou
+// `text.replace(...)` criam cópias proporcionais ao tamanho do input). Isso
+// evita que colar um texto muito grande sobrecarregue a memória e derrube a
+// página (tela branca), mantendo o cálculo O(n) mesmo para entradas grandes.
+
+// `\s` sem flag `u`/`g`, usado em `.test()` por caractere — seguro reutilizar.
+const WS_RE = /\s/
+
+// Comprimento do texto descontando espaços nas bordas, sem copiar a string.
+function trimLength(text) {
+  let start = 0
+  let end = text.length
+  while (start < end && WS_RE.test(text[start])) start++
+  while (end > start && WS_RE.test(text[end - 1])) end--
+  return end - start
+}
+
 function countTokensChars4(text) {
   if (!text) return 0
-  return Math.ceil(text.trim().length / 4)
+  return Math.ceil(trimLength(text) / 4)
 }
+
+function countWords(text) {
+  if (trimLength(text) === 0) return 0
+  let count = 0
+  let inWord = false
+  for (let i = 0; i < text.length; i++) {
+    if (WS_RE.test(text[i])) inWord = false
+    else if (!inWord) {
+      inWord = true
+      count++
+    }
+  }
+  return count
+}
+
+function countCharsNoSpace(text) {
+  if (!text) return 0
+  let count = 0
+  for (let i = 0; i < text.length; i++) {
+    if (!WS_RE.test(text[i])) count++
+  }
+  return count
+}
+
+const CJK_RE = /[\u4e00-\u9fff\u3040-\u30ff\uac00-\ud7af\u3400-\u4dbf\u20000-\u2a6df\uf900-\ufaff\u{1F300}-\u{1FAFF}]/u
+const PUNCT_RE = /[.,;:!?()\[\]{}"']/
+const WORD_RE = /\S+/g
 
 // Regra mais conservadora usada pelos "rough counters" do mercado:
 // palavra em latim ~= 1 token a cada 4 chars; scripts de alta densidade
-// (ex.: caractere CJK/emoji) contam ~1 token por caractere.
+// (ex.: caractere CJK/emoji) contam ~1 token por caractere. Percorre as
+// palavras com regex (sem montar um array delas).
 function estimateTokensCJK(text) {
   if (!text) return 0
-  const CJK = /[\u4e00-\u9fff\u3040-\u30ff\uac00-\ud7af\u3400-\u4dbf\u20000-\u2a6df\uf900-\ufaff\u{1F300}-\u{1FAFF}]/u
-  return text.split(/\s+/).filter(Boolean).reduce((acc, word) => {
-    if (CJK.test(word)) return acc + Math.ceil(word.length * 1.1)
-    return acc + Math.max(1, Math.ceil(word.replace(/[.,;:!?()\[\]{}"']/g, '').length / 4))
-  }, 0)
+  let total = 0
+  WORD_RE.lastIndex = 0
+  let m
+  while ((m = WORD_RE.exec(text))) {
+    const word = m[0]
+    if (CJK_RE.test(word)) total += Math.ceil(word.length * 1.1)
+    else {
+      let letters = 0
+      for (let i = 0; i < word.length; i++) {
+        if (!PUNCT_RE.test(word[i])) letters++
+      }
+      total += Math.max(1, Math.ceil(letters / 4))
+    }
+  }
+  return total
 }
 
 const translations = {
@@ -134,10 +185,10 @@ export default function TokenCounterPage() {
   const [model, setModel] = useState('claude-sonnet-4-5')
 
   const stats = useMemo(() => {
-    const words = text.trim() ? text.trim().split(/\s+/).length : 0
     const chars = text.length
-    const charsNoSpace = text.replace(/\s/g, '').length
-    const tokens = method === 'chars4' ? countTokensChars4(text) : estimateTokensCJK(text)
+    const charsNoSpace = countCharsNoSpace(text)
+    const words = countWords(text)
+    const tokens = method === 'cjk' ? estimateTokensCJK(text) : countTokensChars4(text)
     return { words, chars, charsNoSpace, tokens }
   }, [text, method])
 
