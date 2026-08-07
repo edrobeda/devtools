@@ -187,7 +187,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Simulador de latência de rede (throttling visual) 🔥
 - [x] User-Agent Parser — infere navegador/OS/dispositivo de uma UA string — `/network/user-agent-parser`
 - [x] Referência pesquisável de HTTP status codes
-- [ ] Lookup de MIME type por extensão
+- [x] Lookup de MIME type por extensão — `/network/mime-lookup`
 
 ## 🤖 IA
 

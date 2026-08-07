@@ -110,6 +110,7 @@ import OtpInputPage from './pages/OtpInputPage'
 import TimezoneConverterPage from './pages/TimezoneConverterPage'
 import UserAgentParserPage from './pages/UserAgentParserPage'
 import CronBuilderPage from './pages/CronBuilderPage'
+import MimeLookupPage from './pages/MimeLookupPage'
 
 const router = createBrowserRouter([
   {
@@ -225,6 +226,7 @@ const router = createBrowserRouter([
       { path: 'tools/timezone-converter', element: <TimezoneConverterPage /> },
       { path: 'network/user-agent-parser', element: <UserAgentParserPage /> },
       { path: 'tools/cron-builder', element: <CronBuilderPage /> },
+      { path: 'network/mime-lookup', element: <MimeLookupPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

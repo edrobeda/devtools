@@ -34,6 +34,7 @@ import {
   FileProtectOutlined,
   ExperimentOutlined,
   UserOutlined,
+  InboxOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -174,6 +175,7 @@ export const LABELS = {
     'timezone-converter': 'Conversor de Fuso Horário',
     'user-agent-parser': 'Parser de User-Agent',
     'cron-builder': 'Construtor de Cron',
+    'mime-lookup': 'Lookup de MIME Types',
   },
   en: {
     home: 'Home',
@@ -302,6 +304,7 @@ export const LABELS = {
     'timezone-converter': 'Timezone Converter',
     'user-agent-parser': 'User-Agent Parser',
     'cron-builder': 'Cron Builder',
+    'mime-lookup': 'MIME Types Lookup',
   },
 }
 
@@ -483,6 +486,7 @@ export function buildMenuItems(l) {
       children: [
         { key: '/network/subnet-calculator', label: l['subnet-calculator'] },
         { key: '/network/user-agent-parser', icon: <UserOutlined />, label: withNewBadge('/network/user-agent-parser', l['user-agent-parser'], l) },
+        { key: '/network/mime-lookup', icon: <InboxOutlined />, label: withNewBadge('/network/mime-lookup', l['mime-lookup'], l) },
       ],
     },
     {
