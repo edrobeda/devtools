@@ -273,7 +273,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] Implementação de debounce/throttle do zero (sem hook, só a função) — `/snippets/debounce-throttle-functions`
 - [x] LRU cache implementado do zero — `/snippets/lru-cache`
 - [ ] Memoização manual (padrão de cache de função)
-- [ ] Deep clone e deep equal implementados do zero
+- [x] Deep clone e deep equal implementados do zero
 - [x] Fisher-Yates shuffle — `/snippets/fisher-yates-shuffle`
 - [ ] Verificador de palíndromo (com variações: ignorar acentos/espaços)
 - [ ] Fibonacci memoizado vs. não-memoizado (comparação de performance)

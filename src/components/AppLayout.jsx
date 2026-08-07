@@ -160,6 +160,7 @@ export const LABELS = {
     'env-tool': 'Validador de .env',
     'remove-accents': 'Remover Acentos',
     'xml-formatter': 'Formatador de XML',
+    'deep-clone-deep-equal': 'deepClone & deepEqual',
   },
   en: {
     home: 'Home',
@@ -276,6 +277,7 @@ export const LABELS = {
     'env-tool': '.env File Validator',
     'remove-accents': 'Remove Accents',
     'xml-formatter': 'XML Formatter',
+    'deep-clone-deep-equal': 'deepClone & deepEqual',
   },
 }
 
@@ -371,6 +373,7 @@ export function buildMenuItems(l) {
         { key: '/snippets/use-undo', label: withNewBadge('/snippets/use-undo', l['use-undo'], l) },
         { key: '/snippets/debounce-throttle-functions', label: withNewBadge('/snippets/debounce-throttle-functions', l['debounce-throttle-functions'], l) },
         { key: '/snippets/lru-cache', label: withNewBadge('/snippets/lru-cache', l['lru-cache'], l) },
+        { key: '/snippets/deep-clone-deep-equal', label: withNewBadge('/snippets/deep-clone-deep-equal', l['deep-clone-deep-equal'], l) },
       ],
     },
     {
