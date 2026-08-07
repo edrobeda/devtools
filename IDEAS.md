@@ -185,7 +185,8 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] User-Agent Parser
 - [x] Calculadora de sub-rede IP (CIDR, máscara, range) — `/network/subnet-calculator`
 - [ ] Simulador de latência de rede (throttling visual) 🔥
-- [ ] Referência pesquisável de HTTP status codes
+- [x] User-Agent Parser — infere navegador/OS/dispositivo de uma UA string — `/network/user-agent-parser`
+- [x] Referência pesquisável de HTTP status codes
 - [ ] Lookup de MIME type por extensão
 
 ## 🤖 IA

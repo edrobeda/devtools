@@ -33,6 +33,7 @@ import {
   OrderedListOutlined,
   FileProtectOutlined,
   ExperimentOutlined,
+  UserOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -170,6 +171,8 @@ export const LABELS = {
     'json-to-sql': 'JSON → SQL INSERT',
     'sorting-visualizer': 'Visualizador de Ordenação',
     'otp-input': 'Input OTP (código de verificação)',
+    'timezone-converter': 'Conversor de Fuso Horário',
+    'user-agent-parser': 'Parser de User-Agent',
   },
   en: {
     home: 'Home',
@@ -295,6 +298,8 @@ export const LABELS = {
     'json-to-sql': 'JSON → SQL INSERT',
     'sorting-visualizer': 'Sorter Visualizer',
     'otp-input': 'OTP Input (verification code)',
+    'timezone-converter': 'Timezone Converter',
+    'user-agent-parser': 'User-Agent Parser',
   },
 }
 
@@ -347,6 +352,7 @@ export function buildMenuItems(l) {
         { key: '/tools/jwt-generator', icon: <KeyOutlined />, label: withNewBadge('/tools/jwt-generator', l['jwt-generator'], l) },
         { key: '/tools/jwt-timeline', icon: <FieldTimeOutlined />, label: withNewBadge('/tools/jwt-timeline', l['jwt-timeline'], l) },
         { key: '/tools/unicode-inspector', icon: <CodeOutlined />, label: withNewBadge('/tools/unicode-inspector', l['unicode-inspector'], l) },
+        { key: '/tools/timezone-converter', icon: <GlobalOutlined />, label: withNewBadge('/tools/timezone-converter', l['timezone-converter'], l) },
       ],
     },
     {
@@ -473,6 +479,7 @@ export function buildMenuItems(l) {
       label: l.network,
       children: [
         { key: '/network/subnet-calculator', label: l['subnet-calculator'] },
+        { key: '/network/user-agent-parser', icon: <UserOutlined />, label: withNewBadge('/network/user-agent-parser', l['user-agent-parser'], l) },
       ],
     },
     {

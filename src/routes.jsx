@@ -107,6 +107,8 @@ import UnicodeInspectorPage from './pages/UnicodeInspectorPage'
 import JsonToSqlPage from './pages/JsonToSqlPage'
 import SortingVisualizerPage from './pages/SortingVisualizerPage'
 import OtpInputPage from './pages/OtpInputPage'
+import TimezoneConverterPage from './pages/TimezoneConverterPage'
+import UserAgentParserPage from './pages/UserAgentParserPage'
 
 const router = createBrowserRouter([
   {
@@ -219,6 +221,8 @@ const router = createBrowserRouter([
       { path: 'database/json-to-sql', element: <JsonToSqlPage /> },
       { path: 'extras/sorting-visualizer', element: <SortingVisualizerPage /> },
       { path: 'styles/otp-input', element: <OtpInputPage /> },
+      { path: 'tools/timezone-converter', element: <TimezoneConverterPage /> },
+      { path: 'network/user-agent-parser', element: <UserAgentParserPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
