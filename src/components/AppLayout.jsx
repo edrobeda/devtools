@@ -168,6 +168,7 @@ export const LABELS = {
     'uuid-collision-simulator': 'Simulador de Colisão de UUID',
     'unicode-inspector': 'Inspetor de Unicode',
     'json-to-sql': 'JSON → SQL INSERT',
+    'sorting-visualizer': 'Visualizador de Ordenação',
   },
   en: {
     home: 'Home',
@@ -291,6 +292,7 @@ export const LABELS = {
     'uuid-collision-simulator': 'UUID Collision Simulator',
     'unicode-inspector': 'Unicode Inspector',
     'json-to-sql': 'JSON → SQL INSERT',
+    'sorting-visualizer': 'Sorter Visualizer',
   },
 }
 
@@ -522,6 +524,7 @@ export function buildMenuItems(l) {
         { key: '/extras/team-roulette', label: withNewBadge('/extras/team-roulette', l['team-roulette'], l) },
         { key: '/extras/pomodoro-timer', icon: <FieldTimeOutlined />, label: withNewBadge('/extras/pomodoro-timer', l['pomodoro-timer'], l) },
         { key: '/extras/uuid-collision-simulator', icon: <ExperimentOutlined />, label: withNewBadge('/extras/uuid-collision-simulator', l['uuid-collision-simulator'], l) },
+        { key: '/extras/sorting-visualizer', icon: <OrderedListOutlined />, label: withNewBadge('/extras/sorting-visualizer', l['sorting-visualizer'], l) },
       ],
     },
   ]
