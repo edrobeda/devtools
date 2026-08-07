@@ -15,7 +15,7 @@ API_URL=https://api.example.com/v2
 TIMEOUT="15"
 export DEBUG=true
 MISSING=ok_without_use
-REFERENCED=${APITES}INDEFINIDO
+REFERENCED=\${APITES}INDEFINIDO
 QUOTED='literal valor'
 ESCAPED=\\#not a comment`
 
