@@ -166,6 +166,7 @@ export const LABELS = {
     'lines-tool': 'Processador de Linhas',
     'html-to-jsx-converter': 'Conversor HTML → JSX',
     'uuid-collision-simulator': 'Simulador de Colisão de UUID',
+    'unicode-inspector': 'Inspetor de Unicode',
   },
   en: {
     home: 'Home',
@@ -287,6 +288,7 @@ export const LABELS = {
     'lines-tool': 'Lines Tool',
     'html-to-jsx-converter': 'HTML → JSX Converter',
     'uuid-collision-simulator': 'UUID Collision Simulator',
+    'unicode-inspector': 'Unicode Inspector',
   },
 }
 
@@ -338,6 +340,7 @@ export function buildMenuItems(l) {
         { key: '/tools/lorem-ipsum-generator', icon: <FileTextOutlined />, label: withNewBadge('/tools/lorem-ipsum-generator', l['lorem-ipsum-generator'], l) },
         { key: '/tools/jwt-generator', icon: <KeyOutlined />, label: withNewBadge('/tools/jwt-generator', l['jwt-generator'], l) },
         { key: '/tools/jwt-timeline', icon: <FieldTimeOutlined />, label: withNewBadge('/tools/jwt-timeline', l['jwt-timeline'], l) },
+        { key: '/tools/unicode-inspector', icon: <CodeOutlined />, label: withNewBadge('/tools/unicode-inspector', l['unicode-inspector'], l) },
       ],
     },
     {
