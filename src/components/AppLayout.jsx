@@ -32,6 +32,7 @@ import {
   ColumnWidthOutlined,
   OrderedListOutlined,
   FileProtectOutlined,
+  ExperimentOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -163,6 +164,8 @@ export const LABELS = {
     'deep-clone-deep-equal': 'deepClone & deepEqual',
     'branch-name-generator': 'Gerador de Nome de Branch',
     'lines-tool': 'Processador de Linhas',
+    'html-to-jsx-converter': 'Conversor HTML → JSX',
+    'uuid-collision-simulator': 'Simulador de Colisão de UUID',
   },
   en: {
     home: 'Home',
@@ -282,6 +285,8 @@ export const LABELS = {
     'deep-clone-deep-equal': 'deepClone & deepEqual',
     'branch-name-generator': 'Branch Name Generator',
     'lines-tool': 'Lines Tool',
+    'html-to-jsx-converter': 'HTML → JSX Converter',
+    'uuid-collision-simulator': 'UUID Collision Simulator',
   },
 }
 
@@ -306,6 +311,7 @@ export function buildMenuItems(l) {
       label: l.tools,
       children: [
         { key: '/tools/jwt-decoder', icon: <KeyOutlined />, label: l['jwt-decoder'] },
+        { key: '/tools/html-to-jsx-converter', icon: <CodeOutlined />, label: withNewBadge('/tools/html-to-jsx-converter', l['html-to-jsx-converter'], l) },
         { key: '/tools/cron-parser', icon: <FieldTimeOutlined />, label: l['cron-parser'] },
         { key: '/tools/hash-generator', icon: <NumberOutlined />, label: l['hash-generator'] },
         { key: '/tools/json-formatter', icon: <FileTextOutlined />, label: l['json-formatter'] },
@@ -509,6 +515,7 @@ export function buildMenuItems(l) {
         { key: '/extras/days-until', label: l['days-until'] },
         { key: '/extras/team-roulette', label: withNewBadge('/extras/team-roulette', l['team-roulette'], l) },
         { key: '/extras/pomodoro-timer', icon: <FieldTimeOutlined />, label: withNewBadge('/extras/pomodoro-timer', l['pomodoro-timer'], l) },
+        { key: '/extras/uuid-collision-simulator', icon: <ExperimentOutlined />, label: withNewBadge('/extras/uuid-collision-simulator', l['uuid-collision-simulator'], l) },
       ],
     },
   ]

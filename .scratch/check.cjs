@@ -3,6 +3,7 @@ const puppeteer = require('puppeteer')
 const routes = [
   '/',
   '/text/lines-tool',
+  '/tools/html-to-jsx-converter',
 ]
 
 ;(async () => {

@@ -30,7 +30,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] JWT Timeline 🔥 (linha do tempo visual mostrando quando expira) — `/tools/jwt-timeline`
 - [x] UUID Generator (v4, vários de uma vez) — `/tools/uuid-generator`
 - [x] NanoID Generator — `/tools/nanoid-generator`
-- [ ] UUID Collision Simulator 🔥
+- [x] UUID Collision Simulator 🔥 — `/extras/uuid-collision-simulator`
 - [x] HMAC Generator — `/tools/hmac-generator`
 - [ ] Password Generator (com opções de comprimento/símbolos)
 - [ ] Password Entropy Checker 🔥

@@ -101,6 +101,8 @@ import XmlFormatterPage from './pages/XmlFormatterPage'
 import DeepCloneDeepEqualPage from './pages/DeepCloneDeepEqualPage'
 import BranchNameGeneratorPage from './pages/BranchNameGeneratorPage'
 import LinesToolPage from './pages/LinesToolPage'
+import HtmlToJsxConverterPage from './pages/HtmlToJsxConverterPage'
+import UuidCollisionSimulatorPage from './pages/UuidCollisionSimulatorPage'
 
 const router = createBrowserRouter([
   {
@@ -207,6 +209,8 @@ const router = createBrowserRouter([
       { path: 'snippets/deep-clone-deep-equal', element: <DeepCloneDeepEqualPage /> },
       { path: 'devops/branch-name-generator', element: <BranchNameGeneratorPage /> },
       { path: 'text/lines-tool', element: <LinesToolPage /> },
+      { path: 'tools/html-to-jsx-converter', element: <HtmlToJsxConverterPage /> },
+      { path: 'extras/uuid-collision-simulator', element: <UuidCollisionSimulatorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
