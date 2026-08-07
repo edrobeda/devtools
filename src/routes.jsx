@@ -100,6 +100,7 @@ import RemoveAccentsPage from './pages/RemoveAccentsPage'
 import XmlFormatterPage from './pages/XmlFormatterPage'
 import DeepCloneDeepEqualPage from './pages/DeepCloneDeepEqualPage'
 import BranchNameGeneratorPage from './pages/BranchNameGeneratorPage'
+import LinesToolPage from './pages/LinesToolPage'
 
 const router = createBrowserRouter([
   {
@@ -205,6 +206,7 @@ const router = createBrowserRouter([
       { path: 'tools/xml-formatter', element: <XmlFormatterPage /> },
       { path: 'snippets/deep-clone-deep-equal', element: <DeepCloneDeepEqualPage /> },
       { path: 'devops/branch-name-generator', element: <BranchNameGeneratorPage /> },
+      { path: 'text/lines-tool', element: <LinesToolPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

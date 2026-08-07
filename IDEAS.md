@@ -210,9 +210,9 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 
 - [ ] Case Converter
 - [x] Remove Accents — `/text/remove-accents`
-- [ ] Remove Duplicates (linhas)
-- [ ] Sort Lines
-- [ ] Line Number Generator
+- [x] Remove Duplicates (linhas)
+- [x] Sort Lines
+- [x] Line Number Generator — coberto pelo `/text/lines-tool`
 - [x] Contador de palavras/caracteres/linhas — `/text/word-counter`
 
 ## ✨ Estilos — componentes e padrões visuais (UI)

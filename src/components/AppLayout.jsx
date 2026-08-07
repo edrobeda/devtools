@@ -162,6 +162,7 @@ export const LABELS = {
     'xml-formatter': 'Formatador de XML',
     'deep-clone-deep-equal': 'deepClone & deepEqual',
     'branch-name-generator': 'Gerador de Nome de Branch',
+    'lines-tool': 'Processador de Linhas',
   },
   en: {
     home: 'Home',
@@ -280,6 +281,7 @@ export const LABELS = {
     'xml-formatter': 'XML Formatter',
     'deep-clone-deep-equal': 'deepClone & deepEqual',
     'branch-name-generator': 'Branch Name Generator',
+    'lines-tool': 'Lines Tool',
   },
 }
 
@@ -480,6 +482,7 @@ export function buildMenuItems(l) {
       children: [
         { key: '/text/word-counter', label: l['word-counter'] },
         { key: '/text/remove-accents', icon: <FontSizeOutlined />, label: withNewBadge('/text/remove-accents', l['remove-accents'], l) },
+        { key: '/text/lines-tool', icon: <OrderedListOutlined />, label: withNewBadge('/text/lines-tool', l['lines-tool'], l) },
       ],
     },
     {
