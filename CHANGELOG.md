@@ -11,6 +11,7 @@ mesmo no início de cada rodada, pra nunca repetir algo que já existe.
 -->
 
 ## 2026-08-07
+- Ferramenta: Validador de arquivo .env — `/devops/env-tool` (parser/validador de `.env` 100% client-side: mostra cada variável parseada numa tabela — chave, valor, tipo de aspas e linha de origem — e aponta problemas comuns: chave duplicada, chave sem valor, nome de chave inválido, linha sem `=`, aspas sem fechamento e referência a variáveis indefinidas em valores (`$NOME`/`${NOME}`); suporta comentários, prefixo `export`, valores com aspas simples/duplas e comentário inline em valores sem aspas; parser puro em `src/utils/envParser.js` com código-fonte exibido na própria página)
 - Correção de bug: tela branca com texto muito grande — `/ai/token-counter` (reportado via o botão "Reportar um problema"; colar dezenas de milhões de caracteres derrubava a página porque `text.trim().split(/\s+/)`, `text.replace(/\s/g, '')` e o `split` dentro de `estimateTokensCJK` alocavam arrays/strings proporcionais ao tamanho do input a cada render; reescrito como varredura única — `trimLength`/`countWords`/`countCharsNoSpace` por índice e `estimateTokensCJK` com regex `/\S+/g` sem montar array de palavras —, mesma saída numérica de antes, sem alocação extra; reproduzido e verificado com Puppeteer contra o site real antes e depois da correção)
 
 ## 2026-08-06 (rodada 16)

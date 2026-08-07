@@ -95,6 +95,7 @@ import LruCachePage from './pages/LruCachePage'
 import CspGeneratorPage from './pages/CspGeneratorPage'
 import TokenCounterPage from './pages/TokenCounterPage'
 import PomodoroTimerPage from './pages/PomodoroTimerPage'
+import EnvToolPage from './pages/EnvToolPage'
 
 const router = createBrowserRouter([
   {
@@ -195,6 +196,7 @@ const router = createBrowserRouter([
       { path: 'snippets/lru-cache', element: <LruCachePage /> },
       { path: 'security/csp-generator', element: <CspGeneratorPage /> },
       { path: 'ai/token-counter', element: <TokenCounterPage /> },
+      { path: 'devops/env-tool', element: <EnvToolPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

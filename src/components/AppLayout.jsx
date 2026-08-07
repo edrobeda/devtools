@@ -31,6 +31,7 @@ import {
   LinkOutlined,
   ColumnWidthOutlined,
   OrderedListOutlined,
+  FileProtectOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -156,6 +157,7 @@ export const LABELS = {
     'csp-generator': 'Gerador de CSP',
     'token-counter': 'Contador de Tokens',
     'pomodoro-timer': 'Timer Pomodoro',
+    'env-tool': 'Validador de .env',
   },
   en: {
     home: 'Home',
@@ -269,6 +271,7 @@ export const LABELS = {
     'csp-generator': 'CSP Generator',
     'token-counter': 'Token Counter',
     'pomodoro-timer': 'Pomodoro Timer',
+    'env-tool': '.env File Validator',
   },
 }
 
@@ -393,6 +396,7 @@ export function buildMenuItems(l) {
       children: [
         { key: '/devops/gitignore-generator', label: l['gitignore-generator'] },
         { key: '/devops/commit-message-generator', label: withNewBadge('/devops/commit-message-generator', l['commit-message-generator'], l) },
+        { key: '/devops/env-tool', icon: <FileProtectOutlined />, label: withNewBadge('/devops/env-tool', l['env-tool'], l) },
       ],
     },
     {
