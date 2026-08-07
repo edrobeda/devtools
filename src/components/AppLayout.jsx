@@ -161,6 +161,7 @@ export const LABELS = {
     'remove-accents': 'Remover Acentos',
     'xml-formatter': 'Formatador de XML',
     'deep-clone-deep-equal': 'deepClone & deepEqual',
+    'branch-name-generator': 'Gerador de Nome de Branch',
   },
   en: {
     home: 'Home',
@@ -278,6 +279,7 @@ export const LABELS = {
     'remove-accents': 'Remove Accents',
     'xml-formatter': 'XML Formatter',
     'deep-clone-deep-equal': 'deepClone & deepEqual',
+    'branch-name-generator': 'Branch Name Generator',
   },
 }
 
@@ -405,6 +407,7 @@ export function buildMenuItems(l) {
         { key: '/devops/gitignore-generator', label: l['gitignore-generator'] },
         { key: '/devops/commit-message-generator', label: withNewBadge('/devops/commit-message-generator', l['commit-message-generator'], l) },
         { key: '/devops/env-tool', icon: <FileProtectOutlined />, label: withNewBadge('/devops/env-tool', l['env-tool'], l) },
+        { key: '/devops/branch-name-generator', icon: <BranchesOutlined />, label: withNewBadge('/devops/branch-name-generator', l['branch-name-generator'], l) },
       ],
     },
     {

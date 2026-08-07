@@ -115,7 +115,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] README Generator
 - [ ] Changelog Generator (a partir de commits colados)
 - [ ] Semantic Version Helper (quando sobe major/minor/patch)
-- [ ] Gerador de nome de branch git a partir de descrição de feature
+- [x] Gerador de nome de branch git a partir de descrição de feature — `/devops/branch-name-generator`
 - [x] Gerador de mensagem de commit (Conventional Commits) — `/devops/commit-message-generator`
 - [ ] Git Commit Generator por IA 🔥
 - [ ] GitHub Actions YAML Validator
