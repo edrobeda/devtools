@@ -159,6 +159,7 @@ export const LABELS = {
     'pomodoro-timer': 'Timer Pomodoro',
     'env-tool': 'Validador de .env',
     'remove-accents': 'Remover Acentos',
+    'xml-formatter': 'Formatador de XML',
   },
   en: {
     home: 'Home',
@@ -274,6 +275,7 @@ export const LABELS = {
     'pomodoro-timer': 'Pomodoro Timer',
     'env-tool': '.env File Validator',
     'remove-accents': 'Remove Accents',
+    'xml-formatter': 'XML Formatter',
   },
 }
 
@@ -302,6 +304,7 @@ export function buildMenuItems(l) {
         { key: '/tools/hash-generator', icon: <NumberOutlined />, label: l['hash-generator'] },
         { key: '/tools/json-formatter', icon: <FileTextOutlined />, label: l['json-formatter'] },
         { key: '/tools/color-converter', icon: <BgColorsOutlined />, label: l['color-converter'] },
+        { key: '/tools/xml-formatter', icon: <FileTextOutlined />, label: withNewBadge('/tools/xml-formatter', l['xml-formatter'], l) },
         { key: '/tools/timestamp-converter', icon: <FieldTimeOutlined />, label: l['timestamp-converter'] },
         { key: '/tools/regex-tester', icon: <SearchOutlined />, label: withNewBadge('/tools/regex-tester', l['regex-tester'], l) },
         { key: '/tools/base64-tool', icon: <SwapOutlined />, label: withNewBadge('/tools/base64-tool', l['base64-tool'], l) },

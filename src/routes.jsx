@@ -97,6 +97,7 @@ import TokenCounterPage from './pages/TokenCounterPage'
 import PomodoroTimerPage from './pages/PomodoroTimerPage'
 import EnvToolPage from './pages/EnvToolPage'
 import RemoveAccentsPage from './pages/RemoveAccentsPage'
+import XmlFormatterPage from './pages/XmlFormatterPage'
 
 const router = createBrowserRouter([
   {
@@ -199,6 +200,7 @@ const router = createBrowserRouter([
       { path: 'ai/token-counter', element: <TokenCounterPage /> },
       { path: 'devops/env-tool', element: <EnvToolPage /> },
       { path: 'text/remove-accents', element: <RemoveAccentsPage /> },
+      { path: 'tools/xml-formatter', element: <XmlFormatterPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
