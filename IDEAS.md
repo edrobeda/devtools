@@ -37,7 +37,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] Lorem Ipsum Generator — `/tools/lorem-ipsum-generator`
 - [ ] Faker (nomes, CPF/CNPJ, endereços, emails, telefones)
 - [ ] Faker Dataset Generator 🔥 (gera um CSV/JSON inteiro de dados fake)
-- [ ] Cron Expression Builder (visual, o inverso do que já existe)
+- [x] Cron Expression Builder (visual, o inverso do que já existe) — `/tools/cron-builder`
 - [ ] Cron Timeline 🔥 (mostra visualmente as próximas execuções numa linha do tempo)
 - [ ] CSS Minify/Beautify
 - [ ] JS Minify/Beautify

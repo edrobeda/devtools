@@ -173,6 +173,7 @@ export const LABELS = {
     'otp-input': 'Input OTP (código de verificação)',
     'timezone-converter': 'Conversor de Fuso Horário',
     'user-agent-parser': 'Parser de User-Agent',
+    'cron-builder': 'Construtor de Cron',
   },
   en: {
     home: 'Home',
@@ -300,6 +301,7 @@ export const LABELS = {
     'otp-input': 'OTP Input (verification code)',
     'timezone-converter': 'Timezone Converter',
     'user-agent-parser': 'User-Agent Parser',
+    'cron-builder': 'Cron Builder',
   },
 }
 
@@ -325,7 +327,8 @@ export function buildMenuItems(l) {
       children: [
         { key: '/tools/jwt-decoder', icon: <KeyOutlined />, label: l['jwt-decoder'] },
         { key: '/tools/html-to-jsx-converter', icon: <CodeOutlined />, label: withNewBadge('/tools/html-to-jsx-converter', l['html-to-jsx-converter'], l) },
-        { key: '/tools/cron-parser', icon: <FieldTimeOutlined />, label: l['cron-parser'] },
+        { key: '/tools/cron-parser', icon: <FieldTimeOutlined />, label: withNewBadge('/tools/cron-parser', l['cron-parser'], l) },
+        { key: '/tools/cron-builder', icon: <FieldTimeOutlined />, label: withNewBadge('/tools/cron-builder', l['cron-builder'], l) },
         { key: '/tools/hash-generator', icon: <NumberOutlined />, label: l['hash-generator'] },
         { key: '/tools/json-formatter', icon: <FileTextOutlined />, label: l['json-formatter'] },
         { key: '/tools/color-converter', icon: <BgColorsOutlined />, label: l['color-converter'] },
