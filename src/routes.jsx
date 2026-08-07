@@ -96,6 +96,7 @@ import CspGeneratorPage from './pages/CspGeneratorPage'
 import TokenCounterPage from './pages/TokenCounterPage'
 import PomodoroTimerPage from './pages/PomodoroTimerPage'
 import EnvToolPage from './pages/EnvToolPage'
+import RemoveAccentsPage from './pages/RemoveAccentsPage'
 
 const router = createBrowserRouter([
   {
@@ -197,6 +198,7 @@ const router = createBrowserRouter([
       { path: 'security/csp-generator', element: <CspGeneratorPage /> },
       { path: 'ai/token-counter', element: <TokenCounterPage /> },
       { path: 'devops/env-tool', element: <EnvToolPage /> },
+      { path: 'text/remove-accents', element: <RemoveAccentsPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

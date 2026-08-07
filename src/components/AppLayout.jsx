@@ -158,6 +158,7 @@ export const LABELS = {
     'token-counter': 'Contador de Tokens',
     'pomodoro-timer': 'Timer Pomodoro',
     'env-tool': 'Validador de .env',
+    'remove-accents': 'Remover Acentos',
   },
   en: {
     home: 'Home',
@@ -272,6 +273,7 @@ export const LABELS = {
     'token-counter': 'Token Counter',
     'pomodoro-timer': 'Pomodoro Timer',
     'env-tool': '.env File Validator',
+    'remove-accents': 'Remove Accents',
   },
 }
 
@@ -468,6 +470,7 @@ export function buildMenuItems(l) {
       label: l.text,
       children: [
         { key: '/text/word-counter', label: l['word-counter'] },
+        { key: '/text/remove-accents', icon: <FontSizeOutlined />, label: withNewBadge('/text/remove-accents', l['remove-accents'], l) },
       ],
     },
     {

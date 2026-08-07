@@ -209,7 +209,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 ## 🔤 Texto
 
 - [ ] Case Converter
-- [ ] Remove Accents
+- [x] Remove Accents — `/text/remove-accents`
 - [ ] Remove Duplicates (linhas)
 - [ ] Sort Lines
 - [ ] Line Number Generator
