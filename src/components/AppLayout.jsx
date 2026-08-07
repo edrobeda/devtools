@@ -177,6 +177,7 @@ export const LABELS = {
     'cron-builder': 'Construtor de Cron',
     'mime-lookup': 'Lookup de MIME Types',
     'http-methods': 'Métodos HTTP',
+    'number-to-words': 'Número por Extenso',
   },
   en: {
     home: 'Home',
@@ -307,6 +308,7 @@ export const LABELS = {
     'cron-builder': 'Cron Builder',
     'mime-lookup': 'MIME Types Lookup',
     'http-methods': 'HTTP Methods',
+    'number-to-words': 'Number to Words',
   },
 }
 
@@ -361,6 +363,7 @@ export function buildMenuItems(l) {
         { key: '/tools/jwt-timeline', icon: <FieldTimeOutlined />, label: withNewBadge('/tools/jwt-timeline', l['jwt-timeline'], l) },
         { key: '/tools/unicode-inspector', icon: <CodeOutlined />, label: withNewBadge('/tools/unicode-inspector', l['unicode-inspector'], l) },
         { key: '/tools/timezone-converter', icon: <GlobalOutlined />, label: withNewBadge('/tools/timezone-converter', l['timezone-converter'], l) },
+        { key: '/tools/number-to-words', icon: <NumberOutlined />, label: withNewBadge('/tools/number-to-words', l['number-to-words'], l) },
       ],
     },
     {
