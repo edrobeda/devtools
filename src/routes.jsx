@@ -114,6 +114,7 @@ import MimeLookupPage from './pages/MimeLookupPage'
 import HttpMethodsPage from './pages/HttpMethodsPage'
 import NumberToWordsPage from './pages/NumberToWordsPage'
 import JsonSchemaGeneratorPage from './pages/JsonSchemaGeneratorPage'
+import CssFormatterPage from './pages/CssFormatterPage'
 
 const router = createBrowserRouter([
   {
@@ -233,6 +234,7 @@ const router = createBrowserRouter([
       { path: 'references/http-methods', element: <HttpMethodsPage /> },
       { path: 'tools/number-to-words', element: <NumberToWordsPage /> },
       { path: 'data/json-schema-generator', element: <JsonSchemaGeneratorPage /> },
+      { path: 'tools/css-formatter', element: <CssFormatterPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

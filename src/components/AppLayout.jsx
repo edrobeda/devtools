@@ -179,6 +179,7 @@ export const LABELS = {
     'http-methods': 'Métodos HTTP',
     'number-to-words': 'Número por Extenso',
     'json-schema-generator': 'Gerador de JSON Schema',
+    'css-formatter': 'Formatador de CSS',
   },
   en: {
     home: 'Home',
@@ -311,6 +312,7 @@ export const LABELS = {
     'http-methods': 'HTTP Methods',
     'number-to-words': 'Number to Words',
     'json-schema-generator': 'JSON Schema Generator',
+    'css-formatter': 'CSS Formatter',
   },
 }
 
@@ -342,6 +344,7 @@ export function buildMenuItems(l) {
         { key: '/tools/json-formatter', icon: <FileTextOutlined />, label: l['json-formatter'] },
         { key: '/tools/color-converter', icon: <BgColorsOutlined />, label: l['color-converter'] },
         { key: '/tools/xml-formatter', icon: <FileTextOutlined />, label: withNewBadge('/tools/xml-formatter', l['xml-formatter'], l) },
+        { key: '/tools/css-formatter', icon: <FileTextOutlined />, label: withNewBadge('/tools/css-formatter', l['css-formatter'], l) },
         { key: '/tools/timestamp-converter', icon: <FieldTimeOutlined />, label: l['timestamp-converter'] },
         { key: '/tools/regex-tester', icon: <SearchOutlined />, label: withNewBadge('/tools/regex-tester', l['regex-tester'], l) },
         { key: '/tools/base64-tool', icon: <SwapOutlined />, label: withNewBadge('/tools/base64-tool', l['base64-tool'], l) },

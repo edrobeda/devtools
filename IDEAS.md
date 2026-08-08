@@ -18,6 +18,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] Regex Tester (com highlight de matches, inclui padrões comuns prontos: email, telefone, CPF, URL) — `/tools/regex-tester`
 - [ ] SQL Formatter
 - [ ] XML Formatter
+- [x] CSS Minify/Beautify — `/tools/css-formatter`
 - [ ] YAML Formatter
 - [ ] TOML Formatter
 - [ ] Markdown Preview (ao vivo)
