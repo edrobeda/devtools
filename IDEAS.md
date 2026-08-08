@@ -289,7 +289,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] Cheat sheet de Flexbox (visual, interativo) — `/references/flexbox-cheatsheet`
 - [x] Cheat sheet de CSS Grid (visual, interativo) — `/references/css-grid-cheatsheet`
 - [x] Atalhos do terminal/bash — `/references/bash-shortcuts`
-- [ ] Referência de sintaxe Markdown
+- [x] Referência de sintaxe Markdown — `/references/markdown-syntax`
 - [x] Comandos SQL essenciais — `/references/sql-commands`
 - [x] npm vs yarn vs pnpm — tabela comparativa de comandos — `/references/package-manager-commands`
 - [x] Conventional Commits — tabela de tipos e quando usar cada um — `/devops/commit-message-generator`

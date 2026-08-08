@@ -119,6 +119,7 @@ import CssFormatterPage from './pages/CssFormatterPage'
 import SqlFormatterPage from './pages/SqlFormatterPage'
 import CommonPortsPage from './pages/CommonPortsPage'
 import CsvMarkdownTablePage from './pages/CsvMarkdownTablePage'
+import MarkdownSyntaxPage from './pages/MarkdownSyntaxPage'
 
 const router = createBrowserRouter([
   {
@@ -243,6 +244,7 @@ const router = createBrowserRouter([
       { path: 'database/sql-formatter', element: <SqlFormatterPage /> },
       { path: 'network/common-ports', element: <CommonPortsPage /> },
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
+      { path: 'references/markdown-syntax', element: <MarkdownSyntaxPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

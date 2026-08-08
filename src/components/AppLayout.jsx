@@ -185,6 +185,7 @@ export const LABELS = {
     'sql-formatter': 'Formatador de SQL',
     'common-ports': 'Portas de Rede Comuns',
     'csv-markdown-table': 'CSV → Tabela Markdown',
+    'markdown-syntax': 'Sintaxe Markdown',
   },
   en: {
     home: 'Home',
@@ -322,6 +323,7 @@ export const LABELS = {
     'sql-formatter': 'SQL Formatter',
     'common-ports': 'Common Network Ports',
     'csv-markdown-table': 'CSV → Markdown Table',
+    'markdown-syntax': 'Markdown Syntax',
   },
 }
 
@@ -555,6 +557,7 @@ export function buildMenuItems(l) {
         { key: '/references/css-grid-cheatsheet', label: withNewBadge('/references/css-grid-cheatsheet', l['css-grid-cheatsheet'], l) },
         { key: '/references/bash-shortcuts', label: withNewBadge('/references/bash-shortcuts', l['bash-shortcuts'], l) },
         { key: '/references/http-methods', label: withNewBadge('/references/http-methods', l['http-methods'], l) },
+        { key: '/references/markdown-syntax', icon: <FileMarkdownOutlined />, label: withNewBadge('/references/markdown-syntax', l['markdown-syntax'], l) },
       ],
     },
     {
