@@ -1,0 +1,10 @@
+const puppeteer = require('/tmp/pup/node_modules/puppeteer')
+;(async () => {
+  const browser = await puppeteer.launch({ args: ['--no-sandbox'] })
+  const page = await browser.newPage()
+  page.on('response', (r) => { if (r.status() === 404) console.log('404 URL:', r.url()) })
+  await page.goto('https://devtools.eventifylab.com/devops/chmod-calculator', { waitUntil: 'networkidle0' })
+  await new Promise((r) => setTimeout(r, 1500))
+  await browser.close()
+  process.exit(0)
+})()

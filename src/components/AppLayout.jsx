@@ -188,6 +188,7 @@ export const LABELS = {
     'csv-markdown-table': 'CSV → Tabela Markdown',
     'markdown-syntax': 'Sintaxe Markdown',
     'kubectl-commands': 'Comandos kubectl',
+    'chmod-calculator': 'Calculadora de Permissões (chmod)',
   },
   en: {
     home: 'Home',
@@ -327,6 +328,7 @@ export const LABELS = {
     'csv-markdown-table': 'CSV → Markdown Table',
     'markdown-syntax': 'Markdown Syntax',
     'kubectl-commands': 'kubectl Commands',
+    'chmod-calculator': 'File Permission Calculator (chmod)',
   },
 }
 
@@ -463,6 +465,7 @@ export function buildMenuItems(l) {
         { key: '/devops/env-tool', icon: <FileProtectOutlined />, label: withNewBadge('/devops/env-tool', l['env-tool'], l) },
         { key: '/devops/branch-name-generator', icon: <BranchesOutlined />, label: withNewBadge('/devops/branch-name-generator', l['branch-name-generator'], l) },
         { key: '/devops/kubectl-commands', icon: <ClusterOutlined />, label: withNewBadge('/devops/kubectl-commands', l['kubectl-commands'], l) },
+        { key: '/devops/chmod-calculator', icon: <SafetyCertificateOutlined />, label: withNewBadge('/devops/chmod-calculator', l['chmod-calculator'], l) },
       ],
     },
     {

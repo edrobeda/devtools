@@ -121,6 +121,7 @@ import CommonPortsPage from './pages/CommonPortsPage'
 import CsvMarkdownTablePage from './pages/CsvMarkdownTablePage'
 import MarkdownSyntaxPage from './pages/MarkdownSyntaxPage'
 import KubeCtlCommandsPage from './pages/KubeCtlCommandsPage'
+import ChmodCalculatorPage from './pages/ChmodCalculatorPage'
 
 const router = createBrowserRouter([
   {
@@ -247,6 +248,7 @@ const router = createBrowserRouter([
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
       { path: 'references/markdown-syntax', element: <MarkdownSyntaxPage /> },
       { path: 'devops/kubectl-commands', element: <KubeCtlCommandsPage /> },
+      { path: 'devops/chmod-calculator', element: <ChmodCalculatorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
