@@ -199,6 +199,7 @@ export const LABELS = {
     'ansi-colors': 'Cores ANSI (terminal)',
     'ascii-table': 'Tabela ASCII',
     'svg-wave-generator': 'Gerador de Onda SVG',
+    'regex-cheatsheet': 'Cheat Sheet de Regex',
   },
   en: {
     home: 'Home',
@@ -346,6 +347,7 @@ export const LABELS = {
     'ansi-colors': 'ANSI Colors',
     'ascii-table': 'ASCII Table',
     'svg-wave-generator': 'SVG Wave Generator',
+    'regex-cheatsheet': 'Regex Cheat Sheet',
   },
 }
 
@@ -589,6 +591,7 @@ export function buildMenuItems(l) {
         { key: '/references/http-methods', label: withNewBadge('/references/http-methods', l['http-methods'], l) },
         { key: '/references/markdown-syntax', icon: <FileMarkdownOutlined />, label: withNewBadge('/references/markdown-syntax', l['markdown-syntax'], l) },
         { key: '/references/ascii-table', icon: <FontSizeOutlined />, label: withNewBadge('/references/ascii-table', l['ascii-table'], l) },
+        { key: '/references/regex-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/regex-cheatsheet', l['regex-cheatsheet'], l) },
       ],
     },
     {

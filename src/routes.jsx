@@ -129,6 +129,7 @@ import CubicBezierEditorPage from './pages/CubicBezierEditorPage'
 import AnsiColorsPage from './pages/AnsiColorsPage'
 import AsciiTablePage from './pages/AsciiTablePage'
 import SvgWaveGeneratorPage from './pages/SvgWaveGeneratorPage'
+import RegexCheatSheetPage from './pages/RegexCheatSheetPage'
 
 const router = createBrowserRouter([
   {
@@ -263,6 +264,7 @@ const router = createBrowserRouter([
       { path: 'devops/ansi-colors', element: <AnsiColorsPage /> },
       { path: 'references/ascii-table', element: <AsciiTablePage /> },
       { path: 'frontend/svg-wave-generator', element: <SvgWaveGeneratorPage /> },
+      { path: 'references/regex-cheatsheet', element: <RegexCheatSheetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
