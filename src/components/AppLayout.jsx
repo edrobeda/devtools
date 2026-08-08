@@ -200,6 +200,7 @@ export const LABELS = {
     'ascii-table': 'Tabela ASCII',
     'svg-wave-generator': 'Gerador de Onda SVG',
     'regex-cheatsheet': 'Cheat Sheet de Regex',
+    'crc-calculator': 'Calculadora de CRC',
   },
   en: {
     home: 'Home',
@@ -348,6 +349,7 @@ export const LABELS = {
     'ascii-table': 'ASCII Table',
     'svg-wave-generator': 'SVG Wave Generator',
     'regex-cheatsheet': 'Regex Cheat Sheet',
+    'crc-calculator': 'CRC Checksum Calculator',
   },
 }
 
@@ -405,6 +407,7 @@ export function buildMenuItems(l) {
         { key: '/tools/timezone-converter', icon: <GlobalOutlined />, label: withNewBadge('/tools/timezone-converter', l['timezone-converter'], l) },
         { key: '/tools/number-to-words', icon: <NumberOutlined />, label: withNewBadge('/tools/number-to-words', l['number-to-words'], l) },
         { key: '/tools/float-explorer', icon: <NumberOutlined />, label: withNewBadge('/tools/float-explorer', l['float-explorer'], l) },
+        { key: '/tools/crc-calculator', icon: <SafetyCertificateOutlined />, label: withNewBadge('/tools/crc-calculator', l['crc-calculator'], l) },
       ],
     },
     {

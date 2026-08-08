@@ -130,6 +130,7 @@ import AnsiColorsPage from './pages/AnsiColorsPage'
 import AsciiTablePage from './pages/AsciiTablePage'
 import SvgWaveGeneratorPage from './pages/SvgWaveGeneratorPage'
 import RegexCheatSheetPage from './pages/RegexCheatSheetPage'
+import CrcCalculatorPage from './pages/CrcCalculatorPage'
 
 const router = createBrowserRouter([
   {
@@ -265,6 +266,7 @@ const router = createBrowserRouter([
       { path: 'references/ascii-table', element: <AsciiTablePage /> },
       { path: 'frontend/svg-wave-generator', element: <SvgWaveGeneratorPage /> },
       { path: 'references/regex-cheatsheet', element: <RegexCheatSheetPage /> },
+      { path: 'tools/crc-calculator', element: <CrcCalculatorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
