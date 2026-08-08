@@ -9,6 +9,9 @@ mesmo no início de cada rodada, pra nunca repetir algo que já existe.
 ## AAAA-MM-DD
 - <tipo do item>: <nome> — <rota> (<descrição curta>)
 
+## 2026-08-08
+- Ferramenta: Gerador de JSON Schema — `/data/json-schema-generator` (cola um JSON de exemplo — payload de API, mock, dump — e gera um JSON Schema compatível com draft-07 descrevendo a estrutura: tipos por valor (`null`/`boolean`/`string`/`integer`/`number`), objetos varridos por chave com `required`, arrays com `items` inferido dos elementos e união de tipos mistos em `anyOf`; arrays de objetos são fundidos por chave — só entram em `required` as chaves presentes em todos os elementos — e valores primitivos repetidos com poucas variações viram `enum: [...]` (opcional); opções: todas as chaves obrigatórias on/off e inferência de enum on/off, saída com botão de copiar e contagem de bytes, exemplos clicáveis; algoritmo-fonte exibido na própria página; 100% client-side, sem API externa; complementa o `json-to-sql`, que converte JSON em INSERTs, e o `json-diff`/`json-path-explorer`, que analisam a estrutura de outro ângulo)
+
 ## 2026-08-07
 - Correção de bug: moeda Real em inglês mostrava "dollars" em vez de "reais" — `/tools/number-to-words` (quando o idioma era inglês, o modo R$ Real sempre renderizava "dollars"; `enMoney` passou a receber a moeda e usa "real/reais" para BRL)
 -->

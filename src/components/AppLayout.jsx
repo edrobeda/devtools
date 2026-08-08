@@ -178,6 +178,7 @@ export const LABELS = {
     'mime-lookup': 'Lookup de MIME Types',
     'http-methods': 'Métodos HTTP',
     'number-to-words': 'Número por Extenso',
+    'json-schema-generator': 'Gerador de JSON Schema',
   },
   en: {
     home: 'Home',
@@ -309,6 +310,7 @@ export const LABELS = {
     'mime-lookup': 'MIME Types Lookup',
     'http-methods': 'HTTP Methods',
     'number-to-words': 'Number to Words',
+    'json-schema-generator': 'JSON Schema Generator',
   },
 }
 
@@ -482,6 +484,7 @@ export function buildMenuItems(l) {
         { key: '/data/fake-data-generator', label: withNewBadge('/data/fake-data-generator', l['fake-data-generator'], l) },
         { key: '/data/json-diff', label: withNewBadge('/data/json-diff', l['json-diff'], l) },
         { key: '/data/json-path-explorer', label: withNewBadge('/data/json-path-explorer', l['json-path-explorer'], l) },
+        { key: '/data/json-schema-generator', icon: <CodeOutlined />, label: withNewBadge('/data/json-schema-generator', l['json-schema-generator'], l) },
       ],
     },
     {

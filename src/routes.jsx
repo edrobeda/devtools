@@ -113,6 +113,7 @@ import CronBuilderPage from './pages/CronBuilderPage'
 import MimeLookupPage from './pages/MimeLookupPage'
 import HttpMethodsPage from './pages/HttpMethodsPage'
 import NumberToWordsPage from './pages/NumberToWordsPage'
+import JsonSchemaGeneratorPage from './pages/JsonSchemaGeneratorPage'
 
 const router = createBrowserRouter([
   {
@@ -231,6 +232,7 @@ const router = createBrowserRouter([
       { path: 'network/mime-lookup', element: <MimeLookupPage /> },
       { path: 'references/http-methods', element: <HttpMethodsPage /> },
       { path: 'tools/number-to-words', element: <NumberToWordsPage /> },
+      { path: 'data/json-schema-generator', element: <JsonSchemaGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
