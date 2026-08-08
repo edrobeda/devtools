@@ -182,6 +182,7 @@ export const LABELS = {
     'json-schema-validator': 'Validador de JSON Schema',
     'css-formatter': 'Formatador de CSS',
     'sql-formatter': 'Formatador de SQL',
+    'common-ports': 'Portas de Rede Comuns',
   },
   en: {
     home: 'Home',
@@ -317,6 +318,7 @@ export const LABELS = {
     'json-schema-validator': 'JSON Schema Validator',
     'css-formatter': 'CSS Formatter',
     'sql-formatter': 'SQL Formatter',
+    'common-ports': 'Common Network Ports',
   },
 }
 
@@ -504,6 +506,7 @@ export function buildMenuItems(l) {
         { key: '/network/subnet-calculator', label: l['subnet-calculator'] },
         { key: '/network/user-agent-parser', icon: <UserOutlined />, label: withNewBadge('/network/user-agent-parser', l['user-agent-parser'], l) },
         { key: '/network/mime-lookup', icon: <InboxOutlined />, label: withNewBadge('/network/mime-lookup', l['mime-lookup'], l) },
+        { key: '/network/common-ports', icon: <GlobalOutlined />, label: withNewBadge('/network/common-ports', l['common-ports'], l) },
       ],
     },
     {
