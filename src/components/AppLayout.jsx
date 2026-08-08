@@ -189,6 +189,7 @@ export const LABELS = {
     'markdown-syntax': 'Sintaxe Markdown',
     'kubectl-commands': 'Comandos kubectl',
     'chmod-calculator': 'Calculadora de Permissões (chmod)',
+    'float-explorer': 'Explorador de Float (IEEE-754)',
   },
   en: {
     home: 'Home',
@@ -329,6 +330,7 @@ export const LABELS = {
     'markdown-syntax': 'Markdown Syntax',
     'kubectl-commands': 'kubectl Commands',
     'chmod-calculator': 'File Permission Calculator (chmod)',
+    'float-explorer': 'Float Explorer (IEEE-754)',
   },
 }
 
@@ -385,6 +387,7 @@ export function buildMenuItems(l) {
         { key: '/tools/unicode-inspector', icon: <CodeOutlined />, label: withNewBadge('/tools/unicode-inspector', l['unicode-inspector'], l) },
         { key: '/tools/timezone-converter', icon: <GlobalOutlined />, label: withNewBadge('/tools/timezone-converter', l['timezone-converter'], l) },
         { key: '/tools/number-to-words', icon: <NumberOutlined />, label: withNewBadge('/tools/number-to-words', l['number-to-words'], l) },
+        { key: '/tools/float-explorer', icon: <NumberOutlined />, label: withNewBadge('/tools/float-explorer', l['float-explorer'], l) },
       ],
     },
     {
