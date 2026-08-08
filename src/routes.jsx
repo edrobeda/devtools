@@ -118,6 +118,7 @@ import JsonSchemaValidatorPage from './pages/JsonSchemaValidatorPage'
 import CssFormatterPage from './pages/CssFormatterPage'
 import SqlFormatterPage from './pages/SqlFormatterPage'
 import CommonPortsPage from './pages/CommonPortsPage'
+import CsvMarkdownTablePage from './pages/CsvMarkdownTablePage'
 
 const router = createBrowserRouter([
   {
@@ -241,6 +242,7 @@ const router = createBrowserRouter([
       { path: 'tools/css-formatter', element: <CssFormatterPage /> },
       { path: 'database/sql-formatter', element: <SqlFormatterPage /> },
       { path: 'network/common-ports', element: <CommonPortsPage /> },
+      { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

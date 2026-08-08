@@ -48,6 +48,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] Conversor de case (camelCase, snake_case, kebab-case, PascalCase, Title Case) — `/tools/case-converter`
 - [x] Gerador de slug (texto → url-slug) — `/tools/slug-generator`
 - [x] Conversor CSV ↔ JSON — `/data/csv-json-converter`
+- [x] CSV/TSV → Tabela Markdown e HTML — `/data/csv-markdown-table`
 - [x] Gerador/validador de CPF e CNPJ fake (dígitos verificadores corretos) — `/tools/cpf-cnpj-generator`
 - [x] Comparador/validador de SemVer — `/tools/semver-comparator`
 - [x] Validador de JSON Schema — `/data/json-schema-validator`

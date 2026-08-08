@@ -35,6 +35,7 @@ import {
   ExperimentOutlined,
   UserOutlined,
   InboxOutlined,
+  TableOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -183,6 +184,7 @@ export const LABELS = {
     'css-formatter': 'Formatador de CSS',
     'sql-formatter': 'Formatador de SQL',
     'common-ports': 'Portas de Rede Comuns',
+    'csv-markdown-table': 'CSV → Tabela Markdown',
   },
   en: {
     home: 'Home',
@@ -319,6 +321,7 @@ export const LABELS = {
     'css-formatter': 'CSS Formatter',
     'sql-formatter': 'SQL Formatter',
     'common-ports': 'Common Network Ports',
+    'csv-markdown-table': 'CSV → Markdown Table',
   },
 }
 
@@ -496,6 +499,7 @@ export function buildMenuItems(l) {
         { key: '/data/json-path-explorer', label: withNewBadge('/data/json-path-explorer', l['json-path-explorer'], l) },
         { key: '/data/json-schema-generator', icon: <CodeOutlined />, label: withNewBadge('/data/json-schema-generator', l['json-schema-generator'], l) },
         { key: '/data/json-schema-validator', icon: <CodeOutlined />, label: withNewBadge('/data/json-schema-validator', l['json-schema-validator'], l) },
+        { key: '/data/csv-markdown-table', icon: <TableOutlined />, label: withNewBadge('/data/csv-markdown-table', l['csv-markdown-table'], l) },
       ],
     },
     {
