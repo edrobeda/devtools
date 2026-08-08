@@ -68,7 +68,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Gradient Generator
 - [ ] SVG Background Generator
 - [ ] SVG Blob Generator
-- [ ] SVG Wave Generator
+- [x] SVG Wave Generator (ondas decorativas empilhadas em SVG, com data URI) — `/frontend/svg-wave-generator`
 - [ ] SVG Icon Browser
 - [ ] Google Fonts Preview
 - [ ] Breakpoint Preview / Responsive Preview (site num iframe redimensionável)

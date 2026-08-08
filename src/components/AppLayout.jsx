@@ -198,6 +198,7 @@ export const LABELS = {
     'cubic-bezier-editor': 'Editor de Curva de Easing',
     'ansi-colors': 'Cores ANSI (terminal)',
     'ascii-table': 'Tabela ASCII',
+    'svg-wave-generator': 'Gerador de Onda SVG',
   },
   en: {
     home: 'Home',
@@ -344,6 +345,7 @@ export const LABELS = {
     'cubic-bezier-editor': 'Cubic Bézier Easing Editor',
     'ansi-colors': 'ANSI Colors',
     'ascii-table': 'ASCII Table',
+    'svg-wave-generator': 'SVG Wave Generator',
   },
 }
 
@@ -462,6 +464,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/border-radius-generator', label: withNewBadge('/frontend/border-radius-generator', l['border-radius-generator'], l) },
         { key: '/frontend/svg-placeholder-generator', icon: <PictureOutlined />, label: withNewBadge('/frontend/svg-placeholder-generator', l['svg-placeholder-generator'], l) },
         { key: '/frontend/cubic-bezier-editor', icon: <LineChartOutlined />, label: withNewBadge('/frontend/cubic-bezier-editor', l['cubic-bezier-editor'], l) },
+        { key: '/frontend/svg-wave-generator', icon: <PictureOutlined />, label: withNewBadge('/frontend/svg-wave-generator', l['svg-wave-generator'], l) },
       ],
     },
     {

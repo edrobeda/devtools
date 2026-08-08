@@ -128,6 +128,7 @@ import DockerfileGeneratorPage from './pages/DockerfileGeneratorPage'
 import CubicBezierEditorPage from './pages/CubicBezierEditorPage'
 import AnsiColorsPage from './pages/AnsiColorsPage'
 import AsciiTablePage from './pages/AsciiTablePage'
+import SvgWaveGeneratorPage from './pages/SvgWaveGeneratorPage'
 
 const router = createBrowserRouter([
   {
@@ -261,6 +262,7 @@ const router = createBrowserRouter([
       { path: 'frontend/cubic-bezier-editor', element: <CubicBezierEditorPage /> },
       { path: 'devops/ansi-colors', element: <AnsiColorsPage /> },
       { path: 'references/ascii-table', element: <AsciiTablePage /> },
+      { path: 'frontend/svg-wave-generator', element: <SvgWaveGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
