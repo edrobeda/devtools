@@ -119,6 +119,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Semantic Version Helper (quando sobe major/minor/patch)
 - [x] Gerador de nome de branch git a partir de descrição de feature — `/devops/branch-name-generator`
 - [x] Gerador de mensagem de commit (Conventional Commits) — `/devops/commit-message-generator`
+- [x] Cheat sheet de comandos kubectl — `/devops/kubectl-commands`
 - [ ] Git Commit Generator por IA 🔥
 - [ ] GitHub Actions YAML Validator
 - [ ] GitLab CI Validator

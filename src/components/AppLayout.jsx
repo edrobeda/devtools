@@ -36,6 +36,7 @@ import {
   UserOutlined,
   InboxOutlined,
   TableOutlined,
+  ClusterOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -186,6 +187,7 @@ export const LABELS = {
     'common-ports': 'Portas de Rede Comuns',
     'csv-markdown-table': 'CSV → Tabela Markdown',
     'markdown-syntax': 'Sintaxe Markdown',
+    'kubectl-commands': 'Comandos kubectl',
   },
   en: {
     home: 'Home',
@@ -324,6 +326,7 @@ export const LABELS = {
     'common-ports': 'Common Network Ports',
     'csv-markdown-table': 'CSV → Markdown Table',
     'markdown-syntax': 'Markdown Syntax',
+    'kubectl-commands': 'kubectl Commands',
   },
 }
 
@@ -459,6 +462,7 @@ export function buildMenuItems(l) {
         { key: '/devops/commit-message-generator', label: withNewBadge('/devops/commit-message-generator', l['commit-message-generator'], l) },
         { key: '/devops/env-tool', icon: <FileProtectOutlined />, label: withNewBadge('/devops/env-tool', l['env-tool'], l) },
         { key: '/devops/branch-name-generator', icon: <BranchesOutlined />, label: withNewBadge('/devops/branch-name-generator', l['branch-name-generator'], l) },
+        { key: '/devops/kubectl-commands', icon: <ClusterOutlined />, label: withNewBadge('/devops/kubectl-commands', l['kubectl-commands'], l) },
       ],
     },
     {
