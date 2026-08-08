@@ -38,6 +38,7 @@ import {
   TableOutlined,
   ClusterOutlined,
   PictureOutlined,
+  ContainerOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -192,6 +193,7 @@ export const LABELS = {
     'chmod-calculator': 'Calculadora de Permissões (chmod)',
     'float-explorer': 'Explorador de Float (IEEE-754)',
     'svg-placeholder-generator': 'Gerador de Placeholder SVG',
+    'dockerfile-generator': 'Gerador de Dockerfile',
   },
   en: {
     home: 'Home',
@@ -334,6 +336,7 @@ export const LABELS = {
     'chmod-calculator': 'File Permission Calculator (chmod)',
     'float-explorer': 'Float Explorer (IEEE-754)',
     'svg-placeholder-generator': 'SVG Placeholder Generator',
+    'dockerfile-generator': 'Dockerfile Generator',
   },
 }
 
@@ -473,6 +476,7 @@ export function buildMenuItems(l) {
         { key: '/devops/branch-name-generator', icon: <BranchesOutlined />, label: withNewBadge('/devops/branch-name-generator', l['branch-name-generator'], l) },
         { key: '/devops/kubectl-commands', icon: <ClusterOutlined />, label: withNewBadge('/devops/kubectl-commands', l['kubectl-commands'], l) },
         { key: '/devops/chmod-calculator', icon: <SafetyCertificateOutlined />, label: withNewBadge('/devops/chmod-calculator', l['chmod-calculator'], l) },
+        { key: '/devops/dockerfile-generator', icon: <ContainerOutlined />, label: withNewBadge('/devops/dockerfile-generator', l['dockerfile-generator'], l) },
       ],
     },
     {

@@ -124,6 +124,7 @@ import KubeCtlCommandsPage from './pages/KubeCtlCommandsPage'
 import ChmodCalculatorPage from './pages/ChmodCalculatorPage'
 import FloatExplorerPage from './pages/FloatExplorerPage'
 import SvgPlaceholderGeneratorPage from './pages/SvgPlaceholderGeneratorPage'
+import DockerfileGeneratorPage from './pages/DockerfileGeneratorPage'
 
 const router = createBrowserRouter([
   {
@@ -253,6 +254,7 @@ const router = createBrowserRouter([
       { path: 'devops/chmod-calculator', element: <ChmodCalculatorPage /> },
       { path: 'tools/float-explorer', element: <FloatExplorerPage /> },
       { path: 'frontend/svg-placeholder-generator', element: <SvgPlaceholderGeneratorPage /> },
+      { path: 'devops/dockerfile-generator', element: <DockerfileGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

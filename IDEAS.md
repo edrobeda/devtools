@@ -104,7 +104,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] Parser/validador de arquivo `.env` — `/devops/env-tool`
 - [ ] Docker Compose Generator
 - [ ] Docker Compose Visualizer 🔥
-- [ ] Dockerfile Generator
+- [x] Dockerfile Generator — `/devops/dockerfile-generator`
 - [ ] Docker Logs Viewer
 - [ ] Docker Layer Explorer 🔥
 - [ ] Bundle Size Estimator 🔥
