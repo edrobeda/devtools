@@ -197,6 +197,7 @@ export const LABELS = {
     'dockerfile-generator': 'Gerador de Dockerfile',
     'cubic-bezier-editor': 'Editor de Curva de Easing',
     'ansi-colors': 'Cores ANSI (terminal)',
+    'ascii-table': 'Tabela ASCII',
   },
   en: {
     home: 'Home',
@@ -342,6 +343,7 @@ export const LABELS = {
     'dockerfile-generator': 'Dockerfile Generator',
     'cubic-bezier-editor': 'Cubic Bézier Easing Editor',
     'ansi-colors': 'ANSI Colors',
+    'ascii-table': 'ASCII Table',
   },
 }
 
@@ -583,6 +585,7 @@ export function buildMenuItems(l) {
         { key: '/references/bash-shortcuts', label: withNewBadge('/references/bash-shortcuts', l['bash-shortcuts'], l) },
         { key: '/references/http-methods', label: withNewBadge('/references/http-methods', l['http-methods'], l) },
         { key: '/references/markdown-syntax', icon: <FileMarkdownOutlined />, label: withNewBadge('/references/markdown-syntax', l['markdown-syntax'], l) },
+        { key: '/references/ascii-table', icon: <FontSizeOutlined />, label: withNewBadge('/references/ascii-table', l['ascii-table'], l) },
       ],
     },
     {
