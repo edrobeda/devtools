@@ -50,8 +50,8 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] Conversor CSV ↔ JSON — `/data/csv-json-converter`
 - [x] Gerador/validador de CPF e CNPJ fake (dígitos verificadores corretos) — `/tools/cpf-cnpj-generator`
 - [x] Comparador/validador de SemVer — `/tools/semver-comparator`
-- [ ] Validador de JSON Schema
-- [ ] JSON Schema Generator (a partir de um JSON de exemplo)
+- [x] Validador de JSON Schema — `/data/json-schema-validator`
+- [x] JSON Schema Generator (a partir de um JSON de exemplo)
 - [ ] Formatador de query GraphQL
 
 ## 🎨 Front-end — CSS, design, playgrounds

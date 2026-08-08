@@ -114,6 +114,7 @@ import MimeLookupPage from './pages/MimeLookupPage'
 import HttpMethodsPage from './pages/HttpMethodsPage'
 import NumberToWordsPage from './pages/NumberToWordsPage'
 import JsonSchemaGeneratorPage from './pages/JsonSchemaGeneratorPage'
+import JsonSchemaValidatorPage from './pages/JsonSchemaValidatorPage'
 import CssFormatterPage from './pages/CssFormatterPage'
 import SqlFormatterPage from './pages/SqlFormatterPage'
 
@@ -235,6 +236,7 @@ const router = createBrowserRouter([
       { path: 'references/http-methods', element: <HttpMethodsPage /> },
       { path: 'tools/number-to-words', element: <NumberToWordsPage /> },
       { path: 'data/json-schema-generator', element: <JsonSchemaGeneratorPage /> },
+      { path: 'data/json-schema-validator', element: <JsonSchemaValidatorPage /> },
       { path: 'tools/css-formatter', element: <CssFormatterPage /> },
       { path: 'database/sql-formatter', element: <SqlFormatterPage /> },
       { path: '*', element: <NotFoundPage /> },

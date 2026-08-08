@@ -179,6 +179,7 @@ export const LABELS = {
     'http-methods': 'Métodos HTTP',
     'number-to-words': 'Número por Extenso',
     'json-schema-generator': 'Gerador de JSON Schema',
+    'json-schema-validator': 'Validador de JSON Schema',
     'css-formatter': 'Formatador de CSS',
     'sql-formatter': 'Formatador de SQL',
   },
@@ -313,6 +314,7 @@ export const LABELS = {
     'http-methods': 'HTTP Methods',
     'number-to-words': 'Number to Words',
     'json-schema-generator': 'JSON Schema Generator',
+    'json-schema-validator': 'JSON Schema Validator',
     'css-formatter': 'CSS Formatter',
     'sql-formatter': 'SQL Formatter',
   },
@@ -491,6 +493,7 @@ export function buildMenuItems(l) {
         { key: '/data/json-diff', label: withNewBadge('/data/json-diff', l['json-diff'], l) },
         { key: '/data/json-path-explorer', label: withNewBadge('/data/json-path-explorer', l['json-path-explorer'], l) },
         { key: '/data/json-schema-generator', icon: <CodeOutlined />, label: withNewBadge('/data/json-schema-generator', l['json-schema-generator'], l) },
+        { key: '/data/json-schema-validator', icon: <CodeOutlined />, label: withNewBadge('/data/json-schema-validator', l['json-schema-validator'], l) },
       ],
     },
     {
