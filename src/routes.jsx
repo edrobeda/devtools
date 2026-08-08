@@ -123,6 +123,7 @@ import MarkdownSyntaxPage from './pages/MarkdownSyntaxPage'
 import KubeCtlCommandsPage from './pages/KubeCtlCommandsPage'
 import ChmodCalculatorPage from './pages/ChmodCalculatorPage'
 import FloatExplorerPage from './pages/FloatExplorerPage'
+import SvgPlaceholderGeneratorPage from './pages/SvgPlaceholderGeneratorPage'
 
 const router = createBrowserRouter([
   {
@@ -251,6 +252,7 @@ const router = createBrowserRouter([
       { path: 'devops/kubectl-commands', element: <KubeCtlCommandsPage /> },
       { path: 'devops/chmod-calculator', element: <ChmodCalculatorPage /> },
       { path: 'tools/float-explorer', element: <FloatExplorerPage /> },
+      { path: 'frontend/svg-placeholder-generator', element: <SvgPlaceholderGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

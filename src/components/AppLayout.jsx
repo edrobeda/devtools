@@ -37,6 +37,7 @@ import {
   InboxOutlined,
   TableOutlined,
   ClusterOutlined,
+  PictureOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -190,6 +191,7 @@ export const LABELS = {
     'kubectl-commands': 'Comandos kubectl',
     'chmod-calculator': 'Calculadora de Permissões (chmod)',
     'float-explorer': 'Explorador de Float (IEEE-754)',
+    'svg-placeholder-generator': 'Gerador de Placeholder SVG',
   },
   en: {
     home: 'Home',
@@ -331,6 +333,7 @@ export const LABELS = {
     'kubectl-commands': 'kubectl Commands',
     'chmod-calculator': 'File Permission Calculator (chmod)',
     'float-explorer': 'Float Explorer (IEEE-754)',
+    'svg-placeholder-generator': 'SVG Placeholder Generator',
   },
 }
 
@@ -447,6 +450,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/box-shadow-generator', label: withNewBadge('/frontend/box-shadow-generator', l['box-shadow-generator'], l) },
         { key: '/frontend/palette-generator', label: withNewBadge('/frontend/palette-generator', l['palette-generator'], l) },
         { key: '/frontend/border-radius-generator', label: withNewBadge('/frontend/border-radius-generator', l['border-radius-generator'], l) },
+        { key: '/frontend/svg-placeholder-generator', icon: <PictureOutlined />, label: withNewBadge('/frontend/svg-placeholder-generator', l['svg-placeholder-generator'], l) },
       ],
     },
     {
