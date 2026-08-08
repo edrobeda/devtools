@@ -125,6 +125,7 @@ import ChmodCalculatorPage from './pages/ChmodCalculatorPage'
 import FloatExplorerPage from './pages/FloatExplorerPage'
 import SvgPlaceholderGeneratorPage from './pages/SvgPlaceholderGeneratorPage'
 import DockerfileGeneratorPage from './pages/DockerfileGeneratorPage'
+import CubicBezierEditorPage from './pages/CubicBezierEditorPage'
 
 const router = createBrowserRouter([
   {
@@ -255,6 +256,7 @@ const router = createBrowserRouter([
       { path: 'tools/float-explorer', element: <FloatExplorerPage /> },
       { path: 'frontend/svg-placeholder-generator', element: <SvgPlaceholderGeneratorPage /> },
       { path: 'devops/dockerfile-generator', element: <DockerfileGeneratorPage /> },
+      { path: 'frontend/cubic-bezier-editor', element: <CubicBezierEditorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

@@ -39,6 +39,7 @@ import {
   ClusterOutlined,
   PictureOutlined,
   ContainerOutlined,
+  LineChartOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -194,6 +195,7 @@ export const LABELS = {
     'float-explorer': 'Explorador de Float (IEEE-754)',
     'svg-placeholder-generator': 'Gerador de Placeholder SVG',
     'dockerfile-generator': 'Gerador de Dockerfile',
+    'cubic-bezier-editor': 'Editor de Curva de Easing',
   },
   en: {
     home: 'Home',
@@ -337,6 +339,7 @@ export const LABELS = {
     'float-explorer': 'Float Explorer (IEEE-754)',
     'svg-placeholder-generator': 'SVG Placeholder Generator',
     'dockerfile-generator': 'Dockerfile Generator',
+    'cubic-bezier-editor': 'Cubic Bézier Easing Editor',
   },
 }
 
@@ -454,6 +457,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/palette-generator', label: withNewBadge('/frontend/palette-generator', l['palette-generator'], l) },
         { key: '/frontend/border-radius-generator', label: withNewBadge('/frontend/border-radius-generator', l['border-radius-generator'], l) },
         { key: '/frontend/svg-placeholder-generator', icon: <PictureOutlined />, label: withNewBadge('/frontend/svg-placeholder-generator', l['svg-placeholder-generator'], l) },
+        { key: '/frontend/cubic-bezier-editor', icon: <LineChartOutlined />, label: withNewBadge('/frontend/cubic-bezier-editor', l['cubic-bezier-editor'], l) },
       ],
     },
     {
