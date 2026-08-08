@@ -115,6 +115,7 @@ import HttpMethodsPage from './pages/HttpMethodsPage'
 import NumberToWordsPage from './pages/NumberToWordsPage'
 import JsonSchemaGeneratorPage from './pages/JsonSchemaGeneratorPage'
 import CssFormatterPage from './pages/CssFormatterPage'
+import SqlFormatterPage from './pages/SqlFormatterPage'
 
 const router = createBrowserRouter([
   {
@@ -235,6 +236,7 @@ const router = createBrowserRouter([
       { path: 'tools/number-to-words', element: <NumberToWordsPage /> },
       { path: 'data/json-schema-generator', element: <JsonSchemaGeneratorPage /> },
       { path: 'tools/css-formatter', element: <CssFormatterPage /> },
+      { path: 'database/sql-formatter', element: <SqlFormatterPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

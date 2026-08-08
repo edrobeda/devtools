@@ -180,6 +180,7 @@ export const LABELS = {
     'number-to-words': 'Número por Extenso',
     'json-schema-generator': 'Gerador de JSON Schema',
     'css-formatter': 'Formatador de CSS',
+    'sql-formatter': 'Formatador de SQL',
   },
   en: {
     home: 'Home',
@@ -313,6 +314,7 @@ export const LABELS = {
     'number-to-words': 'Number to Words',
     'json-schema-generator': 'JSON Schema Generator',
     'css-formatter': 'CSS Formatter',
+    'sql-formatter': 'SQL Formatter',
   },
 }
 
@@ -457,6 +459,7 @@ export function buildMenuItems(l) {
       children: [
         { key: '/database/rate-limit-calculator', label: l['rate-limit-calculator'] },
         { key: '/database/json-to-sql', icon: <DatabaseOutlined />, label: withNewBadge('/database/json-to-sql', l['json-to-sql'], l) },
+        { key: '/database/sql-formatter', icon: <FileTextOutlined />, label: withNewBadge('/database/sql-formatter', l['sql-formatter'], l) },
       ],
     },
     {
