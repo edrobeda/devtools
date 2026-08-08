@@ -196,6 +196,7 @@ export const LABELS = {
     'svg-placeholder-generator': 'Gerador de Placeholder SVG',
     'dockerfile-generator': 'Gerador de Dockerfile',
     'cubic-bezier-editor': 'Editor de Curva de Easing',
+    'ansi-colors': 'Cores ANSI (terminal)',
   },
   en: {
     home: 'Home',
@@ -340,6 +341,7 @@ export const LABELS = {
     'svg-placeholder-generator': 'SVG Placeholder Generator',
     'dockerfile-generator': 'Dockerfile Generator',
     'cubic-bezier-editor': 'Cubic Bézier Easing Editor',
+    'ansi-colors': 'ANSI Colors',
   },
 }
 
@@ -481,6 +483,7 @@ export function buildMenuItems(l) {
         { key: '/devops/kubectl-commands', icon: <ClusterOutlined />, label: withNewBadge('/devops/kubectl-commands', l['kubectl-commands'], l) },
         { key: '/devops/chmod-calculator', icon: <SafetyCertificateOutlined />, label: withNewBadge('/devops/chmod-calculator', l['chmod-calculator'], l) },
         { key: '/devops/dockerfile-generator', icon: <ContainerOutlined />, label: withNewBadge('/devops/dockerfile-generator', l['dockerfile-generator'], l) },
+        { key: '/devops/ansi-colors', icon: <BgColorsOutlined />, label: withNewBadge('/devops/ansi-colors', l['ansi-colors'], l) },
       ],
     },
     {
