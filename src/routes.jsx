@@ -147,6 +147,7 @@ import ClipPathGeneratorPage from './pages/ClipPathGeneratorPage'
 import TomlFormatterPage from './pages/TomlFormatterPage'
 import HtmlToMarkdownPage from './pages/HtmlToMarkdownPage'
 import ChangelogGeneratorPage from './pages/ChangelogGeneratorPage'
+import VimCheatsheetPage from './pages/VimCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -257,6 +258,7 @@ const router = createBrowserRouter([
       { path: 'tools/html-to-jsx-converter', element: <HtmlToJsxConverterPage /> },
       { path: 'tools/html-to-markdown', element: <HtmlToMarkdownPage /> },
       { path: 'devops/changelog-generator', element: <ChangelogGeneratorPage /> },
+      { path: 'references/vim-cheatsheet', element: <VimCheatsheetPage /> },
       { path: 'extras/uuid-collision-simulator', element: <UuidCollisionSimulatorPage /> },
       { path: 'tools/unicode-inspector', element: <UnicodeInspectorPage /> },
       { path: 'database/json-to-sql', element: <JsonToSqlPage /> },
