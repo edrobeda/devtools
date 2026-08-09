@@ -144,6 +144,7 @@ import DevToolsShortcutsPage from './pages/DevToolsShortcutsPage'
 import Ipv6ExplorerPage from './pages/Ipv6ExplorerPage'
 import KeyframeGeneratorPage from './pages/KeyframeGeneratorPage'
 import ClipPathGeneratorPage from './pages/ClipPathGeneratorPage'
+import TomlFormatterPage from './pages/TomlFormatterPage'
 
 const router = createBrowserRouter([
   {
@@ -247,6 +248,7 @@ const router = createBrowserRouter([
       { path: 'devops/env-tool', element: <EnvToolPage /> },
       { path: 'text/remove-accents', element: <RemoveAccentsPage /> },
       { path: 'tools/xml-formatter', element: <XmlFormatterPage /> },
+      { path: 'tools/toml-formatter', element: <TomlFormatterPage /> },
       { path: 'snippets/deep-clone-deep-equal', element: <DeepCloneDeepEqualPage /> },
       { path: 'devops/branch-name-generator', element: <BranchNameGeneratorPage /> },
       { path: 'text/lines-tool', element: <LinesToolPage /> },

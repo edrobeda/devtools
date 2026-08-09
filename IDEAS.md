@@ -20,7 +20,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] XML Formatter
 - [x] CSS Minify/Beautify — `/tools/css-formatter`
 - [ ] YAML Formatter
-- [ ] TOML Formatter
+- [x] TOML Formatter — `/tools/toml-formatter`
 - [ ] Markdown Preview (ao vivo)
 - [ ] Diff Checker (texto x texto, lado a lado)
 - [x] JSON Diff (estrutural, não linha a linha) — `/data/json-diff`
