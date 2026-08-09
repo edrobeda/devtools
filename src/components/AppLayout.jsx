@@ -214,6 +214,7 @@ export const LABELS = {
     'json-to-yaml': 'JSON → YAML',
     'caddyfile-generator': 'Gerador de Caddyfile',
     'docker-compose-generator': 'Gerador de docker-compose',
+    'openssl-commands': 'Comandos OpenSSL',
     'units-converter': 'Conversor de Unidades',
     'http-headers': 'Cabeçalhos HTTP',
     'javascript-cheatsheet': 'Cheat Sheet de JavaScript (ES6+)',
@@ -381,6 +382,7 @@ export const LABELS = {
     'json-to-yaml': 'JSON → YAML',
     'caddyfile-generator': 'Caddyfile Generator',
     'docker-compose-generator': 'docker-compose Generator',
+    'openssl-commands': 'OpenSSL Commands',
     'units-converter': 'Units Converter',
     'http-headers': 'HTTP Headers',
     'javascript-cheatsheet': 'JavaScript Cheat Sheet (ES6+)',
@@ -542,6 +544,7 @@ export function buildMenuItems(l) {
         { key: '/devops/caddyfile-generator', icon: <ContainerOutlined />, label: withNewBadge('/devops/caddyfile-generator', l['caddyfile-generator'], l) },
         { key: '/devops/docker-compose-generator', icon: <ContainerOutlined />, label: withNewBadge('/devops/docker-compose-generator', l['docker-compose-generator'], l) },
         { key: '/devops/ansi-colors', icon: <BgColorsOutlined />, label: withNewBadge('/devops/ansi-colors', l['ansi-colors'], l) },
+        { key: '/devops/openssl-commands', icon: <ContainerOutlined />, label: withNewBadge('/devops/openssl-commands', l['openssl-commands'], l) },
       ],
     },
     {
