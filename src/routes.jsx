@@ -148,6 +148,7 @@ import TomlFormatterPage from './pages/TomlFormatterPage'
 import HtmlToMarkdownPage from './pages/HtmlToMarkdownPage'
 import ChangelogGeneratorPage from './pages/ChangelogGeneratorPage'
 import VimCheatsheetPage from './pages/VimCheatsheetPage'
+import SshCheatsheetPage from './pages/SshCheatsheetPage'
 import DockerComposeGeneratorPage from './pages/DockerComposeGeneratorPage'
 import OpensslCommandsPage from './pages/OpensslCommandsPage'
 
@@ -305,6 +306,7 @@ const router = createBrowserRouter([
       { path: 'references/javascript-cheatsheet', element: <JavascriptCheatsheetPage /> },
       { path: 'references/tmux-cheatsheet', element: <TmuxCheatsheetPage /> },
       { path: 'references/devtools-shortcuts', element: <DevToolsShortcutsPage /> },
+      { path: 'references/ssh-cheatsheet', element: <SshCheatsheetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

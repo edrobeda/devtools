@@ -221,6 +221,7 @@ export const LABELS = {
     'tmux-cheatsheet': 'Comandos tmux',
     'devtools-shortcuts': 'Atalhos do DevTools',
     'vim-cheatsheet': 'Comandos Vim',
+    'ssh-cheatsheet': 'Comandos SSH',
     'changelog-generator': 'Gerador de Changelog',
   },
   en: {
@@ -389,6 +390,7 @@ export const LABELS = {
     'tmux-cheatsheet': 'tmux Commands',
     'devtools-shortcuts': 'Browser DevTools Shortcuts',
     'vim-cheatsheet': 'Vim Commands',
+    'ssh-cheatsheet': 'SSH Commands',
     'changelog-generator': 'Changelog Generator',
   },
 }
@@ -654,6 +656,7 @@ export function buildMenuItems(l) {
         { key: '/references/tmux-cheatsheet', icon: <ColumnWidthOutlined />, label: withNewBadge('/references/tmux-cheatsheet', l['tmux-cheatsheet'], l) },
         { key: '/references/devtools-shortcuts', icon: <CodeOutlined />, label: withNewBadge('/references/devtools-shortcuts', l['devtools-shortcuts'], l) },
         { key: '/references/vim-cheatsheet', icon: <ColumnWidthOutlined />, label: withNewBadge('/references/vim-cheatsheet', l['vim-cheatsheet'], l) },
+        { key: '/references/ssh-cheatsheet', icon: <SafetyCertificateOutlined />, label: withNewBadge('/references/ssh-cheatsheet', l['ssh-cheatsheet'], l) },
       ],
     },
     {
