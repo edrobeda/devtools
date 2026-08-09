@@ -173,6 +173,7 @@ export const LABELS = {
     'branch-name-generator': 'Gerador de Nome de Branch',
     'lines-tool': 'Processador de Linhas',
     'html-to-jsx-converter': 'Conversor HTML → JSX',
+    'html-to-markdown': 'Conversor HTML → Markdown',
     'uuid-collision-simulator': 'Simulador de Colisão de UUID',
     'unicode-inspector': 'Inspetor de Unicode',
     'json-to-sql': 'JSON → SQL INSERT',
@@ -336,6 +337,7 @@ export const LABELS = {
     'branch-name-generator': 'Branch Name Generator',
     'lines-tool': 'Lines Tool',
     'html-to-jsx-converter': 'HTML → JSX Converter',
+    'html-to-markdown': 'HTML → Markdown Converter',
     'uuid-collision-simulator': 'UUID Collision Simulator',
     'unicode-inspector': 'Unicode Inspector',
     'json-to-sql': 'JSON → SQL INSERT',
@@ -404,6 +406,7 @@ export function buildMenuItems(l) {
       children: [
         { key: '/tools/jwt-decoder', icon: <KeyOutlined />, label: l['jwt-decoder'] },
         { key: '/tools/html-to-jsx-converter', icon: <CodeOutlined />, label: withNewBadge('/tools/html-to-jsx-converter', l['html-to-jsx-converter'], l) },
+        { key: '/tools/html-to-markdown', icon: <FileMarkdownOutlined />, label: withNewBadge('/tools/html-to-markdown', l['html-to-markdown'], l) },
         { key: '/tools/cron-parser', icon: <FieldTimeOutlined />, label: withNewBadge('/tools/cron-parser', l['cron-parser'], l) },
         { key: '/tools/cron-builder', icon: <FieldTimeOutlined />, label: withNewBadge('/tools/cron-builder', l['cron-builder'], l) },
         { key: '/tools/hash-generator', icon: <NumberOutlined />, label: l['hash-generator'] },

@@ -145,6 +145,7 @@ import Ipv6ExplorerPage from './pages/Ipv6ExplorerPage'
 import KeyframeGeneratorPage from './pages/KeyframeGeneratorPage'
 import ClipPathGeneratorPage from './pages/ClipPathGeneratorPage'
 import TomlFormatterPage from './pages/TomlFormatterPage'
+import HtmlToMarkdownPage from './pages/HtmlToMarkdownPage'
 
 const router = createBrowserRouter([
   {
@@ -253,6 +254,7 @@ const router = createBrowserRouter([
       { path: 'devops/branch-name-generator', element: <BranchNameGeneratorPage /> },
       { path: 'text/lines-tool', element: <LinesToolPage /> },
       { path: 'tools/html-to-jsx-converter', element: <HtmlToJsxConverterPage /> },
+      { path: 'tools/html-to-markdown', element: <HtmlToMarkdownPage /> },
       { path: 'extras/uuid-collision-simulator', element: <UuidCollisionSimulatorPage /> },
       { path: 'tools/unicode-inspector', element: <UnicodeInspectorPage /> },
       { path: 'database/json-to-sql', element: <JsonToSqlPage /> },
