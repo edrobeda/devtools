@@ -40,6 +40,7 @@ import {
   PictureOutlined,
   ContainerOutlined,
   LineChartOutlined,
+  SendOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -205,6 +206,7 @@ export const LABELS = {
     'json-to-yaml': 'JSON → YAML',
     'caddyfile-generator': 'Gerador de Caddyfile',
     'units-converter': 'Conversor de Unidades',
+    'http-headers': 'Cabeçalhos HTTP',
   },
   en: {
     home: 'Home',
@@ -358,6 +360,7 @@ export const LABELS = {
     'json-to-yaml': 'JSON → YAML',
     'caddyfile-generator': 'Caddyfile Generator',
     'units-converter': 'Units Converter',
+    'http-headers': 'HTTP Headers',
   },
 }
 
@@ -607,6 +610,7 @@ export function buildMenuItems(l) {
         { key: '/references/markdown-syntax', icon: <FileMarkdownOutlined />, label: withNewBadge('/references/markdown-syntax', l['markdown-syntax'], l) },
         { key: '/references/ascii-table', icon: <FontSizeOutlined />, label: withNewBadge('/references/ascii-table', l['ascii-table'], l) },
         { key: '/references/regex-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/regex-cheatsheet', l['regex-cheatsheet'], l) },
+        { key: '/references/http-headers', icon: <SendOutlined />, label: withNewBadge('/references/http-headers', l['http-headers'], l) },
       ],
     },
     {
