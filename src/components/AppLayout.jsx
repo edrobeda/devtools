@@ -202,6 +202,7 @@ export const LABELS = {
     'ascii-table': 'Tabela ASCII',
     'svg-wave-generator': 'Gerador de Onda SVG',
     'css-filter-generator': 'Gerador de Filtros CSS',
+    'keyframe-generator': 'Gerador de Keyframes',
     'meta-tags-generator': 'Gerador de Meta Tags (SEO/OG)',
     'regex-cheatsheet': 'Cheat Sheet de Regex',
     'crc-calculator': 'Calculadora de CRC',
@@ -362,6 +363,7 @@ export const LABELS = {
     'ascii-table': 'ASCII Table',
     'svg-wave-generator': 'SVG Wave Generator',
     'css-filter-generator': 'CSS Filter Generator',
+    'keyframe-generator': 'Keyframes Generator',
     'meta-tags-generator': 'Meta Tags Generator (SEO/OG)',
     'regex-cheatsheet': 'Regex Cheat Sheet',
     'crc-calculator': 'CRC Checksum Calculator',
@@ -496,6 +498,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/svg-wave-generator', icon: <PictureOutlined />, label: withNewBadge('/frontend/svg-wave-generator', l['svg-wave-generator'], l) },
         { key: '/frontend/css-filter-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-filter-generator', l['css-filter-generator'], l) },
         { key: '/frontend/meta-tags-generator', icon: <GlobalOutlined />, label: withNewBadge('/frontend/meta-tags-generator', l['meta-tags-generator'], l) },
+        { key: '/frontend/keyframe-generator', icon: <LineChartOutlined />, label: withNewBadge('/frontend/keyframe-generator', l['keyframe-generator'], l) },
       ],
     },
     {
