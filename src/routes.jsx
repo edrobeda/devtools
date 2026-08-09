@@ -134,6 +134,7 @@ import CrcCalculatorPage from './pages/CrcCalculatorPage'
 import JsonToTypeScriptPage from './pages/JsonToTypeScriptPage'
 import JsonToYamlPage from './pages/JsonToYamlPage'
 import CaddyfileGeneratorPage from './pages/CaddyfileGeneratorPage'
+import UnitsConverterPage from './pages/UnitsConverterPage'
 
 const router = createBrowserRouter([
   {
@@ -273,6 +274,7 @@ const router = createBrowserRouter([
       { path: 'data/json-to-typescript', element: <JsonToTypeScriptPage /> },
       { path: 'data/json-to-yaml', element: <JsonToYamlPage /> },
       { path: 'devops/caddyfile-generator', element: <CaddyfileGeneratorPage /> },
+      { path: 'tools/units-converter', element: <UnitsConverterPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

@@ -204,6 +204,7 @@ export const LABELS = {
     'json-to-typescript': 'JSON → TypeScript',
     'json-to-yaml': 'JSON → YAML',
     'caddyfile-generator': 'Gerador de Caddyfile',
+    'units-converter': 'Conversor de Unidades',
   },
   en: {
     home: 'Home',
@@ -356,6 +357,7 @@ export const LABELS = {
     'json-to-typescript': 'JSON → TypeScript',
     'json-to-yaml': 'JSON → YAML',
     'caddyfile-generator': 'Caddyfile Generator',
+    'units-converter': 'Units Converter',
   },
 }
 
@@ -414,6 +416,7 @@ export function buildMenuItems(l) {
         { key: '/tools/number-to-words', icon: <NumberOutlined />, label: withNewBadge('/tools/number-to-words', l['number-to-words'], l) },
         { key: '/tools/float-explorer', icon: <NumberOutlined />, label: withNewBadge('/tools/float-explorer', l['float-explorer'], l) },
         { key: '/tools/crc-calculator', icon: <SafetyCertificateOutlined />, label: withNewBadge('/tools/crc-calculator', l['crc-calculator'], l) },
+        { key: '/tools/units-converter', icon: <SwapOutlined />, label: withNewBadge('/tools/units-converter', l['units-converter'], l) },
       ],
     },
     {
