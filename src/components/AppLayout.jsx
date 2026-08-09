@@ -41,6 +41,7 @@ import {
   ContainerOutlined,
   LineChartOutlined,
   SendOutlined,
+  HistoryOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -217,6 +218,7 @@ export const LABELS = {
     'javascript-cheatsheet': 'Cheat Sheet de JavaScript (ES6+)',
     'tmux-cheatsheet': 'Comandos tmux',
     'devtools-shortcuts': 'Atalhos do DevTools',
+    'changelog-generator': 'Gerador de Changelog',
   },
   en: {
     home: 'Home',
@@ -381,6 +383,7 @@ export const LABELS = {
     'javascript-cheatsheet': 'JavaScript Cheat Sheet (ES6+)',
     'tmux-cheatsheet': 'tmux Commands',
     'devtools-shortcuts': 'Browser DevTools Shortcuts',
+    'changelog-generator': 'Changelog Generator',
   },
 }
 
@@ -526,6 +529,7 @@ export function buildMenuItems(l) {
       children: [
         { key: '/devops/gitignore-generator', label: l['gitignore-generator'] },
         { key: '/devops/commit-message-generator', label: withNewBadge('/devops/commit-message-generator', l['commit-message-generator'], l) },
+        { key: '/devops/changelog-generator', icon: <HistoryOutlined />, label: withNewBadge('/devops/changelog-generator', l['changelog-generator'], l) },
         { key: '/devops/env-tool', icon: <FileProtectOutlined />, label: withNewBadge('/devops/env-tool', l['env-tool'], l) },
         { key: '/devops/branch-name-generator', icon: <BranchesOutlined />, label: withNewBadge('/devops/branch-name-generator', l['branch-name-generator'], l) },
         { key: '/devops/kubectl-commands', icon: <ClusterOutlined />, label: withNewBadge('/devops/kubectl-commands', l['kubectl-commands'], l) },
