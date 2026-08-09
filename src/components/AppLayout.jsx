@@ -200,6 +200,7 @@ export const LABELS = {
     'ansi-colors': 'Cores ANSI (terminal)',
     'ascii-table': 'Tabela ASCII',
     'svg-wave-generator': 'Gerador de Onda SVG',
+    'css-filter-generator': 'Gerador de Filtros CSS',
     'regex-cheatsheet': 'Cheat Sheet de Regex',
     'crc-calculator': 'Calculadora de CRC',
     'json-to-typescript': 'JSON → TypeScript',
@@ -357,6 +358,7 @@ export const LABELS = {
     'ansi-colors': 'ANSI Colors',
     'ascii-table': 'ASCII Table',
     'svg-wave-generator': 'SVG Wave Generator',
+    'css-filter-generator': 'CSS Filter Generator',
     'regex-cheatsheet': 'Regex Cheat Sheet',
     'crc-calculator': 'CRC Checksum Calculator',
     'json-to-typescript': 'JSON → TypeScript',
@@ -488,6 +490,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/svg-placeholder-generator', icon: <PictureOutlined />, label: withNewBadge('/frontend/svg-placeholder-generator', l['svg-placeholder-generator'], l) },
         { key: '/frontend/cubic-bezier-editor', icon: <LineChartOutlined />, label: withNewBadge('/frontend/cubic-bezier-editor', l['cubic-bezier-editor'], l) },
         { key: '/frontend/svg-wave-generator', icon: <PictureOutlined />, label: withNewBadge('/frontend/svg-wave-generator', l['svg-wave-generator'], l) },
+        { key: '/frontend/css-filter-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-filter-generator', l['css-filter-generator'], l) },
       ],
     },
     {
