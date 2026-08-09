@@ -207,6 +207,7 @@ export const LABELS = {
     'caddyfile-generator': 'Gerador de Caddyfile',
     'units-converter': 'Conversor de Unidades',
     'http-headers': 'Cabeçalhos HTTP',
+    'javascript-cheatsheet': 'Cheat Sheet de JavaScript (ES6+)',
   },
   en: {
     home: 'Home',
@@ -361,6 +362,7 @@ export const LABELS = {
     'caddyfile-generator': 'Caddyfile Generator',
     'units-converter': 'Units Converter',
     'http-headers': 'HTTP Headers',
+    'javascript-cheatsheet': 'JavaScript Cheat Sheet (ES6+)',
   },
 }
 
@@ -611,6 +613,7 @@ export function buildMenuItems(l) {
         { key: '/references/ascii-table', icon: <FontSizeOutlined />, label: withNewBadge('/references/ascii-table', l['ascii-table'], l) },
         { key: '/references/regex-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/regex-cheatsheet', l['regex-cheatsheet'], l) },
         { key: '/references/http-headers', icon: <SendOutlined />, label: withNewBadge('/references/http-headers', l['http-headers'], l) },
+        { key: '/references/javascript-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/javascript-cheatsheet', l['javascript-cheatsheet'], l) },
       ],
     },
     {
