@@ -138,6 +138,7 @@ import UnitsConverterPage from './pages/UnitsConverterPage'
 import HttpHeadersPage from './pages/HttpHeadersPage'
 import JavascriptCheatsheetPage from './pages/JavascriptCheatsheetPage'
 import TmuxCheatsheetPage from './pages/TmuxCheatsheetPage'
+import DevToolsShortcutsPage from './pages/DevToolsShortcutsPage'
 
 const router = createBrowserRouter([
   {
@@ -281,6 +282,7 @@ const router = createBrowserRouter([
       { path: 'references/http-headers', element: <HttpHeadersPage /> },
       { path: 'references/javascript-cheatsheet', element: <JavascriptCheatsheetPage /> },
       { path: 'references/tmux-cheatsheet', element: <TmuxCheatsheetPage /> },
+      { path: 'references/devtools-shortcuts', element: <DevToolsShortcutsPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
