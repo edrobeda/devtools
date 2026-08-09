@@ -137,6 +137,7 @@ import CaddyfileGeneratorPage from './pages/CaddyfileGeneratorPage'
 import UnitsConverterPage from './pages/UnitsConverterPage'
 import HttpHeadersPage from './pages/HttpHeadersPage'
 import JavascriptCheatsheetPage from './pages/JavascriptCheatsheetPage'
+import TmuxCheatsheetPage from './pages/TmuxCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -279,6 +280,7 @@ const router = createBrowserRouter([
       { path: 'tools/units-converter', element: <UnitsConverterPage /> },
       { path: 'references/http-headers', element: <HttpHeadersPage /> },
       { path: 'references/javascript-cheatsheet', element: <JavascriptCheatsheetPage /> },
+      { path: 'references/tmux-cheatsheet', element: <TmuxCheatsheetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

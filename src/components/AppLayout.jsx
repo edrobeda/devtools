@@ -208,6 +208,7 @@ export const LABELS = {
     'units-converter': 'Conversor de Unidades',
     'http-headers': 'Cabeçalhos HTTP',
     'javascript-cheatsheet': 'Cheat Sheet de JavaScript (ES6+)',
+    'tmux-cheatsheet': 'Comandos tmux',
   },
   en: {
     home: 'Home',
@@ -363,6 +364,7 @@ export const LABELS = {
     'units-converter': 'Units Converter',
     'http-headers': 'HTTP Headers',
     'javascript-cheatsheet': 'JavaScript Cheat Sheet (ES6+)',
+    'tmux-cheatsheet': 'tmux Commands',
   },
 }
 
@@ -614,6 +616,7 @@ export function buildMenuItems(l) {
         { key: '/references/regex-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/regex-cheatsheet', l['regex-cheatsheet'], l) },
         { key: '/references/http-headers', icon: <SendOutlined />, label: withNewBadge('/references/http-headers', l['http-headers'], l) },
         { key: '/references/javascript-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/javascript-cheatsheet', l['javascript-cheatsheet'], l) },
+        { key: '/references/tmux-cheatsheet', icon: <ColumnWidthOutlined />, label: withNewBadge('/references/tmux-cheatsheet', l['tmux-cheatsheet'], l) },
       ],
     },
     {
