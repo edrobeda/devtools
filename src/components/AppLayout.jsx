@@ -202,6 +202,7 @@ export const LABELS = {
     'regex-cheatsheet': 'Cheat Sheet de Regex',
     'crc-calculator': 'Calculadora de CRC',
     'json-to-typescript': 'JSON → TypeScript',
+    'json-to-yaml': 'JSON → YAML',
   },
   en: {
     home: 'Home',
@@ -352,6 +353,7 @@ export const LABELS = {
     'regex-cheatsheet': 'Regex Cheat Sheet',
     'crc-calculator': 'CRC Checksum Calculator',
     'json-to-typescript': 'JSON → TypeScript',
+    'json-to-yaml': 'JSON → YAML',
   },
 }
 
@@ -540,6 +542,7 @@ export function buildMenuItems(l) {
         { key: '/data/json-schema-validator', icon: <CodeOutlined />, label: withNewBadge('/data/json-schema-validator', l['json-schema-validator'], l) },
         { key: '/data/csv-markdown-table', icon: <TableOutlined />, label: withNewBadge('/data/csv-markdown-table', l['csv-markdown-table'], l) },
         { key: '/data/json-to-typescript', icon: <CodeOutlined />, label: withNewBadge('/data/json-to-typescript', l['json-to-typescript'], l) },
+        { key: '/data/json-to-yaml', icon: <CodeOutlined />, label: withNewBadge('/data/json-to-yaml', l['json-to-yaml'], l) },
       ],
     },
     {

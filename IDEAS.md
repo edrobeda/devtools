@@ -53,6 +53,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] Comparador/validador de SemVer — `/tools/semver-comparator`
 - [x] Validador de JSON Schema — `/data/json-schema-validator`
 - [x] JSON Schema Generator (a partir de um JSON de exemplo)
+- [x] Conversor JSON → YAML — `/data/json-to-yaml`
 - [ ] Formatador de query GraphQL
 
 ## 🎨 Front-end — CSS, design, playgrounds
