@@ -148,6 +148,7 @@ import TomlFormatterPage from './pages/TomlFormatterPage'
 import HtmlToMarkdownPage from './pages/HtmlToMarkdownPage'
 import ChangelogGeneratorPage from './pages/ChangelogGeneratorPage'
 import VimCheatsheetPage from './pages/VimCheatsheetPage'
+import DockerComposeGeneratorPage from './pages/DockerComposeGeneratorPage'
 
 const router = createBrowserRouter([
   {
@@ -295,6 +296,7 @@ const router = createBrowserRouter([
       { path: 'tools/crc-calculator', element: <CrcCalculatorPage /> },
       { path: 'data/json-to-typescript', element: <JsonToTypeScriptPage /> },
       { path: 'data/json-to-yaml', element: <JsonToYamlPage /> },
+      { path: 'devops/docker-compose-generator', element: <DockerComposeGeneratorPage /> },
       { path: 'devops/caddyfile-generator', element: <CaddyfileGeneratorPage /> },
       { path: 'tools/units-converter', element: <UnitsConverterPage /> },
       { path: 'references/http-headers', element: <HttpHeadersPage /> },
