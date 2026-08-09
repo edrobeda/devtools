@@ -130,6 +130,7 @@ import AnsiColorsPage from './pages/AnsiColorsPage'
 import AsciiTablePage from './pages/AsciiTablePage'
 import SvgWaveGeneratorPage from './pages/SvgWaveGeneratorPage'
 import CssFilterGeneratorPage from './pages/CssFilterGeneratorPage'
+import MetaTagsGeneratorPage from './pages/MetaTagsGeneratorPage'
 import RegexCheatSheetPage from './pages/RegexCheatSheetPage'
 import CrcCalculatorPage from './pages/CrcCalculatorPage'
 import JsonToTypeScriptPage from './pages/JsonToTypeScriptPage'
@@ -277,6 +278,7 @@ const router = createBrowserRouter([
       { path: 'references/ascii-table', element: <AsciiTablePage /> },
       { path: 'frontend/svg-wave-generator', element: <SvgWaveGeneratorPage /> },
       { path: 'frontend/css-filter-generator', element: <CssFilterGeneratorPage /> },
+      { path: 'frontend/meta-tags-generator', element: <MetaTagsGeneratorPage /> },
       { path: 'references/regex-cheatsheet', element: <RegexCheatSheetPage /> },
       { path: 'tools/crc-calculator', element: <CrcCalculatorPage /> },
       { path: 'data/json-to-typescript', element: <JsonToTypeScriptPage /> },

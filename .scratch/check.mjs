@@ -1,23 +1,37 @@
 import puppeteer from 'puppeteer'
 
-const URL = 'https://devtools.eventifylab.com'
+const urls = [
+  'https://devtools.eventifylab.com/',
+  'https://devtools.eventifylab.com/frontend/meta-tags-generator',
+]
 
-async function check(path) {
-  const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] })
+const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox', '--disable-setuid-sandbox'] })
+let failed = false
+
+for (const url of urls) {
   const page = await browser.newPage()
   const errors = []
-  page.on('pageerror', (e) => errors.push('pageerror: ' + e.message))
-  page.on('console', (m) => { if (m.type() === 'error') errors.push('console: ' + m.text()) })
-  await page.goto(URL + path, { waitUntil: 'networkidle2', timeout: 60000 })
-  await new Promise(r => setTimeout(r, 800))
-  const title = await page.title()
-  const heading = await page.$eval('h2', el => el?.textContent?.trim() || '').catch(() => 'N/A')
-  console.log(`\n== ${path} ==`)
-  console.log('title:', title)
-  console.log('h2:', heading)
-  console.log(errors.length ? 'ERRORS:\n' + errors.join('\n') : 'NO JS ERRORS')
-  await browser.close()
+  page.on('pageerror', (err) => errors.push(`pageerror: ${err.message}`))
+  page.on('console', (msg) => {
+    if (msg.type() === 'error') errors.push(`console.error: ${msg.text()}`)
+  })
+  try {
+    await page.goto(url, { waitUntil: 'networkidle0', timeout: 60000 })
+    await new Promise((r) => setTimeout(r, 1500))
+    const title = await page.title()
+    console.log(`OK ${url} — title="${title}"`)
+    if (errors.length) {
+      failed = true
+      console.log(`  ERRORS on ${url}:`)
+      errors.forEach((e) => console.log('   ' + e))
+    }
+  } catch (e) {
+    failed = true
+    console.log(`FAIL ${url}: ${e.message}`)
+  }
+  await page.close()
 }
 
-await check('/data/json-to-yaml')
-await check('/')
+await browser.close()
+console.log(failed ? 'CHECK FAILED' : 'ALL PAGES CLEAN')
+process.exit(failed ? 1 : 0)
