@@ -143,6 +143,7 @@ import TmuxCheatsheetPage from './pages/TmuxCheatsheetPage'
 import DevToolsShortcutsPage from './pages/DevToolsShortcutsPage'
 import Ipv6ExplorerPage from './pages/Ipv6ExplorerPage'
 import KeyframeGeneratorPage from './pages/KeyframeGeneratorPage'
+import ClipPathGeneratorPage from './pages/ClipPathGeneratorPage'
 
 const router = createBrowserRouter([
   {
@@ -281,6 +282,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-filter-generator', element: <CssFilterGeneratorPage /> },
       { path: 'frontend/meta-tags-generator', element: <MetaTagsGeneratorPage /> },
       { path: 'frontend/keyframe-generator', element: <KeyframeGeneratorPage /> },
+      { path: 'frontend/clip-path-generator', element: <ClipPathGeneratorPage /> },
       { path: 'references/regex-cheatsheet', element: <RegexCheatSheetPage /> },
       { path: 'tools/crc-calculator', element: <CrcCalculatorPage /> },
       { path: 'data/json-to-typescript', element: <JsonToTypeScriptPage /> },

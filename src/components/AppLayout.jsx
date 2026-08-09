@@ -204,6 +204,7 @@ export const LABELS = {
     'css-filter-generator': 'Gerador de Filtros CSS',
     'keyframe-generator': 'Gerador de Keyframes',
     'meta-tags-generator': 'Gerador de Meta Tags (SEO/OG)',
+    'clip-path-generator': 'Gerador de clip-path (Polygon)',
     'regex-cheatsheet': 'Cheat Sheet de Regex',
     'crc-calculator': 'Calculadora de CRC',
     'json-to-typescript': 'JSON → TypeScript',
@@ -365,6 +366,7 @@ export const LABELS = {
     'css-filter-generator': 'CSS Filter Generator',
     'keyframe-generator': 'Keyframes Generator',
     'meta-tags-generator': 'Meta Tags Generator (SEO/OG)',
+    'clip-path-generator': 'clip-path Generator (Polygon)',
     'regex-cheatsheet': 'Regex Cheat Sheet',
     'crc-calculator': 'CRC Checksum Calculator',
     'json-to-typescript': 'JSON → TypeScript',
@@ -499,6 +501,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-filter-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-filter-generator', l['css-filter-generator'], l) },
         { key: '/frontend/meta-tags-generator', icon: <GlobalOutlined />, label: withNewBadge('/frontend/meta-tags-generator', l['meta-tags-generator'], l) },
         { key: '/frontend/keyframe-generator', icon: <LineChartOutlined />, label: withNewBadge('/frontend/keyframe-generator', l['keyframe-generator'], l) },
+        { key: '/frontend/clip-path-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/clip-path-generator', l['clip-path-generator'], l) },
       ],
     },
     {
