@@ -110,7 +110,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Docker Layer Explorer 🔥
 - [ ] Bundle Size Estimator 🔥
 - [ ] nginx Config Generator
-- [ ] Caddyfile Generator
+- [x] Caddyfile Generator — `/devops/caddyfile-generator`
 - [ ] Apache Config Builder
 - [ ] PM2 Config Generator
 - [x] `.gitignore` Generator (por linguagem/framework) — `/devops/gitignore-generator`

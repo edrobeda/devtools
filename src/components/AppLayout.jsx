@@ -203,6 +203,7 @@ export const LABELS = {
     'crc-calculator': 'Calculadora de CRC',
     'json-to-typescript': 'JSON → TypeScript',
     'json-to-yaml': 'JSON → YAML',
+    'caddyfile-generator': 'Gerador de Caddyfile',
   },
   en: {
     home: 'Home',
@@ -354,6 +355,7 @@ export const LABELS = {
     'crc-calculator': 'CRC Checksum Calculator',
     'json-to-typescript': 'JSON → TypeScript',
     'json-to-yaml': 'JSON → YAML',
+    'caddyfile-generator': 'Caddyfile Generator',
   },
 }
 
@@ -497,6 +499,7 @@ export function buildMenuItems(l) {
         { key: '/devops/kubectl-commands', icon: <ClusterOutlined />, label: withNewBadge('/devops/kubectl-commands', l['kubectl-commands'], l) },
         { key: '/devops/chmod-calculator', icon: <SafetyCertificateOutlined />, label: withNewBadge('/devops/chmod-calculator', l['chmod-calculator'], l) },
         { key: '/devops/dockerfile-generator', icon: <ContainerOutlined />, label: withNewBadge('/devops/dockerfile-generator', l['dockerfile-generator'], l) },
+        { key: '/devops/caddyfile-generator', icon: <ContainerOutlined />, label: withNewBadge('/devops/caddyfile-generator', l['caddyfile-generator'], l) },
         { key: '/devops/ansi-colors', icon: <BgColorsOutlined />, label: withNewBadge('/devops/ansi-colors', l['ansi-colors'], l) },
       ],
     },

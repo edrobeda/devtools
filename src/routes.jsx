@@ -133,6 +133,7 @@ import RegexCheatSheetPage from './pages/RegexCheatSheetPage'
 import CrcCalculatorPage from './pages/CrcCalculatorPage'
 import JsonToTypeScriptPage from './pages/JsonToTypeScriptPage'
 import JsonToYamlPage from './pages/JsonToYamlPage'
+import CaddyfileGeneratorPage from './pages/CaddyfileGeneratorPage'
 
 const router = createBrowserRouter([
   {
@@ -271,6 +272,7 @@ const router = createBrowserRouter([
       { path: 'tools/crc-calculator', element: <CrcCalculatorPage /> },
       { path: 'data/json-to-typescript', element: <JsonToTypeScriptPage /> },
       { path: 'data/json-to-yaml', element: <JsonToYamlPage /> },
+      { path: 'devops/caddyfile-generator', element: <CaddyfileGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
