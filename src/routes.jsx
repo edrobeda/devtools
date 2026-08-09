@@ -140,6 +140,7 @@ import HttpHeadersPage from './pages/HttpHeadersPage'
 import JavascriptCheatsheetPage from './pages/JavascriptCheatsheetPage'
 import TmuxCheatsheetPage from './pages/TmuxCheatsheetPage'
 import DevToolsShortcutsPage from './pages/DevToolsShortcutsPage'
+import Ipv6ExplorerPage from './pages/Ipv6ExplorerPage'
 
 const router = createBrowserRouter([
   {
@@ -263,6 +264,7 @@ const router = createBrowserRouter([
       { path: 'tools/css-formatter', element: <CssFormatterPage /> },
       { path: 'database/sql-formatter', element: <SqlFormatterPage /> },
       { path: 'network/common-ports', element: <CommonPortsPage /> },
+      { path: 'network/ipv6-explorer', element: <Ipv6ExplorerPage /> },
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
       { path: 'references/markdown-syntax', element: <MarkdownSyntaxPage /> },
       { path: 'devops/kubectl-commands', element: <KubeCtlCommandsPage /> },

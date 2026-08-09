@@ -189,6 +189,7 @@ export const LABELS = {
     'css-formatter': 'Formatador de CSS',
     'sql-formatter': 'Formatador de SQL',
     'common-ports': 'Portas de Rede Comuns',
+    'ipv6-explorer': 'Explorador IPv6',
     'csv-markdown-table': 'CSV → Tabela Markdown',
     'markdown-syntax': 'Sintaxe Markdown',
     'kubectl-commands': 'Comandos kubectl',
@@ -347,6 +348,7 @@ export const LABELS = {
     'css-formatter': 'CSS Formatter',
     'sql-formatter': 'SQL Formatter',
     'common-ports': 'Common Network Ports',
+    'ipv6-explorer': 'IPv6 Explorer',
     'csv-markdown-table': 'CSV → Markdown Table',
     'markdown-syntax': 'Markdown Syntax',
     'kubectl-commands': 'kubectl Commands',
@@ -572,6 +574,7 @@ export function buildMenuItems(l) {
         { key: '/network/user-agent-parser', icon: <UserOutlined />, label: withNewBadge('/network/user-agent-parser', l['user-agent-parser'], l) },
         { key: '/network/mime-lookup', icon: <InboxOutlined />, label: withNewBadge('/network/mime-lookup', l['mime-lookup'], l) },
         { key: '/network/common-ports', icon: <GlobalOutlined />, label: withNewBadge('/network/common-ports', l['common-ports'], l) },
+        { key: '/network/ipv6-explorer', icon: <GlobalOutlined />, label: withNewBadge('/network/ipv6-explorer', l['ipv6-explorer'], l) },
       ],
     },
     {

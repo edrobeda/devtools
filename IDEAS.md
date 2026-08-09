@@ -188,6 +188,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Redirect Checker
 - [ ] User-Agent Parser
 - [x] Calculadora de sub-rede IP (CIDR, máscara, range) — `/network/subnet-calculator`
+- [x] Explorador IPv6 (formas expandida/comprimida RFC 5952, 128 bits, tipo e sub-rede CIDR) — `/network/ipv6-explorer`
 - [ ] Simulador de latência de rede (throttling visual) 🔥
 - [x] User-Agent Parser — infere navegador/OS/dispositivo de uma UA string — `/network/user-agent-parser`
 - [x] Referência pesquisável de HTTP status codes
