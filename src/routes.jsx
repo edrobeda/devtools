@@ -157,6 +157,7 @@ import JqCheatsheetPage from './pages/JqCheatsheetPage'
 import ScrollbarCssGeneratorPage from './pages/ScrollbarCssGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
+import SlaCalculatorPage from './pages/SlaCalculatorPage'
 
 const router = createBrowserRouter([
   {
@@ -319,6 +320,7 @@ const router = createBrowserRouter([
       { path: 'frontend/scrollbar-generator', element: <ScrollbarCssGeneratorPage /> },
       { path: 'references/bash-scripting', element: <BashScriptingCheatsheetPage /> },
       { path: 'references/systemd-commands', element: <SystemdCheatsheetPage /> },
+      { path: 'devops/sla-calculator', element: <SlaCalculatorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

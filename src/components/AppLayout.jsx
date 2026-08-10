@@ -229,6 +229,7 @@ export const LABELS = {
     'scrollbar-generator': 'Gerador de Scrollbar CSS',
     'bash-scripting': 'Scripts em Bash (shell scripting)',
     'systemd-commands': 'Comandos systemd',
+    'sla-calculator': 'Calculadora de SLA (downtime)',
   },
   en: {
     home: 'Home',
@@ -404,6 +405,7 @@ export const LABELS = {
     'scrollbar-generator': 'CSS Scrollbar Generator',
     'bash-scripting': 'Bash Scripting',
     'systemd-commands': 'systemd Commands',
+    'sla-calculator': 'SLA Calculator (downtime budget)',
   },
 }
 
@@ -560,6 +562,7 @@ export function buildMenuItems(l) {
         { key: '/devops/docker-compose-generator', icon: <ContainerOutlined />, label: withNewBadge('/devops/docker-compose-generator', l['docker-compose-generator'], l) },
         { key: '/devops/ansi-colors', icon: <BgColorsOutlined />, label: withNewBadge('/devops/ansi-colors', l['ansi-colors'], l) },
         { key: '/devops/openssl-commands', icon: <ContainerOutlined />, label: withNewBadge('/devops/openssl-commands', l['openssl-commands'], l) },
+        { key: '/devops/sla-calculator', icon: <ExperimentOutlined />, label: withNewBadge('/devops/sla-calculator', l['sla-calculator'], l) },
       ],
     },
     {
