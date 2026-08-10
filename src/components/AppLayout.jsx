@@ -235,6 +235,7 @@ export const LABELS = {
     'sla-calculator': 'Calculadora de SLA (downtime)',
     'credit-card-tool': 'Gerador/Validador de Cartão (Luhn)',
     'qr-code-generator': 'Gerador de QR Code',
+    'html-formatter': 'Formatador de HTML',
   },
   en: {
     home: 'Home',
@@ -414,6 +415,7 @@ export const LABELS = {
     'sla-calculator': 'SLA Calculator (downtime budget)',
     'credit-card-tool': 'Credit Card Generator/Validator (Luhn)',
     'qr-code-generator': 'QR Code Generator',
+    'html-formatter': 'HTML Formatter',
   },
 }
 
@@ -448,6 +450,7 @@ export function buildMenuItems(l) {
         { key: '/tools/xml-formatter', icon: <FileTextOutlined />, label: withNewBadge('/tools/xml-formatter', l['xml-formatter'], l) },
         { key: '/tools/css-formatter', icon: <FileTextOutlined />, label: withNewBadge('/tools/css-formatter', l['css-formatter'], l) },
         { key: '/tools/toml-formatter', icon: <FileTextOutlined />, label: withNewBadge('/tools/toml-formatter', l['toml-formatter'], l) },
+        { key: '/tools/html-formatter', icon: <FileTextOutlined />, label: withNewBadge('/tools/html-formatter', l['html-formatter'], l) },
         { key: '/tools/timestamp-converter', icon: <FieldTimeOutlined />, label: l['timestamp-converter'] },
         { key: '/tools/regex-tester', icon: <SearchOutlined />, label: withNewBadge('/tools/regex-tester', l['regex-tester'], l) },
         { key: '/tools/base64-tool', icon: <SwapOutlined />, label: withNewBadge('/tools/base64-tool', l['base64-tool'], l) },

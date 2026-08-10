@@ -33,6 +33,7 @@ import DaysUntilPage from './pages/DaysUntilPage'
 import RegexTesterPage from './pages/RegexTesterPage'
 import Base64ToolPage from './pages/Base64ToolPage'
 import UuidGeneratorPage from './pages/UuidGeneratorPage'
+import HtmlFormatterPage from './pages/HtmlFormatterPage'
 import CaseConverterPage from './pages/CaseConverterPage'
 import PasswordGeneratorPage from './pages/PasswordGeneratorPage'
 import UrlEncoderPage from './pages/UrlEncoderPage'
@@ -266,6 +267,7 @@ const router = createBrowserRouter([
       { path: 'text/remove-accents', element: <RemoveAccentsPage /> },
       { path: 'tools/xml-formatter', element: <XmlFormatterPage /> },
       { path: 'tools/toml-formatter', element: <TomlFormatterPage /> },
+      { path: 'tools/html-formatter', element: <HtmlFormatterPage /> },
       { path: 'snippets/deep-clone-deep-equal', element: <DeepCloneDeepEqualPage /> },
       { path: 'devops/branch-name-generator', element: <BranchNameGeneratorPage /> },
       { path: 'text/lines-tool', element: <LinesToolPage /> },
