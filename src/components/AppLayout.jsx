@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Layout, Menu, Segmented, Tag, theme } from 'antd'
+import { Layout, Menu, Segmented, Tag, theme, Drawer } from 'antd'
 import {
   HomeOutlined,
   MenuFoldOutlined,
@@ -49,6 +49,7 @@ import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
 import { NEW_ITEM_KEYS } from '../newItems'
 import { useNewItemKeys } from '../hooks/useNewItemKeys'
+import useMediaQuery from '../hooks/useMediaQuery'
 import BugReportWidget from './BugReportWidget'
 
 const { Header, Sider, Content } = Layout
@@ -709,13 +710,23 @@ export function buildMenuItems(l) {
   ]
 }
 
+const MOBILE_MENU_OPEN_KEYS = [
+  'group-tools', 'group-styles', 'group-snippets', 'group-frontend', 'group-apis',
+  'group-devops', 'group-database', 'group-cloud', 'group-security', 'group-data',
+  'group-network', 'group-ai', 'group-mobile', 'group-text', 'group-references', 'group-extras',
+]
+
 export default function AppLayout() {
   const [collapsed, setCollapsed] = useState(false)
+  const [mobileNavOpen, setMobileNavOpen] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
   const { lang, setLang } = useLanguage()
   const { token: { colorBgContainer, borderRadiusLG } } = theme.useToken()
   const contentRef = useRef(null)
+  // Abaixo de 768px o Sider fixo não cabe — vira um Drawer sobreposto,
+  // aberto só sob demanda pelo botão de hambúrguer do header.
+  const isMobile = useMediaQuery('(max-width: 768px)')
 
   // Sincroniza NEW_ITEM_KEYS com os 24 itens mais recentes (ver
   // useNewItemKeys.js) antes de montar o menu — não precisamos do valor de
@@ -725,56 +736,87 @@ export default function AppLayout() {
 
   const menuItems = buildMenuItems(LABELS[lang])
 
-  // O menu (Sider) e o conteúdo rolam em containers separados — ao trocar
-  // de rota, o scroll do conteúdo precisa voltar pro topo mesmo que o menu
-  // continue rolado onde o usuário clicou.
+  // O menu (Sider/Drawer) e o conteúdo rolam em containers separados — ao
+  // trocar de rota, o scroll do conteúdo precisa voltar pro topo mesmo que o
+  // menu continue rolado onde o usuário clicou. No mobile, a troca de rota
+  // também fecha o drawer de navegação sozinha.
   useEffect(() => {
     contentRef.current?.scrollTo(0, 0)
+    setMobileNavOpen(false)
   }, [location.pathname])
+
+  const handleMenuClick = ({ key }) => {
+    if (key.startsWith('/')) navigate(key)
+  }
+
+  const navMenu = (
+    <Menu
+      theme="dark"
+      mode="inline"
+      selectedKeys={[location.pathname]}
+      defaultOpenKeys={MOBILE_MENU_OPEN_KEYS}
+      items={menuItems}
+      onClick={handleMenuClick}
+    />
+  )
 
   return (
     <Layout style={{ height: '100vh' }}>
-      <Sider trigger={null} collapsible collapsed={collapsed} style={{ height: '100vh', overflow: 'auto' }}>
-        <div style={{
-          height: 32,
-          margin: 16,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: '#fff',
-          fontWeight: 700,
-          overflow: 'hidden',
-          whiteSpace: 'nowrap',
-        }}>
-          {collapsed ? 'DT' : 'DevTools'}
-        </div>
-        <Menu
-          theme="dark"
-          mode="inline"
-          selectedKeys={[location.pathname]}
-          defaultOpenKeys={[
-            'group-tools', 'group-styles', 'group-snippets', 'group-frontend', 'group-apis',
-            'group-devops', 'group-database', 'group-cloud', 'group-security', 'group-data',
-            'group-network', 'group-ai', 'group-mobile', 'group-text', 'group-references', 'group-extras',
-          ]}
-          items={menuItems}
-          onClick={({ key }) => {
-            if (key.startsWith('/')) navigate(key)
-          }}
-        />
-      </Sider>
+      {isMobile ? (
+        <Drawer
+          placement="left"
+          closable={false}
+          onClose={() => setMobileNavOpen(false)}
+          open={mobileNavOpen}
+          width="min(80vw, 300px)"
+          styles={{ body: { padding: 0, background: '#001529' } }}
+        >
+          <div style={{
+            height: 32,
+            margin: 16,
+            display: 'flex',
+            alignItems: 'center',
+            color: '#fff',
+            fontWeight: 700,
+          }}>
+            DevTools
+          </div>
+          {navMenu}
+        </Drawer>
+      ) : (
+        <Sider trigger={null} collapsible collapsed={collapsed} style={{ height: '100vh', overflow: 'auto' }}>
+          <div style={{
+            height: 32,
+            margin: 16,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#fff',
+            fontWeight: 700,
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
+          }}>
+            {collapsed ? 'DT' : 'DevTools'}
+          </div>
+          {navMenu}
+        </Sider>
+      )}
       <Layout style={{ height: '100vh' }}>
         <Header style={{
-          padding: '0 16px',
+          padding: '0 12px',
           background: colorBgContainer,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
+          gap: 8,
         }}>
-          {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-            onClick: () => setCollapsed(!collapsed),
-            style: { fontSize: 18, cursor: 'pointer' },
-          })}
+          {React.createElement(
+            isMobile ? MenuUnfoldOutlined : (collapsed ? MenuUnfoldOutlined : MenuFoldOutlined),
+            {
+              onClick: () => (isMobile ? setMobileNavOpen(true) : setCollapsed(!collapsed)),
+              style: { fontSize: 18, cursor: 'pointer', padding: 8, margin: -8 },
+            }
+          )}
           <Segmented
             value={lang}
             onChange={setLang}
@@ -785,8 +827,8 @@ export default function AppLayout() {
           />
         </Header>
         <Content style={{
-          margin: 24,
-          padding: 24,
+          margin: isMobile ? 12 : 24,
+          padding: isMobile ? 12 : 24,
           background: colorBgContainer,
           borderRadius: borderRadiusLG,
           minHeight: 0,
