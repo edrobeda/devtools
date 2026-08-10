@@ -151,6 +151,7 @@ import VimCheatsheetPage from './pages/VimCheatsheetPage'
 import SshCheatsheetPage from './pages/SshCheatsheetPage'
 import DockerComposeGeneratorPage from './pages/DockerComposeGeneratorPage'
 import OpensslCommandsPage from './pages/OpensslCommandsPage'
+import PythonCheatsheetPage from './pages/PythonCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -307,6 +308,7 @@ const router = createBrowserRouter([
       { path: 'references/tmux-cheatsheet', element: <TmuxCheatsheetPage /> },
       { path: 'references/devtools-shortcuts', element: <DevToolsShortcutsPage /> },
       { path: 'references/ssh-cheatsheet', element: <SshCheatsheetPage /> },
+      { path: 'references/python-cheatsheet', element: <PythonCheatsheetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

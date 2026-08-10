@@ -222,6 +222,7 @@ export const LABELS = {
     'devtools-shortcuts': 'Atalhos do DevTools',
     'vim-cheatsheet': 'Comandos Vim',
     'ssh-cheatsheet': 'Comandos SSH',
+    'python-cheatsheet': 'Cheat Sheet de Python',
     'changelog-generator': 'Gerador de Changelog',
   },
   en: {
@@ -391,6 +392,7 @@ export const LABELS = {
     'devtools-shortcuts': 'Browser DevTools Shortcuts',
     'vim-cheatsheet': 'Vim Commands',
     'ssh-cheatsheet': 'SSH Commands',
+    'python-cheatsheet': 'Python Cheat Sheet',
     'changelog-generator': 'Changelog Generator',
   },
 }
@@ -657,6 +659,7 @@ export function buildMenuItems(l) {
         { key: '/references/devtools-shortcuts', icon: <CodeOutlined />, label: withNewBadge('/references/devtools-shortcuts', l['devtools-shortcuts'], l) },
         { key: '/references/vim-cheatsheet', icon: <ColumnWidthOutlined />, label: withNewBadge('/references/vim-cheatsheet', l['vim-cheatsheet'], l) },
         { key: '/references/ssh-cheatsheet', icon: <SafetyCertificateOutlined />, label: withNewBadge('/references/ssh-cheatsheet', l['ssh-cheatsheet'], l) },
+        { key: '/references/python-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/python-cheatsheet', l['python-cheatsheet'], l) },
       ],
     },
     {
