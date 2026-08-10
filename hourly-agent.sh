@@ -62,7 +62,12 @@ fi
 
 HEAD_BEFORE="$(git -C "$PROJECT_DIR" rev-parse HEAD 2>/dev/null)"
 
-"$OPENCODE_BIN" run --auto --dir "$PROJECT_DIR" -m "$MODEL" --title "devtools-hourly-$(date +%Y%m%d-%H%M%S)" "$PROMPT" \
+# O modelo free às vezes trava a chamada sem retornar nada (visto 2x em
+# 2026-08-10: processo ficava horas parado, sem filhos, sem log novo,
+# segurando o lock e travando toda rodada seguinte). Rodadas normais levam
+# 15-40min — 45min de margem + SIGKILL depois de 30s se o TERM não bastar.
+timeout --signal=TERM --kill-after=30s 45m \
+    "$OPENCODE_BIN" run --auto --dir "$PROJECT_DIR" -m "$MODEL" --title "devtools-hourly-$(date +%Y%m%d-%H%M%S)" "$PROMPT" \
     > "$LOG_FILE" 2>&1
 AGENT_EXIT=$?
 
