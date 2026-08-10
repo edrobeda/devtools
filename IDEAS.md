@@ -54,6 +54,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] Validador de JSON Schema — `/data/json-schema-validator`
 - [x] JSON Schema Generator (a partir de um JSON de exemplo)
 - [x] Conversor JSON → YAML — `/data/json-to-yaml`
+- [x] Gerador/validador de cartão de crédito (Luhn + bandeira por IIN) 🔥 — `/tools/credit-card-tool`
 - [ ] Formatador de query GraphQL
 
 ## 🎨 Front-end — CSS, design, playgrounds

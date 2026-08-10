@@ -42,6 +42,7 @@ import {
   LineChartOutlined,
   SendOutlined,
   HistoryOutlined,
+  CreditCardOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -231,6 +232,7 @@ export const LABELS = {
     'bash-scripting': 'Scripts em Bash (shell scripting)',
     'systemd-commands': 'Comandos systemd',
     'sla-calculator': 'Calculadora de SLA (downtime)',
+    'credit-card-tool': 'Gerador/Validador de Cartão (Luhn)',
   },
   en: {
     home: 'Home',
@@ -408,6 +410,7 @@ export const LABELS = {
     'bash-scripting': 'Bash Scripting',
     'systemd-commands': 'systemd Commands',
     'sla-calculator': 'SLA Calculator (downtime budget)',
+    'credit-card-tool': 'Credit Card Generator/Validator (Luhn)',
   },
 }
 
@@ -469,6 +472,7 @@ export function buildMenuItems(l) {
         { key: '/tools/float-explorer', icon: <NumberOutlined />, label: withNewBadge('/tools/float-explorer', l['float-explorer'], l) },
         { key: '/tools/crc-calculator', icon: <SafetyCertificateOutlined />, label: withNewBadge('/tools/crc-calculator', l['crc-calculator'], l) },
         { key: '/tools/units-converter', icon: <SwapOutlined />, label: withNewBadge('/tools/units-converter', l['units-converter'], l) },
+        { key: '/tools/credit-card-tool', icon: <CreditCardOutlined />, label: withNewBadge('/tools/credit-card-tool', l['credit-card-tool'], l) },
       ],
     },
     {
