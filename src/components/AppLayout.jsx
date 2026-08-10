@@ -224,6 +224,7 @@ export const LABELS = {
     'ssh-cheatsheet': 'Comandos SSH',
     'python-cheatsheet': 'Cheat Sheet de Python',
     'grep-sed-awk': 'grep/sed/awk',
+    'jq-cheatsheet': 'Comandos jq',
     'changelog-generator': 'Gerador de Changelog',
   },
   en: {
@@ -395,6 +396,7 @@ export const LABELS = {
     'ssh-cheatsheet': 'SSH Commands',
     'python-cheatsheet': 'Python Cheat Sheet',
     'grep-sed-awk': 'grep/sed/awk',
+    'jq-cheatsheet': 'jq Commands',
     'changelog-generator': 'Changelog Generator',
   },
 }
@@ -663,6 +665,7 @@ export function buildMenuItems(l) {
         { key: '/references/ssh-cheatsheet', icon: <SafetyCertificateOutlined />, label: withNewBadge('/references/ssh-cheatsheet', l['ssh-cheatsheet'], l) },
         { key: '/references/python-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/python-cheatsheet', l['python-cheatsheet'], l) },
         { key: '/references/grep-sed-awk', icon: <ColumnWidthOutlined />, label: withNewBadge('/references/grep-sed-awk', l['grep-sed-awk'], l) },
+        { key: '/references/jq-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/jq-cheatsheet', l['jq-cheatsheet'], l) },
       ],
     },
     {
