@@ -227,6 +227,7 @@ export const LABELS = {
     'jq-cheatsheet': 'Comandos jq',
     'changelog-generator': 'Gerador de Changelog',
     'scrollbar-generator': 'Gerador de Scrollbar CSS',
+    'bash-scripting': 'Scripts em Bash (shell scripting)',
   },
   en: {
     home: 'Home',
@@ -400,6 +401,7 @@ export const LABELS = {
     'jq-cheatsheet': 'jq Commands',
     'changelog-generator': 'Changelog Generator',
     'scrollbar-generator': 'CSS Scrollbar Generator',
+    'bash-scripting': 'Bash Scripting',
   },
 }
 
@@ -669,6 +671,7 @@ export function buildMenuItems(l) {
         { key: '/references/python-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/python-cheatsheet', l['python-cheatsheet'], l) },
         { key: '/references/grep-sed-awk', icon: <ColumnWidthOutlined />, label: withNewBadge('/references/grep-sed-awk', l['grep-sed-awk'], l) },
         { key: '/references/jq-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/jq-cheatsheet', l['jq-cheatsheet'], l) },
+        { key: '/references/bash-scripting', icon: <CodeOutlined />, label: l['bash-scripting'] },
       ],
     },
     {
