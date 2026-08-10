@@ -226,6 +226,7 @@ export const LABELS = {
     'grep-sed-awk': 'grep/sed/awk',
     'jq-cheatsheet': 'Comandos jq',
     'changelog-generator': 'Gerador de Changelog',
+    'scrollbar-generator': 'Gerador de Scrollbar CSS',
   },
   en: {
     home: 'Home',
@@ -398,6 +399,7 @@ export const LABELS = {
     'grep-sed-awk': 'grep/sed/awk',
     'jq-cheatsheet': 'jq Commands',
     'changelog-generator': 'Changelog Generator',
+    'scrollbar-generator': 'CSS Scrollbar Generator',
   },
 }
 
@@ -525,6 +527,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/meta-tags-generator', icon: <GlobalOutlined />, label: withNewBadge('/frontend/meta-tags-generator', l['meta-tags-generator'], l) },
         { key: '/frontend/keyframe-generator', icon: <LineChartOutlined />, label: withNewBadge('/frontend/keyframe-generator', l['keyframe-generator'], l) },
         { key: '/frontend/clip-path-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/clip-path-generator', l['clip-path-generator'], l) },
+        { key: '/frontend/scrollbar-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/scrollbar-generator', l['scrollbar-generator'], l) },
       ],
     },
     {
