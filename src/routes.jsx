@@ -152,6 +152,7 @@ import SshCheatsheetPage from './pages/SshCheatsheetPage'
 import DockerComposeGeneratorPage from './pages/DockerComposeGeneratorPage'
 import OpensslCommandsPage from './pages/OpensslCommandsPage'
 import PythonCheatsheetPage from './pages/PythonCheatsheetPage'
+import GrepSedAwkCheatsheetPage from './pages/GrepSedAwkCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -309,6 +310,7 @@ const router = createBrowserRouter([
       { path: 'references/devtools-shortcuts', element: <DevToolsShortcutsPage /> },
       { path: 'references/ssh-cheatsheet', element: <SshCheatsheetPage /> },
       { path: 'references/python-cheatsheet', element: <PythonCheatsheetPage /> },
+      { path: 'references/grep-sed-awk', element: <GrepSedAwkCheatsheetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

@@ -223,6 +223,7 @@ export const LABELS = {
     'vim-cheatsheet': 'Comandos Vim',
     'ssh-cheatsheet': 'Comandos SSH',
     'python-cheatsheet': 'Cheat Sheet de Python',
+    'grep-sed-awk': 'grep/sed/awk',
     'changelog-generator': 'Gerador de Changelog',
   },
   en: {
@@ -393,6 +394,7 @@ export const LABELS = {
     'vim-cheatsheet': 'Vim Commands',
     'ssh-cheatsheet': 'SSH Commands',
     'python-cheatsheet': 'Python Cheat Sheet',
+    'grep-sed-awk': 'grep/sed/awk',
     'changelog-generator': 'Changelog Generator',
   },
 }
@@ -660,6 +662,7 @@ export function buildMenuItems(l) {
         { key: '/references/vim-cheatsheet', icon: <ColumnWidthOutlined />, label: withNewBadge('/references/vim-cheatsheet', l['vim-cheatsheet'], l) },
         { key: '/references/ssh-cheatsheet', icon: <SafetyCertificateOutlined />, label: withNewBadge('/references/ssh-cheatsheet', l['ssh-cheatsheet'], l) },
         { key: '/references/python-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/python-cheatsheet', l['python-cheatsheet'], l) },
+        { key: '/references/grep-sed-awk', icon: <ColumnWidthOutlined />, label: withNewBadge('/references/grep-sed-awk', l['grep-sed-awk'], l) },
       ],
     },
     {

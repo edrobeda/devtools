@@ -1,0 +1,23 @@
+const puppeteer = require('puppeteer')
+async function main() {
+  const browser = await puppeteer.launch({ args: ['--no-sandbox'] })
+  const page = await browser.newPage()
+  const errs = []
+  page.on('pageerror', (e) => errs.push(e.message))
+  await page.goto('https://devtools.eventifylab.com/references/grep-sed-awk', { waitUntil: 'networkidle0' })
+  await new Promise((r) => setTimeout(r, 700))
+  await page.type('.ant-input-affix-wrapper input, input.ant-input', 'uniq -c', { delay: 5 })
+  await new Promise((r) => setTimeout(r, 300))
+  const n = await page.evaluate(() => document.querySelectorAll('.ant-list-item').length)
+  console.log('items("uniq -c"):', n)
+  await page.evaluate(() => { const c = document.querySelector('.ant-input-clear-icon'); if (c) c.click() })
+  await new Promise((r) => setTimeout(r, 250))
+  await page.type('.ant-input-affix-wrapper input, input.ant-input', 'NF', { delay: 5 })
+  await new Promise((r) => setTimeout(r, 300))
+  const n2 = await page.evaluate(() => document.querySelectorAll('.ant-list-item').length)
+  console.log('items("NF"):', n2)
+  console.log('errors:', JSON.stringify(errs))
+  await browser.close()
+  process.exit(errs.length ? 1 : 0)
+}
+main()
