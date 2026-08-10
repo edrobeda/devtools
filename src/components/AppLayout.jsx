@@ -228,6 +228,7 @@ export const LABELS = {
     'changelog-generator': 'Gerador de Changelog',
     'scrollbar-generator': 'Gerador de Scrollbar CSS',
     'bash-scripting': 'Scripts em Bash (shell scripting)',
+    'systemd-commands': 'Comandos systemd',
   },
   en: {
     home: 'Home',
@@ -402,6 +403,7 @@ export const LABELS = {
     'changelog-generator': 'Changelog Generator',
     'scrollbar-generator': 'CSS Scrollbar Generator',
     'bash-scripting': 'Bash Scripting',
+    'systemd-commands': 'systemd Commands',
   },
 }
 
@@ -672,6 +674,7 @@ export function buildMenuItems(l) {
         { key: '/references/grep-sed-awk', icon: <ColumnWidthOutlined />, label: withNewBadge('/references/grep-sed-awk', l['grep-sed-awk'], l) },
         { key: '/references/jq-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/jq-cheatsheet', l['jq-cheatsheet'], l) },
         { key: '/references/bash-scripting', icon: <CodeOutlined />, label: l['bash-scripting'] },
+        { key: '/references/systemd-commands', icon: <ContainerOutlined />, label: withNewBadge('/references/systemd-commands', l['systemd-commands'], l) },
       ],
     },
     {

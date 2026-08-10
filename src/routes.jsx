@@ -156,6 +156,7 @@ import GrepSedAwkCheatsheetPage from './pages/GrepSedAwkCheatsheetPage'
 import JqCheatsheetPage from './pages/JqCheatsheetPage'
 import ScrollbarCssGeneratorPage from './pages/ScrollbarCssGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
+import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -317,6 +318,7 @@ const router = createBrowserRouter([
       { path: 'references/jq-cheatsheet', element: <JqCheatsheetPage /> },
       { path: 'frontend/scrollbar-generator', element: <ScrollbarCssGeneratorPage /> },
       { path: 'references/bash-scripting', element: <BashScriptingCheatsheetPage /> },
+      { path: 'references/systemd-commands', element: <SystemdCheatsheetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
