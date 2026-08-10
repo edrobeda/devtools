@@ -18,6 +18,7 @@ import GradientBorderButtonPage from './pages/GradientBorderButtonPage'
 import UseMediaQuerySnippetPage from './pages/UseMediaQuerySnippetPage'
 import ContrastCheckerPage from './pages/ContrastCheckerPage'
 import CurlGeneratorPage from './pages/CurlGeneratorPage'
+import CurlToCodePage from './pages/CurlToCodePage'
 import GitignoreGeneratorPage from './pages/GitignoreGeneratorPage'
 import RateLimitCalculatorPage from './pages/RateLimitCalculatorPage'
 import ArnParserPage from './pages/ArnParserPage'
@@ -181,6 +182,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-media-query', element: <UseMediaQuerySnippetPage /> },
       { path: 'frontend/contrast-checker', element: <ContrastCheckerPage /> },
       { path: 'apis/curl-generator', element: <CurlGeneratorPage /> },
+      { path: 'apis/curl-to-code', element: <CurlToCodePage /> },
       { path: 'devops/gitignore-generator', element: <GitignoreGeneratorPage /> },
       { path: 'database/rate-limit-calculator', element: <RateLimitCalculatorPage /> },
       { path: 'cloud/arn-parser', element: <ArnParserPage /> },

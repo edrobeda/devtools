@@ -90,6 +90,7 @@ export const LABELS = {
     'use-media-query': 'useMediaQuery',
     'contrast-checker': 'Checador de Contraste',
     'curl-generator': 'Gerador de cURL',
+    'curl-to-code': 'cURL → Código (fetch/axios)',
     'gitignore-generator': 'Gerador de .gitignore',
     'rate-limit-calculator': 'Calculadora de Rate Limit',
     'arn-parser': 'AWS ARN Parser',
@@ -266,6 +267,7 @@ export const LABELS = {
     'use-media-query': 'useMediaQuery',
     'contrast-checker': 'Contrast Checker',
     'curl-generator': 'cURL Generator',
+    'curl-to-code': 'cURL → Code (fetch/axios)',
     'gitignore-generator': '.gitignore Generator',
     'rate-limit-calculator': 'Rate Limit Calculator',
     'arn-parser': 'AWS ARN Parser',
@@ -542,6 +544,7 @@ export function buildMenuItems(l) {
       label: l.apis,
       children: [
         { key: '/apis/curl-generator', label: l['curl-generator'] },
+        { key: '/apis/curl-to-code', icon: <CodeOutlined />, label: withNewBadge('/apis/curl-to-code', l['curl-to-code'], l) },
         { key: '/apis/webhook-payload-generator', label: withNewBadge('/apis/webhook-payload-generator', l['webhook-payload-generator'], l) },
       ],
     },
