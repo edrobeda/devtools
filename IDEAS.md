@@ -172,7 +172,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Image Compressor
 - [ ] SVG Optimizer
 - [ ] Image Metadata (EXIF)
-- [ ] QR Code Generator (incl. QR pra Wi-Fi)
+- [x] QR Code Generator (incl. QR pra Wi-Fi)
 - [ ] Gerador/leitor de código de barras
 - [ ] ZIP Preview
 - [x] JSON Viewer / Tree Viewer — `/data/json-tree-viewer`

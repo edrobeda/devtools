@@ -43,6 +43,7 @@ import {
   SendOutlined,
   HistoryOutlined,
   CreditCardOutlined,
+  QrcodeOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -233,6 +234,7 @@ export const LABELS = {
     'systemd-commands': 'Comandos systemd',
     'sla-calculator': 'Calculadora de SLA (downtime)',
     'credit-card-tool': 'Gerador/Validador de Cartão (Luhn)',
+    'qr-code-generator': 'Gerador de QR Code',
   },
   en: {
     home: 'Home',
@@ -411,6 +413,7 @@ export const LABELS = {
     'systemd-commands': 'systemd Commands',
     'sla-calculator': 'SLA Calculator (downtime budget)',
     'credit-card-tool': 'Credit Card Generator/Validator (Luhn)',
+    'qr-code-generator': 'QR Code Generator',
   },
 }
 
@@ -473,6 +476,7 @@ export function buildMenuItems(l) {
         { key: '/tools/crc-calculator', icon: <SafetyCertificateOutlined />, label: withNewBadge('/tools/crc-calculator', l['crc-calculator'], l) },
         { key: '/tools/units-converter', icon: <SwapOutlined />, label: withNewBadge('/tools/units-converter', l['units-converter'], l) },
         { key: '/tools/credit-card-tool', icon: <CreditCardOutlined />, label: withNewBadge('/tools/credit-card-tool', l['credit-card-tool'], l) },
+        { key: '/tools/qr-code-generator', icon: <QrcodeOutlined />, label: withNewBadge('/tools/qr-code-generator', l['qr-code-generator'], l) },
       ],
     },
     {

@@ -160,6 +160,7 @@ import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
 import CreditCardToolPage from './pages/CreditCardToolPage'
+import QrCodeGeneratorPage from './pages/QrCodeGeneratorPage'
 
 const router = createBrowserRouter([
   {
@@ -325,6 +326,7 @@ const router = createBrowserRouter([
       { path: 'references/systemd-commands', element: <SystemdCheatsheetPage /> },
       { path: 'devops/sla-calculator', element: <SlaCalculatorPage /> },
       { path: 'tools/credit-card-tool', element: <CreditCardToolPage /> },
+      { path: 'tools/qr-code-generator', element: <QrCodeGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
