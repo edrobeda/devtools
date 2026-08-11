@@ -256,6 +256,7 @@ export const LABELS = {
     'html-cheatsheet': 'Cheat Sheet de HTML',
     'js-testing-cheatsheet': 'Cheat Sheet de Testes JS (Jest/Vitest)',
     'react-cheatsheet': 'Cheat Sheet de React',
+    'tailwind-cheatsheet': 'Cheat Sheet de Tailwind CSS',
   },
   en: {
     home: 'Home',
@@ -452,6 +453,7 @@ export const LABELS = {
     'html-cheatsheet': 'HTML Cheat Sheet',
     'js-testing-cheatsheet': 'JS Testing Cheat Sheet (Jest/Vitest)',
     'react-cheatsheet': 'React Cheat Sheet',
+    'tailwind-cheatsheet': 'Tailwind CSS Cheat Sheet',
   },
 }
 
@@ -744,6 +746,7 @@ export function buildMenuItems(l) {
         { key: '/references/typescript-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/typescript-cheatsheet', l['typescript-cheatsheet'], l) },
         { key: '/references/js-testing-cheatsheet', icon: <ExperimentOutlined />, label: withNewBadge('/references/js-testing-cheatsheet', l['js-testing-cheatsheet'], l) },
         { key: '/references/react-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/react-cheatsheet', l['react-cheatsheet'], l) },
+        { key: '/references/tailwind-cheatsheet', icon: <BgColorsOutlined />, label: withNewBadge('/references/tailwind-cheatsheet', l['tailwind-cheatsheet'], l) },
       ],
     },
     {

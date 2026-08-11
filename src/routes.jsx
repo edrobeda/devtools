@@ -178,6 +178,7 @@ import HtmlCheatsheetPage from './pages/HtmlCheatsheetPage'
 import UrlParserPage from './pages/UrlParserPage'
 import JsTestingCheatsheetPage from './pages/JsTestingCheatsheetPage'
 import ReactCheatsheetPage from './pages/ReactCheatsheetPage'
+import TailwindCheatsheetPage from './pages/TailwindCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -360,6 +361,7 @@ const router = createBrowserRouter([
       { path: 'tools/glob-tester', element: <GlobTesterPage /> },
       { path: 'references/html-cheatsheet', element: <HtmlCheatsheetPage /> },
       { path: 'references/react-cheatsheet', element: <ReactCheatsheetPage /> },
+      { path: 'references/tailwind-cheatsheet', element: <TailwindCheatsheetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
