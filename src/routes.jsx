@@ -162,6 +162,7 @@ import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
 import CreditCardToolPage from './pages/CreditCardToolPage'
 import QrCodeGeneratorPage from './pages/QrCodeGeneratorPage'
+import GithubActionsCheatsheetPage from './pages/GithubActionsCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -329,6 +330,7 @@ const router = createBrowserRouter([
       { path: 'devops/sla-calculator', element: <SlaCalculatorPage /> },
       { path: 'tools/credit-card-tool', element: <CreditCardToolPage /> },
       { path: 'tools/qr-code-generator', element: <QrCodeGeneratorPage /> },
+      { path: 'references/github-actions-cheatsheet', element: <GithubActionsCheatsheetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

@@ -44,6 +44,7 @@ import {
   HistoryOutlined,
   CreditCardOutlined,
   QrcodeOutlined,
+  GithubOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -237,6 +238,7 @@ export const LABELS = {
     'credit-card-tool': 'Gerador/Validador de Cartão (Luhn)',
     'qr-code-generator': 'Gerador de QR Code',
     'html-formatter': 'Formatador de HTML',
+    'github-actions-cheatsheet': 'GitHub Actions (workflows)',
   },
   en: {
     home: 'Home',
@@ -417,6 +419,7 @@ export const LABELS = {
     'credit-card-tool': 'Credit Card Generator/Validator (Luhn)',
     'qr-code-generator': 'QR Code Generator',
     'html-formatter': 'HTML Formatter',
+    'github-actions-cheatsheet': 'GitHub Actions (workflows)',
   },
 }
 
@@ -693,6 +696,7 @@ export function buildMenuItems(l) {
         { key: '/references/jq-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/jq-cheatsheet', l['jq-cheatsheet'], l) },
         { key: '/references/bash-scripting', icon: <CodeOutlined />, label: l['bash-scripting'] },
         { key: '/references/systemd-commands', icon: <ContainerOutlined />, label: withNewBadge('/references/systemd-commands', l['systemd-commands'], l) },
+        { key: '/references/github-actions-cheatsheet', icon: <GithubOutlined />, label: withNewBadge('/references/github-actions-cheatsheet', l['github-actions-cheatsheet'], l) },
       ],
     },
     {
