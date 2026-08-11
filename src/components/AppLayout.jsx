@@ -47,6 +47,7 @@ import {
   GithubOutlined,
   AudioOutlined,
   SelectOutlined,
+  AppstoreOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -257,6 +258,7 @@ export const LABELS = {
     'js-testing-cheatsheet': 'Cheat Sheet de Testes JS (Jest/Vitest)',
     'react-cheatsheet': 'Cheat Sheet de React',
     'tailwind-cheatsheet': 'Cheat Sheet de Tailwind CSS',
+    'grid-areas-generator': 'Gerador de Grid Areas CSS',
   },
   en: {
     home: 'Home',
@@ -454,6 +456,7 @@ export const LABELS = {
     'js-testing-cheatsheet': 'JS Testing Cheat Sheet (Jest/Vitest)',
     'react-cheatsheet': 'React Cheat Sheet',
     'tailwind-cheatsheet': 'Tailwind CSS Cheat Sheet',
+    'grid-areas-generator': 'CSS Grid Areas Generator',
   },
 }
 
@@ -592,6 +595,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-to-js', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-to-js', l['css-to-js'], l) },
         { key: '/frontend/clamp-generator', icon: <FontSizeOutlined />, label: withNewBadge('/frontend/clamp-generator', l['clamp-generator'], l) },
         { key: '/frontend/css-triangle-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-triangle-generator', l['css-triangle-generator'], l) },
+        { key: '/frontend/grid-areas-generator', icon: <AppstoreOutlined />, label: withNewBadge('/frontend/grid-areas-generator', l['grid-areas-generator'], l) },
       ],
     },
     {

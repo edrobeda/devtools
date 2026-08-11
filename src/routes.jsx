@@ -179,6 +179,7 @@ import UrlParserPage from './pages/UrlParserPage'
 import JsTestingCheatsheetPage from './pages/JsTestingCheatsheetPage'
 import ReactCheatsheetPage from './pages/ReactCheatsheetPage'
 import TailwindCheatsheetPage from './pages/TailwindCheatsheetPage'
+import GridAreasGeneratorPage from './pages/GridAreasGeneratorPage'
 
 const router = createBrowserRouter([
   {
@@ -362,6 +363,7 @@ const router = createBrowserRouter([
       { path: 'references/html-cheatsheet', element: <HtmlCheatsheetPage /> },
       { path: 'references/react-cheatsheet', element: <ReactCheatsheetPage /> },
       { path: 'references/tailwind-cheatsheet', element: <TailwindCheatsheetPage /> },
+      { path: 'frontend/grid-areas-generator', element: <GridAreasGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
