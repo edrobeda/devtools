@@ -48,6 +48,7 @@ import {
   AudioOutlined,
   SelectOutlined,
   AppstoreOutlined,
+  LoadingOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -265,6 +266,7 @@ export const LABELS = {
     'sitemap-generator': 'Gerador de Sitemap XML',
     'web-app-manifest': 'Gerador de Web App Manifest',
     'editorconfig-generator': 'Gerador de .editorconfig',
+    'css-spinner-generator': 'Gerador de Loading Spinner CSS',
   },
   en: {
     home: 'Home',
@@ -469,6 +471,7 @@ export const LABELS = {
     'sitemap-generator': 'XML Sitemap Generator',
     'web-app-manifest': 'Web App Manifest Generator',
     'editorconfig-generator': '.editorconfig Generator',
+    'css-spinner-generator': 'CSS Loading Spinner Generator',
   },
 }
 
@@ -613,6 +616,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/pattern-background-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/pattern-background-generator', l['pattern-background-generator'], l) },
         { key: '/frontend/sitemap-generator', icon: <GlobalOutlined />, label: withNewBadge('/frontend/sitemap-generator', l['sitemap-generator'], l) },
         { key: '/frontend/web-app-manifest', icon: <MobileOutlined />, label: withNewBadge('/frontend/web-app-manifest', l['web-app-manifest'], l) },
+        { key: '/frontend/css-spinner-generator', icon: <LoadingOutlined />, label: withNewBadge('/frontend/css-spinner-generator', l['css-spinner-generator'], l) },
       ],
     },
     {
