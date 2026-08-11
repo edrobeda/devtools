@@ -164,6 +164,7 @@ import CreditCardToolPage from './pages/CreditCardToolPage'
 import QrCodeGeneratorPage from './pages/QrCodeGeneratorPage'
 import GithubActionsCheatsheetPage from './pages/GithubActionsCheatsheetPage'
 import CssToJsPage from './pages/CssToJsPage'
+import NginxCheatsheetPage from './pages/NginxCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -333,6 +334,7 @@ const router = createBrowserRouter([
       { path: 'tools/qr-code-generator', element: <QrCodeGeneratorPage /> },
       { path: 'references/github-actions-cheatsheet', element: <GithubActionsCheatsheetPage /> },
       { path: 'frontend/css-to-js', element: <CssToJsPage /> },
+      { path: 'references/nginx-cheatsheet', element: <NginxCheatsheetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

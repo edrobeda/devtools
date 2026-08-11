@@ -240,6 +240,7 @@ export const LABELS = {
     'html-formatter': 'Formatador de HTML',
     'github-actions-cheatsheet': 'GitHub Actions (workflows)',
     'css-to-js': 'CSS ↔ JS (style object)',
+    'nginx-cheatsheet': 'Cheat Sheet de Nginx',
   },
   en: {
     home: 'Home',
@@ -422,6 +423,7 @@ export const LABELS = {
     'html-formatter': 'HTML Formatter',
     'github-actions-cheatsheet': 'GitHub Actions (workflows)',
     'css-to-js': 'CSS ↔ JS (style object)',
+    'nginx-cheatsheet': 'Nginx Cheat Sheet',
   },
 }
 
@@ -700,6 +702,7 @@ export function buildMenuItems(l) {
         { key: '/references/bash-scripting', icon: <CodeOutlined />, label: l['bash-scripting'] },
         { key: '/references/systemd-commands', icon: <ContainerOutlined />, label: withNewBadge('/references/systemd-commands', l['systemd-commands'], l) },
         { key: '/references/github-actions-cheatsheet', icon: <GithubOutlined />, label: withNewBadge('/references/github-actions-cheatsheet', l['github-actions-cheatsheet'], l) },
+        { key: '/references/nginx-cheatsheet', icon: <GlobalOutlined />, label: withNewBadge('/references/nginx-cheatsheet', l['nginx-cheatsheet'], l) },
       ],
     },
     {
