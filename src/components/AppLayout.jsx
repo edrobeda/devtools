@@ -241,6 +241,7 @@ export const LABELS = {
     'github-actions-cheatsheet': 'GitHub Actions (workflows)',
     'css-to-js': 'CSS ↔ JS (style object)',
     'nginx-cheatsheet': 'Cheat Sheet de Nginx',
+    'redis-commands': 'Comandos Redis',
   },
   en: {
     home: 'Home',
@@ -424,6 +425,7 @@ export const LABELS = {
     'github-actions-cheatsheet': 'GitHub Actions (workflows)',
     'css-to-js': 'CSS ↔ JS (style object)',
     'nginx-cheatsheet': 'Nginx Cheat Sheet',
+    'redis-commands': 'Redis Commands',
   },
 }
 
@@ -703,6 +705,7 @@ export function buildMenuItems(l) {
         { key: '/references/systemd-commands', icon: <ContainerOutlined />, label: withNewBadge('/references/systemd-commands', l['systemd-commands'], l) },
         { key: '/references/github-actions-cheatsheet', icon: <GithubOutlined />, label: withNewBadge('/references/github-actions-cheatsheet', l['github-actions-cheatsheet'], l) },
         { key: '/references/nginx-cheatsheet', icon: <GlobalOutlined />, label: withNewBadge('/references/nginx-cheatsheet', l['nginx-cheatsheet'], l) },
+        { key: '/references/redis-commands', icon: <DatabaseOutlined />, label: withNewBadge('/references/redis-commands', l['redis-commands'], l) },
       ],
     },
     {
