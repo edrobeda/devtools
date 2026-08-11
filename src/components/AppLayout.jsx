@@ -248,6 +248,7 @@ export const LABELS = {
     'clamp-generator': 'Tipografia Fluida (clamp)',
     'morse-code-converter': 'Conversor de Código Morse',
     'glob-tester': 'Glob Pattern Tester (gitignore)',
+    'html-cheatsheet': 'Cheat Sheet de HTML',
     'js-testing-cheatsheet': 'Cheat Sheet de Testes JS (Jest/Vitest)',
   },
   en: {
@@ -438,6 +439,7 @@ export const LABELS = {
     'clamp-generator': 'Fluid Typography (clamp)',
     'morse-code-converter': 'Morse Code Converter',
     'glob-tester': 'Glob Pattern Tester (gitignore)',
+    'html-cheatsheet': 'HTML Cheat Sheet',
     'js-testing-cheatsheet': 'JS Testing Cheat Sheet (Jest/Vitest)',
   },
 }
@@ -706,6 +708,7 @@ export function buildMenuItems(l) {
         { key: '/references/bash-shortcuts', label: withNewBadge('/references/bash-shortcuts', l['bash-shortcuts'], l) },
         { key: '/references/http-methods', label: withNewBadge('/references/http-methods', l['http-methods'], l) },
         { key: '/references/markdown-syntax', icon: <FileMarkdownOutlined />, label: withNewBadge('/references/markdown-syntax', l['markdown-syntax'], l) },
+        { key: '/references/html-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/html-cheatsheet', l['html-cheatsheet'], l) },
         { key: '/references/ascii-table', icon: <FontSizeOutlined />, label: withNewBadge('/references/ascii-table', l['ascii-table'], l) },
         { key: '/references/regex-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/regex-cheatsheet', l['regex-cheatsheet'], l) },
         { key: '/references/http-headers', icon: <SendOutlined />, label: withNewBadge('/references/http-headers', l['http-headers'], l) },
