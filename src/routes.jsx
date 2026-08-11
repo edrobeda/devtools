@@ -167,6 +167,7 @@ import CssToJsPage from './pages/CssToJsPage'
 import NginxCheatsheetPage from './pages/NginxCheatsheetPage'
 import RedisCheatsheetPage from './pages/RedisCheatsheetPage'
 import GhCliCheatsheetPage from './pages/GhCliCheatsheetPage'
+import ClampGeneratorPage from './pages/ClampGeneratorPage'
 
 const router = createBrowserRouter([
   {
@@ -339,6 +340,7 @@ const router = createBrowserRouter([
       { path: 'references/nginx-cheatsheet', element: <NginxCheatsheetPage /> },
       { path: 'references/redis-commands', element: <RedisCheatsheetPage /> },
       { path: 'references/gh-cli-cheatsheet', element: <GhCliCheatsheetPage /> },
+      { path: 'frontend/clamp-generator', element: <ClampGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

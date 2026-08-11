@@ -243,6 +243,7 @@ export const LABELS = {
     'nginx-cheatsheet': 'Cheat Sheet de Nginx',
     'redis-commands': 'Comandos Redis',
     'gh-cli-cheatsheet': 'GitHub CLI (gh)',
+    'clamp-generator': 'Tipografia Fluida (clamp)',
   },
   en: {
     home: 'Home',
@@ -428,6 +429,7 @@ export const LABELS = {
     'nginx-cheatsheet': 'Nginx Cheat Sheet',
     'redis-commands': 'Redis Commands',
     'gh-cli-cheatsheet': 'GitHub CLI (gh)',
+    'clamp-generator': 'Fluid Typography (clamp)',
   },
 }
 
@@ -560,6 +562,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/clip-path-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/clip-path-generator', l['clip-path-generator'], l) },
         { key: '/frontend/scrollbar-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/scrollbar-generator', l['scrollbar-generator'], l) },
         { key: '/frontend/css-to-js', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-to-js', l['css-to-js'], l) },
+        { key: '/frontend/clamp-generator', icon: <FontSizeOutlined />, label: withNewBadge('/frontend/clamp-generator', l['clamp-generator'], l) },
       ],
     },
     {
