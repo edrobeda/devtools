@@ -169,6 +169,8 @@ import RedisCheatsheetPage from './pages/RedisCheatsheetPage'
 import GhCliCheatsheetPage from './pages/GhCliCheatsheetPage'
 import ClampGeneratorPage from './pages/ClampGeneratorPage'
 import TypescriptCheatsheetPage from './pages/TypescriptCheatsheetPage'
+import MorseConverterPage from './pages/MorseConverterPage'
+import GlobTesterPage from './pages/GlobTesterPage'
 
 const router = createBrowserRouter([
   {
@@ -343,6 +345,8 @@ const router = createBrowserRouter([
       { path: 'references/gh-cli-cheatsheet', element: <GhCliCheatsheetPage /> },
       { path: 'frontend/clamp-generator', element: <ClampGeneratorPage /> },
       { path: 'references/typescript-cheatsheet', element: <TypescriptCheatsheetPage /> },
+      { path: 'tools/morse-code-converter', element: <MorseConverterPage /> },
+      { path: 'tools/glob-tester', element: <GlobTesterPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

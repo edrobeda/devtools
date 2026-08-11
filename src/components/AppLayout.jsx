@@ -45,6 +45,7 @@ import {
   CreditCardOutlined,
   QrcodeOutlined,
   GithubOutlined,
+  AudioOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -245,6 +246,8 @@ export const LABELS = {
     'gh-cli-cheatsheet': 'GitHub CLI (gh)',
     'typescript-cheatsheet': 'Cheat Sheet de TypeScript',
     'clamp-generator': 'Tipografia Fluida (clamp)',
+    'morse-code-converter': 'Conversor de Código Morse',
+    'glob-tester': 'Glob Pattern Tester (gitignore)',
   },
   en: {
     home: 'Home',
@@ -432,6 +435,8 @@ export const LABELS = {
     'gh-cli-cheatsheet': 'GitHub CLI (gh)',
     'typescript-cheatsheet': 'TypeScript Cheat Sheet',
     'clamp-generator': 'Fluid Typography (clamp)',
+    'morse-code-converter': 'Morse Code Converter',
+    'glob-tester': 'Glob Pattern Tester (gitignore)',
   },
 }
 
@@ -496,6 +501,8 @@ export function buildMenuItems(l) {
         { key: '/tools/units-converter', icon: <SwapOutlined />, label: withNewBadge('/tools/units-converter', l['units-converter'], l) },
         { key: '/tools/credit-card-tool', icon: <CreditCardOutlined />, label: withNewBadge('/tools/credit-card-tool', l['credit-card-tool'], l) },
         { key: '/tools/qr-code-generator', icon: <QrcodeOutlined />, label: withNewBadge('/tools/qr-code-generator', l['qr-code-generator'], l) },
+        { key: '/tools/morse-code-converter', icon: <AudioOutlined />, label: withNewBadge('/tools/morse-code-converter', l['morse-code-converter'], l) },
+        { key: '/tools/glob-tester', icon: <SearchOutlined />, label: withNewBadge('/tools/glob-tester', l['glob-tester'], l) },
       ],
     },
     {
