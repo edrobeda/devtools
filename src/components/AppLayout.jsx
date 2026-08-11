@@ -263,6 +263,7 @@ export const LABELS = {
     'grid-areas-generator': 'Gerador de Grid Areas CSS',
     'pattern-background-generator': 'Gerador de Padrões de Fundo CSS',
     'sitemap-generator': 'Gerador de Sitemap XML',
+    'editorconfig-generator': 'Gerador de .editorconfig',
   },
   en: {
     home: 'Home',
@@ -465,6 +466,7 @@ export const LABELS = {
     'grid-areas-generator': 'CSS Grid Areas Generator',
     'pattern-background-generator': 'CSS Pattern Background Generator',
     'sitemap-generator': 'XML Sitemap Generator',
+    'editorconfig-generator': '.editorconfig Generator',
   },
 }
 
@@ -638,6 +640,7 @@ export function buildMenuItems(l) {
         { key: '/devops/ansi-colors', icon: <BgColorsOutlined />, label: withNewBadge('/devops/ansi-colors', l['ansi-colors'], l) },
         { key: '/devops/openssl-commands', icon: <ContainerOutlined />, label: withNewBadge('/devops/openssl-commands', l['openssl-commands'], l) },
         { key: '/devops/sla-calculator', icon: <ExperimentOutlined />, label: withNewBadge('/devops/sla-calculator', l['sla-calculator'], l) },
+        { key: '/devops/editorconfig-generator', icon: <FileTextOutlined />, label: withNewBadge('/devops/editorconfig-generator', l['editorconfig-generator'], l) },
       ],
     },
     {

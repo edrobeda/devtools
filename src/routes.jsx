@@ -161,6 +161,7 @@ import GrepSedAwkCheatsheetPage from './pages/GrepSedAwkCheatsheetPage'
 import JqCheatsheetPage from './pages/JqCheatsheetPage'
 import ScrollbarCssGeneratorPage from './pages/ScrollbarCssGeneratorPage'
 import SitemapGeneratorPage from './pages/SitemapGeneratorPage'
+import EditorconfigGeneratorPage from './pages/EditorconfigGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
@@ -372,6 +373,7 @@ const router = createBrowserRouter([
       { path: 'frontend/grid-areas-generator', element: <GridAreasGeneratorPage /> },
       { path: 'frontend/pattern-background-generator', element: <PatternBackgroundGeneratorPage /> },
       { path: 'frontend/sitemap-generator', element: <SitemapGeneratorPage /> },
+      { path: 'devops/editorconfig-generator', element: <EditorconfigGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
