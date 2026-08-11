@@ -61,6 +61,7 @@ import PaletteGeneratorPage from './pages/PaletteGeneratorPage'
 import RippleButtonPage from './pages/RippleButtonPage'
 import UseOnScreenSnippetPage from './pages/UseOnScreenSnippetPage'
 import FlexboxCheatsheetPage from './pages/FlexboxCheatsheetPage'
+import FontFaceGeneratorPage from './pages/FontFaceGeneratorPage'
 import CssUnitConverterPage from './pages/CssUnitConverterPage'
 import AspectRatioCalculatorPage from './pages/AspectRatioCalculatorPage'
 import CssSpecificityCalculatorPage from './pages/CssSpecificityCalculatorPage'
@@ -366,6 +367,7 @@ const router = createBrowserRouter([
       { path: 'references/gh-cli-cheatsheet', element: <GhCliCheatsheetPage /> },
       { path: 'frontend/clamp-generator', element: <ClampGeneratorPage /> },
       { path: 'frontend/css-triangle-generator', element: <CssTriangleGeneratorPage /> },
+      { path: 'frontend/font-face-generator', element: <FontFaceGeneratorPage /> },
       { path: 'references/typescript-cheatsheet', element: <TypescriptCheatsheetPage /> },
       { path: 'tools/morse-code-converter', element: <MorseConverterPage /> },
       { path: 'tools/glob-tester', element: <GlobTesterPage /> },
