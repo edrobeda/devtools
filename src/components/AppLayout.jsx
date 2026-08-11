@@ -248,6 +248,7 @@ export const LABELS = {
     'clamp-generator': 'Tipografia Fluida (clamp)',
     'morse-code-converter': 'Conversor de Código Morse',
     'glob-tester': 'Glob Pattern Tester (gitignore)',
+    'js-testing-cheatsheet': 'Cheat Sheet de Testes JS (Jest/Vitest)',
   },
   en: {
     home: 'Home',
@@ -437,6 +438,7 @@ export const LABELS = {
     'clamp-generator': 'Fluid Typography (clamp)',
     'morse-code-converter': 'Morse Code Converter',
     'glob-tester': 'Glob Pattern Tester (gitignore)',
+    'js-testing-cheatsheet': 'JS Testing Cheat Sheet (Jest/Vitest)',
   },
 }
 
@@ -722,6 +724,7 @@ export function buildMenuItems(l) {
         { key: '/references/redis-commands', icon: <DatabaseOutlined />, label: withNewBadge('/references/redis-commands', l['redis-commands'], l) },
         { key: '/references/gh-cli-cheatsheet', icon: <GithubOutlined />, label: withNewBadge('/references/gh-cli-cheatsheet', l['gh-cli-cheatsheet'], l) },
         { key: '/references/typescript-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/typescript-cheatsheet', l['typescript-cheatsheet'], l) },
+        { key: '/references/js-testing-cheatsheet', icon: <ExperimentOutlined />, label: withNewBadge('/references/js-testing-cheatsheet', l['js-testing-cheatsheet'], l) },
       ],
     },
     {

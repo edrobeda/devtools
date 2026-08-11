@@ -171,6 +171,7 @@ import ClampGeneratorPage from './pages/ClampGeneratorPage'
 import TypescriptCheatsheetPage from './pages/TypescriptCheatsheetPage'
 import MorseConverterPage from './pages/MorseConverterPage'
 import GlobTesterPage from './pages/GlobTesterPage'
+import JsTestingCheatsheetPage from './pages/JsTestingCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -347,6 +348,7 @@ const router = createBrowserRouter([
       { path: 'references/typescript-cheatsheet', element: <TypescriptCheatsheetPage /> },
       { path: 'tools/morse-code-converter', element: <MorseConverterPage /> },
       { path: 'tools/glob-tester', element: <GlobTesterPage /> },
+      { path: 'references/js-testing-cheatsheet', element: <JsTestingCheatsheetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
