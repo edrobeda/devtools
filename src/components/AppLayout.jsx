@@ -46,6 +46,7 @@ import {
   QrcodeOutlined,
   GithubOutlined,
   AudioOutlined,
+  SelectOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -140,6 +141,7 @@ export const LABELS = {
     'flexbox-cheatsheet': 'Cheat Sheet de Flexbox',
     'css-unit-converter': 'Conversor de Unidades CSS',
     'css-specificity-calculator': 'Calculadora de Especificidade CSS',
+    'css-selector-tester': 'Testador de Seletores CSS',
     'floating-label-input': 'Input com Label Flutuante',
     'use-key-press': 'useKeyPress',
     'sql-commands': 'Comandos SQL',
@@ -333,6 +335,7 @@ export const LABELS = {
     'flexbox-cheatsheet': 'Flexbox Cheat Sheet',
     'css-unit-converter': 'CSS Unit Converter',
     'css-specificity-calculator': 'CSS Specificity Calculator',
+    'css-selector-tester': 'CSS Selector Tester',
     'floating-label-input': 'Floating Label Input',
     'use-key-press': 'useKeyPress',
     'sql-commands': 'SQL Commands',
@@ -496,6 +499,7 @@ export function buildMenuItems(l) {
         { key: '/tools/slug-generator', icon: <LinkOutlined />, label: withNewBadge('/tools/slug-generator', l['slug-generator'], l) },
         { key: '/tools/css-unit-converter', icon: <ColumnWidthOutlined />, label: withNewBadge('/tools/css-unit-converter', l['css-unit-converter'], l) },
         { key: '/tools/css-specificity-calculator', icon: <OrderedListOutlined />, label: withNewBadge('/tools/css-specificity-calculator', l['css-specificity-calculator'], l) },
+        { key: '/tools/css-selector-tester', icon: <SelectOutlined />, label: withNewBadge('/tools/css-selector-tester', l['css-selector-tester'], l) },
         { key: '/tools/nanoid-generator', icon: <IdcardOutlined />, label: withNewBadge('/tools/nanoid-generator', l['nanoid-generator'], l) },
         { key: '/tools/html-entity-encoder', icon: <SwapOutlined />, label: withNewBadge('/tools/html-entity-encoder', l['html-entity-encoder'], l) },
         { key: '/tools/hmac-generator', icon: <KeyOutlined />, label: withNewBadge('/tools/hmac-generator', l['hmac-generator'], l) },

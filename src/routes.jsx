@@ -63,6 +63,7 @@ import UseOnScreenSnippetPage from './pages/UseOnScreenSnippetPage'
 import FlexboxCheatsheetPage from './pages/FlexboxCheatsheetPage'
 import CssUnitConverterPage from './pages/CssUnitConverterPage'
 import CssSpecificityCalculatorPage from './pages/CssSpecificityCalculatorPage'
+import CssSelectorTesterPage from './pages/CssSelectorTesterPage'
 import FloatingLabelInputPage from './pages/FloatingLabelInputPage'
 import UseKeyPressSnippetPage from './pages/UseKeyPressSnippetPage'
 import SqlCommandsPage from './pages/SqlCommandsPage'
@@ -243,6 +244,7 @@ const router = createBrowserRouter([
       { path: 'references/flexbox-cheatsheet', element: <FlexboxCheatsheetPage /> },
       { path: 'tools/css-unit-converter', element: <CssUnitConverterPage /> },
       { path: 'tools/css-specificity-calculator', element: <CssSpecificityCalculatorPage /> },
+      { path: 'tools/css-selector-tester', element: <CssSelectorTesterPage /> },
       { path: 'styles/floating-label-input', element: <FloatingLabelInputPage /> },
       { path: 'snippets/use-key-press', element: <UseKeyPressSnippetPage /> },
       { path: 'references/sql-commands', element: <SqlCommandsPage /> },
