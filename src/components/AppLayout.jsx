@@ -250,6 +250,7 @@ export const LABELS = {
     'gh-cli-cheatsheet': 'GitHub CLI (gh)',
     'typescript-cheatsheet': 'Cheat Sheet de TypeScript',
     'clamp-generator': 'Tipografia Fluida (clamp)',
+    'css-triangle-generator': 'Gerador de Triângulo CSS',
     'morse-code-converter': 'Conversor de Código Morse',
     'glob-tester': 'Glob Pattern Tester (gitignore)',
     'html-cheatsheet': 'Cheat Sheet de HTML',
@@ -445,6 +446,7 @@ export const LABELS = {
     'gh-cli-cheatsheet': 'GitHub CLI (gh)',
     'typescript-cheatsheet': 'TypeScript Cheat Sheet',
     'clamp-generator': 'Fluid Typography (clamp)',
+    'css-triangle-generator': 'CSS Triangle Generator',
     'morse-code-converter': 'Morse Code Converter',
     'glob-tester': 'Glob Pattern Tester (gitignore)',
     'html-cheatsheet': 'HTML Cheat Sheet',
@@ -587,6 +589,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/scrollbar-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/scrollbar-generator', l['scrollbar-generator'], l) },
         { key: '/frontend/css-to-js', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-to-js', l['css-to-js'], l) },
         { key: '/frontend/clamp-generator', icon: <FontSizeOutlined />, label: withNewBadge('/frontend/clamp-generator', l['clamp-generator'], l) },
+        { key: '/frontend/css-triangle-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-triangle-generator', l['css-triangle-generator'], l) },
       ],
     },
     {

@@ -12,7 +12,7 @@ set -uo pipefail
 
 PROJECT_DIR="/home/devtools-bot/devtools"
 OPENCODE_BIN="/home/devtools-bot/.local/bin/opencode"
-MODEL="opencode/deepseek-v4-flash-free"
+MODEL="hetzner/Kimi-K2.7-Code"
 
 cd "$PROJECT_DIR" || exit 1
 
