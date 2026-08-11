@@ -182,6 +182,7 @@ import ReactCheatsheetPage from './pages/ReactCheatsheetPage'
 import TailwindCheatsheetPage from './pages/TailwindCheatsheetPage'
 import GridAreasGeneratorPage from './pages/GridAreasGeneratorPage'
 import XmlJsonConverterPage from './pages/XmlJsonConverterPage'
+import PatternBackgroundGeneratorPage from './pages/PatternBackgroundGeneratorPage'
 
 const router = createBrowserRouter([
   {
@@ -368,6 +369,7 @@ const router = createBrowserRouter([
       { path: 'references/react-cheatsheet', element: <ReactCheatsheetPage /> },
       { path: 'references/tailwind-cheatsheet', element: <TailwindCheatsheetPage /> },
       { path: 'frontend/grid-areas-generator', element: <GridAreasGeneratorPage /> },
+      { path: 'frontend/pattern-background-generator', element: <PatternBackgroundGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

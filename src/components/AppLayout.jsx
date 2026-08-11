@@ -261,6 +261,7 @@ export const LABELS = {
     'react-cheatsheet': 'Cheat Sheet de React',
     'tailwind-cheatsheet': 'Cheat Sheet de Tailwind CSS',
     'grid-areas-generator': 'Gerador de Grid Areas CSS',
+    'pattern-background-generator': 'Gerador de Padrões de Fundo CSS',
   },
   en: {
     home: 'Home',
@@ -461,6 +462,7 @@ export const LABELS = {
     'react-cheatsheet': 'React Cheat Sheet',
     'tailwind-cheatsheet': 'Tailwind CSS Cheat Sheet',
     'grid-areas-generator': 'CSS Grid Areas Generator',
+    'pattern-background-generator': 'CSS Pattern Background Generator',
   },
 }
 
@@ -602,6 +604,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/clamp-generator', icon: <FontSizeOutlined />, label: withNewBadge('/frontend/clamp-generator', l['clamp-generator'], l) },
         { key: '/frontend/css-triangle-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-triangle-generator', l['css-triangle-generator'], l) },
         { key: '/frontend/grid-areas-generator', icon: <AppstoreOutlined />, label: withNewBadge('/frontend/grid-areas-generator', l['grid-areas-generator'], l) },
+        { key: '/frontend/pattern-background-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/pattern-background-generator', l['pattern-background-generator'], l) },
       ],
     },
     {
