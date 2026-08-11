@@ -172,7 +172,9 @@ import TypescriptCheatsheetPage from './pages/TypescriptCheatsheetPage'
 import MorseConverterPage from './pages/MorseConverterPage'
 import GlobTesterPage from './pages/GlobTesterPage'
 import HtmlCheatsheetPage from './pages/HtmlCheatsheetPage'
+import UrlParserPage from './pages/UrlParserPage'
 import JsTestingCheatsheetPage from './pages/JsTestingCheatsheetPage'
+import ReactCheatsheetPage from './pages/ReactCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -214,6 +216,7 @@ const router = createBrowserRouter([
       { path: 'tools/case-converter', element: <CaseConverterPage /> },
       { path: 'tools/password-generator', element: <PasswordGeneratorPage /> },
       { path: 'tools/url-encoder', element: <UrlEncoderPage /> },
+      { path: 'tools/url-parser', element: <UrlParserPage /> },
       { path: 'frontend/gradient-generator', element: <GradientGeneratorPage /> },
       { path: 'snippets/use-copy-to-clipboard', element: <UseCopyToClipboardSnippetPage /> },
       { path: 'references/http-status-codes', element: <HttpStatusCodesPage /> },
@@ -350,6 +353,7 @@ const router = createBrowserRouter([
       { path: 'tools/morse-code-converter', element: <MorseConverterPage /> },
       { path: 'tools/glob-tester', element: <GlobTesterPage /> },
       { path: 'references/html-cheatsheet', element: <HtmlCheatsheetPage /> },
+      { path: 'references/react-cheatsheet', element: <ReactCheatsheetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

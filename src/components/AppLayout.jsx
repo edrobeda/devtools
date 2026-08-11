@@ -113,6 +113,7 @@ export const LABELS = {
     'case-converter': 'Conversor de Case',
     'password-generator': 'Gerador de Senha',
     'url-encoder': 'URL Encode/Decode',
+    'url-parser': 'URL Parser & Query Editor',
     'gradient-generator': 'Gerador de Gradiente CSS',
     'use-copy-to-clipboard': 'useCopyToClipboard',
     'http-status-codes': 'HTTP Status Codes',
@@ -250,6 +251,7 @@ export const LABELS = {
     'glob-tester': 'Glob Pattern Tester (gitignore)',
     'html-cheatsheet': 'Cheat Sheet de HTML',
     'js-testing-cheatsheet': 'Cheat Sheet de Testes JS (Jest/Vitest)',
+    'react-cheatsheet': 'Cheat Sheet de React',
   },
   en: {
     home: 'Home',
@@ -304,6 +306,7 @@ export const LABELS = {
     'case-converter': 'Case Converter',
     'password-generator': 'Password Generator',
     'url-encoder': 'URL Encode/Decode',
+    'url-parser': 'URL Parser & Query Editor',
     'gradient-generator': 'CSS Gradient Generator',
     'use-copy-to-clipboard': 'useCopyToClipboard',
     'http-status-codes': 'HTTP Status Codes',
@@ -441,6 +444,7 @@ export const LABELS = {
     'glob-tester': 'Glob Pattern Tester (gitignore)',
     'html-cheatsheet': 'HTML Cheat Sheet',
     'js-testing-cheatsheet': 'JS Testing Cheat Sheet (Jest/Vitest)',
+    'react-cheatsheet': 'React Cheat Sheet',
   },
 }
 
@@ -483,6 +487,7 @@ export function buildMenuItems(l) {
         { key: '/tools/case-converter', icon: <FontSizeOutlined />, label: withNewBadge('/tools/case-converter', l['case-converter'], l) },
         { key: '/tools/password-generator', icon: <KeyOutlined />, label: withNewBadge('/tools/password-generator', l['password-generator'], l) },
         { key: '/tools/url-encoder', icon: <SwapOutlined />, label: withNewBadge('/tools/url-encoder', l['url-encoder'], l) },
+        { key: '/tools/url-parser', icon: <LinkOutlined />, label: withNewBadge('/tools/url-parser', l['url-parser'], l) },
         { key: '/tools/diff-checker', icon: <DiffOutlined />, label: withNewBadge('/tools/diff-checker', l['diff-checker'], l) },
         { key: '/tools/markdown-previewer', icon: <FileMarkdownOutlined />, label: withNewBadge('/tools/markdown-previewer', l['markdown-previewer'], l) },
         { key: '/tools/cpf-cnpj-generator', icon: <IdcardOutlined />, label: withNewBadge('/tools/cpf-cnpj-generator', l['cpf-cnpj-generator'], l) },
@@ -728,6 +733,7 @@ export function buildMenuItems(l) {
         { key: '/references/gh-cli-cheatsheet', icon: <GithubOutlined />, label: withNewBadge('/references/gh-cli-cheatsheet', l['gh-cli-cheatsheet'], l) },
         { key: '/references/typescript-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/typescript-cheatsheet', l['typescript-cheatsheet'], l) },
         { key: '/references/js-testing-cheatsheet', icon: <ExperimentOutlined />, label: withNewBadge('/references/js-testing-cheatsheet', l['js-testing-cheatsheet'], l) },
+        { key: '/references/react-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/react-cheatsheet', l['react-cheatsheet'], l) },
       ],
     },
     {
