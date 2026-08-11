@@ -263,6 +263,7 @@ export const LABELS = {
     'grid-areas-generator': 'Gerador de Grid Areas CSS',
     'pattern-background-generator': 'Gerador de Padrões de Fundo CSS',
     'sitemap-generator': 'Gerador de Sitemap XML',
+    'web-app-manifest': 'Gerador de Web App Manifest',
     'editorconfig-generator': 'Gerador de .editorconfig',
   },
   en: {
@@ -466,6 +467,7 @@ export const LABELS = {
     'grid-areas-generator': 'CSS Grid Areas Generator',
     'pattern-background-generator': 'CSS Pattern Background Generator',
     'sitemap-generator': 'XML Sitemap Generator',
+    'web-app-manifest': 'Web App Manifest Generator',
     'editorconfig-generator': '.editorconfig Generator',
   },
 }
@@ -610,6 +612,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/grid-areas-generator', icon: <AppstoreOutlined />, label: withNewBadge('/frontend/grid-areas-generator', l['grid-areas-generator'], l) },
         { key: '/frontend/pattern-background-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/pattern-background-generator', l['pattern-background-generator'], l) },
         { key: '/frontend/sitemap-generator', icon: <GlobalOutlined />, label: withNewBadge('/frontend/sitemap-generator', l['sitemap-generator'], l) },
+        { key: '/frontend/web-app-manifest', icon: <MobileOutlined />, label: withNewBadge('/frontend/web-app-manifest', l['web-app-manifest'], l) },
       ],
     },
     {

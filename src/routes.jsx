@@ -185,6 +185,7 @@ import TailwindCheatsheetPage from './pages/TailwindCheatsheetPage'
 import GridAreasGeneratorPage from './pages/GridAreasGeneratorPage'
 import XmlJsonConverterPage from './pages/XmlJsonConverterPage'
 import PatternBackgroundGeneratorPage from './pages/PatternBackgroundGeneratorPage'
+import WebAppManifestGeneratorPage from './pages/WebAppManifestGeneratorPage'
 
 const router = createBrowserRouter([
   {
@@ -373,6 +374,7 @@ const router = createBrowserRouter([
       { path: 'frontend/grid-areas-generator', element: <GridAreasGeneratorPage /> },
       { path: 'frontend/pattern-background-generator', element: <PatternBackgroundGeneratorPage /> },
       { path: 'frontend/sitemap-generator', element: <SitemapGeneratorPage /> },
+      { path: 'frontend/web-app-manifest', element: <WebAppManifestGeneratorPage /> },
       { path: 'devops/editorconfig-generator', element: <EditorconfigGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
