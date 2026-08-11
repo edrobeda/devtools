@@ -138,6 +138,7 @@ import RegexCheatSheetPage from './pages/RegexCheatSheetPage'
 import CrcCalculatorPage from './pages/CrcCalculatorPage'
 import JsonToTypeScriptPage from './pages/JsonToTypeScriptPage'
 import JsonToYamlPage from './pages/JsonToYamlPage'
+import JsonFlattenPage from './pages/JsonFlattenPage'
 import CaddyfileGeneratorPage from './pages/CaddyfileGeneratorPage'
 import UnitsConverterPage from './pages/UnitsConverterPage'
 import HttpHeadersPage from './pages/HttpHeadersPage'
@@ -327,6 +328,7 @@ const router = createBrowserRouter([
       { path: 'tools/crc-calculator', element: <CrcCalculatorPage /> },
       { path: 'data/json-to-typescript', element: <JsonToTypeScriptPage /> },
       { path: 'data/json-to-yaml', element: <JsonToYamlPage /> },
+      { path: 'data/json-flatten', element: <JsonFlattenPage /> },
       { path: 'devops/docker-compose-generator', element: <DockerComposeGeneratorPage /> },
       { path: 'devops/openssl-commands', element: <OpensslCommandsPage /> },
       { path: 'devops/caddyfile-generator', element: <CaddyfileGeneratorPage /> },

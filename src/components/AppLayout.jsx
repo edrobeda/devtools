@@ -221,6 +221,7 @@ export const LABELS = {
     'crc-calculator': 'Calculadora de CRC',
     'json-to-typescript': 'JSON → TypeScript',
     'json-to-yaml': 'JSON → YAML',
+    'json-flatten': 'JSON Flatten & Unflatten',
     'caddyfile-generator': 'Gerador de Caddyfile',
     'docker-compose-generator': 'Gerador de docker-compose',
     'openssl-commands': 'Comandos OpenSSL',
@@ -415,6 +416,7 @@ export const LABELS = {
     'crc-calculator': 'CRC Checksum Calculator',
     'json-to-typescript': 'JSON → TypeScript',
     'json-to-yaml': 'JSON → YAML',
+    'json-flatten': 'JSON Flatten & Unflatten',
     'caddyfile-generator': 'Caddyfile Generator',
     'docker-compose-generator': 'docker-compose Generator',
     'openssl-commands': 'OpenSSL Commands',
@@ -660,6 +662,7 @@ export function buildMenuItems(l) {
         { key: '/data/csv-markdown-table', icon: <TableOutlined />, label: withNewBadge('/data/csv-markdown-table', l['csv-markdown-table'], l) },
         { key: '/data/json-to-typescript', icon: <CodeOutlined />, label: withNewBadge('/data/json-to-typescript', l['json-to-typescript'], l) },
         { key: '/data/json-to-yaml', icon: <CodeOutlined />, label: withNewBadge('/data/json-to-yaml', l['json-to-yaml'], l) },
+        { key: '/data/json-flatten', icon: <FileTextOutlined />, label: withNewBadge('/data/json-flatten', l['json-flatten'], l) },
       ],
     },
     {
