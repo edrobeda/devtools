@@ -163,6 +163,7 @@ import SlaCalculatorPage from './pages/SlaCalculatorPage'
 import CreditCardToolPage from './pages/CreditCardToolPage'
 import QrCodeGeneratorPage from './pages/QrCodeGeneratorPage'
 import GithubActionsCheatsheetPage from './pages/GithubActionsCheatsheetPage'
+import CssToJsPage from './pages/CssToJsPage'
 
 const router = createBrowserRouter([
   {
@@ -331,6 +332,7 @@ const router = createBrowserRouter([
       { path: 'tools/credit-card-tool', element: <CreditCardToolPage /> },
       { path: 'tools/qr-code-generator', element: <QrCodeGeneratorPage /> },
       { path: 'references/github-actions-cheatsheet', element: <GithubActionsCheatsheetPage /> },
+      { path: 'frontend/css-to-js', element: <CssToJsPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

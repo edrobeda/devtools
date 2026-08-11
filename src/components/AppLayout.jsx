@@ -239,6 +239,7 @@ export const LABELS = {
     'qr-code-generator': 'Gerador de QR Code',
     'html-formatter': 'Formatador de HTML',
     'github-actions-cheatsheet': 'GitHub Actions (workflows)',
+    'css-to-js': 'CSS ↔ JS (style object)',
   },
   en: {
     home: 'Home',
@@ -420,6 +421,7 @@ export const LABELS = {
     'qr-code-generator': 'QR Code Generator',
     'html-formatter': 'HTML Formatter',
     'github-actions-cheatsheet': 'GitHub Actions (workflows)',
+    'css-to-js': 'CSS ↔ JS (style object)',
   },
 }
 
@@ -551,6 +553,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/keyframe-generator', icon: <LineChartOutlined />, label: withNewBadge('/frontend/keyframe-generator', l['keyframe-generator'], l) },
         { key: '/frontend/clip-path-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/clip-path-generator', l['clip-path-generator'], l) },
         { key: '/frontend/scrollbar-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/scrollbar-generator', l['scrollbar-generator'], l) },
+        { key: '/frontend/css-to-js', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-to-js', l['css-to-js'], l) },
       ],
     },
     {
