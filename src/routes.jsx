@@ -164,6 +164,7 @@ import ScrollbarCssGeneratorPage from './pages/ScrollbarCssGeneratorPage'
 import SitemapGeneratorPage from './pages/SitemapGeneratorPage'
 import EditorconfigGeneratorPage from './pages/EditorconfigGeneratorPage'
 import CssSpinnerGeneratorPage from './pages/CssSpinnerGeneratorPage'
+import ColorBlindnessSimulatorPage from './pages/ColorBlindnessSimulatorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
@@ -380,6 +381,7 @@ const router = createBrowserRouter([
       { path: 'frontend/web-app-manifest', element: <WebAppManifestGeneratorPage /> },
       { path: 'devops/editorconfig-generator', element: <EditorconfigGeneratorPage /> },
       { path: 'frontend/css-spinner-generator', element: <CssSpinnerGeneratorPage /> },
+      { path: 'frontend/color-blindness-simulator', element: <ColorBlindnessSimulatorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

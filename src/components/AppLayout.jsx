@@ -49,6 +49,7 @@ import {
   SelectOutlined,
   AppstoreOutlined,
   LoadingOutlined,
+  EyeOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -268,6 +269,7 @@ export const LABELS = {
     'web-app-manifest': 'Gerador de Web App Manifest',
     'editorconfig-generator': 'Gerador de .editorconfig',
     'css-spinner-generator': 'Gerador de Loading Spinner CSS',
+    'color-blindness-simulator': 'Simulador de Daltonismo',
   },
   en: {
     home: 'Home',
@@ -474,6 +476,7 @@ export const LABELS = {
     'web-app-manifest': 'Web App Manifest Generator',
     'editorconfig-generator': '.editorconfig Generator',
     'css-spinner-generator': 'CSS Loading Spinner Generator',
+    'color-blindness-simulator': 'Color Blindness Simulator',
   },
 }
 
@@ -620,6 +623,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/sitemap-generator', icon: <GlobalOutlined />, label: withNewBadge('/frontend/sitemap-generator', l['sitemap-generator'], l) },
         { key: '/frontend/web-app-manifest', icon: <MobileOutlined />, label: withNewBadge('/frontend/web-app-manifest', l['web-app-manifest'], l) },
         { key: '/frontend/css-spinner-generator', icon: <LoadingOutlined />, label: withNewBadge('/frontend/css-spinner-generator', l['css-spinner-generator'], l) },
+        { key: '/frontend/color-blindness-simulator', icon: <EyeOutlined />, label: withNewBadge('/frontend/color-blindness-simulator', l['color-blindness-simulator'], l) },
       ],
     },
     {
