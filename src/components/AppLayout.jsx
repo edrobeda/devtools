@@ -242,6 +242,7 @@ export const LABELS = {
     'css-to-js': 'CSS ↔ JS (style object)',
     'nginx-cheatsheet': 'Cheat Sheet de Nginx',
     'redis-commands': 'Comandos Redis',
+    'gh-cli-cheatsheet': 'GitHub CLI (gh)',
   },
   en: {
     home: 'Home',
@@ -426,6 +427,7 @@ export const LABELS = {
     'css-to-js': 'CSS ↔ JS (style object)',
     'nginx-cheatsheet': 'Nginx Cheat Sheet',
     'redis-commands': 'Redis Commands',
+    'gh-cli-cheatsheet': 'GitHub CLI (gh)',
   },
 }
 
@@ -706,6 +708,7 @@ export function buildMenuItems(l) {
         { key: '/references/github-actions-cheatsheet', icon: <GithubOutlined />, label: withNewBadge('/references/github-actions-cheatsheet', l['github-actions-cheatsheet'], l) },
         { key: '/references/nginx-cheatsheet', icon: <GlobalOutlined />, label: withNewBadge('/references/nginx-cheatsheet', l['nginx-cheatsheet'], l) },
         { key: '/references/redis-commands', icon: <DatabaseOutlined />, label: withNewBadge('/references/redis-commands', l['redis-commands'], l) },
+        { key: '/references/gh-cli-cheatsheet', icon: <GithubOutlined />, label: withNewBadge('/references/gh-cli-cheatsheet', l['gh-cli-cheatsheet'], l) },
       ],
     },
     {

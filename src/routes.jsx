@@ -166,6 +166,7 @@ import GithubActionsCheatsheetPage from './pages/GithubActionsCheatsheetPage'
 import CssToJsPage from './pages/CssToJsPage'
 import NginxCheatsheetPage from './pages/NginxCheatsheetPage'
 import RedisCheatsheetPage from './pages/RedisCheatsheetPage'
+import GhCliCheatsheetPage from './pages/GhCliCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -337,6 +338,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-to-js', element: <CssToJsPage /> },
       { path: 'references/nginx-cheatsheet', element: <NginxCheatsheetPage /> },
       { path: 'references/redis-commands', element: <RedisCheatsheetPage /> },
+      { path: 'references/gh-cli-cheatsheet', element: <GhCliCheatsheetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
