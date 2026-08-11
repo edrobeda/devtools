@@ -62,6 +62,7 @@ import RippleButtonPage from './pages/RippleButtonPage'
 import UseOnScreenSnippetPage from './pages/UseOnScreenSnippetPage'
 import FlexboxCheatsheetPage from './pages/FlexboxCheatsheetPage'
 import CssUnitConverterPage from './pages/CssUnitConverterPage'
+import AspectRatioCalculatorPage from './pages/AspectRatioCalculatorPage'
 import CssSpecificityCalculatorPage from './pages/CssSpecificityCalculatorPage'
 import CssSelectorTesterPage from './pages/CssSelectorTesterPage'
 import FloatingLabelInputPage from './pages/FloatingLabelInputPage'
@@ -249,6 +250,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-on-screen', element: <UseOnScreenSnippetPage /> },
       { path: 'references/flexbox-cheatsheet', element: <FlexboxCheatsheetPage /> },
       { path: 'tools/css-unit-converter', element: <CssUnitConverterPage /> },
+      { path: 'tools/aspect-ratio-calculator', element: <AspectRatioCalculatorPage /> },
       { path: 'tools/css-specificity-calculator', element: <CssSpecificityCalculatorPage /> },
       { path: 'tools/css-selector-tester', element: <CssSelectorTesterPage /> },
       { path: 'styles/floating-label-input', element: <FloatingLabelInputPage /> },
