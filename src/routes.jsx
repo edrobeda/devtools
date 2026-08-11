@@ -180,6 +180,7 @@ import JsTestingCheatsheetPage from './pages/JsTestingCheatsheetPage'
 import ReactCheatsheetPage from './pages/ReactCheatsheetPage'
 import TailwindCheatsheetPage from './pages/TailwindCheatsheetPage'
 import GridAreasGeneratorPage from './pages/GridAreasGeneratorPage'
+import XmlJsonConverterPage from './pages/XmlJsonConverterPage'
 
 const router = createBrowserRouter([
   {
@@ -222,6 +223,7 @@ const router = createBrowserRouter([
       { path: 'tools/password-generator', element: <PasswordGeneratorPage /> },
       { path: 'tools/url-encoder', element: <UrlEncoderPage /> },
       { path: 'tools/url-parser', element: <UrlParserPage /> },
+      { path: 'tools/xml-json-converter', element: <XmlJsonConverterPage /> },
       { path: 'frontend/gradient-generator', element: <GradientGeneratorPage /> },
       { path: 'snippets/use-copy-to-clipboard', element: <UseCopyToClipboardSnippetPage /> },
       { path: 'references/http-status-codes', element: <HttpStatusCodesPage /> },
