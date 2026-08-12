@@ -311,6 +311,7 @@ export const LABELS = {
     'css-dropdown-menu-generator': 'Gerador de Dropdown Menu CSS',
     'css-skeleton-generator': 'Gerador de Skeleton CSS',
     'css-timeline-generator': 'Gerador de Timeline CSS',
+    'css-stepper-generator': 'Gerador de Stepper/Wizard CSS',
   },
   en: {
     home: 'Home',
@@ -553,6 +554,7 @@ export const LABELS = {
     'css-dropdown-menu-generator': 'CSS Dropdown Menu Generator',
     'css-skeleton-generator': 'CSS Skeleton Generator',
     'css-timeline-generator': 'CSS Timeline Generator',
+    'css-stepper-generator': 'CSS Stepper/Wizard Generator',
   },
 }
 
@@ -729,6 +731,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-dropdown-menu-generator', icon: <DownOutlined />, label: withNewBadge('/frontend/css-dropdown-menu-generator', l['css-dropdown-menu-generator'], l) },
         { key: '/frontend/css-skeleton-generator', icon: <LoadingOutlined />, label: withNewBadge('/frontend/css-skeleton-generator', l['css-skeleton-generator'], l) },
         { key: '/frontend/css-timeline-generator', icon: <FieldTimeOutlined />, label: withNewBadge('/frontend/css-timeline-generator', l['css-timeline-generator'], l) },
+        { key: '/frontend/css-stepper-generator', icon: <OrderedListOutlined />, label: withNewBadge('/frontend/css-stepper-generator', l['css-stepper-generator'], l) },
       ],
     },
     {
