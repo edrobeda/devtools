@@ -269,6 +269,7 @@ export const LABELS = {
     'sitemap-generator': 'Gerador de Sitemap XML',
     'web-app-manifest': 'Gerador de Web App Manifest',
     'editorconfig-generator': 'Gerador de .editorconfig',
+    'license-generator': 'Gerador de LICENSE',
     'css-spinner-generator': 'Gerador de Loading Spinner CSS',
     'color-blindness-simulator': 'Simulador de Daltonismo',
     'text-shadow-generator': 'Gerador de Text Shadow',
@@ -479,6 +480,7 @@ export const LABELS = {
     'sitemap-generator': 'XML Sitemap Generator',
     'web-app-manifest': 'Web App Manifest Generator',
     'editorconfig-generator': '.editorconfig Generator',
+    'license-generator': 'LICENSE Generator',
     'css-spinner-generator': 'CSS Loading Spinner Generator',
     'color-blindness-simulator': 'Color Blindness Simulator',
     'text-shadow-generator': 'Text Shadow Generator',
@@ -664,6 +666,7 @@ export function buildMenuItems(l) {
         { key: '/devops/openssl-commands', icon: <ContainerOutlined />, label: withNewBadge('/devops/openssl-commands', l['openssl-commands'], l) },
         { key: '/devops/sla-calculator', icon: <ExperimentOutlined />, label: withNewBadge('/devops/sla-calculator', l['sla-calculator'], l) },
         { key: '/devops/editorconfig-generator', icon: <FileTextOutlined />, label: withNewBadge('/devops/editorconfig-generator', l['editorconfig-generator'], l) },
+        { key: '/devops/license-generator', icon: <FileTextOutlined />, label: withNewBadge('/devops/license-generator', l['license-generator'], l) },
       ],
     },
     {
