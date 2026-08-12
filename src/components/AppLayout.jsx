@@ -282,6 +282,7 @@ export const LABELS = {
     'scroll-snap-generator': 'Gerador de Scroll Snap CSS',
     'css-transition-generator': 'Gerador de CSS Transition',
     'css-tooltip-generator': 'Gerador de Tooltip CSS',
+    'gradient-text-generator': 'Gerador de Texto Gradiente CSS',
   },
   en: {
     home: 'Home',
@@ -500,6 +501,7 @@ export const LABELS = {
     'scroll-snap-generator': 'CSS Scroll Snap Generator',
     'css-transition-generator': 'CSS Transition Generator',
     'css-tooltip-generator': 'CSS Tooltip Generator',
+    'gradient-text-generator': 'CSS Gradient Text Generator',
   },
 }
 
@@ -654,6 +656,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/scroll-snap-generator', icon: <PicCenterOutlined />, label: withNewBadge('/frontend/scroll-snap-generator', l['scroll-snap-generator'], l) },
         { key: '/frontend/css-transition-generator', icon: <SwapOutlined />, label: withNewBadge('/frontend/css-transition-generator', l['css-transition-generator'], l) },
         { key: '/frontend/css-tooltip-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-tooltip-generator', l['css-tooltip-generator'], l) },
+        { key: '/frontend/gradient-text-generator', icon: <FontSizeOutlined />, label: withNewBadge('/frontend/gradient-text-generator', l['gradient-text-generator'], l) },
       ],
     },
     {
