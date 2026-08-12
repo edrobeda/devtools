@@ -305,6 +305,7 @@ export const LABELS = {
     'css-radio-button-generator': 'Gerador de Radio Button CSS',
     'css-chip-generator': 'Gerador de Chip/Badge CSS',
     'css-pagination-generator': 'Gerador de Paginação CSS',
+    'css-card-generator': 'Gerador de Card CSS',
   },
   en: {
     home: 'Home',
@@ -542,6 +543,7 @@ export const LABELS = {
     'css-radio-button-generator': 'CSS Radio Button Generator',
     'css-chip-generator': 'CSS Chip/Badge Generator',
     'css-pagination-generator': 'CSS Pagination Generator',
+    'css-card-generator': 'CSS Card Generator',
   },
 }
 
@@ -713,6 +715,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-radio-button-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-radio-button-generator', l['css-radio-button-generator'], l) },
         { key: '/frontend/css-chip-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-chip-generator', l['css-chip-generator'], l) },
         { key: '/frontend/css-pagination-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-pagination-generator', l['css-pagination-generator'], l) },
+        { key: '/frontend/css-card-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-card-generator', l['css-card-generator'], l) },
       ],
     },
     {
