@@ -46,6 +46,7 @@ import DiffCheckerPage from './pages/DiffCheckerPage'
 import BoxShadowGeneratorPage from './pages/BoxShadowGeneratorPage'
 import CsvJsonConverterPage from './pages/CsvJsonConverterPage'
 import UseIntervalSnippetPage from './pages/UseIntervalSnippetPage'
+import UseCountdownSnippetPage from './pages/UseCountdownSnippetPage'
 import MarkdownPreviewerPage from './pages/MarkdownPreviewerPage'
 import NeumorphicCardPage from './pages/NeumorphicCardPage'
 import UsePreviousSnippetPage from './pages/UsePreviousSnippetPage'
@@ -272,6 +273,7 @@ const router = createBrowserRouter([
       { path: 'frontend/box-shadow-generator', element: <BoxShadowGeneratorPage /> },
       { path: 'data/csv-json-converter', element: <CsvJsonConverterPage /> },
       { path: 'snippets/use-interval', element: <UseIntervalSnippetPage /> },
+      { path: 'snippets/use-countdown', element: <UseCountdownSnippetPage /> },
       { path: 'tools/markdown-previewer', element: <MarkdownPreviewerPage /> },
       { path: 'styles/neumorphic-card', element: <NeumorphicCardPage /> },
       { path: 'snippets/use-previous', element: <UsePreviousSnippetPage /> },
