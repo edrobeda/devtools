@@ -299,6 +299,7 @@ export const LABELS = {
     'css-range-slider-generator': 'Gerador de Range Slider CSS',
     'css-star-rating-generator': 'Gerador de Star Rating CSS',
     'css-glassmorphism-generator': 'Gerador de Glassmorphism CSS',
+    'css-toggle-switch-generator': 'Gerador de Toggle Switch CSS',
   },
   en: {
     home: 'Home',
@@ -530,6 +531,7 @@ export const LABELS = {
     'css-range-slider-generator': 'CSS Range Slider Generator',
     'css-star-rating-generator': 'CSS Star Rating Generator',
     'css-glassmorphism-generator': 'CSS Glassmorphism Generator',
+    'css-toggle-switch-generator': 'CSS Toggle Switch Generator',
   },
 }
 
@@ -696,6 +698,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-range-slider-generator', icon: <SlidersOutlined />, label: withNewBadge('/frontend/css-range-slider-generator', l['css-range-slider-generator'], l) },
         { key: '/frontend/css-star-rating-generator', icon: <StarOutlined />, label: withNewBadge('/frontend/css-star-rating-generator', l['css-star-rating-generator'], l) },
         { key: '/frontend/css-glassmorphism-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-glassmorphism-generator', l['css-glassmorphism-generator'], l) },
+        { key: '/frontend/css-toggle-switch-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-toggle-switch-generator', l['css-toggle-switch-generator'], l) },
       ],
     },
     {
