@@ -270,6 +270,7 @@ export const LABELS = {
     'editorconfig-generator': 'Gerador de .editorconfig',
     'css-spinner-generator': 'Gerador de Loading Spinner CSS',
     'color-blindness-simulator': 'Simulador de Daltonismo',
+    'text-shadow-generator': 'Gerador de Text Shadow',
   },
   en: {
     home: 'Home',
@@ -477,6 +478,7 @@ export const LABELS = {
     'editorconfig-generator': '.editorconfig Generator',
     'css-spinner-generator': 'CSS Loading Spinner Generator',
     'color-blindness-simulator': 'Color Blindness Simulator',
+    'text-shadow-generator': 'Text Shadow Generator',
   },
 }
 
@@ -624,6 +626,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/web-app-manifest', icon: <MobileOutlined />, label: withNewBadge('/frontend/web-app-manifest', l['web-app-manifest'], l) },
         { key: '/frontend/css-spinner-generator', icon: <LoadingOutlined />, label: withNewBadge('/frontend/css-spinner-generator', l['css-spinner-generator'], l) },
         { key: '/frontend/color-blindness-simulator', icon: <EyeOutlined />, label: withNewBadge('/frontend/color-blindness-simulator', l['color-blindness-simulator'], l) },
+        { key: '/frontend/text-shadow-generator', icon: <FontSizeOutlined />, label: withNewBadge('/frontend/text-shadow-generator', l['text-shadow-generator'], l) },
       ],
     },
     {
