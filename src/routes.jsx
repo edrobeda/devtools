@@ -100,6 +100,7 @@ import JwtTimelinePage from './pages/JwtTimelinePage'
 import TypewriterEffectPage from './pages/TypewriterEffectPage'
 import LruCachePage from './pages/LruCachePage'
 import CspGeneratorPage from './pages/CspGeneratorPage'
+import SecurityHeadersGeneratorPage from './pages/SecurityHeadersGeneratorPage'
 import TokenCounterPage from './pages/TokenCounterPage'
 import PomodoroTimerPage from './pages/PomodoroTimerPage'
 import EnvToolPage from './pages/EnvToolPage'
@@ -320,6 +321,7 @@ const router = createBrowserRouter([
       { path: 'styles/typewriter-effect', element: <TypewriterEffectPage /> },
       { path: 'snippets/lru-cache', element: <LruCachePage /> },
       { path: 'security/csp-generator', element: <CspGeneratorPage /> },
+      { path: 'security/security-headers-generator', element: <SecurityHeadersGeneratorPage /> },
       { path: 'ai/token-counter', element: <TokenCounterPage /> },
       { path: 'devops/env-tool', element: <EnvToolPage /> },
       { path: 'text/remove-accents', element: <RemoveAccentsPage /> },
