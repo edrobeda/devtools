@@ -312,6 +312,7 @@ export const LABELS = {
     'css-skeleton-generator': 'Gerador de Skeleton CSS',
     'css-timeline-generator': 'Gerador de Timeline CSS',
     'css-stepper-generator': 'Gerador de Stepper/Wizard CSS',
+    'css-speech-bubble-generator': 'Gerador de Speech Bubble CSS',
   },
   en: {
     home: 'Home',
@@ -555,6 +556,7 @@ export const LABELS = {
     'css-skeleton-generator': 'CSS Skeleton Generator',
     'css-timeline-generator': 'CSS Timeline Generator',
     'css-stepper-generator': 'CSS Stepper/Wizard Generator',
+    'css-speech-bubble-generator': 'CSS Speech Bubble Generator',
   },
 }
 
@@ -732,6 +734,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-skeleton-generator', icon: <LoadingOutlined />, label: withNewBadge('/frontend/css-skeleton-generator', l['css-skeleton-generator'], l) },
         { key: '/frontend/css-timeline-generator', icon: <FieldTimeOutlined />, label: withNewBadge('/frontend/css-timeline-generator', l['css-timeline-generator'], l) },
         { key: '/frontend/css-stepper-generator', icon: <OrderedListOutlined />, label: withNewBadge('/frontend/css-stepper-generator', l['css-stepper-generator'], l) },
+        { key: '/frontend/css-speech-bubble-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-speech-bubble-generator', l['css-speech-bubble-generator'], l) },
       ],
     },
     {
