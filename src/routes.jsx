@@ -181,6 +181,7 @@ import GradientTextGeneratorPage from './pages/GradientTextGeneratorPage'
 import CustomPropertiesGeneratorPage from './pages/CustomPropertiesGeneratorPage'
 import CssColumnsGeneratorPage from './pages/CssColumnsGeneratorPage'
 import CssBreadcrumbsGeneratorPage from './pages/CssBreadcrumbsGeneratorPage'
+import CssTabsGeneratorPage from './pages/CssTabsGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
@@ -416,6 +417,7 @@ const router = createBrowserRouter([
       { path: 'frontend/custom-properties-generator', element: <CustomPropertiesGeneratorPage /> },
       { path: 'frontend/css-columns-generator', element: <CssColumnsGeneratorPage /> },
       { path: 'frontend/css-breadcrumbs-generator', element: <CssBreadcrumbsGeneratorPage /> },
+      { path: 'frontend/css-tabs-generator', element: <CssTabsGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

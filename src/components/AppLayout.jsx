@@ -52,6 +52,7 @@ import {
   EyeOutlined,
   PicCenterOutlined,
   PartitionOutlined,
+  LayoutOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -289,6 +290,7 @@ export const LABELS = {
     'custom-properties-generator': 'Gerador de CSS Custom Properties',
     'css-columns-generator': 'Gerador de CSS Columns (Multicol)',
     'css-breadcrumbs-generator': 'Gerador de Breadcrumbs CSS',
+    'css-tabs-generator': 'Gerador de Tabs CSS',
   },
   en: {
     home: 'Home',
@@ -513,6 +515,7 @@ export const LABELS = {
     'custom-properties-generator': 'CSS Custom Properties Generator',
     'css-columns-generator': 'CSS Columns (Multicol) Generator',
     'css-breadcrumbs-generator': 'CSS Breadcrumbs Generator',
+    'css-tabs-generator': 'CSS Tabs Generator',
   },
 }
 
@@ -672,6 +675,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/custom-properties-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/custom-properties-generator', l['custom-properties-generator'], l) },
         { key: '/frontend/css-columns-generator', icon: <ColumnWidthOutlined />, label: withNewBadge('/frontend/css-columns-generator', l['css-columns-generator'], l) },
         { key: '/frontend/css-breadcrumbs-generator', icon: <PartitionOutlined />, label: withNewBadge('/frontend/css-breadcrumbs-generator', l['css-breadcrumbs-generator'], l) },
+        { key: '/frontend/css-tabs-generator', icon: <LayoutOutlined />, label: withNewBadge('/frontend/css-tabs-generator', l['css-tabs-generator'], l) },
       ],
     },
     {
