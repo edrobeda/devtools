@@ -53,6 +53,7 @@ import {
   PicCenterOutlined,
   PartitionOutlined,
   LayoutOutlined,
+  SlidersOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -294,6 +295,7 @@ export const LABELS = {
     'css-progress-bar-generator': 'Gerador de Progress Bar CSS',
     'css-modal-generator': 'Gerador de Modal/Dialog CSS',
     'css-accordion-generator': 'Gerador de Accordion CSS',
+    'css-range-slider-generator': 'Gerador de Range Slider CSS',
   },
   en: {
     home: 'Home',
@@ -522,6 +524,7 @@ export const LABELS = {
     'css-progress-bar-generator': 'CSS Progress Bar Generator',
     'css-modal-generator': 'CSS Modal/Dialog Generator',
     'css-accordion-generator': 'CSS Accordion Generator',
+    'css-range-slider-generator': 'CSS Range Slider Generator',
   },
 }
 
@@ -685,6 +688,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-progress-bar-generator', icon: <LoadingOutlined />, label: withNewBadge('/frontend/css-progress-bar-generator', l['css-progress-bar-generator'], l) },
         { key: '/frontend/css-modal-generator', icon: <ContainerOutlined />, label: withNewBadge('/frontend/css-modal-generator', l['css-modal-generator'], l) },
         { key: '/frontend/css-accordion-generator', icon: <ContainerOutlined />, label: withNewBadge('/frontend/css-accordion-generator', l['css-accordion-generator'], l) },
+        { key: '/frontend/css-range-slider-generator', icon: <SlidersOutlined />, label: withNewBadge('/frontend/css-range-slider-generator', l['css-range-slider-generator'], l) },
       ],
     },
     {
