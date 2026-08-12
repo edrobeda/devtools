@@ -50,6 +50,7 @@ import {
   AppstoreOutlined,
   LoadingOutlined,
   EyeOutlined,
+  PicCenterOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -278,6 +279,7 @@ export const LABELS = {
     'text-shadow-generator': 'Gerador de Text Shadow',
     'transform-generator': 'Gerador de Transform CSS',
     'container-query-generator': 'Gerador de Container Queries CSS',
+    'scroll-snap-generator': 'Gerador de Scroll Snap CSS',
   },
   en: {
     home: 'Home',
@@ -493,6 +495,7 @@ export const LABELS = {
     'text-shadow-generator': 'Text Shadow Generator',
     'transform-generator': 'CSS Transform Generator',
     'container-query-generator': 'CSS Container Queries Generator',
+    'scroll-snap-generator': 'CSS Scroll Snap Generator',
   },
 }
 
@@ -644,6 +647,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/text-shadow-generator', icon: <FontSizeOutlined />, label: withNewBadge('/frontend/text-shadow-generator', l['text-shadow-generator'], l) },
         { key: '/frontend/transform-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/transform-generator', l['transform-generator'], l) },
         { key: '/frontend/container-query-generator', icon: <AppstoreOutlined />, label: withNewBadge('/frontend/container-query-generator', l['container-query-generator'], l) },
+        { key: '/frontend/scroll-snap-generator', icon: <PicCenterOutlined />, label: withNewBadge('/frontend/scroll-snap-generator', l['scroll-snap-generator'], l) },
       ],
     },
     {
