@@ -316,6 +316,7 @@ export const LABELS = {
     'css-stepper-generator': 'Gerador de Stepper/Wizard CSS',
     'css-speech-bubble-generator': 'Gerador de Speech Bubble CSS',
     'css-button-generator': 'Gerador de Button CSS',
+    'css-alert-generator': 'Gerador de Alert CSS',
   },
   en: {
     home: 'Home',
@@ -562,6 +563,7 @@ export const LABELS = {
     'css-stepper-generator': 'CSS Stepper/Wizard Generator',
     'css-speech-bubble-generator': 'CSS Speech Bubble Generator',
     'css-button-generator': 'CSS Button Generator',
+    'css-alert-generator': 'CSS Alert Generator',
   },
 }
 
@@ -742,6 +744,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-stepper-generator', icon: <OrderedListOutlined />, label: withNewBadge('/frontend/css-stepper-generator', l['css-stepper-generator'], l) },
         { key: '/frontend/css-speech-bubble-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-speech-bubble-generator', l['css-speech-bubble-generator'], l) },
         { key: '/frontend/css-button-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-button-generator', l['css-button-generator'], l) },
+        { key: '/frontend/css-alert-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-alert-generator', l['css-alert-generator'], l) },
       ],
     },
     {
