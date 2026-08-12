@@ -178,6 +178,7 @@ import CssTransitionGeneratorPage from './pages/CssTransitionGeneratorPage'
 import CssTooltipGeneratorPage from './pages/CssTooltipGeneratorPage'
 import GradientTextGeneratorPage from './pages/GradientTextGeneratorPage'
 import CustomPropertiesGeneratorPage from './pages/CustomPropertiesGeneratorPage'
+import CssColumnsGeneratorPage from './pages/CssColumnsGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
@@ -408,6 +409,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-tooltip-generator', element: <CssTooltipGeneratorPage /> },
       { path: 'frontend/gradient-text-generator', element: <GradientTextGeneratorPage /> },
       { path: 'frontend/custom-properties-generator', element: <CustomPropertiesGeneratorPage /> },
+      { path: 'frontend/css-columns-generator', element: <CssColumnsGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
