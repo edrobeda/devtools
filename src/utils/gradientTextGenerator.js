@@ -48,7 +48,7 @@ export function buildPreviewStyle({
   const sorted = [...stops].sort((a, b) => a.position - b.position)
   const stopsCss = sorted.map((s) => `${s.color} ${s.position}%`).join(', ')
   return {
-    background: type === 'linear'
+    backgroundImage: type === 'linear'
       ? `linear-gradient(${angle}deg, ${stopsCss})`
       : `radial-gradient(circle, ${stopsCss})`,
     WebkitBackgroundClip: 'text',
