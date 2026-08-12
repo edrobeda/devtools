@@ -270,6 +270,7 @@ export const LABELS = {
     'web-app-manifest': 'Gerador de Web App Manifest',
     'editorconfig-generator': 'Gerador de .editorconfig',
     'license-generator': 'Gerador de LICENSE',
+    'dockerignore-generator': 'Gerador de .dockerignore',
     'css-spinner-generator': 'Gerador de Loading Spinner CSS',
     'color-blindness-simulator': 'Simulador de Daltonismo',
     'text-shadow-generator': 'Gerador de Text Shadow',
@@ -482,6 +483,7 @@ export const LABELS = {
     'web-app-manifest': 'Web App Manifest Generator',
     'editorconfig-generator': '.editorconfig Generator',
     'license-generator': 'LICENSE Generator',
+    'dockerignore-generator': '.dockerignore Generator',
     'css-spinner-generator': 'CSS Loading Spinner Generator',
     'color-blindness-simulator': 'Color Blindness Simulator',
     'text-shadow-generator': 'Text Shadow Generator',
@@ -670,6 +672,7 @@ export function buildMenuItems(l) {
         { key: '/devops/sla-calculator', icon: <ExperimentOutlined />, label: withNewBadge('/devops/sla-calculator', l['sla-calculator'], l) },
         { key: '/devops/editorconfig-generator', icon: <FileTextOutlined />, label: withNewBadge('/devops/editorconfig-generator', l['editorconfig-generator'], l) },
         { key: '/devops/license-generator', icon: <FileTextOutlined />, label: withNewBadge('/devops/license-generator', l['license-generator'], l) },
+        { key: '/devops/dockerignore-generator', icon: <ContainerOutlined />, label: withNewBadge('/devops/dockerignore-generator', l['dockerignore-generator'], l) },
       ],
     },
     {

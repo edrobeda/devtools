@@ -165,6 +165,7 @@ import ScrollbarCssGeneratorPage from './pages/ScrollbarCssGeneratorPage'
 import SitemapGeneratorPage from './pages/SitemapGeneratorPage'
 import EditorconfigGeneratorPage from './pages/EditorconfigGeneratorPage'
 import LicenseGeneratorPage from './pages/LicenseGeneratorPage'
+import DockerignoreGeneratorPage from './pages/DockerignoreGeneratorPage'
 import CssSpinnerGeneratorPage from './pages/CssSpinnerGeneratorPage'
 import ColorBlindnessSimulatorPage from './pages/ColorBlindnessSimulatorPage'
 import TextShadowGeneratorPage from './pages/TextShadowGeneratorPage'
@@ -387,6 +388,7 @@ const router = createBrowserRouter([
       { path: 'frontend/web-app-manifest', element: <WebAppManifestGeneratorPage /> },
       { path: 'devops/editorconfig-generator', element: <EditorconfigGeneratorPage /> },
       { path: 'devops/license-generator', element: <LicenseGeneratorPage /> },
+      { path: 'devops/dockerignore-generator', element: <DockerignoreGeneratorPage /> },
       { path: 'frontend/css-spinner-generator', element: <CssSpinnerGeneratorPage /> },
       { path: 'frontend/color-blindness-simulator', element: <ColorBlindnessSimulatorPage /> },
       { path: 'frontend/text-shadow-generator', element: <TextShadowGeneratorPage /> },
