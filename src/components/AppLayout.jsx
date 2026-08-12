@@ -302,6 +302,7 @@ export const LABELS = {
     'css-glassmorphism-generator': 'Gerador de Glassmorphism CSS',
     'css-toggle-switch-generator': 'Gerador de Toggle Switch CSS',
     'css-custom-checkbox-generator': 'Gerador de Checkbox CSS',
+    'css-radio-button-generator': 'Gerador de Radio Button CSS',
     'css-chip-generator': 'Gerador de Chip/Badge CSS',
   },
   en: {
@@ -537,6 +538,7 @@ export const LABELS = {
     'css-glassmorphism-generator': 'CSS Glassmorphism Generator',
     'css-toggle-switch-generator': 'CSS Toggle Switch Generator',
     'css-custom-checkbox-generator': 'CSS Custom Checkbox Generator',
+    'css-radio-button-generator': 'CSS Radio Button Generator',
     'css-chip-generator': 'CSS Chip/Badge Generator',
   },
 }
@@ -706,6 +708,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-glassmorphism-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-glassmorphism-generator', l['css-glassmorphism-generator'], l) },
         { key: '/frontend/css-toggle-switch-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-toggle-switch-generator', l['css-toggle-switch-generator'], l) },
         { key: '/frontend/css-custom-checkbox-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-custom-checkbox-generator', l['css-custom-checkbox-generator'], l) },
+        { key: '/frontend/css-radio-button-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-radio-button-generator', l['css-radio-button-generator'], l) },
         { key: '/frontend/css-chip-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-chip-generator', l['css-chip-generator'], l) },
       ],
     },
