@@ -160,7 +160,7 @@ export function buildRadioButtonCss(options = {}) {
     '',
     '/* Estado checked: fundo e borda ativos */',
     '.custom-radio input:checked + .radio-box {',
-    `  background: ${inactive === 'transparent' ? active : inactive};`,
+    `  background: ${active};`,
     borderWidth > 0 ? `  border-color: ${active};` : null,
     '}',
   ]
