@@ -274,6 +274,7 @@ export const LABELS = {
     'color-blindness-simulator': 'Simulador de Daltonismo',
     'text-shadow-generator': 'Gerador de Text Shadow',
     'transform-generator': 'Gerador de Transform CSS',
+    'container-query-generator': 'Gerador de Container Queries CSS',
   },
   en: {
     home: 'Home',
@@ -485,6 +486,7 @@ export const LABELS = {
     'color-blindness-simulator': 'Color Blindness Simulator',
     'text-shadow-generator': 'Text Shadow Generator',
     'transform-generator': 'CSS Transform Generator',
+    'container-query-generator': 'CSS Container Queries Generator',
   },
 }
 
@@ -635,6 +637,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/color-blindness-simulator', icon: <EyeOutlined />, label: withNewBadge('/frontend/color-blindness-simulator', l['color-blindness-simulator'], l) },
         { key: '/frontend/text-shadow-generator', icon: <FontSizeOutlined />, label: withNewBadge('/frontend/text-shadow-generator', l['text-shadow-generator'], l) },
         { key: '/frontend/transform-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/transform-generator', l['transform-generator'], l) },
+        { key: '/frontend/container-query-generator', icon: <AppstoreOutlined />, label: withNewBadge('/frontend/container-query-generator', l['container-query-generator'], l) },
       ],
     },
     {

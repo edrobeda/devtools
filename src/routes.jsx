@@ -169,6 +169,7 @@ import CssSpinnerGeneratorPage from './pages/CssSpinnerGeneratorPage'
 import ColorBlindnessSimulatorPage from './pages/ColorBlindnessSimulatorPage'
 import TextShadowGeneratorPage from './pages/TextShadowGeneratorPage'
 import TransformGeneratorPage from './pages/TransformGeneratorPage'
+import ContainerQueryGeneratorPage from './pages/ContainerQueryGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
@@ -390,6 +391,7 @@ const router = createBrowserRouter([
       { path: 'frontend/color-blindness-simulator', element: <ColorBlindnessSimulatorPage /> },
       { path: 'frontend/text-shadow-generator', element: <TextShadowGeneratorPage /> },
       { path: 'frontend/transform-generator', element: <TransformGeneratorPage /> },
+      { path: 'frontend/container-query-generator', element: <ContainerQueryGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
