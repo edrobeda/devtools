@@ -186,6 +186,7 @@ import CssProgressBarGeneratorPage from './pages/CssProgressBarGeneratorPage'
 import CssModalGeneratorPage from './pages/CssModalGeneratorPage'
 import CssAccordionGeneratorPage from './pages/CssAccordionGeneratorPage'
 import CssRangeSliderGeneratorPage from './pages/CssRangeSliderGeneratorPage'
+import CssStarRatingGeneratorPage from './pages/CssStarRatingGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
@@ -426,6 +427,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-modal-generator', element: <CssModalGeneratorPage /> },
       { path: 'frontend/css-accordion-generator', element: <CssAccordionGeneratorPage /> },
       { path: 'frontend/css-range-slider-generator', element: <CssRangeSliderGeneratorPage /> },
+      { path: 'frontend/css-star-rating-generator', element: <CssStarRatingGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
