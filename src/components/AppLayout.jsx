@@ -280,6 +280,7 @@ export const LABELS = {
     'transform-generator': 'Gerador de Transform CSS',
     'container-query-generator': 'Gerador de Container Queries CSS',
     'scroll-snap-generator': 'Gerador de Scroll Snap CSS',
+    'css-transition-generator': 'Gerador de CSS Transition',
   },
   en: {
     home: 'Home',
@@ -496,6 +497,7 @@ export const LABELS = {
     'transform-generator': 'CSS Transform Generator',
     'container-query-generator': 'CSS Container Queries Generator',
     'scroll-snap-generator': 'CSS Scroll Snap Generator',
+    'css-transition-generator': 'CSS Transition Generator',
   },
 }
 
@@ -648,6 +650,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/transform-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/transform-generator', l['transform-generator'], l) },
         { key: '/frontend/container-query-generator', icon: <AppstoreOutlined />, label: withNewBadge('/frontend/container-query-generator', l['container-query-generator'], l) },
         { key: '/frontend/scroll-snap-generator', icon: <PicCenterOutlined />, label: withNewBadge('/frontend/scroll-snap-generator', l['scroll-snap-generator'], l) },
+        { key: '/frontend/css-transition-generator', icon: <SwapOutlined />, label: withNewBadge('/frontend/css-transition-generator', l['css-transition-generator'], l) },
       ],
     },
     {
