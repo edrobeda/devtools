@@ -175,6 +175,7 @@ import TransformGeneratorPage from './pages/TransformGeneratorPage'
 import ContainerQueryGeneratorPage from './pages/ContainerQueryGeneratorPage'
 import ScrollSnapGeneratorPage from './pages/ScrollSnapGeneratorPage'
 import CssTransitionGeneratorPage from './pages/CssTransitionGeneratorPage'
+import CssTooltipGeneratorPage from './pages/CssTooltipGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
@@ -402,6 +403,7 @@ const router = createBrowserRouter([
       { path: 'frontend/container-query-generator', element: <ContainerQueryGeneratorPage /> },
       { path: 'frontend/scroll-snap-generator', element: <ScrollSnapGeneratorPage /> },
       { path: 'frontend/css-transition-generator', element: <CssTransitionGeneratorPage /> },
+      { path: 'frontend/css-tooltip-generator', element: <CssTooltipGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
