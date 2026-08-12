@@ -48,6 +48,7 @@ import BoxShadowGeneratorPage from './pages/BoxShadowGeneratorPage'
 import CsvJsonConverterPage from './pages/CsvJsonConverterPage'
 import UseIntervalSnippetPage from './pages/UseIntervalSnippetPage'
 import UseCountdownSnippetPage from './pages/UseCountdownSnippetPage'
+import UseFetchSnippetPage from './pages/UseFetchSnippetPage'
 import MarkdownPreviewerPage from './pages/MarkdownPreviewerPage'
 import NeumorphicCardPage from './pages/NeumorphicCardPage'
 import UsePreviousSnippetPage from './pages/UsePreviousSnippetPage'
@@ -284,6 +285,7 @@ const router = createBrowserRouter([
       { path: 'data/csv-json-converter', element: <CsvJsonConverterPage /> },
       { path: 'snippets/use-interval', element: <UseIntervalSnippetPage /> },
       { path: 'snippets/use-countdown', element: <UseCountdownSnippetPage /> },
+      { path: 'snippets/use-fetch', element: <UseFetchSnippetPage /> },
       { path: 'tools/markdown-previewer', element: <MarkdownPreviewerPage /> },
       { path: 'styles/neumorphic-card', element: <NeumorphicCardPage /> },
       { path: 'snippets/use-previous', element: <UsePreviousSnippetPage /> },
