@@ -51,6 +51,7 @@ import {
   LoadingOutlined,
   EyeOutlined,
   PicCenterOutlined,
+  PartitionOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -287,6 +288,7 @@ export const LABELS = {
     'gradient-text-generator': 'Gerador de Texto Gradiente CSS',
     'custom-properties-generator': 'Gerador de CSS Custom Properties',
     'css-columns-generator': 'Gerador de CSS Columns (Multicol)',
+    'css-breadcrumbs-generator': 'Gerador de Breadcrumbs CSS',
   },
   en: {
     home: 'Home',
@@ -510,6 +512,7 @@ export const LABELS = {
     'gradient-text-generator': 'CSS Gradient Text Generator',
     'custom-properties-generator': 'CSS Custom Properties Generator',
     'css-columns-generator': 'CSS Columns (Multicol) Generator',
+    'css-breadcrumbs-generator': 'CSS Breadcrumbs Generator',
   },
 }
 
@@ -668,6 +671,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/gradient-text-generator', icon: <FontSizeOutlined />, label: withNewBadge('/frontend/gradient-text-generator', l['gradient-text-generator'], l) },
         { key: '/frontend/custom-properties-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/custom-properties-generator', l['custom-properties-generator'], l) },
         { key: '/frontend/css-columns-generator', icon: <ColumnWidthOutlined />, label: withNewBadge('/frontend/css-columns-generator', l['css-columns-generator'], l) },
+        { key: '/frontend/css-breadcrumbs-generator', icon: <PartitionOutlined />, label: withNewBadge('/frontend/css-breadcrumbs-generator', l['css-breadcrumbs-generator'], l) },
       ],
     },
     {
