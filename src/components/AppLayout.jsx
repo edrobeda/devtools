@@ -292,6 +292,7 @@ export const LABELS = {
     'css-breadcrumbs-generator': 'Gerador de Breadcrumbs CSS',
     'css-tabs-generator': 'Gerador de Tabs CSS',
     'css-progress-bar-generator': 'Gerador de Progress Bar CSS',
+    'css-modal-generator': 'Gerador de Modal/Dialog CSS',
   },
   en: {
     home: 'Home',
@@ -518,6 +519,7 @@ export const LABELS = {
     'css-breadcrumbs-generator': 'CSS Breadcrumbs Generator',
     'css-tabs-generator': 'CSS Tabs Generator',
     'css-progress-bar-generator': 'CSS Progress Bar Generator',
+    'css-modal-generator': 'CSS Modal/Dialog Generator',
   },
 }
 
@@ -679,6 +681,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-breadcrumbs-generator', icon: <PartitionOutlined />, label: withNewBadge('/frontend/css-breadcrumbs-generator', l['css-breadcrumbs-generator'], l) },
         { key: '/frontend/css-tabs-generator', icon: <LayoutOutlined />, label: withNewBadge('/frontend/css-tabs-generator', l['css-tabs-generator'], l) },
         { key: '/frontend/css-progress-bar-generator', icon: <LoadingOutlined />, label: withNewBadge('/frontend/css-progress-bar-generator', l['css-progress-bar-generator'], l) },
+        { key: '/frontend/css-modal-generator', icon: <ContainerOutlined />, label: withNewBadge('/frontend/css-modal-generator', l['css-modal-generator'], l) },
       ],
     },
     {
