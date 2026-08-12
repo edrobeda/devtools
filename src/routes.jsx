@@ -184,6 +184,7 @@ import CssBreadcrumbsGeneratorPage from './pages/CssBreadcrumbsGeneratorPage'
 import CssTabsGeneratorPage from './pages/CssTabsGeneratorPage'
 import CssProgressBarGeneratorPage from './pages/CssProgressBarGeneratorPage'
 import CssModalGeneratorPage from './pages/CssModalGeneratorPage'
+import CssAccordionGeneratorPage from './pages/CssAccordionGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
@@ -422,6 +423,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-tabs-generator', element: <CssTabsGeneratorPage /> },
       { path: 'frontend/css-progress-bar-generator', element: <CssProgressBarGeneratorPage /> },
       { path: 'frontend/css-modal-generator', element: <CssModalGeneratorPage /> },
+      { path: 'frontend/css-accordion-generator', element: <CssAccordionGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

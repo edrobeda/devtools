@@ -293,6 +293,7 @@ export const LABELS = {
     'css-tabs-generator': 'Gerador de Tabs CSS',
     'css-progress-bar-generator': 'Gerador de Progress Bar CSS',
     'css-modal-generator': 'Gerador de Modal/Dialog CSS',
+    'css-accordion-generator': 'Gerador de Accordion CSS',
   },
   en: {
     home: 'Home',
@@ -520,6 +521,7 @@ export const LABELS = {
     'css-tabs-generator': 'CSS Tabs Generator',
     'css-progress-bar-generator': 'CSS Progress Bar Generator',
     'css-modal-generator': 'CSS Modal/Dialog Generator',
+    'css-accordion-generator': 'CSS Accordion Generator',
   },
 }
 
@@ -682,6 +684,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-tabs-generator', icon: <LayoutOutlined />, label: withNewBadge('/frontend/css-tabs-generator', l['css-tabs-generator'], l) },
         { key: '/frontend/css-progress-bar-generator', icon: <LoadingOutlined />, label: withNewBadge('/frontend/css-progress-bar-generator', l['css-progress-bar-generator'], l) },
         { key: '/frontend/css-modal-generator', icon: <ContainerOutlined />, label: withNewBadge('/frontend/css-modal-generator', l['css-modal-generator'], l) },
+        { key: '/frontend/css-accordion-generator', icon: <ContainerOutlined />, label: withNewBadge('/frontend/css-accordion-generator', l['css-accordion-generator'], l) },
       ],
     },
     {
