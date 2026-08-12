@@ -191,6 +191,7 @@ import CssStarRatingGeneratorPage from './pages/CssStarRatingGeneratorPage'
 import CssGlassmorphismGeneratorPage from './pages/CssGlassmorphismGeneratorPage'
 import CssToggleSwitchGeneratorPage from './pages/CssToggleSwitchGeneratorPage'
 import CssCustomCheckboxGeneratorPage from './pages/CssCustomCheckboxGeneratorPage'
+import CssChipGeneratorPage from './pages/CssChipGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
@@ -436,6 +437,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-glassmorphism-generator', element: <CssGlassmorphismGeneratorPage /> },
       { path: 'frontend/css-toggle-switch-generator', element: <CssToggleSwitchGeneratorPage /> },
       { path: 'frontend/css-custom-checkbox-generator', element: <CssCustomCheckboxGeneratorPage /> },
+      { path: 'frontend/css-chip-generator', element: <CssChipGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
