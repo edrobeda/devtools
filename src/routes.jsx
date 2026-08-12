@@ -198,6 +198,7 @@ import CssRadioButtonGeneratorPage from './pages/CssRadioButtonGeneratorPage'
 import CssCardGeneratorPage from './pages/CssCardGeneratorPage'
 import CssDropdownMenuGeneratorPage from './pages/CssDropdownMenuGeneratorPage'
 import CssSkeletonGeneratorPage from './pages/CssSkeletonGeneratorPage'
+import CssTimelineGeneratorPage from './pages/CssTimelineGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
@@ -450,6 +451,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-card-generator', element: <CssCardGeneratorPage /> },
       { path: 'frontend/css-dropdown-menu-generator', element: <CssDropdownMenuGeneratorPage /> },
       { path: 'frontend/css-skeleton-generator', element: <CssSkeletonGeneratorPage /> },
+      { path: 'frontend/css-timeline-generator', element: <CssTimelineGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
