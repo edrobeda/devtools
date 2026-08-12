@@ -32,6 +32,7 @@ import GitCommandsPage from './pages/GitCommandsPage'
 import DaysUntilPage from './pages/DaysUntilPage'
 import DateTimeCalculatorPage from './pages/DateTimeCalculatorPage'
 import RegexTesterPage from './pages/RegexTesterPage'
+import KeyboardEventTesterPage from './pages/KeyboardEventTesterPage'
 import Base64ToolPage from './pages/Base64ToolPage'
 import UuidGeneratorPage from './pages/UuidGeneratorPage'
 import HtmlFormatterPage from './pages/HtmlFormatterPage'
@@ -241,6 +242,7 @@ const router = createBrowserRouter([
       { path: 'extras/days-until', element: <DaysUntilPage /> },
       { path: 'tools/date-time-calculator', element: <DateTimeCalculatorPage /> },
       { path: 'tools/regex-tester', element: <RegexTesterPage /> },
+      { path: 'tools/keyboard-event-tester', element: <KeyboardEventTesterPage /> },
       { path: 'tools/base64-tool', element: <Base64ToolPage /> },
       { path: 'tools/uuid-generator', element: <UuidGeneratorPage /> },
       { path: 'tools/case-converter', element: <CaseConverterPage /> },
