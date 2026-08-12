@@ -55,6 +55,7 @@ import {
   LayoutOutlined,
   SlidersOutlined,
   StarOutlined,
+  DownOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -307,6 +308,7 @@ export const LABELS = {
     'css-chip-generator': 'Gerador de Chip/Badge CSS',
     'css-pagination-generator': 'Gerador de Paginação CSS',
     'css-card-generator': 'Gerador de Card CSS',
+    'css-dropdown-menu-generator': 'Gerador de Dropdown Menu CSS',
   },
   en: {
     home: 'Home',
@@ -546,6 +548,7 @@ export const LABELS = {
     'css-chip-generator': 'CSS Chip/Badge Generator',
     'css-pagination-generator': 'CSS Pagination Generator',
     'css-card-generator': 'CSS Card Generator',
+    'css-dropdown-menu-generator': 'CSS Dropdown Menu Generator',
   },
 }
 
@@ -719,6 +722,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-chip-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-chip-generator', l['css-chip-generator'], l) },
         { key: '/frontend/css-pagination-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-pagination-generator', l['css-pagination-generator'], l) },
         { key: '/frontend/css-card-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-card-generator', l['css-card-generator'], l) },
+        { key: '/frontend/css-dropdown-menu-generator', icon: <DownOutlined />, label: withNewBadge('/frontend/css-dropdown-menu-generator', l['css-dropdown-menu-generator'], l) },
       ],
     },
     {
