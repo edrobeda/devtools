@@ -158,6 +158,25 @@ export default function CssTransitionGeneratorPage() {
   const fullOutput = useMemo(() => buildFullDemo(settings), [settings])
   const previewStyle = useMemo(() => buildPreviewStyle(settings), [settings])
 
+  const previewBoxStyle = useMemo(() => {
+    const props = new Set(settings.properties)
+    const includesAll = props.has('all')
+    return {
+      width: 160,
+      height: 100,
+      borderRadius: 12,
+      display: 'grid',
+      placeItems: 'center',
+      fontWeight: 700,
+      background: active ? '#1890ff' : '#e6f7ff',
+      color: active ? '#fff' : '#0958d9',
+      transform: active ? 'scale(1.1) rotate(3deg)' : 'scale(1) rotate(0deg)',
+      boxShadow: active ? '0 12px 24px rgba(0,0,0,0.18)' : '0 4px 12px rgba(0,0,0,0.08)',
+      opacity: (includesAll || props.has('opacity')) ? (active ? 0.6 : 1) : undefined,
+      filter: (includesAll || props.has('filter')) ? (active ? 'brightness(1.15) saturate(1.2)' : 'none') : undefined,
+    }
+  }, [active, settings.properties])
+
   const copy = async (text) => {
     try {
       await navigator.clipboard.writeText(text)
@@ -337,16 +356,7 @@ export default function CssTransitionGeneratorPage() {
             >
               <div
                 style={{
-                  width: 160,
-                  height: 100,
-                  borderRadius: 12,
-                  display: 'grid',
-                  placeItems: 'center',
-                  fontWeight: 700,
-                  background: active ? '#1890ff' : '#e6f7ff',
-                  color: active ? '#fff' : '#0958d9',
-                  transform: active ? 'scale(1.1) rotate(3deg)' : 'scale(1) rotate(0deg)',
-                  boxShadow: active ? '0 12px 24px rgba(0,0,0,0.18)' : '0 4px 12px rgba(0,0,0,0.08)',
+                  ...previewBoxStyle,
                   ...previewStyle,
                 }}
               >
