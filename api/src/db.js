@@ -26,6 +26,18 @@ db.exec(`
     created_at TEXT NOT NULL DEFAULT (datetime('now')),
     resolved_at TEXT
   );
+
+  CREATE TABLE IF NOT EXISTS visits (
+    key TEXT PRIMARY KEY,
+    count INTEGER NOT NULL DEFAULT 0,
+    last_visited_at TEXT
+  );
+
+  CREATE TABLE IF NOT EXISTS bastidores_entries (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    summary TEXT NOT NULL,
+    created_at TEXT NOT NULL DEFAULT (datetime('now'))
+  );
 `)
 
 export default db

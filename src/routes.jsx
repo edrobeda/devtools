@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import AppLayout from './components/AppLayout'
 import HomePage from './pages/HomePage'
 import NotFoundPage from './pages/NotFoundPage'
+import BastidoresPage from './pages/BastidoresPage'
 import JwtDecoderPage from './pages/JwtDecoderPage'
 import GlassCardShowcasePage from './pages/GlassCardShowcasePage'
 import UseDebounceSnippetPage from './pages/UseDebounceSnippetPage'
@@ -233,6 +234,7 @@ const router = createBrowserRouter([
     element: <AppLayout />,
     children: [
       { index: true, element: <HomePage /> },
+      { path: 'bastidores', element: <BastidoresPage /> },
       { path: 'tools/jwt-decoder', element: <JwtDecoderPage /> },
       { path: 'tools/cron-parser', element: <CronParserPage /> },
       { path: 'tools/hash-generator', element: <HashGeneratorPage /> },

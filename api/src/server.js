@@ -14,6 +14,15 @@ const bugReportLimiter = rateLimit({
   legacyHeaders: false,
 })
 
+// Bem mais permissivo que o de bugs — dispara em toda navegação de página,
+// não só em uma ação explícita do usuário.
+const visitLimiter = rateLimit({
+  windowMs: 10 * 60 * 1000,
+  limit: 300,
+  standardHeaders: true,
+  legacyHeaders: false,
+})
+
 app.get('/api/items', (req, res) => {
   const items = db
     .prepare('SELECT key, title, created_at FROM items ORDER BY created_at DESC, id DESC')
@@ -41,6 +50,39 @@ app.post('/api/bugs', bugReportLimiter, (req, res) => {
     description.trim()
   )
   res.status(201).json({ ok: true })
+})
+
+// Contador anônimo de visita por rota — sem IP, sem user-agent, só um
+// incremento por chave. Alimenta a seção "ferramentas mais visitadas" de
+// /bastidores.
+app.post('/api/visits', visitLimiter, (req, res) => {
+  const { key } = req.body || {}
+
+  if (typeof key !== 'string' || !key.startsWith('/') || key.length > 200) {
+    return res.status(400).json({ error: 'invalid key' })
+  }
+
+  db.prepare(
+    `INSERT INTO visits (key, count, last_visited_at) VALUES (?, 1, datetime('now'))
+     ON CONFLICT(key) DO UPDATE SET count = count + 1, last_visited_at = datetime('now')`
+  ).run(key)
+  res.status(204).end()
+})
+
+app.get('/api/visits', (req, res) => {
+  const visits = db
+    .prepare('SELECT key, count, last_visited_at FROM visits ORDER BY count DESC')
+    .all()
+  res.json(visits)
+})
+
+// Feed público de /bastidores — resumos escritos pelo agente noturno
+// (bastidores-agent.sh, 00:00 BRT) sobre o que mudou no dia.
+app.get('/api/bastidores', (req, res) => {
+  const entries = db
+    .prepare('SELECT id, summary, created_at FROM bastidores_entries ORDER BY created_at DESC, id DESC LIMIT 90')
+    .all()
+  res.json(entries)
 })
 
 app.get('/api/health', (req, res) => res.json({ ok: true }))

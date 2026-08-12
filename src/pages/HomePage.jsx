@@ -121,7 +121,7 @@ export default function HomePage() {
   const newItemsVersion = useNewItemKeys()
 
   const groups = useMemo(
-    () => buildMenuItems(l).filter((g) => g.key !== '/'),
+    () => buildMenuItems(l).filter((g) => g.children),
     [l]
   )
 

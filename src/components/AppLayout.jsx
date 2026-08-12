@@ -62,6 +62,7 @@ import { useLanguage } from '../i18n/LanguageContext'
 import { NEW_ITEM_KEYS } from '../newItems'
 import { useNewItemKeys } from '../hooks/useNewItemKeys'
 import useMediaQuery from '../hooks/useMediaQuery'
+import useVisitTracker from '../hooks/useVisitTracker'
 import BugReportWidget from './BugReportWidget'
 
 const { Header, Sider, Content } = Layout
@@ -72,6 +73,7 @@ const { Header, Sider, Content } = Layout
 export const LABELS = {
   pt: {
     home: 'Home',
+    bastidores: 'Bastidores',
     tools: 'Ferramentas',
     styles: 'Estilos',
     snippets: 'Snippets',
@@ -316,6 +318,7 @@ export const LABELS = {
   },
   en: {
     home: 'Home',
+    bastidores: 'Behind the scenes',
     tools: 'Tools',
     styles: 'Styles',
     snippets: 'Snippets',
@@ -575,6 +578,7 @@ function withNewBadge(key, label, l) {
 export function buildMenuItems(l) {
   return [
     { key: '/', icon: <HomeOutlined />, label: l.home },
+    { key: '/bastidores', icon: <HistoryOutlined />, label: l.bastidores },
     {
       key: 'group-tools',
       icon: <ToolOutlined />,
@@ -937,6 +941,7 @@ export default function AppLayout() {
   // retorno aqui, só que o efeito rode e force este componente (e a
   // HomePage, filha dele) a re-renderizar quando os dados chegarem.
   useNewItemKeys()
+  useVisitTracker()
 
   const menuItems = buildMenuItems(LABELS[lang])
 
