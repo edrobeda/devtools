@@ -186,7 +186,7 @@ export function buildCustomCheckboxCss(options = {}) {
       `  height: ${toPx(size * 0.45)};`,
       '  border: solid transparent;',
       `  border-width: 0 ${toPx(checkWidth)} ${toPx(checkWidth)} 0;`,
-      `  border-color: transparent transparent ${check} ${check};`,
+      `  border-color: transparent ${check} ${check} transparent;`,
       '  transform: rotate(45deg) scale(0);',
       '  transform-origin: center;',
       `  transition: transform ${duration}ms ease;`,
