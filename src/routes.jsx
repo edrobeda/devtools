@@ -192,6 +192,7 @@ import CssGlassmorphismGeneratorPage from './pages/CssGlassmorphismGeneratorPage
 import CssToggleSwitchGeneratorPage from './pages/CssToggleSwitchGeneratorPage'
 import CssCustomCheckboxGeneratorPage from './pages/CssCustomCheckboxGeneratorPage'
 import CssChipGeneratorPage from './pages/CssChipGeneratorPage'
+import CssPaginationGeneratorPage from './pages/CssPaginationGeneratorPage'
 import CssRadioButtonGeneratorPage from './pages/CssRadioButtonGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
@@ -440,6 +441,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-custom-checkbox-generator', element: <CssCustomCheckboxGeneratorPage /> },
       { path: 'frontend/css-radio-button-generator', element: <CssRadioButtonGeneratorPage /> },
       { path: 'frontend/css-chip-generator', element: <CssChipGeneratorPage /> },
+      { path: 'frontend/css-pagination-generator', element: <CssPaginationGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

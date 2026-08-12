@@ -304,6 +304,7 @@ export const LABELS = {
     'css-custom-checkbox-generator': 'Gerador de Checkbox CSS',
     'css-radio-button-generator': 'Gerador de Radio Button CSS',
     'css-chip-generator': 'Gerador de Chip/Badge CSS',
+    'css-pagination-generator': 'Gerador de Paginação CSS',
   },
   en: {
     home: 'Home',
@@ -540,6 +541,7 @@ export const LABELS = {
     'css-custom-checkbox-generator': 'CSS Custom Checkbox Generator',
     'css-radio-button-generator': 'CSS Radio Button Generator',
     'css-chip-generator': 'CSS Chip/Badge Generator',
+    'css-pagination-generator': 'CSS Pagination Generator',
   },
 }
 
@@ -710,6 +712,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-custom-checkbox-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-custom-checkbox-generator', l['css-custom-checkbox-generator'], l) },
         { key: '/frontend/css-radio-button-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-radio-button-generator', l['css-radio-button-generator'], l) },
         { key: '/frontend/css-chip-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-chip-generator', l['css-chip-generator'], l) },
+        { key: '/frontend/css-pagination-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-pagination-generator', l['css-pagination-generator'], l) },
       ],
     },
     {
