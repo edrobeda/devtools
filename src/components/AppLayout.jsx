@@ -271,6 +271,7 @@ export const LABELS = {
     'css-spinner-generator': 'Gerador de Loading Spinner CSS',
     'color-blindness-simulator': 'Simulador de Daltonismo',
     'text-shadow-generator': 'Gerador de Text Shadow',
+    'transform-generator': 'Gerador de Transform CSS',
   },
   en: {
     home: 'Home',
@@ -479,6 +480,7 @@ export const LABELS = {
     'css-spinner-generator': 'CSS Loading Spinner Generator',
     'color-blindness-simulator': 'Color Blindness Simulator',
     'text-shadow-generator': 'Text Shadow Generator',
+    'transform-generator': 'CSS Transform Generator',
   },
 }
 
@@ -627,6 +629,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-spinner-generator', icon: <LoadingOutlined />, label: withNewBadge('/frontend/css-spinner-generator', l['css-spinner-generator'], l) },
         { key: '/frontend/color-blindness-simulator', icon: <EyeOutlined />, label: withNewBadge('/frontend/color-blindness-simulator', l['color-blindness-simulator'], l) },
         { key: '/frontend/text-shadow-generator', icon: <FontSizeOutlined />, label: withNewBadge('/frontend/text-shadow-generator', l['text-shadow-generator'], l) },
+        { key: '/frontend/transform-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/transform-generator', l['transform-generator'], l) },
       ],
     },
     {
