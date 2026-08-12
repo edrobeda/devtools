@@ -301,6 +301,7 @@ export const LABELS = {
     'css-star-rating-generator': 'Gerador de Star Rating CSS',
     'css-glassmorphism-generator': 'Gerador de Glassmorphism CSS',
     'css-toggle-switch-generator': 'Gerador de Toggle Switch CSS',
+    'css-custom-checkbox-generator': 'Gerador de Checkbox CSS',
   },
   en: {
     home: 'Home',
@@ -534,6 +535,7 @@ export const LABELS = {
     'css-star-rating-generator': 'CSS Star Rating Generator',
     'css-glassmorphism-generator': 'CSS Glassmorphism Generator',
     'css-toggle-switch-generator': 'CSS Toggle Switch Generator',
+    'css-custom-checkbox-generator': 'CSS Custom Checkbox Generator',
   },
 }
 
@@ -701,6 +703,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-star-rating-generator', icon: <StarOutlined />, label: withNewBadge('/frontend/css-star-rating-generator', l['css-star-rating-generator'], l) },
         { key: '/frontend/css-glassmorphism-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-glassmorphism-generator', l['css-glassmorphism-generator'], l) },
         { key: '/frontend/css-toggle-switch-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-toggle-switch-generator', l['css-toggle-switch-generator'], l) },
+        { key: '/frontend/css-custom-checkbox-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-custom-checkbox-generator', l['css-custom-checkbox-generator'], l) },
       ],
     },
     {
