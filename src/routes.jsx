@@ -30,6 +30,7 @@ import DeepLinkTesterPage from './pages/DeepLinkTesterPage'
 import WordCounterPage from './pages/WordCounterPage'
 import GitCommandsPage from './pages/GitCommandsPage'
 import DaysUntilPage from './pages/DaysUntilPage'
+import DateTimeCalculatorPage from './pages/DateTimeCalculatorPage'
 import RegexTesterPage from './pages/RegexTesterPage'
 import Base64ToolPage from './pages/Base64ToolPage'
 import UuidGeneratorPage from './pages/UuidGeneratorPage'
@@ -226,6 +227,7 @@ const router = createBrowserRouter([
       { path: 'text/word-counter', element: <WordCounterPage /> },
       { path: 'references/git-commands', element: <GitCommandsPage /> },
       { path: 'extras/days-until', element: <DaysUntilPage /> },
+      { path: 'tools/date-time-calculator', element: <DateTimeCalculatorPage /> },
       { path: 'tools/regex-tester', element: <RegexTesterPage /> },
       { path: 'tools/base64-tool', element: <Base64ToolPage /> },
       { path: 'tools/uuid-generator', element: <UuidGeneratorPage /> },
