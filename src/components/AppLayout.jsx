@@ -291,6 +291,7 @@ export const LABELS = {
     'css-columns-generator': 'Gerador de CSS Columns (Multicol)',
     'css-breadcrumbs-generator': 'Gerador de Breadcrumbs CSS',
     'css-tabs-generator': 'Gerador de Tabs CSS',
+    'css-progress-bar-generator': 'Gerador de Progress Bar CSS',
   },
   en: {
     home: 'Home',
@@ -516,6 +517,7 @@ export const LABELS = {
     'css-columns-generator': 'CSS Columns (Multicol) Generator',
     'css-breadcrumbs-generator': 'CSS Breadcrumbs Generator',
     'css-tabs-generator': 'CSS Tabs Generator',
+    'css-progress-bar-generator': 'CSS Progress Bar Generator',
   },
 }
 
@@ -676,6 +678,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-columns-generator', icon: <ColumnWidthOutlined />, label: withNewBadge('/frontend/css-columns-generator', l['css-columns-generator'], l) },
         { key: '/frontend/css-breadcrumbs-generator', icon: <PartitionOutlined />, label: withNewBadge('/frontend/css-breadcrumbs-generator', l['css-breadcrumbs-generator'], l) },
         { key: '/frontend/css-tabs-generator', icon: <LayoutOutlined />, label: withNewBadge('/frontend/css-tabs-generator', l['css-tabs-generator'], l) },
+        { key: '/frontend/css-progress-bar-generator', icon: <LoadingOutlined />, label: withNewBadge('/frontend/css-progress-bar-generator', l['css-progress-bar-generator'], l) },
       ],
     },
     {
