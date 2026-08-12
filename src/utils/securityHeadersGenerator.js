@@ -149,7 +149,7 @@ function buildFrameValue(options) {
 
 function buildPermissionsValue(directives) {
   const entries = Object.entries(directives || {})
-    .filter(([, v]) => v && v !== '*')
+    .filter(([, v]) => v && String(v).trim() !== '')
     .map(([k, v]) => `${k}=${v}`)
   if (entries.length === 0) return null
   return entries.join(', ')

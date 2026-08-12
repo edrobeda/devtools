@@ -92,7 +92,7 @@ function buildHeaderList(options) {
 
   if (options.permissionsEnabled && options.permissionsDirectives) {
     const pp = Object.entries(options.permissionsDirectives)
-      .filter(([, v]) => v && v !== '*')
+      .filter(([, v]) => v && String(v).trim() !== '')
       .map(([k, v]) => \`\${k}=\${v}\`)
       .join(', ')
     if (pp) headers.push({ name: 'Permissions-Policy', value: pp })
