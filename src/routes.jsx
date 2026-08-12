@@ -199,6 +199,7 @@ import UrlParserPage from './pages/UrlParserPage'
 import JsTestingCheatsheetPage from './pages/JsTestingCheatsheetPage'
 import ReactCheatsheetPage from './pages/ReactCheatsheetPage'
 import TailwindCheatsheetPage from './pages/TailwindCheatsheetPage'
+import CssSelectorsCheatsheetPage from './pages/CssSelectorsCheatsheetPage'
 import GridAreasGeneratorPage from './pages/GridAreasGeneratorPage'
 import XmlJsonConverterPage from './pages/XmlJsonConverterPage'
 import PatternBackgroundGeneratorPage from './pages/PatternBackgroundGeneratorPage'
@@ -390,6 +391,7 @@ const router = createBrowserRouter([
       { path: 'references/html-cheatsheet', element: <HtmlCheatsheetPage /> },
       { path: 'references/react-cheatsheet', element: <ReactCheatsheetPage /> },
       { path: 'references/tailwind-cheatsheet', element: <TailwindCheatsheetPage /> },
+      { path: 'references/css-selectors-cheatsheet', element: <CssSelectorsCheatsheetPage /> },
       { path: 'frontend/grid-areas-generator', element: <GridAreasGeneratorPage /> },
       { path: 'frontend/pattern-background-generator', element: <PatternBackgroundGeneratorPage /> },
       { path: 'frontend/sitemap-generator', element: <SitemapGeneratorPage /> },

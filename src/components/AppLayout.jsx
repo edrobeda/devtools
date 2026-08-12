@@ -265,6 +265,7 @@ export const LABELS = {
     'js-testing-cheatsheet': 'Cheat Sheet de Testes JS (Jest/Vitest)',
     'react-cheatsheet': 'Cheat Sheet de React',
     'tailwind-cheatsheet': 'Cheat Sheet de Tailwind CSS',
+    'css-selectors-cheatsheet': 'Cheat Sheet de Seletores CSS',
     'grid-areas-generator': 'Gerador de Grid Areas CSS',
     'pattern-background-generator': 'Gerador de Padrões de Fundo CSS',
     'sitemap-generator': 'Gerador de Sitemap XML',
@@ -486,6 +487,7 @@ export const LABELS = {
     'js-testing-cheatsheet': 'JS Testing Cheat Sheet (Jest/Vitest)',
     'react-cheatsheet': 'React Cheat Sheet',
     'tailwind-cheatsheet': 'Tailwind CSS Cheat Sheet',
+    'css-selectors-cheatsheet': 'CSS Selectors Cheat Sheet',
     'grid-areas-generator': 'CSS Grid Areas Generator',
     'pattern-background-generator': 'CSS Pattern Background Generator',
     'sitemap-generator': 'XML Sitemap Generator',
@@ -823,6 +825,7 @@ export function buildMenuItems(l) {
         { key: '/references/js-testing-cheatsheet', icon: <ExperimentOutlined />, label: withNewBadge('/references/js-testing-cheatsheet', l['js-testing-cheatsheet'], l) },
         { key: '/references/react-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/react-cheatsheet', l['react-cheatsheet'], l) },
         { key: '/references/tailwind-cheatsheet', icon: <BgColorsOutlined />, label: withNewBadge('/references/tailwind-cheatsheet', l['tailwind-cheatsheet'], l) },
+        { key: '/references/css-selectors-cheatsheet', icon: <SelectOutlined />, label: withNewBadge('/references/css-selectors-cheatsheet', l['css-selectors-cheatsheet'], l) },
       ],
     },
     {
