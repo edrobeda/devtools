@@ -187,6 +187,7 @@ import CssModalGeneratorPage from './pages/CssModalGeneratorPage'
 import CssAccordionGeneratorPage from './pages/CssAccordionGeneratorPage'
 import CssRangeSliderGeneratorPage from './pages/CssRangeSliderGeneratorPage'
 import CssStarRatingGeneratorPage from './pages/CssStarRatingGeneratorPage'
+import CssGlassmorphismGeneratorPage from './pages/CssGlassmorphismGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
@@ -428,6 +429,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-accordion-generator', element: <CssAccordionGeneratorPage /> },
       { path: 'frontend/css-range-slider-generator', element: <CssRangeSliderGeneratorPage /> },
       { path: 'frontend/css-star-rating-generator', element: <CssStarRatingGeneratorPage /> },
+      { path: 'frontend/css-glassmorphism-generator', element: <CssGlassmorphismGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
