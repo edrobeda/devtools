@@ -204,6 +204,7 @@ import CssStepperGeneratorPage from './pages/CssStepperGeneratorPage'
 import CssSpeechBubbleGeneratorPage from './pages/CssSpeechBubbleGeneratorPage'
 import CssButtonGeneratorPage from './pages/CssButtonGeneratorPage'
 import CssAlertGeneratorPage from './pages/CssAlertGeneratorPage'
+import CssAvatarGeneratorPage from './pages/CssAvatarGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
@@ -462,6 +463,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-speech-bubble-generator', element: <CssSpeechBubbleGeneratorPage /> },
       { path: 'frontend/css-button-generator', element: <CssButtonGeneratorPage /> },
       { path: 'frontend/css-alert-generator', element: <CssAlertGeneratorPage /> },
+      { path: 'frontend/css-avatar-generator', element: <CssAvatarGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

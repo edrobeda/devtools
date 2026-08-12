@@ -317,6 +317,7 @@ export const LABELS = {
     'css-speech-bubble-generator': 'Gerador de Speech Bubble CSS',
     'css-button-generator': 'Gerador de Button CSS',
     'css-alert-generator': 'Gerador de Alert CSS',
+    'css-avatar-generator': 'Gerador de Avatar CSS',
   },
   en: {
     home: 'Home',
@@ -564,6 +565,7 @@ export const LABELS = {
     'css-speech-bubble-generator': 'CSS Speech Bubble Generator',
     'css-button-generator': 'CSS Button Generator',
     'css-alert-generator': 'CSS Alert Generator',
+    'css-avatar-generator': 'CSS Avatar Generator',
   },
 }
 
@@ -745,6 +747,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-speech-bubble-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-speech-bubble-generator', l['css-speech-bubble-generator'], l) },
         { key: '/frontend/css-button-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-button-generator', l['css-button-generator'], l) },
         { key: '/frontend/css-alert-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-alert-generator', l['css-alert-generator'], l) },
+        { key: '/frontend/css-avatar-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-avatar-generator', l['css-avatar-generator'], l) },
       ],
     },
     {
