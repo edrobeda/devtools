@@ -309,6 +309,7 @@ export const LABELS = {
     'css-pagination-generator': 'Gerador de Paginação CSS',
     'css-card-generator': 'Gerador de Card CSS',
     'css-dropdown-menu-generator': 'Gerador de Dropdown Menu CSS',
+    'css-skeleton-generator': 'Gerador de Skeleton CSS',
   },
   en: {
     home: 'Home',
@@ -549,6 +550,7 @@ export const LABELS = {
     'css-pagination-generator': 'CSS Pagination Generator',
     'css-card-generator': 'CSS Card Generator',
     'css-dropdown-menu-generator': 'CSS Dropdown Menu Generator',
+    'css-skeleton-generator': 'CSS Skeleton Generator',
   },
 }
 
@@ -723,6 +725,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-pagination-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-pagination-generator', l['css-pagination-generator'], l) },
         { key: '/frontend/css-card-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-card-generator', l['css-card-generator'], l) },
         { key: '/frontend/css-dropdown-menu-generator', icon: <DownOutlined />, label: withNewBadge('/frontend/css-dropdown-menu-generator', l['css-dropdown-menu-generator'], l) },
+        { key: '/frontend/css-skeleton-generator', icon: <LoadingOutlined />, label: withNewBadge('/frontend/css-skeleton-generator', l['css-skeleton-generator'], l) },
       ],
     },
     {
