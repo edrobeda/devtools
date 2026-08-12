@@ -3,4 +3,6 @@ dist/
 .agent-logs/
 .env
 .hourly-agent.lock
+.bastidores-agent.lock
 data/
+.scratch/
