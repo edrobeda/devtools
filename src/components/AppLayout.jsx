@@ -129,6 +129,7 @@ export const LABELS = {
     'case-converter': 'Conversor de Case',
     'password-generator': 'Gerador de Senha',
     'passphrase-generator': 'Gerador de Passphrase',
+    'totp-generator': 'Gerador de TOTP (2FA)',
     'url-encoder': 'URL Encode/Decode',
     'url-parser': 'URL Parser & Query Editor',
     'xml-json-converter': 'Conversor XML ↔ JSON',
@@ -403,6 +404,7 @@ export const LABELS = {
     'case-converter': 'Case Converter',
     'password-generator': 'Password Generator',
     'passphrase-generator': 'Passphrase Generator',
+    'totp-generator': 'TOTP Generator (2FA)',
     'url-encoder': 'URL Encode/Decode',
     'url-parser': 'URL Parser & Query Editor',
     'xml-json-converter': 'XML ↔ JSON Converter',
@@ -696,6 +698,7 @@ export function buildMenuItems(l) {
         { key: '/tools/glob-tester', icon: <SearchOutlined />, label: withNewBadge('/tools/glob-tester', l['glob-tester'], l) },
         { key: '/tools/data-uri-tool', icon: <LinkOutlined />, label: withNewBadge('/tools/data-uri-tool', l['data-uri-tool'], l) },
         { key: '/tools/passphrase-generator', icon: <KeyOutlined />, label: withNewBadge('/tools/passphrase-generator', l['passphrase-generator'], l) },
+        { key: '/tools/totp-generator', icon: <SafetyOutlined />, label: withNewBadge('/tools/totp-generator', l['totp-generator'], l) },
       ],
     },
     {

@@ -40,6 +40,7 @@ import HtmlFormatterPage from './pages/HtmlFormatterPage'
 import CaseConverterPage from './pages/CaseConverterPage'
 import PasswordGeneratorPage from './pages/PasswordGeneratorPage'
 import PassphraseGeneratorPage from './pages/PassphraseGeneratorPage'
+import TotpGeneratorPage from './pages/TotpGeneratorPage'
 import UrlEncoderPage from './pages/UrlEncoderPage'
 import GradientGeneratorPage from './pages/GradientGeneratorPage'
 import UseCopyToClipboardSnippetPage from './pages/UseCopyToClipboardSnippetPage'
@@ -454,6 +455,7 @@ const router = createBrowserRouter([
       { path: 'tools/glob-tester', element: <GlobTesterPage /> },
       { path: 'tools/data-uri-tool', element: <DataUriToolPage /> },
       { path: 'tools/passphrase-generator', element: <PassphraseGeneratorPage /> },
+      { path: 'tools/totp-generator', element: <TotpGeneratorPage /> },
       { path: 'references/html-cheatsheet', element: <HtmlCheatsheetPage /> },
       { path: 'references/react-cheatsheet', element: <ReactCheatsheetPage /> },
       { path: 'references/tailwind-cheatsheet', element: <TailwindCheatsheetPage /> },
