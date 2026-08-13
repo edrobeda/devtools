@@ -192,6 +192,7 @@ export const LABELS = {
     'use-page-visibility': 'usePageVisibility',
     'use-async': 'useAsync',
     'use-update-effect': 'useUpdateEffect',
+    'typing-speed-test': 'Teste de Velocidade de Digitação',
     'bash-shortcuts': 'Atalhos de Terminal/Bash',
     'commit-message-generator': 'Gerador de Mensagem de Commit',
     'robots-txt-generator': 'Gerador de robots.txt',
@@ -469,6 +470,7 @@ export const LABELS = {
     'use-page-visibility': 'usePageVisibility',
     'use-async': 'useAsync',
     'use-update-effect': 'useUpdateEffect',
+    'typing-speed-test': 'Typing Speed Test',
     'bash-shortcuts': 'Terminal/Bash Shortcuts',
     'commit-message-generator': 'Commit Message Generator',
     'robots-txt-generator': 'robots.txt Generator',
@@ -1011,6 +1013,7 @@ export function buildMenuItems(l) {
         { key: '/extras/pomodoro-timer', icon: <FieldTimeOutlined />, label: withNewBadge('/extras/pomodoro-timer', l['pomodoro-timer'], l) },
         { key: '/extras/uuid-collision-simulator', icon: <ExperimentOutlined />, label: withNewBadge('/extras/uuid-collision-simulator', l['uuid-collision-simulator'], l) },
         { key: '/extras/sorting-visualizer', icon: <OrderedListOutlined />, label: withNewBadge('/extras/sorting-visualizer', l['sorting-visualizer'], l) },
+        { key: '/extras/typing-speed-test', icon: <FontSizeOutlined />, label: withNewBadge('/extras/typing-speed-test', l['typing-speed-test'], l) },
       ],
     },
   ]

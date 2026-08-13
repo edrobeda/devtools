@@ -259,6 +259,7 @@ import PatternBackgroundGeneratorPage from './pages/PatternBackgroundGeneratorPa
 import WebAppManifestGeneratorPage from './pages/WebAppManifestGeneratorPage'
 import DataUriToolPage from './pages/DataUriToolPage'
 import UseUpdateEffectSnippetPage from './pages/UseUpdateEffectSnippetPage'
+import TypingSpeedTestPage from './pages/TypingSpeedTestPage'
 
 const router = createBrowserRouter([
   {
@@ -522,6 +523,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-login-form-generator', element: <CssLoginFormGeneratorPage /> },
       { path: 'frontend/css-neumorphism-generator', element: <CssNeumorphismGeneratorPage /> },
       { path: 'snippets/use-update-effect', element: <UseUpdateEffectSnippetPage /> },
+      { path: 'extras/typing-speed-test', element: <TypingSpeedTestPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
