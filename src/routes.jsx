@@ -170,6 +170,7 @@ import ClipPathGeneratorPage from './pages/ClipPathGeneratorPage'
 import TomlFormatterPage from './pages/TomlFormatterPage'
 import HtmlToMarkdownPage from './pages/HtmlToMarkdownPage'
 import ChangelogGeneratorPage from './pages/ChangelogGeneratorPage'
+import GitattributesGeneratorPage from './pages/GitattributesGeneratorPage'
 import VimCheatsheetPage from './pages/VimCheatsheetPage'
 import SshCheatsheetPage from './pages/SshCheatsheetPage'
 import DockerComposeGeneratorPage from './pages/DockerComposeGeneratorPage'
@@ -396,6 +397,7 @@ const router = createBrowserRouter([
       { path: 'tools/html-to-jsx-converter', element: <HtmlToJsxConverterPage /> },
       { path: 'tools/html-to-markdown', element: <HtmlToMarkdownPage /> },
       { path: 'devops/changelog-generator', element: <ChangelogGeneratorPage /> },
+      { path: 'devops/gitattributes-generator', element: <GitattributesGeneratorPage /> },
       { path: 'references/vim-cheatsheet', element: <VimCheatsheetPage /> },
       { path: 'extras/uuid-collision-simulator', element: <UuidCollisionSimulatorPage /> },
       { path: 'tools/unicode-inspector', element: <UnicodeInspectorPage /> },

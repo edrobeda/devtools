@@ -112,6 +112,7 @@ export const LABELS = {
     'curl-generator': 'Gerador de cURL',
     'curl-to-code': 'cURL → Código (fetch/axios)',
     'gitignore-generator': 'Gerador de .gitignore',
+    'gitattributes-generator': 'Gerador de .gitattributes',
     'rate-limit-calculator': 'Calculadora de Rate Limit',
     'arn-parser': 'AWS ARN Parser',
     'password-strength': 'Força de Senha',
@@ -395,6 +396,7 @@ export const LABELS = {
     'curl-generator': 'cURL Generator',
     'curl-to-code': 'cURL → Code (fetch/axios)',
     'gitignore-generator': '.gitignore Generator',
+    'gitattributes-generator': '.gitattributes Generator',
     'rate-limit-calculator': 'Rate Limit Calculator',
     'arn-parser': 'AWS ARN Parser',
     'password-strength': 'Password Strength',
@@ -868,6 +870,7 @@ export function buildMenuItems(l) {
       label: l.devops,
       children: [
         { key: '/devops/gitignore-generator', label: l['gitignore-generator'] },
+        { key: '/devops/gitattributes-generator', icon: <FileTextOutlined />, label: withNewBadge('/devops/gitattributes-generator', l['gitattributes-generator'], l) },
         { key: '/devops/commit-message-generator', label: withNewBadge('/devops/commit-message-generator', l['commit-message-generator'], l) },
         { key: '/devops/changelog-generator', icon: <HistoryOutlined />, label: withNewBadge('/devops/changelog-generator', l['changelog-generator'], l) },
         { key: '/devops/env-tool', icon: <FileProtectOutlined />, label: withNewBadge('/devops/env-tool', l['env-tool'], l) },
