@@ -225,6 +225,7 @@ import CssFlipCardGeneratorPage from './pages/CssFlipCardGeneratorPage'
 import CssProgressRingGeneratorPage from './pages/CssProgressRingGeneratorPage'
 import CssDividerGeneratorPage from './pages/CssDividerGeneratorPage'
 import SvgBadgeGeneratorPage from './pages/SvgBadgeGeneratorPage'
+import CssMarqueeGeneratorPage from './pages/CssMarqueeGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
@@ -510,6 +511,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-progress-ring-generator', element: <CssProgressRingGeneratorPage /> },
       { path: 'frontend/css-divider-generator', element: <CssDividerGeneratorPage /> },
       { path: 'frontend/svg-badge-generator', element: <SvgBadgeGeneratorPage /> },
+      { path: 'frontend/css-marquee-generator', element: <CssMarqueeGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
