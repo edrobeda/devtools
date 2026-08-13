@@ -239,6 +239,7 @@ import GridAreasGeneratorPage from './pages/GridAreasGeneratorPage'
 import XmlJsonConverterPage from './pages/XmlJsonConverterPage'
 import PatternBackgroundGeneratorPage from './pages/PatternBackgroundGeneratorPage'
 import WebAppManifestGeneratorPage from './pages/WebAppManifestGeneratorPage'
+import DataUriToolPage from './pages/DataUriToolPage'
 
 const router = createBrowserRouter([
   {
@@ -434,6 +435,7 @@ const router = createBrowserRouter([
       { path: 'references/typescript-cheatsheet', element: <TypescriptCheatsheetPage /> },
       { path: 'tools/morse-code-converter', element: <MorseConverterPage /> },
       { path: 'tools/glob-tester', element: <GlobTesterPage /> },
+      { path: 'tools/data-uri-tool', element: <DataUriToolPage /> },
       { path: 'references/html-cheatsheet', element: <HtmlCheatsheetPage /> },
       { path: 'references/react-cheatsheet', element: <ReactCheatsheetPage /> },
       { path: 'references/tailwind-cheatsheet', element: <TailwindCheatsheetPage /> },

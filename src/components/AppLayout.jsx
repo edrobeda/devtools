@@ -279,6 +279,7 @@ export const LABELS = {
     'font-face-generator': 'Gerador de @font-face CSS',
     'morse-code-converter': 'Conversor de Código Morse',
     'glob-tester': 'Glob Pattern Tester (gitignore)',
+    'data-uri-tool': 'Data URI Generator / Decoder',
     'html-cheatsheet': 'Cheat Sheet de HTML',
     'js-testing-cheatsheet': 'Cheat Sheet de Testes JS (Jest/Vitest)',
     'react-cheatsheet': 'Cheat Sheet de React',
@@ -536,6 +537,7 @@ export const LABELS = {
     'font-face-generator': 'CSS @font-face Generator',
     'morse-code-converter': 'Morse Code Converter',
     'glob-tester': 'Glob Pattern Tester (gitignore)',
+    'data-uri-tool': 'Data URI Generator / Decoder',
     'html-cheatsheet': 'HTML Cheat Sheet',
     'js-testing-cheatsheet': 'JS Testing Cheat Sheet (Jest/Vitest)',
     'react-cheatsheet': 'React Cheat Sheet',
@@ -659,6 +661,7 @@ export function buildMenuItems(l) {
         { key: '/tools/qr-code-generator', icon: <QrcodeOutlined />, label: withNewBadge('/tools/qr-code-generator', l['qr-code-generator'], l) },
         { key: '/tools/morse-code-converter', icon: <AudioOutlined />, label: withNewBadge('/tools/morse-code-converter', l['morse-code-converter'], l) },
         { key: '/tools/glob-tester', icon: <SearchOutlined />, label: withNewBadge('/tools/glob-tester', l['glob-tester'], l) },
+        { key: '/tools/data-uri-tool', icon: <LinkOutlined />, label: withNewBadge('/tools/data-uri-tool', l['data-uri-tool'], l) },
       ],
     },
     {
