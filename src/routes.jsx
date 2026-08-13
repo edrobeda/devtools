@@ -231,6 +231,7 @@ import CssMarqueeGeneratorPage from './pages/CssMarqueeGeneratorPage'
 import CssCarouselGeneratorPage from './pages/CssCarouselGeneratorPage'
 import CssLoginFormGeneratorPage from './pages/CssLoginFormGeneratorPage'
 import CssNeumorphismGeneratorPage from './pages/CssNeumorphismGeneratorPage'
+import CssTextStrokeGeneratorPage from './pages/CssTextStrokeGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
@@ -526,6 +527,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-carousel-generator', element: <CssCarouselGeneratorPage /> },
       { path: 'frontend/css-login-form-generator', element: <CssLoginFormGeneratorPage /> },
       { path: 'frontend/css-neumorphism-generator', element: <CssNeumorphismGeneratorPage /> },
+      { path: 'frontend/css-text-stroke-generator', element: <CssTextStrokeGeneratorPage /> },
       { path: 'snippets/use-update-effect', element: <UseUpdateEffectSnippetPage /> },
       { path: 'extras/typing-speed-test', element: <TypingSpeedTestPage /> },
       { path: '*', element: <NotFoundPage /> },

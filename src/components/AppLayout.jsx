@@ -352,6 +352,7 @@ export const LABELS = {
     'css-carousel-generator': 'Gerador de Carrossel CSS',
     'css-login-form-generator': 'Gerador de CSS Login Form',
     'css-neumorphism-generator': 'Gerador de Neumorfismo CSS',
+    'css-text-stroke-generator': 'Gerador de Texto com Contorno CSS',
   },
   en: {
     home: 'Home',
@@ -632,6 +633,7 @@ export const LABELS = {
     'css-carousel-generator': 'CSS Carousel Generator',
     'css-login-form-generator': 'CSS Login Form Generator',
     'css-neumorphism-generator': 'CSS Neumorphism Generator',
+    'css-text-stroke-generator': 'CSS Text Stroke / Outline Generator',
   },
 }
 
@@ -841,6 +843,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-carousel-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-carousel-generator', l['css-carousel-generator'], l) },
         { key: '/frontend/css-login-form-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-login-form-generator', l['css-login-form-generator'], l) },
         { key: '/frontend/css-neumorphism-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-neumorphism-generator', l['css-neumorphism-generator'], l) },
+        { key: '/frontend/css-text-stroke-generator', icon: <FontSizeOutlined />, label: withNewBadge('/frontend/css-text-stroke-generator', l['css-text-stroke-generator'], l) },
       ],
     },
     {
