@@ -265,6 +265,7 @@ import DataUriToolPage from './pages/DataUriToolPage'
 import DirectoryTreeGeneratorPage from './pages/DirectoryTreeGeneratorPage'
 import PayloadCompressionCalculatorPage from './pages/PayloadCompressionCalculatorPage'
 import UseUpdateEffectSnippetPage from './pages/UseUpdateEffectSnippetPage'
+import UseWhyDidYouUpdateSnippetPage from './pages/UseWhyDidYouUpdateSnippetPage'
 import TypingSpeedTestPage from './pages/TypingSpeedTestPage'
 
 const router = createBrowserRouter([
@@ -535,6 +536,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-neumorphism-generator', element: <CssNeumorphismGeneratorPage /> },
       { path: 'frontend/css-text-stroke-generator', element: <CssTextStrokeGeneratorPage /> },
       { path: 'snippets/use-update-effect', element: <UseUpdateEffectSnippetPage /> },
+      { path: 'snippets/use-why-did-you-update', element: <UseWhyDidYouUpdateSnippetPage /> },
       { path: 'extras/typing-speed-test', element: <TypingSpeedTestPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
