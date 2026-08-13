@@ -227,6 +227,7 @@ import CssDividerGeneratorPage from './pages/CssDividerGeneratorPage'
 import SvgBadgeGeneratorPage from './pages/SvgBadgeGeneratorPage'
 import CssMarqueeGeneratorPage from './pages/CssMarqueeGeneratorPage'
 import CssCarouselGeneratorPage from './pages/CssCarouselGeneratorPage'
+import CssLoginFormGeneratorPage from './pages/CssLoginFormGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
@@ -514,6 +515,7 @@ const router = createBrowserRouter([
       { path: 'frontend/svg-badge-generator', element: <SvgBadgeGeneratorPage /> },
       { path: 'frontend/css-marquee-generator', element: <CssMarqueeGeneratorPage /> },
       { path: 'frontend/css-carousel-generator', element: <CssCarouselGeneratorPage /> },
+      { path: 'frontend/css-login-form-generator', element: <CssLoginFormGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
