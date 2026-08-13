@@ -200,6 +200,7 @@ export const LABELS = {
     'lru-cache': 'LRU Cache',
     'csp-generator': 'Gerador de CSP',
     'security-headers-generator': 'Gerador de Cabeçalhos de Segurança',
+    'sri-hash-generator': 'Gerador de Hash SRI',
     'token-counter': 'Contador de Tokens',
     'pomodoro-timer': 'Timer Pomodoro',
     'env-tool': 'Validador de .env',
@@ -463,6 +464,7 @@ export const LABELS = {
     'lru-cache': 'LRU Cache',
     'csp-generator': 'CSP Generator',
     'security-headers-generator': 'Security Headers Generator',
+    'sri-hash-generator': 'SRI Hash Generator',
     'token-counter': 'Token Counter',
     'pomodoro-timer': 'Pomodoro Timer',
     'env-tool': '.env File Validator',
@@ -857,6 +859,7 @@ export function buildMenuItems(l) {
         { key: '/security/robots-txt-generator', label: withNewBadge('/security/robots-txt-generator', l['robots-txt-generator'], l) },
         { key: '/security/csp-generator', label: withNewBadge('/security/csp-generator', l['csp-generator'], l) },
         { key: '/security/security-headers-generator', label: withNewBadge('/security/security-headers-generator', l['security-headers-generator'], l) },
+        { key: '/security/sri-hash-generator', icon: <SafetyOutlined />, label: withNewBadge('/security/sri-hash-generator', l['sri-hash-generator'], l) },
       ],
     },
     {
