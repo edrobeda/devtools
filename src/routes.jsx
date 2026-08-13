@@ -113,6 +113,7 @@ import LruCachePage from './pages/LruCachePage'
 import CspGeneratorPage from './pages/CspGeneratorPage'
 import SecurityHeadersGeneratorPage from './pages/SecurityHeadersGeneratorPage'
 import SriHashGeneratorPage from './pages/SriHashGeneratorPage'
+import SecurityTxtGeneratorPage from './pages/SecurityTxtGeneratorPage'
 import TokenCounterPage from './pages/TokenCounterPage'
 import PomodoroTimerPage from './pages/PomodoroTimerPage'
 import EnvToolPage from './pages/EnvToolPage'
@@ -378,6 +379,7 @@ const router = createBrowserRouter([
       { path: 'security/csp-generator', element: <CspGeneratorPage /> },
       { path: 'security/security-headers-generator', element: <SecurityHeadersGeneratorPage /> },
       { path: 'security/sri-hash-generator', element: <SriHashGeneratorPage /> },
+      { path: 'security/security-txt-generator', element: <SecurityTxtGeneratorPage /> },
       { path: 'ai/token-counter', element: <TokenCounterPage /> },
       { path: 'devops/env-tool', element: <EnvToolPage /> },
       { path: 'text/remove-accents', element: <RemoveAccentsPage /> },
