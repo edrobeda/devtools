@@ -340,6 +340,7 @@ export const LABELS = {
     'css-cursor-generator': 'Gerador de Cursor Personalizado CSS',
     'css-flip-card-generator': 'Gerador de Flip Card CSS',
     'css-progress-ring-generator': 'Gerador de Progress Ring CSS',
+    'css-divider-generator': 'Gerador de Divider CSS',
   },
   en: {
     home: 'Home',
@@ -608,6 +609,7 @@ export const LABELS = {
     'css-cursor-generator': 'CSS Custom Cursor Generator',
     'css-flip-card-generator': 'CSS Flip Card Generator',
     'css-progress-ring-generator': 'CSS Progress Ring Generator',
+    'css-divider-generator': 'CSS Divider Generator',
   },
 }
 
@@ -807,6 +809,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-cursor-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-cursor-generator', l['css-cursor-generator'], l) },
         { key: '/frontend/css-flip-card-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-flip-card-generator', l['css-flip-card-generator'], l) },
         { key: '/frontend/css-progress-ring-generator', icon: <LoadingOutlined />, label: withNewBadge('/frontend/css-progress-ring-generator', l['css-progress-ring-generator'], l) },
+        { key: '/frontend/css-divider-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-divider-generator', l['css-divider-generator'], l) },
       ],
     },
     {

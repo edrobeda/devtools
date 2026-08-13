@@ -222,6 +222,7 @@ import CssTableGeneratorPage from './pages/CssTableGeneratorPage'
 import CssCursorGeneratorPage from './pages/CssCursorGeneratorPage'
 import CssFlipCardGeneratorPage from './pages/CssFlipCardGeneratorPage'
 import CssProgressRingGeneratorPage from './pages/CssProgressRingGeneratorPage'
+import CssDividerGeneratorPage from './pages/CssDividerGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
@@ -504,6 +505,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-cursor-generator', element: <CssCursorGeneratorPage /> },
       { path: 'frontend/css-flip-card-generator', element: <CssFlipCardGeneratorPage /> },
       { path: 'frontend/css-progress-ring-generator', element: <CssProgressRingGeneratorPage /> },
+      { path: 'frontend/css-divider-generator', element: <CssDividerGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
