@@ -276,6 +276,7 @@ import UseLockBodyScrollSnippetPage from './pages/UseLockBodyScrollSnippetPage'
 import UseStableCallbackSnippetPage from './pages/UseStableCallbackSnippetPage'
 import UseHoverSnippetPage from './pages/UseHoverSnippetPage'
 import UseMergedRefSnippetPage from './pages/UseMergedRefSnippetPage'
+import UseQueueSnippetPage from './pages/UseQueueSnippetPage'
 
 const router = createBrowserRouter([
   {
@@ -556,6 +557,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-stable-callback', element: <UseStableCallbackSnippetPage /> },
       { path: 'snippets/use-hover', element: <UseHoverSnippetPage /> },
       { path: 'snippets/use-merged-ref', element: <UseMergedRefSnippetPage /> },
+      { path: 'snippets/use-queue', element: <UseQueueSnippetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
