@@ -38,7 +38,7 @@ export function buildSpeechBubbleCss(options = {}) {
   const borderRadius = isShout ? '2px' : toPx(opts.radius)
 
   const shadowRule = opts.shadow
-    ? `  box-shadow: 0 4px 12px ${opts.shadowColor};`
+    ? `  filter: drop-shadow(0 4px 12px ${opts.shadowColor});`
     : ''
 
   const borderRule = hasBorder
@@ -47,55 +47,52 @@ export function buildSpeechBubbleCss(options = {}) {
 
   // Calcula posicionamento da seta principal (::after)
   const s = opts.arrowSize
+  function arrowPlacement(align, size, axis) {
+    const translate = axis === 'x' ? 'translateX' : 'translateY'
+    const map = {
+      start: { value: '0', transform: '' },
+      center: { value: '50%', transform: `${translate}(-50%)` },
+      end: { value: `calc(100% - ${toPx(size)})`, transform: `${translate}(calc(-100% + ${toPx(size)}))` },
+    }
+    return map[align] || map.start
+  }
   let afterPosition = ''
   let afterBorder = ''
   let afterMargin = ''
 
   if (opts.arrowPosition === 'top') {
+    const place = arrowPlacement(opts.arrowAlign, s, 'x')
     afterPosition = `  top: -${toPx(s)};
-  left: ${opts.arrowAlign};`
+  left: ${place.value};`
     afterBorder = `  border-left: ${toPx(s)} solid transparent;
   border-right: ${toPx(s)} solid transparent;
   border-bottom: ${toPx(s)} solid ${opts.bg};`
-    afterMargin = opts.arrowAlign === 'center'
-      ? `  transform: translateX(-50%);`
-      : opts.arrowAlign === 'end'
-        ? `  transform: translateX(calc(-100% + ${toPx(s)}));`
-        : ''
+    afterMargin = place.transform ? `  transform: ${place.transform};` : ''
   } else if (opts.arrowPosition === 'bottom') {
+    const place = arrowPlacement(opts.arrowAlign, s, 'x')
     afterPosition = `  bottom: -${toPx(s)};
-  left: ${opts.arrowAlign};`
+  left: ${place.value};`
     afterBorder = `  border-left: ${toPx(s)} solid transparent;
   border-right: ${toPx(s)} solid transparent;
   border-top: ${toPx(s)} solid ${opts.bg};`
-    afterMargin = opts.arrowAlign === 'center'
-      ? `  transform: translateX(-50%);`
-      : opts.arrowAlign === 'end'
-        ? `  transform: translateX(calc(-100% + ${toPx(s)}));`
-        : ''
+    afterMargin = place.transform ? `  transform: ${place.transform};` : ''
   } else if (opts.arrowPosition === 'left') {
+    const place = arrowPlacement(opts.arrowAlign, s, 'y')
     afterPosition = `  left: -${toPx(s)};
-  top: ${opts.arrowAlign};`
+  top: ${place.value};`
     afterBorder = `  border-top: ${toPx(s)} solid transparent;
   border-bottom: ${toPx(s)} solid transparent;
   border-right: ${toPx(s)} solid ${opts.bg};`
-    afterMargin = opts.arrowAlign === 'center'
-      ? `  transform: translateY(-50%);`
-      : opts.arrowAlign === 'end'
-        ? `  transform: translateY(calc(-100% + ${toPx(s)}));`
-        : ''
+    afterMargin = place.transform ? `  transform: ${place.transform};` : ''
   } else {
     // right
+    const place = arrowPlacement(opts.arrowAlign, s, 'y')
     afterPosition = `  right: -${toPx(s)};
-  top: ${opts.arrowAlign};`
+  top: ${place.value};`
     afterBorder = `  border-top: ${toPx(s)} solid transparent;
   border-bottom: ${toPx(s)} solid transparent;
   border-left: ${toPx(s)} solid ${opts.bg};`
-    afterMargin = opts.arrowAlign === 'center'
-      ? `  transform: translateY(-50%);`
-      : opts.arrowAlign === 'end'
-        ? `  transform: translateY(calc(-100% + ${toPx(s)}));`
-        : ''
+    afterMargin = place.transform ? `  transform: ${place.transform};` : ''
   }
 
   // Seta de borda (::before) — um pouco maior e na cor da borda
@@ -108,49 +105,37 @@ export function buildSpeechBubbleCss(options = {}) {
     let beforeMargin = ''
 
     if (opts.arrowPosition === 'top') {
+      const place = arrowPlacement(opts.arrowAlign, offset, 'x')
       beforePosition = `  top: -${toPx(offset)};
-  left: ${opts.arrowAlign};`
+  left: ${place.value};`
       beforeBorder = `  border-left: ${toPx(offset)} solid transparent;
   border-right: ${toPx(offset)} solid transparent;
   border-bottom: ${toPx(offset)} solid ${opts.borderColor};`
-      beforeMargin = opts.arrowAlign === 'center'
-        ? `  transform: translateX(-50%);`
-        : opts.arrowAlign === 'end'
-          ? `  transform: translateX(calc(-100% + ${toPx(offset)}));`
-          : ''
+      beforeMargin = place.transform ? `  transform: ${place.transform};` : ''
     } else if (opts.arrowPosition === 'bottom') {
+      const place = arrowPlacement(opts.arrowAlign, offset, 'x')
       beforePosition = `  bottom: -${toPx(offset)};
-  left: ${opts.arrowAlign};`
+  left: ${place.value};`
       beforeBorder = `  border-left: ${toPx(offset)} solid transparent;
   border-right: ${toPx(offset)} solid transparent;
   border-top: ${toPx(offset)} solid ${opts.borderColor};`
-      beforeMargin = opts.arrowAlign === 'center'
-        ? `  transform: translateX(-50%);`
-        : opts.arrowAlign === 'end'
-          ? `  transform: translateX(calc(-100% + ${toPx(offset)}));`
-          : ''
+      beforeMargin = place.transform ? `  transform: ${place.transform};` : ''
     } else if (opts.arrowPosition === 'left') {
+      const place = arrowPlacement(opts.arrowAlign, offset, 'y')
       beforePosition = `  left: -${toPx(offset)};
-  top: ${opts.arrowAlign};`
+  top: ${place.value};`
       beforeBorder = `  border-top: ${toPx(offset)} solid transparent;
   border-bottom: ${toPx(offset)} solid transparent;
   border-right: ${toPx(offset)} solid ${opts.borderColor};`
-      beforeMargin = opts.arrowAlign === 'center'
-        ? `  transform: translateY(-50%);`
-        : opts.arrowAlign === 'end'
-          ? `  transform: translateY(calc(-100% + ${toPx(offset)}));`
-          : ''
+      beforeMargin = place.transform ? `  transform: ${place.transform};` : ''
     } else {
+      const place = arrowPlacement(opts.arrowAlign, offset, 'y')
       beforePosition = `  right: -${toPx(offset)};
-  top: ${opts.arrowAlign};`
+  top: ${place.value};`
       beforeBorder = `  border-top: ${toPx(offset)} solid transparent;
   border-bottom: ${toPx(offset)} solid transparent;
   border-left: ${toPx(offset)} solid ${opts.borderColor};`
-      beforeMargin = opts.arrowAlign === 'center'
-        ? `  transform: translateY(-50%);`
-        : opts.arrowAlign === 'end'
-          ? `  transform: translateY(calc(-100% + ${toPx(offset)}));`
-          : ''
+      beforeMargin = place.transform ? `  transform: ${place.transform};` : ''
     }
 
     beforeRule = `
@@ -169,6 +154,12 @@ ${beforeMargin}
   // Bolhas de pensamento
   let thoughtRule = ''
   if (isThought) {
+    const mainAxisProp = opts.arrowPosition === 'bottom' ? 'bottom' : opts.arrowPosition === 'top' ? 'top' : opts.arrowPosition === 'left' ? 'left' : 'right'
+    const crossAxisProp = opts.arrowPosition === 'left' || opts.arrowPosition === 'right' ? 'top' : 'left'
+    const crossAxis = opts.arrowPosition === 'left' || opts.arrowPosition === 'right' ? 'y' : 'x'
+    const place1 = arrowPlacement(opts.arrowAlign, Math.round(s * 0.8), crossAxis)
+    const place2 = arrowPlacement(opts.arrowAlign, Math.round(s * 0.45), crossAxis)
+
     thoughtRule = `
 .${cn}--thought::before,
 .${cn}--thought::after {
@@ -182,17 +173,17 @@ ${beforeMargin}
 .${cn}--thought::before {
   width: ${toPx(Math.round(s * 0.8))};
   height: ${toPx(Math.round(s * 0.8))};
-  ${opts.arrowPosition === 'bottom' ? 'bottom' : opts.arrowPosition === 'top' ? 'top' : opts.arrowPosition === 'left' ? 'left' : 'right'}: -${toPx(Math.round(s * 1.6))};
-  ${opts.arrowPosition === 'left' || opts.arrowPosition === 'right' ? 'top' : 'left'}: ${opts.arrowAlign};
-  ${opts.arrowAlign === 'center' ? (opts.arrowPosition === 'left' || opts.arrowPosition === 'right' ? 'transform: translateY(-50%);' : 'transform: translateX(-50%);') : ''}
+  ${mainAxisProp}: -${toPx(Math.round(s * 1.6))};
+  ${crossAxisProp}: ${place1.value};
+  ${place1.transform ? `transform: ${place1.transform};` : ''}
 }
 
 .${cn}--thought::after {
   width: ${toPx(Math.round(s * 0.45))};
   height: ${toPx(Math.round(s * 0.45))};
-  ${opts.arrowPosition === 'bottom' ? 'bottom' : opts.arrowPosition === 'top' ? 'top' : opts.arrowPosition === 'left' ? 'left' : 'right'}: -${toPx(Math.round(s * 2.6))};
-  ${opts.arrowPosition === 'left' || opts.arrowPosition === 'right' ? 'top' : 'left'}: ${opts.arrowAlign};
-  ${opts.arrowAlign === 'center' ? (opts.arrowPosition === 'left' || opts.arrowPosition === 'right' ? 'transform: translateY(-50%);' : 'transform: translateX(-50%);') : ''}
+  ${mainAxisProp}: -${toPx(Math.round(s * 2.6))};
+  ${crossAxisProp}: ${place2.value};
+  ${place2.transform ? `transform: ${place2.transform};` : ''}
 }`
   }
 

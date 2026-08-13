@@ -48,6 +48,12 @@ import BoxShadowGeneratorPage from './pages/BoxShadowGeneratorPage'
 import CsvJsonConverterPage from './pages/CsvJsonConverterPage'
 import UseIntervalSnippetPage from './pages/UseIntervalSnippetPage'
 import UseCountdownSnippetPage from './pages/UseCountdownSnippetPage'
+import UseFetchSnippetPage from './pages/UseFetchSnippetPage'
+import UseNetworkStatusSnippetPage from './pages/UseNetworkStatusSnippetPage'
+import UseElementSizeSnippetPage from './pages/UseElementSizeSnippetPage'
+import UseMousePositionSnippetPage from './pages/UseMousePositionSnippetPage'
+import UsePageVisibilitySnippetPage from './pages/UsePageVisibilitySnippetPage'
+import UseAsyncSnippetPage from './pages/UseAsyncSnippetPage'
 import MarkdownPreviewerPage from './pages/MarkdownPreviewerPage'
 import NeumorphicCardPage from './pages/NeumorphicCardPage'
 import UsePreviousSnippetPage from './pages/UsePreviousSnippetPage'
@@ -90,6 +96,7 @@ import CssGridCheatsheetPage from './pages/CssGridCheatsheetPage'
 import FisherYatesShufflePage from './pages/FisherYatesShufflePage'
 import TeamRoulettePage from './pages/TeamRoulettePage'
 import JwtGeneratorPage from './pages/JwtGeneratorPage'
+import JwtSecretGeneratorPage from './pages/JwtSecretGeneratorPage'
 import ToastNotificationPage from './pages/ToastNotificationPage'
 import UseUndoSnippetPage from './pages/UseUndoSnippetPage'
 import BashShortcutsPage from './pages/BashShortcutsPage'
@@ -202,6 +209,9 @@ import CssSkeletonGeneratorPage from './pages/CssSkeletonGeneratorPage'
 import CssTimelineGeneratorPage from './pages/CssTimelineGeneratorPage'
 import CssStepperGeneratorPage from './pages/CssStepperGeneratorPage'
 import CssSpeechBubbleGeneratorPage from './pages/CssSpeechBubbleGeneratorPage'
+import CssButtonGeneratorPage from './pages/CssButtonGeneratorPage'
+import CssAlertGeneratorPage from './pages/CssAlertGeneratorPage'
+import CssAvatarGeneratorPage from './pages/CssAvatarGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
@@ -223,10 +233,13 @@ import JsTestingCheatsheetPage from './pages/JsTestingCheatsheetPage'
 import ReactCheatsheetPage from './pages/ReactCheatsheetPage'
 import TailwindCheatsheetPage from './pages/TailwindCheatsheetPage'
 import CssSelectorsCheatsheetPage from './pages/CssSelectorsCheatsheetPage'
+import A11yCheatsheetPage from './pages/A11yCheatsheetPage'
+import JwtClaimsCheatsheetPage from './pages/JwtClaimsCheatsheetPage'
 import GridAreasGeneratorPage from './pages/GridAreasGeneratorPage'
 import XmlJsonConverterPage from './pages/XmlJsonConverterPage'
 import PatternBackgroundGeneratorPage from './pages/PatternBackgroundGeneratorPage'
 import WebAppManifestGeneratorPage from './pages/WebAppManifestGeneratorPage'
+import DataUriToolPage from './pages/DataUriToolPage'
 
 const router = createBrowserRouter([
   {
@@ -281,6 +294,12 @@ const router = createBrowserRouter([
       { path: 'data/csv-json-converter', element: <CsvJsonConverterPage /> },
       { path: 'snippets/use-interval', element: <UseIntervalSnippetPage /> },
       { path: 'snippets/use-countdown', element: <UseCountdownSnippetPage /> },
+      { path: 'snippets/use-fetch', element: <UseFetchSnippetPage /> },
+      { path: 'snippets/use-network-status', element: <UseNetworkStatusSnippetPage /> },
+      { path: 'snippets/use-element-size', element: <UseElementSizeSnippetPage /> },
+      { path: 'snippets/use-mouse-position', element: <UseMousePositionSnippetPage /> },
+      { path: 'snippets/use-page-visibility', element: <UsePageVisibilitySnippetPage /> },
+      { path: 'snippets/use-async', element: <UseAsyncSnippetPage /> },
       { path: 'tools/markdown-previewer', element: <MarkdownPreviewerPage /> },
       { path: 'styles/neumorphic-card', element: <NeumorphicCardPage /> },
       { path: 'snippets/use-previous', element: <UsePreviousSnippetPage /> },
@@ -323,6 +342,7 @@ const router = createBrowserRouter([
       { path: 'extras/team-roulette', element: <TeamRoulettePage /> },
       { path: 'extras/pomodoro-timer', element: <PomodoroTimerPage /> },
       { path: 'tools/jwt-generator', element: <JwtGeneratorPage /> },
+      { path: 'tools/jwt-secret-generator', element: <JwtSecretGeneratorPage /> },
       { path: 'styles/toast-notification', element: <ToastNotificationPage /> },
       { path: 'snippets/use-undo', element: <UseUndoSnippetPage /> },
       { path: 'references/bash-shortcuts', element: <BashShortcutsPage /> },
@@ -415,10 +435,13 @@ const router = createBrowserRouter([
       { path: 'references/typescript-cheatsheet', element: <TypescriptCheatsheetPage /> },
       { path: 'tools/morse-code-converter', element: <MorseConverterPage /> },
       { path: 'tools/glob-tester', element: <GlobTesterPage /> },
+      { path: 'tools/data-uri-tool', element: <DataUriToolPage /> },
       { path: 'references/html-cheatsheet', element: <HtmlCheatsheetPage /> },
       { path: 'references/react-cheatsheet', element: <ReactCheatsheetPage /> },
       { path: 'references/tailwind-cheatsheet', element: <TailwindCheatsheetPage /> },
       { path: 'references/css-selectors-cheatsheet', element: <CssSelectorsCheatsheetPage /> },
+      { path: 'references/a11y-cheatsheet', element: <A11yCheatsheetPage /> },
+      { path: 'references/jwt-claims-cheatsheet', element: <JwtClaimsCheatsheetPage /> },
       { path: 'frontend/grid-areas-generator', element: <GridAreasGeneratorPage /> },
       { path: 'frontend/pattern-background-generator', element: <PatternBackgroundGeneratorPage /> },
       { path: 'frontend/sitemap-generator', element: <SitemapGeneratorPage /> },
@@ -458,6 +481,9 @@ const router = createBrowserRouter([
       { path: 'frontend/css-timeline-generator', element: <CssTimelineGeneratorPage /> },
       { path: 'frontend/css-stepper-generator', element: <CssStepperGeneratorPage /> },
       { path: 'frontend/css-speech-bubble-generator', element: <CssSpeechBubbleGeneratorPage /> },
+      { path: 'frontend/css-button-generator', element: <CssButtonGeneratorPage /> },
+      { path: 'frontend/css-alert-generator', element: <CssAlertGeneratorPage /> },
+      { path: 'frontend/css-avatar-generator', element: <CssAvatarGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
