@@ -4,6 +4,7 @@ import {
   HomeOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  MenuOutlined,
   ToolOutlined,
   BgColorsOutlined,
   CodeOutlined,
@@ -329,6 +330,7 @@ export const LABELS = {
     'css-button-generator': 'Gerador de Button CSS',
     'css-alert-generator': 'Gerador de Alert CSS',
     'css-avatar-generator': 'Gerador de Avatar CSS',
+    'css-hamburger-menu-generator': 'Gerador de Hambúrguer Menu CSS',
   },
   en: {
     home: 'Home',
@@ -587,6 +589,7 @@ export const LABELS = {
     'css-button-generator': 'CSS Button Generator',
     'css-alert-generator': 'CSS Alert Generator',
     'css-avatar-generator': 'CSS Avatar Generator',
+    'css-hamburger-menu-generator': 'CSS Hamburger Menu Generator',
   },
 }
 
@@ -777,6 +780,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-button-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-button-generator', l['css-button-generator'], l) },
         { key: '/frontend/css-alert-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-alert-generator', l['css-alert-generator'], l) },
         { key: '/frontend/css-avatar-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-avatar-generator', l['css-avatar-generator'], l) },
+        { key: '/frontend/css-hamburger-menu-generator', icon: <MenuOutlined />, label: withNewBadge('/frontend/css-hamburger-menu-generator', l['css-hamburger-menu-generator'], l) },
       ],
     },
     {
