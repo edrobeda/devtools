@@ -213,6 +213,7 @@ import CssButtonGeneratorPage from './pages/CssButtonGeneratorPage'
 import CssAlertGeneratorPage from './pages/CssAlertGeneratorPage'
 import CssAvatarGeneratorPage from './pages/CssAvatarGeneratorPage'
 import CssHamburgerMenuGeneratorPage from './pages/CssHamburgerMenuGeneratorPage'
+import CssCornerRibbonGeneratorPage from './pages/CssCornerRibbonGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
@@ -486,6 +487,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-alert-generator', element: <CssAlertGeneratorPage /> },
       { path: 'frontend/css-avatar-generator', element: <CssAvatarGeneratorPage /> },
       { path: 'frontend/css-hamburger-menu-generator', element: <CssHamburgerMenuGeneratorPage /> },
+      { path: 'frontend/css-corner-ribbon-generator', element: <CssCornerRibbonGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

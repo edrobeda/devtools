@@ -331,6 +331,7 @@ export const LABELS = {
     'css-alert-generator': 'Gerador de Alert CSS',
     'css-avatar-generator': 'Gerador de Avatar CSS',
     'css-hamburger-menu-generator': 'Gerador de Hambúrguer Menu CSS',
+    'css-corner-ribbon-generator': 'Gerador de Corner Ribbon CSS',
   },
   en: {
     home: 'Home',
@@ -590,6 +591,7 @@ export const LABELS = {
     'css-alert-generator': 'CSS Alert Generator',
     'css-avatar-generator': 'CSS Avatar Generator',
     'css-hamburger-menu-generator': 'CSS Hamburger Menu Generator',
+    'css-corner-ribbon-generator': 'CSS Corner Ribbon Generator',
   },
 }
 
@@ -781,6 +783,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-alert-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-alert-generator', l['css-alert-generator'], l) },
         { key: '/frontend/css-avatar-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-avatar-generator', l['css-avatar-generator'], l) },
         { key: '/frontend/css-hamburger-menu-generator', icon: <MenuOutlined />, label: withNewBadge('/frontend/css-hamburger-menu-generator', l['css-hamburger-menu-generator'], l) },
+        { key: '/frontend/css-corner-ribbon-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-corner-ribbon-generator', l['css-corner-ribbon-generator'], l) },
       ],
     },
     {
