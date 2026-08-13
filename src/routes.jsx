@@ -277,6 +277,7 @@ import UseStableCallbackSnippetPage from './pages/UseStableCallbackSnippetPage'
 import UseHoverSnippetPage from './pages/UseHoverSnippetPage'
 import UseMergedRefSnippetPage from './pages/UseMergedRefSnippetPage'
 import UseQueueSnippetPage from './pages/UseQueueSnippetPage'
+import UseLongPressSnippetPage from './pages/UseLongPressSnippetPage'
 
 const router = createBrowserRouter([
   {
@@ -558,6 +559,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-hover', element: <UseHoverSnippetPage /> },
       { path: 'snippets/use-merged-ref', element: <UseMergedRefSnippetPage /> },
       { path: 'snippets/use-queue', element: <UseQueueSnippetPage /> },
+      { path: 'snippets/use-long-press', element: <UseLongPressSnippetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
