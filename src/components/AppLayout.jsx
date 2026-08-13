@@ -334,6 +334,7 @@ export const LABELS = {
     'css-corner-ribbon-generator': 'Gerador de Corner Ribbon CSS',
     'css-pricing-table-generator': 'Gerador de Pricing Table CSS',
     'css-image-hover-generator': 'Gerador de Efeitos de Hover em Imagens CSS',
+    'css-segmented-control-generator': 'Gerador de Segmented Control CSS',
   },
   en: {
     home: 'Home',
@@ -596,6 +597,7 @@ export const LABELS = {
     'css-corner-ribbon-generator': 'CSS Corner Ribbon Generator',
     'css-pricing-table-generator': 'CSS Pricing Table Generator',
     'css-image-hover-generator': 'CSS Image Hover Effects Generator',
+    'css-segmented-control-generator': 'CSS Segmented Control Generator',
   },
 }
 
@@ -790,6 +792,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-corner-ribbon-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-corner-ribbon-generator', l['css-corner-ribbon-generator'], l) },
         { key: '/frontend/css-pricing-table-generator', icon: <TableOutlined />, label: withNewBadge('/frontend/css-pricing-table-generator', l['css-pricing-table-generator'], l) },
         { key: '/frontend/css-image-hover-generator', icon: <PictureOutlined />, label: withNewBadge('/frontend/css-image-hover-generator', l['css-image-hover-generator'], l) },
+        { key: '/frontend/css-segmented-control-generator', icon: <AppstoreOutlined />, label: withNewBadge('/frontend/css-segmented-control-generator', l['css-segmented-control-generator'], l) },
       ],
     },
     {
