@@ -268,6 +268,7 @@ import UseUpdateEffectSnippetPage from './pages/UseUpdateEffectSnippetPage'
 import UseWhyDidYouUpdateSnippetPage from './pages/UseWhyDidYouUpdateSnippetPage'
 import UseBooleanSnippetPage from './pages/UseBooleanSnippetPage'
 import UseSetSnippetPage from './pages/UseSetSnippetPage'
+import UseCounterSnippetPage from './pages/UseCounterSnippetPage'
 import TypingSpeedTestPage from './pages/TypingSpeedTestPage'
 
 const router = createBrowserRouter([
@@ -541,6 +542,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-why-did-you-update', element: <UseWhyDidYouUpdateSnippetPage /> },
       { path: 'snippets/use-boolean', element: <UseBooleanSnippetPage /> },
       { path: 'snippets/use-set', element: <UseSetSnippetPage /> },
+      { path: 'snippets/use-counter', element: <UseCounterSnippetPage /> },
       { path: 'extras/typing-speed-test', element: <TypingSpeedTestPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
