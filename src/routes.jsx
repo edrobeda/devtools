@@ -270,6 +270,7 @@ import UseBooleanSnippetPage from './pages/UseBooleanSnippetPage'
 import UseSetSnippetPage from './pages/UseSetSnippetPage'
 import UseCounterSnippetPage from './pages/UseCounterSnippetPage'
 import TypingSpeedTestPage from './pages/TypingSpeedTestPage'
+import UrlEmailExtractorPage from './pages/UrlEmailExtractorPage'
 
 const router = createBrowserRouter([
   {
@@ -544,6 +545,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-set', element: <UseSetSnippetPage /> },
       { path: 'snippets/use-counter', element: <UseCounterSnippetPage /> },
       { path: 'extras/typing-speed-test', element: <TypingSpeedTestPage /> },
+      { path: 'tools/url-email-extractor', element: <UrlEmailExtractorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

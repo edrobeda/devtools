@@ -131,6 +131,7 @@ export const LABELS = {
     'case-converter': 'Conversor de Case',
     'password-generator': 'Gerador de Senha',
     'payload-compression-calculator': 'Calculadora de Compressão de Payload',
+    'url-email-extractor': 'Extrator de URLs e E-mails',
     'passphrase-generator': 'Gerador de Passphrase',
     'totp-generator': 'Gerador de TOTP (2FA)',
     'url-encoder': 'URL Encode/Decode',
@@ -419,6 +420,7 @@ export const LABELS = {
     'case-converter': 'Case Converter',
     'password-generator': 'Password Generator',
     'payload-compression-calculator': 'Payload Compression Calculator',
+    'url-email-extractor': 'URL & E-mail Extractor',
     'passphrase-generator': 'Passphrase Generator',
     'totp-generator': 'TOTP Generator (2FA)',
     'url-encoder': 'URL Encode/Decode',
@@ -728,6 +730,7 @@ export function buildMenuItems(l) {
         { key: '/tools/passphrase-generator', icon: <KeyOutlined />, label: withNewBadge('/tools/passphrase-generator', l['passphrase-generator'], l) },
         { key: '/tools/totp-generator', icon: <SafetyOutlined />, label: withNewBadge('/tools/totp-generator', l['totp-generator'], l) },
         { key: '/tools/payload-compression-calculator', icon: <CompressOutlined />, label: withNewBadge('/tools/payload-compression-calculator', l['payload-compression-calculator'], l) },
+        { key: '/tools/url-email-extractor', icon: <LinkOutlined />, label: withNewBadge('/tools/url-email-extractor', l['url-email-extractor'], l) },
       ],
     },
     {
