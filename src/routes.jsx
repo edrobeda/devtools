@@ -91,6 +91,7 @@ import CssGridCheatsheetPage from './pages/CssGridCheatsheetPage'
 import FisherYatesShufflePage from './pages/FisherYatesShufflePage'
 import TeamRoulettePage from './pages/TeamRoulettePage'
 import JwtGeneratorPage from './pages/JwtGeneratorPage'
+import JwtSecretGeneratorPage from './pages/JwtSecretGeneratorPage'
 import ToastNotificationPage from './pages/ToastNotificationPage'
 import UseUndoSnippetPage from './pages/UseUndoSnippetPage'
 import BashShortcutsPage from './pages/BashShortcutsPage'
@@ -328,6 +329,7 @@ const router = createBrowserRouter([
       { path: 'extras/team-roulette', element: <TeamRoulettePage /> },
       { path: 'extras/pomodoro-timer', element: <PomodoroTimerPage /> },
       { path: 'tools/jwt-generator', element: <JwtGeneratorPage /> },
+      { path: 'tools/jwt-secret-generator', element: <JwtSecretGeneratorPage /> },
       { path: 'styles/toast-notification', element: <ToastNotificationPage /> },
       { path: 'snippets/use-undo', element: <UseUndoSnippetPage /> },
       { path: 'references/bash-shortcuts', element: <BashShortcutsPage /> },
