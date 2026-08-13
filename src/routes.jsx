@@ -258,6 +258,7 @@ import XmlJsonConverterPage from './pages/XmlJsonConverterPage'
 import PatternBackgroundGeneratorPage from './pages/PatternBackgroundGeneratorPage'
 import WebAppManifestGeneratorPage from './pages/WebAppManifestGeneratorPage'
 import DataUriToolPage from './pages/DataUriToolPage'
+import DirectoryTreeGeneratorPage from './pages/DirectoryTreeGeneratorPage'
 import UseUpdateEffectSnippetPage from './pages/UseUpdateEffectSnippetPage'
 import TypingSpeedTestPage from './pages/TypingSpeedTestPage'
 
@@ -457,6 +458,7 @@ const router = createBrowserRouter([
       { path: 'tools/morse-code-converter', element: <MorseConverterPage /> },
       { path: 'tools/glob-tester', element: <GlobTesterPage /> },
       { path: 'tools/data-uri-tool', element: <DataUriToolPage /> },
+      { path: 'tools/directory-tree-generator', element: <DirectoryTreeGeneratorPage /> },
       { path: 'tools/passphrase-generator', element: <PassphraseGeneratorPage /> },
       { path: 'tools/totp-generator', element: <TotpGeneratorPage /> },
       { path: 'references/html-cheatsheet', element: <HtmlCheatsheetPage /> },
