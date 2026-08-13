@@ -344,6 +344,7 @@ export const LABELS = {
     'css-divider-generator': 'Gerador de Divider CSS',
     'svg-badge-generator': 'Gerador de Badge SVG',
     'css-marquee-generator': 'Gerador de Marquee CSS',
+    'css-carousel-generator': 'Gerador de Carrossel CSS',
   },
   en: {
     home: 'Home',
@@ -616,6 +617,7 @@ export const LABELS = {
     'css-divider-generator': 'CSS Divider Generator',
     'svg-badge-generator': 'SVG Badge Generator',
     'css-marquee-generator': 'CSS Marquee Generator',
+    'css-carousel-generator': 'CSS Carousel Generator',
   },
 }
 
@@ -819,6 +821,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-divider-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-divider-generator', l['css-divider-generator'], l) },
         { key: '/frontend/svg-badge-generator', icon: <PictureOutlined />, label: withNewBadge('/frontend/svg-badge-generator', l['svg-badge-generator'], l) },
         { key: '/frontend/css-marquee-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-marquee-generator', l['css-marquee-generator'], l) },
+        { key: '/frontend/css-carousel-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-carousel-generator', l['css-carousel-generator'], l) },
       ],
     },
     {
