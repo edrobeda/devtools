@@ -219,6 +219,7 @@ import CssPricingTableGeneratorPage from './pages/CssPricingTableGeneratorPage'
 import CssImageHoverGeneratorPage from './pages/CssImageHoverGeneratorPage'
 import CssSegmentedControlGeneratorPage from './pages/CssSegmentedControlGeneratorPage'
 import CssTableGeneratorPage from './pages/CssTableGeneratorPage'
+import CssCursorGeneratorPage from './pages/CssCursorGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
@@ -498,6 +499,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-image-hover-generator', element: <CssImageHoverGeneratorPage /> },
       { path: 'frontend/css-segmented-control-generator', element: <CssSegmentedControlGeneratorPage /> },
       { path: 'frontend/css-table-generator', element: <CssTableGeneratorPage /> },
+      { path: 'frontend/css-cursor-generator', element: <CssCursorGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
