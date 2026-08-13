@@ -52,6 +52,7 @@ import UseFetchSnippetPage from './pages/UseFetchSnippetPage'
 import UseNetworkStatusSnippetPage from './pages/UseNetworkStatusSnippetPage'
 import UseElementSizeSnippetPage from './pages/UseElementSizeSnippetPage'
 import UseMousePositionSnippetPage from './pages/UseMousePositionSnippetPage'
+import UsePageVisibilitySnippetPage from './pages/UsePageVisibilitySnippetPage'
 import MarkdownPreviewerPage from './pages/MarkdownPreviewerPage'
 import NeumorphicCardPage from './pages/NeumorphicCardPage'
 import UsePreviousSnippetPage from './pages/UsePreviousSnippetPage'
@@ -293,6 +294,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-network-status', element: <UseNetworkStatusSnippetPage /> },
       { path: 'snippets/use-element-size', element: <UseElementSizeSnippetPage /> },
       { path: 'snippets/use-mouse-position', element: <UseMousePositionSnippetPage /> },
+      { path: 'snippets/use-page-visibility', element: <UsePageVisibilitySnippetPage /> },
       { path: 'tools/markdown-previewer', element: <MarkdownPreviewerPage /> },
       { path: 'styles/neumorphic-card', element: <NeumorphicCardPage /> },
       { path: 'snippets/use-previous', element: <UsePreviousSnippetPage /> },
