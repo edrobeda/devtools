@@ -272,6 +272,7 @@ import UseCounterSnippetPage from './pages/UseCounterSnippetPage'
 import TypingSpeedTestPage from './pages/TypingSpeedTestPage'
 import UrlEmailExtractorPage from './pages/UrlEmailExtractorPage'
 import UseLockBodyScrollSnippetPage from './pages/UseLockBodyScrollSnippetPage'
+import UseStableCallbackSnippetPage from './pages/UseStableCallbackSnippetPage'
 
 const router = createBrowserRouter([
   {
@@ -548,6 +549,7 @@ const router = createBrowserRouter([
       { path: 'extras/typing-speed-test', element: <TypingSpeedTestPage /> },
       { path: 'tools/url-email-extractor', element: <UrlEmailExtractorPage /> },
       { path: 'snippets/use-lock-body-scroll', element: <UseLockBodyScrollSnippetPage /> },
+      { path: 'snippets/use-stable-callback', element: <UseStableCallbackSnippetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
