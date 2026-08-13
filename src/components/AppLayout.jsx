@@ -333,6 +333,7 @@ export const LABELS = {
     'css-hamburger-menu-generator': 'Gerador de Hambúrguer Menu CSS',
     'css-corner-ribbon-generator': 'Gerador de Corner Ribbon CSS',
     'css-pricing-table-generator': 'Gerador de Pricing Table CSS',
+    'css-image-hover-generator': 'Gerador de Efeitos de Hover em Imagens CSS',
   },
   en: {
     home: 'Home',
@@ -594,6 +595,7 @@ export const LABELS = {
     'css-hamburger-menu-generator': 'CSS Hamburger Menu Generator',
     'css-corner-ribbon-generator': 'CSS Corner Ribbon Generator',
     'css-pricing-table-generator': 'CSS Pricing Table Generator',
+    'css-image-hover-generator': 'CSS Image Hover Effects Generator',
   },
 }
 
@@ -787,6 +789,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-hamburger-menu-generator', icon: <MenuOutlined />, label: withNewBadge('/frontend/css-hamburger-menu-generator', l['css-hamburger-menu-generator'], l) },
         { key: '/frontend/css-corner-ribbon-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-corner-ribbon-generator', l['css-corner-ribbon-generator'], l) },
         { key: '/frontend/css-pricing-table-generator', icon: <TableOutlined />, label: withNewBadge('/frontend/css-pricing-table-generator', l['css-pricing-table-generator'], l) },
+        { key: '/frontend/css-image-hover-generator', icon: <PictureOutlined />, label: withNewBadge('/frontend/css-image-hover-generator', l['css-image-hover-generator'], l) },
       ],
     },
     {
