@@ -285,6 +285,7 @@ export const LABELS = {
     'tailwind-cheatsheet': 'Cheat Sheet de Tailwind CSS',
     'css-selectors-cheatsheet': 'Cheat Sheet de Seletores CSS',
     'a11y-cheatsheet': 'Cheat Sheet de Acessibilidade (a11y)',
+    'jwt-claims-cheatsheet': 'Cheat Sheet de Claims JWT',
     'grid-areas-generator': 'Gerador de Grid Areas CSS',
     'pattern-background-generator': 'Gerador de Padrões de Fundo CSS',
     'sitemap-generator': 'Gerador de Sitemap XML',
@@ -541,6 +542,7 @@ export const LABELS = {
     'tailwind-cheatsheet': 'Tailwind CSS Cheat Sheet',
     'css-selectors-cheatsheet': 'CSS Selectors Cheat Sheet',
     'a11y-cheatsheet': 'Accessibility Cheat Sheet (a11y)',
+    'jwt-claims-cheatsheet': 'JWT Claims Cheat Sheet',
     'grid-areas-generator': 'CSS Grid Areas Generator',
     'pattern-background-generator': 'CSS Pattern Background Generator',
     'sitemap-generator': 'XML Sitemap Generator',
@@ -935,6 +937,7 @@ export function buildMenuItems(l) {
         { key: '/references/tailwind-cheatsheet', icon: <BgColorsOutlined />, label: withNewBadge('/references/tailwind-cheatsheet', l['tailwind-cheatsheet'], l) },
         { key: '/references/css-selectors-cheatsheet', icon: <SelectOutlined />, label: withNewBadge('/references/css-selectors-cheatsheet', l['css-selectors-cheatsheet'], l) },
         { key: '/references/a11y-cheatsheet', icon: <SafetyOutlined />, label: withNewBadge('/references/a11y-cheatsheet', l['a11y-cheatsheet'], l) },
+        { key: '/references/jwt-claims-cheatsheet', icon: <KeyOutlined />, label: withNewBadge('/references/jwt-claims-cheatsheet', l['jwt-claims-cheatsheet'], l) },
       ],
     },
     {
