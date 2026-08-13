@@ -181,6 +181,7 @@ import JqCheatsheetPage from './pages/JqCheatsheetPage'
 import ScrollbarCssGeneratorPage from './pages/ScrollbarCssGeneratorPage'
 import SitemapGeneratorPage from './pages/SitemapGeneratorPage'
 import EditorconfigGeneratorPage from './pages/EditorconfigGeneratorPage'
+import CodeownersGeneratorPage from './pages/CodeownersGeneratorPage'
 import LicenseGeneratorPage from './pages/LicenseGeneratorPage'
 import DockerignoreGeneratorPage from './pages/DockerignoreGeneratorPage'
 import PrettierrcGeneratorPage from './pages/PrettierrcGeneratorPage'
@@ -489,6 +490,7 @@ const router = createBrowserRouter([
       { path: 'frontend/sitemap-generator', element: <SitemapGeneratorPage /> },
       { path: 'frontend/web-app-manifest', element: <WebAppManifestGeneratorPage /> },
       { path: 'devops/editorconfig-generator', element: <EditorconfigGeneratorPage /> },
+      { path: 'devops/codeowners-generator', element: <CodeownersGeneratorPage /> },
       { path: 'devops/license-generator', element: <LicenseGeneratorPage /> },
       { path: 'devops/dockerignore-generator', element: <DockerignoreGeneratorPage /> },
       { path: 'devops/prettierrc-generator', element: <PrettierrcGeneratorPage /> },
