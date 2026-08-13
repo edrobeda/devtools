@@ -338,6 +338,7 @@ export const LABELS = {
     'css-segmented-control-generator': 'Gerador de Segmented Control CSS',
     'css-table-generator': 'Gerador de Tabela CSS',
     'css-cursor-generator': 'Gerador de Cursor Personalizado CSS',
+    'css-flip-card-generator': 'Gerador de Flip Card CSS',
   },
   en: {
     home: 'Home',
@@ -604,6 +605,7 @@ export const LABELS = {
     'css-segmented-control-generator': 'CSS Segmented Control Generator',
     'css-table-generator': 'CSS Table Generator',
     'css-cursor-generator': 'CSS Custom Cursor Generator',
+    'css-flip-card-generator': 'CSS Flip Card Generator',
   },
 }
 
@@ -801,6 +803,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-segmented-control-generator', icon: <AppstoreOutlined />, label: withNewBadge('/frontend/css-segmented-control-generator', l['css-segmented-control-generator'], l) },
         { key: '/frontend/css-table-generator', icon: <TableOutlined />, label: withNewBadge('/frontend/css-table-generator', l['css-table-generator'], l) },
         { key: '/frontend/css-cursor-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-cursor-generator', l['css-cursor-generator'], l) },
+        { key: '/frontend/css-flip-card-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-flip-card-generator', l['css-flip-card-generator'], l) },
       ],
     },
     {
