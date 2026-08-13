@@ -128,6 +128,7 @@ export const LABELS = {
     'uuid-generator': 'Gerador de UUID',
     'case-converter': 'Conversor de Case',
     'password-generator': 'Gerador de Senha',
+    'passphrase-generator': 'Gerador de Passphrase',
     'url-encoder': 'URL Encode/Decode',
     'url-parser': 'URL Parser & Query Editor',
     'xml-json-converter': 'Conversor XML ↔ JSON',
@@ -397,6 +398,7 @@ export const LABELS = {
     'uuid-generator': 'UUID Generator',
     'case-converter': 'Case Converter',
     'password-generator': 'Password Generator',
+    'passphrase-generator': 'Passphrase Generator',
     'url-encoder': 'URL Encode/Decode',
     'url-parser': 'URL Parser & Query Editor',
     'xml-json-converter': 'XML ↔ JSON Converter',
@@ -685,6 +687,7 @@ export function buildMenuItems(l) {
         { key: '/tools/morse-code-converter', icon: <AudioOutlined />, label: withNewBadge('/tools/morse-code-converter', l['morse-code-converter'], l) },
         { key: '/tools/glob-tester', icon: <SearchOutlined />, label: withNewBadge('/tools/glob-tester', l['glob-tester'], l) },
         { key: '/tools/data-uri-tool', icon: <LinkOutlined />, label: withNewBadge('/tools/data-uri-tool', l['data-uri-tool'], l) },
+        { key: '/tools/passphrase-generator', icon: <KeyOutlined />, label: withNewBadge('/tools/passphrase-generator', l['passphrase-generator'], l) },
       ],
     },
     {
