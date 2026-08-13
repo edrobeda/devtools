@@ -258,6 +258,7 @@ import XmlJsonConverterPage from './pages/XmlJsonConverterPage'
 import PatternBackgroundGeneratorPage from './pages/PatternBackgroundGeneratorPage'
 import WebAppManifestGeneratorPage from './pages/WebAppManifestGeneratorPage'
 import DataUriToolPage from './pages/DataUriToolPage'
+import UseUpdateEffectSnippetPage from './pages/UseUpdateEffectSnippetPage'
 
 const router = createBrowserRouter([
   {
@@ -520,6 +521,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-carousel-generator', element: <CssCarouselGeneratorPage /> },
       { path: 'frontend/css-login-form-generator', element: <CssLoginFormGeneratorPage /> },
       { path: 'frontend/css-neumorphism-generator', element: <CssNeumorphismGeneratorPage /> },
+      { path: 'snippets/use-update-effect', element: <UseUpdateEffectSnippetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
