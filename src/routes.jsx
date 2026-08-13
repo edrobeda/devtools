@@ -266,6 +266,7 @@ import DirectoryTreeGeneratorPage from './pages/DirectoryTreeGeneratorPage'
 import PayloadCompressionCalculatorPage from './pages/PayloadCompressionCalculatorPage'
 import UseUpdateEffectSnippetPage from './pages/UseUpdateEffectSnippetPage'
 import UseWhyDidYouUpdateSnippetPage from './pages/UseWhyDidYouUpdateSnippetPage'
+import UseBooleanSnippetPage from './pages/UseBooleanSnippetPage'
 import TypingSpeedTestPage from './pages/TypingSpeedTestPage'
 
 const router = createBrowserRouter([
@@ -537,6 +538,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-text-stroke-generator', element: <CssTextStrokeGeneratorPage /> },
       { path: 'snippets/use-update-effect', element: <UseUpdateEffectSnippetPage /> },
       { path: 'snippets/use-why-did-you-update', element: <UseWhyDidYouUpdateSnippetPage /> },
+      { path: 'snippets/use-boolean', element: <UseBooleanSnippetPage /> },
       { path: 'extras/typing-speed-test', element: <TypingSpeedTestPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
