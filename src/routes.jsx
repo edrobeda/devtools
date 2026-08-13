@@ -275,6 +275,7 @@ import UrlEmailExtractorPage from './pages/UrlEmailExtractorPage'
 import UseLockBodyScrollSnippetPage from './pages/UseLockBodyScrollSnippetPage'
 import UseStableCallbackSnippetPage from './pages/UseStableCallbackSnippetPage'
 import UseHoverSnippetPage from './pages/UseHoverSnippetPage'
+import UseMergedRefSnippetPage from './pages/UseMergedRefSnippetPage'
 
 const router = createBrowserRouter([
   {
@@ -554,6 +555,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-lock-body-scroll', element: <UseLockBodyScrollSnippetPage /> },
       { path: 'snippets/use-stable-callback', element: <UseStableCallbackSnippetPage /> },
       { path: 'snippets/use-hover', element: <UseHoverSnippetPage /> },
+      { path: 'snippets/use-merged-ref', element: <UseMergedRefSnippetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
