@@ -329,6 +329,7 @@ import JsonToZodSchemaPage from './pages/JsonToZodSchemaPage'
 import LoanAmortizationCalculatorPage from './pages/LoanAmortizationCalculatorPage'
 import BashToPowershellPage from './pages/BashToPowershellPage'
 import RetryCalculatorPage from './pages/RetryCalculatorPage'
+import StringEscapePage from './pages/StringEscapePage'
 
 const router = createBrowserRouter([
   {
@@ -505,6 +506,7 @@ const router = createBrowserRouter([
       { path: 'tools/loan-amortization-calculator', element: <LoanAmortizationCalculatorPage /> },
       { path: 'tools/bash-to-powershell', element: <BashToPowershellPage /> },
       { path: 'tools/retry-calculator', element: <RetryCalculatorPage /> },
+      { path: 'tools/string-escape', element: <StringEscapePage /> },
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
       { path: 'references/markdown-syntax', element: <MarkdownSyntaxPage /> },
       { path: 'devops/kubectl-commands', element: <KubeCtlCommandsPage /> },

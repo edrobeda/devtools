@@ -309,6 +309,7 @@ export const LABELS = {
     'loan-amortization-calculator': 'Calculadora SAC / Price',
     'bash-to-powershell': 'Bash ↔ PowerShell',
     'retry-calculator': 'Calculadora de Retry',
+    'string-escape': 'String Escape / Unescape',
     'csv-markdown-table': 'CSV → Tabela Markdown',
     'markdown-syntax': 'Sintaxe Markdown',
     'kubectl-commands': 'Comandos kubectl',
@@ -656,6 +657,7 @@ export const LABELS = {
     'loan-amortization-calculator': 'SAC / Loan Amortization Calculator',
     'bash-to-powershell': 'Bash ↔ PowerShell',
     'retry-calculator': 'Retry Calculator',
+    'string-escape': 'String Escape / Unescape',
     'csv-markdown-table': 'CSV → Markdown Table',
     'markdown-syntax': 'Markdown Syntax',
     'kubectl-commands': 'kubectl Commands',
@@ -880,6 +882,7 @@ export function buildMenuItems(l) {
         { key: '/tools/loan-amortization-calculator', icon: <BankOutlined />, label: withNewBadge('/tools/loan-amortization-calculator', l['loan-amortization-calculator'], l) },
         { key: '/tools/bash-to-powershell', icon: <WindowsOutlined />, label: withNewBadge('/tools/bash-to-powershell', l['bash-to-powershell'], l) },
         { key: '/tools/retry-calculator', icon: <SyncOutlined />, label: withNewBadge('/tools/retry-calculator', l['retry-calculator'], l) },
+        { key: '/tools/string-escape', icon: <CodeOutlined />, label: withNewBadge('/tools/string-escape', l['string-escape'], l) },
       ],
     },
     {
