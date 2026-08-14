@@ -306,6 +306,7 @@ import UseMutationObserverSnippetPage from './pages/UseMutationObserverSnippetPa
 import UseResizeObserverSnippetPage from './pages/UseResizeObserverSnippetPage'
 import UseHotkeysSnippetPage from './pages/UseHotkeysSnippetPage'
 import UseSpeechSynthesisSnippetPage from './pages/UseSpeechSynthesisSnippetPage'
+import UsePaginationSnippetPage from './pages/UsePaginationSnippetPage'
 
 const router = createBrowserRouter([
   {
@@ -616,6 +617,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-resize-observer', element: <UseResizeObserverSnippetPage /> },
       { path: 'snippets/use-hotkeys', element: <UseHotkeysSnippetPage /> },
       { path: 'snippets/use-speech-synthesis', element: <UseSpeechSynthesisSnippetPage /> },
+      { path: 'snippets/use-pagination', element: <UsePaginationSnippetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
