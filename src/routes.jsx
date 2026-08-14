@@ -286,6 +286,7 @@ import UseFaviconSnippetPage from './pages/UseFaviconSnippetPage'
 import UseDocumentTitleSnippetPage from './pages/UseDocumentTitleSnippetPage'
 import UseListSnippetPage from './pages/UseListSnippetPage'
 import UseWindowFocusSnippetPage from './pages/UseWindowFocusSnippetPage'
+import UseBeforeUnloadSnippetPage from './pages/UseBeforeUnloadSnippetPage'
 
 const router = createBrowserRouter([
   {
@@ -576,6 +577,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-document-title', element: <UseDocumentTitleSnippetPage /> },
       { path: 'snippets/use-list', element: <UseListSnippetPage /> },
       { path: 'snippets/use-window-focus', element: <UseWindowFocusSnippetPage /> },
+      { path: 'snippets/use-before-unload', element: <UseBeforeUnloadSnippetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
