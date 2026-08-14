@@ -172,6 +172,7 @@ import Ipv6ExplorerPage from './pages/Ipv6ExplorerPage'
 import MacAddressToolPage from './pages/MacAddressToolPage'
 import IbanToolPage from './pages/IbanToolPage'
 import RomanNumeralConverterPage from './pages/RomanNumeralConverterPage'
+import SqlJoinsPage from './pages/SqlJoinsPage'
 import KeyframeGeneratorPage from './pages/KeyframeGeneratorPage'
 import ClipPathGeneratorPage from './pages/ClipPathGeneratorPage'
 import TomlFormatterPage from './pages/TomlFormatterPage'
@@ -463,6 +464,7 @@ const router = createBrowserRouter([
       { path: 'network/mac-address-tool', element: <MacAddressToolPage /> },
       { path: 'tools/iban-tool', element: <IbanToolPage /> },
       { path: 'tools/roman-numeral-converter', element: <RomanNumeralConverterPage /> },
+      { path: 'references/sql-joins', element: <SqlJoinsPage /> },
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
       { path: 'references/markdown-syntax', element: <MarkdownSyntaxPage /> },
       { path: 'devops/kubectl-commands', element: <KubeCtlCommandsPage /> },
