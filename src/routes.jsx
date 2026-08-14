@@ -290,6 +290,7 @@ import UseWindowFocusSnippetPage from './pages/UseWindowFocusSnippetPage'
 import UseBeforeUnloadSnippetPage from './pages/UseBeforeUnloadSnippetPage'
 import UseCountUpSnippetPage from './pages/UseCountUpSnippetPage'
 import UseScriptSnippetPage from './pages/UseScriptSnippetPage'
+import UseBatterySnippetPage from './pages/UseBatterySnippetPage'
 
 const router = createBrowserRouter([
   {
@@ -584,6 +585,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-before-unload', element: <UseBeforeUnloadSnippetPage /> },
       { path: 'snippets/use-count-up', element: <UseCountUpSnippetPage /> },
       { path: 'snippets/use-script', element: <UseScriptSnippetPage /> },
+      { path: 'snippets/use-battery', element: <UseBatterySnippetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

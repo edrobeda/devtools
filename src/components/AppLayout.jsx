@@ -65,6 +65,7 @@ import {
   SmileOutlined,
   EditOutlined,
   WarningOutlined,
+  ThunderboltOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -222,6 +223,7 @@ export const LABELS = {
     'use-before-unload': 'useBeforeUnload',
     'use-count-up': 'useCountUp',
     'use-script': 'useScript',
+    'use-battery': 'useBattery',
     'typing-speed-test': 'Teste de Velocidade de Digitação',
     'bash-shortcuts': 'Atalhos de Terminal/Bash',
     'commit-message-generator': 'Gerador de Mensagem de Commit',
@@ -530,6 +532,7 @@ export const LABELS = {
     'use-before-unload': 'useBeforeUnload',
     'use-count-up': 'useCountUp',
     'use-script': 'useScript',
+    'use-battery': 'useBattery',
     'typing-speed-test': 'Typing Speed Test',
     'bash-shortcuts': 'Terminal/Bash Shortcuts',
     'commit-message-generator': 'Commit Message Generator',
@@ -848,6 +851,7 @@ export function buildMenuItems(l) {
         { key: '/snippets/use-before-unload', icon: <WarningOutlined />, label: withNewBadge('/snippets/use-before-unload', l['use-before-unload'], l) },
         { key: '/snippets/use-count-up', icon: <CodeOutlined />, label: withNewBadge('/snippets/use-count-up', l['use-count-up'], l) },
         { key: '/snippets/use-script', icon: <CodeOutlined />, label: withNewBadge('/snippets/use-script', l['use-script'], l) },
+        { key: '/snippets/use-battery', icon: <ThunderboltOutlined />, label: withNewBadge('/snippets/use-battery', l['use-battery'], l) },
         { key: '/snippets/debounce-throttle-functions', label: withNewBadge('/snippets/debounce-throttle-functions', l['debounce-throttle-functions'], l) },
         { key: '/snippets/lru-cache', label: withNewBadge('/snippets/lru-cache', l['lru-cache'], l) },
         { key: '/snippets/deep-clone-deep-equal', label: withNewBadge('/snippets/deep-clone-deep-equal', l['deep-clone-deep-equal'], l) },
