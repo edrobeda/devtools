@@ -322,6 +322,7 @@ import CookieToolPage from './pages/CookieToolPage'
 import CompoundInterestCalculatorPage from './pages/CompoundInterestCalculatorPage'
 import PercentageCalculatorPage from './pages/PercentageCalculatorPage'
 import ConnectionStringParserPage from './pages/ConnectionStringParserPage'
+import BigOCheatsheetPage from './pages/BigOCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -491,6 +492,7 @@ const router = createBrowserRouter([
       { path: 'tools/percentage-calculator', element: <PercentageCalculatorPage /> },
       { path: 'tools/connection-string-parser', element: <ConnectionStringParserPage /> },
       { path: 'references/sql-joins', element: <SqlJoinsPage /> },
+      { path: 'references/big-o-cheatsheet', element: <BigOCheatsheetPage /> },
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
       { path: 'references/markdown-syntax', element: <MarkdownSyntaxPage /> },
       { path: 'devops/kubectl-commands', element: <KubeCtlCommandsPage /> },
