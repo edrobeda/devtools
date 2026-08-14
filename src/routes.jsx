@@ -317,6 +317,7 @@ import FileSizeConverterPage from './pages/FileSizeConverterPage'
 import FileHashCalculatorPage from './pages/FileHashCalculatorPage'
 import GeoCoordinatesConverterPage from './pages/GeoCoordinatesConverterPage'
 import LevenshteinCalculatorPage from './pages/LevenshteinCalculatorPage'
+import BandwidthCalculatorPage from './pages/BandwidthCalculatorPage'
 
 const router = createBrowserRouter([
   {
@@ -480,6 +481,7 @@ const router = createBrowserRouter([
       { path: 'tools/file-hash-calculator', element: <FileHashCalculatorPage /> },
       { path: 'tools/geo-coordinates-converter', element: <GeoCoordinatesConverterPage /> },
       { path: 'tools/levenshtein-calculator', element: <LevenshteinCalculatorPage /> },
+      { path: 'tools/bandwidth-calculator', element: <BandwidthCalculatorPage /> },
       { path: 'references/sql-joins', element: <SqlJoinsPage /> },
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
       { path: 'references/markdown-syntax', element: <MarkdownSyntaxPage /> },
