@@ -331,6 +331,7 @@ import LoanAmortizationCalculatorPage from './pages/LoanAmortizationCalculatorPa
 import BashToPowershellPage from './pages/BashToPowershellPage'
 import RetryCalculatorPage from './pages/RetryCalculatorPage'
 import StringEscapePage from './pages/StringEscapePage'
+import AwsCliCheatsheetPage from './pages/AwsCliCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -666,6 +667,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-speech-synthesis', element: <UseSpeechSynthesisSnippetPage /> },
       { path: 'snippets/use-pagination', element: <UsePaginationSnippetPage /> },
       { path: 'snippets/use-controllable-state', element: <UseControllableStateSnippetPage /> },
+      { path: 'references/aws-cli-cheatsheet', element: <AwsCliCheatsheetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
