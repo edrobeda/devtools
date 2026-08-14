@@ -112,6 +112,7 @@ export const LABELS = {
     'gradient-border-button': 'Botão com Borda Gradiente',
     'use-debounce': 'useDebounce',
     'use-local-storage': 'useLocalStorage',
+    'use-session-storage': 'useSessionStorage',
     'use-click-outside': 'useClickOutside',
     'use-media-query': 'useMediaQuery',
     'contrast-checker': 'Checador de Contraste',
@@ -418,6 +419,7 @@ export const LABELS = {
     'gradient-border-button': 'Gradient Border Button',
     'use-debounce': 'useDebounce',
     'use-local-storage': 'useLocalStorage',
+    'use-session-storage': 'useSessionStorage',
     'use-click-outside': 'useClickOutside',
     'use-media-query': 'useMediaQuery',
     'contrast-checker': 'Contrast Checker',
@@ -803,6 +805,7 @@ export function buildMenuItems(l) {
       children: [
         { key: '/snippets/use-debounce', label: l['use-debounce'] },
         { key: '/snippets/use-local-storage', label: l['use-local-storage'] },
+        { key: '/snippets/use-session-storage', label: withNewBadge('/snippets/use-session-storage', l['use-session-storage'], l) },
         { key: '/snippets/use-click-outside', label: l['use-click-outside'] },
         { key: '/snippets/use-media-query', label: l['use-media-query'] },
         { key: '/snippets/use-copy-to-clipboard', label: withNewBadge('/snippets/use-copy-to-clipboard', l['use-copy-to-clipboard'], l) },
