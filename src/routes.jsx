@@ -38,6 +38,7 @@ import RegexTesterPage from './pages/RegexTesterPage'
 import KeyboardEventTesterPage from './pages/KeyboardEventTesterPage'
 import Base64ToolPage from './pages/Base64ToolPage'
 import UuidGeneratorPage from './pages/UuidGeneratorPage'
+import UuidV7GeneratorPage from './pages/UuidV7GeneratorPage'
 import UlidToolPage from './pages/UlidToolPage'
 import HtmlFormatterPage from './pages/HtmlFormatterPage'
 import CaseConverterPage from './pages/CaseConverterPage'
@@ -359,6 +360,7 @@ const router = createBrowserRouter([
       { path: 'tools/keyboard-event-tester', element: <KeyboardEventTesterPage /> },
       { path: 'tools/base64-tool', element: <Base64ToolPage /> },
       { path: 'tools/uuid-generator', element: <UuidGeneratorPage /> },
+      { path: 'tools/uuid-v7-generator', element: <UuidV7GeneratorPage /> },
       { path: 'tools/ulid-tool', element: <UlidToolPage /> },
       { path: 'tools/case-converter', element: <CaseConverterPage /> },
       { path: 'tools/password-generator', element: <PasswordGeneratorPage /> },
