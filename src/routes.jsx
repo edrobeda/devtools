@@ -122,6 +122,7 @@ import SecurityTxtGeneratorPage from './pages/SecurityTxtGeneratorPage'
 import WebhookSignatureValidatorPage from './pages/WebhookSignatureValidatorPage'
 import AsymmetricKeyGeneratorPage from './pages/AsymmetricKeyGeneratorPage'
 import SymmetricKeyGeneratorPage from './pages/SymmetricKeyGeneratorPage'
+import HashIdentifierPage from './pages/HashIdentifierPage'
 import TokenCounterPage from './pages/TokenCounterPage'
 import PomodoroTimerPage from './pages/PomodoroTimerPage'
 import EnvToolPage from './pages/EnvToolPage'
@@ -454,6 +455,7 @@ const router = createBrowserRouter([
       { path: 'security/webhook-signature-validator', element: <WebhookSignatureValidatorPage /> },
       { path: 'security/asymmetric-key-generator', element: <AsymmetricKeyGeneratorPage /> },
       { path: 'security/symmetric-key-generator', element: <SymmetricKeyGeneratorPage /> },
+      { path: 'security/hash-identifier', element: <HashIdentifierPage /> },
       { path: 'ai/token-counter', element: <TokenCounterPage /> },
       { path: 'devops/env-tool', element: <EnvToolPage /> },
       { path: 'text/remove-accents', element: <RemoveAccentsPage /> },

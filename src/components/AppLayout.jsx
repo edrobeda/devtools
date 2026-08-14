@@ -263,6 +263,7 @@ export const LABELS = {
     'webhook-signature-validator': 'Validador de Assinatura de Webhook',
     'asymmetric-key-generator': 'Gerador de Par de Chaves Assimétricas',
     'symmetric-key-generator': 'Gerador de Chave Simétrica (AES)',
+    'hash-identifier': 'Identificador de Hash',
     'token-counter': 'Contador de Tokens',
     'pomodoro-timer': 'Timer Pomodoro',
     'env-tool': 'Validador de .env',
@@ -609,6 +610,7 @@ export const LABELS = {
     'webhook-signature-validator': 'Webhook Signature Validator',
     'asymmetric-key-generator': 'Asymmetric Key Pair Generator',
     'symmetric-key-generator': 'Symmetric Key Generator (AES)',
+    'hash-identifier': 'Hash Identifier',
     'token-counter': 'Token Counter',
     'pomodoro-timer': 'Pomodoro Timer',
     'env-tool': '.env File Validator',
@@ -1118,6 +1120,7 @@ export function buildMenuItems(l) {
         { key: '/security/webhook-signature-validator', icon: <SafetyOutlined />, label: withNewBadge('/security/webhook-signature-validator', l['webhook-signature-validator'], l) },
         { key: '/security/asymmetric-key-generator', icon: <KeyOutlined />, label: withNewBadge('/security/asymmetric-key-generator', l['asymmetric-key-generator'], l) },
         { key: '/security/symmetric-key-generator', icon: <KeyOutlined />, label: withNewBadge('/security/symmetric-key-generator', l['symmetric-key-generator'], l) },
+        { key: '/security/hash-identifier', icon: <SearchOutlined />, label: withNewBadge('/security/hash-identifier', l['hash-identifier'], l) },
       ],
     },
     {
