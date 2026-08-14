@@ -67,6 +67,7 @@ import {
   WarningOutlined,
   ThunderboltOutlined,
   EnvironmentOutlined,
+  BankOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -270,6 +271,7 @@ export const LABELS = {
     'common-ports': 'Portas de Rede Comuns',
     'ipv6-explorer': 'Explorador IPv6',
     'mac-address-tool': 'Gerador/Validador de MAC',
+    'iban-tool': 'Gerador/Validador de IBAN',
     'csv-markdown-table': 'CSV → Tabela Markdown',
     'markdown-syntax': 'Sintaxe Markdown',
     'kubectl-commands': 'Comandos kubectl',
@@ -582,6 +584,7 @@ export const LABELS = {
     'common-ports': 'Common Network Ports',
     'ipv6-explorer': 'IPv6 Explorer',
     'mac-address-tool': 'MAC Generator / Validator',
+    'iban-tool': 'IBAN Generator / Validator',
     'csv-markdown-table': 'CSV → Markdown Table',
     'markdown-syntax': 'Markdown Syntax',
     'kubectl-commands': 'kubectl Commands',
@@ -786,6 +789,7 @@ export function buildMenuItems(l) {
         { key: '/tools/totp-generator', icon: <SafetyOutlined />, label: withNewBadge('/tools/totp-generator', l['totp-generator'], l) },
         { key: '/tools/payload-compression-calculator', icon: <CompressOutlined />, label: withNewBadge('/tools/payload-compression-calculator', l['payload-compression-calculator'], l) },
         { key: '/tools/url-email-extractor', icon: <LinkOutlined />, label: withNewBadge('/tools/url-email-extractor', l['url-email-extractor'], l) },
+        { key: '/tools/iban-tool', icon: <BankOutlined />, label: withNewBadge('/tools/iban-tool', l['iban-tool'], l) },
       ],
     },
     {

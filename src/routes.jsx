@@ -167,6 +167,7 @@ import TmuxCheatsheetPage from './pages/TmuxCheatsheetPage'
 import DevToolsShortcutsPage from './pages/DevToolsShortcutsPage'
 import Ipv6ExplorerPage from './pages/Ipv6ExplorerPage'
 import MacAddressToolPage from './pages/MacAddressToolPage'
+import IbanToolPage from './pages/IbanToolPage'
 import KeyframeGeneratorPage from './pages/KeyframeGeneratorPage'
 import ClipPathGeneratorPage from './pages/ClipPathGeneratorPage'
 import TomlFormatterPage from './pages/TomlFormatterPage'
@@ -446,6 +447,7 @@ const router = createBrowserRouter([
       { path: 'network/common-ports', element: <CommonPortsPage /> },
       { path: 'network/ipv6-explorer', element: <Ipv6ExplorerPage /> },
       { path: 'network/mac-address-tool', element: <MacAddressToolPage /> },
+      { path: 'tools/iban-tool', element: <IbanToolPage /> },
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
       { path: 'references/markdown-syntax', element: <MarkdownSyntaxPage /> },
       { path: 'devops/kubectl-commands', element: <KubeCtlCommandsPage /> },
