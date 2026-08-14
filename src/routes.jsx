@@ -310,6 +310,7 @@ import UseResizeObserverSnippetPage from './pages/UseResizeObserverSnippetPage'
 import UseHotkeysSnippetPage from './pages/UseHotkeysSnippetPage'
 import UseSpeechSynthesisSnippetPage from './pages/UseSpeechSynthesisSnippetPage'
 import UsePaginationSnippetPage from './pages/UsePaginationSnippetPage'
+import UseControllableStateSnippetPage from './pages/UseControllableStateSnippetPage'
 import FileSizeConverterPage from './pages/FileSizeConverterPage'
 
 const router = createBrowserRouter([
@@ -626,6 +627,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-hotkeys', element: <UseHotkeysSnippetPage /> },
       { path: 'snippets/use-speech-synthesis', element: <UseSpeechSynthesisSnippetPage /> },
       { path: 'snippets/use-pagination', element: <UsePaginationSnippetPage /> },
+      { path: 'snippets/use-controllable-state', element: <UseControllableStateSnippetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
