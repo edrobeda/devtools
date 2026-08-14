@@ -411,6 +411,7 @@ export const LABELS = {
     'css-neumorphism-generator': 'Gerador de Neumorfismo CSS',
     'css-text-stroke-generator': 'Gerador de Texto com Contorno CSS',
     'css-line-clamp-generator': 'Gerador de Line Clamp CSS',
+    'css-pulse-generator': 'Gerador de Efeito Pulse CSS',
   },
   en: {
     home: 'Home',
@@ -738,6 +739,7 @@ export const LABELS = {
     'css-neumorphism-generator': 'CSS Neumorphism Generator',
     'css-text-stroke-generator': 'CSS Text Stroke / Outline Generator',
     'css-line-clamp-generator': 'CSS Line Clamp Generator',
+    'css-pulse-generator': 'CSS Pulse Effect Generator',
   },
 }
 
@@ -987,6 +989,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-neumorphism-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-neumorphism-generator', l['css-neumorphism-generator'], l) },
         { key: '/frontend/css-text-stroke-generator', icon: <FontSizeOutlined />, label: withNewBadge('/frontend/css-text-stroke-generator', l['css-text-stroke-generator'], l) },
         { key: '/frontend/css-line-clamp-generator', icon: <FontSizeOutlined />, label: withNewBadge('/frontend/css-line-clamp-generator', l['css-line-clamp-generator'], l) },
+        { key: '/frontend/css-pulse-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-pulse-generator', l['css-pulse-generator'], l) },
       ],
     },
     {
