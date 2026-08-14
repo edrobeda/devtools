@@ -319,6 +319,7 @@ import GeoCoordinatesConverterPage from './pages/GeoCoordinatesConverterPage'
 import LevenshteinCalculatorPage from './pages/LevenshteinCalculatorPage'
 import BandwidthCalculatorPage from './pages/BandwidthCalculatorPage'
 import CookieToolPage from './pages/CookieToolPage'
+import CompoundInterestCalculatorPage from './pages/CompoundInterestCalculatorPage'
 
 const router = createBrowserRouter([
   {
@@ -484,6 +485,7 @@ const router = createBrowserRouter([
       { path: 'tools/levenshtein-calculator', element: <LevenshteinCalculatorPage /> },
       { path: 'tools/bandwidth-calculator', element: <BandwidthCalculatorPage /> },
       { path: 'tools/cookie-tool', element: <CookieToolPage /> },
+      { path: 'tools/compound-interest-calculator', element: <CompoundInterestCalculatorPage /> },
       { path: 'references/sql-joins', element: <SqlJoinsPage /> },
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
       { path: 'references/markdown-syntax', element: <MarkdownSyntaxPage /> },
