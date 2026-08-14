@@ -323,6 +323,7 @@ import BandwidthCalculatorPage from './pages/BandwidthCalculatorPage'
 import CookieToolPage from './pages/CookieToolPage'
 import CompoundInterestCalculatorPage from './pages/CompoundInterestCalculatorPage'
 import PercentageCalculatorPage from './pages/PercentageCalculatorPage'
+import ReadingTimeCalculatorPage from './pages/ReadingTimeCalculatorPage'
 import ConnectionStringParserPage from './pages/ConnectionStringParserPage'
 import BigOCheatsheetPage from './pages/BigOCheatsheetPage'
 import JsonToZodSchemaPage from './pages/JsonToZodSchemaPage'
@@ -499,6 +500,7 @@ const router = createBrowserRouter([
       { path: 'tools/cookie-tool', element: <CookieToolPage /> },
       { path: 'tools/compound-interest-calculator', element: <CompoundInterestCalculatorPage /> },
       { path: 'tools/percentage-calculator', element: <PercentageCalculatorPage /> },
+      { path: 'tools/reading-time-calculator', element: <ReadingTimeCalculatorPage /> },
       { path: 'tools/connection-string-parser', element: <ConnectionStringParserPage /> },
       { path: 'references/sql-joins', element: <SqlJoinsPage /> },
       { path: 'references/big-o-cheatsheet', element: <BigOCheatsheetPage /> },

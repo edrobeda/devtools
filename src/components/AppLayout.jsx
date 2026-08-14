@@ -310,6 +310,7 @@ export const LABELS = {
     'bash-to-powershell': 'Bash ↔ PowerShell',
     'retry-calculator': 'Calculadora de Retry',
     'string-escape': 'String Escape / Unescape',
+    'reading-time-calculator': 'Calculadora de Tempo de Leitura',
     'csv-markdown-table': 'CSV → Tabela Markdown',
     'markdown-syntax': 'Sintaxe Markdown',
     'kubectl-commands': 'Comandos kubectl',
@@ -658,6 +659,7 @@ export const LABELS = {
     'bash-to-powershell': 'Bash ↔ PowerShell',
     'retry-calculator': 'Retry Calculator',
     'string-escape': 'String Escape / Unescape',
+    'reading-time-calculator': 'Reading Time Calculator',
     'csv-markdown-table': 'CSV → Markdown Table',
     'markdown-syntax': 'Markdown Syntax',
     'kubectl-commands': 'kubectl Commands',
@@ -883,6 +885,7 @@ export function buildMenuItems(l) {
         { key: '/tools/bash-to-powershell', icon: <WindowsOutlined />, label: withNewBadge('/tools/bash-to-powershell', l['bash-to-powershell'], l) },
         { key: '/tools/retry-calculator', icon: <SyncOutlined />, label: withNewBadge('/tools/retry-calculator', l['retry-calculator'], l) },
         { key: '/tools/string-escape', icon: <CodeOutlined />, label: withNewBadge('/tools/string-escape', l['string-escape'], l) },
+        { key: '/tools/reading-time-calculator', icon: <ReadOutlined />, label: withNewBadge('/tools/reading-time-calculator', l['reading-time-calculator'], l) },
       ],
     },
     {
