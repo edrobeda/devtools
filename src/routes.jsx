@@ -323,6 +323,7 @@ import CompoundInterestCalculatorPage from './pages/CompoundInterestCalculatorPa
 import PercentageCalculatorPage from './pages/PercentageCalculatorPage'
 import ConnectionStringParserPage from './pages/ConnectionStringParserPage'
 import BigOCheatsheetPage from './pages/BigOCheatsheetPage'
+import JsonToZodSchemaPage from './pages/JsonToZodSchemaPage'
 
 const router = createBrowserRouter([
   {
@@ -493,6 +494,7 @@ const router = createBrowserRouter([
       { path: 'tools/connection-string-parser', element: <ConnectionStringParserPage /> },
       { path: 'references/sql-joins', element: <SqlJoinsPage /> },
       { path: 'references/big-o-cheatsheet', element: <BigOCheatsheetPage /> },
+      { path: 'tools/json-to-zod-schema', element: <JsonToZodSchemaPage /> },
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
       { path: 'references/markdown-syntax', element: <MarkdownSyntaxPage /> },
       { path: 'devops/kubectl-commands', element: <KubeCtlCommandsPage /> },
