@@ -280,6 +280,7 @@ import UseMergedRefSnippetPage from './pages/UseMergedRefSnippetPage'
 import UseQueueSnippetPage from './pages/UseQueueSnippetPage'
 import UseLongPressSnippetPage from './pages/UseLongPressSnippetPage'
 import UseFormSnippetPage from './pages/UseFormSnippetPage'
+import UsePreferredColorSchemeSnippetPage from './pages/UsePreferredColorSchemeSnippetPage'
 
 const router = createBrowserRouter([
   {
@@ -564,6 +565,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-queue', element: <UseQueueSnippetPage /> },
       { path: 'snippets/use-long-press', element: <UseLongPressSnippetPage /> },
       { path: 'snippets/use-form', element: <UseFormSnippetPage /> },
+      { path: 'snippets/use-preferred-color-scheme', element: <UsePreferredColorSchemeSnippetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
