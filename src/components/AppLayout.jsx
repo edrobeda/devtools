@@ -69,6 +69,7 @@ import {
   ThunderboltOutlined,
   EnvironmentOutlined,
   BankOutlined,
+  SoundOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -235,6 +236,7 @@ export const LABELS = {
     'use-mutation-observer': 'useMutationObserver',
     'use-resize-observer': 'useResizeObserver',
     'use-hotkeys': 'useHotkeys',
+    'use-speech-synthesis': 'useSpeechSynthesis',
     'typing-speed-test': 'Teste de Velocidade de Digitação',
     'bash-shortcuts': 'Atalhos de Terminal/Bash',
     'commit-message-generator': 'Gerador de Mensagem de Commit',
@@ -557,6 +559,7 @@ export const LABELS = {
     'use-mutation-observer': 'useMutationObserver',
     'use-resize-observer': 'useResizeObserver',
     'use-hotkeys': 'useHotkeys',
+    'use-speech-synthesis': 'useSpeechSynthesis',
     'typing-speed-test': 'Typing Speed Test',
     'bash-shortcuts': 'Terminal/Bash Shortcuts',
     'commit-message-generator': 'Commit Message Generator',
@@ -885,6 +888,7 @@ export function buildMenuItems(l) {
         { key: '/snippets/use-mutation-observer', icon: <CodeOutlined />, label: withNewBadge('/snippets/use-mutation-observer', l['use-mutation-observer'], l) },
         { key: '/snippets/use-resize-observer', icon: <CodeOutlined />, label: withNewBadge('/snippets/use-resize-observer', l['use-resize-observer'], l) },
         { key: '/snippets/use-hotkeys', icon: <CodeOutlined />, label: withNewBadge('/snippets/use-hotkeys', l['use-hotkeys'], l) },
+        { key: '/snippets/use-speech-synthesis', icon: <SoundOutlined />, label: withNewBadge('/snippets/use-speech-synthesis', l['use-speech-synthesis'], l) },
         { key: '/snippets/use-window-focus', icon: <CodeOutlined />, label: withNewBadge('/snippets/use-window-focus', l['use-window-focus'], l) },
         { key: '/snippets/use-before-unload', icon: <WarningOutlined />, label: withNewBadge('/snippets/use-before-unload', l['use-before-unload'], l) },
         { key: '/snippets/use-count-up', icon: <CodeOutlined />, label: withNewBadge('/snippets/use-count-up', l['use-count-up'], l) },
