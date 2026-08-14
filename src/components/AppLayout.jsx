@@ -276,6 +276,7 @@ export const LABELS = {
     'ipv6-explorer': 'Explorador IPv6',
     'mac-address-tool': 'Gerador/Validador de MAC',
     'iban-tool': 'Gerador/Validador de IBAN',
+    'roman-numeral-converter': 'Conversor de Números Romanos',
     'csv-markdown-table': 'CSV → Tabela Markdown',
     'markdown-syntax': 'Sintaxe Markdown',
     'kubectl-commands': 'Comandos kubectl',
@@ -594,6 +595,7 @@ export const LABELS = {
     'ipv6-explorer': 'IPv6 Explorer',
     'mac-address-tool': 'MAC Generator / Validator',
     'iban-tool': 'IBAN Generator / Validator',
+    'roman-numeral-converter': 'Roman Numeral Converter',
     'csv-markdown-table': 'CSV → Markdown Table',
     'markdown-syntax': 'Markdown Syntax',
     'kubectl-commands': 'kubectl Commands',
@@ -801,6 +803,7 @@ export function buildMenuItems(l) {
         { key: '/tools/payload-compression-calculator', icon: <CompressOutlined />, label: withNewBadge('/tools/payload-compression-calculator', l['payload-compression-calculator'], l) },
         { key: '/tools/url-email-extractor', icon: <LinkOutlined />, label: withNewBadge('/tools/url-email-extractor', l['url-email-extractor'], l) },
         { key: '/tools/iban-tool', icon: <BankOutlined />, label: withNewBadge('/tools/iban-tool', l['iban-tool'], l) },
+        { key: '/tools/roman-numeral-converter', icon: <NumberOutlined />, label: withNewBadge('/tools/roman-numeral-converter', l['roman-numeral-converter'], l) },
       ],
     },
     {
