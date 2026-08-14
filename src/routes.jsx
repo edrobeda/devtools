@@ -10,6 +10,7 @@ import CronParserPage from './pages/CronParserPage'
 import HashGeneratorPage from './pages/HashGeneratorPage'
 import CopyButtonShowcasePage from './pages/CopyButtonShowcasePage'
 import UseLocalStorageSnippetPage from './pages/UseLocalStorageSnippetPage'
+import UseSessionStorageSnippetPage from './pages/UseSessionStorageSnippetPage'
 import UseClickOutsideSnippetPage from './pages/UseClickOutsideSnippetPage'
 import JsonFormatterPage from './pages/JsonFormatterPage'
 import ColorConverterPage from './pages/ColorConverterPage'
@@ -39,6 +40,8 @@ import UuidGeneratorPage from './pages/UuidGeneratorPage'
 import HtmlFormatterPage from './pages/HtmlFormatterPage'
 import CaseConverterPage from './pages/CaseConverterPage'
 import PasswordGeneratorPage from './pages/PasswordGeneratorPage'
+import PassphraseGeneratorPage from './pages/PassphraseGeneratorPage'
+import TotpGeneratorPage from './pages/TotpGeneratorPage'
 import UrlEncoderPage from './pages/UrlEncoderPage'
 import GradientGeneratorPage from './pages/GradientGeneratorPage'
 import UseCopyToClipboardSnippetPage from './pages/UseCopyToClipboardSnippetPage'
@@ -110,6 +113,9 @@ import TypewriterEffectPage from './pages/TypewriterEffectPage'
 import LruCachePage from './pages/LruCachePage'
 import CspGeneratorPage from './pages/CspGeneratorPage'
 import SecurityHeadersGeneratorPage from './pages/SecurityHeadersGeneratorPage'
+import SriHashGeneratorPage from './pages/SriHashGeneratorPage'
+import SecurityTxtGeneratorPage from './pages/SecurityTxtGeneratorPage'
+import WebhookSignatureValidatorPage from './pages/WebhookSignatureValidatorPage'
 import TokenCounterPage from './pages/TokenCounterPage'
 import PomodoroTimerPage from './pages/PomodoroTimerPage'
 import EnvToolPage from './pages/EnvToolPage'
@@ -165,6 +171,7 @@ import ClipPathGeneratorPage from './pages/ClipPathGeneratorPage'
 import TomlFormatterPage from './pages/TomlFormatterPage'
 import HtmlToMarkdownPage from './pages/HtmlToMarkdownPage'
 import ChangelogGeneratorPage from './pages/ChangelogGeneratorPage'
+import GitattributesGeneratorPage from './pages/GitattributesGeneratorPage'
 import VimCheatsheetPage from './pages/VimCheatsheetPage'
 import SshCheatsheetPage from './pages/SshCheatsheetPage'
 import DockerComposeGeneratorPage from './pages/DockerComposeGeneratorPage'
@@ -175,10 +182,12 @@ import JqCheatsheetPage from './pages/JqCheatsheetPage'
 import ScrollbarCssGeneratorPage from './pages/ScrollbarCssGeneratorPage'
 import SitemapGeneratorPage from './pages/SitemapGeneratorPage'
 import EditorconfigGeneratorPage from './pages/EditorconfigGeneratorPage'
+import CodeownersGeneratorPage from './pages/CodeownersGeneratorPage'
 import LicenseGeneratorPage from './pages/LicenseGeneratorPage'
 import DockerignoreGeneratorPage from './pages/DockerignoreGeneratorPage'
 import PrettierrcGeneratorPage from './pages/PrettierrcGeneratorPage'
 import MakefileGeneratorPage from './pages/MakefileGeneratorPage'
+import TsconfigGeneratorPage from './pages/TsconfigGeneratorPage'
 import CssSpinnerGeneratorPage from './pages/CssSpinnerGeneratorPage'
 import ColorBlindnessSimulatorPage from './pages/ColorBlindnessSimulatorPage'
 import TextShadowGeneratorPage from './pages/TextShadowGeneratorPage'
@@ -212,6 +221,22 @@ import CssSpeechBubbleGeneratorPage from './pages/CssSpeechBubbleGeneratorPage'
 import CssButtonGeneratorPage from './pages/CssButtonGeneratorPage'
 import CssAlertGeneratorPage from './pages/CssAlertGeneratorPage'
 import CssAvatarGeneratorPage from './pages/CssAvatarGeneratorPage'
+import CssHamburgerMenuGeneratorPage from './pages/CssHamburgerMenuGeneratorPage'
+import CssCornerRibbonGeneratorPage from './pages/CssCornerRibbonGeneratorPage'
+import CssPricingTableGeneratorPage from './pages/CssPricingTableGeneratorPage'
+import CssImageHoverGeneratorPage from './pages/CssImageHoverGeneratorPage'
+import CssSegmentedControlGeneratorPage from './pages/CssSegmentedControlGeneratorPage'
+import CssTableGeneratorPage from './pages/CssTableGeneratorPage'
+import CssCursorGeneratorPage from './pages/CssCursorGeneratorPage'
+import CssFlipCardGeneratorPage from './pages/CssFlipCardGeneratorPage'
+import CssProgressRingGeneratorPage from './pages/CssProgressRingGeneratorPage'
+import CssDividerGeneratorPage from './pages/CssDividerGeneratorPage'
+import SvgBadgeGeneratorPage from './pages/SvgBadgeGeneratorPage'
+import CssMarqueeGeneratorPage from './pages/CssMarqueeGeneratorPage'
+import CssCarouselGeneratorPage from './pages/CssCarouselGeneratorPage'
+import CssLoginFormGeneratorPage from './pages/CssLoginFormGeneratorPage'
+import CssNeumorphismGeneratorPage from './pages/CssNeumorphismGeneratorPage'
+import CssTextStrokeGeneratorPage from './pages/CssTextStrokeGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
@@ -240,6 +265,32 @@ import XmlJsonConverterPage from './pages/XmlJsonConverterPage'
 import PatternBackgroundGeneratorPage from './pages/PatternBackgroundGeneratorPage'
 import WebAppManifestGeneratorPage from './pages/WebAppManifestGeneratorPage'
 import DataUriToolPage from './pages/DataUriToolPage'
+import DirectoryTreeGeneratorPage from './pages/DirectoryTreeGeneratorPage'
+import PayloadCompressionCalculatorPage from './pages/PayloadCompressionCalculatorPage'
+import UseUpdateEffectSnippetPage from './pages/UseUpdateEffectSnippetPage'
+import UseWhyDidYouUpdateSnippetPage from './pages/UseWhyDidYouUpdateSnippetPage'
+import UseBooleanSnippetPage from './pages/UseBooleanSnippetPage'
+import UseSetSnippetPage from './pages/UseSetSnippetPage'
+import UseCounterSnippetPage from './pages/UseCounterSnippetPage'
+import TypingSpeedTestPage from './pages/TypingSpeedTestPage'
+import UrlEmailExtractorPage from './pages/UrlEmailExtractorPage'
+import BarcodeGeneratorPage from './pages/BarcodeGeneratorPage'
+import UseLockBodyScrollSnippetPage from './pages/UseLockBodyScrollSnippetPage'
+import UseStableCallbackSnippetPage from './pages/UseStableCallbackSnippetPage'
+import UseHoverSnippetPage from './pages/UseHoverSnippetPage'
+import UseMergedRefSnippetPage from './pages/UseMergedRefSnippetPage'
+import UseQueueSnippetPage from './pages/UseQueueSnippetPage'
+import UseLongPressSnippetPage from './pages/UseLongPressSnippetPage'
+import UseFormSnippetPage from './pages/UseFormSnippetPage'
+import UsePreferredColorSchemeSnippetPage from './pages/UsePreferredColorSchemeSnippetPage'
+import UseFaviconSnippetPage from './pages/UseFaviconSnippetPage'
+import UseDocumentTitleSnippetPage from './pages/UseDocumentTitleSnippetPage'
+import UseListSnippetPage from './pages/UseListSnippetPage'
+import UseWindowFocusSnippetPage from './pages/UseWindowFocusSnippetPage'
+import UseBeforeUnloadSnippetPage from './pages/UseBeforeUnloadSnippetPage'
+import UseCountUpSnippetPage from './pages/UseCountUpSnippetPage'
+import UseScriptSnippetPage from './pages/UseScriptSnippetPage'
+import UseBatterySnippetPage from './pages/UseBatterySnippetPage'
 
 const router = createBrowserRouter([
   {
@@ -260,6 +311,7 @@ const router = createBrowserRouter([
       { path: 'styles/gradient-border-button', element: <GradientBorderButtonPage /> },
       { path: 'snippets/use-debounce', element: <UseDebounceSnippetPage /> },
       { path: 'snippets/use-local-storage', element: <UseLocalStorageSnippetPage /> },
+      { path: 'snippets/use-session-storage', element: <UseSessionStorageSnippetPage /> },
       { path: 'snippets/use-click-outside', element: <UseClickOutsideSnippetPage /> },
       { path: 'snippets/use-media-query', element: <UseMediaQuerySnippetPage /> },
       { path: 'frontend/contrast-checker', element: <ContrastCheckerPage /> },
@@ -356,6 +408,9 @@ const router = createBrowserRouter([
       { path: 'snippets/lru-cache', element: <LruCachePage /> },
       { path: 'security/csp-generator', element: <CspGeneratorPage /> },
       { path: 'security/security-headers-generator', element: <SecurityHeadersGeneratorPage /> },
+      { path: 'security/sri-hash-generator', element: <SriHashGeneratorPage /> },
+      { path: 'security/security-txt-generator', element: <SecurityTxtGeneratorPage /> },
+      { path: 'security/webhook-signature-validator', element: <WebhookSignatureValidatorPage /> },
       { path: 'ai/token-counter', element: <TokenCounterPage /> },
       { path: 'devops/env-tool', element: <EnvToolPage /> },
       { path: 'text/remove-accents', element: <RemoveAccentsPage /> },
@@ -368,6 +423,7 @@ const router = createBrowserRouter([
       { path: 'tools/html-to-jsx-converter', element: <HtmlToJsxConverterPage /> },
       { path: 'tools/html-to-markdown', element: <HtmlToMarkdownPage /> },
       { path: 'devops/changelog-generator', element: <ChangelogGeneratorPage /> },
+      { path: 'devops/gitattributes-generator', element: <GitattributesGeneratorPage /> },
       { path: 'references/vim-cheatsheet', element: <VimCheatsheetPage /> },
       { path: 'extras/uuid-collision-simulator', element: <UuidCollisionSimulatorPage /> },
       { path: 'tools/unicode-inspector', element: <UnicodeInspectorPage /> },
@@ -424,6 +480,7 @@ const router = createBrowserRouter([
       { path: 'devops/sla-calculator', element: <SlaCalculatorPage /> },
       { path: 'tools/credit-card-tool', element: <CreditCardToolPage /> },
       { path: 'tools/qr-code-generator', element: <QrCodeGeneratorPage /> },
+      { path: 'tools/barcode-generator', element: <BarcodeGeneratorPage /> },
       { path: 'references/github-actions-cheatsheet', element: <GithubActionsCheatsheetPage /> },
       { path: 'frontend/css-to-js', element: <CssToJsPage /> },
       { path: 'references/nginx-cheatsheet', element: <NginxCheatsheetPage /> },
@@ -436,6 +493,10 @@ const router = createBrowserRouter([
       { path: 'tools/morse-code-converter', element: <MorseConverterPage /> },
       { path: 'tools/glob-tester', element: <GlobTesterPage /> },
       { path: 'tools/data-uri-tool', element: <DataUriToolPage /> },
+      { path: 'tools/directory-tree-generator', element: <DirectoryTreeGeneratorPage /> },
+      { path: 'tools/payload-compression-calculator', element: <PayloadCompressionCalculatorPage /> },
+      { path: 'tools/passphrase-generator', element: <PassphraseGeneratorPage /> },
+      { path: 'tools/totp-generator', element: <TotpGeneratorPage /> },
       { path: 'references/html-cheatsheet', element: <HtmlCheatsheetPage /> },
       { path: 'references/react-cheatsheet', element: <ReactCheatsheetPage /> },
       { path: 'references/tailwind-cheatsheet', element: <TailwindCheatsheetPage /> },
@@ -447,10 +508,12 @@ const router = createBrowserRouter([
       { path: 'frontend/sitemap-generator', element: <SitemapGeneratorPage /> },
       { path: 'frontend/web-app-manifest', element: <WebAppManifestGeneratorPage /> },
       { path: 'devops/editorconfig-generator', element: <EditorconfigGeneratorPage /> },
+      { path: 'devops/codeowners-generator', element: <CodeownersGeneratorPage /> },
       { path: 'devops/license-generator', element: <LicenseGeneratorPage /> },
       { path: 'devops/dockerignore-generator', element: <DockerignoreGeneratorPage /> },
       { path: 'devops/prettierrc-generator', element: <PrettierrcGeneratorPage /> },
       { path: 'devops/makefile-generator', element: <MakefileGeneratorPage /> },
+      { path: 'devops/tsconfig-generator', element: <TsconfigGeneratorPage /> },
       { path: 'frontend/css-spinner-generator', element: <CssSpinnerGeneratorPage /> },
       { path: 'frontend/color-blindness-simulator', element: <ColorBlindnessSimulatorPage /> },
       { path: 'frontend/text-shadow-generator', element: <TextShadowGeneratorPage /> },
@@ -484,6 +547,45 @@ const router = createBrowserRouter([
       { path: 'frontend/css-button-generator', element: <CssButtonGeneratorPage /> },
       { path: 'frontend/css-alert-generator', element: <CssAlertGeneratorPage /> },
       { path: 'frontend/css-avatar-generator', element: <CssAvatarGeneratorPage /> },
+      { path: 'frontend/css-hamburger-menu-generator', element: <CssHamburgerMenuGeneratorPage /> },
+      { path: 'frontend/css-corner-ribbon-generator', element: <CssCornerRibbonGeneratorPage /> },
+      { path: 'frontend/css-pricing-table-generator', element: <CssPricingTableGeneratorPage /> },
+      { path: 'frontend/css-image-hover-generator', element: <CssImageHoverGeneratorPage /> },
+      { path: 'frontend/css-segmented-control-generator', element: <CssSegmentedControlGeneratorPage /> },
+      { path: 'frontend/css-table-generator', element: <CssTableGeneratorPage /> },
+      { path: 'frontend/css-cursor-generator', element: <CssCursorGeneratorPage /> },
+      { path: 'frontend/css-flip-card-generator', element: <CssFlipCardGeneratorPage /> },
+      { path: 'frontend/css-progress-ring-generator', element: <CssProgressRingGeneratorPage /> },
+      { path: 'frontend/css-divider-generator', element: <CssDividerGeneratorPage /> },
+      { path: 'frontend/svg-badge-generator', element: <SvgBadgeGeneratorPage /> },
+      { path: 'frontend/css-marquee-generator', element: <CssMarqueeGeneratorPage /> },
+      { path: 'frontend/css-carousel-generator', element: <CssCarouselGeneratorPage /> },
+      { path: 'frontend/css-login-form-generator', element: <CssLoginFormGeneratorPage /> },
+      { path: 'frontend/css-neumorphism-generator', element: <CssNeumorphismGeneratorPage /> },
+      { path: 'frontend/css-text-stroke-generator', element: <CssTextStrokeGeneratorPage /> },
+      { path: 'snippets/use-update-effect', element: <UseUpdateEffectSnippetPage /> },
+      { path: 'snippets/use-why-did-you-update', element: <UseWhyDidYouUpdateSnippetPage /> },
+      { path: 'snippets/use-boolean', element: <UseBooleanSnippetPage /> },
+      { path: 'snippets/use-set', element: <UseSetSnippetPage /> },
+      { path: 'snippets/use-counter', element: <UseCounterSnippetPage /> },
+      { path: 'extras/typing-speed-test', element: <TypingSpeedTestPage /> },
+      { path: 'tools/url-email-extractor', element: <UrlEmailExtractorPage /> },
+      { path: 'snippets/use-lock-body-scroll', element: <UseLockBodyScrollSnippetPage /> },
+      { path: 'snippets/use-stable-callback', element: <UseStableCallbackSnippetPage /> },
+      { path: 'snippets/use-hover', element: <UseHoverSnippetPage /> },
+      { path: 'snippets/use-merged-ref', element: <UseMergedRefSnippetPage /> },
+      { path: 'snippets/use-queue', element: <UseQueueSnippetPage /> },
+      { path: 'snippets/use-long-press', element: <UseLongPressSnippetPage /> },
+      { path: 'snippets/use-form', element: <UseFormSnippetPage /> },
+      { path: 'snippets/use-preferred-color-scheme', element: <UsePreferredColorSchemeSnippetPage /> },
+      { path: 'snippets/use-favicon', element: <UseFaviconSnippetPage /> },
+      { path: 'snippets/use-document-title', element: <UseDocumentTitleSnippetPage /> },
+      { path: 'snippets/use-list', element: <UseListSnippetPage /> },
+      { path: 'snippets/use-window-focus', element: <UseWindowFocusSnippetPage /> },
+      { path: 'snippets/use-before-unload', element: <UseBeforeUnloadSnippetPage /> },
+      { path: 'snippets/use-count-up', element: <UseCountUpSnippetPage /> },
+      { path: 'snippets/use-script', element: <UseScriptSnippetPage /> },
+      { path: 'snippets/use-battery', element: <UseBatterySnippetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
