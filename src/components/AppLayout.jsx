@@ -254,6 +254,7 @@ export const LABELS = {
     'sri-hash-generator': 'Gerador de Hash SRI',
     'security-txt-generator': 'Gerador de security.txt',
     'webhook-signature-validator': 'Validador de Assinatura de Webhook',
+    'asymmetric-key-generator': 'Gerador de Par de Chaves Assimétricas',
     'token-counter': 'Contador de Tokens',
     'pomodoro-timer': 'Timer Pomodoro',
     'env-tool': 'Validador de .env',
@@ -582,6 +583,7 @@ export const LABELS = {
     'sri-hash-generator': 'SRI Hash Generator',
     'security-txt-generator': 'security.txt Generator',
     'webhook-signature-validator': 'Webhook Signature Validator',
+    'asymmetric-key-generator': 'Asymmetric Key Pair Generator',
     'token-counter': 'Token Counter',
     'pomodoro-timer': 'Pomodoro Timer',
     'env-tool': '.env File Validator',
@@ -1061,6 +1063,7 @@ export function buildMenuItems(l) {
         { key: '/security/sri-hash-generator', icon: <SafetyOutlined />, label: withNewBadge('/security/sri-hash-generator', l['sri-hash-generator'], l) },
         { key: '/security/security-txt-generator', icon: <SafetyOutlined />, label: withNewBadge('/security/security-txt-generator', l['security-txt-generator'], l) },
         { key: '/security/webhook-signature-validator', icon: <SafetyOutlined />, label: withNewBadge('/security/webhook-signature-validator', l['webhook-signature-validator'], l) },
+        { key: '/security/asymmetric-key-generator', icon: <KeyOutlined />, label: withNewBadge('/security/asymmetric-key-generator', l['asymmetric-key-generator'], l) },
       ],
     },
     {
