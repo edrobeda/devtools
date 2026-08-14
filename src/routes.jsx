@@ -313,6 +313,7 @@ import UsePaginationSnippetPage from './pages/UsePaginationSnippetPage'
 import UseControllableStateSnippetPage from './pages/UseControllableStateSnippetPage'
 import FileSizeConverterPage from './pages/FileSizeConverterPage'
 import FileHashCalculatorPage from './pages/FileHashCalculatorPage'
+import GeoCoordinatesConverterPage from './pages/GeoCoordinatesConverterPage'
 
 const router = createBrowserRouter([
   {
@@ -472,6 +473,7 @@ const router = createBrowserRouter([
       { path: 'tools/roman-numeral-converter', element: <RomanNumeralConverterPage /> },
       { path: 'tools/file-size-converter', element: <FileSizeConverterPage /> },
       { path: 'tools/file-hash-calculator', element: <FileHashCalculatorPage /> },
+      { path: 'tools/geo-coordinates-converter', element: <GeoCoordinatesConverterPage /> },
       { path: 'references/sql-joins', element: <SqlJoinsPage /> },
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
       { path: 'references/markdown-syntax', element: <MarkdownSyntaxPage /> },

@@ -288,6 +288,7 @@ export const LABELS = {
     'roman-numeral-converter': 'Conversor de Números Romanos',
     'file-size-converter': 'Conversor de Tamanho de Arquivo',
     'file-hash-calculator': 'Calculadora de Hashes de Arquivo',
+    'geo-coordinates-converter': 'Conversor de Coordenadas',
     'sql-joins': 'Visualizador de JOINs SQL',
     'csv-markdown-table': 'CSV → Tabela Markdown',
     'markdown-syntax': 'Sintaxe Markdown',
@@ -619,6 +620,7 @@ export const LABELS = {
     'roman-numeral-converter': 'Roman Numeral Converter',
     'file-size-converter': 'File Size Converter',
     'file-hash-calculator': 'File Hash Calculator',
+    'geo-coordinates-converter': 'Geographic Coordinates Converter',
     'sql-joins': 'SQL JOIN Visualizer',
     'csv-markdown-table': 'CSV → Markdown Table',
     'markdown-syntax': 'Markdown Syntax',
@@ -831,6 +833,7 @@ export function buildMenuItems(l) {
         { key: '/tools/roman-numeral-converter', icon: <NumberOutlined />, label: withNewBadge('/tools/roman-numeral-converter', l['roman-numeral-converter'], l) },
         { key: '/tools/file-size-converter', icon: <SwapOutlined />, label: withNewBadge('/tools/file-size-converter', l['file-size-converter'], l) },
         { key: '/tools/file-hash-calculator', icon: <SafetyOutlined />, label: withNewBadge('/tools/file-hash-calculator', l['file-hash-calculator'], l) },
+        { key: '/tools/geo-coordinates-converter', icon: <EnvironmentOutlined />, label: withNewBadge('/tools/geo-coordinates-converter', l['geo-coordinates-converter'], l) },
       ],
     },
     {
