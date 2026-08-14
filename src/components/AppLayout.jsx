@@ -269,6 +269,7 @@ export const LABELS = {
     'sql-formatter': 'Formatador de SQL',
     'common-ports': 'Portas de Rede Comuns',
     'ipv6-explorer': 'Explorador IPv6',
+    'mac-address-tool': 'Gerador/Validador de MAC',
     'csv-markdown-table': 'CSV → Tabela Markdown',
     'markdown-syntax': 'Sintaxe Markdown',
     'kubectl-commands': 'Comandos kubectl',
@@ -580,6 +581,7 @@ export const LABELS = {
     'sql-formatter': 'SQL Formatter',
     'common-ports': 'Common Network Ports',
     'ipv6-explorer': 'IPv6 Explorer',
+    'mac-address-tool': 'MAC Generator / Validator',
     'csv-markdown-table': 'CSV → Markdown Table',
     'markdown-syntax': 'Markdown Syntax',
     'kubectl-commands': 'kubectl Commands',
@@ -1039,6 +1041,7 @@ export function buildMenuItems(l) {
         { key: '/network/mime-lookup', icon: <InboxOutlined />, label: withNewBadge('/network/mime-lookup', l['mime-lookup'], l) },
         { key: '/network/common-ports', icon: <GlobalOutlined />, label: withNewBadge('/network/common-ports', l['common-ports'], l) },
         { key: '/network/ipv6-explorer', icon: <GlobalOutlined />, label: withNewBadge('/network/ipv6-explorer', l['ipv6-explorer'], l) },
+        { key: '/network/mac-address-tool', icon: <GlobalOutlined />, label: withNewBadge('/network/mac-address-tool', l['mac-address-tool'], l) },
       ],
     },
     {
