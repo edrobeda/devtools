@@ -315,6 +315,7 @@ import UseControllableStateSnippetPage from './pages/UseControllableStateSnippet
 import FileSizeConverterPage from './pages/FileSizeConverterPage'
 import FileHashCalculatorPage from './pages/FileHashCalculatorPage'
 import GeoCoordinatesConverterPage from './pages/GeoCoordinatesConverterPage'
+import LevenshteinCalculatorPage from './pages/LevenshteinCalculatorPage'
 
 const router = createBrowserRouter([
   {
@@ -476,6 +477,7 @@ const router = createBrowserRouter([
       { path: 'tools/file-size-converter', element: <FileSizeConverterPage /> },
       { path: 'tools/file-hash-calculator', element: <FileHashCalculatorPage /> },
       { path: 'tools/geo-coordinates-converter', element: <GeoCoordinatesConverterPage /> },
+      { path: 'tools/levenshtein-calculator', element: <LevenshteinCalculatorPage /> },
       { path: 'references/sql-joins', element: <SqlJoinsPage /> },
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
       { path: 'references/markdown-syntax', element: <MarkdownSyntaxPage /> },
