@@ -302,6 +302,7 @@ export const LABELS = {
     'sql-joins': 'Visualizador de JOINs SQL',
     'big-o-cheatsheet': 'Cheat Sheet de Big-O',
     'json-to-zod-schema': 'JSON → Zod Schema',
+    'loan-amortization-calculator': 'Calculadora SAC / Price',
     'csv-markdown-table': 'CSV → Tabela Markdown',
     'markdown-syntax': 'Sintaxe Markdown',
     'kubectl-commands': 'Comandos kubectl',
@@ -644,6 +645,7 @@ export const LABELS = {
     'sql-joins': 'SQL JOIN Visualizer',
     'big-o-cheatsheet': 'Big-O Cheat Sheet',
     'json-to-zod-schema': 'JSON → Zod Schema',
+    'loan-amortization-calculator': 'SAC / Loan Amortization Calculator',
     'csv-markdown-table': 'CSV → Markdown Table',
     'markdown-syntax': 'Markdown Syntax',
     'kubectl-commands': 'kubectl Commands',
@@ -865,6 +867,7 @@ export function buildMenuItems(l) {
         { key: '/tools/percentage-calculator', icon: <PercentageOutlined />, label: withNewBadge('/tools/percentage-calculator', l['percentage-calculator'], l) },
         { key: '/tools/connection-string-parser', icon: <DatabaseOutlined />, label: withNewBadge('/tools/connection-string-parser', l['connection-string-parser'], l) },
         { key: '/tools/json-to-zod-schema', icon: <CodeOutlined />, label: withNewBadge('/tools/json-to-zod-schema', l['json-to-zod-schema'], l) },
+        { key: '/tools/loan-amortization-calculator', icon: <BankOutlined />, label: withNewBadge('/tools/loan-amortization-calculator', l['loan-amortization-calculator'], l) },
       ],
     },
     {

@@ -324,6 +324,7 @@ import PercentageCalculatorPage from './pages/PercentageCalculatorPage'
 import ConnectionStringParserPage from './pages/ConnectionStringParserPage'
 import BigOCheatsheetPage from './pages/BigOCheatsheetPage'
 import JsonToZodSchemaPage from './pages/JsonToZodSchemaPage'
+import LoanAmortizationCalculatorPage from './pages/LoanAmortizationCalculatorPage'
 
 const router = createBrowserRouter([
   {
@@ -495,6 +496,7 @@ const router = createBrowserRouter([
       { path: 'references/sql-joins', element: <SqlJoinsPage /> },
       { path: 'references/big-o-cheatsheet', element: <BigOCheatsheetPage /> },
       { path: 'tools/json-to-zod-schema', element: <JsonToZodSchemaPage /> },
+      { path: 'tools/loan-amortization-calculator', element: <LoanAmortizationCalculatorPage /> },
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
       { path: 'references/markdown-syntax', element: <MarkdownSyntaxPage /> },
       { path: 'devops/kubectl-commands', element: <KubeCtlCommandsPage /> },
