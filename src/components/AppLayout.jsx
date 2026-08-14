@@ -326,6 +326,7 @@ export const LABELS = {
     'dockerignore-generator': 'Gerador de .dockerignore',
     'prettierrc-generator': 'Gerador de .prettierrc',
     'makefile-generator': 'Gerador de Makefile',
+    'tsconfig-generator': 'Gerador de tsconfig.json',
     'css-spinner-generator': 'Gerador de Loading Spinner CSS',
     'color-blindness-simulator': 'Simulador de Daltonismo',
     'text-shadow-generator': 'Gerador de Text Shadow',
@@ -625,6 +626,7 @@ export const LABELS = {
     'dockerignore-generator': '.dockerignore Generator',
     'prettierrc-generator': '.prettierrc Generator',
     'makefile-generator': 'Makefile Generator',
+    'tsconfig-generator': 'tsconfig.json Generator',
     'css-spinner-generator': 'CSS Loading Spinner Generator',
     'color-blindness-simulator': 'Color Blindness Simulator',
     'text-shadow-generator': 'Text Shadow Generator',
@@ -936,6 +938,7 @@ export function buildMenuItems(l) {
         { key: '/devops/dockerignore-generator', icon: <ContainerOutlined />, label: withNewBadge('/devops/dockerignore-generator', l['dockerignore-generator'], l) },
         { key: '/devops/prettierrc-generator', icon: <FileTextOutlined />, label: withNewBadge('/devops/prettierrc-generator', l['prettierrc-generator'], l) },
         { key: '/devops/makefile-generator', icon: <FileTextOutlined />, label: withNewBadge('/devops/makefile-generator', l['makefile-generator'], l) },
+        { key: '/devops/tsconfig-generator', icon: <CodeOutlined />, label: withNewBadge('/devops/tsconfig-generator', l['tsconfig-generator'], l) },
       ],
     },
     {
