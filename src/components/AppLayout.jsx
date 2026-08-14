@@ -72,6 +72,7 @@ import {
   EnvironmentOutlined,
   BankOutlined,
   SoundOutlined,
+  WindowsOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -303,6 +304,7 @@ export const LABELS = {
     'big-o-cheatsheet': 'Cheat Sheet de Big-O',
     'json-to-zod-schema': 'JSON → Zod Schema',
     'loan-amortization-calculator': 'Calculadora SAC / Price',
+    'bash-to-powershell': 'Bash ↔ PowerShell',
     'csv-markdown-table': 'CSV → Tabela Markdown',
     'markdown-syntax': 'Sintaxe Markdown',
     'kubectl-commands': 'Comandos kubectl',
@@ -646,6 +648,7 @@ export const LABELS = {
     'big-o-cheatsheet': 'Big-O Cheat Sheet',
     'json-to-zod-schema': 'JSON → Zod Schema',
     'loan-amortization-calculator': 'SAC / Loan Amortization Calculator',
+    'bash-to-powershell': 'Bash ↔ PowerShell',
     'csv-markdown-table': 'CSV → Markdown Table',
     'markdown-syntax': 'Markdown Syntax',
     'kubectl-commands': 'kubectl Commands',
@@ -868,6 +871,7 @@ export function buildMenuItems(l) {
         { key: '/tools/connection-string-parser', icon: <DatabaseOutlined />, label: withNewBadge('/tools/connection-string-parser', l['connection-string-parser'], l) },
         { key: '/tools/json-to-zod-schema', icon: <CodeOutlined />, label: withNewBadge('/tools/json-to-zod-schema', l['json-to-zod-schema'], l) },
         { key: '/tools/loan-amortization-calculator', icon: <BankOutlined />, label: withNewBadge('/tools/loan-amortization-calculator', l['loan-amortization-calculator'], l) },
+        { key: '/tools/bash-to-powershell', icon: <WindowsOutlined />, label: withNewBadge('/tools/bash-to-powershell', l['bash-to-powershell'], l) },
       ],
     },
     {
