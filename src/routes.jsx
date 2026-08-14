@@ -308,6 +308,7 @@ import UseResizeObserverSnippetPage from './pages/UseResizeObserverSnippetPage'
 import UseHotkeysSnippetPage from './pages/UseHotkeysSnippetPage'
 import UseSpeechSynthesisSnippetPage from './pages/UseSpeechSynthesisSnippetPage'
 import UsePaginationSnippetPage from './pages/UsePaginationSnippetPage'
+import FileSizeConverterPage from './pages/FileSizeConverterPage'
 
 const router = createBrowserRouter([
   {
@@ -464,6 +465,7 @@ const router = createBrowserRouter([
       { path: 'network/mac-address-tool', element: <MacAddressToolPage /> },
       { path: 'tools/iban-tool', element: <IbanToolPage /> },
       { path: 'tools/roman-numeral-converter', element: <RomanNumeralConverterPage /> },
+      { path: 'tools/file-size-converter', element: <FileSizeConverterPage /> },
       { path: 'references/sql-joins', element: <SqlJoinsPage /> },
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
       { path: 'references/markdown-syntax', element: <MarkdownSyntaxPage /> },

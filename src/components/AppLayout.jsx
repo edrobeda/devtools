@@ -284,6 +284,7 @@ export const LABELS = {
     'mac-address-tool': 'Gerador/Validador de MAC',
     'iban-tool': 'Gerador/Validador de IBAN',
     'roman-numeral-converter': 'Conversor de Números Romanos',
+    'file-size-converter': 'Conversor de Tamanho de Arquivo',
     'sql-joins': 'Visualizador de JOINs SQL',
     'csv-markdown-table': 'CSV → Tabela Markdown',
     'markdown-syntax': 'Sintaxe Markdown',
@@ -610,6 +611,7 @@ export const LABELS = {
     'mac-address-tool': 'MAC Generator / Validator',
     'iban-tool': 'IBAN Generator / Validator',
     'roman-numeral-converter': 'Roman Numeral Converter',
+    'file-size-converter': 'File Size Converter',
     'sql-joins': 'SQL JOIN Visualizer',
     'csv-markdown-table': 'CSV → Markdown Table',
     'markdown-syntax': 'Markdown Syntax',
@@ -819,6 +821,7 @@ export function buildMenuItems(l) {
         { key: '/tools/url-email-extractor', icon: <LinkOutlined />, label: withNewBadge('/tools/url-email-extractor', l['url-email-extractor'], l) },
         { key: '/tools/iban-tool', icon: <BankOutlined />, label: withNewBadge('/tools/iban-tool', l['iban-tool'], l) },
         { key: '/tools/roman-numeral-converter', icon: <NumberOutlined />, label: withNewBadge('/tools/roman-numeral-converter', l['roman-numeral-converter'], l) },
+        { key: '/tools/file-size-converter', icon: <SwapOutlined />, label: withNewBadge('/tools/file-size-converter', l['file-size-converter'], l) },
       ],
     },
     {
