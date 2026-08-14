@@ -51,6 +51,7 @@ import DiffCheckerPage from './pages/DiffCheckerPage'
 import BoxShadowGeneratorPage from './pages/BoxShadowGeneratorPage'
 import CsvJsonConverterPage from './pages/CsvJsonConverterPage'
 import UseIntervalSnippetPage from './pages/UseIntervalSnippetPage'
+import UseTimeoutSnippetPage from './pages/UseTimeoutSnippetPage'
 import UseCountdownSnippetPage from './pages/UseCountdownSnippetPage'
 import UseFetchSnippetPage from './pages/UseFetchSnippetPage'
 import UseNetworkStatusSnippetPage from './pages/UseNetworkStatusSnippetPage'
@@ -360,6 +361,7 @@ const router = createBrowserRouter([
       { path: 'frontend/box-shadow-generator', element: <BoxShadowGeneratorPage /> },
       { path: 'data/csv-json-converter', element: <CsvJsonConverterPage /> },
       { path: 'snippets/use-interval', element: <UseIntervalSnippetPage /> },
+      { path: 'snippets/use-timeout', element: <UseTimeoutSnippetPage /> },
       { path: 'snippets/use-countdown', element: <UseCountdownSnippetPage /> },
       { path: 'snippets/use-fetch', element: <UseFetchSnippetPage /> },
       { path: 'snippets/use-network-status', element: <UseNetworkStatusSnippetPage /> },

@@ -271,7 +271,8 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] `useWindowSize` — largura/altura da janela reativas — `/snippets/use-window-size`
 - [x] `useOnScreen` — Intersection Observer, sabe se um elemento está visível — `/snippets/use-on-screen`
 - [x] `useKeyPress` — detecta tecla específica pressionada — `/snippets/use-key-press`
-- [ ] `useInterval`/`useTimeout` declarativos (padrão Dan Abramov)
+- [x] `useInterval` — `/snippets/use-interval`
+- [x] `useTimeout` — `/snippets/use-timeout`
 - [x] `useEventListener` genérico — `/snippets/use-event-listener`
 - [x] `useThrottle` — `/snippets/use-throttle`
 - [x] `useUndo` — histórico de estado com undo/redo — `/snippets/use-undo`
