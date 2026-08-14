@@ -37,6 +37,7 @@ import DateTimeCalculatorPage from './pages/DateTimeCalculatorPage'
 import RegexTesterPage from './pages/RegexTesterPage'
 import KeyboardEventTesterPage from './pages/KeyboardEventTesterPage'
 import Base64ToolPage from './pages/Base64ToolPage'
+import Base32ToolPage from './pages/Base32ToolPage'
 import UuidGeneratorPage from './pages/UuidGeneratorPage'
 import UuidV7GeneratorPage from './pages/UuidV7GeneratorPage'
 import UlidToolPage from './pages/UlidToolPage'
@@ -374,6 +375,7 @@ const router = createBrowserRouter([
       { path: 'tools/regex-tester', element: <RegexTesterPage /> },
       { path: 'tools/keyboard-event-tester', element: <KeyboardEventTesterPage /> },
       { path: 'tools/base64-tool', element: <Base64ToolPage /> },
+      { path: 'tools/base32-tool', element: <Base32ToolPage /> },
       { path: 'tools/uuid-generator', element: <UuidGeneratorPage /> },
       { path: 'tools/uuid-v7-generator', element: <UuidV7GeneratorPage /> },
       { path: 'tools/ulid-tool', element: <UlidToolPage /> },
