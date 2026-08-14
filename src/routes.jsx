@@ -160,6 +160,7 @@ import JsonToTypeScriptPage from './pages/JsonToTypeScriptPage'
 import JsonToYamlPage from './pages/JsonToYamlPage'
 import JsonFlattenPage from './pages/JsonFlattenPage'
 import CaddyfileGeneratorPage from './pages/CaddyfileGeneratorPage'
+import HtaccessGeneratorPage from './pages/HtaccessGeneratorPage'
 import UnitsConverterPage from './pages/UnitsConverterPage'
 import HttpHeadersPage from './pages/HttpHeadersPage'
 import JavascriptCheatsheetPage from './pages/JavascriptCheatsheetPage'
@@ -473,6 +474,7 @@ const router = createBrowserRouter([
       { path: 'devops/docker-compose-generator', element: <DockerComposeGeneratorPage /> },
       { path: 'devops/openssl-commands', element: <OpensslCommandsPage /> },
       { path: 'devops/caddyfile-generator', element: <CaddyfileGeneratorPage /> },
+      { path: 'devops/htaccess-generator', element: <HtaccessGeneratorPage /> },
       { path: 'tools/units-converter', element: <UnitsConverterPage /> },
       { path: 'references/http-headers', element: <HttpHeadersPage /> },
       { path: 'references/javascript-cheatsheet', element: <JavascriptCheatsheetPage /> },
