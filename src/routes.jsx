@@ -320,6 +320,7 @@ import LevenshteinCalculatorPage from './pages/LevenshteinCalculatorPage'
 import BandwidthCalculatorPage from './pages/BandwidthCalculatorPage'
 import CookieToolPage from './pages/CookieToolPage'
 import CompoundInterestCalculatorPage from './pages/CompoundInterestCalculatorPage'
+import PercentageCalculatorPage from './pages/PercentageCalculatorPage'
 
 const router = createBrowserRouter([
   {
@@ -486,6 +487,7 @@ const router = createBrowserRouter([
       { path: 'tools/bandwidth-calculator', element: <BandwidthCalculatorPage /> },
       { path: 'tools/cookie-tool', element: <CookieToolPage /> },
       { path: 'tools/compound-interest-calculator', element: <CompoundInterestCalculatorPage /> },
+      { path: 'tools/percentage-calculator', element: <PercentageCalculatorPage /> },
       { path: 'references/sql-joins', element: <SqlJoinsPage /> },
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
       { path: 'references/markdown-syntax', element: <MarkdownSyntaxPage /> },
