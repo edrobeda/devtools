@@ -294,6 +294,7 @@ export const LABELS = {
     'geo-coordinates-converter': 'Conversor de Coordenadas',
     'levenshtein-calculator': 'Calculadora de Levenshtein',
     'bandwidth-calculator': 'Calculadora de Largura de Banda',
+    'cookie-tool': 'Analisador / Builder de Cookies',
     'sql-joins': 'Visualizador de JOINs SQL',
     'csv-markdown-table': 'CSV → Tabela Markdown',
     'markdown-syntax': 'Sintaxe Markdown',
@@ -630,6 +631,7 @@ export const LABELS = {
     'geo-coordinates-converter': 'Geographic Coordinates Converter',
     'levenshtein-calculator': 'Levenshtein Calculator',
     'bandwidth-calculator': 'Bandwidth Calculator',
+    'cookie-tool': 'Cookie Parser / Builder',
     'sql-joins': 'SQL JOIN Visualizer',
     'csv-markdown-table': 'CSV → Markdown Table',
     'markdown-syntax': 'Markdown Syntax',
@@ -847,6 +849,7 @@ export function buildMenuItems(l) {
         { key: '/tools/geo-coordinates-converter', icon: <EnvironmentOutlined />, label: withNewBadge('/tools/geo-coordinates-converter', l['geo-coordinates-converter'], l) },
         { key: '/tools/levenshtein-calculator', icon: <CalculatorOutlined />, label: withNewBadge('/tools/levenshtein-calculator', l['levenshtein-calculator'], l) },
         { key: '/tools/bandwidth-calculator', icon: <ThunderboltOutlined />, label: withNewBadge('/tools/bandwidth-calculator', l['bandwidth-calculator'], l) },
+        { key: '/tools/cookie-tool', icon: <ContainerOutlined />, label: withNewBadge('/tools/cookie-tool', l['cookie-tool'], l) },
       ],
     },
     {
