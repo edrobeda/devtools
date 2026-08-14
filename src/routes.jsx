@@ -241,6 +241,7 @@ import CssCarouselGeneratorPage from './pages/CssCarouselGeneratorPage'
 import CssLoginFormGeneratorPage from './pages/CssLoginFormGeneratorPage'
 import CssNeumorphismGeneratorPage from './pages/CssNeumorphismGeneratorPage'
 import CssTextStrokeGeneratorPage from './pages/CssTextStrokeGeneratorPage'
+import CssLineClampGeneratorPage from './pages/CssLineClampGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
@@ -575,6 +576,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-login-form-generator', element: <CssLoginFormGeneratorPage /> },
       { path: 'frontend/css-neumorphism-generator', element: <CssNeumorphismGeneratorPage /> },
       { path: 'frontend/css-text-stroke-generator', element: <CssTextStrokeGeneratorPage /> },
+      { path: 'frontend/css-line-clamp-generator', element: <CssLineClampGeneratorPage /> },
       { path: 'snippets/use-update-effect', element: <UseUpdateEffectSnippetPage /> },
       { path: 'snippets/use-why-did-you-update', element: <UseWhyDidYouUpdateSnippetPage /> },
       { path: 'snippets/use-boolean', element: <UseBooleanSnippetPage /> },

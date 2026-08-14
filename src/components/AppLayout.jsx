@@ -400,6 +400,7 @@ export const LABELS = {
     'css-login-form-generator': 'Gerador de CSS Login Form',
     'css-neumorphism-generator': 'Gerador de Neumorfismo CSS',
     'css-text-stroke-generator': 'Gerador de Texto com Contorno CSS',
+    'css-line-clamp-generator': 'Gerador de Line Clamp CSS',
   },
   en: {
     home: 'Home',
@@ -717,6 +718,7 @@ export const LABELS = {
     'css-login-form-generator': 'CSS Login Form Generator',
     'css-neumorphism-generator': 'CSS Neumorphism Generator',
     'css-text-stroke-generator': 'CSS Text Stroke / Outline Generator',
+    'css-line-clamp-generator': 'CSS Line Clamp Generator',
   },
 }
 
@@ -957,6 +959,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-login-form-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-login-form-generator', l['css-login-form-generator'], l) },
         { key: '/frontend/css-neumorphism-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-neumorphism-generator', l['css-neumorphism-generator'], l) },
         { key: '/frontend/css-text-stroke-generator', icon: <FontSizeOutlined />, label: withNewBadge('/frontend/css-text-stroke-generator', l['css-text-stroke-generator'], l) },
+        { key: '/frontend/css-line-clamp-generator', icon: <FontSizeOutlined />, label: withNewBadge('/frontend/css-line-clamp-generator', l['css-line-clamp-generator'], l) },
       ],
     },
     {
