@@ -312,6 +312,7 @@ import UseSpeechSynthesisSnippetPage from './pages/UseSpeechSynthesisSnippetPage
 import UsePaginationSnippetPage from './pages/UsePaginationSnippetPage'
 import UseControllableStateSnippetPage from './pages/UseControllableStateSnippetPage'
 import FileSizeConverterPage from './pages/FileSizeConverterPage'
+import FileHashCalculatorPage from './pages/FileHashCalculatorPage'
 
 const router = createBrowserRouter([
   {
@@ -470,6 +471,7 @@ const router = createBrowserRouter([
       { path: 'tools/iban-tool', element: <IbanToolPage /> },
       { path: 'tools/roman-numeral-converter', element: <RomanNumeralConverterPage /> },
       { path: 'tools/file-size-converter', element: <FileSizeConverterPage /> },
+      { path: 'tools/file-hash-calculator', element: <FileHashCalculatorPage /> },
       { path: 'references/sql-joins', element: <SqlJoinsPage /> },
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
       { path: 'references/markdown-syntax', element: <MarkdownSyntaxPage /> },
