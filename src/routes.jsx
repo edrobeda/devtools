@@ -295,6 +295,7 @@ import UseScriptSnippetPage from './pages/UseScriptSnippetPage'
 import UseBatterySnippetPage from './pages/UseBatterySnippetPage'
 import UseGeolocationSnippetPage from './pages/UseGeolocationSnippetPage'
 import UseMapSnippetPage from './pages/UseMapSnippetPage'
+import UseStateWithHistorySnippetPage from './pages/UseStateWithHistorySnippetPage'
 
 const router = createBrowserRouter([
   {
@@ -594,6 +595,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-battery', element: <UseBatterySnippetPage /> },
       { path: 'snippets/use-geolocation', element: <UseGeolocationSnippetPage /> },
       { path: 'snippets/use-map', element: <UseMapSnippetPage /> },
+      { path: 'snippets/use-state-with-history', element: <UseStateWithHistorySnippetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
