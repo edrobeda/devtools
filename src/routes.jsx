@@ -272,6 +272,7 @@ import UseSetSnippetPage from './pages/UseSetSnippetPage'
 import UseCounterSnippetPage from './pages/UseCounterSnippetPage'
 import TypingSpeedTestPage from './pages/TypingSpeedTestPage'
 import UrlEmailExtractorPage from './pages/UrlEmailExtractorPage'
+import BarcodeGeneratorPage from './pages/BarcodeGeneratorPage'
 import UseLockBodyScrollSnippetPage from './pages/UseLockBodyScrollSnippetPage'
 import UseStableCallbackSnippetPage from './pages/UseStableCallbackSnippetPage'
 import UseHoverSnippetPage from './pages/UseHoverSnippetPage'
@@ -467,6 +468,7 @@ const router = createBrowserRouter([
       { path: 'devops/sla-calculator', element: <SlaCalculatorPage /> },
       { path: 'tools/credit-card-tool', element: <CreditCardToolPage /> },
       { path: 'tools/qr-code-generator', element: <QrCodeGeneratorPage /> },
+      { path: 'tools/barcode-generator', element: <BarcodeGeneratorPage /> },
       { path: 'references/github-actions-cheatsheet', element: <GithubActionsCheatsheetPage /> },
       { path: 'frontend/css-to-js', element: <CssToJsPage /> },
       { path: 'references/nginx-cheatsheet', element: <NginxCheatsheetPage /> },
