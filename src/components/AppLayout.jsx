@@ -63,6 +63,7 @@ import {
   StarOutlined,
   DownOutlined,
   SmileOutlined,
+  EditOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -213,6 +214,7 @@ export const LABELS = {
     'use-form': 'useForm',
     'use-preferred-color-scheme': 'usePreferredColorScheme',
     'use-favicon': 'useFavicon',
+    'use-document-title': 'useDocumentTitle',
     'typing-speed-test': 'Teste de Velocidade de Digitação',
     'bash-shortcuts': 'Atalhos de Terminal/Bash',
     'commit-message-generator': 'Gerador de Mensagem de Commit',
@@ -514,6 +516,7 @@ export const LABELS = {
     'use-form': 'useForm',
     'use-preferred-color-scheme': 'usePreferredColorScheme',
     'use-favicon': 'useFavicon',
+    'use-document-title': 'useDocumentTitle',
     'typing-speed-test': 'Typing Speed Test',
     'bash-shortcuts': 'Terminal/Bash Shortcuts',
     'commit-message-generator': 'Commit Message Generator',
@@ -825,6 +828,7 @@ export function buildMenuItems(l) {
         { key: '/snippets/use-form', label: withNewBadge('/snippets/use-form', l['use-form'], l) },
         { key: '/snippets/use-preferred-color-scheme', label: withNewBadge('/snippets/use-preferred-color-scheme', l['use-preferred-color-scheme'], l) },
         { key: '/snippets/use-favicon', icon: <SmileOutlined />, label: withNewBadge('/snippets/use-favicon', l['use-favicon'], l) },
+        { key: '/snippets/use-document-title', icon: <EditOutlined />, label: withNewBadge('/snippets/use-document-title', l['use-document-title'], l) },
         { key: '/snippets/debounce-throttle-functions', label: withNewBadge('/snippets/debounce-throttle-functions', l['debounce-throttle-functions'], l) },
         { key: '/snippets/lru-cache', label: withNewBadge('/snippets/lru-cache', l['lru-cache'], l) },
         { key: '/snippets/deep-clone-deep-equal', label: withNewBadge('/snippets/deep-clone-deep-equal', l['deep-clone-deep-equal'], l) },

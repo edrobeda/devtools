@@ -283,6 +283,7 @@ import UseLongPressSnippetPage from './pages/UseLongPressSnippetPage'
 import UseFormSnippetPage from './pages/UseFormSnippetPage'
 import UsePreferredColorSchemeSnippetPage from './pages/UsePreferredColorSchemeSnippetPage'
 import UseFaviconSnippetPage from './pages/UseFaviconSnippetPage'
+import UseDocumentTitleSnippetPage from './pages/UseDocumentTitleSnippetPage'
 
 const router = createBrowserRouter([
   {
@@ -570,6 +571,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-form', element: <UseFormSnippetPage /> },
       { path: 'snippets/use-preferred-color-scheme', element: <UsePreferredColorSchemeSnippetPage /> },
       { path: 'snippets/use-favicon', element: <UseFaviconSnippetPage /> },
+      { path: 'snippets/use-document-title', element: <UseDocumentTitleSnippetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
