@@ -302,6 +302,7 @@ import UseMapSnippetPage from './pages/UseMapSnippetPage'
 import UseStateWithHistorySnippetPage from './pages/UseStateWithHistorySnippetPage'
 import UseIdleSnippetPage from './pages/UseIdleSnippetPage'
 import UseMutationObserverSnippetPage from './pages/UseMutationObserverSnippetPage'
+import UseResizeObserverSnippetPage from './pages/UseResizeObserverSnippetPage'
 
 const router = createBrowserRouter([
   {
@@ -608,6 +609,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-state-with-history', element: <UseStateWithHistorySnippetPage /> },
       { path: 'snippets/use-idle', element: <UseIdleSnippetPage /> },
       { path: 'snippets/use-mutation-observer', element: <UseMutationObserverSnippetPage /> },
+      { path: 'snippets/use-resize-observer', element: <UseResizeObserverSnippetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
