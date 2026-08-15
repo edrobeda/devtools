@@ -353,6 +353,7 @@ import BmiCalculatorPage from './pages/BmiCalculatorPage'
 import LogicalClocksSimulatorPage from './pages/LogicalClocksSimulatorPage'
 import CircuitBreakerSimulatorPage from './pages/CircuitBreakerSimulatorPage'
 import RateLimiterSimulatorPage from './pages/RateLimiterSimulatorPage'
+import TwoPhaseCommitSimulatorPage from './pages/TwoPhaseCommitSimulatorPage'
 
 const router = createBrowserRouter([
   {
@@ -549,6 +550,7 @@ const router = createBrowserRouter([
       { path: 'tools/logical-clocks-simulator', element: <LogicalClocksSimulatorPage /> },
       { path: 'tools/circuit-breaker-simulator', element: <CircuitBreakerSimulatorPage /> },
       { path: 'tools/rate-limiter-simulator', element: <RateLimiterSimulatorPage /> },
+      { path: 'tools/two-phase-commit-simulator', element: <TwoPhaseCommitSimulatorPage /> },
       { path: 'tools/string-escape', element: <StringEscapePage /> },
       { path: 'tools/caesar-cipher', element: <CaesarCipherPage /> },
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
