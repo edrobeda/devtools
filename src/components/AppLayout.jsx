@@ -485,6 +485,7 @@ export const LABELS = {
     'css-pulse-generator': 'Gerador de Efeito Pulse CSS',
     'masonry-layout-generator': 'Gerador de Layout Masonry CSS',
     'color-mix-generator': 'Gerador de color-mix() CSS',
+    'nginx-config-generator': 'Gerador de Configuração Nginx',
   },
   en: {
     home: 'Home',
@@ -874,6 +875,7 @@ export const LABELS = {
     'css-pulse-generator': 'CSS Pulse Effect Generator',
     'masonry-layout-generator': 'CSS Masonry Layout Generator',
     'color-mix-generator': 'CSS color-mix() Generator',
+    'nginx-config-generator': 'Nginx Config Generator',
   },
 }
 
@@ -1201,6 +1203,7 @@ export function buildMenuItems(l) {
         { key: '/devops/docker-run-to-compose', icon: <ContainerOutlined />, label: withNewBadge('/devops/docker-run-to-compose', l['docker-run-to-compose'], l) },
         { key: '/devops/ansi-colors', icon: <BgColorsOutlined />, label: withNewBadge('/devops/ansi-colors', l['ansi-colors'], l) },
         { key: '/devops/openssl-commands', icon: <ContainerOutlined />, label: withNewBadge('/devops/openssl-commands', l['openssl-commands'], l) },
+        { key: '/devops/nginx-config-generator', icon: <ContainerOutlined />, label: withNewBadge('/devops/nginx-config-generator', l['nginx-config-generator'], l) },
         { key: '/devops/sla-calculator', icon: <ExperimentOutlined />, label: withNewBadge('/devops/sla-calculator', l['sla-calculator'], l) },
         { key: '/devops/editorconfig-generator', icon: <FileTextOutlined />, label: withNewBadge('/devops/editorconfig-generator', l['editorconfig-generator'], l) },
         { key: '/devops/codeowners-generator', icon: <TeamOutlined />, label: withNewBadge('/devops/codeowners-generator', l['codeowners-generator'], l) },
