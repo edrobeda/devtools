@@ -337,6 +337,7 @@ import AwsCliCheatsheetPage from './pages/AwsCliCheatsheetPage'
 import CaesarCipherPage from './pages/CaesarCipherPage'
 import LoadBalancerSimulatorPage from './pages/LoadBalancerSimulatorPage'
 import ConsistentHashingSimulatorPage from './pages/ConsistentHashingSimulatorPage'
+import BloomFilterSimulatorPage from './pages/BloomFilterSimulatorPage'
 
 const router = createBrowserRouter([
   {
@@ -518,6 +519,7 @@ const router = createBrowserRouter([
       { path: 'tools/retry-calculator', element: <RetryCalculatorPage /> },
       { path: 'tools/load-balancer-simulator', element: <LoadBalancerSimulatorPage /> },
       { path: 'tools/consistent-hashing-simulator', element: <ConsistentHashingSimulatorPage /> },
+      { path: 'tools/bloom-filter-simulator', element: <BloomFilterSimulatorPage /> },
       { path: 'tools/string-escape', element: <StringEscapePage /> },
       { path: 'tools/caesar-cipher', element: <CaesarCipherPage /> },
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
