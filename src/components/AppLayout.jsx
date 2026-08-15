@@ -479,6 +479,7 @@ export const LABELS = {
     'css-line-clamp-generator': 'Gerador de Line Clamp CSS',
     'css-pulse-generator': 'Gerador de Efeito Pulse CSS',
     'masonry-layout-generator': 'Gerador de Layout Masonry CSS',
+    'color-mix-generator': 'Gerador de color-mix() CSS',
   },
   en: {
     home: 'Home',
@@ -864,6 +865,7 @@ export const LABELS = {
     'css-line-clamp-generator': 'CSS Line Clamp Generator',
     'css-pulse-generator': 'CSS Pulse Effect Generator',
     'masonry-layout-generator': 'CSS Masonry Layout Generator',
+    'color-mix-generator': 'CSS color-mix() Generator',
   },
 }
 
@@ -1157,6 +1159,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-line-clamp-generator', icon: <FontSizeOutlined />, label: withNewBadge('/frontend/css-line-clamp-generator', l['css-line-clamp-generator'], l) },
         { key: '/frontend/css-pulse-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-pulse-generator', l['css-pulse-generator'], l) },
         { key: '/frontend/masonry-layout-generator', icon: <AppstoreOutlined />, label: withNewBadge('/frontend/masonry-layout-generator', l['masonry-layout-generator'], l) },
+        { key: '/frontend/color-mix-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/color-mix-generator', l['color-mix-generator'], l) },
       ],
     },
     {

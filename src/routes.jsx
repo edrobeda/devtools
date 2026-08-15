@@ -261,6 +261,7 @@ import CssTextStrokeGeneratorPage from './pages/CssTextStrokeGeneratorPage'
 import CssLineClampGeneratorPage from './pages/CssLineClampGeneratorPage'
 import CssPulseGeneratorPage from './pages/CssPulseGeneratorPage'
 import MasonryLayoutGeneratorPage from './pages/MasonryLayoutGeneratorPage'
+import ColorMixGeneratorPage from './pages/ColorMixGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
@@ -704,6 +705,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-line-clamp-generator', element: <CssLineClampGeneratorPage /> },
       { path: 'frontend/css-pulse-generator', element: <CssPulseGeneratorPage /> },
       { path: 'frontend/masonry-layout-generator', element: <MasonryLayoutGeneratorPage /> },
+      { path: 'frontend/color-mix-generator', element: <ColorMixGeneratorPage /> },
       { path: 'snippets/use-update-effect', element: <UseUpdateEffectSnippetPage /> },
       { path: 'snippets/use-why-did-you-update', element: <UseWhyDidYouUpdateSnippetPage /> },
       { path: 'snippets/use-boolean', element: <UseBooleanSnippetPage /> },
