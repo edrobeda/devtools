@@ -350,6 +350,7 @@ import MerkleTreeSimulatorPage from './pages/MerkleTreeSimulatorPage'
 import QuorumNwrSimulatorPage from './pages/QuorumNwrSimulatorPage'
 import CsvToSqlPage from './pages/CsvToSqlPage'
 import BmiCalculatorPage from './pages/BmiCalculatorPage'
+import LogicalClocksSimulatorPage from './pages/LogicalClocksSimulatorPage'
 
 const router = createBrowserRouter([
   {
@@ -543,6 +544,7 @@ const router = createBrowserRouter([
       { path: 'tools/quorum-nwr-simulator', element: <QuorumNwrSimulatorPage /> },
       { path: 'tools/descriptive-statistics-calculator', element: <DescriptiveStatisticsCalculatorPage /> },
       { path: 'tools/bmi-calculator', element: <BmiCalculatorPage /> },
+      { path: 'tools/logical-clocks-simulator', element: <LogicalClocksSimulatorPage /> },
       { path: 'tools/string-escape', element: <StringEscapePage /> },
       { path: 'tools/caesar-cipher', element: <CaesarCipherPage /> },
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
