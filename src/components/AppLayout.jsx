@@ -81,6 +81,7 @@ import {
   ProjectOutlined,
   ForkOutlined,
   BorderOutlined,
+  NodeIndexOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -260,6 +261,7 @@ export const LABELS = {
     'use-controllable-state': 'useControllableState',
     'typing-speed-test': 'Teste de Velocidade de Digitação',
     'conways-game-of-life': 'Jogo da Vida de Conway',
+    'pathfinding-simulator': 'Simulador de Pathfinding',
     'bash-shortcuts': 'Atalhos de Terminal/Bash',
     'commit-message-generator': 'Gerador de Mensagem de Commit',
     'robots-txt-generator': 'Gerador de robots.txt',
@@ -647,6 +649,7 @@ export const LABELS = {
     'use-controllable-state': 'useControllableState',
     'typing-speed-test': 'Typing Speed Test',
     'conways-game-of-life': "Conway's Game of Life",
+    'pathfinding-simulator': 'Pathfinding Simulator',
     'bash-shortcuts': 'Terminal/Bash Shortcuts',
     'commit-message-generator': 'Commit Message Generator',
     'robots-txt-generator': 'robots.txt Generator',
@@ -1362,6 +1365,7 @@ export function buildMenuItems(l) {
         { key: '/extras/sorting-visualizer', icon: <OrderedListOutlined />, label: withNewBadge('/extras/sorting-visualizer', l['sorting-visualizer'], l) },
         { key: '/extras/typing-speed-test', icon: <FontSizeOutlined />, label: withNewBadge('/extras/typing-speed-test', l['typing-speed-test'], l) },
         { key: '/extras/conways-game-of-life', icon: <BorderOutlined />, label: withNewBadge('/extras/conways-game-of-life', l['conways-game-of-life'], l) },
+        { key: '/extras/pathfinding-simulator', icon: <NodeIndexOutlined />, label: withNewBadge('/extras/pathfinding-simulator', l['pathfinding-simulator'], l) },
       ],
     },
   ]
