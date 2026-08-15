@@ -488,6 +488,7 @@ export const LABELS = {
     'masonry-layout-generator': 'Gerador de Layout Masonry CSS',
     'color-mix-generator': 'Gerador de color-mix() CSS',
     'blend-mode-generator': 'Gerador de Blend Mode CSS',
+    'html-boilerplate-generator': 'Gerador de HTML5 Boilerplate',
     'nginx-config-generator': 'Gerador de Configuração Nginx',
   },
   en: {
@@ -881,6 +882,7 @@ export const LABELS = {
     'masonry-layout-generator': 'CSS Masonry Layout Generator',
     'color-mix-generator': 'CSS color-mix() Generator',
     'blend-mode-generator': 'CSS Blend Mode Generator',
+    'html-boilerplate-generator': 'HTML5 Boilerplate Generator',
     'nginx-config-generator': 'Nginx Config Generator',
   },
 }
@@ -1180,6 +1182,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/masonry-layout-generator', icon: <AppstoreOutlined />, label: withNewBadge('/frontend/masonry-layout-generator', l['masonry-layout-generator'], l) },
         { key: '/frontend/color-mix-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/color-mix-generator', l['color-mix-generator'], l) },
         { key: '/frontend/blend-mode-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/blend-mode-generator', l['blend-mode-generator'], l) },
+        { key: '/frontend/html-boilerplate-generator', icon: <FileTextOutlined />, label: withNewBadge('/frontend/html-boilerplate-generator', l['html-boilerplate-generator'], l) },
       ],
     },
     {
