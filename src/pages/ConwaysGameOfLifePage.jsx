@@ -20,6 +20,8 @@ import {
   ClearOutlined,
   ReloadOutlined,
   BorderOutlined,
+  FullscreenOutlined,
+  FullscreenExitOutlined,
 } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import {
@@ -113,6 +115,9 @@ const translations = {
     stateStable: 'Estável',
     stateExtinct: 'Extinto',
     hint: 'Clique nas células para desenhar seu próprio padrão.',
+    fullscreen: 'Tela cheia',
+    exitFullscreen: 'Sair da tela cheia',
+    colorThemeLabel: 'Tema de cores',
     sourceTitle: 'Código-fonte do motor',
     presets: {
       empty: PRESETS.empty.name.pt,
@@ -160,6 +165,9 @@ const translations = {
     stateStable: 'Stable',
     stateExtinct: 'Extinct',
     hint: 'Click cells to draw your own pattern.',
+    fullscreen: 'Fullscreen',
+    exitFullscreen: 'Exit fullscreen',
+    colorThemeLabel: 'Color theme',
     sourceTitle: 'Engine source code',
     presets: {
       empty: PRESETS.empty.name.en,
@@ -179,6 +187,16 @@ const GRID_SIZES = [
   { rows: 40, cols: 70 },
 ]
 
+const COLOR_THEMES = {
+  blue: { alive: '#1677ff', dead: '#ffffff', background: '#f5f5f5', label: { pt: 'Azul', en: 'Blue' } },
+  red: { alive: '#ff4d4f', dead: '#fff1f0', background: '#fff1f0', label: { pt: 'Vermelho', en: 'Red' } },
+  green: { alive: '#52c41a', dead: '#f6ffed', background: '#f6ffed', label: { pt: 'Verde', en: 'Green' } },
+  purple: { alive: '#722ed1', dead: '#f9f0ff', background: '#f9f0ff', label: { pt: 'Roxo', en: 'Purple' } },
+  orange: { alive: '#fa8c16', dead: '#fff7e6', background: '#fff7e6', label: { pt: 'Laranja', en: 'Orange' } },
+  neon: { alive: '#00ff9d', dead: '#0a0a0a', background: '#0a0a0a', label: { pt: 'Néon', en: 'Neon' } },
+  dark: { alive: '#ffffff', dead: '#141414', background: '#141414', label: { pt: 'Escuro', en: 'Dark' } },
+}
+
 export default function ConwaysGameOfLifePage() {
   const { lang } = useLanguage()
   const t = translations[lang]
@@ -188,9 +206,13 @@ export default function ConwaysGameOfLifePage() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [grid, setGrid] = useState(() => createGrid(30, 50, 'random', 0.25))
   const [generation, setGeneration] = useState(0)
+  const [colorTheme, setColorTheme] = useState('blue')
+  const [isFullscreen, setIsFullscreen] = useState(false)
   const previousGridRef = useRef(null)
+  const gridContainerRef = useRef(null)
 
   const size = GRID_SIZES[sizeIndex]
+  const theme = COLOR_THEMES[colorTheme]
 
   const aliveCount = useMemo(() => countAlive(grid), [grid])
   const state = useMemo(
@@ -225,6 +247,28 @@ export default function ConwaysGameOfLifePage() {
 
     return () => clearInterval(id)
   }, [isPlaying, speed])
+
+  useEffect(() => {
+    const handleChange = () => {
+      setIsFullscreen(!!document.fullscreenElement)
+    }
+    document.addEventListener('fullscreenchange', handleChange)
+    return () => document.removeEventListener('fullscreenchange', handleChange)
+  }, [])
+
+  const toggleFullscreen = useCallback(async () => {
+    const el = gridContainerRef.current
+    if (!el) return
+    try {
+      if (!document.fullscreenElement) {
+        await el.requestFullscreen()
+      } else {
+        await document.exitFullscreen()
+      }
+    } catch {
+      // Ignora falhas de fullscreen em ambientes sem suporte.
+    }
+  }, [])
 
   const handleToggle = useCallback((r, c) => {
     setGrid((current) => toggleCell(current, r, c))
@@ -302,6 +346,12 @@ export default function ConwaysGameOfLifePage() {
             <Button icon={<ReloadOutlined />} onClick={handleRandom}>
               {t.random}
             </Button>
+            <Button
+              icon={isFullscreen ? <FullscreenExitOutlined /> : <FullscreenOutlined />}
+              onClick={toggleFullscreen}
+            >
+              {isFullscreen ? t.exitFullscreen : t.fullscreen}
+            </Button>
           </Space>
 
           <Space wrap align="center">
@@ -341,6 +391,33 @@ export default function ConwaysGameOfLifePage() {
                 onChange={setSpeed}
               />
             </Space>
+
+            <Space direction="vertical" size={4}>
+              <Text type="secondary">{t.colorThemeLabel}</Text>
+              <Select
+                value={colorTheme}
+                style={{ width: 140 }}
+                onChange={setColorTheme}
+                options={Object.keys(COLOR_THEMES).map((key) => ({
+                  value: key,
+                  label: (
+                    <Space>
+                      <span
+                        style={{
+                          display: 'inline-block',
+                          width: 12,
+                          height: 12,
+                          borderRadius: '50%',
+                          background: COLOR_THEMES[key].alive,
+                          border: `1px solid ${COLOR_THEMES[key].dead === '#ffffff' ? '#d9d9d9' : COLOR_THEMES[key].dead}`,
+                        }}
+                      />
+                      {COLOR_THEMES[key].label[lang]}
+                    </Space>
+                  ),
+                }))}
+              />
+            </Space>
           </Space>
 
           <Alert message={t.hint} type="info" showIcon />
@@ -366,16 +443,20 @@ export default function ConwaysGameOfLifePage() {
 
       <Card>
         <div
+          ref={gridContainerRef}
           style={{
             display: 'grid',
             gridTemplateColumns: `repeat(${size.cols}, ${cellSize}px)`,
             gridTemplateRows: `repeat(${size.rows}, ${cellSize}px)`,
             gap: 1,
             justifyContent: 'center',
+            alignContent: 'center',
             overflowX: 'auto',
             padding: 8,
-            background: '#f5f5f5',
+            background: theme.background,
             borderRadius: 8,
+            height: isFullscreen ? '100vh' : 'auto',
+            width: isFullscreen ? '100vw' : 'auto',
           }}
         >
           {grid.map((row, r) =>
@@ -386,7 +467,7 @@ export default function ConwaysGameOfLifePage() {
                 style={{
                   width: cellSize,
                   height: cellSize,
-                  background: cell ? '#1677ff' : '#ffffff',
+                  background: cell ? theme.alive : theme.dead,
                   borderRadius: 1,
                   cursor: 'pointer',
                   transition: 'background 0.08s ease',
