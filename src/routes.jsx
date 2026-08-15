@@ -181,6 +181,7 @@ import MacAddressToolPage from './pages/MacAddressToolPage'
 import IbanToolPage from './pages/IbanToolPage'
 import RomanNumeralConverterPage from './pages/RomanNumeralConverterPage'
 import SqlJoinsPage from './pages/SqlJoinsPage'
+import SqlIsolationLevelsPage from './pages/SqlIsolationLevelsPage'
 import KeyframeGeneratorPage from './pages/KeyframeGeneratorPage'
 import ClipPathGeneratorPage from './pages/ClipPathGeneratorPage'
 import TomlFormatterPage from './pages/TomlFormatterPage'
@@ -503,6 +504,7 @@ const router = createBrowserRouter([
       { path: 'data/json-schema-validator', element: <JsonSchemaValidatorPage /> },
       { path: 'tools/css-formatter', element: <CssFormatterPage /> },
       { path: 'database/sql-formatter', element: <SqlFormatterPage /> },
+      { path: 'database/sql-isolation-levels', element: <SqlIsolationLevelsPage /> },
       { path: 'network/common-ports', element: <CommonPortsPage /> },
       { path: 'network/ipv6-explorer', element: <Ipv6ExplorerPage /> },
       { path: 'network/mac-address-tool', element: <MacAddressToolPage /> },
