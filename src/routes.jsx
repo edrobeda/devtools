@@ -336,6 +336,7 @@ import RetryCalculatorPage from './pages/RetryCalculatorPage'
 import StringEscapePage from './pages/StringEscapePage'
 import AwsCliCheatsheetPage from './pages/AwsCliCheatsheetPage'
 import CaesarCipherPage from './pages/CaesarCipherPage'
+import CacheSimulatorPage from './pages/CacheSimulatorPage'
 import LoadBalancerSimulatorPage from './pages/LoadBalancerSimulatorPage'
 import ConsistentHashingSimulatorPage from './pages/ConsistentHashingSimulatorPage'
 import BloomFilterSimulatorPage from './pages/BloomFilterSimulatorPage'
@@ -526,6 +527,7 @@ const router = createBrowserRouter([
       { path: 'tools/bloom-filter-simulator', element: <BloomFilterSimulatorPage /> },
       { path: 'tools/cpu-scheduling-simulator', element: <CpuSchedulingSimulatorPage /> },
       { path: 'tools/page-replacement-simulator', element: <PageReplacementSimulatorPage /> },
+      { path: 'tools/cache-simulator', element: <CacheSimulatorPage /> },
       { path: 'tools/string-escape', element: <StringEscapePage /> },
       { path: 'tools/caesar-cipher', element: <CaesarCipherPage /> },
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
