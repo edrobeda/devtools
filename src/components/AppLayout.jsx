@@ -487,6 +487,7 @@ export const LABELS = {
     'css-pulse-generator': 'Gerador de Efeito Pulse CSS',
     'masonry-layout-generator': 'Gerador de Layout Masonry CSS',
     'color-mix-generator': 'Gerador de color-mix() CSS',
+    'blend-mode-generator': 'Gerador de Blend Mode CSS',
     'nginx-config-generator': 'Gerador de Configuração Nginx',
   },
   en: {
@@ -879,6 +880,7 @@ export const LABELS = {
     'css-pulse-generator': 'CSS Pulse Effect Generator',
     'masonry-layout-generator': 'CSS Masonry Layout Generator',
     'color-mix-generator': 'CSS color-mix() Generator',
+    'blend-mode-generator': 'CSS Blend Mode Generator',
     'nginx-config-generator': 'Nginx Config Generator',
   },
 }
@@ -1177,6 +1179,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-pulse-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-pulse-generator', l['css-pulse-generator'], l) },
         { key: '/frontend/masonry-layout-generator', icon: <AppstoreOutlined />, label: withNewBadge('/frontend/masonry-layout-generator', l['masonry-layout-generator'], l) },
         { key: '/frontend/color-mix-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/color-mix-generator', l['color-mix-generator'], l) },
+        { key: '/frontend/blend-mode-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/blend-mode-generator', l['blend-mode-generator'], l) },
       ],
     },
     {
