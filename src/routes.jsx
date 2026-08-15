@@ -334,6 +334,7 @@ import RetryCalculatorPage from './pages/RetryCalculatorPage'
 import StringEscapePage from './pages/StringEscapePage'
 import AwsCliCheatsheetPage from './pages/AwsCliCheatsheetPage'
 import CaesarCipherPage from './pages/CaesarCipherPage'
+import LoadBalancerSimulatorPage from './pages/LoadBalancerSimulatorPage'
 
 const router = createBrowserRouter([
   {
@@ -512,6 +513,7 @@ const router = createBrowserRouter([
       { path: 'tools/loan-amortization-calculator', element: <LoanAmortizationCalculatorPage /> },
       { path: 'tools/bash-to-powershell', element: <BashToPowershellPage /> },
       { path: 'tools/retry-calculator', element: <RetryCalculatorPage /> },
+      { path: 'tools/load-balancer-simulator', element: <LoadBalancerSimulatorPage /> },
       { path: 'tools/string-escape', element: <StringEscapePage /> },
       { path: 'tools/caesar-cipher', element: <CaesarCipherPage /> },
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
