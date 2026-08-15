@@ -169,6 +169,7 @@ export const LABELS = {
     'utm-url-builder': 'Construtor de URL com UTM',
     'availability-calculator': 'Calculadora de Disponibilidade',
     'brazilian-data-generator': 'Gerador de Dados Brasileiros',
+    'bankers-algorithm-simulator': 'Algoritmo do Banqueiro',
     'xml-json-converter': 'Conversor XML ↔ JSON',
     'gradient-generator': 'Gerador de Gradiente CSS',
     'use-copy-to-clipboard': 'useCopyToClipboard',
@@ -489,6 +490,7 @@ export const LABELS = {
     'color-mix-generator': 'Gerador de color-mix() CSS',
     'blend-mode-generator': 'Gerador de Blend Mode CSS',
     'html-boilerplate-generator': 'Gerador de HTML5 Boilerplate',
+    'css-animation-stagger-generator': 'Gerador de Stagger CSS',
     'nginx-config-generator': 'Gerador de Configuração Nginx',
   },
   en: {
@@ -563,6 +565,7 @@ export const LABELS = {
     'utm-url-builder': 'UTM URL Builder',
     'availability-calculator': 'Availability Calculator',
     'brazilian-data-generator': 'Brazilian Data Generator',
+    'bankers-algorithm-simulator': "Banker's Algorithm Simulator",
     'xml-json-converter': 'XML ↔ JSON Converter',
     'gradient-generator': 'CSS Gradient Generator',
     'use-copy-to-clipboard': 'useCopyToClipboard',
@@ -883,6 +886,7 @@ export const LABELS = {
     'color-mix-generator': 'CSS color-mix() Generator',
     'blend-mode-generator': 'CSS Blend Mode Generator',
     'html-boilerplate-generator': 'HTML5 Boilerplate Generator',
+    'css-animation-stagger-generator': 'CSS Stagger Animation Generator',
     'nginx-config-generator': 'Nginx Config Generator',
   },
 }
@@ -940,6 +944,7 @@ export function buildMenuItems(l) {
         { key: '/tools/markdown-previewer', icon: <FileMarkdownOutlined />, label: withNewBadge('/tools/markdown-previewer', l['markdown-previewer'], l) },
         { key: '/tools/cpf-cnpj-generator', icon: <IdcardOutlined />, label: withNewBadge('/tools/cpf-cnpj-generator', l['cpf-cnpj-generator'], l) },
         { key: '/tools/brazilian-data-generator', icon: <IdcardOutlined />, label: withNewBadge('/tools/brazilian-data-generator', l['brazilian-data-generator'], l) },
+        { key: '/tools/bankers-algorithm-simulator', icon: <SafetyOutlined />, label: withNewBadge('/tools/bankers-algorithm-simulator', l['bankers-algorithm-simulator'], l) },
         { key: '/tools/base-converter', icon: <NumberOutlined />, label: withNewBadge('/tools/base-converter', l['base-converter'], l) },
         { key: '/tools/semver-comparator', icon: <BranchesOutlined />, label: withNewBadge('/tools/semver-comparator', l['semver-comparator'], l) },
         { key: '/tools/slug-generator', icon: <LinkOutlined />, label: withNewBadge('/tools/slug-generator', l['slug-generator'], l) },
@@ -1183,6 +1188,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/color-mix-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/color-mix-generator', l['color-mix-generator'], l) },
         { key: '/frontend/blend-mode-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/blend-mode-generator', l['blend-mode-generator'], l) },
         { key: '/frontend/html-boilerplate-generator', icon: <FileTextOutlined />, label: withNewBadge('/frontend/html-boilerplate-generator', l['html-boilerplate-generator'], l) },
+        { key: '/frontend/css-animation-stagger-generator', icon: <ThunderboltOutlined />, label: withNewBadge('/frontend/css-animation-stagger-generator', l['css-animation-stagger-generator'], l) },
       ],
     },
     {

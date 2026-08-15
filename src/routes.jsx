@@ -264,6 +264,7 @@ import MasonryLayoutGeneratorPage from './pages/MasonryLayoutGeneratorPage'
 import ColorMixGeneratorPage from './pages/ColorMixGeneratorPage'
 import BlendModeGeneratorPage from './pages/BlendModeGeneratorPage'
 import HtmlBoilerplateGeneratorPage from './pages/HtmlBoilerplateGeneratorPage'
+import CssAnimationStaggerGeneratorPage from './pages/CssAnimationStaggerGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
@@ -376,6 +377,7 @@ import DiningPhilosophersSimulatorPage from './pages/DiningPhilosophersSimulator
 import TruthTableGeneratorPage from './pages/TruthTableGeneratorPage'
 import AvailabilityCalculatorPage from './pages/AvailabilityCalculatorPage'
 import BrazilianDataGeneratorPage from './pages/BrazilianDataGeneratorPage'
+import BankersAlgorithmSimulatorPage from './pages/BankersAlgorithmSimulatorPage'
 
 const router = createBrowserRouter([
   {
@@ -720,6 +722,7 @@ const router = createBrowserRouter([
       { path: 'frontend/color-mix-generator', element: <ColorMixGeneratorPage /> },
       { path: 'frontend/blend-mode-generator', element: <BlendModeGeneratorPage /> },
       { path: 'frontend/html-boilerplate-generator', element: <HtmlBoilerplateGeneratorPage /> },
+      { path: 'frontend/css-animation-stagger-generator', element: <CssAnimationStaggerGeneratorPage /> },
       { path: 'snippets/use-update-effect', element: <UseUpdateEffectSnippetPage /> },
       { path: 'snippets/use-why-did-you-update', element: <UseWhyDidYouUpdateSnippetPage /> },
       { path: 'snippets/use-boolean', element: <UseBooleanSnippetPage /> },
@@ -756,6 +759,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-pagination', element: <UsePaginationSnippetPage /> },
       { path: 'snippets/use-controllable-state', element: <UseControllableStateSnippetPage /> },
       { path: 'references/aws-cli-cheatsheet', element: <AwsCliCheatsheetPage /> },
+      { path: 'tools/bankers-algorithm-simulator', element: <BankersAlgorithmSimulatorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
