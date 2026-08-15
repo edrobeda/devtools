@@ -477,6 +477,7 @@ export const LABELS = {
     'css-text-stroke-generator': 'Gerador de Texto com Contorno CSS',
     'css-line-clamp-generator': 'Gerador de Line Clamp CSS',
     'css-pulse-generator': 'Gerador de Efeito Pulse CSS',
+    'masonry-layout-generator': 'Gerador de Layout Masonry CSS',
   },
   en: {
     home: 'Home',
@@ -860,6 +861,7 @@ export const LABELS = {
     'css-text-stroke-generator': 'CSS Text Stroke / Outline Generator',
     'css-line-clamp-generator': 'CSS Line Clamp Generator',
     'css-pulse-generator': 'CSS Pulse Effect Generator',
+    'masonry-layout-generator': 'CSS Masonry Layout Generator',
   },
 }
 
@@ -1152,6 +1154,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-text-stroke-generator', icon: <FontSizeOutlined />, label: withNewBadge('/frontend/css-text-stroke-generator', l['css-text-stroke-generator'], l) },
         { key: '/frontend/css-line-clamp-generator', icon: <FontSizeOutlined />, label: withNewBadge('/frontend/css-line-clamp-generator', l['css-line-clamp-generator'], l) },
         { key: '/frontend/css-pulse-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-pulse-generator', l['css-pulse-generator'], l) },
+        { key: '/frontend/masonry-layout-generator', icon: <AppstoreOutlined />, label: withNewBadge('/frontend/masonry-layout-generator', l['masonry-layout-generator'], l) },
       ],
     },
     {
