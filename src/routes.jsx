@@ -340,6 +340,7 @@ import LoadBalancerSimulatorPage from './pages/LoadBalancerSimulatorPage'
 import ConsistentHashingSimulatorPage from './pages/ConsistentHashingSimulatorPage'
 import BloomFilterSimulatorPage from './pages/BloomFilterSimulatorPage'
 import CpuSchedulingSimulatorPage from './pages/CpuSchedulingSimulatorPage'
+import PageReplacementSimulatorPage from './pages/PageReplacementSimulatorPage'
 
 const router = createBrowserRouter([
   {
@@ -524,6 +525,7 @@ const router = createBrowserRouter([
       { path: 'tools/consistent-hashing-simulator', element: <ConsistentHashingSimulatorPage /> },
       { path: 'tools/bloom-filter-simulator', element: <BloomFilterSimulatorPage /> },
       { path: 'tools/cpu-scheduling-simulator', element: <CpuSchedulingSimulatorPage /> },
+      { path: 'tools/page-replacement-simulator', element: <PageReplacementSimulatorPage /> },
       { path: 'tools/string-escape', element: <StringEscapePage /> },
       { path: 'tools/caesar-cipher', element: <CaesarCipherPage /> },
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
