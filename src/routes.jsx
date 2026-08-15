@@ -191,6 +191,7 @@ import GitattributesGeneratorPage from './pages/GitattributesGeneratorPage'
 import VimCheatsheetPage from './pages/VimCheatsheetPage'
 import SshCheatsheetPage from './pages/SshCheatsheetPage'
 import DockerComposeGeneratorPage from './pages/DockerComposeGeneratorPage'
+import DockerRunToComposePage from './pages/DockerRunToComposePage'
 import OpensslCommandsPage from './pages/OpensslCommandsPage'
 import PythonCheatsheetPage from './pages/PythonCheatsheetPage'
 import GrepSedAwkCheatsheetPage from './pages/GrepSedAwkCheatsheetPage'
@@ -563,6 +564,7 @@ const router = createBrowserRouter([
       { path: 'data/json-to-yaml', element: <JsonToYamlPage /> },
       { path: 'data/json-flatten', element: <JsonFlattenPage /> },
       { path: 'devops/docker-compose-generator', element: <DockerComposeGeneratorPage /> },
+      { path: 'devops/docker-run-to-compose', element: <DockerRunToComposePage /> },
       { path: 'devops/openssl-commands', element: <OpensslCommandsPage /> },
       { path: 'devops/caddyfile-generator', element: <CaddyfileGeneratorPage /> },
       { path: 'devops/htaccess-generator', element: <HtaccessGeneratorPage /> },
