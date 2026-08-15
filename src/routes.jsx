@@ -373,6 +373,7 @@ import SequenceDiagramGeneratorPage from './pages/SequenceDiagramGeneratorPage'
 import DiningPhilosophersSimulatorPage from './pages/DiningPhilosophersSimulatorPage'
 import TruthTableGeneratorPage from './pages/TruthTableGeneratorPage'
 import AvailabilityCalculatorPage from './pages/AvailabilityCalculatorPage'
+import BrazilianDataGeneratorPage from './pages/BrazilianDataGeneratorPage'
 
 const router = createBrowserRouter([
   {
@@ -427,6 +428,7 @@ const router = createBrowserRouter([
       { path: 'tools/url-parser', element: <UrlParserPage /> },
       { path: 'tools/utm-url-builder', element: <UtmUrlBuilderPage /> },
       { path: 'tools/availability-calculator', element: <AvailabilityCalculatorPage /> },
+      { path: 'tools/brazilian-data-generator', element: <BrazilianDataGeneratorPage /> },
       { path: 'tools/xml-json-converter', element: <XmlJsonConverterPage /> },
       { path: 'frontend/gradient-generator', element: <GradientGeneratorPage /> },
       { path: 'snippets/use-copy-to-clipboard', element: <UseCopyToClipboardSnippetPage /> },
