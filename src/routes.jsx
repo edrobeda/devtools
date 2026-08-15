@@ -326,6 +326,7 @@ import BandwidthCalculatorPage from './pages/BandwidthCalculatorPage'
 import CookieToolPage from './pages/CookieToolPage'
 import CompoundInterestCalculatorPage from './pages/CompoundInterestCalculatorPage'
 import PercentageCalculatorPage from './pages/PercentageCalculatorPage'
+import AbTestCalculatorPage from './pages/AbTestCalculatorPage'
 import ReadingTimeCalculatorPage from './pages/ReadingTimeCalculatorPage'
 import ConnectionStringParserPage from './pages/ConnectionStringParserPage'
 import BigOCheatsheetPage from './pages/BigOCheatsheetPage'
@@ -514,6 +515,7 @@ const router = createBrowserRouter([
       { path: 'tools/cookie-tool', element: <CookieToolPage /> },
       { path: 'tools/compound-interest-calculator', element: <CompoundInterestCalculatorPage /> },
       { path: 'tools/percentage-calculator', element: <PercentageCalculatorPage /> },
+      { path: 'tools/ab-test-calculator', element: <AbTestCalculatorPage /> },
       { path: 'tools/reading-time-calculator', element: <ReadingTimeCalculatorPage /> },
       { path: 'tools/connection-string-parser', element: <ConnectionStringParserPage /> },
       { path: 'references/sql-joins', element: <SqlJoinsPage /> },
