@@ -77,6 +77,7 @@ import {
   WindowsOutlined,
   SyncOutlined,
   DashboardOutlined,
+  BlockOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -334,6 +335,7 @@ export const LABELS = {
     'rate-limiter-simulator': 'Simulador de Rate Limiter',
     'two-phase-commit-simulator': 'Simulador de Two-Phase Commit',
     'raid-simulator': 'Simulador de RAID',
+    'blockchain-simulator': 'Simulador de Blockchain',
     'string-escape': 'String Escape / Unescape',
     'caesar-cipher': 'Cifra de César / ROT13 / ROT47',
     'reading-time-calculator': 'Calculadora de Tempo de Leitura',
@@ -708,6 +710,7 @@ export const LABELS = {
     'rate-limiter-simulator': 'Rate Limiter Simulator',
     'two-phase-commit-simulator': 'Two-Phase Commit Simulator',
     'raid-simulator': 'RAID Simulator',
+    'blockchain-simulator': 'Blockchain Simulator',
     'string-escape': 'String Escape / Unescape',
     'caesar-cipher': 'Caesar Cipher / ROT13 / ROT47',
     'reading-time-calculator': 'Reading Time Calculator',
@@ -955,6 +958,7 @@ export function buildMenuItems(l) {
         { key: '/tools/rate-limiter-simulator', icon: <DashboardOutlined />, label: withNewBadge('/tools/rate-limiter-simulator', l['rate-limiter-simulator'], l) },
         { key: '/tools/two-phase-commit-simulator', icon: <ApartmentOutlined />, label: withNewBadge('/tools/two-phase-commit-simulator', l['two-phase-commit-simulator'], l) },
         { key: '/tools/raid-simulator', icon: <HddOutlined />, label: withNewBadge('/tools/raid-simulator', l['raid-simulator'], l) },
+        { key: '/tools/blockchain-simulator', icon: <BlockOutlined />, label: withNewBadge('/tools/blockchain-simulator', l['blockchain-simulator'], l) },
         { key: '/tools/string-escape', icon: <CodeOutlined />, label: withNewBadge('/tools/string-escape', l['string-escape'], l) },
         { key: '/tools/caesar-cipher', icon: <LockOutlined />, label: withNewBadge('/tools/caesar-cipher', l['caesar-cipher'], l) },
         { key: '/tools/reading-time-calculator', icon: <ReadOutlined />, label: withNewBadge('/tools/reading-time-calculator', l['reading-time-calculator'], l) },

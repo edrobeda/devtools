@@ -356,6 +356,7 @@ import CircuitBreakerSimulatorPage from './pages/CircuitBreakerSimulatorPage'
 import RateLimiterSimulatorPage from './pages/RateLimiterSimulatorPage'
 import TwoPhaseCommitSimulatorPage from './pages/TwoPhaseCommitSimulatorPage'
 import RaidSimulatorPage from './pages/RaidSimulatorPage'
+import BlockchainSimulatorPage from './pages/BlockchainSimulatorPage'
 
 const router = createBrowserRouter([
   {
@@ -555,6 +556,7 @@ const router = createBrowserRouter([
       { path: 'tools/rate-limiter-simulator', element: <RateLimiterSimulatorPage /> },
       { path: 'tools/two-phase-commit-simulator', element: <TwoPhaseCommitSimulatorPage /> },
       { path: 'tools/raid-simulator', element: <RaidSimulatorPage /> },
+      { path: 'tools/blockchain-simulator', element: <BlockchainSimulatorPage /> },
       { path: 'tools/string-escape', element: <StringEscapePage /> },
       { path: 'tools/caesar-cipher', element: <CaesarCipherPage /> },
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
