@@ -15,6 +15,7 @@ import UseClickOutsideSnippetPage from './pages/UseClickOutsideSnippetPage'
 import JsonFormatterPage from './pages/JsonFormatterPage'
 import ColorConverterPage from './pages/ColorConverterPage'
 import SkeletonShimmerPage from './pages/SkeletonShimmerPage'
+import SpotlightCardShowcasePage from './pages/SpotlightCardShowcasePage'
 import TimestampConverterPage from './pages/TimestampConverterPage'
 import GradientBorderButtonPage from './pages/GradientBorderButtonPage'
 import UseMediaQuerySnippetPage from './pages/UseMediaQuerySnippetPage'
@@ -36,7 +37,11 @@ import DateTimeCalculatorPage from './pages/DateTimeCalculatorPage'
 import RegexTesterPage from './pages/RegexTesterPage'
 import KeyboardEventTesterPage from './pages/KeyboardEventTesterPage'
 import Base64ToolPage from './pages/Base64ToolPage'
+import Base32ToolPage from './pages/Base32ToolPage'
+import Base58ToolPage from './pages/Base58ToolPage'
 import UuidGeneratorPage from './pages/UuidGeneratorPage'
+import UuidV7GeneratorPage from './pages/UuidV7GeneratorPage'
+import UlidToolPage from './pages/UlidToolPage'
 import HtmlFormatterPage from './pages/HtmlFormatterPage'
 import CaseConverterPage from './pages/CaseConverterPage'
 import PasswordGeneratorPage from './pages/PasswordGeneratorPage'
@@ -50,6 +55,7 @@ import DiffCheckerPage from './pages/DiffCheckerPage'
 import BoxShadowGeneratorPage from './pages/BoxShadowGeneratorPage'
 import CsvJsonConverterPage from './pages/CsvJsonConverterPage'
 import UseIntervalSnippetPage from './pages/UseIntervalSnippetPage'
+import UseTimeoutSnippetPage from './pages/UseTimeoutSnippetPage'
 import UseCountdownSnippetPage from './pages/UseCountdownSnippetPage'
 import UseFetchSnippetPage from './pages/UseFetchSnippetPage'
 import UseNetworkStatusSnippetPage from './pages/UseNetworkStatusSnippetPage'
@@ -116,6 +122,10 @@ import SecurityHeadersGeneratorPage from './pages/SecurityHeadersGeneratorPage'
 import SriHashGeneratorPage from './pages/SriHashGeneratorPage'
 import SecurityTxtGeneratorPage from './pages/SecurityTxtGeneratorPage'
 import WebhookSignatureValidatorPage from './pages/WebhookSignatureValidatorPage'
+import AsymmetricKeyGeneratorPage from './pages/AsymmetricKeyGeneratorPage'
+import SymmetricKeyGeneratorPage from './pages/SymmetricKeyGeneratorPage'
+import HashIdentifierPage from './pages/HashIdentifierPage'
+import PkceGeneratorPage from './pages/PkceGeneratorPage'
 import TokenCounterPage from './pages/TokenCounterPage'
 import PomodoroTimerPage from './pages/PomodoroTimerPage'
 import EnvToolPage from './pages/EnvToolPage'
@@ -160,12 +170,18 @@ import JsonToTypeScriptPage from './pages/JsonToTypeScriptPage'
 import JsonToYamlPage from './pages/JsonToYamlPage'
 import JsonFlattenPage from './pages/JsonFlattenPage'
 import CaddyfileGeneratorPage from './pages/CaddyfileGeneratorPage'
+import HtaccessGeneratorPage from './pages/HtaccessGeneratorPage'
 import UnitsConverterPage from './pages/UnitsConverterPage'
 import HttpHeadersPage from './pages/HttpHeadersPage'
 import JavascriptCheatsheetPage from './pages/JavascriptCheatsheetPage'
 import TmuxCheatsheetPage from './pages/TmuxCheatsheetPage'
 import DevToolsShortcutsPage from './pages/DevToolsShortcutsPage'
 import Ipv6ExplorerPage from './pages/Ipv6ExplorerPage'
+import MacAddressToolPage from './pages/MacAddressToolPage'
+import IbanToolPage from './pages/IbanToolPage'
+import RomanNumeralConverterPage from './pages/RomanNumeralConverterPage'
+import SqlJoinsPage from './pages/SqlJoinsPage'
+import SqlIsolationLevelsPage from './pages/SqlIsolationLevelsPage'
 import KeyframeGeneratorPage from './pages/KeyframeGeneratorPage'
 import ClipPathGeneratorPage from './pages/ClipPathGeneratorPage'
 import TomlFormatterPage from './pages/TomlFormatterPage'
@@ -237,6 +253,8 @@ import CssCarouselGeneratorPage from './pages/CssCarouselGeneratorPage'
 import CssLoginFormGeneratorPage from './pages/CssLoginFormGeneratorPage'
 import CssNeumorphismGeneratorPage from './pages/CssNeumorphismGeneratorPage'
 import CssTextStrokeGeneratorPage from './pages/CssTextStrokeGeneratorPage'
+import CssLineClampGeneratorPage from './pages/CssLineClampGeneratorPage'
+import CssPulseGeneratorPage from './pages/CssPulseGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
@@ -291,6 +309,42 @@ import UseBeforeUnloadSnippetPage from './pages/UseBeforeUnloadSnippetPage'
 import UseCountUpSnippetPage from './pages/UseCountUpSnippetPage'
 import UseScriptSnippetPage from './pages/UseScriptSnippetPage'
 import UseBatterySnippetPage from './pages/UseBatterySnippetPage'
+import UseGeolocationSnippetPage from './pages/UseGeolocationSnippetPage'
+import UseMapSnippetPage from './pages/UseMapSnippetPage'
+import UseStateWithHistorySnippetPage from './pages/UseStateWithHistorySnippetPage'
+import UseIdleSnippetPage from './pages/UseIdleSnippetPage'
+import UseMutationObserverSnippetPage from './pages/UseMutationObserverSnippetPage'
+import UseResizeObserverSnippetPage from './pages/UseResizeObserverSnippetPage'
+import UseHotkeysSnippetPage from './pages/UseHotkeysSnippetPage'
+import UseSpeechSynthesisSnippetPage from './pages/UseSpeechSynthesisSnippetPage'
+import UsePaginationSnippetPage from './pages/UsePaginationSnippetPage'
+import UseControllableStateSnippetPage from './pages/UseControllableStateSnippetPage'
+import FileSizeConverterPage from './pages/FileSizeConverterPage'
+import FileHashCalculatorPage from './pages/FileHashCalculatorPage'
+import GeoCoordinatesConverterPage from './pages/GeoCoordinatesConverterPage'
+import LevenshteinCalculatorPage from './pages/LevenshteinCalculatorPage'
+import BandwidthCalculatorPage from './pages/BandwidthCalculatorPage'
+import CookieToolPage from './pages/CookieToolPage'
+import CompoundInterestCalculatorPage from './pages/CompoundInterestCalculatorPage'
+import PercentageCalculatorPage from './pages/PercentageCalculatorPage'
+import AbTestCalculatorPage from './pages/AbTestCalculatorPage'
+import ReadingTimeCalculatorPage from './pages/ReadingTimeCalculatorPage'
+import ConnectionStringParserPage from './pages/ConnectionStringParserPage'
+import BigOCheatsheetPage from './pages/BigOCheatsheetPage'
+import JsonToZodSchemaPage from './pages/JsonToZodSchemaPage'
+import LoanAmortizationCalculatorPage from './pages/LoanAmortizationCalculatorPage'
+import BashToPowershellPage from './pages/BashToPowershellPage'
+import RetryCalculatorPage from './pages/RetryCalculatorPage'
+import StringEscapePage from './pages/StringEscapePage'
+import AwsCliCheatsheetPage from './pages/AwsCliCheatsheetPage'
+import CaesarCipherPage from './pages/CaesarCipherPage'
+import CacheSimulatorPage from './pages/CacheSimulatorPage'
+import DescriptiveStatisticsCalculatorPage from './pages/DescriptiveStatisticsCalculatorPage'
+import LoadBalancerSimulatorPage from './pages/LoadBalancerSimulatorPage'
+import ConsistentHashingSimulatorPage from './pages/ConsistentHashingSimulatorPage'
+import BloomFilterSimulatorPage from './pages/BloomFilterSimulatorPage'
+import CpuSchedulingSimulatorPage from './pages/CpuSchedulingSimulatorPage'
+import PageReplacementSimulatorPage from './pages/PageReplacementSimulatorPage'
 
 const router = createBrowserRouter([
   {
@@ -308,6 +362,7 @@ const router = createBrowserRouter([
       { path: 'styles/glass-card', element: <GlassCardShowcasePage /> },
       { path: 'styles/copy-button', element: <CopyButtonShowcasePage /> },
       { path: 'styles/skeleton-shimmer', element: <SkeletonShimmerPage /> },
+      { path: 'styles/spotlight-card', element: <SpotlightCardShowcasePage /> },
       { path: 'styles/gradient-border-button', element: <GradientBorderButtonPage /> },
       { path: 'snippets/use-debounce', element: <UseDebounceSnippetPage /> },
       { path: 'snippets/use-local-storage', element: <UseLocalStorageSnippetPage /> },
@@ -332,7 +387,11 @@ const router = createBrowserRouter([
       { path: 'tools/regex-tester', element: <RegexTesterPage /> },
       { path: 'tools/keyboard-event-tester', element: <KeyboardEventTesterPage /> },
       { path: 'tools/base64-tool', element: <Base64ToolPage /> },
+      { path: 'tools/base32-tool', element: <Base32ToolPage /> },
+      { path: 'tools/base58-tool', element: <Base58ToolPage /> },
       { path: 'tools/uuid-generator', element: <UuidGeneratorPage /> },
+      { path: 'tools/uuid-v7-generator', element: <UuidV7GeneratorPage /> },
+      { path: 'tools/ulid-tool', element: <UlidToolPage /> },
       { path: 'tools/case-converter', element: <CaseConverterPage /> },
       { path: 'tools/password-generator', element: <PasswordGeneratorPage /> },
       { path: 'tools/url-encoder', element: <UrlEncoderPage /> },
@@ -345,6 +404,7 @@ const router = createBrowserRouter([
       { path: 'frontend/box-shadow-generator', element: <BoxShadowGeneratorPage /> },
       { path: 'data/csv-json-converter', element: <CsvJsonConverterPage /> },
       { path: 'snippets/use-interval', element: <UseIntervalSnippetPage /> },
+      { path: 'snippets/use-timeout', element: <UseTimeoutSnippetPage /> },
       { path: 'snippets/use-countdown', element: <UseCountdownSnippetPage /> },
       { path: 'snippets/use-fetch', element: <UseFetchSnippetPage /> },
       { path: 'snippets/use-network-status', element: <UseNetworkStatusSnippetPage /> },
@@ -411,6 +471,10 @@ const router = createBrowserRouter([
       { path: 'security/sri-hash-generator', element: <SriHashGeneratorPage /> },
       { path: 'security/security-txt-generator', element: <SecurityTxtGeneratorPage /> },
       { path: 'security/webhook-signature-validator', element: <WebhookSignatureValidatorPage /> },
+      { path: 'security/asymmetric-key-generator', element: <AsymmetricKeyGeneratorPage /> },
+      { path: 'security/symmetric-key-generator', element: <SymmetricKeyGeneratorPage /> },
+      { path: 'security/hash-identifier', element: <HashIdentifierPage /> },
+      { path: 'security/pkce-generator', element: <PkceGeneratorPage /> },
       { path: 'ai/token-counter', element: <TokenCounterPage /> },
       { path: 'devops/env-tool', element: <EnvToolPage /> },
       { path: 'text/remove-accents', element: <RemoveAccentsPage /> },
@@ -440,8 +504,38 @@ const router = createBrowserRouter([
       { path: 'data/json-schema-validator', element: <JsonSchemaValidatorPage /> },
       { path: 'tools/css-formatter', element: <CssFormatterPage /> },
       { path: 'database/sql-formatter', element: <SqlFormatterPage /> },
+      { path: 'database/sql-isolation-levels', element: <SqlIsolationLevelsPage /> },
       { path: 'network/common-ports', element: <CommonPortsPage /> },
       { path: 'network/ipv6-explorer', element: <Ipv6ExplorerPage /> },
+      { path: 'network/mac-address-tool', element: <MacAddressToolPage /> },
+      { path: 'tools/iban-tool', element: <IbanToolPage /> },
+      { path: 'tools/roman-numeral-converter', element: <RomanNumeralConverterPage /> },
+      { path: 'tools/file-size-converter', element: <FileSizeConverterPage /> },
+      { path: 'tools/file-hash-calculator', element: <FileHashCalculatorPage /> },
+      { path: 'tools/geo-coordinates-converter', element: <GeoCoordinatesConverterPage /> },
+      { path: 'tools/levenshtein-calculator', element: <LevenshteinCalculatorPage /> },
+      { path: 'tools/bandwidth-calculator', element: <BandwidthCalculatorPage /> },
+      { path: 'tools/cookie-tool', element: <CookieToolPage /> },
+      { path: 'tools/compound-interest-calculator', element: <CompoundInterestCalculatorPage /> },
+      { path: 'tools/percentage-calculator', element: <PercentageCalculatorPage /> },
+      { path: 'tools/ab-test-calculator', element: <AbTestCalculatorPage /> },
+      { path: 'tools/reading-time-calculator', element: <ReadingTimeCalculatorPage /> },
+      { path: 'tools/connection-string-parser', element: <ConnectionStringParserPage /> },
+      { path: 'references/sql-joins', element: <SqlJoinsPage /> },
+      { path: 'references/big-o-cheatsheet', element: <BigOCheatsheetPage /> },
+      { path: 'tools/json-to-zod-schema', element: <JsonToZodSchemaPage /> },
+      { path: 'tools/loan-amortization-calculator', element: <LoanAmortizationCalculatorPage /> },
+      { path: 'tools/bash-to-powershell', element: <BashToPowershellPage /> },
+      { path: 'tools/retry-calculator', element: <RetryCalculatorPage /> },
+      { path: 'tools/load-balancer-simulator', element: <LoadBalancerSimulatorPage /> },
+      { path: 'tools/consistent-hashing-simulator', element: <ConsistentHashingSimulatorPage /> },
+      { path: 'tools/bloom-filter-simulator', element: <BloomFilterSimulatorPage /> },
+      { path: 'tools/cpu-scheduling-simulator', element: <CpuSchedulingSimulatorPage /> },
+      { path: 'tools/page-replacement-simulator', element: <PageReplacementSimulatorPage /> },
+      { path: 'tools/cache-simulator', element: <CacheSimulatorPage /> },
+      { path: 'tools/descriptive-statistics-calculator', element: <DescriptiveStatisticsCalculatorPage /> },
+      { path: 'tools/string-escape', element: <StringEscapePage /> },
+      { path: 'tools/caesar-cipher', element: <CaesarCipherPage /> },
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
       { path: 'references/markdown-syntax', element: <MarkdownSyntaxPage /> },
       { path: 'devops/kubectl-commands', element: <KubeCtlCommandsPage /> },
@@ -465,6 +559,7 @@ const router = createBrowserRouter([
       { path: 'devops/docker-compose-generator', element: <DockerComposeGeneratorPage /> },
       { path: 'devops/openssl-commands', element: <OpensslCommandsPage /> },
       { path: 'devops/caddyfile-generator', element: <CaddyfileGeneratorPage /> },
+      { path: 'devops/htaccess-generator', element: <HtaccessGeneratorPage /> },
       { path: 'tools/units-converter', element: <UnitsConverterPage /> },
       { path: 'references/http-headers', element: <HttpHeadersPage /> },
       { path: 'references/javascript-cheatsheet', element: <JavascriptCheatsheetPage /> },
@@ -563,6 +658,8 @@ const router = createBrowserRouter([
       { path: 'frontend/css-login-form-generator', element: <CssLoginFormGeneratorPage /> },
       { path: 'frontend/css-neumorphism-generator', element: <CssNeumorphismGeneratorPage /> },
       { path: 'frontend/css-text-stroke-generator', element: <CssTextStrokeGeneratorPage /> },
+      { path: 'frontend/css-line-clamp-generator', element: <CssLineClampGeneratorPage /> },
+      { path: 'frontend/css-pulse-generator', element: <CssPulseGeneratorPage /> },
       { path: 'snippets/use-update-effect', element: <UseUpdateEffectSnippetPage /> },
       { path: 'snippets/use-why-did-you-update', element: <UseWhyDidYouUpdateSnippetPage /> },
       { path: 'snippets/use-boolean', element: <UseBooleanSnippetPage /> },
@@ -586,6 +683,17 @@ const router = createBrowserRouter([
       { path: 'snippets/use-count-up', element: <UseCountUpSnippetPage /> },
       { path: 'snippets/use-script', element: <UseScriptSnippetPage /> },
       { path: 'snippets/use-battery', element: <UseBatterySnippetPage /> },
+      { path: 'snippets/use-geolocation', element: <UseGeolocationSnippetPage /> },
+      { path: 'snippets/use-map', element: <UseMapSnippetPage /> },
+      { path: 'snippets/use-state-with-history', element: <UseStateWithHistorySnippetPage /> },
+      { path: 'snippets/use-idle', element: <UseIdleSnippetPage /> },
+      { path: 'snippets/use-mutation-observer', element: <UseMutationObserverSnippetPage /> },
+      { path: 'snippets/use-resize-observer', element: <UseResizeObserverSnippetPage /> },
+      { path: 'snippets/use-hotkeys', element: <UseHotkeysSnippetPage /> },
+      { path: 'snippets/use-speech-synthesis', element: <UseSpeechSynthesisSnippetPage /> },
+      { path: 'snippets/use-pagination', element: <UsePaginationSnippetPage /> },
+      { path: 'snippets/use-controllable-state', element: <UseControllableStateSnippetPage /> },
+      { path: 'references/aws-cli-cheatsheet', element: <AwsCliCheatsheetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
