@@ -493,6 +493,7 @@ export const LABELS = {
     'blend-mode-generator': 'Gerador de Blend Mode CSS',
     'html-boilerplate-generator': 'Gerador de HTML5 Boilerplate',
     'css-animation-stagger-generator': 'Gerador de Stagger CSS',
+    'css-at-property-generator': 'Gerador de @property CSS',
     'nginx-config-generator': 'Gerador de Configuração Nginx',
     'kubernetes-manifest-generator': 'Gerador de Manifestos Kubernetes',
   },
@@ -891,6 +892,7 @@ export const LABELS = {
     'blend-mode-generator': 'CSS Blend Mode Generator',
     'html-boilerplate-generator': 'HTML5 Boilerplate Generator',
     'css-animation-stagger-generator': 'CSS Stagger Animation Generator',
+    'css-at-property-generator': 'CSS @property Generator',
     'nginx-config-generator': 'Nginx Config Generator',
     'kubernetes-manifest-generator': 'Kubernetes Manifest Generator',
   },
@@ -1195,6 +1197,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/blend-mode-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/blend-mode-generator', l['blend-mode-generator'], l) },
         { key: '/frontend/html-boilerplate-generator', icon: <FileTextOutlined />, label: withNewBadge('/frontend/html-boilerplate-generator', l['html-boilerplate-generator'], l) },
         { key: '/frontend/css-animation-stagger-generator', icon: <ThunderboltOutlined />, label: withNewBadge('/frontend/css-animation-stagger-generator', l['css-animation-stagger-generator'], l) },
+        { key: '/frontend/css-at-property-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-at-property-generator', l['css-at-property-generator'], l) },
       ],
     },
     {

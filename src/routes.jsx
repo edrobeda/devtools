@@ -265,6 +265,7 @@ import ColorMixGeneratorPage from './pages/ColorMixGeneratorPage'
 import BlendModeGeneratorPage from './pages/BlendModeGeneratorPage'
 import HtmlBoilerplateGeneratorPage from './pages/HtmlBoilerplateGeneratorPage'
 import CssAnimationStaggerGeneratorPage from './pages/CssAnimationStaggerGeneratorPage'
+import CssAtPropertyGeneratorPage from './pages/CssAtPropertyGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
@@ -727,6 +728,7 @@ const router = createBrowserRouter([
       { path: 'frontend/blend-mode-generator', element: <BlendModeGeneratorPage /> },
       { path: 'frontend/html-boilerplate-generator', element: <HtmlBoilerplateGeneratorPage /> },
       { path: 'frontend/css-animation-stagger-generator', element: <CssAnimationStaggerGeneratorPage /> },
+      { path: 'frontend/css-at-property-generator', element: <CssAtPropertyGeneratorPage /> },
       { path: 'snippets/use-update-effect', element: <UseUpdateEffectSnippetPage /> },
       { path: 'snippets/use-why-did-you-update', element: <UseWhyDidYouUpdateSnippetPage /> },
       { path: 'snippets/use-boolean', element: <UseBooleanSnippetPage /> },
