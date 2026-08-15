@@ -360,6 +360,7 @@ import BlockchainSimulatorPage from './pages/BlockchainSimulatorPage'
 import HuffmanCodingSimulatorPage from './pages/HuffmanCodingSimulatorPage'
 import SequenceDiagramGeneratorPage from './pages/SequenceDiagramGeneratorPage'
 import DiningPhilosophersSimulatorPage from './pages/DiningPhilosophersSimulatorPage'
+import TruthTableGeneratorPage from './pages/TruthTableGeneratorPage'
 
 const router = createBrowserRouter([
   {
@@ -563,6 +564,7 @@ const router = createBrowserRouter([
       { path: 'tools/huffman-coding-simulator', element: <HuffmanCodingSimulatorPage /> },
       { path: 'tools/sequence-diagram-generator', element: <SequenceDiagramGeneratorPage /> },
       { path: 'tools/dining-philosophers-simulator', element: <DiningPhilosophersSimulatorPage /> },
+      { path: 'tools/truth-table-generator', element: <TruthTableGeneratorPage /> },
       { path: 'tools/string-escape', element: <StringEscapePage /> },
       { path: 'tools/caesar-cipher', element: <CaesarCipherPage /> },
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
