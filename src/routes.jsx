@@ -346,6 +346,7 @@ import BloomFilterSimulatorPage from './pages/BloomFilterSimulatorPage'
 import CpuSchedulingSimulatorPage from './pages/CpuSchedulingSimulatorPage'
 import PageReplacementSimulatorPage from './pages/PageReplacementSimulatorPage'
 import MerkleTreeSimulatorPage from './pages/MerkleTreeSimulatorPage'
+import CsvToSqlPage from './pages/CsvToSqlPage'
 
 const router = createBrowserRouter([
   {
@@ -506,6 +507,7 @@ const router = createBrowserRouter([
       { path: 'tools/css-formatter', element: <CssFormatterPage /> },
       { path: 'database/sql-formatter', element: <SqlFormatterPage /> },
       { path: 'database/sql-isolation-levels', element: <SqlIsolationLevelsPage /> },
+      { path: 'database/csv-to-sql', element: <CsvToSqlPage /> },
       { path: 'network/common-ports', element: <CommonPortsPage /> },
       { path: 'network/ipv6-explorer', element: <Ipv6ExplorerPage /> },
       { path: 'network/mac-address-tool', element: <MacAddressToolPage /> },

@@ -310,6 +310,7 @@ export const LABELS = {
     'connection-string-parser': 'Parser de Connection String',
     'sql-joins': 'Visualizador de JOINs SQL',
     'sql-isolation-levels': 'Níveis de Isolação SQL',
+    'csv-to-sql': 'CSV → SQL',
     'big-o-cheatsheet': 'Cheat Sheet de Big-O',
     'json-to-zod-schema': 'JSON → Zod Schema',
     'loan-amortization-calculator': 'Calculadora SAC / Price',
@@ -674,6 +675,7 @@ export const LABELS = {
     'connection-string-parser': 'Connection String Parser',
     'sql-joins': 'SQL JOIN Visualizer',
     'sql-isolation-levels': 'SQL Isolation Levels',
+    'csv-to-sql': 'CSV to SQL',
     'big-o-cheatsheet': 'Big-O Cheat Sheet',
     'json-to-zod-schema': 'JSON → Zod Schema',
     'loan-amortization-calculator': 'SAC / Loan Amortization Calculator',
@@ -1146,6 +1148,7 @@ export function buildMenuItems(l) {
         { key: '/database/json-to-sql', icon: <DatabaseOutlined />, label: withNewBadge('/database/json-to-sql', l['json-to-sql'], l) },
         { key: '/database/sql-formatter', icon: <FileTextOutlined />, label: withNewBadge('/database/sql-formatter', l['sql-formatter'], l) },
         { key: '/database/sql-isolation-levels', icon: <DatabaseOutlined />, label: withNewBadge('/database/sql-isolation-levels', l['sql-isolation-levels'], l) },
+        { key: '/database/csv-to-sql', icon: <DatabaseOutlined />, label: withNewBadge('/database/csv-to-sql', l['csv-to-sql'], l) },
       ],
     },
     {
