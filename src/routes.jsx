@@ -356,6 +356,7 @@ import ConsistentHashingSimulatorPage from './pages/ConsistentHashingSimulatorPa
 import BloomFilterSimulatorPage from './pages/BloomFilterSimulatorPage'
 import CpuSchedulingSimulatorPage from './pages/CpuSchedulingSimulatorPage'
 import DiskSchedulingSimulatorPage from './pages/DiskSchedulingSimulatorPage'
+import GossipProtocolSimulatorPage from './pages/GossipProtocolSimulatorPage'
 import PageReplacementSimulatorPage from './pages/PageReplacementSimulatorPage'
 import MerkleTreeSimulatorPage from './pages/MerkleTreeSimulatorPage'
 import QuorumNwrSimulatorPage from './pages/QuorumNwrSimulatorPage'
@@ -566,6 +567,7 @@ const router = createBrowserRouter([
       { path: 'tools/bloom-filter-simulator', element: <BloomFilterSimulatorPage /> },
       { path: 'tools/cpu-scheduling-simulator', element: <CpuSchedulingSimulatorPage /> },
       { path: 'tools/disk-scheduling-simulator', element: <DiskSchedulingSimulatorPage /> },
+      { path: 'tools/gossip-protocol-simulator', element: <GossipProtocolSimulatorPage /> },
       { path: 'tools/page-replacement-simulator', element: <PageReplacementSimulatorPage /> },
       { path: 'tools/cache-simulator', element: <CacheSimulatorPage /> },
       { path: 'tools/merkle-tree-simulator', element: <MerkleTreeSimulatorPage /> },
