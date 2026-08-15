@@ -340,6 +340,7 @@ import RetryCalculatorPage from './pages/RetryCalculatorPage'
 import StringEscapePage from './pages/StringEscapePage'
 import AwsCliCheatsheetPage from './pages/AwsCliCheatsheetPage'
 import CaesarCipherPage from './pages/CaesarCipherPage'
+import UtmUrlBuilderPage from './pages/UtmUrlBuilderPage'
 import CacheSimulatorPage from './pages/CacheSimulatorPage'
 import DescriptiveStatisticsCalculatorPage from './pages/DescriptiveStatisticsCalculatorPage'
 import LoadBalancerSimulatorPage from './pages/LoadBalancerSimulatorPage'
@@ -412,6 +413,7 @@ const router = createBrowserRouter([
       { path: 'tools/password-generator', element: <PasswordGeneratorPage /> },
       { path: 'tools/url-encoder', element: <UrlEncoderPage /> },
       { path: 'tools/url-parser', element: <UrlParserPage /> },
+      { path: 'tools/utm-url-builder', element: <UtmUrlBuilderPage /> },
       { path: 'tools/xml-json-converter', element: <XmlJsonConverterPage /> },
       { path: 'frontend/gradient-generator', element: <GradientGeneratorPage /> },
       { path: 'snippets/use-copy-to-clipboard', element: <UseCopyToClipboardSnippetPage /> },
