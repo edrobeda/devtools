@@ -180,6 +180,7 @@ import Ipv6ExplorerPage from './pages/Ipv6ExplorerPage'
 import MacAddressToolPage from './pages/MacAddressToolPage'
 import CidrOverlapAggregatorPage from './pages/CidrOverlapAggregatorPage'
 import IbanToolPage from './pages/IbanToolPage'
+import WebsocketTesterPage from './pages/WebsocketTesterPage'
 import RomanNumeralConverterPage from './pages/RomanNumeralConverterPage'
 import SqlJoinsPage from './pages/SqlJoinsPage'
 import SqlIsolationLevelsPage from './pages/SqlIsolationLevelsPage'
@@ -528,6 +529,7 @@ const router = createBrowserRouter([
       { path: 'network/ipv6-explorer', element: <Ipv6ExplorerPage /> },
       { path: 'network/mac-address-tool', element: <MacAddressToolPage /> },
       { path: 'network/cidr-overlap-aggregator', element: <CidrOverlapAggregatorPage /> },
+      { path: 'network/websocket-tester', element: <WebsocketTesterPage /> },
       { path: 'tools/iban-tool', element: <IbanToolPage /> },
       { path: 'tools/roman-numeral-converter', element: <RomanNumeralConverterPage /> },
       { path: 'tools/file-size-converter', element: <FileSizeConverterPage /> },

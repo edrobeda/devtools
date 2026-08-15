@@ -303,6 +303,7 @@ export const LABELS = {
     'ipv6-explorer': 'Explorador IPv6',
     'mac-address-tool': 'Gerador/Validador de MAC',
     'cidr-overlap-aggregator': 'CIDR Overlap & Aggregator',
+    'websocket-tester': 'Testador de WebSocket',
     'iban-tool': 'Gerador/Validador de IBAN',
     'roman-numeral-converter': 'Conversor de Números Romanos',
     'file-size-converter': 'Conversor de Tamanho de Arquivo',
@@ -683,6 +684,7 @@ export const LABELS = {
     'ipv6-explorer': 'IPv6 Explorer',
     'mac-address-tool': 'MAC Generator / Validator',
     'cidr-overlap-aggregator': 'CIDR Overlap & Aggregator',
+    'websocket-tester': 'WebSocket Tester',
     'iban-tool': 'IBAN Generator / Validator',
     'roman-numeral-converter': 'Roman Numeral Converter',
     'file-size-converter': 'File Size Converter',
@@ -1256,6 +1258,7 @@ export function buildMenuItems(l) {
         { key: '/network/ipv6-explorer', icon: <GlobalOutlined />, label: withNewBadge('/network/ipv6-explorer', l['ipv6-explorer'], l) },
         { key: '/network/mac-address-tool', icon: <GlobalOutlined />, label: withNewBadge('/network/mac-address-tool', l['mac-address-tool'], l) },
         { key: '/network/cidr-overlap-aggregator', icon: <CompressOutlined />, label: withNewBadge('/network/cidr-overlap-aggregator', l['cidr-overlap-aggregator'], l) },
+        { key: '/network/websocket-tester', icon: <ApiOutlined />, label: withNewBadge('/network/websocket-tester', l['websocket-tester'], l) },
       ],
     },
     {
