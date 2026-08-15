@@ -24,9 +24,14 @@ import {
   BugOutlined,
 } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
-import { formatGraphql, minifyGraphql, validateGraphql } from '../utils/graphqlFormatter'
+import * as gf from '../utils/graphqlFormatter'
 
 const { Title, Paragraph, Text } = Typography
+
+const SOURCE_SNIPPET = Object.values(gf)
+  .filter((f) => typeof f === 'function')
+  .map((f) => f.toString())
+  .join('\n\n')
 const { TextArea } = Input
 
 const EXAMPLE_SIMPLE_PT = `query BuscarUsuario($id: ID!) {
@@ -102,13 +107,6 @@ const EXAMPLE_INTROSPECTION = `query Introspection {
     }
   }
 }`
-
-const SOURCE_SNIPPET = `
-export function tokenize(input) { /* lexer de tokens GraphQL */ }
-export function validateGraphql(input) { /* valida delimitadores e strings */ }
-export function formatGraphql(input, options) { /* reconstrói indentado */ }
-export function minifyGraphql(input) { /* remove espaços e comentários */ }
-`.trim()
 
 const translations = {
   pt: {
@@ -202,7 +200,7 @@ export default function GraphqlFormatterPage() {
     }
 
     if (mode === 'validate') {
-      const { valid, errors, tokens } = validateGraphql(input)
+      const { valid, errors, tokens } = gf.validateGraphql(input)
       return {
         ok: valid,
         value: valid ? t.validationOk : errors.map((e) => `Line ${e.line}: ${e.message}`).join('\n'),
@@ -212,7 +210,7 @@ export default function GraphqlFormatterPage() {
     }
 
     if (mode === 'minify') {
-      const res = minifyGraphql(input)
+      const res = gf.minifyGraphql(input)
       return {
         ok: res.ok,
         value: res.value,
@@ -228,7 +226,7 @@ export default function GraphqlFormatterPage() {
     }
 
     // auto ou format
-    const res = formatGraphql(input)
+    const res = gf.formatGraphql(input)
     return {
       ok: res.ok,
       value: res.value,
