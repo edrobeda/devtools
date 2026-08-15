@@ -306,6 +306,7 @@ export const LABELS = {
     'mac-address-tool': 'Gerador/Validador de MAC',
     'cidr-overlap-aggregator': 'CIDR Overlap & Aggregator',
     'websocket-tester': 'Testador de WebSocket',
+    'har-viewer': 'Visualizador de HAR',
     'iban-tool': 'Gerador/Validador de IBAN',
     'roman-numeral-converter': 'Conversor de Números Romanos',
     'file-size-converter': 'Conversor de Tamanho de Arquivo',
@@ -690,6 +691,7 @@ export const LABELS = {
     'mac-address-tool': 'MAC Generator / Validator',
     'cidr-overlap-aggregator': 'CIDR Overlap & Aggregator',
     'websocket-tester': 'WebSocket Tester',
+    'har-viewer': 'HAR Viewer',
     'iban-tool': 'IBAN Generator / Validator',
     'roman-numeral-converter': 'Roman Numeral Converter',
     'file-size-converter': 'File Size Converter',
@@ -1266,6 +1268,7 @@ export function buildMenuItems(l) {
         { key: '/network/mac-address-tool', icon: <GlobalOutlined />, label: withNewBadge('/network/mac-address-tool', l['mac-address-tool'], l) },
         { key: '/network/cidr-overlap-aggregator', icon: <CompressOutlined />, label: withNewBadge('/network/cidr-overlap-aggregator', l['cidr-overlap-aggregator'], l) },
         { key: '/network/websocket-tester', icon: <ApiOutlined />, label: withNewBadge('/network/websocket-tester', l['websocket-tester'], l) },
+        { key: '/network/har-viewer', icon: <FileTextOutlined />, label: withNewBadge('/network/har-viewer', l['har-viewer'], l) },
       ],
     },
     {
