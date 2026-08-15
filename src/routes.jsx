@@ -274,6 +274,7 @@ import GithubActionsCheatsheetPage from './pages/GithubActionsCheatsheetPage'
 import CssToJsPage from './pages/CssToJsPage'
 import NginxCheatsheetPage from './pages/NginxCheatsheetPage'
 import NginxConfigGeneratorPage from './pages/NginxConfigGeneratorPage'
+import KubernetesManifestGeneratorPage from './pages/KubernetesManifestGeneratorPage'
 import RedisCheatsheetPage from './pages/RedisCheatsheetPage'
 import GhCliCheatsheetPage from './pages/GhCliCheatsheetPage'
 import ClampGeneratorPage from './pages/ClampGeneratorPage'
@@ -618,6 +619,7 @@ const router = createBrowserRouter([
       { path: 'devops/docker-run-to-compose', element: <DockerRunToComposePage /> },
       { path: 'devops/openssl-commands', element: <OpensslCommandsPage /> },
       { path: 'devops/nginx-config-generator', element: <NginxConfigGeneratorPage /> },
+      { path: 'devops/kubernetes-manifest-generator', element: <KubernetesManifestGeneratorPage /> },
       { path: 'devops/caddyfile-generator', element: <CaddyfileGeneratorPage /> },
       { path: 'devops/htaccess-generator', element: <HtaccessGeneratorPage /> },
       { path: 'tools/units-converter', element: <UnitsConverterPage /> },

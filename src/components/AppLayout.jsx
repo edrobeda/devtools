@@ -494,6 +494,7 @@ export const LABELS = {
     'html-boilerplate-generator': 'Gerador de HTML5 Boilerplate',
     'css-animation-stagger-generator': 'Gerador de Stagger CSS',
     'nginx-config-generator': 'Gerador de Configuração Nginx',
+    'kubernetes-manifest-generator': 'Gerador de Manifestos Kubernetes',
   },
   en: {
     home: 'Home',
@@ -891,6 +892,7 @@ export const LABELS = {
     'html-boilerplate-generator': 'HTML5 Boilerplate Generator',
     'css-animation-stagger-generator': 'CSS Stagger Animation Generator',
     'nginx-config-generator': 'Nginx Config Generator',
+    'kubernetes-manifest-generator': 'Kubernetes Manifest Generator',
   },
 }
 
@@ -1226,6 +1228,7 @@ export function buildMenuItems(l) {
         { key: '/devops/ansi-colors', icon: <BgColorsOutlined />, label: withNewBadge('/devops/ansi-colors', l['ansi-colors'], l) },
         { key: '/devops/openssl-commands', icon: <ContainerOutlined />, label: withNewBadge('/devops/openssl-commands', l['openssl-commands'], l) },
         { key: '/devops/nginx-config-generator', icon: <ContainerOutlined />, label: withNewBadge('/devops/nginx-config-generator', l['nginx-config-generator'], l) },
+        { key: '/devops/kubernetes-manifest-generator', icon: <ClusterOutlined />, label: withNewBadge('/devops/kubernetes-manifest-generator', l['kubernetes-manifest-generator'], l) },
         { key: '/devops/sla-calculator', icon: <ExperimentOutlined />, label: withNewBadge('/devops/sla-calculator', l['sla-calculator'], l) },
         { key: '/devops/editorconfig-generator', icon: <FileTextOutlined />, label: withNewBadge('/devops/editorconfig-generator', l['editorconfig-generator'], l) },
         { key: '/devops/codeowners-generator', icon: <TeamOutlined />, label: withNewBadge('/devops/codeowners-generator', l['codeowners-generator'], l) },
