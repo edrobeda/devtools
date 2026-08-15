@@ -352,6 +352,7 @@ import CsvToSqlPage from './pages/CsvToSqlPage'
 import BmiCalculatorPage from './pages/BmiCalculatorPage'
 import LogicalClocksSimulatorPage from './pages/LogicalClocksSimulatorPage'
 import CircuitBreakerSimulatorPage from './pages/CircuitBreakerSimulatorPage'
+import RateLimiterSimulatorPage from './pages/RateLimiterSimulatorPage'
 
 const router = createBrowserRouter([
   {
@@ -547,6 +548,7 @@ const router = createBrowserRouter([
       { path: 'tools/bmi-calculator', element: <BmiCalculatorPage /> },
       { path: 'tools/logical-clocks-simulator', element: <LogicalClocksSimulatorPage /> },
       { path: 'tools/circuit-breaker-simulator', element: <CircuitBreakerSimulatorPage /> },
+      { path: 'tools/rate-limiter-simulator', element: <RateLimiterSimulatorPage /> },
       { path: 'tools/string-escape', element: <StringEscapePage /> },
       { path: 'tools/caesar-cipher', element: <CaesarCipherPage /> },
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },

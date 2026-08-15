@@ -75,6 +75,7 @@ import {
   SoundOutlined,
   WindowsOutlined,
   SyncOutlined,
+  DashboardOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -328,6 +329,7 @@ export const LABELS = {
     'bmi-calculator': 'Calculadora de IMC',
     'logical-clocks-simulator': 'Simulador de Relógios Lógicos',
     'circuit-breaker-simulator': 'Simulador de Circuit Breaker',
+    'rate-limiter-simulator': 'Simulador de Rate Limiter',
     'string-escape': 'String Escape / Unescape',
     'caesar-cipher': 'Cifra de César / ROT13 / ROT47',
     'reading-time-calculator': 'Calculadora de Tempo de Leitura',
@@ -698,6 +700,7 @@ export const LABELS = {
     'bmi-calculator': 'BMI Calculator',
     'logical-clocks-simulator': 'Logical Clocks Simulator',
     'circuit-breaker-simulator': 'Circuit Breaker Simulator',
+    'rate-limiter-simulator': 'Rate Limiter Simulator',
     'string-escape': 'String Escape / Unescape',
     'caesar-cipher': 'Caesar Cipher / ROT13 / ROT47',
     'reading-time-calculator': 'Reading Time Calculator',
@@ -942,6 +945,7 @@ export function buildMenuItems(l) {
         { key: '/tools/bmi-calculator', icon: <CalculatorOutlined />, label: withNewBadge('/tools/bmi-calculator', l['bmi-calculator'], l) },
         { key: '/tools/logical-clocks-simulator', icon: <ClockCircleOutlined />, label: withNewBadge('/tools/logical-clocks-simulator', l['logical-clocks-simulator'], l) },
         { key: '/tools/circuit-breaker-simulator', icon: <ThunderboltOutlined />, label: withNewBadge('/tools/circuit-breaker-simulator', l['circuit-breaker-simulator'], l) },
+        { key: '/tools/rate-limiter-simulator', icon: <DashboardOutlined />, label: withNewBadge('/tools/rate-limiter-simulator', l['rate-limiter-simulator'], l) },
         { key: '/tools/string-escape', icon: <CodeOutlined />, label: withNewBadge('/tools/string-escape', l['string-escape'], l) },
         { key: '/tools/caesar-cipher', icon: <LockOutlined />, label: withNewBadge('/tools/caesar-cipher', l['caesar-cipher'], l) },
         { key: '/tools/reading-time-calculator', icon: <ReadOutlined />, label: withNewBadge('/tools/reading-time-calculator', l['reading-time-calculator'], l) },
