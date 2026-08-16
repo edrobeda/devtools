@@ -286,6 +286,7 @@ import ShieldsBadgeGeneratorPage from './pages/ShieldsBadgeGeneratorPage'
 import KubernetesManifestGeneratorPage from './pages/KubernetesManifestGeneratorPage'
 import OtelCollectorConfigGeneratorPage from './pages/OtelCollectorConfigGeneratorPage'
 import GitlabCiConfigGeneratorPage from './pages/GitlabCiConfigGeneratorPage'
+import CiCdCostCalculatorPage from './pages/CiCdCostCalculatorPage'
 import RedisCheatsheetPage from './pages/RedisCheatsheetPage'
 import GhCliCheatsheetPage from './pages/GhCliCheatsheetPage'
 import ClampGeneratorPage from './pages/ClampGeneratorPage'
@@ -676,6 +677,7 @@ const router = createBrowserRouter([
       { path: 'devops/kubernetes-manifest-generator', element: <KubernetesManifestGeneratorPage /> },
       { path: 'devops/opentelemetry-collector-config-generator', element: <OtelCollectorConfigGeneratorPage /> },
       { path: 'devops/gitlab-ci-config-generator', element: <GitlabCiConfigGeneratorPage /> },
+      { path: 'devops/ci-cd-cost-calculator', element: <CiCdCostCalculatorPage /> },
       { path: 'devops/caddyfile-generator', element: <CaddyfileGeneratorPage /> },
       { path: 'devops/htaccess-generator', element: <HtaccessGeneratorPage /> },
       { path: 'tools/units-converter', element: <UnitsConverterPage /> },
