@@ -408,6 +408,7 @@ import ConcurrencyThroughputCalculatorPage from './pages/ConcurrencyThroughputCa
 import QueueingTheoryCalculatorPage from './pages/QueueingTheoryCalculatorPage'
 import PertCalculatorPage from './pages/PertCalculatorPage'
 import ConfidenceIntervalCalculatorPage from './pages/ConfidenceIntervalCalculatorPage'
+import DowntimeCostCalculatorPage from './pages/DowntimeCostCalculatorPage'
 import MemoryAllocationSimulatorPage from './pages/MemoryAllocationSimulatorPage'
 import RaftSimulatorPage from './pages/RaftSimulatorPage'
 import PaxosSimulatorPage from './pages/PaxosSimulatorPage'
@@ -476,6 +477,7 @@ const router = createBrowserRouter([
       { path: 'tools/queueing-theory-calculator', element: <QueueingTheoryCalculatorPage /> },
       { path: 'tools/pert-calculator', element: <PertCalculatorPage /> },
       { path: 'tools/confidence-interval-calculator', element: <ConfidenceIntervalCalculatorPage /> },
+      { path: 'tools/downtime-cost-calculator', element: <DowntimeCostCalculatorPage /> },
       { path: 'tools/brazilian-data-generator', element: <BrazilianDataGeneratorPage /> },
       { path: 'tools/xml-json-converter', element: <XmlJsonConverterPage /> },
       { path: 'frontend/gradient-generator', element: <GradientGeneratorPage /> },
