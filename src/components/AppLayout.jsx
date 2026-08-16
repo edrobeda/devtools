@@ -453,6 +453,7 @@ export const LABELS = {
     'css-spinner-generator': 'Gerador de Loading Spinner CSS',
     'color-blindness-simulator': 'Simulador de Daltonismo',
     'text-shadow-generator': 'Gerador de Text Shadow',
+    'typography-scale-calculator': 'Calculadora de Escala Tipográfica',
     'transform-generator': 'Gerador de Transform CSS',
     'container-query-generator': 'Gerador de Container Queries CSS',
     'scroll-snap-generator': 'Gerador de Scroll Snap CSS',
@@ -870,6 +871,7 @@ export const LABELS = {
     'css-spinner-generator': 'CSS Loading Spinner Generator',
     'color-blindness-simulator': 'Color Blindness Simulator',
     'text-shadow-generator': 'Text Shadow Generator',
+    'typography-scale-calculator': 'Typography Scale Calculator',
     'transform-generator': 'CSS Transform Generator',
     'container-query-generator': 'CSS Container Queries Generator',
     'scroll-snap-generator': 'CSS Scroll Snap Generator',
@@ -1249,6 +1251,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-layer-generator', icon: <PartitionOutlined />, label: withNewBadge('/frontend/css-layer-generator', l['css-layer-generator'], l) },
         { key: '/frontend/favicon-generator', icon: <PictureOutlined />, label: withNewBadge('/frontend/favicon-generator', l['favicon-generator'], l) },
         { key: '/frontend/css-has-selector-tester', icon: <SelectOutlined />, label: withNewBadge('/frontend/css-has-selector-tester', l['css-has-selector-tester'], l) },
+        { key: '/frontend/typography-scale-calculator', icon: <FontSizeOutlined />, label: withNewBadge('/frontend/typography-scale-calculator', l['typography-scale-calculator'], l) },
       ],
     },
     {
