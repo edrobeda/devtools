@@ -292,6 +292,7 @@ import TailwindCheatsheetPage from './pages/TailwindCheatsheetPage'
 import CssSelectorsCheatsheetPage from './pages/CssSelectorsCheatsheetPage'
 import A11yCheatsheetPage from './pages/A11yCheatsheetPage'
 import JwtClaimsCheatsheetPage from './pages/JwtClaimsCheatsheetPage'
+import Oauth2CheatsheetPage from './pages/Oauth2CheatsheetPage'
 import GridAreasGeneratorPage from './pages/GridAreasGeneratorPage'
 import XmlJsonConverterPage from './pages/XmlJsonConverterPage'
 import PatternBackgroundGeneratorPage from './pages/PatternBackgroundGeneratorPage'
@@ -667,6 +668,7 @@ const router = createBrowserRouter([
       { path: 'references/css-selectors-cheatsheet', element: <CssSelectorsCheatsheetPage /> },
       { path: 'references/a11y-cheatsheet', element: <A11yCheatsheetPage /> },
       { path: 'references/jwt-claims-cheatsheet', element: <JwtClaimsCheatsheetPage /> },
+      { path: 'references/oauth2-cheatsheet', element: <Oauth2CheatsheetPage /> },
       { path: 'frontend/grid-areas-generator', element: <GridAreasGeneratorPage /> },
       { path: 'frontend/pattern-background-generator', element: <PatternBackgroundGeneratorPage /> },
       { path: 'frontend/sitemap-generator', element: <SitemapGeneratorPage /> },

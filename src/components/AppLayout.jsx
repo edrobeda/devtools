@@ -429,6 +429,7 @@ export const LABELS = {
     'a11y-cheatsheet': 'Cheat Sheet de Acessibilidade (a11y)',
     'aws-cli-cheatsheet': 'Cheat Sheet de AWS CLI',
     'jwt-claims-cheatsheet': 'Cheat Sheet de Claims JWT',
+    'oauth2-cheatsheet': 'Cheat Sheet de OAuth2 / OIDC',
     'grid-areas-generator': 'Gerador de Grid Areas CSS',
     'pattern-background-generator': 'Gerador de Padrões de Fundo CSS',
     'sitemap-generator': 'Gerador de Sitemap XML',
@@ -831,6 +832,7 @@ export const LABELS = {
     'a11y-cheatsheet': 'Accessibility Cheat Sheet (a11y)',
     'aws-cli-cheatsheet': 'AWS CLI Cheat Sheet',
     'jwt-claims-cheatsheet': 'JWT Claims Cheat Sheet',
+    'oauth2-cheatsheet': 'OAuth2 / OIDC Cheat Sheet',
     'grid-areas-generator': 'CSS Grid Areas Generator',
     'pattern-background-generator': 'CSS Pattern Background Generator',
     'sitemap-generator': 'XML Sitemap Generator',
@@ -1394,6 +1396,7 @@ export function buildMenuItems(l) {
         { key: '/references/a11y-cheatsheet', icon: <SafetyOutlined />, label: withNewBadge('/references/a11y-cheatsheet', l['a11y-cheatsheet'], l) },
         { key: '/references/aws-cli-cheatsheet', icon: <CloudOutlined />, label: withNewBadge('/references/aws-cli-cheatsheet', l['aws-cli-cheatsheet'], l) },
         { key: '/references/jwt-claims-cheatsheet', icon: <KeyOutlined />, label: withNewBadge('/references/jwt-claims-cheatsheet', l['jwt-claims-cheatsheet'], l) },
+        { key: '/references/oauth2-cheatsheet', icon: <KeyOutlined />, label: withNewBadge('/references/oauth2-cheatsheet', l['oauth2-cheatsheet'], l) },
       ],
     },
     {
