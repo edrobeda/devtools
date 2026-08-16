@@ -279,6 +279,7 @@ import GithubActionsCheatsheetPage from './pages/GithubActionsCheatsheetPage'
 import CssToJsPage from './pages/CssToJsPage'
 import NginxCheatsheetPage from './pages/NginxCheatsheetPage'
 import NginxConfigGeneratorPage from './pages/NginxConfigGeneratorPage'
+import SshConfigGeneratorPage from './pages/SshConfigGeneratorPage'
 import KubernetesManifestGeneratorPage from './pages/KubernetesManifestGeneratorPage'
 import RedisCheatsheetPage from './pages/RedisCheatsheetPage'
 import GhCliCheatsheetPage from './pages/GhCliCheatsheetPage'
@@ -402,6 +403,7 @@ import LittlesLawCalculatorPage from './pages/LittlesLawCalculatorPage'
 import ConcurrencyThroughputCalculatorPage from './pages/ConcurrencyThroughputCalculatorPage'
 import MemoryAllocationSimulatorPage from './pages/MemoryAllocationSimulatorPage'
 import RaftSimulatorPage from './pages/RaftSimulatorPage'
+import PaxosSimulatorPage from './pages/PaxosSimulatorPage'
 
 const router = createBrowserRouter([
   {
@@ -651,6 +653,7 @@ const router = createBrowserRouter([
       { path: 'devops/docker-run-to-compose', element: <DockerRunToComposePage /> },
       { path: 'devops/openssl-commands', element: <OpensslCommandsPage /> },
       { path: 'devops/nginx-config-generator', element: <NginxConfigGeneratorPage /> },
+      { path: 'devops/ssh-config-generator', element: <SshConfigGeneratorPage /> },
       { path: 'devops/kubernetes-manifest-generator', element: <KubernetesManifestGeneratorPage /> },
       { path: 'devops/caddyfile-generator', element: <CaddyfileGeneratorPage /> },
       { path: 'devops/htaccess-generator', element: <HtaccessGeneratorPage /> },
@@ -808,6 +811,7 @@ const router = createBrowserRouter([
       { path: 'tools/bankers-algorithm-simulator', element: <BankersAlgorithmSimulatorPage /> },
       { path: 'tools/memory-allocation-simulator', element: <MemoryAllocationSimulatorPage /> },
       { path: 'tools/raft-simulator', element: <RaftSimulatorPage /> },
+      { path: 'tools/paxos-simulator', element: <PaxosSimulatorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
