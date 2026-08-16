@@ -26,6 +26,7 @@ import GraphqlFormatterPage from './pages/GraphqlFormatterPage'
 import GitignoreGeneratorPage from './pages/GitignoreGeneratorPage'
 import RateLimitCalculatorPage from './pages/RateLimitCalculatorPage'
 import ArnParserPage from './pages/ArnParserPage'
+import CloudCostEstimatorPage from './pages/CloudCostEstimatorPage'
 import PasswordStrengthPage from './pages/PasswordStrengthPage'
 import JsonTreeViewerPage from './pages/JsonTreeViewerPage'
 import SubnetCalculatorPage from './pages/SubnetCalculatorPage'
@@ -418,6 +419,7 @@ const router = createBrowserRouter([
       { path: 'devops/gitignore-generator', element: <GitignoreGeneratorPage /> },
       { path: 'database/rate-limit-calculator', element: <RateLimitCalculatorPage /> },
       { path: 'cloud/arn-parser', element: <ArnParserPage /> },
+      { path: 'cloud/cost-estimator', element: <CloudCostEstimatorPage /> },
       { path: 'security/password-strength', element: <PasswordStrengthPage /> },
       { path: 'data/json-tree-viewer', element: <JsonTreeViewerPage /> },
       { path: 'network/subnet-calculator', element: <SubnetCalculatorPage /> },

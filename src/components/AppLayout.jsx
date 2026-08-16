@@ -83,6 +83,7 @@ import {
   ForkOutlined,
   BorderOutlined,
   NodeIndexOutlined,
+  DollarOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -145,6 +146,7 @@ export const LABELS = {
     'json-tree-viewer': 'Visualizador de Árvore JSON',
     'subnet-calculator': 'Calculadora de Sub-rede',
     'anthropic-cost-calculator': 'Calculadora de Custo Anthropic',
+    'cost-estimator': 'Estimador de Custo de Nuvem',
     'deep-link-tester': 'Testador de Deep Link',
     'word-counter': 'Contador de Palavras',
     'git-commands': 'Comandos Git',
@@ -550,6 +552,7 @@ export const LABELS = {
     'json-tree-viewer': 'JSON Tree Viewer',
     'subnet-calculator': 'Subnet Calculator',
     'anthropic-cost-calculator': 'Anthropic Cost Calculator',
+    'cost-estimator': 'Cloud Cost Estimator',
     'deep-link-tester': 'Deep Link Tester',
     'word-counter': 'Word Counter',
     'git-commands': 'Git Commands',
@@ -1276,6 +1279,7 @@ export function buildMenuItems(l) {
       label: l.cloud,
       children: [
         { key: '/cloud/arn-parser', label: l['arn-parser'] },
+        { key: '/cloud/cost-estimator', icon: <DollarOutlined />, label: withNewBadge('/cloud/cost-estimator', l['cost-estimator'], l) },
       ],
     },
     {
