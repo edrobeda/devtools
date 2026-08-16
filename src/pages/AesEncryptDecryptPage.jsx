@@ -208,7 +208,7 @@ export default function AesEncryptDecryptPage() {
             type="primary"
             icon={<ThunderboltOutlined />}
             loading={loading}
-            disabled={!supported || !password || !plaintext}
+            disabled={!supported || !password || !plaintext || iterations < 1000}
             onClick={handleEncrypt}
             block
           >
@@ -283,7 +283,7 @@ export default function AesEncryptDecryptPage() {
             type="primary"
             icon={<ThunderboltOutlined />}
             loading={loading}
-            disabled={!supported || !password || !ciphertextInput}
+            disabled={!supported || !password || !ciphertextInput || iterations < 1000}
             onClick={handleDecrypt}
             block
           >
