@@ -400,6 +400,7 @@ import NetworkLatencyCalculatorPage from './pages/NetworkLatencyCalculatorPage'
 import HttpCacheAnalyzerPage from './pages/HttpCacheAnalyzerPage'
 import LittlesLawCalculatorPage from './pages/LittlesLawCalculatorPage'
 import ConcurrencyThroughputCalculatorPage from './pages/ConcurrencyThroughputCalculatorPage'
+import MemoryAllocationSimulatorPage from './pages/MemoryAllocationSimulatorPage'
 
 const router = createBrowserRouter([
   {
@@ -804,6 +805,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-controllable-state', element: <UseControllableStateSnippetPage /> },
       { path: 'references/aws-cli-cheatsheet', element: <AwsCliCheatsheetPage /> },
       { path: 'tools/bankers-algorithm-simulator', element: <BankersAlgorithmSimulatorPage /> },
+      { path: 'tools/memory-allocation-simulator', element: <MemoryAllocationSimulatorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
