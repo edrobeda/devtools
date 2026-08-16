@@ -128,6 +128,7 @@ import SecurityTxtGeneratorPage from './pages/SecurityTxtGeneratorPage'
 import WebhookSignatureValidatorPage from './pages/WebhookSignatureValidatorPage'
 import AsymmetricKeyGeneratorPage from './pages/AsymmetricKeyGeneratorPage'
 import SymmetricKeyGeneratorPage from './pages/SymmetricKeyGeneratorPage'
+import AesEncryptDecryptPage from './pages/AesEncryptDecryptPage'
 import HashIdentifierPage from './pages/HashIdentifierPage'
 import PkceGeneratorPage from './pages/PkceGeneratorPage'
 import TokenCounterPage from './pages/TokenCounterPage'
@@ -549,6 +550,7 @@ const router = createBrowserRouter([
       { path: 'security/webhook-signature-validator', element: <WebhookSignatureValidatorPage /> },
       { path: 'security/asymmetric-key-generator', element: <AsymmetricKeyGeneratorPage /> },
       { path: 'security/symmetric-key-generator', element: <SymmetricKeyGeneratorPage /> },
+      { path: 'security/aes-encrypt-decrypt', element: <AesEncryptDecryptPage /> },
       { path: 'security/hash-identifier', element: <HashIdentifierPage /> },
       { path: 'security/pkce-generator', element: <PkceGeneratorPage /> },
       { path: 'ai/token-counter', element: <TokenCounterPage /> },
