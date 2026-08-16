@@ -540,6 +540,7 @@ export const LABELS = {
     'kubernetes-manifest-generator': 'Gerador de Manifestos Kubernetes',
     'opentelemetry-collector-config-generator': 'Gerador de Configuração do OpenTelemetry Collector',
     'gitlab-ci-config-generator': 'Gerador de .gitlab-ci.yml',
+    'github-actions-workflow-generator': 'Gerador de GitHub Actions Workflow',
     'ci-cd-cost-calculator': 'Calculadora de Custo de CI/CD',
   },
   en: {
@@ -979,6 +980,7 @@ export const LABELS = {
     'kubernetes-manifest-generator': 'Kubernetes Manifest Generator',
     'opentelemetry-collector-config-generator': 'OpenTelemetry Collector Config Generator',
     'gitlab-ci-config-generator': '.gitlab-ci.yml Generator',
+    'github-actions-workflow-generator': 'GitHub Actions Workflow Generator',
     'ci-cd-cost-calculator': 'CI/CD Cost Calculator',
   },
 }
@@ -1350,6 +1352,7 @@ export function buildMenuItems(l) {
         { key: '/devops/kubernetes-manifest-generator', icon: <ClusterOutlined />, label: withNewBadge('/devops/kubernetes-manifest-generator', l['kubernetes-manifest-generator'], l) },
         { key: '/devops/opentelemetry-collector-config-generator', icon: <ContainerOutlined />, label: withNewBadge('/devops/opentelemetry-collector-config-generator', l['opentelemetry-collector-config-generator'], l) },
         { key: '/devops/gitlab-ci-config-generator', icon: <GitlabOutlined />, label: withNewBadge('/devops/gitlab-ci-config-generator', l['gitlab-ci-config-generator'], l) },
+        { key: '/devops/github-actions-workflow-generator', icon: <GithubOutlined />, label: withNewBadge('/devops/github-actions-workflow-generator', l['github-actions-workflow-generator'], l) },
         { key: '/devops/ci-cd-cost-calculator', icon: <DollarOutlined />, label: withNewBadge('/devops/ci-cd-cost-calculator', l['ci-cd-cost-calculator'], l) },
         { key: '/devops/sla-calculator', icon: <ExperimentOutlined />, label: withNewBadge('/devops/sla-calculator', l['sla-calculator'], l) },
         { key: '/devops/editorconfig-generator', icon: <FileTextOutlined />, label: withNewBadge('/devops/editorconfig-generator', l['editorconfig-generator'], l) },
