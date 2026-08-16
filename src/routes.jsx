@@ -374,6 +374,7 @@ import BmiCalculatorPage from './pages/BmiCalculatorPage'
 import LogicalClocksSimulatorPage from './pages/LogicalClocksSimulatorPage'
 import MapreduceSimulatorPage from './pages/MapreduceSimulatorPage'
 import MediaQueryGeneratorPage from './pages/MediaQueryGeneratorPage'
+import CssSupportsGeneratorPage from './pages/CssSupportsGeneratorPage'
 import CircuitBreakerSimulatorPage from './pages/CircuitBreakerSimulatorPage'
 import RateLimiterSimulatorPage from './pages/RateLimiterSimulatorPage'
 import TwoPhaseCommitSimulatorPage from './pages/TwoPhaseCommitSimulatorPage'
@@ -749,6 +750,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-animation-stagger-generator', element: <CssAnimationStaggerGeneratorPage /> },
       { path: 'frontend/css-at-property-generator', element: <CssAtPropertyGeneratorPage /> },
       { path: 'frontend/media-query-generator', element: <MediaQueryGeneratorPage /> },
+      { path: 'frontend/css-supports-generator', element: <CssSupportsGeneratorPage /> },
       { path: 'snippets/use-update-effect', element: <UseUpdateEffectSnippetPage /> },
       { path: 'snippets/use-why-did-you-update', element: <UseWhyDidYouUpdateSnippetPage /> },
       { path: 'snippets/use-boolean', element: <UseBooleanSnippetPage /> },
