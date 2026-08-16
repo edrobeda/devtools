@@ -385,6 +385,7 @@ import BankersAlgorithmSimulatorPage from './pages/BankersAlgorithmSimulatorPage
 import EmailSignatureGeneratorPage from './pages/EmailSignatureGeneratorPage'
 import ConfigConverterPage from './pages/ConfigConverterPage'
 import NetworkLatencyCalculatorPage from './pages/NetworkLatencyCalculatorPage'
+import HttpCacheAnalyzerPage from './pages/HttpCacheAnalyzerPage'
 
 const router = createBrowserRouter([
   {
@@ -559,6 +560,7 @@ const router = createBrowserRouter([
       { path: 'network/cidr-overlap-aggregator', element: <CidrOverlapAggregatorPage /> },
       { path: 'network/websocket-tester', element: <WebsocketTesterPage /> },
       { path: 'network/har-viewer', element: <HarViewerPage /> },
+      { path: 'network/http-cache-analyzer', element: <HttpCacheAnalyzerPage /> },
       { path: 'tools/iban-tool', element: <IbanToolPage /> },
       { path: 'tools/roman-numeral-converter', element: <RomanNumeralConverterPage /> },
       { path: 'tools/file-size-converter', element: <FileSizeConverterPage /> },

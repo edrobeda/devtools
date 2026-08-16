@@ -316,6 +316,7 @@ export const LABELS = {
     'cidr-overlap-aggregator': 'CIDR Overlap & Aggregator',
     'websocket-tester': 'Testador de WebSocket',
     'har-viewer': 'Visualizador de HAR',
+    'http-cache-analyzer': 'Analisador de Cache HTTP',
     'iban-tool': 'Gerador/Validador de IBAN',
     'roman-numeral-converter': 'Conversor de Números Romanos',
     'file-size-converter': 'Conversor de Tamanho de Arquivo',
@@ -719,6 +720,7 @@ export const LABELS = {
     'cidr-overlap-aggregator': 'CIDR Overlap & Aggregator',
     'websocket-tester': 'WebSocket Tester',
     'har-viewer': 'HAR Viewer',
+    'http-cache-analyzer': 'HTTP Cache Analyzer',
     'iban-tool': 'IBAN Generator / Validator',
     'roman-numeral-converter': 'Roman Numeral Converter',
     'file-size-converter': 'File Size Converter',
@@ -1323,6 +1325,7 @@ export function buildMenuItems(l) {
         { key: '/network/cidr-overlap-aggregator', icon: <CompressOutlined />, label: withNewBadge('/network/cidr-overlap-aggregator', l['cidr-overlap-aggregator'], l) },
         { key: '/network/websocket-tester', icon: <ApiOutlined />, label: withNewBadge('/network/websocket-tester', l['websocket-tester'], l) },
         { key: '/network/har-viewer', icon: <FileTextOutlined />, label: withNewBadge('/network/har-viewer', l['har-viewer'], l) },
+        { key: '/network/http-cache-analyzer', icon: <FieldTimeOutlined />, label: withNewBadge('/network/http-cache-analyzer', l['http-cache-analyzer'], l) },
       ],
     },
     {
