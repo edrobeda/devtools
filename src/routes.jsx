@@ -375,6 +375,7 @@ import LogicalClocksSimulatorPage from './pages/LogicalClocksSimulatorPage'
 import MapreduceSimulatorPage from './pages/MapreduceSimulatorPage'
 import MediaQueryGeneratorPage from './pages/MediaQueryGeneratorPage'
 import CssSupportsGeneratorPage from './pages/CssSupportsGeneratorPage'
+import CssLayerGeneratorPage from './pages/CssLayerGeneratorPage'
 import FaviconGeneratorPage from './pages/FaviconGeneratorPage'
 import CircuitBreakerSimulatorPage from './pages/CircuitBreakerSimulatorPage'
 import RateLimiterSimulatorPage from './pages/RateLimiterSimulatorPage'
@@ -758,6 +759,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-at-property-generator', element: <CssAtPropertyGeneratorPage /> },
       { path: 'frontend/media-query-generator', element: <MediaQueryGeneratorPage /> },
       { path: 'frontend/css-supports-generator', element: <CssSupportsGeneratorPage /> },
+      { path: 'frontend/css-layer-generator', element: <CssLayerGeneratorPage /> },
       { path: 'frontend/favicon-generator', element: <FaviconGeneratorPage /> },
       { path: 'snippets/use-update-effect', element: <UseUpdateEffectSnippetPage /> },
       { path: 'snippets/use-why-did-you-update', element: <UseWhyDidYouUpdateSnippetPage /> },
