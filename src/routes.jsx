@@ -139,6 +139,7 @@ import DeepCloneDeepEqualPage from './pages/DeepCloneDeepEqualPage'
 import BranchNameGeneratorPage from './pages/BranchNameGeneratorPage'
 import LinesToolPage from './pages/LinesToolPage'
 import HtmlToJsxConverterPage from './pages/HtmlToJsxConverterPage'
+import ImagePaletteExtractorPage from './pages/ImagePaletteExtractorPage'
 import UuidCollisionSimulatorPage from './pages/UuidCollisionSimulatorPage'
 import UnicodeInspectorPage from './pages/UnicodeInspectorPage'
 import JsonToSqlPage from './pages/JsonToSqlPage'
@@ -377,6 +378,7 @@ import MediaQueryGeneratorPage from './pages/MediaQueryGeneratorPage'
 import CssSupportsGeneratorPage from './pages/CssSupportsGeneratorPage'
 import CssLayerGeneratorPage from './pages/CssLayerGeneratorPage'
 import FaviconGeneratorPage from './pages/FaviconGeneratorPage'
+import CssHasSelectorTesterPage from './pages/CssHasSelectorTesterPage'
 import CircuitBreakerSimulatorPage from './pages/CircuitBreakerSimulatorPage'
 import RateLimiterSimulatorPage from './pages/RateLimiterSimulatorPage'
 import TwoPhaseCommitSimulatorPage from './pages/TwoPhaseCommitSimulatorPage'
@@ -755,12 +757,14 @@ const router = createBrowserRouter([
       { path: 'frontend/color-mix-generator', element: <ColorMixGeneratorPage /> },
       { path: 'frontend/blend-mode-generator', element: <BlendModeGeneratorPage /> },
       { path: 'frontend/html-boilerplate-generator', element: <HtmlBoilerplateGeneratorPage /> },
+      { path: 'frontend/image-palette-extractor', element: <ImagePaletteExtractorPage /> },
       { path: 'frontend/css-animation-stagger-generator', element: <CssAnimationStaggerGeneratorPage /> },
       { path: 'frontend/css-at-property-generator', element: <CssAtPropertyGeneratorPage /> },
       { path: 'frontend/media-query-generator', element: <MediaQueryGeneratorPage /> },
       { path: 'frontend/css-supports-generator', element: <CssSupportsGeneratorPage /> },
       { path: 'frontend/css-layer-generator', element: <CssLayerGeneratorPage /> },
       { path: 'frontend/favicon-generator', element: <FaviconGeneratorPage /> },
+      { path: 'frontend/css-has-selector-tester', element: <CssHasSelectorTesterPage /> },
       { path: 'snippets/use-update-effect', element: <UseUpdateEffectSnippetPage /> },
       { path: 'snippets/use-why-did-you-update', element: <UseWhyDidYouUpdateSnippetPage /> },
       { path: 'snippets/use-boolean', element: <UseBooleanSnippetPage /> },
