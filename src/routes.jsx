@@ -142,6 +142,7 @@ import BranchNameGeneratorPage from './pages/BranchNameGeneratorPage'
 import LinesToolPage from './pages/LinesToolPage'
 import HtmlToJsxConverterPage from './pages/HtmlToJsxConverterPage'
 import ImagePaletteExtractorPage from './pages/ImagePaletteExtractorPage'
+import ImageDiffVisualizerPage from './pages/ImageDiffVisualizerPage'
 import UuidCollisionSimulatorPage from './pages/UuidCollisionSimulatorPage'
 import UnicodeInspectorPage from './pages/UnicodeInspectorPage'
 import JsonToSqlPage from './pages/JsonToSqlPage'
@@ -795,6 +796,7 @@ const router = createBrowserRouter([
       { path: 'frontend/blend-mode-generator', element: <BlendModeGeneratorPage /> },
       { path: 'frontend/html-boilerplate-generator', element: <HtmlBoilerplateGeneratorPage /> },
       { path: 'frontend/image-palette-extractor', element: <ImagePaletteExtractorPage /> },
+      { path: 'frontend/image-diff-visualizer', element: <ImageDiffVisualizerPage /> },
       { path: 'frontend/css-animation-stagger-generator', element: <CssAnimationStaggerGeneratorPage /> },
       { path: 'frontend/css-at-property-generator', element: <CssAtPropertyGeneratorPage /> },
       { path: 'frontend/media-query-generator', element: <MediaQueryGeneratorPage /> },
