@@ -373,6 +373,7 @@ import CsvToSqlPage from './pages/CsvToSqlPage'
 import BmiCalculatorPage from './pages/BmiCalculatorPage'
 import LogicalClocksSimulatorPage from './pages/LogicalClocksSimulatorPage'
 import MapreduceSimulatorPage from './pages/MapreduceSimulatorPage'
+import MediaQueryGeneratorPage from './pages/MediaQueryGeneratorPage'
 import CircuitBreakerSimulatorPage from './pages/CircuitBreakerSimulatorPage'
 import RateLimiterSimulatorPage from './pages/RateLimiterSimulatorPage'
 import TwoPhaseCommitSimulatorPage from './pages/TwoPhaseCommitSimulatorPage'
@@ -747,6 +748,7 @@ const router = createBrowserRouter([
       { path: 'frontend/html-boilerplate-generator', element: <HtmlBoilerplateGeneratorPage /> },
       { path: 'frontend/css-animation-stagger-generator', element: <CssAnimationStaggerGeneratorPage /> },
       { path: 'frontend/css-at-property-generator', element: <CssAtPropertyGeneratorPage /> },
+      { path: 'frontend/media-query-generator', element: <MediaQueryGeneratorPage /> },
       { path: 'snippets/use-update-effect', element: <UseUpdateEffectSnippetPage /> },
       { path: 'snippets/use-why-did-you-update', element: <UseWhyDidYouUpdateSnippetPage /> },
       { path: 'snippets/use-boolean', element: <UseBooleanSnippetPage /> },

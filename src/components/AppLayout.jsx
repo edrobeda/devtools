@@ -504,6 +504,7 @@ export const LABELS = {
     'html-boilerplate-generator': 'Gerador de HTML5 Boilerplate',
     'css-animation-stagger-generator': 'Gerador de Stagger CSS',
     'css-at-property-generator': 'Gerador de @property CSS',
+    'media-query-generator': 'Gerador de Media Queries CSS',
     'nginx-config-generator': 'Gerador de Configuração Nginx',
     'kubernetes-manifest-generator': 'Gerador de Manifestos Kubernetes',
   },
@@ -912,6 +913,7 @@ export const LABELS = {
     'html-boilerplate-generator': 'HTML5 Boilerplate Generator',
     'css-animation-stagger-generator': 'CSS Stagger Animation Generator',
     'css-at-property-generator': 'CSS @property Generator',
+    'media-query-generator': 'CSS Media Query Generator',
     'nginx-config-generator': 'Nginx Config Generator',
     'kubernetes-manifest-generator': 'Kubernetes Manifest Generator',
   },
@@ -1222,6 +1224,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/html-boilerplate-generator', icon: <FileTextOutlined />, label: withNewBadge('/frontend/html-boilerplate-generator', l['html-boilerplate-generator'], l) },
         { key: '/frontend/css-animation-stagger-generator', icon: <ThunderboltOutlined />, label: withNewBadge('/frontend/css-animation-stagger-generator', l['css-animation-stagger-generator'], l) },
         { key: '/frontend/css-at-property-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-at-property-generator', l['css-at-property-generator'], l) },
+        { key: '/frontend/media-query-generator', icon: <ColumnWidthOutlined />, label: withNewBadge('/frontend/media-query-generator', l['media-query-generator'], l) },
       ],
     },
     {
