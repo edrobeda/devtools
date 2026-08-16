@@ -22,9 +22,11 @@ import UseMediaQuerySnippetPage from './pages/UseMediaQuerySnippetPage'
 import ContrastCheckerPage from './pages/ContrastCheckerPage'
 import CurlGeneratorPage from './pages/CurlGeneratorPage'
 import CurlToCodePage from './pages/CurlToCodePage'
+import GraphqlFormatterPage from './pages/GraphqlFormatterPage'
 import GitignoreGeneratorPage from './pages/GitignoreGeneratorPage'
 import RateLimitCalculatorPage from './pages/RateLimitCalculatorPage'
 import ArnParserPage from './pages/ArnParserPage'
+import CloudCostEstimatorPage from './pages/CloudCostEstimatorPage'
 import PasswordStrengthPage from './pages/PasswordStrengthPage'
 import JsonTreeViewerPage from './pages/JsonTreeViewerPage'
 import SubnetCalculatorPage from './pages/SubnetCalculatorPage'
@@ -81,6 +83,7 @@ import RippleButtonPage from './pages/RippleButtonPage'
 import UseOnScreenSnippetPage from './pages/UseOnScreenSnippetPage'
 import FlexboxCheatsheetPage from './pages/FlexboxCheatsheetPage'
 import FontFaceGeneratorPage from './pages/FontFaceGeneratorPage'
+import FontStackGeneratorPage from './pages/FontStackGeneratorPage'
 import CssUnitConverterPage from './pages/CssUnitConverterPage'
 import AspectRatioCalculatorPage from './pages/AspectRatioCalculatorPage'
 import CssSpecificityCalculatorPage from './pages/CssSpecificityCalculatorPage'
@@ -178,7 +181,10 @@ import TmuxCheatsheetPage from './pages/TmuxCheatsheetPage'
 import DevToolsShortcutsPage from './pages/DevToolsShortcutsPage'
 import Ipv6ExplorerPage from './pages/Ipv6ExplorerPage'
 import MacAddressToolPage from './pages/MacAddressToolPage'
+import CidrOverlapAggregatorPage from './pages/CidrOverlapAggregatorPage'
 import IbanToolPage from './pages/IbanToolPage'
+import WebsocketTesterPage from './pages/WebsocketTesterPage'
+import HarViewerPage from './pages/HarViewerPage'
 import RomanNumeralConverterPage from './pages/RomanNumeralConverterPage'
 import SqlJoinsPage from './pages/SqlJoinsPage'
 import SqlIsolationLevelsPage from './pages/SqlIsolationLevelsPage'
@@ -191,6 +197,7 @@ import GitattributesGeneratorPage from './pages/GitattributesGeneratorPage'
 import VimCheatsheetPage from './pages/VimCheatsheetPage'
 import SshCheatsheetPage from './pages/SshCheatsheetPage'
 import DockerComposeGeneratorPage from './pages/DockerComposeGeneratorPage'
+import DockerRunToComposePage from './pages/DockerRunToComposePage'
 import OpensslCommandsPage from './pages/OpensslCommandsPage'
 import PythonCheatsheetPage from './pages/PythonCheatsheetPage'
 import GrepSedAwkCheatsheetPage from './pages/GrepSedAwkCheatsheetPage'
@@ -255,6 +262,12 @@ import CssNeumorphismGeneratorPage from './pages/CssNeumorphismGeneratorPage'
 import CssTextStrokeGeneratorPage from './pages/CssTextStrokeGeneratorPage'
 import CssLineClampGeneratorPage from './pages/CssLineClampGeneratorPage'
 import CssPulseGeneratorPage from './pages/CssPulseGeneratorPage'
+import MasonryLayoutGeneratorPage from './pages/MasonryLayoutGeneratorPage'
+import ColorMixGeneratorPage from './pages/ColorMixGeneratorPage'
+import BlendModeGeneratorPage from './pages/BlendModeGeneratorPage'
+import HtmlBoilerplateGeneratorPage from './pages/HtmlBoilerplateGeneratorPage'
+import CssAnimationStaggerGeneratorPage from './pages/CssAnimationStaggerGeneratorPage'
+import CssAtPropertyGeneratorPage from './pages/CssAtPropertyGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import SlaCalculatorPage from './pages/SlaCalculatorPage'
@@ -263,6 +276,8 @@ import QrCodeGeneratorPage from './pages/QrCodeGeneratorPage'
 import GithubActionsCheatsheetPage from './pages/GithubActionsCheatsheetPage'
 import CssToJsPage from './pages/CssToJsPage'
 import NginxCheatsheetPage from './pages/NginxCheatsheetPage'
+import NginxConfigGeneratorPage from './pages/NginxConfigGeneratorPage'
+import KubernetesManifestGeneratorPage from './pages/KubernetesManifestGeneratorPage'
 import RedisCheatsheetPage from './pages/RedisCheatsheetPage'
 import GhCliCheatsheetPage from './pages/GhCliCheatsheetPage'
 import ClampGeneratorPage from './pages/ClampGeneratorPage'
@@ -278,6 +293,7 @@ import TailwindCheatsheetPage from './pages/TailwindCheatsheetPage'
 import CssSelectorsCheatsheetPage from './pages/CssSelectorsCheatsheetPage'
 import A11yCheatsheetPage from './pages/A11yCheatsheetPage'
 import JwtClaimsCheatsheetPage from './pages/JwtClaimsCheatsheetPage'
+import Oauth2CheatsheetPage from './pages/Oauth2CheatsheetPage'
 import GridAreasGeneratorPage from './pages/GridAreasGeneratorPage'
 import XmlJsonConverterPage from './pages/XmlJsonConverterPage'
 import PatternBackgroundGeneratorPage from './pages/PatternBackgroundGeneratorPage'
@@ -291,6 +307,8 @@ import UseBooleanSnippetPage from './pages/UseBooleanSnippetPage'
 import UseSetSnippetPage from './pages/UseSetSnippetPage'
 import UseCounterSnippetPage from './pages/UseCounterSnippetPage'
 import TypingSpeedTestPage from './pages/TypingSpeedTestPage'
+import ConwaysGameOfLifePage from './pages/ConwaysGameOfLifePage'
+import PathfindingSimulatorPage from './pages/PathfindingSimulatorPage'
 import UrlEmailExtractorPage from './pages/UrlEmailExtractorPage'
 import BarcodeGeneratorPage from './pages/BarcodeGeneratorPage'
 import UseLockBodyScrollSnippetPage from './pages/UseLockBodyScrollSnippetPage'
@@ -338,13 +356,38 @@ import RetryCalculatorPage from './pages/RetryCalculatorPage'
 import StringEscapePage from './pages/StringEscapePage'
 import AwsCliCheatsheetPage from './pages/AwsCliCheatsheetPage'
 import CaesarCipherPage from './pages/CaesarCipherPage'
+import UtmUrlBuilderPage from './pages/UtmUrlBuilderPage'
 import CacheSimulatorPage from './pages/CacheSimulatorPage'
 import DescriptiveStatisticsCalculatorPage from './pages/DescriptiveStatisticsCalculatorPage'
 import LoadBalancerSimulatorPage from './pages/LoadBalancerSimulatorPage'
 import ConsistentHashingSimulatorPage from './pages/ConsistentHashingSimulatorPage'
 import BloomFilterSimulatorPage from './pages/BloomFilterSimulatorPage'
 import CpuSchedulingSimulatorPage from './pages/CpuSchedulingSimulatorPage'
+import DiskSchedulingSimulatorPage from './pages/DiskSchedulingSimulatorPage'
+import GossipProtocolSimulatorPage from './pages/GossipProtocolSimulatorPage'
 import PageReplacementSimulatorPage from './pages/PageReplacementSimulatorPage'
+import MerkleTreeSimulatorPage from './pages/MerkleTreeSimulatorPage'
+import QuorumNwrSimulatorPage from './pages/QuorumNwrSimulatorPage'
+import CsvToSqlPage from './pages/CsvToSqlPage'
+import BmiCalculatorPage from './pages/BmiCalculatorPage'
+import LogicalClocksSimulatorPage from './pages/LogicalClocksSimulatorPage'
+import CircuitBreakerSimulatorPage from './pages/CircuitBreakerSimulatorPage'
+import RateLimiterSimulatorPage from './pages/RateLimiterSimulatorPage'
+import TwoPhaseCommitSimulatorPage from './pages/TwoPhaseCommitSimulatorPage'
+import RaidSimulatorPage from './pages/RaidSimulatorPage'
+import BlockchainSimulatorPage from './pages/BlockchainSimulatorPage'
+import HuffmanCodingSimulatorPage from './pages/HuffmanCodingSimulatorPage'
+import SequenceDiagramGeneratorPage from './pages/SequenceDiagramGeneratorPage'
+import DiningPhilosophersSimulatorPage from './pages/DiningPhilosophersSimulatorPage'
+import TruthTableGeneratorPage from './pages/TruthTableGeneratorPage'
+import AvailabilityCalculatorPage from './pages/AvailabilityCalculatorPage'
+import BrazilianDataGeneratorPage from './pages/BrazilianDataGeneratorPage'
+import BankersAlgorithmSimulatorPage from './pages/BankersAlgorithmSimulatorPage'
+import EmailSignatureGeneratorPage from './pages/EmailSignatureGeneratorPage'
+import ConfigConverterPage from './pages/ConfigConverterPage'
+import NetworkLatencyCalculatorPage from './pages/NetworkLatencyCalculatorPage'
+import HttpCacheAnalyzerPage from './pages/HttpCacheAnalyzerPage'
+import LittlesLawCalculatorPage from './pages/LittlesLawCalculatorPage'
 
 const router = createBrowserRouter([
   {
@@ -372,9 +415,11 @@ const router = createBrowserRouter([
       { path: 'frontend/contrast-checker', element: <ContrastCheckerPage /> },
       { path: 'apis/curl-generator', element: <CurlGeneratorPage /> },
       { path: 'apis/curl-to-code', element: <CurlToCodePage /> },
+      { path: 'apis/graphql-formatter', element: <GraphqlFormatterPage /> },
       { path: 'devops/gitignore-generator', element: <GitignoreGeneratorPage /> },
       { path: 'database/rate-limit-calculator', element: <RateLimitCalculatorPage /> },
       { path: 'cloud/arn-parser', element: <ArnParserPage /> },
+      { path: 'cloud/cost-estimator', element: <CloudCostEstimatorPage /> },
       { path: 'security/password-strength', element: <PasswordStrengthPage /> },
       { path: 'data/json-tree-viewer', element: <JsonTreeViewerPage /> },
       { path: 'network/subnet-calculator', element: <SubnetCalculatorPage /> },
@@ -396,6 +441,13 @@ const router = createBrowserRouter([
       { path: 'tools/password-generator', element: <PasswordGeneratorPage /> },
       { path: 'tools/url-encoder', element: <UrlEncoderPage /> },
       { path: 'tools/url-parser', element: <UrlParserPage /> },
+      { path: 'tools/utm-url-builder', element: <UtmUrlBuilderPage /> },
+      { path: 'tools/email-signature-generator', element: <EmailSignatureGeneratorPage /> },
+      { path: 'tools/config-converter', element: <ConfigConverterPage /> },
+      { path: 'tools/network-latency-calculator', element: <NetworkLatencyCalculatorPage /> },
+      { path: 'tools/availability-calculator', element: <AvailabilityCalculatorPage /> },
+      { path: 'tools/littles-law-calculator', element: <LittlesLawCalculatorPage /> },
+      { path: 'tools/brazilian-data-generator', element: <BrazilianDataGeneratorPage /> },
       { path: 'tools/xml-json-converter', element: <XmlJsonConverterPage /> },
       { path: 'frontend/gradient-generator', element: <GradientGeneratorPage /> },
       { path: 'snippets/use-copy-to-clipboard', element: <UseCopyToClipboardSnippetPage /> },
@@ -505,9 +557,14 @@ const router = createBrowserRouter([
       { path: 'tools/css-formatter', element: <CssFormatterPage /> },
       { path: 'database/sql-formatter', element: <SqlFormatterPage /> },
       { path: 'database/sql-isolation-levels', element: <SqlIsolationLevelsPage /> },
+      { path: 'database/csv-to-sql', element: <CsvToSqlPage /> },
       { path: 'network/common-ports', element: <CommonPortsPage /> },
       { path: 'network/ipv6-explorer', element: <Ipv6ExplorerPage /> },
       { path: 'network/mac-address-tool', element: <MacAddressToolPage /> },
+      { path: 'network/cidr-overlap-aggregator', element: <CidrOverlapAggregatorPage /> },
+      { path: 'network/websocket-tester', element: <WebsocketTesterPage /> },
+      { path: 'network/har-viewer', element: <HarViewerPage /> },
+      { path: 'network/http-cache-analyzer', element: <HttpCacheAnalyzerPage /> },
       { path: 'tools/iban-tool', element: <IbanToolPage /> },
       { path: 'tools/roman-numeral-converter', element: <RomanNumeralConverterPage /> },
       { path: 'tools/file-size-converter', element: <FileSizeConverterPage /> },
@@ -531,9 +588,24 @@ const router = createBrowserRouter([
       { path: 'tools/consistent-hashing-simulator', element: <ConsistentHashingSimulatorPage /> },
       { path: 'tools/bloom-filter-simulator', element: <BloomFilterSimulatorPage /> },
       { path: 'tools/cpu-scheduling-simulator', element: <CpuSchedulingSimulatorPage /> },
+      { path: 'tools/disk-scheduling-simulator', element: <DiskSchedulingSimulatorPage /> },
+      { path: 'tools/gossip-protocol-simulator', element: <GossipProtocolSimulatorPage /> },
       { path: 'tools/page-replacement-simulator', element: <PageReplacementSimulatorPage /> },
       { path: 'tools/cache-simulator', element: <CacheSimulatorPage /> },
+      { path: 'tools/merkle-tree-simulator', element: <MerkleTreeSimulatorPage /> },
+      { path: 'tools/quorum-nwr-simulator', element: <QuorumNwrSimulatorPage /> },
       { path: 'tools/descriptive-statistics-calculator', element: <DescriptiveStatisticsCalculatorPage /> },
+      { path: 'tools/bmi-calculator', element: <BmiCalculatorPage /> },
+      { path: 'tools/logical-clocks-simulator', element: <LogicalClocksSimulatorPage /> },
+      { path: 'tools/circuit-breaker-simulator', element: <CircuitBreakerSimulatorPage /> },
+      { path: 'tools/rate-limiter-simulator', element: <RateLimiterSimulatorPage /> },
+      { path: 'tools/two-phase-commit-simulator', element: <TwoPhaseCommitSimulatorPage /> },
+      { path: 'tools/raid-simulator', element: <RaidSimulatorPage /> },
+      { path: 'tools/blockchain-simulator', element: <BlockchainSimulatorPage /> },
+      { path: 'tools/huffman-coding-simulator', element: <HuffmanCodingSimulatorPage /> },
+      { path: 'tools/sequence-diagram-generator', element: <SequenceDiagramGeneratorPage /> },
+      { path: 'tools/dining-philosophers-simulator', element: <DiningPhilosophersSimulatorPage /> },
+      { path: 'tools/truth-table-generator', element: <TruthTableGeneratorPage /> },
       { path: 'tools/string-escape', element: <StringEscapePage /> },
       { path: 'tools/caesar-cipher', element: <CaesarCipherPage /> },
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
@@ -557,7 +629,10 @@ const router = createBrowserRouter([
       { path: 'data/json-to-yaml', element: <JsonToYamlPage /> },
       { path: 'data/json-flatten', element: <JsonFlattenPage /> },
       { path: 'devops/docker-compose-generator', element: <DockerComposeGeneratorPage /> },
+      { path: 'devops/docker-run-to-compose', element: <DockerRunToComposePage /> },
       { path: 'devops/openssl-commands', element: <OpensslCommandsPage /> },
+      { path: 'devops/nginx-config-generator', element: <NginxConfigGeneratorPage /> },
+      { path: 'devops/kubernetes-manifest-generator', element: <KubernetesManifestGeneratorPage /> },
       { path: 'devops/caddyfile-generator', element: <CaddyfileGeneratorPage /> },
       { path: 'devops/htaccess-generator', element: <HtaccessGeneratorPage /> },
       { path: 'tools/units-converter', element: <UnitsConverterPage /> },
@@ -584,6 +659,7 @@ const router = createBrowserRouter([
       { path: 'frontend/clamp-generator', element: <ClampGeneratorPage /> },
       { path: 'frontend/css-triangle-generator', element: <CssTriangleGeneratorPage /> },
       { path: 'frontend/font-face-generator', element: <FontFaceGeneratorPage /> },
+      { path: 'frontend/font-stack-generator', element: <FontStackGeneratorPage /> },
       { path: 'references/typescript-cheatsheet', element: <TypescriptCheatsheetPage /> },
       { path: 'tools/morse-code-converter', element: <MorseConverterPage /> },
       { path: 'tools/glob-tester', element: <GlobTesterPage /> },
@@ -598,6 +674,7 @@ const router = createBrowserRouter([
       { path: 'references/css-selectors-cheatsheet', element: <CssSelectorsCheatsheetPage /> },
       { path: 'references/a11y-cheatsheet', element: <A11yCheatsheetPage /> },
       { path: 'references/jwt-claims-cheatsheet', element: <JwtClaimsCheatsheetPage /> },
+      { path: 'references/oauth2-cheatsheet', element: <Oauth2CheatsheetPage /> },
       { path: 'frontend/grid-areas-generator', element: <GridAreasGeneratorPage /> },
       { path: 'frontend/pattern-background-generator', element: <PatternBackgroundGeneratorPage /> },
       { path: 'frontend/sitemap-generator', element: <SitemapGeneratorPage /> },
@@ -660,12 +737,20 @@ const router = createBrowserRouter([
       { path: 'frontend/css-text-stroke-generator', element: <CssTextStrokeGeneratorPage /> },
       { path: 'frontend/css-line-clamp-generator', element: <CssLineClampGeneratorPage /> },
       { path: 'frontend/css-pulse-generator', element: <CssPulseGeneratorPage /> },
+      { path: 'frontend/masonry-layout-generator', element: <MasonryLayoutGeneratorPage /> },
+      { path: 'frontend/color-mix-generator', element: <ColorMixGeneratorPage /> },
+      { path: 'frontend/blend-mode-generator', element: <BlendModeGeneratorPage /> },
+      { path: 'frontend/html-boilerplate-generator', element: <HtmlBoilerplateGeneratorPage /> },
+      { path: 'frontend/css-animation-stagger-generator', element: <CssAnimationStaggerGeneratorPage /> },
+      { path: 'frontend/css-at-property-generator', element: <CssAtPropertyGeneratorPage /> },
       { path: 'snippets/use-update-effect', element: <UseUpdateEffectSnippetPage /> },
       { path: 'snippets/use-why-did-you-update', element: <UseWhyDidYouUpdateSnippetPage /> },
       { path: 'snippets/use-boolean', element: <UseBooleanSnippetPage /> },
       { path: 'snippets/use-set', element: <UseSetSnippetPage /> },
       { path: 'snippets/use-counter', element: <UseCounterSnippetPage /> },
       { path: 'extras/typing-speed-test', element: <TypingSpeedTestPage /> },
+      { path: 'extras/conways-game-of-life', element: <ConwaysGameOfLifePage /> },
+      { path: 'extras/pathfinding-simulator', element: <PathfindingSimulatorPage /> },
       { path: 'tools/url-email-extractor', element: <UrlEmailExtractorPage /> },
       { path: 'snippets/use-lock-body-scroll', element: <UseLockBodyScrollSnippetPage /> },
       { path: 'snippets/use-stable-callback', element: <UseStableCallbackSnippetPage /> },
@@ -694,6 +779,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-pagination', element: <UsePaginationSnippetPage /> },
       { path: 'snippets/use-controllable-state', element: <UseControllableStateSnippetPage /> },
       { path: 'references/aws-cli-cheatsheet', element: <AwsCliCheatsheetPage /> },
+      { path: 'tools/bankers-algorithm-simulator', element: <BankersAlgorithmSimulatorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
