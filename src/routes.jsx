@@ -371,6 +371,7 @@ import QuorumNwrSimulatorPage from './pages/QuorumNwrSimulatorPage'
 import CsvToSqlPage from './pages/CsvToSqlPage'
 import BmiCalculatorPage from './pages/BmiCalculatorPage'
 import LogicalClocksSimulatorPage from './pages/LogicalClocksSimulatorPage'
+import MapreduceSimulatorPage from './pages/MapreduceSimulatorPage'
 import CircuitBreakerSimulatorPage from './pages/CircuitBreakerSimulatorPage'
 import RateLimiterSimulatorPage from './pages/RateLimiterSimulatorPage'
 import TwoPhaseCommitSimulatorPage from './pages/TwoPhaseCommitSimulatorPage'
@@ -597,6 +598,7 @@ const router = createBrowserRouter([
       { path: 'tools/descriptive-statistics-calculator', element: <DescriptiveStatisticsCalculatorPage /> },
       { path: 'tools/bmi-calculator', element: <BmiCalculatorPage /> },
       { path: 'tools/logical-clocks-simulator', element: <LogicalClocksSimulatorPage /> },
+      { path: 'tools/mapreduce-simulator', element: <MapreduceSimulatorPage /> },
       { path: 'tools/circuit-breaker-simulator', element: <CircuitBreakerSimulatorPage /> },
       { path: 'tools/rate-limiter-simulator', element: <RateLimiterSimulatorPage /> },
       { path: 'tools/two-phase-commit-simulator', element: <TwoPhaseCommitSimulatorPage /> },
