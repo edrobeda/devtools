@@ -419,6 +419,7 @@ import PaxosSimulatorPage from './pages/PaxosSimulatorPage'
 import BullyAlgorithmSimulatorPage from './pages/BullyAlgorithmSimulatorPage'
 import DeadlockSimulatorPage from './pages/DeadlockSimulatorPage'
 import SreBurnRateCalculatorPage from './pages/SreBurnRateCalculatorPage'
+import UnicodeNormalizerPage from './pages/UnicodeNormalizerPage'
 
 const router = createBrowserRouter([
   {
@@ -633,6 +634,7 @@ const router = createBrowserRouter([
       { path: 'tools/cache-simulator', element: <CacheSimulatorPage /> },
       { path: 'tools/deadlock-simulator', element: <DeadlockSimulatorPage /> },
       { path: 'tools/sre-burn-rate-calculator', element: <SreBurnRateCalculatorPage /> },
+      { path: 'tools/unicode-normalizer', element: <UnicodeNormalizerPage /> },
       { path: 'tools/merkle-tree-simulator', element: <MerkleTreeSimulatorPage /> },
       { path: 'tools/quorum-nwr-simulator', element: <QuorumNwrSimulatorPage /> },
       { path: 'tools/descriptive-statistics-calculator', element: <DescriptiveStatisticsCalculatorPage /> },
