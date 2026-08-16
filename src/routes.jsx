@@ -82,6 +82,7 @@ import RippleButtonPage from './pages/RippleButtonPage'
 import UseOnScreenSnippetPage from './pages/UseOnScreenSnippetPage'
 import FlexboxCheatsheetPage from './pages/FlexboxCheatsheetPage'
 import FontFaceGeneratorPage from './pages/FontFaceGeneratorPage'
+import FontStackGeneratorPage from './pages/FontStackGeneratorPage'
 import CssUnitConverterPage from './pages/CssUnitConverterPage'
 import AspectRatioCalculatorPage from './pages/AspectRatioCalculatorPage'
 import CssSpecificityCalculatorPage from './pages/CssSpecificityCalculatorPage'
@@ -649,6 +650,7 @@ const router = createBrowserRouter([
       { path: 'frontend/clamp-generator', element: <ClampGeneratorPage /> },
       { path: 'frontend/css-triangle-generator', element: <CssTriangleGeneratorPage /> },
       { path: 'frontend/font-face-generator', element: <FontFaceGeneratorPage /> },
+      { path: 'frontend/font-stack-generator', element: <FontStackGeneratorPage /> },
       { path: 'references/typescript-cheatsheet', element: <TypescriptCheatsheetPage /> },
       { path: 'tools/morse-code-converter', element: <MorseConverterPage /> },
       { path: 'tools/glob-tester', element: <GlobTesterPage /> },
