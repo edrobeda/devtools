@@ -401,6 +401,7 @@ import HttpCacheAnalyzerPage from './pages/HttpCacheAnalyzerPage'
 import LittlesLawCalculatorPage from './pages/LittlesLawCalculatorPage'
 import ConcurrencyThroughputCalculatorPage from './pages/ConcurrencyThroughputCalculatorPage'
 import MemoryAllocationSimulatorPage from './pages/MemoryAllocationSimulatorPage'
+import RaftSimulatorPage from './pages/RaftSimulatorPage'
 
 const router = createBrowserRouter([
   {
@@ -806,6 +807,7 @@ const router = createBrowserRouter([
       { path: 'references/aws-cli-cheatsheet', element: <AwsCliCheatsheetPage /> },
       { path: 'tools/bankers-algorithm-simulator', element: <BankersAlgorithmSimulatorPage /> },
       { path: 'tools/memory-allocation-simulator', element: <MemoryAllocationSimulatorPage /> },
+      { path: 'tools/raft-simulator', element: <RaftSimulatorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
