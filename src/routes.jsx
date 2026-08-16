@@ -384,6 +384,7 @@ import RaidSimulatorPage from './pages/RaidSimulatorPage'
 import BlockchainSimulatorPage from './pages/BlockchainSimulatorPage'
 import HuffmanCodingSimulatorPage from './pages/HuffmanCodingSimulatorPage'
 import SequenceDiagramGeneratorPage from './pages/SequenceDiagramGeneratorPage'
+import SqlInListGeneratorPage from './pages/SqlInListGeneratorPage'
 import DiningPhilosophersSimulatorPage from './pages/DiningPhilosophersSimulatorPage'
 import TruthTableGeneratorPage from './pages/TruthTableGeneratorPage'
 import AvailabilityCalculatorPage from './pages/AvailabilityCalculatorPage'
@@ -613,6 +614,7 @@ const router = createBrowserRouter([
       { path: 'tools/blockchain-simulator', element: <BlockchainSimulatorPage /> },
       { path: 'tools/huffman-coding-simulator', element: <HuffmanCodingSimulatorPage /> },
       { path: 'tools/sequence-diagram-generator', element: <SequenceDiagramGeneratorPage /> },
+      { path: 'tools/sql-in-list-generator', element: <SqlInListGeneratorPage /> },
       { path: 'tools/dining-philosophers-simulator', element: <DiningPhilosophersSimulatorPage /> },
       { path: 'tools/truth-table-generator', element: <TruthTableGeneratorPage /> },
       { path: 'tools/string-escape', element: <StringEscapePage /> },
