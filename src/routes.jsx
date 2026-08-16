@@ -405,6 +405,7 @@ import LittlesLawCalculatorPage from './pages/LittlesLawCalculatorPage'
 import ConcurrencyThroughputCalculatorPage from './pages/ConcurrencyThroughputCalculatorPage'
 import QueueingTheoryCalculatorPage from './pages/QueueingTheoryCalculatorPage'
 import PertCalculatorPage from './pages/PertCalculatorPage'
+import ConfidenceIntervalCalculatorPage from './pages/ConfidenceIntervalCalculatorPage'
 import MemoryAllocationSimulatorPage from './pages/MemoryAllocationSimulatorPage'
 import RaftSimulatorPage from './pages/RaftSimulatorPage'
 import PaxosSimulatorPage from './pages/PaxosSimulatorPage'
@@ -472,6 +473,7 @@ const router = createBrowserRouter([
       { path: 'tools/concurrency-throughput-calculator', element: <ConcurrencyThroughputCalculatorPage /> },
       { path: 'tools/queueing-theory-calculator', element: <QueueingTheoryCalculatorPage /> },
       { path: 'tools/pert-calculator', element: <PertCalculatorPage /> },
+      { path: 'tools/confidence-interval-calculator', element: <ConfidenceIntervalCalculatorPage /> },
       { path: 'tools/brazilian-data-generator', element: <BrazilianDataGeneratorPage /> },
       { path: 'tools/xml-json-converter', element: <XmlJsonConverterPage /> },
       { path: 'frontend/gradient-generator', element: <GradientGeneratorPage /> },
