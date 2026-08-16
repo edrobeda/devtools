@@ -31,6 +31,7 @@ import PasswordStrengthPage from './pages/PasswordStrengthPage'
 import JsonTreeViewerPage from './pages/JsonTreeViewerPage'
 import SubnetCalculatorPage from './pages/SubnetCalculatorPage'
 import AnthropicCostCalculatorPage from './pages/AnthropicCostCalculatorPage'
+import LlmPromptBuilderPage from './pages/LlmPromptBuilderPage'
 import DeepLinkTesterPage from './pages/DeepLinkTesterPage'
 import WordCounterPage from './pages/WordCounterPage'
 import GitCommandsPage from './pages/GitCommandsPage'
@@ -425,6 +426,7 @@ const router = createBrowserRouter([
       { path: 'data/json-tree-viewer', element: <JsonTreeViewerPage /> },
       { path: 'network/subnet-calculator', element: <SubnetCalculatorPage /> },
       { path: 'ai/anthropic-cost-calculator', element: <AnthropicCostCalculatorPage /> },
+      { path: 'ai/llm-prompt-builder', element: <LlmPromptBuilderPage /> },
       { path: 'mobile/deep-link-tester', element: <DeepLinkTesterPage /> },
       { path: 'text/word-counter', element: <WordCounterPage /> },
       { path: 'references/git-commands', element: <GitCommandsPage /> },
