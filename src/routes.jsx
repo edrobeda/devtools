@@ -381,6 +381,7 @@ import AvailabilityCalculatorPage from './pages/AvailabilityCalculatorPage'
 import BrazilianDataGeneratorPage from './pages/BrazilianDataGeneratorPage'
 import BankersAlgorithmSimulatorPage from './pages/BankersAlgorithmSimulatorPage'
 import EmailSignatureGeneratorPage from './pages/EmailSignatureGeneratorPage'
+import ConfigConverterPage from './pages/ConfigConverterPage'
 
 const router = createBrowserRouter([
   {
@@ -435,6 +436,7 @@ const router = createBrowserRouter([
       { path: 'tools/url-parser', element: <UrlParserPage /> },
       { path: 'tools/utm-url-builder', element: <UtmUrlBuilderPage /> },
       { path: 'tools/email-signature-generator', element: <EmailSignatureGeneratorPage /> },
+      { path: 'tools/config-converter', element: <ConfigConverterPage /> },
       { path: 'tools/availability-calculator', element: <AvailabilityCalculatorPage /> },
       { path: 'tools/brazilian-data-generator', element: <BrazilianDataGeneratorPage /> },
       { path: 'tools/xml-json-converter', element: <XmlJsonConverterPage /> },
