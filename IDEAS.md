@@ -74,7 +74,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] SVG Icon Browser
 - [ ] Google Fonts Preview
 - [ ] Breakpoint Preview / Responsive Preview (site num iframe redimensionável)
-- [ ] Favicon Generator
+- [x] Favicon Generator — `/frontend/favicon-generator`
 - [ ] OpenGraph Preview (como o link aparece ao compartilhar)
 - [ ] CSS Animation Builder
 - [ ] Keyframe Generator

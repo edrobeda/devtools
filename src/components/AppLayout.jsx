@@ -507,6 +507,7 @@ export const LABELS = {
     'css-at-property-generator': 'Gerador de @property CSS',
     'media-query-generator': 'Gerador de Media Queries CSS',
     'css-supports-generator': 'Gerador de @supports CSS',
+    'favicon-generator': 'Gerador de Favicon',
     'nginx-config-generator': 'Gerador de Configuração Nginx',
     'kubernetes-manifest-generator': 'Gerador de Manifestos Kubernetes',
   },
@@ -918,6 +919,7 @@ export const LABELS = {
     'css-at-property-generator': 'CSS @property Generator',
     'media-query-generator': 'CSS Media Query Generator',
     'css-supports-generator': 'CSS @supports Generator',
+    'favicon-generator': 'Favicon Generator',
     'nginx-config-generator': 'Nginx Config Generator',
     'kubernetes-manifest-generator': 'Kubernetes Manifest Generator',
   },
@@ -1231,6 +1233,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-at-property-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-at-property-generator', l['css-at-property-generator'], l) },
         { key: '/frontend/media-query-generator', icon: <ColumnWidthOutlined />, label: withNewBadge('/frontend/media-query-generator', l['media-query-generator'], l) },
         { key: '/frontend/css-supports-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-supports-generator', l['css-supports-generator'], l) },
+        { key: '/frontend/favicon-generator', icon: <PictureOutlined />, label: withNewBadge('/frontend/favicon-generator', l['favicon-generator'], l) },
       ],
     },
     {
