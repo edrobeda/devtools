@@ -280,6 +280,7 @@ import CssToJsPage from './pages/CssToJsPage'
 import NginxCheatsheetPage from './pages/NginxCheatsheetPage'
 import NginxConfigGeneratorPage from './pages/NginxConfigGeneratorPage'
 import SshConfigGeneratorPage from './pages/SshConfigGeneratorPage'
+import SystemdUnitGeneratorPage from './pages/SystemdUnitGeneratorPage'
 import KubernetesManifestGeneratorPage from './pages/KubernetesManifestGeneratorPage'
 import RedisCheatsheetPage from './pages/RedisCheatsheetPage'
 import GhCliCheatsheetPage from './pages/GhCliCheatsheetPage'
@@ -660,6 +661,7 @@ const router = createBrowserRouter([
       { path: 'devops/openssl-commands', element: <OpensslCommandsPage /> },
       { path: 'devops/nginx-config-generator', element: <NginxConfigGeneratorPage /> },
       { path: 'devops/ssh-config-generator', element: <SshConfigGeneratorPage /> },
+      { path: 'devops/systemd-unit-generator', element: <SystemdUnitGeneratorPage /> },
       { path: 'devops/kubernetes-manifest-generator', element: <KubernetesManifestGeneratorPage /> },
       { path: 'devops/caddyfile-generator', element: <CaddyfileGeneratorPage /> },
       { path: 'devops/htaccess-generator', element: <HtaccessGeneratorPage /> },

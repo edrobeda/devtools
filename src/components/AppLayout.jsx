@@ -522,6 +522,7 @@ export const LABELS = {
     'css-has-selector-tester': 'Testador de :has() CSS',
     'nginx-config-generator': 'Gerador de Configuração Nginx',
     'ssh-config-generator': 'Gerador de Configuração SSH',
+    'systemd-unit-generator': 'Gerador de Unidade systemd',
     'kubernetes-manifest-generator': 'Gerador de Manifestos Kubernetes',
   },
   en: {
@@ -947,6 +948,7 @@ export const LABELS = {
     'css-has-selector-tester': 'CSS :has() Selector Tester',
     'nginx-config-generator': 'Nginx Config Generator',
     'ssh-config-generator': 'SSH Config Generator',
+    'systemd-unit-generator': 'systemd Unit Generator',
     'kubernetes-manifest-generator': 'Kubernetes Manifest Generator',
   },
 }
@@ -1306,6 +1308,7 @@ export function buildMenuItems(l) {
         { key: '/devops/openssl-commands', icon: <ContainerOutlined />, label: withNewBadge('/devops/openssl-commands', l['openssl-commands'], l) },
         { key: '/devops/nginx-config-generator', icon: <ContainerOutlined />, label: withNewBadge('/devops/nginx-config-generator', l['nginx-config-generator'], l) },
         { key: '/devops/ssh-config-generator', icon: <SafetyCertificateOutlined />, label: withNewBadge('/devops/ssh-config-generator', l['ssh-config-generator'], l) },
+        { key: '/devops/systemd-unit-generator', icon: <ContainerOutlined />, label: withNewBadge('/devops/systemd-unit-generator', l['systemd-unit-generator'], l) },
         { key: '/devops/kubernetes-manifest-generator', icon: <ClusterOutlined />, label: withNewBadge('/devops/kubernetes-manifest-generator', l['kubernetes-manifest-generator'], l) },
         { key: '/devops/sla-calculator', icon: <ExperimentOutlined />, label: withNewBadge('/devops/sla-calculator', l['sla-calculator'], l) },
         { key: '/devops/editorconfig-generator', icon: <FileTextOutlined />, label: withNewBadge('/devops/editorconfig-generator', l['editorconfig-generator'], l) },
