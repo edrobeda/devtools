@@ -378,6 +378,7 @@ import CssSupportsGeneratorPage from './pages/CssSupportsGeneratorPage'
 import CircuitBreakerSimulatorPage from './pages/CircuitBreakerSimulatorPage'
 import RateLimiterSimulatorPage from './pages/RateLimiterSimulatorPage'
 import TwoPhaseCommitSimulatorPage from './pages/TwoPhaseCommitSimulatorPage'
+import ThreePhaseCommitSimulatorPage from './pages/ThreePhaseCommitSimulatorPage'
 import RaidSimulatorPage from './pages/RaidSimulatorPage'
 import BlockchainSimulatorPage from './pages/BlockchainSimulatorPage'
 import HuffmanCodingSimulatorPage from './pages/HuffmanCodingSimulatorPage'
@@ -606,6 +607,7 @@ const router = createBrowserRouter([
       { path: 'tools/circuit-breaker-simulator', element: <CircuitBreakerSimulatorPage /> },
       { path: 'tools/rate-limiter-simulator', element: <RateLimiterSimulatorPage /> },
       { path: 'tools/two-phase-commit-simulator', element: <TwoPhaseCommitSimulatorPage /> },
+      { path: 'tools/three-phase-commit-simulator', element: <ThreePhaseCommitSimulatorPage /> },
       { path: 'tools/raid-simulator', element: <RaidSimulatorPage /> },
       { path: 'tools/blockchain-simulator', element: <BlockchainSimulatorPage /> },
       { path: 'tools/huffman-coding-simulator', element: <HuffmanCodingSimulatorPage /> },
