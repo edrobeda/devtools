@@ -416,6 +416,7 @@ import DowntimeCostCalculatorPage from './pages/DowntimeCostCalculatorPage'
 import MemoryAllocationSimulatorPage from './pages/MemoryAllocationSimulatorPage'
 import RaftSimulatorPage from './pages/RaftSimulatorPage'
 import PaxosSimulatorPage from './pages/PaxosSimulatorPage'
+import BullyAlgorithmSimulatorPage from './pages/BullyAlgorithmSimulatorPage'
 import DeadlockSimulatorPage from './pages/DeadlockSimulatorPage'
 
 const router = createBrowserRouter([
@@ -838,6 +839,7 @@ const router = createBrowserRouter([
       { path: 'tools/memory-allocation-simulator', element: <MemoryAllocationSimulatorPage /> },
       { path: 'tools/raft-simulator', element: <RaftSimulatorPage /> },
       { path: 'tools/paxos-simulator', element: <PaxosSimulatorPage /> },
+      { path: 'tools/bully-algorithm-simulator', element: <BullyAlgorithmSimulatorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
