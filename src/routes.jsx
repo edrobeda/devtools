@@ -423,6 +423,7 @@ import DeadlockSimulatorPage from './pages/DeadlockSimulatorPage'
 import SreBurnRateCalculatorPage from './pages/SreBurnRateCalculatorPage'
 import AmdahlsLawCalculatorPage from './pages/AmdahlsLawCalculatorPage'
 import UnicodeNormalizerPage from './pages/UnicodeNormalizerPage'
+import AwsSigv4SignatureGeneratorPage from './pages/AwsSigv4SignatureGeneratorPage'
 
 const router = createBrowserRouter([
   {
@@ -639,6 +640,7 @@ const router = createBrowserRouter([
       { path: 'tools/sre-burn-rate-calculator', element: <SreBurnRateCalculatorPage /> },
       { path: 'tools/amdahls-law-calculator', element: <AmdahlsLawCalculatorPage /> },
       { path: 'tools/unicode-normalizer', element: <UnicodeNormalizerPage /> },
+      { path: 'tools/aws-sigv4-signature-generator', element: <AwsSigv4SignatureGeneratorPage /> },
       { path: 'tools/merkle-tree-simulator', element: <MerkleTreeSimulatorPage /> },
       { path: 'tools/quorum-nwr-simulator', element: <QuorumNwrSimulatorPage /> },
       { path: 'tools/descriptive-statistics-calculator', element: <DescriptiveStatisticsCalculatorPage /> },
