@@ -302,6 +302,7 @@ import CssSelectorsCheatsheetPage from './pages/CssSelectorsCheatsheetPage'
 import A11yCheatsheetPage from './pages/A11yCheatsheetPage'
 import JwtClaimsCheatsheetPage from './pages/JwtClaimsCheatsheetPage'
 import Oauth2CheatsheetPage from './pages/Oauth2CheatsheetPage'
+import DesignPatternsCheatsheetPage from './pages/DesignPatternsCheatsheetPage'
 import GridAreasGeneratorPage from './pages/GridAreasGeneratorPage'
 import XmlJsonConverterPage from './pages/XmlJsonConverterPage'
 import PatternBackgroundGeneratorPage from './pages/PatternBackgroundGeneratorPage'
@@ -717,6 +718,7 @@ const router = createBrowserRouter([
       { path: 'references/a11y-cheatsheet', element: <A11yCheatsheetPage /> },
       { path: 'references/jwt-claims-cheatsheet', element: <JwtClaimsCheatsheetPage /> },
       { path: 'references/oauth2-cheatsheet', element: <Oauth2CheatsheetPage /> },
+      { path: 'references/design-patterns', element: <DesignPatternsCheatsheetPage /> },
       { path: 'frontend/grid-areas-generator', element: <GridAreasGeneratorPage /> },
       { path: 'frontend/pattern-background-generator', element: <PatternBackgroundGeneratorPage /> },
       { path: 'frontend/sitemap-generator', element: <SitemapGeneratorPage /> },
