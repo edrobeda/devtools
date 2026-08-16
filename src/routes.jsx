@@ -386,6 +386,7 @@ import EmailSignatureGeneratorPage from './pages/EmailSignatureGeneratorPage'
 import ConfigConverterPage from './pages/ConfigConverterPage'
 import NetworkLatencyCalculatorPage from './pages/NetworkLatencyCalculatorPage'
 import HttpCacheAnalyzerPage from './pages/HttpCacheAnalyzerPage'
+import LittlesLawCalculatorPage from './pages/LittlesLawCalculatorPage'
 
 const router = createBrowserRouter([
   {
@@ -443,6 +444,7 @@ const router = createBrowserRouter([
       { path: 'tools/config-converter', element: <ConfigConverterPage /> },
       { path: 'tools/network-latency-calculator', element: <NetworkLatencyCalculatorPage /> },
       { path: 'tools/availability-calculator', element: <AvailabilityCalculatorPage /> },
+      { path: 'tools/littles-law-calculator', element: <LittlesLawCalculatorPage /> },
       { path: 'tools/brazilian-data-generator', element: <BrazilianDataGeneratorPage /> },
       { path: 'tools/xml-json-converter', element: <XmlJsonConverterPage /> },
       { path: 'frontend/gradient-generator', element: <GradientGeneratorPage /> },
