@@ -42,6 +42,7 @@ import {
   UserOutlined,
   InboxOutlined,
   TableOutlined,
+  TagOutlined,
   ClusterOutlined,
   TeamOutlined,
   PictureOutlined,
@@ -525,7 +526,9 @@ export const LABELS = {
     'nginx-config-generator': 'Gerador de Configuração Nginx',
     'ssh-config-generator': 'Gerador de Configuração SSH',
     'systemd-unit-generator': 'Gerador de Unidade systemd',
+    'shields-badge-generator': 'Gerador de Badge Shields.io',
     'kubernetes-manifest-generator': 'Gerador de Manifestos Kubernetes',
+    'opentelemetry-collector-config-generator': 'Gerador de Configuração do OpenTelemetry Collector',
   },
   en: {
     home: 'Home',
@@ -953,7 +956,9 @@ export const LABELS = {
     'nginx-config-generator': 'Nginx Config Generator',
     'ssh-config-generator': 'SSH Config Generator',
     'systemd-unit-generator': 'systemd Unit Generator',
+    'shields-badge-generator': 'Shields.io Badge Generator',
     'kubernetes-manifest-generator': 'Kubernetes Manifest Generator',
+    'opentelemetry-collector-config-generator': 'OpenTelemetry Collector Config Generator',
   },
 }
 
@@ -1314,7 +1319,9 @@ export function buildMenuItems(l) {
         { key: '/devops/nginx-config-generator', icon: <ContainerOutlined />, label: withNewBadge('/devops/nginx-config-generator', l['nginx-config-generator'], l) },
         { key: '/devops/ssh-config-generator', icon: <SafetyCertificateOutlined />, label: withNewBadge('/devops/ssh-config-generator', l['ssh-config-generator'], l) },
         { key: '/devops/systemd-unit-generator', icon: <ContainerOutlined />, label: withNewBadge('/devops/systemd-unit-generator', l['systemd-unit-generator'], l) },
+        { key: '/devops/shields-badge-generator', icon: <TagOutlined />, label: withNewBadge('/devops/shields-badge-generator', l['shields-badge-generator'], l) },
         { key: '/devops/kubernetes-manifest-generator', icon: <ClusterOutlined />, label: withNewBadge('/devops/kubernetes-manifest-generator', l['kubernetes-manifest-generator'], l) },
+        { key: '/devops/opentelemetry-collector-config-generator', icon: <ContainerOutlined />, label: withNewBadge('/devops/opentelemetry-collector-config-generator', l['opentelemetry-collector-config-generator'], l) },
         { key: '/devops/sla-calculator', icon: <ExperimentOutlined />, label: withNewBadge('/devops/sla-calculator', l['sla-calculator'], l) },
         { key: '/devops/editorconfig-generator', icon: <FileTextOutlined />, label: withNewBadge('/devops/editorconfig-generator', l['editorconfig-generator'], l) },
         { key: '/devops/codeowners-generator', icon: <TeamOutlined />, label: withNewBadge('/devops/codeowners-generator', l['codeowners-generator'], l) },

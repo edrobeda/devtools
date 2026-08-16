@@ -282,7 +282,9 @@ import NginxCheatsheetPage from './pages/NginxCheatsheetPage'
 import NginxConfigGeneratorPage from './pages/NginxConfigGeneratorPage'
 import SshConfigGeneratorPage from './pages/SshConfigGeneratorPage'
 import SystemdUnitGeneratorPage from './pages/SystemdUnitGeneratorPage'
+import ShieldsBadgeGeneratorPage from './pages/ShieldsBadgeGeneratorPage'
 import KubernetesManifestGeneratorPage from './pages/KubernetesManifestGeneratorPage'
+import OtelCollectorConfigGeneratorPage from './pages/OtelCollectorConfigGeneratorPage'
 import RedisCheatsheetPage from './pages/RedisCheatsheetPage'
 import GhCliCheatsheetPage from './pages/GhCliCheatsheetPage'
 import ClampGeneratorPage from './pages/ClampGeneratorPage'
@@ -666,7 +668,9 @@ const router = createBrowserRouter([
       { path: 'devops/nginx-config-generator', element: <NginxConfigGeneratorPage /> },
       { path: 'devops/ssh-config-generator', element: <SshConfigGeneratorPage /> },
       { path: 'devops/systemd-unit-generator', element: <SystemdUnitGeneratorPage /> },
+      { path: 'devops/shields-badge-generator', element: <ShieldsBadgeGeneratorPage /> },
       { path: 'devops/kubernetes-manifest-generator', element: <KubernetesManifestGeneratorPage /> },
+      { path: 'devops/opentelemetry-collector-config-generator', element: <OtelCollectorConfigGeneratorPage /> },
       { path: 'devops/caddyfile-generator', element: <CaddyfileGeneratorPage /> },
       { path: 'devops/htaccess-generator', element: <HtaccessGeneratorPage /> },
       { path: 'tools/units-converter', element: <UnitsConverterPage /> },
