@@ -404,6 +404,7 @@ import ConcurrencyThroughputCalculatorPage from './pages/ConcurrencyThroughputCa
 import MemoryAllocationSimulatorPage from './pages/MemoryAllocationSimulatorPage'
 import RaftSimulatorPage from './pages/RaftSimulatorPage'
 import PaxosSimulatorPage from './pages/PaxosSimulatorPage'
+import DeadlockSimulatorPage from './pages/DeadlockSimulatorPage'
 
 const router = createBrowserRouter([
   {
@@ -610,6 +611,7 @@ const router = createBrowserRouter([
       { path: 'tools/gossip-protocol-simulator', element: <GossipProtocolSimulatorPage /> },
       { path: 'tools/page-replacement-simulator', element: <PageReplacementSimulatorPage /> },
       { path: 'tools/cache-simulator', element: <CacheSimulatorPage /> },
+      { path: 'tools/deadlock-simulator', element: <DeadlockSimulatorPage /> },
       { path: 'tools/merkle-tree-simulator', element: <MerkleTreeSimulatorPage /> },
       { path: 'tools/quorum-nwr-simulator', element: <QuorumNwrSimulatorPage /> },
       { path: 'tools/descriptive-statistics-calculator', element: <DescriptiveStatisticsCalculatorPage /> },
