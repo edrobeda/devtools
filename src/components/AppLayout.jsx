@@ -475,6 +475,7 @@ export const LABELS = {
     'makefile-generator': 'Gerador de Makefile',
     'tsconfig-generator': 'Gerador de tsconfig.json',
     'eslint-config-generator': 'Gerador de Configuração ESLint',
+    'cors-config-generator': 'Gerador de Configuração CORS',
     'css-spinner-generator': 'Gerador de Loading Spinner CSS',
     'color-blindness-simulator': 'Simulador de Daltonismo',
     'text-shadow-generator': 'Gerador de Text Shadow',
@@ -924,6 +925,7 @@ export const LABELS = {
     'makefile-generator': 'Makefile Generator',
     'tsconfig-generator': 'tsconfig.json Generator',
     'eslint-config-generator': 'ESLint Config Generator',
+    'cors-config-generator': 'CORS Config Generator',
     'css-spinner-generator': 'CSS Loading Spinner Generator',
     'color-blindness-simulator': 'Color Blindness Simulator',
     'text-shadow-generator': 'Text Shadow Generator',
@@ -1388,6 +1390,7 @@ export function buildMenuItems(l) {
         { key: '/devops/makefile-generator', icon: <FileTextOutlined />, label: withNewBadge('/devops/makefile-generator', l['makefile-generator'], l) },
         { key: '/devops/tsconfig-generator', icon: <CodeOutlined />, label: withNewBadge('/devops/tsconfig-generator', l['tsconfig-generator'], l) },
         { key: '/devops/eslint-config-generator', icon: <CodeOutlined />, label: withNewBadge('/devops/eslint-config-generator', l['eslint-config-generator'], l) },
+        { key: '/devops/cors-config-generator', icon: <SafetyOutlined />, label: withNewBadge('/devops/cors-config-generator', l['cors-config-generator'], l) },
       ],
     },
     {

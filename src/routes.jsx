@@ -219,6 +219,7 @@ import MakefileGeneratorPage from './pages/MakefileGeneratorPage'
 import TsconfigGeneratorPage from './pages/TsconfigGeneratorPage'
 import ViteConfigGeneratorPage from './pages/ViteConfigGeneratorPage'
 import EslintConfigGeneratorPage from './pages/EslintConfigGeneratorPage'
+import CorsConfigGeneratorPage from './pages/CorsConfigGeneratorPage'
 import CssSpinnerGeneratorPage from './pages/CssSpinnerGeneratorPage'
 import ColorBlindnessSimulatorPage from './pages/ColorBlindnessSimulatorPage'
 import TextShadowGeneratorPage from './pages/TextShadowGeneratorPage'
@@ -758,6 +759,7 @@ const router = createBrowserRouter([
       { path: 'devops/makefile-generator', element: <MakefileGeneratorPage /> },
       { path: 'devops/tsconfig-generator', element: <TsconfigGeneratorPage /> },
       { path: 'devops/eslint-config-generator', element: <EslintConfigGeneratorPage /> },
+      { path: 'devops/cors-config-generator', element: <CorsConfigGeneratorPage /> },
       { path: 'frontend/css-spinner-generator', element: <CssSpinnerGeneratorPage /> },
       { path: 'frontend/color-blindness-simulator', element: <ColorBlindnessSimulatorPage /> },
       { path: 'frontend/text-shadow-generator', element: <TextShadowGeneratorPage /> },
