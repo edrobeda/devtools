@@ -548,6 +548,7 @@ export const LABELS = {
     'gitlab-ci-config-generator': 'Gerador de .gitlab-ci.yml',
     'github-actions-workflow-generator': 'Gerador de GitHub Actions Workflow',
     'ci-cd-cost-calculator': 'Calculadora de Custo de CI/CD',
+    'vite-config-generator': 'Gerador de Configuração Vite',
   },
   en: {
     home: 'Home',
@@ -994,6 +995,7 @@ export const LABELS = {
     'gitlab-ci-config-generator': '.gitlab-ci.yml Generator',
     'github-actions-workflow-generator': 'GitHub Actions Workflow Generator',
     'ci-cd-cost-calculator': 'CI/CD Cost Calculator',
+    'vite-config-generator': 'Vite Config Generator',
   },
 }
 
@@ -1328,6 +1330,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/favicon-generator', icon: <PictureOutlined />, label: withNewBadge('/frontend/favicon-generator', l['favicon-generator'], l) },
         { key: '/frontend/css-has-selector-tester', icon: <SelectOutlined />, label: withNewBadge('/frontend/css-has-selector-tester', l['css-has-selector-tester'], l) },
         { key: '/frontend/typography-scale-calculator', icon: <FontSizeOutlined />, label: withNewBadge('/frontend/typography-scale-calculator', l['typography-scale-calculator'], l) },
+        { key: '/frontend/vite-config-generator', icon: <CodeOutlined />, label: withNewBadge('/frontend/vite-config-generator', l['vite-config-generator'], l) },
       ],
     },
     {

@@ -217,6 +217,7 @@ import DockerignoreGeneratorPage from './pages/DockerignoreGeneratorPage'
 import PrettierrcGeneratorPage from './pages/PrettierrcGeneratorPage'
 import MakefileGeneratorPage from './pages/MakefileGeneratorPage'
 import TsconfigGeneratorPage from './pages/TsconfigGeneratorPage'
+import ViteConfigGeneratorPage from './pages/ViteConfigGeneratorPage'
 import EslintConfigGeneratorPage from './pages/EslintConfigGeneratorPage'
 import CssSpinnerGeneratorPage from './pages/CssSpinnerGeneratorPage'
 import ColorBlindnessSimulatorPage from './pages/ColorBlindnessSimulatorPage'
@@ -819,6 +820,7 @@ const router = createBrowserRouter([
       { path: 'frontend/favicon-generator', element: <FaviconGeneratorPage /> },
       { path: 'frontend/css-has-selector-tester', element: <CssHasSelectorTesterPage /> },
       { path: 'frontend/typography-scale-calculator', element: <TypographyScaleCalculatorPage /> },
+      { path: 'frontend/vite-config-generator', element: <ViteConfigGeneratorPage /> },
       { path: 'snippets/use-update-effect', element: <UseUpdateEffectSnippetPage /> },
       { path: 'snippets/use-why-did-you-update', element: <UseWhyDidYouUpdateSnippetPage /> },
       { path: 'snippets/use-boolean', element: <UseBooleanSnippetPage /> },
