@@ -263,6 +263,7 @@ import CssFlipCardGeneratorPage from './pages/CssFlipCardGeneratorPage'
 import CssProgressRingGeneratorPage from './pages/CssProgressRingGeneratorPage'
 import CssDividerGeneratorPage from './pages/CssDividerGeneratorPage'
 import SvgBadgeGeneratorPage from './pages/SvgBadgeGeneratorPage'
+import SvgSpriteGeneratorPage from './pages/SvgSpriteGeneratorPage'
 import CssMarqueeGeneratorPage from './pages/CssMarqueeGeneratorPage'
 import CssCarouselGeneratorPage from './pages/CssCarouselGeneratorPage'
 import CssLoginFormGeneratorPage from './pages/CssLoginFormGeneratorPage'
@@ -799,6 +800,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-progress-ring-generator', element: <CssProgressRingGeneratorPage /> },
       { path: 'frontend/css-divider-generator', element: <CssDividerGeneratorPage /> },
       { path: 'frontend/svg-badge-generator', element: <SvgBadgeGeneratorPage /> },
+      { path: 'frontend/svg-sprite-generator', element: <SvgSpriteGeneratorPage /> },
       { path: 'frontend/css-marquee-generator', element: <CssMarqueeGeneratorPage /> },
       { path: 'frontend/css-carousel-generator', element: <CssCarouselGeneratorPage /> },
       { path: 'frontend/css-login-form-generator', element: <CssLoginFormGeneratorPage /> },
