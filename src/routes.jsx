@@ -451,6 +451,7 @@ import WebVitalsBudgetCalculatorPage from './pages/WebVitalsBudgetCalculatorPage
 import TerraformCheatsheetPage from './pages/TerraformCheatsheetPage'
 import NodejsCheatsheetPage from './pages/NodejsCheatsheetPage'
 import PostgresqlCheatsheetPage from './pages/PostgresqlCheatsheetPage'
+import GoCheatsheetPage from './pages/GoCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -900,6 +901,7 @@ const router = createBrowserRouter([
       { path: 'references/terraform-cheatsheet', element: <TerraformCheatsheetPage /> },
       { path: 'references/nodejs-cheatsheet', element: <NodejsCheatsheetPage /> },
       { path: 'references/postgresql-cheatsheet', element: <PostgresqlCheatsheetPage /> },
+      { path: 'references/go-cheatsheet', element: <GoCheatsheetPage /> },
       { path: 'tools/bankers-algorithm-simulator', element: <BankersAlgorithmSimulatorPage /> },
       { path: 'tools/memory-allocation-simulator', element: <MemoryAllocationSimulatorPage /> },
       { path: 'tools/raft-simulator', element: <RaftSimulatorPage /> },
