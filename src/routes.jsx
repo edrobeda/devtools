@@ -415,6 +415,7 @@ import EmailSignatureGeneratorPage from './pages/EmailSignatureGeneratorPage'
 import ConfigConverterPage from './pages/ConfigConverterPage'
 import NetworkLatencyCalculatorPage from './pages/NetworkLatencyCalculatorPage'
 import HttpCacheAnalyzerPage from './pages/HttpCacheAnalyzerPage'
+import DnsRecordGeneratorPage from './pages/DnsRecordGeneratorPage'
 import LittlesLawCalculatorPage from './pages/LittlesLawCalculatorPage'
 import ConcurrencyThroughputCalculatorPage from './pages/ConcurrencyThroughputCalculatorPage'
 import QueueingTheoryCalculatorPage from './pages/QueueingTheoryCalculatorPage'
@@ -619,6 +620,7 @@ const router = createBrowserRouter([
       { path: 'network/websocket-tester', element: <WebsocketTesterPage /> },
       { path: 'network/har-viewer', element: <HarViewerPage /> },
       { path: 'network/http-cache-analyzer', element: <HttpCacheAnalyzerPage /> },
+      { path: 'network/dns-record-generator', element: <DnsRecordGeneratorPage /> },
       { path: 'tools/iban-tool', element: <IbanToolPage /> },
       { path: 'tools/roman-numeral-converter', element: <RomanNumeralConverterPage /> },
       { path: 'tools/file-size-converter', element: <FileSizeConverterPage /> },
