@@ -455,6 +455,7 @@ import GoCheatsheetPage from './pages/GoCheatsheetPage'
 import RustCheatsheetPage from './pages/RustCheatsheetPage'
 import JavaCheatsheetPage from './pages/JavaCheatsheetPage'
 import SqliteCheatsheetPage from './pages/SqliteCheatsheetPage'
+import FfmpegCheatsheetPage from './pages/FfmpegCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -908,6 +909,7 @@ const router = createBrowserRouter([
       { path: 'references/rust-cheatsheet', element: <RustCheatsheetPage /> },
       { path: 'references/java-cheatsheet', element: <JavaCheatsheetPage /> },
       { path: 'references/sqlite-cheatsheet', element: <SqliteCheatsheetPage /> },
+      { path: 'references/ffmpeg-cheatsheet', element: <FfmpegCheatsheetPage /> },
       { path: 'tools/bankers-algorithm-simulator', element: <BankersAlgorithmSimulatorPage /> },
       { path: 'tools/memory-allocation-simulator', element: <MemoryAllocationSimulatorPage /> },
       { path: 'tools/raft-simulator', element: <RaftSimulatorPage /> },
