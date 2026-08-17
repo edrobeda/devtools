@@ -219,6 +219,7 @@ import PrettierrcGeneratorPage from './pages/PrettierrcGeneratorPage'
 import MakefileGeneratorPage from './pages/MakefileGeneratorPage'
 import TsconfigGeneratorPage from './pages/TsconfigGeneratorPage'
 import ViteConfigGeneratorPage from './pages/ViteConfigGeneratorPage'
+import DiskPerformanceCalculatorPage from './pages/DiskPerformanceCalculatorPage'
 import EslintConfigGeneratorPage from './pages/EslintConfigGeneratorPage'
 import CorsConfigGeneratorPage from './pages/CorsConfigGeneratorPage'
 import CssSpinnerGeneratorPage from './pages/CssSpinnerGeneratorPage'
@@ -706,6 +707,7 @@ const router = createBrowserRouter([
       { path: 'devops/openssl-commands', element: <OpensslCommandsPage /> },
       { path: 'devops/nginx-config-generator', element: <NginxConfigGeneratorPage /> },
       { path: 'devops/ssh-config-generator', element: <SshConfigGeneratorPage /> },
+      { path: 'devops/disk-performance-calculator', element: <DiskPerformanceCalculatorPage /> },
       { path: 'devops/systemd-unit-generator', element: <SystemdUnitGeneratorPage /> },
       { path: 'devops/shields-badge-generator', element: <ShieldsBadgeGeneratorPage /> },
       { path: 'devops/kubernetes-manifest-generator', element: <KubernetesManifestGeneratorPage /> },
