@@ -404,6 +404,7 @@ export const LABELS = {
     'saas-unit-economics-calculator': 'Unit Economics de SaaS',
     'software-bug-cost-calculator': 'Custo de Bug de Software',
     'test-automation-roi-calculator': 'ROI de Testes Automatizados',
+    'latency-budget-calculator': 'Orçamento de Latência End-to-End',
     'csv-markdown-table': 'CSV → Tabela Markdown',
     'markdown-syntax': 'Sintaxe Markdown',
     'kubectl-commands': 'Comandos kubectl',
@@ -865,6 +866,7 @@ export const LABELS = {
     'saas-unit-economics-calculator': 'SaaS Unit Economics Calculator',
     'software-bug-cost-calculator': 'Software Bug Cost Calculator',
     'test-automation-roi-calculator': 'Test Automation ROI Calculator',
+    'latency-budget-calculator': 'End-to-End Latency Budget',
     'csv-markdown-table': 'CSV → Markdown Table',
     'markdown-syntax': 'Markdown Syntax',
     'kubectl-commands': 'kubectl Commands',
@@ -1183,6 +1185,7 @@ export function buildMenuItems(l) {
         { key: '/tools/saas-unit-economics-calculator', icon: <DollarOutlined />, label: withNewBadge('/tools/saas-unit-economics-calculator', l['saas-unit-economics-calculator'], l) },
         { key: '/tools/software-bug-cost-calculator', icon: <BugOutlined />, label: withNewBadge('/tools/software-bug-cost-calculator', l['software-bug-cost-calculator'], l) },
         { key: '/tools/test-automation-roi-calculator', icon: <ExperimentOutlined />, label: withNewBadge('/tools/test-automation-roi-calculator', l['test-automation-roi-calculator'], l) },
+        { key: '/tools/latency-budget-calculator', icon: <ThunderboltOutlined />, label: withNewBadge('/tools/latency-budget-calculator', l['latency-budget-calculator'], l) },
       ],
     },
     {

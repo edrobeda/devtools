@@ -443,6 +443,7 @@ import NpvIrrRoiCalculatorPage from './pages/NpvIrrRoiCalculatorPage'
 import SaasUnitEconomicsCalculatorPage from './pages/SaasUnitEconomicsCalculatorPage'
 import SoftwareBugCostCalculatorPage from './pages/SoftwareBugCostCalculatorPage'
 import TestAutomationRoiCalculatorPage from './pages/TestAutomationRoiCalculatorPage'
+import LatencyBudgetCalculatorPage from './pages/LatencyBudgetCalculatorPage'
 
 const router = createBrowserRouter([
   {
@@ -652,6 +653,7 @@ const router = createBrowserRouter([
       { path: 'tools/saas-unit-economics-calculator', element: <SaasUnitEconomicsCalculatorPage /> },
       { path: 'tools/software-bug-cost-calculator', element: <SoftwareBugCostCalculatorPage /> },
       { path: 'tools/test-automation-roi-calculator', element: <TestAutomationRoiCalculatorPage /> },
+      { path: 'tools/latency-budget-calculator', element: <LatencyBudgetCalculatorPage /> },
       { path: 'tools/connection-string-parser', element: <ConnectionStringParserPage /> },
       { path: 'references/sql-joins', element: <SqlJoinsPage /> },
       { path: 'references/big-o-cheatsheet', element: <BigOCheatsheetPage /> },
