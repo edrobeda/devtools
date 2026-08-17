@@ -221,6 +221,7 @@ import TsconfigGeneratorPage from './pages/TsconfigGeneratorPage'
 import ViteConfigGeneratorPage from './pages/ViteConfigGeneratorPage'
 import DiskPerformanceCalculatorPage from './pages/DiskPerformanceCalculatorPage'
 import EslintConfigGeneratorPage from './pages/EslintConfigGeneratorPage'
+import RenovateConfigGeneratorPage from './pages/RenovateConfigGeneratorPage'
 import CorsConfigGeneratorPage from './pages/CorsConfigGeneratorPage'
 import CssSpinnerGeneratorPage from './pages/CssSpinnerGeneratorPage'
 import ColorBlindnessSimulatorPage from './pages/ColorBlindnessSimulatorPage'
@@ -770,6 +771,7 @@ const router = createBrowserRouter([
       { path: 'devops/makefile-generator', element: <MakefileGeneratorPage /> },
       { path: 'devops/tsconfig-generator', element: <TsconfigGeneratorPage /> },
       { path: 'devops/eslint-config-generator', element: <EslintConfigGeneratorPage /> },
+      { path: 'devops/renovate-config-generator', element: <RenovateConfigGeneratorPage /> },
       { path: 'devops/cors-config-generator', element: <CorsConfigGeneratorPage /> },
       { path: 'frontend/css-spinner-generator', element: <CssSpinnerGeneratorPage /> },
       { path: 'frontend/color-blindness-simulator', element: <ColorBlindnessSimulatorPage /> },
