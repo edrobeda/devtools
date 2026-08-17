@@ -430,6 +430,7 @@ import AmdahlsLawCalculatorPage from './pages/AmdahlsLawCalculatorPage'
 import UnicodeNormalizerPage from './pages/UnicodeNormalizerPage'
 import AwsSigv4SignatureGeneratorPage from './pages/AwsSigv4SignatureGeneratorPage'
 import ReadabilityCalculatorPage from './pages/ReadabilityCalculatorPage'
+import LinearRegressionCalculatorPage from './pages/LinearRegressionCalculatorPage'
 
 const router = createBrowserRouter([
   {
@@ -630,6 +631,7 @@ const router = createBrowserRouter([
       { path: 'tools/ab-test-calculator', element: <AbTestCalculatorPage /> },
       { path: 'tools/reading-time-calculator', element: <ReadingTimeCalculatorPage /> },
       { path: 'tools/readability-calculator', element: <ReadabilityCalculatorPage /> },
+      { path: 'tools/linear-regression-calculator', element: <LinearRegressionCalculatorPage /> },
       { path: 'tools/connection-string-parser', element: <ConnectionStringParserPage /> },
       { path: 'references/sql-joins', element: <SqlJoinsPage /> },
       { path: 'references/big-o-cheatsheet', element: <BigOCheatsheetPage /> },

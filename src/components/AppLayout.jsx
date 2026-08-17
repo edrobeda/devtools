@@ -393,6 +393,7 @@ export const LABELS = {
     'caesar-cipher': 'Cifra de César / ROT13 / ROT47',
     'reading-time-calculator': 'Calculadora de Tempo de Leitura',
     'readability-calculator': 'Calculadora de Legibilidade de Texto',
+    'linear-regression-calculator': 'Calculadora de Regressão Linear',
     'csv-markdown-table': 'CSV → Tabela Markdown',
     'markdown-syntax': 'Sintaxe Markdown',
     'kubectl-commands': 'Comandos kubectl',
@@ -841,6 +842,7 @@ export const LABELS = {
     'caesar-cipher': 'Caesar Cipher / ROT13 / ROT47',
     'reading-time-calculator': 'Reading Time Calculator',
     'readability-calculator': 'Text Readability Calculator',
+    'linear-regression-calculator': 'Linear Regression Calculator',
     'csv-markdown-table': 'CSV → Markdown Table',
     'markdown-syntax': 'Markdown Syntax',
     'kubectl-commands': 'kubectl Commands',
@@ -1150,6 +1152,7 @@ export function buildMenuItems(l) {
         { key: '/tools/caesar-cipher', icon: <LockOutlined />, label: withNewBadge('/tools/caesar-cipher', l['caesar-cipher'], l) },
         { key: '/tools/reading-time-calculator', icon: <ReadOutlined />, label: withNewBadge('/tools/reading-time-calculator', l['reading-time-calculator'], l) },
         { key: '/tools/readability-calculator', icon: <ReadOutlined />, label: withNewBadge('/tools/readability-calculator', l['readability-calculator'], l) },
+        { key: '/tools/linear-regression-calculator', icon: <LineChartOutlined />, label: withNewBadge('/tools/linear-regression-calculator', l['linear-regression-calculator'], l) },
       ],
     },
     {
