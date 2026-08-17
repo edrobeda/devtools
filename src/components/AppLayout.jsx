@@ -152,6 +152,7 @@ export const LABELS = {
     'anthropic-cost-calculator': 'Calculadora de Custo Anthropic',
     'llm-prompt-builder': 'LLM Prompt Builder',
     'cost-estimator': 'Estimador de Custo de Nuvem',
+    'iam-policy-generator': 'Gerador de Política IAM',
     'deep-link-tester': 'Testador de Deep Link',
     'word-counter': 'Contador de Palavras',
     'git-commands': 'Comandos Git',
@@ -603,6 +604,7 @@ export const LABELS = {
     'anthropic-cost-calculator': 'Anthropic Cost Calculator',
     'llm-prompt-builder': 'LLM Prompt Builder',
     'cost-estimator': 'Cloud Cost Estimator',
+    'iam-policy-generator': 'IAM Policy Generator',
     'deep-link-tester': 'Deep Link Tester',
     'word-counter': 'Word Counter',
     'git-commands': 'Git Commands',
@@ -1415,6 +1417,7 @@ export function buildMenuItems(l) {
       children: [
         { key: '/cloud/arn-parser', label: l['arn-parser'] },
         { key: '/cloud/cost-estimator', icon: <DollarOutlined />, label: withNewBadge('/cloud/cost-estimator', l['cost-estimator'], l) },
+        { key: '/cloud/iam-policy-generator', icon: <SafetyCertificateOutlined />, label: withNewBadge('/cloud/iam-policy-generator', l['iam-policy-generator'], l) },
       ],
     },
     {
