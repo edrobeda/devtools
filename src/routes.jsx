@@ -458,6 +458,7 @@ import SqliteCheatsheetPage from './pages/SqliteCheatsheetPage'
 import FfmpegCheatsheetPage from './pages/FfmpegCheatsheetPage'
 import CsharpCheatsheetPage from './pages/CsharpCheatsheetPage'
 import PhpCheatsheetPage from './pages/PhpCheatsheetPage'
+import KotlinCheatsheetPage from './pages/KotlinCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -914,6 +915,7 @@ const router = createBrowserRouter([
       { path: 'references/ffmpeg-cheatsheet', element: <FfmpegCheatsheetPage /> },
       { path: 'references/csharp-cheatsheet', element: <CsharpCheatsheetPage /> },
       { path: 'references/php-cheatsheet', element: <PhpCheatsheetPage /> },
+      { path: 'references/kotlin-cheatsheet', element: <KotlinCheatsheetPage /> },
       { path: 'tools/bankers-algorithm-simulator', element: <BankersAlgorithmSimulatorPage /> },
       { path: 'tools/memory-allocation-simulator', element: <MemoryAllocationSimulatorPage /> },
       { path: 'tools/raft-simulator', element: <RaftSimulatorPage /> },
