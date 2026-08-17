@@ -441,6 +441,7 @@ import ReadabilityCalculatorPage from './pages/ReadabilityCalculatorPage'
 import LinearRegressionCalculatorPage from './pages/LinearRegressionCalculatorPage'
 import NpvIrrRoiCalculatorPage from './pages/NpvIrrRoiCalculatorPage'
 import SaasUnitEconomicsCalculatorPage from './pages/SaasUnitEconomicsCalculatorPage'
+import SoftwareBugCostCalculatorPage from './pages/SoftwareBugCostCalculatorPage'
 
 const router = createBrowserRouter([
   {
@@ -648,6 +649,7 @@ const router = createBrowserRouter([
       { path: 'tools/linear-regression-calculator', element: <LinearRegressionCalculatorPage /> },
       { path: 'tools/npv-irr-roi-calculator', element: <NpvIrrRoiCalculatorPage /> },
       { path: 'tools/saas-unit-economics-calculator', element: <SaasUnitEconomicsCalculatorPage /> },
+      { path: 'tools/software-bug-cost-calculator', element: <SoftwareBugCostCalculatorPage /> },
       { path: 'tools/connection-string-parser', element: <ConnectionStringParserPage /> },
       { path: 'references/sql-joins', element: <SqlJoinsPage /> },
       { path: 'references/big-o-cheatsheet', element: <BigOCheatsheetPage /> },
