@@ -406,6 +406,7 @@ export const LABELS = {
     'test-automation-roi-calculator': 'ROI de Testes Automatizados',
     'latency-budget-calculator': 'Orçamento de Latência End-to-End',
     'cache-hit-ratio-calculator': 'Hit Ratio de Cache',
+    'log-storage-cost-calculator': 'Custo de Armazenamento de Logs',
     'csv-markdown-table': 'CSV → Tabela Markdown',
     'markdown-syntax': 'Sintaxe Markdown',
     'kubectl-commands': 'Comandos kubectl',
@@ -870,6 +871,7 @@ export const LABELS = {
     'test-automation-roi-calculator': 'Test Automation ROI Calculator',
     'latency-budget-calculator': 'End-to-End Latency Budget',
     'cache-hit-ratio-calculator': 'Cache Hit Ratio',
+    'log-storage-cost-calculator': 'Log Storage Cost',
     'csv-markdown-table': 'CSV → Markdown Table',
     'markdown-syntax': 'Markdown Syntax',
     'kubectl-commands': 'kubectl Commands',
@@ -1191,6 +1193,7 @@ export function buildMenuItems(l) {
         { key: '/tools/test-automation-roi-calculator', icon: <ExperimentOutlined />, label: withNewBadge('/tools/test-automation-roi-calculator', l['test-automation-roi-calculator'], l) },
         { key: '/tools/latency-budget-calculator', icon: <ThunderboltOutlined />, label: withNewBadge('/tools/latency-budget-calculator', l['latency-budget-calculator'], l) },
         { key: '/tools/cache-hit-ratio-calculator', icon: <DatabaseOutlined />, label: withNewBadge('/tools/cache-hit-ratio-calculator', l['cache-hit-ratio-calculator'], l) },
+        { key: '/tools/log-storage-cost-calculator', icon: <FileTextOutlined />, label: withNewBadge('/tools/log-storage-cost-calculator', l['log-storage-cost-calculator'], l) },
       ],
     },
     {

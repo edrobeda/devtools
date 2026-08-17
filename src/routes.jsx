@@ -446,6 +446,7 @@ import SoftwareBugCostCalculatorPage from './pages/SoftwareBugCostCalculatorPage
 import TestAutomationRoiCalculatorPage from './pages/TestAutomationRoiCalculatorPage'
 import LatencyBudgetCalculatorPage from './pages/LatencyBudgetCalculatorPage'
 import CacheHitRatioCalculatorPage from './pages/CacheHitRatioCalculatorPage'
+import LogStorageCostCalculatorPage from './pages/LogStorageCostCalculatorPage'
 
 const router = createBrowserRouter([
   {
@@ -657,6 +658,7 @@ const router = createBrowserRouter([
       { path: 'tools/test-automation-roi-calculator', element: <TestAutomationRoiCalculatorPage /> },
       { path: 'tools/latency-budget-calculator', element: <LatencyBudgetCalculatorPage /> },
       { path: 'tools/cache-hit-ratio-calculator', element: <CacheHitRatioCalculatorPage /> },
+      { path: 'tools/log-storage-cost-calculator', element: <LogStorageCostCalculatorPage /> },
       { path: 'tools/connection-string-parser', element: <ConnectionStringParserPage /> },
       { path: 'references/sql-joins', element: <SqlJoinsPage /> },
       { path: 'references/big-o-cheatsheet', element: <BigOCheatsheetPage /> },
