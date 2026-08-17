@@ -471,6 +471,7 @@ export const LABELS = {
     'prettierrc-generator': 'Gerador de .prettierrc',
     'makefile-generator': 'Gerador de Makefile',
     'tsconfig-generator': 'Gerador de tsconfig.json',
+    'eslint-config-generator': 'Gerador de Configuração ESLint',
     'css-spinner-generator': 'Gerador de Loading Spinner CSS',
     'color-blindness-simulator': 'Simulador de Daltonismo',
     'text-shadow-generator': 'Gerador de Text Shadow',
@@ -914,6 +915,7 @@ export const LABELS = {
     'prettierrc-generator': '.prettierrc Generator',
     'makefile-generator': 'Makefile Generator',
     'tsconfig-generator': 'tsconfig.json Generator',
+    'eslint-config-generator': 'ESLint Config Generator',
     'css-spinner-generator': 'CSS Loading Spinner Generator',
     'color-blindness-simulator': 'Color Blindness Simulator',
     'text-shadow-generator': 'Text Shadow Generator',
@@ -1371,6 +1373,7 @@ export function buildMenuItems(l) {
         { key: '/devops/prettierrc-generator', icon: <FileTextOutlined />, label: withNewBadge('/devops/prettierrc-generator', l['prettierrc-generator'], l) },
         { key: '/devops/makefile-generator', icon: <FileTextOutlined />, label: withNewBadge('/devops/makefile-generator', l['makefile-generator'], l) },
         { key: '/devops/tsconfig-generator', icon: <CodeOutlined />, label: withNewBadge('/devops/tsconfig-generator', l['tsconfig-generator'], l) },
+        { key: '/devops/eslint-config-generator', icon: <CodeOutlined />, label: withNewBadge('/devops/eslint-config-generator', l['eslint-config-generator'], l) },
       ],
     },
     {
