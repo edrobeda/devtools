@@ -454,6 +454,7 @@ import PostgresqlCheatsheetPage from './pages/PostgresqlCheatsheetPage'
 import GoCheatsheetPage from './pages/GoCheatsheetPage'
 import RustCheatsheetPage from './pages/RustCheatsheetPage'
 import JavaCheatsheetPage from './pages/JavaCheatsheetPage'
+import SqliteCheatsheetPage from './pages/SqliteCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -906,6 +907,7 @@ const router = createBrowserRouter([
       { path: 'references/go-cheatsheet', element: <GoCheatsheetPage /> },
       { path: 'references/rust-cheatsheet', element: <RustCheatsheetPage /> },
       { path: 'references/java-cheatsheet', element: <JavaCheatsheetPage /> },
+      { path: 'references/sqlite-cheatsheet', element: <SqliteCheatsheetPage /> },
       { path: 'tools/bankers-algorithm-simulator', element: <BankersAlgorithmSimulatorPage /> },
       { path: 'tools/memory-allocation-simulator', element: <MemoryAllocationSimulatorPage /> },
       { path: 'tools/raft-simulator', element: <RaftSimulatorPage /> },
