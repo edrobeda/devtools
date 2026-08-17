@@ -428,6 +428,7 @@ import MemoryAllocationSimulatorPage from './pages/MemoryAllocationSimulatorPage
 import RaftSimulatorPage from './pages/RaftSimulatorPage'
 import PaxosSimulatorPage from './pages/PaxosSimulatorPage'
 import BullyAlgorithmSimulatorPage from './pages/BullyAlgorithmSimulatorPage'
+import RingElectionSimulatorPage from './pages/RingElectionSimulatorPage'
 import DeadlockSimulatorPage from './pages/DeadlockSimulatorPage'
 import SreBurnRateCalculatorPage from './pages/SreBurnRateCalculatorPage'
 import AmdahlsLawCalculatorPage from './pages/AmdahlsLawCalculatorPage'
@@ -874,6 +875,7 @@ const router = createBrowserRouter([
       { path: 'tools/raft-simulator', element: <RaftSimulatorPage /> },
       { path: 'tools/paxos-simulator', element: <PaxosSimulatorPage /> },
       { path: 'tools/bully-algorithm-simulator', element: <BullyAlgorithmSimulatorPage /> },
+      { path: 'tools/ring-election-simulator', element: <RingElectionSimulatorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
