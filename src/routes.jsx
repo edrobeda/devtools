@@ -449,6 +449,7 @@ import CacheHitRatioCalculatorPage from './pages/CacheHitRatioCalculatorPage'
 import LogStorageCostCalculatorPage from './pages/LogStorageCostCalculatorPage'
 import WebVitalsBudgetCalculatorPage from './pages/WebVitalsBudgetCalculatorPage'
 import TerraformCheatsheetPage from './pages/TerraformCheatsheetPage'
+import NodejsCheatsheetPage from './pages/NodejsCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -896,6 +897,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-controllable-state', element: <UseControllableStateSnippetPage /> },
       { path: 'references/aws-cli-cheatsheet', element: <AwsCliCheatsheetPage /> },
       { path: 'references/terraform-cheatsheet', element: <TerraformCheatsheetPage /> },
+      { path: 'references/nodejs-cheatsheet', element: <NodejsCheatsheetPage /> },
       { path: 'tools/bankers-algorithm-simulator', element: <BankersAlgorithmSimulatorPage /> },
       { path: 'tools/memory-allocation-simulator', element: <MemoryAllocationSimulatorPage /> },
       { path: 'tools/raft-simulator', element: <RaftSimulatorPage /> },
