@@ -400,6 +400,7 @@ export const LABELS = {
     'readability-calculator': 'Calculadora de Legibilidade de Texto',
     'linear-regression-calculator': 'Calculadora de Regressão Linear',
     'npv-irr-roi-calculator': 'Calculadora de VPL, TIR e ROI',
+    'saas-unit-economics-calculator': 'Unit Economics de SaaS',
     'csv-markdown-table': 'CSV → Tabela Markdown',
     'markdown-syntax': 'Sintaxe Markdown',
     'kubectl-commands': 'Comandos kubectl',
@@ -858,6 +859,7 @@ export const LABELS = {
     'readability-calculator': 'Text Readability Calculator',
     'linear-regression-calculator': 'Linear Regression Calculator',
     'npv-irr-roi-calculator': 'NPV, IRR & ROI Calculator',
+    'saas-unit-economics-calculator': 'SaaS Unit Economics Calculator',
     'csv-markdown-table': 'CSV → Markdown Table',
     'markdown-syntax': 'Markdown Syntax',
     'kubectl-commands': 'kubectl Commands',
@@ -1173,6 +1175,7 @@ export function buildMenuItems(l) {
         { key: '/tools/readability-calculator', icon: <ReadOutlined />, label: withNewBadge('/tools/readability-calculator', l['readability-calculator'], l) },
         { key: '/tools/linear-regression-calculator', icon: <LineChartOutlined />, label: withNewBadge('/tools/linear-regression-calculator', l['linear-regression-calculator'], l) },
         { key: '/tools/npv-irr-roi-calculator', icon: <LineChartOutlined />, label: withNewBadge('/tools/npv-irr-roi-calculator', l['npv-irr-roi-calculator'], l) },
+        { key: '/tools/saas-unit-economics-calculator', icon: <DollarOutlined />, label: withNewBadge('/tools/saas-unit-economics-calculator', l['saas-unit-economics-calculator'], l) },
       ],
     },
     {

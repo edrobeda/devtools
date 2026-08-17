@@ -440,6 +440,7 @@ import AwsSigv4SignatureGeneratorPage from './pages/AwsSigv4SignatureGeneratorPa
 import ReadabilityCalculatorPage from './pages/ReadabilityCalculatorPage'
 import LinearRegressionCalculatorPage from './pages/LinearRegressionCalculatorPage'
 import NpvIrrRoiCalculatorPage from './pages/NpvIrrRoiCalculatorPage'
+import SaasUnitEconomicsCalculatorPage from './pages/SaasUnitEconomicsCalculatorPage'
 
 const router = createBrowserRouter([
   {
@@ -646,6 +647,7 @@ const router = createBrowserRouter([
       { path: 'tools/readability-calculator', element: <ReadabilityCalculatorPage /> },
       { path: 'tools/linear-regression-calculator', element: <LinearRegressionCalculatorPage /> },
       { path: 'tools/npv-irr-roi-calculator', element: <NpvIrrRoiCalculatorPage /> },
+      { path: 'tools/saas-unit-economics-calculator', element: <SaasUnitEconomicsCalculatorPage /> },
       { path: 'tools/connection-string-parser', element: <ConnectionStringParserPage /> },
       { path: 'references/sql-joins', element: <SqlJoinsPage /> },
       { path: 'references/big-o-cheatsheet', element: <BigOCheatsheetPage /> },
