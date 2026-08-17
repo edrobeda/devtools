@@ -223,6 +223,7 @@ import DiskPerformanceCalculatorPage from './pages/DiskPerformanceCalculatorPage
 import EslintConfigGeneratorPage from './pages/EslintConfigGeneratorPage'
 import RenovateConfigGeneratorPage from './pages/RenovateConfigGeneratorPage'
 import CorsConfigGeneratorPage from './pages/CorsConfigGeneratorPage'
+import PullRequestTemplateGeneratorPage from './pages/PullRequestTemplateGeneratorPage'
 import CssSpinnerGeneratorPage from './pages/CssSpinnerGeneratorPage'
 import ColorBlindnessSimulatorPage from './pages/ColorBlindnessSimulatorPage'
 import TextShadowGeneratorPage from './pages/TextShadowGeneratorPage'
@@ -783,6 +784,7 @@ const router = createBrowserRouter([
       { path: 'devops/eslint-config-generator', element: <EslintConfigGeneratorPage /> },
       { path: 'devops/renovate-config-generator', element: <RenovateConfigGeneratorPage /> },
       { path: 'devops/cors-config-generator', element: <CorsConfigGeneratorPage /> },
+      { path: 'devops/pull-request-template-generator', element: <PullRequestTemplateGeneratorPage /> },
       { path: 'frontend/css-spinner-generator', element: <CssSpinnerGeneratorPage /> },
       { path: 'frontend/color-blindness-simulator', element: <ColorBlindnessSimulatorPage /> },
       { path: 'frontend/text-shadow-generator', element: <TextShadowGeneratorPage /> },
