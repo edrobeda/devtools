@@ -346,6 +346,7 @@ export const LABELS = {
     'http-cache-analyzer': 'Analisador de Cache HTTP',
     'dns-record-generator': 'Gerador de Registros DNS',
     'tcp-throughput-calculator': 'Calculadora de Throughput TCP',
+    'shannon-capacity-calculator': 'Calculadora de Capacidade de Shannon',
     'iban-tool': 'Gerador/Validador de IBAN',
     'roman-numeral-converter': 'Conversor de Números Romanos',
     'file-size-converter': 'Conversor de Tamanho de Arquivo',
@@ -800,6 +801,7 @@ export const LABELS = {
     'http-cache-analyzer': 'HTTP Cache Analyzer',
     'dns-record-generator': 'DNS Record Generator',
     'tcp-throughput-calculator': 'TCP Throughput Calculator',
+    'shannon-capacity-calculator': 'Shannon Capacity Calculator',
     'iban-tool': 'IBAN Generator / Validator',
     'roman-numeral-converter': 'Roman Numeral Converter',
     'file-size-converter': 'File Size Converter',
@@ -1479,6 +1481,7 @@ export function buildMenuItems(l) {
         { key: '/network/http-cache-analyzer', icon: <FieldTimeOutlined />, label: withNewBadge('/network/http-cache-analyzer', l['http-cache-analyzer'], l) },
         { key: '/network/dns-record-generator', icon: <GlobalOutlined />, label: withNewBadge('/network/dns-record-generator', l['dns-record-generator'], l) },
         { key: '/network/tcp-throughput-calculator', icon: <ThunderboltOutlined />, label: withNewBadge('/network/tcp-throughput-calculator', l['tcp-throughput-calculator'], l) },
+        { key: '/network/shannon-capacity-calculator', icon: <ThunderboltOutlined />, label: withNewBadge('/network/shannon-capacity-calculator', l['shannon-capacity-calculator'], l) },
       ],
     },
     {

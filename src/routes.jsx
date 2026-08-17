@@ -418,6 +418,7 @@ import NetworkLatencyCalculatorPage from './pages/NetworkLatencyCalculatorPage'
 import HttpCacheAnalyzerPage from './pages/HttpCacheAnalyzerPage'
 import DnsRecordGeneratorPage from './pages/DnsRecordGeneratorPage'
 import TcpThroughputCalculatorPage from './pages/TcpThroughputCalculatorPage'
+import ShannonCapacityCalculatorPage from './pages/ShannonCapacityCalculatorPage'
 import LittlesLawCalculatorPage from './pages/LittlesLawCalculatorPage'
 import ConcurrencyThroughputCalculatorPage from './pages/ConcurrencyThroughputCalculatorPage'
 import QueueingTheoryCalculatorPage from './pages/QueueingTheoryCalculatorPage'
@@ -626,6 +627,7 @@ const router = createBrowserRouter([
       { path: 'network/http-cache-analyzer', element: <HttpCacheAnalyzerPage /> },
       { path: 'network/dns-record-generator', element: <DnsRecordGeneratorPage /> },
       { path: 'network/tcp-throughput-calculator', element: <TcpThroughputCalculatorPage /> },
+      { path: 'network/shannon-capacity-calculator', element: <ShannonCapacityCalculatorPage /> },
       { path: 'tools/iban-tool', element: <IbanToolPage /> },
       { path: 'tools/roman-numeral-converter', element: <RomanNumeralConverterPage /> },
       { path: 'tools/file-size-converter', element: <FileSizeConverterPage /> },
