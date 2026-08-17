@@ -384,6 +384,7 @@ import PageReplacementSimulatorPage from './pages/PageReplacementSimulatorPage'
 import MerkleTreeSimulatorPage from './pages/MerkleTreeSimulatorPage'
 import QuorumNwrSimulatorPage from './pages/QuorumNwrSimulatorPage'
 import CsvToSqlPage from './pages/CsvToSqlPage'
+import DatabaseStorageEstimatorPage from './pages/DatabaseStorageEstimatorPage'
 import BmiCalculatorPage from './pages/BmiCalculatorPage'
 import LogicalClocksSimulatorPage from './pages/LogicalClocksSimulatorPage'
 import MapreduceSimulatorPage from './pages/MapreduceSimulatorPage'
@@ -604,6 +605,7 @@ const router = createBrowserRouter([
       { path: 'database/sql-formatter', element: <SqlFormatterPage /> },
       { path: 'database/sql-isolation-levels', element: <SqlIsolationLevelsPage /> },
       { path: 'database/csv-to-sql', element: <CsvToSqlPage /> },
+      { path: 'database/storage-estimator', element: <DatabaseStorageEstimatorPage /> },
       { path: 'network/common-ports', element: <CommonPortsPage /> },
       { path: 'network/ipv6-explorer', element: <Ipv6ExplorerPage /> },
       { path: 'network/mac-address-tool', element: <MacAddressToolPage /> },

@@ -357,6 +357,7 @@ export const LABELS = {
     'sql-joins': 'Visualizador de JOINs SQL',
     'sql-isolation-levels': 'Níveis de Isolação SQL',
     'csv-to-sql': 'CSV → SQL',
+    'storage-estimator': 'Estimador de Tamanho de BD',
     'big-o-cheatsheet': 'Cheat Sheet de Big-O',
     'json-to-zod-schema': 'JSON → Zod Schema',
     'loan-amortization-calculator': 'Calculadora SAC / Price',
@@ -801,6 +802,7 @@ export const LABELS = {
     'sql-joins': 'SQL JOIN Visualizer',
     'sql-isolation-levels': 'SQL Isolation Levels',
     'csv-to-sql': 'CSV to SQL',
+    'storage-estimator': 'Database Storage Estimator',
     'big-o-cheatsheet': 'Big-O Cheat Sheet',
     'json-to-zod-schema': 'JSON → Zod Schema',
     'loan-amortization-calculator': 'SAC / Loan Amortization Calculator',
@@ -1386,6 +1388,7 @@ export function buildMenuItems(l) {
         { key: '/database/sql-formatter', icon: <FileTextOutlined />, label: withNewBadge('/database/sql-formatter', l['sql-formatter'], l) },
         { key: '/database/sql-isolation-levels', icon: <DatabaseOutlined />, label: withNewBadge('/database/sql-isolation-levels', l['sql-isolation-levels'], l) },
         { key: '/database/csv-to-sql', icon: <DatabaseOutlined />, label: withNewBadge('/database/csv-to-sql', l['csv-to-sql'], l) },
+        { key: '/database/storage-estimator', icon: <DatabaseOutlined />, label: withNewBadge('/database/storage-estimator', l['storage-estimator'], l) },
       ],
     },
     {
