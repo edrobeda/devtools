@@ -403,6 +403,7 @@ export const LABELS = {
     'npv-irr-roi-calculator': 'Calculadora de VPL, TIR e ROI',
     'saas-unit-economics-calculator': 'Unit Economics de SaaS',
     'software-bug-cost-calculator': 'Custo de Bug de Software',
+    'test-automation-roi-calculator': 'ROI de Testes Automatizados',
     'csv-markdown-table': 'CSV → Tabela Markdown',
     'markdown-syntax': 'Sintaxe Markdown',
     'kubectl-commands': 'Comandos kubectl',
@@ -863,6 +864,7 @@ export const LABELS = {
     'npv-irr-roi-calculator': 'NPV, IRR & ROI Calculator',
     'saas-unit-economics-calculator': 'SaaS Unit Economics Calculator',
     'software-bug-cost-calculator': 'Software Bug Cost Calculator',
+    'test-automation-roi-calculator': 'Test Automation ROI Calculator',
     'csv-markdown-table': 'CSV → Markdown Table',
     'markdown-syntax': 'Markdown Syntax',
     'kubectl-commands': 'kubectl Commands',
@@ -1180,6 +1182,7 @@ export function buildMenuItems(l) {
         { key: '/tools/npv-irr-roi-calculator', icon: <LineChartOutlined />, label: withNewBadge('/tools/npv-irr-roi-calculator', l['npv-irr-roi-calculator'], l) },
         { key: '/tools/saas-unit-economics-calculator', icon: <DollarOutlined />, label: withNewBadge('/tools/saas-unit-economics-calculator', l['saas-unit-economics-calculator'], l) },
         { key: '/tools/software-bug-cost-calculator', icon: <BugOutlined />, label: withNewBadge('/tools/software-bug-cost-calculator', l['software-bug-cost-calculator'], l) },
+        { key: '/tools/test-automation-roi-calculator', icon: <ExperimentOutlined />, label: withNewBadge('/tools/test-automation-roi-calculator', l['test-automation-roi-calculator'], l) },
       ],
     },
     {
