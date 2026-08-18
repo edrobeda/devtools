@@ -467,6 +467,7 @@ import CertificateDecoderPage from './pages/CertificateDecoderPage'
 import MongoDbCheatsheetPage from './pages/MongoDbCheatsheetPage'
 import PrometheusCheatsheetPage from './pages/PrometheusCheatsheetPage'
 import KafkaCheatsheetPage from './pages/KafkaCheatsheetPage'
+import ElasticsearchCheatsheetPage from './pages/ElasticsearchCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -932,6 +933,7 @@ const router = createBrowserRouter([
       { path: 'references/mongodb-cheatsheet', element: <MongoDbCheatsheetPage /> },
       { path: 'references/prometheus-cheatsheet', element: <PrometheusCheatsheetPage /> },
       { path: 'references/kafka-cheatsheet', element: <KafkaCheatsheetPage /> },
+      { path: 'references/elasticsearch-cheatsheet', element: <ElasticsearchCheatsheetPage /> },
       { path: 'tools/bankers-algorithm-simulator', element: <BankersAlgorithmSimulatorPage /> },
       { path: 'tools/memory-allocation-simulator', element: <MemoryAllocationSimulatorPage /> },
       { path: 'tools/raft-simulator', element: <RaftSimulatorPage /> },
