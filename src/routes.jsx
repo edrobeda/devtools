@@ -28,6 +28,7 @@ import GitignoreGeneratorPage from './pages/GitignoreGeneratorPage'
 import RateLimitCalculatorPage from './pages/RateLimitCalculatorPage'
 import ArnParserPage from './pages/ArnParserPage'
 import CloudCostEstimatorPage from './pages/CloudCostEstimatorPage'
+import IamPolicyGeneratorPage from './pages/IamPolicyGeneratorPage'
 import PasswordStrengthPage from './pages/PasswordStrengthPage'
 import JsonTreeViewerPage from './pages/JsonTreeViewerPage'
 import SubnetCalculatorPage from './pages/SubnetCalculatorPage'
@@ -218,8 +219,11 @@ import PrettierrcGeneratorPage from './pages/PrettierrcGeneratorPage'
 import MakefileGeneratorPage from './pages/MakefileGeneratorPage'
 import TsconfigGeneratorPage from './pages/TsconfigGeneratorPage'
 import ViteConfigGeneratorPage from './pages/ViteConfigGeneratorPage'
+import DiskPerformanceCalculatorPage from './pages/DiskPerformanceCalculatorPage'
 import EslintConfigGeneratorPage from './pages/EslintConfigGeneratorPage'
+import RenovateConfigGeneratorPage from './pages/RenovateConfigGeneratorPage'
 import CorsConfigGeneratorPage from './pages/CorsConfigGeneratorPage'
+import PullRequestTemplateGeneratorPage from './pages/PullRequestTemplateGeneratorPage'
 import CssSpinnerGeneratorPage from './pages/CssSpinnerGeneratorPage'
 import ColorBlindnessSimulatorPage from './pages/ColorBlindnessSimulatorPage'
 import TextShadowGeneratorPage from './pages/TextShadowGeneratorPage'
@@ -359,6 +363,7 @@ import UseControllableStateSnippetPage from './pages/UseControllableStateSnippet
 import FileSizeConverterPage from './pages/FileSizeConverterPage'
 import FileHashCalculatorPage from './pages/FileHashCalculatorPage'
 import GeoCoordinatesConverterPage from './pages/GeoCoordinatesConverterPage'
+import HaversineDistanceCalculatorPage from './pages/HaversineDistanceCalculatorPage'
 import LevenshteinCalculatorPage from './pages/LevenshteinCalculatorPage'
 import BandwidthCalculatorPage from './pages/BandwidthCalculatorPage'
 import CookieToolPage from './pages/CookieToolPage'
@@ -416,6 +421,8 @@ import ConfigConverterPage from './pages/ConfigConverterPage'
 import NetworkLatencyCalculatorPage from './pages/NetworkLatencyCalculatorPage'
 import HttpCacheAnalyzerPage from './pages/HttpCacheAnalyzerPage'
 import DnsRecordGeneratorPage from './pages/DnsRecordGeneratorPage'
+import TcpThroughputCalculatorPage from './pages/TcpThroughputCalculatorPage'
+import ShannonCapacityCalculatorPage from './pages/ShannonCapacityCalculatorPage'
 import LittlesLawCalculatorPage from './pages/LittlesLawCalculatorPage'
 import ConcurrencyThroughputCalculatorPage from './pages/ConcurrencyThroughputCalculatorPage'
 import QueueingTheoryCalculatorPage from './pages/QueueingTheoryCalculatorPage'
@@ -426,6 +433,7 @@ import MemoryAllocationSimulatorPage from './pages/MemoryAllocationSimulatorPage
 import RaftSimulatorPage from './pages/RaftSimulatorPage'
 import PaxosSimulatorPage from './pages/PaxosSimulatorPage'
 import BullyAlgorithmSimulatorPage from './pages/BullyAlgorithmSimulatorPage'
+import RingElectionSimulatorPage from './pages/RingElectionSimulatorPage'
 import DeadlockSimulatorPage from './pages/DeadlockSimulatorPage'
 import SreBurnRateCalculatorPage from './pages/SreBurnRateCalculatorPage'
 import AmdahlsLawCalculatorPage from './pages/AmdahlsLawCalculatorPage'
@@ -433,6 +441,35 @@ import UnicodeNormalizerPage from './pages/UnicodeNormalizerPage'
 import AwsSigv4SignatureGeneratorPage from './pages/AwsSigv4SignatureGeneratorPage'
 import ReadabilityCalculatorPage from './pages/ReadabilityCalculatorPage'
 import LinearRegressionCalculatorPage from './pages/LinearRegressionCalculatorPage'
+import NpvIrrRoiCalculatorPage from './pages/NpvIrrRoiCalculatorPage'
+import SaasUnitEconomicsCalculatorPage from './pages/SaasUnitEconomicsCalculatorPage'
+import SoftwareBugCostCalculatorPage from './pages/SoftwareBugCostCalculatorPage'
+import TestAutomationRoiCalculatorPage from './pages/TestAutomationRoiCalculatorPage'
+import LatencyBudgetCalculatorPage from './pages/LatencyBudgetCalculatorPage'
+import CacheHitRatioCalculatorPage from './pages/CacheHitRatioCalculatorPage'
+import LogStorageCostCalculatorPage from './pages/LogStorageCostCalculatorPage'
+import WebVitalsBudgetCalculatorPage from './pages/WebVitalsBudgetCalculatorPage'
+import TerraformCheatsheetPage from './pages/TerraformCheatsheetPage'
+import NodejsCheatsheetPage from './pages/NodejsCheatsheetPage'
+import PostgresqlCheatsheetPage from './pages/PostgresqlCheatsheetPage'
+import GoCheatsheetPage from './pages/GoCheatsheetPage'
+import RustCheatsheetPage from './pages/RustCheatsheetPage'
+import JavaCheatsheetPage from './pages/JavaCheatsheetPage'
+import SqliteCheatsheetPage from './pages/SqliteCheatsheetPage'
+import FfmpegCheatsheetPage from './pages/FfmpegCheatsheetPage'
+import CsharpCheatsheetPage from './pages/CsharpCheatsheetPage'
+import PhpCheatsheetPage from './pages/PhpCheatsheetPage'
+import KotlinCheatsheetPage from './pages/KotlinCheatsheetPage'
+import TcpdumpCheatsheetPage from './pages/TcpdumpCheatsheetPage'
+import GitHooksGeneratorPage from './pages/GitHooksGeneratorPage'
+import BusinessDaysCalculatorPage from './pages/BusinessDaysCalculatorPage'
+import CertificateDecoderPage from './pages/CertificateDecoderPage'
+import MongoDbCheatsheetPage from './pages/MongoDbCheatsheetPage'
+import PrometheusCheatsheetPage from './pages/PrometheusCheatsheetPage'
+import KafkaCheatsheetPage from './pages/KafkaCheatsheetPage'
+import ElasticsearchCheatsheetPage from './pages/ElasticsearchCheatsheetPage'
+import CppCheatsheetPage from './pages/CppCheatsheetPage'
+import GraphqlCheatsheetPage from './pages/GraphqlCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -466,6 +503,7 @@ const router = createBrowserRouter([
       { path: 'database/rate-limit-calculator', element: <RateLimitCalculatorPage /> },
       { path: 'cloud/arn-parser', element: <ArnParserPage /> },
       { path: 'cloud/cost-estimator', element: <CloudCostEstimatorPage /> },
+      { path: 'cloud/iam-policy-generator', element: <IamPolicyGeneratorPage /> },
       { path: 'security/password-strength', element: <PasswordStrengthPage /> },
       { path: 'data/json-tree-viewer', element: <JsonTreeViewerPage /> },
       { path: 'network/subnet-calculator', element: <SubnetCalculatorPage /> },
@@ -581,6 +619,7 @@ const router = createBrowserRouter([
       { path: 'security/aes-encrypt-decrypt', element: <AesEncryptDecryptPage /> },
       { path: 'security/hash-identifier', element: <HashIdentifierPage /> },
       { path: 'security/pkce-generator', element: <PkceGeneratorPage /> },
+      { path: 'security/certificate-decoder', element: <CertificateDecoderPage /> },
       { path: 'ai/token-counter', element: <TokenCounterPage /> },
       { path: 'devops/env-tool', element: <EnvToolPage /> },
       { path: 'text/remove-accents', element: <RemoveAccentsPage /> },
@@ -621,11 +660,14 @@ const router = createBrowserRouter([
       { path: 'network/har-viewer', element: <HarViewerPage /> },
       { path: 'network/http-cache-analyzer', element: <HttpCacheAnalyzerPage /> },
       { path: 'network/dns-record-generator', element: <DnsRecordGeneratorPage /> },
+      { path: 'network/tcp-throughput-calculator', element: <TcpThroughputCalculatorPage /> },
+      { path: 'network/shannon-capacity-calculator', element: <ShannonCapacityCalculatorPage /> },
       { path: 'tools/iban-tool', element: <IbanToolPage /> },
       { path: 'tools/roman-numeral-converter', element: <RomanNumeralConverterPage /> },
       { path: 'tools/file-size-converter', element: <FileSizeConverterPage /> },
       { path: 'tools/file-hash-calculator', element: <FileHashCalculatorPage /> },
       { path: 'tools/geo-coordinates-converter', element: <GeoCoordinatesConverterPage /> },
+      { path: 'tools/haversine-distance-calculator', element: <HaversineDistanceCalculatorPage /> },
       { path: 'tools/levenshtein-calculator', element: <LevenshteinCalculatorPage /> },
       { path: 'tools/bandwidth-calculator', element: <BandwidthCalculatorPage /> },
       { path: 'tools/cookie-tool', element: <CookieToolPage /> },
@@ -635,6 +677,14 @@ const router = createBrowserRouter([
       { path: 'tools/reading-time-calculator', element: <ReadingTimeCalculatorPage /> },
       { path: 'tools/readability-calculator', element: <ReadabilityCalculatorPage /> },
       { path: 'tools/linear-regression-calculator', element: <LinearRegressionCalculatorPage /> },
+      { path: 'tools/npv-irr-roi-calculator', element: <NpvIrrRoiCalculatorPage /> },
+      { path: 'tools/saas-unit-economics-calculator', element: <SaasUnitEconomicsCalculatorPage /> },
+      { path: 'tools/software-bug-cost-calculator', element: <SoftwareBugCostCalculatorPage /> },
+      { path: 'tools/test-automation-roi-calculator', element: <TestAutomationRoiCalculatorPage /> },
+      { path: 'tools/latency-budget-calculator', element: <LatencyBudgetCalculatorPage /> },
+      { path: 'tools/cache-hit-ratio-calculator', element: <CacheHitRatioCalculatorPage /> },
+      { path: 'tools/log-storage-cost-calculator', element: <LogStorageCostCalculatorPage /> },
+      { path: 'tools/web-vitals-budget-calculator', element: <WebVitalsBudgetCalculatorPage /> },
       { path: 'tools/connection-string-parser', element: <ConnectionStringParserPage /> },
       { path: 'references/sql-joins', element: <SqlJoinsPage /> },
       { path: 'references/big-o-cheatsheet', element: <BigOCheatsheetPage /> },
@@ -699,6 +749,7 @@ const router = createBrowserRouter([
       { path: 'devops/openssl-commands', element: <OpensslCommandsPage /> },
       { path: 'devops/nginx-config-generator', element: <NginxConfigGeneratorPage /> },
       { path: 'devops/ssh-config-generator', element: <SshConfigGeneratorPage /> },
+      { path: 'devops/disk-performance-calculator', element: <DiskPerformanceCalculatorPage /> },
       { path: 'devops/systemd-unit-generator', element: <SystemdUnitGeneratorPage /> },
       { path: 'devops/shields-badge-generator', element: <ShieldsBadgeGeneratorPage /> },
       { path: 'devops/kubernetes-manifest-generator', element: <KubernetesManifestGeneratorPage /> },
@@ -706,6 +757,8 @@ const router = createBrowserRouter([
       { path: 'devops/gitlab-ci-config-generator', element: <GitlabCiConfigGeneratorPage /> },
       { path: 'devops/github-actions-workflow-generator', element: <GithubActionsWorkflowGeneratorPage /> },
       { path: 'devops/ci-cd-cost-calculator', element: <CiCdCostCalculatorPage /> },
+      { path: 'devops/git-hooks-generator', element: <GitHooksGeneratorPage /> },
+      { path: 'tools/business-days-calculator', element: <BusinessDaysCalculatorPage /> },
       { path: 'devops/caddyfile-generator', element: <CaddyfileGeneratorPage /> },
       { path: 'devops/htaccess-generator', element: <HtaccessGeneratorPage /> },
       { path: 'tools/units-converter', element: <UnitsConverterPage /> },
@@ -761,7 +814,9 @@ const router = createBrowserRouter([
       { path: 'devops/makefile-generator', element: <MakefileGeneratorPage /> },
       { path: 'devops/tsconfig-generator', element: <TsconfigGeneratorPage /> },
       { path: 'devops/eslint-config-generator', element: <EslintConfigGeneratorPage /> },
+      { path: 'devops/renovate-config-generator', element: <RenovateConfigGeneratorPage /> },
       { path: 'devops/cors-config-generator', element: <CorsConfigGeneratorPage /> },
+      { path: 'devops/pull-request-template-generator', element: <PullRequestTemplateGeneratorPage /> },
       { path: 'frontend/css-spinner-generator', element: <CssSpinnerGeneratorPage /> },
       { path: 'frontend/color-blindness-simulator', element: <ColorBlindnessSimulatorPage /> },
       { path: 'frontend/text-shadow-generator', element: <TextShadowGeneratorPage /> },
@@ -865,11 +920,30 @@ const router = createBrowserRouter([
       { path: 'snippets/use-pagination', element: <UsePaginationSnippetPage /> },
       { path: 'snippets/use-controllable-state', element: <UseControllableStateSnippetPage /> },
       { path: 'references/aws-cli-cheatsheet', element: <AwsCliCheatsheetPage /> },
+      { path: 'references/terraform-cheatsheet', element: <TerraformCheatsheetPage /> },
+      { path: 'references/nodejs-cheatsheet', element: <NodejsCheatsheetPage /> },
+      { path: 'references/postgresql-cheatsheet', element: <PostgresqlCheatsheetPage /> },
+      { path: 'references/go-cheatsheet', element: <GoCheatsheetPage /> },
+      { path: 'references/rust-cheatsheet', element: <RustCheatsheetPage /> },
+      { path: 'references/java-cheatsheet', element: <JavaCheatsheetPage /> },
+      { path: 'references/sqlite-cheatsheet', element: <SqliteCheatsheetPage /> },
+      { path: 'references/ffmpeg-cheatsheet', element: <FfmpegCheatsheetPage /> },
+      { path: 'references/csharp-cheatsheet', element: <CsharpCheatsheetPage /> },
+      { path: 'references/php-cheatsheet', element: <PhpCheatsheetPage /> },
+      { path: 'references/kotlin-cheatsheet', element: <KotlinCheatsheetPage /> },
+      { path: 'references/tcpdump-cheatsheet', element: <TcpdumpCheatsheetPage /> },
+      { path: 'references/mongodb-cheatsheet', element: <MongoDbCheatsheetPage /> },
+      { path: 'references/prometheus-cheatsheet', element: <PrometheusCheatsheetPage /> },
+      { path: 'references/kafka-cheatsheet', element: <KafkaCheatsheetPage /> },
+      { path: 'references/elasticsearch-cheatsheet', element: <ElasticsearchCheatsheetPage /> },
+      { path: 'references/cpp-cheatsheet', element: <CppCheatsheetPage /> },
+      { path: 'references/graphql-cheatsheet', element: <GraphqlCheatsheetPage /> },
       { path: 'tools/bankers-algorithm-simulator', element: <BankersAlgorithmSimulatorPage /> },
       { path: 'tools/memory-allocation-simulator', element: <MemoryAllocationSimulatorPage /> },
       { path: 'tools/raft-simulator', element: <RaftSimulatorPage /> },
       { path: 'tools/paxos-simulator', element: <PaxosSimulatorPage /> },
       { path: 'tools/bully-algorithm-simulator', element: <BullyAlgorithmSimulatorPage /> },
+      { path: 'tools/ring-election-simulator', element: <RingElectionSimulatorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
