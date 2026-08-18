@@ -465,6 +465,7 @@ import BusinessDaysCalculatorPage from './pages/BusinessDaysCalculatorPage'
 import CertificateDecoderPage from './pages/CertificateDecoderPage'
 import MongoDbCheatsheetPage from './pages/MongoDbCheatsheetPage'
 import PrometheusCheatsheetPage from './pages/PrometheusCheatsheetPage'
+import KafkaCheatsheetPage from './pages/KafkaCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -928,6 +929,7 @@ const router = createBrowserRouter([
       { path: 'references/tcpdump-cheatsheet', element: <TcpdumpCheatsheetPage /> },
       { path: 'references/mongodb-cheatsheet', element: <MongoDbCheatsheetPage /> },
       { path: 'references/prometheus-cheatsheet', element: <PrometheusCheatsheetPage /> },
+      { path: 'references/kafka-cheatsheet', element: <KafkaCheatsheetPage /> },
       { path: 'tools/bankers-algorithm-simulator', element: <BankersAlgorithmSimulatorPage /> },
       { path: 'tools/memory-allocation-simulator', element: <MemoryAllocationSimulatorPage /> },
       { path: 'tools/raft-simulator', element: <RaftSimulatorPage /> },

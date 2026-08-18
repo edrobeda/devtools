@@ -586,6 +586,7 @@ export const LABELS = {
     'vite-config-generator': 'Gerador de Configuração Vite',
     'mongodb-cheatsheet': 'Cheat Sheet de MongoDB',
     'prometheus-cheatsheet': 'Cheat Sheet de Prometheus / PromQL',
+    'kafka-cheatsheet': 'Cheat Sheet de Kafka',
   },
   en: {
     home: 'Home',
@@ -1069,6 +1070,7 @@ export const LABELS = {
     'vite-config-generator': 'Vite Config Generator',
     'mongodb-cheatsheet': 'MongoDB Cheat Sheet',
     'prometheus-cheatsheet': 'Prometheus / PromQL Cheat Sheet',
+    'kafka-cheatsheet': 'Kafka Cheat Sheet',
   },
 }
 
@@ -1639,6 +1641,7 @@ export function buildMenuItems(l) {
         { key: '/references/kotlin-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/kotlin-cheatsheet', l['kotlin-cheatsheet'], l) },
         { key: '/references/tcpdump-cheatsheet', icon: <GlobalOutlined />, label: withNewBadge('/references/tcpdump-cheatsheet', l['tcpdump-cheatsheet'], l) },
         { key: '/references/prometheus-cheatsheet', icon: <LineChartOutlined />, label: withNewBadge('/references/prometheus-cheatsheet', l['prometheus-cheatsheet'], l) },
+        { key: '/references/kafka-cheatsheet', icon: <DatabaseOutlined />, label: withNewBadge('/references/kafka-cheatsheet', l['kafka-cheatsheet'], l) },
         { key: '/references/jwt-claims-cheatsheet', icon: <KeyOutlined />, label: withNewBadge('/references/jwt-claims-cheatsheet', l['jwt-claims-cheatsheet'], l) },
         { key: '/references/oauth2-cheatsheet', icon: <KeyOutlined />, label: withNewBadge('/references/oauth2-cheatsheet', l['oauth2-cheatsheet'], l) },
         { key: '/references/design-patterns', icon: <BookOutlined />, label: withNewBadge('/references/design-patterns', l['design-patterns'], l) },
