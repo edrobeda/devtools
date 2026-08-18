@@ -590,6 +590,7 @@ export const LABELS = {
     'haversine-distance-calculator': 'Distância Geográfica (Haversine)',
     'elasticsearch-cheatsheet': 'Cheat Sheet de Elasticsearch',
     'cpp-cheatsheet': 'Cheat Sheet de C++',
+    'graphql-cheatsheet': 'Cheat Sheet de GraphQL',
   },
   en: {
     home: 'Home',
@@ -1077,6 +1078,7 @@ export const LABELS = {
     'haversine-distance-calculator': 'Geographic Distance (Haversine)',
     'elasticsearch-cheatsheet': 'Elasticsearch Cheat Sheet',
     'cpp-cheatsheet': 'C++ Cheat Sheet',
+    'graphql-cheatsheet': 'GraphQL Cheat Sheet',
   },
 }
 
@@ -1651,6 +1653,7 @@ export function buildMenuItems(l) {
         { key: '/references/kafka-cheatsheet', icon: <DatabaseOutlined />, label: withNewBadge('/references/kafka-cheatsheet', l['kafka-cheatsheet'], l) },
         { key: '/references/elasticsearch-cheatsheet', icon: <DatabaseOutlined />, label: withNewBadge('/references/elasticsearch-cheatsheet', l['elasticsearch-cheatsheet'], l) },
         { key: '/references/cpp-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/cpp-cheatsheet', l['cpp-cheatsheet'], l) },
+        { key: '/references/graphql-cheatsheet', icon: <NodeIndexOutlined />, label: withNewBadge('/references/graphql-cheatsheet', l['graphql-cheatsheet'], l) },
         { key: '/references/jwt-claims-cheatsheet', icon: <KeyOutlined />, label: withNewBadge('/references/jwt-claims-cheatsheet', l['jwt-claims-cheatsheet'], l) },
         { key: '/references/oauth2-cheatsheet', icon: <KeyOutlined />, label: withNewBadge('/references/oauth2-cheatsheet', l['oauth2-cheatsheet'], l) },
         { key: '/references/design-patterns', icon: <BookOutlined />, label: withNewBadge('/references/design-patterns', l['design-patterns'], l) },

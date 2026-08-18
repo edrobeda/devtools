@@ -469,6 +469,7 @@ import PrometheusCheatsheetPage from './pages/PrometheusCheatsheetPage'
 import KafkaCheatsheetPage from './pages/KafkaCheatsheetPage'
 import ElasticsearchCheatsheetPage from './pages/ElasticsearchCheatsheetPage'
 import CppCheatsheetPage from './pages/CppCheatsheetPage'
+import GraphqlCheatsheetPage from './pages/GraphqlCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -936,6 +937,7 @@ const router = createBrowserRouter([
       { path: 'references/kafka-cheatsheet', element: <KafkaCheatsheetPage /> },
       { path: 'references/elasticsearch-cheatsheet', element: <ElasticsearchCheatsheetPage /> },
       { path: 'references/cpp-cheatsheet', element: <CppCheatsheetPage /> },
+      { path: 'references/graphql-cheatsheet', element: <GraphqlCheatsheetPage /> },
       { path: 'tools/bankers-algorithm-simulator', element: <BankersAlgorithmSimulatorPage /> },
       { path: 'tools/memory-allocation-simulator', element: <MemoryAllocationSimulatorPage /> },
       { path: 'tools/raft-simulator', element: <RaftSimulatorPage /> },
