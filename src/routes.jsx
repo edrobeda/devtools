@@ -363,6 +363,7 @@ import UseControllableStateSnippetPage from './pages/UseControllableStateSnippet
 import FileSizeConverterPage from './pages/FileSizeConverterPage'
 import FileHashCalculatorPage from './pages/FileHashCalculatorPage'
 import GeoCoordinatesConverterPage from './pages/GeoCoordinatesConverterPage'
+import HaversineDistanceCalculatorPage from './pages/HaversineDistanceCalculatorPage'
 import LevenshteinCalculatorPage from './pages/LevenshteinCalculatorPage'
 import BandwidthCalculatorPage from './pages/BandwidthCalculatorPage'
 import CookieToolPage from './pages/CookieToolPage'
@@ -663,6 +664,7 @@ const router = createBrowserRouter([
       { path: 'tools/file-size-converter', element: <FileSizeConverterPage /> },
       { path: 'tools/file-hash-calculator', element: <FileHashCalculatorPage /> },
       { path: 'tools/geo-coordinates-converter', element: <GeoCoordinatesConverterPage /> },
+      { path: 'tools/haversine-distance-calculator', element: <HaversineDistanceCalculatorPage /> },
       { path: 'tools/levenshtein-calculator', element: <LevenshteinCalculatorPage /> },
       { path: 'tools/bandwidth-calculator', element: <BandwidthCalculatorPage /> },
       { path: 'tools/cookie-tool', element: <CookieToolPage /> },

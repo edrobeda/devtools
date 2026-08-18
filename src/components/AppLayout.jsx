@@ -587,6 +587,7 @@ export const LABELS = {
     'mongodb-cheatsheet': 'Cheat Sheet de MongoDB',
     'prometheus-cheatsheet': 'Cheat Sheet de Prometheus / PromQL',
     'kafka-cheatsheet': 'Cheat Sheet de Kafka',
+    'haversine-distance-calculator': 'Distância Geográfica (Haversine)',
   },
   en: {
     home: 'Home',
@@ -1071,6 +1072,7 @@ export const LABELS = {
     'mongodb-cheatsheet': 'MongoDB Cheat Sheet',
     'prometheus-cheatsheet': 'Prometheus / PromQL Cheat Sheet',
     'kafka-cheatsheet': 'Kafka Cheat Sheet',
+    'haversine-distance-calculator': 'Geographic Distance (Haversine)',
   },
 }
 
@@ -1234,6 +1236,7 @@ export function buildMenuItems(l) {
         { key: '/tools/log-storage-cost-calculator', icon: <FileTextOutlined />, label: withNewBadge('/tools/log-storage-cost-calculator', l['log-storage-cost-calculator'], l) },
         { key: '/tools/web-vitals-budget-calculator', icon: <DashboardOutlined />, label: withNewBadge('/tools/web-vitals-budget-calculator', l['web-vitals-budget-calculator'], l) },
         { key: '/tools/business-days-calculator', icon: <CalendarOutlined />, label: withNewBadge('/tools/business-days-calculator', l['business-days-calculator'], l) },
+        { key: '/tools/haversine-distance-calculator', icon: <EnvironmentOutlined />, label: withNewBadge('/tools/haversine-distance-calculator', l['haversine-distance-calculator'], l) },
       ],
     },
     {
