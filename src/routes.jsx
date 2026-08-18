@@ -459,6 +459,7 @@ import FfmpegCheatsheetPage from './pages/FfmpegCheatsheetPage'
 import CsharpCheatsheetPage from './pages/CsharpCheatsheetPage'
 import PhpCheatsheetPage from './pages/PhpCheatsheetPage'
 import KotlinCheatsheetPage from './pages/KotlinCheatsheetPage'
+import TcpdumpCheatsheetPage from './pages/TcpdumpCheatsheetPage'
 import GitHooksGeneratorPage from './pages/GitHooksGeneratorPage'
 import BusinessDaysCalculatorPage from './pages/BusinessDaysCalculatorPage'
 import CertificateDecoderPage from './pages/CertificateDecoderPage'
@@ -922,6 +923,7 @@ const router = createBrowserRouter([
       { path: 'references/csharp-cheatsheet', element: <CsharpCheatsheetPage /> },
       { path: 'references/php-cheatsheet', element: <PhpCheatsheetPage /> },
       { path: 'references/kotlin-cheatsheet', element: <KotlinCheatsheetPage /> },
+      { path: 'references/tcpdump-cheatsheet', element: <TcpdumpCheatsheetPage /> },
       { path: 'tools/bankers-algorithm-simulator', element: <BankersAlgorithmSimulatorPage /> },
       { path: 'tools/memory-allocation-simulator', element: <MemoryAllocationSimulatorPage /> },
       { path: 'tools/raft-simulator', element: <RaftSimulatorPage /> },
