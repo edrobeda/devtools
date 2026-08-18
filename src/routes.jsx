@@ -463,6 +463,8 @@ import TcpdumpCheatsheetPage from './pages/TcpdumpCheatsheetPage'
 import GitHooksGeneratorPage from './pages/GitHooksGeneratorPage'
 import BusinessDaysCalculatorPage from './pages/BusinessDaysCalculatorPage'
 import CertificateDecoderPage from './pages/CertificateDecoderPage'
+import MongoDbCheatsheetPage from './pages/MongoDbCheatsheetPage'
+import PrometheusCheatsheetPage from './pages/PrometheusCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -924,6 +926,8 @@ const router = createBrowserRouter([
       { path: 'references/php-cheatsheet', element: <PhpCheatsheetPage /> },
       { path: 'references/kotlin-cheatsheet', element: <KotlinCheatsheetPage /> },
       { path: 'references/tcpdump-cheatsheet', element: <TcpdumpCheatsheetPage /> },
+      { path: 'references/mongodb-cheatsheet', element: <MongoDbCheatsheetPage /> },
+      { path: 'references/prometheus-cheatsheet', element: <PrometheusCheatsheetPage /> },
       { path: 'tools/bankers-algorithm-simulator', element: <BankersAlgorithmSimulatorPage /> },
       { path: 'tools/memory-allocation-simulator', element: <MemoryAllocationSimulatorPage /> },
       { path: 'tools/raft-simulator', element: <RaftSimulatorPage /> },
