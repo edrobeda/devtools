@@ -461,6 +461,7 @@ import PhpCheatsheetPage from './pages/PhpCheatsheetPage'
 import KotlinCheatsheetPage from './pages/KotlinCheatsheetPage'
 import GitHooksGeneratorPage from './pages/GitHooksGeneratorPage'
 import BusinessDaysCalculatorPage from './pages/BusinessDaysCalculatorPage'
+import CertificateDecoderPage from './pages/CertificateDecoderPage'
 
 const router = createBrowserRouter([
   {
@@ -610,6 +611,7 @@ const router = createBrowserRouter([
       { path: 'security/aes-encrypt-decrypt', element: <AesEncryptDecryptPage /> },
       { path: 'security/hash-identifier', element: <HashIdentifierPage /> },
       { path: 'security/pkce-generator', element: <PkceGeneratorPage /> },
+      { path: 'security/certificate-decoder', element: <CertificateDecoderPage /> },
       { path: 'ai/token-counter', element: <TokenCounterPage /> },
       { path: 'devops/env-tool', element: <EnvToolPage /> },
       { path: 'text/remove-accents', element: <RemoveAccentsPage /> },
