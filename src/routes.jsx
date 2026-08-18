@@ -459,6 +459,7 @@ import FfmpegCheatsheetPage from './pages/FfmpegCheatsheetPage'
 import CsharpCheatsheetPage from './pages/CsharpCheatsheetPage'
 import PhpCheatsheetPage from './pages/PhpCheatsheetPage'
 import KotlinCheatsheetPage from './pages/KotlinCheatsheetPage'
+import GitHooksGeneratorPage from './pages/GitHooksGeneratorPage'
 
 const router = createBrowserRouter([
   {
@@ -744,6 +745,7 @@ const router = createBrowserRouter([
       { path: 'devops/gitlab-ci-config-generator', element: <GitlabCiConfigGeneratorPage /> },
       { path: 'devops/github-actions-workflow-generator', element: <GithubActionsWorkflowGeneratorPage /> },
       { path: 'devops/ci-cd-cost-calculator', element: <CiCdCostCalculatorPage /> },
+      { path: 'devops/git-hooks-generator', element: <GitHooksGeneratorPage /> },
       { path: 'devops/caddyfile-generator', element: <CaddyfileGeneratorPage /> },
       { path: 'devops/htaccess-generator', element: <HtaccessGeneratorPage /> },
       { path: 'tools/units-converter', element: <UnitsConverterPage /> },

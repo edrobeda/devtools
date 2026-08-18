@@ -579,6 +579,7 @@ export const LABELS = {
     'gitlab-ci-config-generator': 'Gerador de .gitlab-ci.yml',
     'github-actions-workflow-generator': 'Gerador de GitHub Actions Workflow',
     'ci-cd-cost-calculator': 'Calculadora de Custo de CI/CD',
+    'git-hooks-generator': 'Gerador de Git Hooks',
     'vite-config-generator': 'Gerador de Configuração Vite',
   },
   en: {
@@ -1056,6 +1057,7 @@ export const LABELS = {
     'gitlab-ci-config-generator': '.gitlab-ci.yml Generator',
     'github-actions-workflow-generator': 'GitHub Actions Workflow Generator',
     'ci-cd-cost-calculator': 'CI/CD Cost Calculator',
+    'git-hooks-generator': 'Git Hooks Generator',
     'vite-config-generator': 'Vite Config Generator',
   },
 }
@@ -1446,6 +1448,7 @@ export function buildMenuItems(l) {
         { key: '/devops/gitlab-ci-config-generator', icon: <GitlabOutlined />, label: withNewBadge('/devops/gitlab-ci-config-generator', l['gitlab-ci-config-generator'], l) },
         { key: '/devops/github-actions-workflow-generator', icon: <GithubOutlined />, label: withNewBadge('/devops/github-actions-workflow-generator', l['github-actions-workflow-generator'], l) },
         { key: '/devops/ci-cd-cost-calculator', icon: <DollarOutlined />, label: withNewBadge('/devops/ci-cd-cost-calculator', l['ci-cd-cost-calculator'], l) },
+        { key: '/devops/git-hooks-generator', icon: <SafetyCertificateOutlined />, label: withNewBadge('/devops/git-hooks-generator', l['git-hooks-generator'], l) },
         { key: '/devops/sla-calculator', icon: <ExperimentOutlined />, label: withNewBadge('/devops/sla-calculator', l['sla-calculator'], l) },
         { key: '/devops/editorconfig-generator', icon: <FileTextOutlined />, label: withNewBadge('/devops/editorconfig-generator', l['editorconfig-generator'], l) },
         { key: '/devops/codeowners-generator', icon: <TeamOutlined />, label: withNewBadge('/devops/codeowners-generator', l['codeowners-generator'], l) },
