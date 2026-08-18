@@ -460,6 +460,7 @@ import CsharpCheatsheetPage from './pages/CsharpCheatsheetPage'
 import PhpCheatsheetPage from './pages/PhpCheatsheetPage'
 import KotlinCheatsheetPage from './pages/KotlinCheatsheetPage'
 import GitHooksGeneratorPage from './pages/GitHooksGeneratorPage'
+import BusinessDaysCalculatorPage from './pages/BusinessDaysCalculatorPage'
 
 const router = createBrowserRouter([
   {
@@ -746,6 +747,7 @@ const router = createBrowserRouter([
       { path: 'devops/github-actions-workflow-generator', element: <GithubActionsWorkflowGeneratorPage /> },
       { path: 'devops/ci-cd-cost-calculator', element: <CiCdCostCalculatorPage /> },
       { path: 'devops/git-hooks-generator', element: <GitHooksGeneratorPage /> },
+      { path: 'tools/business-days-calculator', element: <BusinessDaysCalculatorPage /> },
       { path: 'devops/caddyfile-generator', element: <CaddyfileGeneratorPage /> },
       { path: 'devops/htaccess-generator', element: <HtaccessGeneratorPage /> },
       { path: 'tools/units-converter', element: <UnitsConverterPage /> },

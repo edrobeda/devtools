@@ -580,6 +580,7 @@ export const LABELS = {
     'github-actions-workflow-generator': 'Gerador de GitHub Actions Workflow',
     'ci-cd-cost-calculator': 'Calculadora de Custo de CI/CD',
     'git-hooks-generator': 'Gerador de Git Hooks',
+    'business-days-calculator': 'Calculadora de Dias Úteis',
     'vite-config-generator': 'Gerador de Configuração Vite',
   },
   en: {
@@ -1058,6 +1059,7 @@ export const LABELS = {
     'github-actions-workflow-generator': 'GitHub Actions Workflow Generator',
     'ci-cd-cost-calculator': 'CI/CD Cost Calculator',
     'git-hooks-generator': 'Git Hooks Generator',
+    'business-days-calculator': 'Business Days Calculator',
     'vite-config-generator': 'Vite Config Generator',
   },
 }
@@ -1221,6 +1223,7 @@ export function buildMenuItems(l) {
         { key: '/tools/cache-hit-ratio-calculator', icon: <DatabaseOutlined />, label: withNewBadge('/tools/cache-hit-ratio-calculator', l['cache-hit-ratio-calculator'], l) },
         { key: '/tools/log-storage-cost-calculator', icon: <FileTextOutlined />, label: withNewBadge('/tools/log-storage-cost-calculator', l['log-storage-cost-calculator'], l) },
         { key: '/tools/web-vitals-budget-calculator', icon: <DashboardOutlined />, label: withNewBadge('/tools/web-vitals-budget-calculator', l['web-vitals-budget-calculator'], l) },
+        { key: '/tools/business-days-calculator', icon: <CalendarOutlined />, label: withNewBadge('/tools/business-days-calculator', l['business-days-calculator'], l) },
       ],
     },
     {
