@@ -596,6 +596,7 @@ export const LABELS = {
     'iso-8601-duration': 'Conversor de Duração ISO 8601',
     'geohash-tool': 'Codificador / Decodificador de Geohash',
     'mysql-cheatsheet': 'Cheat Sheet de MySQL / MariaDB',
+    'email-header-analyzer': 'Analisador de Cabeçalhos de E-mail',
   },
   en: {
     home: 'Home',
@@ -1089,6 +1090,7 @@ export const LABELS = {
     'iso-8601-duration': 'ISO 8601 Duration Converter',
     'geohash-tool': 'Geohash Encode / Decoder',
     'mysql-cheatsheet': 'MySQL / MariaDB Cheat Sheet',
+    'email-header-analyzer': 'E-mail Header Analyzer',
   },
 }
 
@@ -1255,6 +1257,7 @@ export function buildMenuItems(l) {
         { key: '/tools/haversine-distance-calculator', icon: <EnvironmentOutlined />, label: withNewBadge('/tools/haversine-distance-calculator', l['haversine-distance-calculator'], l) },
         { key: '/tools/geohash-tool', icon: <EnvironmentOutlined />, label: withNewBadge('/tools/geohash-tool', l['geohash-tool'], l) },
         { key: '/tools/iso-8601-duration', icon: <ClockCircleOutlined />, label: withNewBadge('/tools/iso-8601-duration', l['iso-8601-duration'], l) },
+        { key: '/tools/email-header-analyzer', icon: <MailOutlined />, label: withNewBadge('/tools/email-header-analyzer', l['email-header-analyzer'], l) },
       ],
     },
     {
