@@ -1,7 +1,8 @@
 import React, { useCallback, useMemo, useState } from 'react'
-import { Typography, Card, Space, Segmented, InputNumber, Button, List, message, Collapse, Alert } from 'antd'
+import { Typography, Card, Space, Segmented, Select, InputNumber, Button, List, message, Collapse, Alert } from 'antd'
 import { IdcardOutlined, ReloadOutlined, CopyOutlined, CodeOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import useMediaQuery from '../hooks/useMediaQuery'
 import { GENERATORS, MOTOR_SOURCE } from '../utils/brazilianDataGenerator'
 
 const { Title, Paragraph, Text } = Typography
@@ -90,6 +91,7 @@ const TYPE_ORDER = [
 export default function BrazilianDataGeneratorPage() {
   const { lang } = useLanguage()
   const t = translations[lang]
+  const isMobile = useMediaQuery('(max-width: 768px)')
   const [type, setType] = useState('cep')
   const [quantity, setQuantity] = useState(5)
   const [formatted, setFormatted] = useState(true)
@@ -137,13 +139,22 @@ export default function BrazilianDataGeneratorPage() {
 
       <Card>
         <Space wrap size="large" align="end">
-          <Space direction="vertical" size={4}>
+          <Space direction="vertical" size={4} style={{ width: isMobile ? '100%' : undefined }}>
             <Text type="secondary">{t.type}</Text>
-            <Segmented
-              value={type}
-              onChange={handleTypeChange}
-              options={typeOptions}
-            />
+            {isMobile ? (
+              <Select
+                style={{ width: '100%' }}
+                value={type}
+                onChange={handleTypeChange}
+                options={typeOptions}
+              />
+            ) : (
+              <Segmented
+                value={type}
+                onChange={handleTypeChange}
+                options={typeOptions}
+              />
+            )}
           </Space>
           <Space direction="vertical" size={4}>
             <Text type="secondary">{t.quantity}</Text>
@@ -152,6 +163,7 @@ export default function BrazilianDataGeneratorPage() {
           <Space direction="vertical" size={4}>
             <Text type="secondary">{formatted ? t.formatted : t.plain}</Text>
             <Segmented
+              block={isMobile}
               value={formatted}
               onChange={(v) => setFormatted(v)}
               options={[

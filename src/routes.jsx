@@ -471,6 +471,7 @@ import ElasticsearchCheatsheetPage from './pages/ElasticsearchCheatsheetPage'
 import CppCheatsheetPage from './pages/CppCheatsheetPage'
 import GraphqlCheatsheetPage from './pages/GraphqlCheatsheetPage'
 import RubyCheatsheetPage from './pages/RubyCheatsheetPage'
+import AnsibleCheatsheetPage from './pages/AnsibleCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -940,6 +941,7 @@ const router = createBrowserRouter([
       { path: 'references/cpp-cheatsheet', element: <CppCheatsheetPage /> },
       { path: 'references/graphql-cheatsheet', element: <GraphqlCheatsheetPage /> },
       { path: 'references/ruby-cheatsheet', element: <RubyCheatsheetPage /> },
+      { path: 'references/ansible-cheatsheet', element: <AnsibleCheatsheetPage /> },
       { path: 'tools/bankers-algorithm-simulator', element: <BankersAlgorithmSimulatorPage /> },
       { path: 'tools/memory-allocation-simulator', element: <MemoryAllocationSimulatorPage /> },
       { path: 'tools/raft-simulator', element: <RaftSimulatorPage /> },

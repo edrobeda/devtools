@@ -592,6 +592,7 @@ export const LABELS = {
     'cpp-cheatsheet': 'Cheat Sheet de C++',
     'graphql-cheatsheet': 'Cheat Sheet de GraphQL',
     'ruby-cheatsheet': 'Cheat Sheet de Ruby',
+    'ansible-cheatsheet': 'Cheat Sheet de Ansible',
   },
   en: {
     home: 'Home',
@@ -1081,6 +1082,7 @@ export const LABELS = {
     'cpp-cheatsheet': 'C++ Cheat Sheet',
     'graphql-cheatsheet': 'GraphQL Cheat Sheet',
     'ruby-cheatsheet': 'Ruby Cheat Sheet',
+    'ansible-cheatsheet': 'Ansible Cheat Sheet',
   },
 }
 
@@ -1657,6 +1659,7 @@ export function buildMenuItems(l) {
         { key: '/references/cpp-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/cpp-cheatsheet', l['cpp-cheatsheet'], l) },
         { key: '/references/graphql-cheatsheet', icon: <NodeIndexOutlined />, label: withNewBadge('/references/graphql-cheatsheet', l['graphql-cheatsheet'], l) },
         { key: '/references/ruby-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/ruby-cheatsheet', l['ruby-cheatsheet'], l) },
+        { key: '/references/ansible-cheatsheet', icon: <ContainerOutlined />, label: withNewBadge('/references/ansible-cheatsheet', l['ansible-cheatsheet'], l) },
         { key: '/references/jwt-claims-cheatsheet', icon: <KeyOutlined />, label: withNewBadge('/references/jwt-claims-cheatsheet', l['jwt-claims-cheatsheet'], l) },
         { key: '/references/oauth2-cheatsheet', icon: <KeyOutlined />, label: withNewBadge('/references/oauth2-cheatsheet', l['oauth2-cheatsheet'], l) },
         { key: '/references/design-patterns', icon: <BookOutlined />, label: withNewBadge('/references/design-patterns', l['design-patterns'], l) },
