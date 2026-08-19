@@ -599,6 +599,7 @@ export const LABELS = {
     'django-cheatsheet': 'Cheat Sheet de Django',
     'email-header-analyzer': 'Analisador de Cabeçalhos de E-mail',
     'ascii-banner-generator': 'Gerador de Banner ASCII',
+    'helm-cheatsheet': 'Cheat Sheet de Helm',
   },
   en: {
     home: 'Home',
@@ -1095,6 +1096,7 @@ export const LABELS = {
     'django-cheatsheet': 'Django Cheat Sheet',
     'email-header-analyzer': 'E-mail Header Analyzer',
     'ascii-banner-generator': 'ASCII Banner Generator',
+    'helm-cheatsheet': 'Helm Cheat Sheet',
   },
 }
 
@@ -1681,6 +1683,7 @@ export function buildMenuItems(l) {
         { key: '/references/jwt-claims-cheatsheet', icon: <KeyOutlined />, label: withNewBadge('/references/jwt-claims-cheatsheet', l['jwt-claims-cheatsheet'], l) },
         { key: '/references/oauth2-cheatsheet', icon: <KeyOutlined />, label: withNewBadge('/references/oauth2-cheatsheet', l['oauth2-cheatsheet'], l) },
         { key: '/references/design-patterns', icon: <BookOutlined />, label: withNewBadge('/references/design-patterns', l['design-patterns'], l) },
+        { key: '/references/helm-cheatsheet', icon: <ContainerOutlined />, label: withNewBadge('/references/helm-cheatsheet', l['helm-cheatsheet'], l) },
       ],
     },
     {
