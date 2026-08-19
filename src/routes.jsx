@@ -477,6 +477,7 @@ import GeohashToolPage from './pages/GeohashToolPage'
 import MysqlCheatsheetPage from './pages/MysqlCheatsheetPage'
 import EmailHeaderAnalyzerPage from './pages/EmailHeaderAnalyzerPage'
 import AsciiBannerGeneratorPage from './pages/AsciiBannerGeneratorPage'
+import DjangoCheatsheetPage from './pages/DjangoCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -950,6 +951,7 @@ const router = createBrowserRouter([
       { path: 'references/ruby-cheatsheet', element: <RubyCheatsheetPage /> },
       { path: 'references/ansible-cheatsheet', element: <AnsibleCheatsheetPage /> },
       { path: 'references/mysql-cheatsheet', element: <MysqlCheatsheetPage /> },
+      { path: 'references/django-cheatsheet', element: <DjangoCheatsheetPage /> },
       { path: 'tools/email-header-analyzer', element: <EmailHeaderAnalyzerPage /> },
       { path: 'tools/ascii-banner-generator', element: <AsciiBannerGeneratorPage /> },
       { path: 'tools/bankers-algorithm-simulator', element: <BankersAlgorithmSimulatorPage /> },
