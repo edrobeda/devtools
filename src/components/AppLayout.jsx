@@ -601,6 +601,7 @@ export const LABELS = {
     'email-header-analyzer': 'Analisador de Cabeçalhos de E-mail',
     'ascii-banner-generator': 'Gerador de Banner ASCII',
     'helm-cheatsheet': 'Cheat Sheet de Helm',
+    'c-cheatsheet': 'Cheat Sheet de C',
   },
   en: {
     home: 'Home',
@@ -1099,6 +1100,7 @@ export const LABELS = {
     'email-header-analyzer': 'E-mail Header Analyzer',
     'ascii-banner-generator': 'ASCII Banner Generator',
     'helm-cheatsheet': 'Helm Cheat Sheet',
+    'c-cheatsheet': 'C Cheat Sheet',
   },
 }
 
@@ -1687,6 +1689,7 @@ export function buildMenuItems(l) {
         { key: '/references/oauth2-cheatsheet', icon: <KeyOutlined />, label: withNewBadge('/references/oauth2-cheatsheet', l['oauth2-cheatsheet'], l) },
         { key: '/references/design-patterns', icon: <BookOutlined />, label: withNewBadge('/references/design-patterns', l['design-patterns'], l) },
         { key: '/references/helm-cheatsheet', icon: <ContainerOutlined />, label: withNewBadge('/references/helm-cheatsheet', l['helm-cheatsheet'], l) },
+        { key: '/references/c-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/c-cheatsheet', l['c-cheatsheet'], l) },
       ],
     },
     {

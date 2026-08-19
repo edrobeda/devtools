@@ -480,6 +480,7 @@ import AsciiBannerGeneratorPage from './pages/AsciiBannerGeneratorPage'
 import DjangoCheatsheetPage from './pages/DjangoCheatsheetPage'
 import HelmCheatsheetPage from './pages/HelmCheatsheetPage'
 import SamlDecoderPage from './pages/SamlDecoderPage'
+import CCheatsheetPage from './pages/CCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -956,6 +957,7 @@ const router = createBrowserRouter([
       { path: 'references/mysql-cheatsheet', element: <MysqlCheatsheetPage /> },
       { path: 'references/django-cheatsheet', element: <DjangoCheatsheetPage /> },
       { path: 'references/helm-cheatsheet', element: <HelmCheatsheetPage /> },
+      { path: 'references/c-cheatsheet', element: <CCheatsheetPage /> },
       { path: 'tools/email-header-analyzer', element: <EmailHeaderAnalyzerPage /> },
       { path: 'tools/ascii-banner-generator', element: <AsciiBannerGeneratorPage /> },
       { path: 'tools/bankers-algorithm-simulator', element: <BankersAlgorithmSimulatorPage /> },

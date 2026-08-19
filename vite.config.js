@@ -27,7 +27,7 @@ export default defineConfig({
       workbox: {
         // O bundle é grande (centenas de rotas) — sobe o limite padrão de 2MiB
         // pra não falhar o precache do chunk principal.
-        maximumFileSizeToCacheInBytes: 8 * 1024 * 1024,
+        maximumFileSizeToCacheInBytes: 9 * 1024 * 1024,
         navigateFallback: '/index.html',
         navigateFallbackDenylist: [/^\/api\//],
         runtimeCaching: [
