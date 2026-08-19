@@ -597,6 +597,7 @@ export const LABELS = {
     'geohash-tool': 'Codificador / Decodificador de Geohash',
     'mysql-cheatsheet': 'Cheat Sheet de MySQL / MariaDB',
     'email-header-analyzer': 'Analisador de Cabeçalhos de E-mail',
+    'ascii-banner-generator': 'Gerador de Banner ASCII',
   },
   en: {
     home: 'Home',
@@ -1091,6 +1092,7 @@ export const LABELS = {
     'geohash-tool': 'Geohash Encode / Decoder',
     'mysql-cheatsheet': 'MySQL / MariaDB Cheat Sheet',
     'email-header-analyzer': 'E-mail Header Analyzer',
+    'ascii-banner-generator': 'ASCII Banner Generator',
   },
 }
 
@@ -1258,6 +1260,7 @@ export function buildMenuItems(l) {
         { key: '/tools/geohash-tool', icon: <EnvironmentOutlined />, label: withNewBadge('/tools/geohash-tool', l['geohash-tool'], l) },
         { key: '/tools/iso-8601-duration', icon: <ClockCircleOutlined />, label: withNewBadge('/tools/iso-8601-duration', l['iso-8601-duration'], l) },
         { key: '/tools/email-header-analyzer', icon: <MailOutlined />, label: withNewBadge('/tools/email-header-analyzer', l['email-header-analyzer'], l) },
+        { key: '/tools/ascii-banner-generator', icon: <FontSizeOutlined />, label: withNewBadge('/tools/ascii-banner-generator', l['ascii-banner-generator'], l) },
       ],
     },
     {
