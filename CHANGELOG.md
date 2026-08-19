@@ -11,6 +11,7 @@ mesmo no início de cada rodada, pra nunca repetir algo que já existe.
 -->
 
 ## 2026-08-19
+- Ferramenta: Conversor de Duração ISO 8601 — `/tools/iso-8601-duration` (parseia e monta o formato `PnYnMnDTnHnMnS` 100% no navegador: modo Decodificar com validação, decomposição unidade a unidade com tags, descrição em palavras e total em segundos/minutos/horas/dias/semanas; aceita fração decimal (`PT1.5H`), sinal negativo (`-P1D` e `P-1D`) e semanas (`PnW`), com avisos quando a fração não está na menor unidade ou semanas vêm misturadas (inválido no ISO); oito presets de exemplo; modo Montar com campos por componente e geração ao vivo do string ISO (converte semanas+outras unidades em dias e avisa; tudo zerado gera `PT0S`); modo Referência rápida com tabela de 15 durações comuns (descrição, ISO e segundos); conversão total considera 1 ano = 365 dias e 1 mês = 30 dias (convenção exibida na página); código-fonte do motor exibido num Collapse; motor 100% client-side em `src/utils/iso8601Duration.js`; página bilíngue PT/EN em `src/pages/Iso8601DurationPage.jsx`; registrada no menu de Ferramentas; nenhum dado sai do navegador)
 - Correção de bug: layout do Gerador de Dados Brasileiros quebrava em mobile — `/tools/brazilian-data-generator` (no mobile, o Segmented de tipo com 9 opções ficava com ~810px de largura e o toggle formatado/plain também estourava o viewport, obrigando scroll horizontal pra chegar nos controles; no mobile o seletor de tipo agora vira um Select em largura total e o toggle formatado usa `block`, mantendo o Segmented no desktop)
 
 ## 2026-08-18

@@ -593,6 +593,7 @@ export const LABELS = {
     'graphql-cheatsheet': 'Cheat Sheet de GraphQL',
     'ruby-cheatsheet': 'Cheat Sheet de Ruby',
     'ansible-cheatsheet': 'Cheat Sheet de Ansible',
+    'iso-8601-duration': 'Conversor de Duração ISO 8601',
   },
   en: {
     home: 'Home',
@@ -1083,6 +1084,7 @@ export const LABELS = {
     'graphql-cheatsheet': 'GraphQL Cheat Sheet',
     'ruby-cheatsheet': 'Ruby Cheat Sheet',
     'ansible-cheatsheet': 'Ansible Cheat Sheet',
+    'iso-8601-duration': 'ISO 8601 Duration Converter',
   },
 }
 
@@ -1247,6 +1249,7 @@ export function buildMenuItems(l) {
         { key: '/tools/web-vitals-budget-calculator', icon: <DashboardOutlined />, label: withNewBadge('/tools/web-vitals-budget-calculator', l['web-vitals-budget-calculator'], l) },
         { key: '/tools/business-days-calculator', icon: <CalendarOutlined />, label: withNewBadge('/tools/business-days-calculator', l['business-days-calculator'], l) },
         { key: '/tools/haversine-distance-calculator', icon: <EnvironmentOutlined />, label: withNewBadge('/tools/haversine-distance-calculator', l['haversine-distance-calculator'], l) },
+        { key: '/tools/iso-8601-duration', icon: <ClockCircleOutlined />, label: withNewBadge('/tools/iso-8601-duration', l['iso-8601-duration'], l) },
       ],
     },
     {

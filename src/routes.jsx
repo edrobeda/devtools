@@ -472,6 +472,7 @@ import CppCheatsheetPage from './pages/CppCheatsheetPage'
 import GraphqlCheatsheetPage from './pages/GraphqlCheatsheetPage'
 import RubyCheatsheetPage from './pages/RubyCheatsheetPage'
 import AnsibleCheatsheetPage from './pages/AnsibleCheatsheetPage'
+import Iso8601DurationPage from './pages/Iso8601DurationPage'
 
 const router = createBrowserRouter([
   {
@@ -670,6 +671,7 @@ const router = createBrowserRouter([
       { path: 'tools/file-hash-calculator', element: <FileHashCalculatorPage /> },
       { path: 'tools/geo-coordinates-converter', element: <GeoCoordinatesConverterPage /> },
       { path: 'tools/haversine-distance-calculator', element: <HaversineDistanceCalculatorPage /> },
+      { path: 'tools/iso-8601-duration', element: <Iso8601DurationPage /> },
       { path: 'tools/levenshtein-calculator', element: <LevenshteinCalculatorPage /> },
       { path: 'tools/bandwidth-calculator', element: <BandwidthCalculatorPage /> },
       { path: 'tools/cookie-tool', element: <CookieToolPage /> },
