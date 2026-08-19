@@ -595,6 +595,7 @@ export const LABELS = {
     'ansible-cheatsheet': 'Cheat Sheet de Ansible',
     'iso-8601-duration': 'Conversor de Duração ISO 8601',
     'geohash-tool': 'Codificador / Decodificador de Geohash',
+    'mysql-cheatsheet': 'Cheat Sheet de MySQL / MariaDB',
   },
   en: {
     home: 'Home',
@@ -1087,6 +1088,7 @@ export const LABELS = {
     'ansible-cheatsheet': 'Ansible Cheat Sheet',
     'iso-8601-duration': 'ISO 8601 Duration Converter',
     'geohash-tool': 'Geohash Encode / Decoder',
+    'mysql-cheatsheet': 'MySQL / MariaDB Cheat Sheet',
   },
 }
 
@@ -1666,6 +1668,7 @@ export function buildMenuItems(l) {
         { key: '/references/graphql-cheatsheet', icon: <NodeIndexOutlined />, label: withNewBadge('/references/graphql-cheatsheet', l['graphql-cheatsheet'], l) },
         { key: '/references/ruby-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/ruby-cheatsheet', l['ruby-cheatsheet'], l) },
         { key: '/references/ansible-cheatsheet', icon: <ContainerOutlined />, label: withNewBadge('/references/ansible-cheatsheet', l['ansible-cheatsheet'], l) },
+        { key: '/references/mysql-cheatsheet', icon: <DatabaseOutlined />, label: withNewBadge('/references/mysql-cheatsheet', l['mysql-cheatsheet'], l) },
         { key: '/references/jwt-claims-cheatsheet', icon: <KeyOutlined />, label: withNewBadge('/references/jwt-claims-cheatsheet', l['jwt-claims-cheatsheet'], l) },
         { key: '/references/oauth2-cheatsheet', icon: <KeyOutlined />, label: withNewBadge('/references/oauth2-cheatsheet', l['oauth2-cheatsheet'], l) },
         { key: '/references/design-patterns', icon: <BookOutlined />, label: withNewBadge('/references/design-patterns', l['design-patterns'], l) },

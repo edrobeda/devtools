@@ -474,6 +474,7 @@ import RubyCheatsheetPage from './pages/RubyCheatsheetPage'
 import AnsibleCheatsheetPage from './pages/AnsibleCheatsheetPage'
 import Iso8601DurationPage from './pages/Iso8601DurationPage'
 import GeohashToolPage from './pages/GeohashToolPage'
+import MysqlCheatsheetPage from './pages/MysqlCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -946,6 +947,7 @@ const router = createBrowserRouter([
       { path: 'references/graphql-cheatsheet', element: <GraphqlCheatsheetPage /> },
       { path: 'references/ruby-cheatsheet', element: <RubyCheatsheetPage /> },
       { path: 'references/ansible-cheatsheet', element: <AnsibleCheatsheetPage /> },
+      { path: 'references/mysql-cheatsheet', element: <MysqlCheatsheetPage /> },
       { path: 'tools/bankers-algorithm-simulator', element: <BankersAlgorithmSimulatorPage /> },
       { path: 'tools/memory-allocation-simulator', element: <MemoryAllocationSimulatorPage /> },
       { path: 'tools/raft-simulator', element: <RaftSimulatorPage /> },
