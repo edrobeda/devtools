@@ -314,6 +314,7 @@ export const LABELS = {
     'hash-identifier': 'Identificador de Hash',
     'pkce-generator': 'Gerador de PKCE / OAuth2',
     'certificate-decoder': 'Decodificador de Certificado (X.509)',
+    'saml-decoder': 'Decodificador de SAML (Assertion)',
     'token-counter': 'Contador de Tokens',
     'pomodoro-timer': 'Timer Pomodoro',
     'env-tool': 'Validador de .env',
@@ -811,6 +812,7 @@ export const LABELS = {
     'hash-identifier': 'Hash Identifier',
     'pkce-generator': 'PKCE / OAuth2 Generator',
     'certificate-decoder': 'Certificate Decoder (X.509)',
+    'saml-decoder': 'SAML Assertion Decoder',
     'token-counter': 'Token Counter',
     'pomodoro-timer': 'Pomodoro Timer',
     'env-tool': '.env File Validator',
@@ -1548,6 +1550,7 @@ export function buildMenuItems(l) {
         { key: '/security/hash-identifier', icon: <SearchOutlined />, label: withNewBadge('/security/hash-identifier', l['hash-identifier'], l) },
         { key: '/security/pkce-generator', icon: <KeyOutlined />, label: withNewBadge('/security/pkce-generator', l['pkce-generator'], l) },
         { key: '/security/certificate-decoder', icon: <SafetyCertificateOutlined />, label: withNewBadge('/security/certificate-decoder', l['certificate-decoder'], l) },
+        { key: '/security/saml-decoder', icon: <FileProtectOutlined />, label: withNewBadge('/security/saml-decoder', l['saml-decoder'], l) },
       ],
     },
     {

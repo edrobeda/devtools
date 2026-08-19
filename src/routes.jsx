@@ -479,6 +479,7 @@ import EmailHeaderAnalyzerPage from './pages/EmailHeaderAnalyzerPage'
 import AsciiBannerGeneratorPage from './pages/AsciiBannerGeneratorPage'
 import DjangoCheatsheetPage from './pages/DjangoCheatsheetPage'
 import HelmCheatsheetPage from './pages/HelmCheatsheetPage'
+import SamlDecoderPage from './pages/SamlDecoderPage'
 
 const router = createBrowserRouter([
   {
@@ -629,6 +630,7 @@ const router = createBrowserRouter([
       { path: 'security/hash-identifier', element: <HashIdentifierPage /> },
       { path: 'security/pkce-generator', element: <PkceGeneratorPage /> },
       { path: 'security/certificate-decoder', element: <CertificateDecoderPage /> },
+      { path: 'security/saml-decoder', element: <SamlDecoderPage /> },
       { path: 'ai/token-counter', element: <TokenCounterPage /> },
       { path: 'devops/env-tool', element: <EnvToolPage /> },
       { path: 'text/remove-accents', element: <RemoveAccentsPage /> },
