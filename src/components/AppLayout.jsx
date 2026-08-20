@@ -606,6 +606,7 @@ export const LABELS = {
     'ascii-banner-generator': 'Gerador de Banner ASCII',
     'helm-cheatsheet': 'Cheat Sheet de Helm',
     'c-cheatsheet': 'Cheat Sheet de C',
+    'lua-cheatsheet': 'Cheat Sheet de Lua',
     'image-resizer': 'Redimensionador de Imagem',
     'xpath-tester': 'XPath Tester',
     'hex-dump': 'Visualizador Hex Dump (xxd)',
@@ -1112,6 +1113,7 @@ export const LABELS = {
     'ascii-banner-generator': 'ASCII Banner Generator',
     'helm-cheatsheet': 'Helm Cheat Sheet',
     'c-cheatsheet': 'C Cheat Sheet',
+    'lua-cheatsheet': 'Lua Cheat Sheet',
     'image-resizer': 'Image Resizer',
     'xpath-tester': 'XPath Tester',
     'hex-dump': 'Hex Dump / xxd Viewer',
@@ -1711,6 +1713,7 @@ export function buildMenuItems(l) {
         { key: '/references/design-patterns', icon: <BookOutlined />, label: withNewBadge('/references/design-patterns', l['design-patterns'], l) },
         { key: '/references/helm-cheatsheet', icon: <ContainerOutlined />, label: withNewBadge('/references/helm-cheatsheet', l['helm-cheatsheet'], l) },
         { key: '/references/c-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/c-cheatsheet', l['c-cheatsheet'], l) },
+        { key: '/references/lua-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/lua-cheatsheet', l['lua-cheatsheet'], l) },
       ],
     },
     {

@@ -488,6 +488,7 @@ import XPathTesterPage from './pages/XPathTesterPage'
 import SearchReplacePage from './pages/SearchReplacePage'
 import IdnPunycodeConverterPage from './pages/IdnPunycodeConverterPage'
 import HexDumpPage from './pages/HexDumpPage'
+import LuaCheatsheetPage from './pages/LuaCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -685,6 +686,7 @@ const router = createBrowserRouter([
       { path: 'network/shannon-capacity-calculator', element: <ShannonCapacityCalculatorPage /> },
       { path: 'network/idn-punycode-converter', element: <IdnPunycodeConverterPage /> },
       { path: 'tools/hex-dump', element: <HexDumpPage /> },
+      { path: 'references/lua-cheatsheet', element: <LuaCheatsheetPage /> },
       { path: 'tools/iban-tool', element: <IbanToolPage /> },
       { path: 'tools/roman-numeral-converter', element: <RomanNumeralConverterPage /> },
       { path: 'tools/file-size-converter', element: <FileSizeConverterPage /> },
