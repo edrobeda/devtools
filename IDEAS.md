@@ -16,6 +16,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] Conversor de Timestamp Unix — `/tools/timestamp-converter`
 - [ ] Snippets favoritos/compartilháveis (biblioteca pessoal de trechos de código)
 - [x] Regex Tester (com highlight de matches, inclui padrões comuns prontos: email, telefone, CPF, URL) — `/tools/regex-tester`
+- [x] Regex Explainer (explica uma regex token a token em linguagem natural) — `/tools/regex-explainer`
 - [x] SQL Formatter — `/database/sql-formatter`
 - [ ] XML Formatter
 - [x] CSS Minify/Beautify — `/tools/css-formatter`
