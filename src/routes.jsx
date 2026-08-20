@@ -41,6 +41,7 @@ import DaysUntilPage from './pages/DaysUntilPage'
 import DateTimeCalculatorPage from './pages/DateTimeCalculatorPage'
 import RegexTesterPage from './pages/RegexTesterPage'
 import RegexPatternGeneratorPage from './pages/RegexPatternGeneratorPage'
+import RegexExplainerPage from './pages/RegexExplainerPage'
 import KeyboardEventTesterPage from './pages/KeyboardEventTesterPage'
 import Base64ToolPage from './pages/Base64ToolPage'
 import Base32ToolPage from './pages/Base32ToolPage'
@@ -471,6 +472,7 @@ import ElasticsearchCheatsheetPage from './pages/ElasticsearchCheatsheetPage'
 import CppCheatsheetPage from './pages/CppCheatsheetPage'
 import GraphqlCheatsheetPage from './pages/GraphqlCheatsheetPage'
 import RubyCheatsheetPage from './pages/RubyCheatsheetPage'
+import SwiftCheatsheetPage from './pages/SwiftCheatsheetPage'
 import AnsibleCheatsheetPage from './pages/AnsibleCheatsheetPage'
 import Iso8601DurationPage from './pages/Iso8601DurationPage'
 import GeohashToolPage from './pages/GeohashToolPage'
@@ -480,7 +482,14 @@ import AsciiBannerGeneratorPage from './pages/AsciiBannerGeneratorPage'
 import DjangoCheatsheetPage from './pages/DjangoCheatsheetPage'
 import HelmCheatsheetPage from './pages/HelmCheatsheetPage'
 import SamlDecoderPage from './pages/SamlDecoderPage'
+import JwtSignatureVerifierPage from './pages/JwtSignatureVerifierPage'
 import CCheatsheetPage from './pages/CCheatsheetPage'
+import ImageResizerPage from './pages/ImageResizerPage'
+import XPathTesterPage from './pages/XPathTesterPage'
+import SearchReplacePage from './pages/SearchReplacePage'
+import IdnPunycodeConverterPage from './pages/IdnPunycodeConverterPage'
+import HexDumpPage from './pages/HexDumpPage'
+import LuaCheatsheetPage from './pages/LuaCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -527,6 +536,7 @@ const router = createBrowserRouter([
       { path: 'tools/date-time-calculator', element: <DateTimeCalculatorPage /> },
       { path: 'tools/regex-tester', element: <RegexTesterPage /> },
       { path: 'tools/regex-pattern-generator', element: <RegexPatternGeneratorPage /> },
+      { path: 'tools/regex-explainer', element: <RegexExplainerPage /> },
       { path: 'tools/keyboard-event-tester', element: <KeyboardEventTesterPage /> },
       { path: 'tools/base64-tool', element: <Base64ToolPage /> },
       { path: 'tools/base32-tool', element: <Base32ToolPage /> },
@@ -632,6 +642,7 @@ const router = createBrowserRouter([
       { path: 'security/pkce-generator', element: <PkceGeneratorPage /> },
       { path: 'security/certificate-decoder', element: <CertificateDecoderPage /> },
       { path: 'security/saml-decoder', element: <SamlDecoderPage /> },
+      { path: 'security/jwt-signature-verifier', element: <JwtSignatureVerifierPage /> },
       { path: 'ai/token-counter', element: <TokenCounterPage /> },
       { path: 'devops/env-tool', element: <EnvToolPage /> },
       { path: 'text/remove-accents', element: <RemoveAccentsPage /> },
@@ -641,6 +652,7 @@ const router = createBrowserRouter([
       { path: 'snippets/deep-clone-deep-equal', element: <DeepCloneDeepEqualPage /> },
       { path: 'devops/branch-name-generator', element: <BranchNameGeneratorPage /> },
       { path: 'text/lines-tool', element: <LinesToolPage /> },
+      { path: 'text/search-replace', element: <SearchReplacePage /> },
       { path: 'tools/html-to-jsx-converter', element: <HtmlToJsxConverterPage /> },
       { path: 'tools/html-to-markdown', element: <HtmlToMarkdownPage /> },
       { path: 'devops/changelog-generator', element: <ChangelogGeneratorPage /> },
@@ -674,6 +686,9 @@ const router = createBrowserRouter([
       { path: 'network/dns-record-generator', element: <DnsRecordGeneratorPage /> },
       { path: 'network/tcp-throughput-calculator', element: <TcpThroughputCalculatorPage /> },
       { path: 'network/shannon-capacity-calculator', element: <ShannonCapacityCalculatorPage /> },
+      { path: 'network/idn-punycode-converter', element: <IdnPunycodeConverterPage /> },
+      { path: 'tools/hex-dump', element: <HexDumpPage /> },
+      { path: 'references/lua-cheatsheet', element: <LuaCheatsheetPage /> },
       { path: 'tools/iban-tool', element: <IbanToolPage /> },
       { path: 'tools/roman-numeral-converter', element: <RomanNumeralConverterPage /> },
       { path: 'tools/file-size-converter', element: <FileSizeConverterPage /> },
@@ -953,6 +968,7 @@ const router = createBrowserRouter([
       { path: 'references/cpp-cheatsheet', element: <CppCheatsheetPage /> },
       { path: 'references/graphql-cheatsheet', element: <GraphqlCheatsheetPage /> },
       { path: 'references/ruby-cheatsheet', element: <RubyCheatsheetPage /> },
+      { path: 'references/swift-cheatsheet', element: <SwiftCheatsheetPage /> },
       { path: 'references/ansible-cheatsheet', element: <AnsibleCheatsheetPage /> },
       { path: 'references/mysql-cheatsheet', element: <MysqlCheatsheetPage /> },
       { path: 'references/django-cheatsheet', element: <DjangoCheatsheetPage /> },
@@ -960,6 +976,8 @@ const router = createBrowserRouter([
       { path: 'references/c-cheatsheet', element: <CCheatsheetPage /> },
       { path: 'tools/email-header-analyzer', element: <EmailHeaderAnalyzerPage /> },
       { path: 'tools/ascii-banner-generator', element: <AsciiBannerGeneratorPage /> },
+      { path: 'tools/image-resizer', element: <ImageResizerPage /> },
+      { path: 'tools/xpath-tester', element: <XPathTesterPage /> },
       { path: 'tools/bankers-algorithm-simulator', element: <BankersAlgorithmSimulatorPage /> },
       { path: 'tools/memory-allocation-simulator', element: <MemoryAllocationSimulatorPage /> },
       { path: 'tools/raft-simulator', element: <RaftSimulatorPage /> },
