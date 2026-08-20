@@ -480,7 +480,10 @@ import AsciiBannerGeneratorPage from './pages/AsciiBannerGeneratorPage'
 import DjangoCheatsheetPage from './pages/DjangoCheatsheetPage'
 import HelmCheatsheetPage from './pages/HelmCheatsheetPage'
 import SamlDecoderPage from './pages/SamlDecoderPage'
+import JwtSignatureVerifierPage from './pages/JwtSignatureVerifierPage'
 import CCheatsheetPage from './pages/CCheatsheetPage'
+import ImageResizerPage from './pages/ImageResizerPage'
+import XPathTesterPage from './pages/XPathTesterPage'
 
 const router = createBrowserRouter([
   {
@@ -632,6 +635,7 @@ const router = createBrowserRouter([
       { path: 'security/pkce-generator', element: <PkceGeneratorPage /> },
       { path: 'security/certificate-decoder', element: <CertificateDecoderPage /> },
       { path: 'security/saml-decoder', element: <SamlDecoderPage /> },
+      { path: 'security/jwt-signature-verifier', element: <JwtSignatureVerifierPage /> },
       { path: 'ai/token-counter', element: <TokenCounterPage /> },
       { path: 'devops/env-tool', element: <EnvToolPage /> },
       { path: 'text/remove-accents', element: <RemoveAccentsPage /> },
@@ -960,6 +964,8 @@ const router = createBrowserRouter([
       { path: 'references/c-cheatsheet', element: <CCheatsheetPage /> },
       { path: 'tools/email-header-analyzer', element: <EmailHeaderAnalyzerPage /> },
       { path: 'tools/ascii-banner-generator', element: <AsciiBannerGeneratorPage /> },
+      { path: 'tools/image-resizer', element: <ImageResizerPage /> },
+      { path: 'tools/xpath-tester', element: <XPathTesterPage /> },
       { path: 'tools/bankers-algorithm-simulator', element: <BankersAlgorithmSimulatorPage /> },
       { path: 'tools/memory-allocation-simulator', element: <MemoryAllocationSimulatorPage /> },
       { path: 'tools/raft-simulator', element: <RaftSimulatorPage /> },

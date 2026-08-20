@@ -315,6 +315,7 @@ export const LABELS = {
     'pkce-generator': 'Gerador de PKCE / OAuth2',
     'certificate-decoder': 'Decodificador de Certificado (X.509)',
     'saml-decoder': 'Decodificador de SAML (Assertion)',
+    'jwt-signature-verifier': 'Verificador de Assinatura JWT',
     'token-counter': 'Contador de Tokens',
     'pomodoro-timer': 'Timer Pomodoro',
     'env-tool': 'Validador de .env',
@@ -602,6 +603,8 @@ export const LABELS = {
     'ascii-banner-generator': 'Gerador de Banner ASCII',
     'helm-cheatsheet': 'Cheat Sheet de Helm',
     'c-cheatsheet': 'Cheat Sheet de C',
+    'image-resizer': 'Redimensionador de Imagem',
+    'xpath-tester': 'XPath Tester',
   },
   en: {
     home: 'Home',
@@ -814,6 +817,7 @@ export const LABELS = {
     'pkce-generator': 'PKCE / OAuth2 Generator',
     'certificate-decoder': 'Certificate Decoder (X.509)',
     'saml-decoder': 'SAML Assertion Decoder',
+    'jwt-signature-verifier': 'JWT Signature Verifier',
     'token-counter': 'Token Counter',
     'pomodoro-timer': 'Pomodoro Timer',
     'env-tool': '.env File Validator',
@@ -1101,6 +1105,8 @@ export const LABELS = {
     'ascii-banner-generator': 'ASCII Banner Generator',
     'helm-cheatsheet': 'Helm Cheat Sheet',
     'c-cheatsheet': 'C Cheat Sheet',
+    'image-resizer': 'Image Resizer',
+    'xpath-tester': 'XPath Tester',
   },
 }
 
@@ -1269,6 +1275,8 @@ export function buildMenuItems(l) {
         { key: '/tools/iso-8601-duration', icon: <ClockCircleOutlined />, label: withNewBadge('/tools/iso-8601-duration', l['iso-8601-duration'], l) },
         { key: '/tools/email-header-analyzer', icon: <MailOutlined />, label: withNewBadge('/tools/email-header-analyzer', l['email-header-analyzer'], l) },
         { key: '/tools/ascii-banner-generator', icon: <FontSizeOutlined />, label: withNewBadge('/tools/ascii-banner-generator', l['ascii-banner-generator'], l) },
+        { key: '/tools/image-resizer', icon: <PictureOutlined />, label: withNewBadge('/tools/image-resizer', l['image-resizer'], l) },
+        { key: '/tools/xpath-tester', icon: <ApartmentOutlined />, label: withNewBadge('/tools/xpath-tester', l['xpath-tester'], l) },
       ],
     },
     {
@@ -1553,6 +1561,7 @@ export function buildMenuItems(l) {
         { key: '/security/pkce-generator', icon: <KeyOutlined />, label: withNewBadge('/security/pkce-generator', l['pkce-generator'], l) },
         { key: '/security/certificate-decoder', icon: <SafetyCertificateOutlined />, label: withNewBadge('/security/certificate-decoder', l['certificate-decoder'], l) },
         { key: '/security/saml-decoder', icon: <FileProtectOutlined />, label: withNewBadge('/security/saml-decoder', l['saml-decoder'], l) },
+        { key: '/security/jwt-signature-verifier', icon: <FileProtectOutlined />, label: withNewBadge('/security/jwt-signature-verifier', l['jwt-signature-verifier'], l) },
       ],
     },
     {
