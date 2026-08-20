@@ -608,6 +608,7 @@ export const LABELS = {
     'c-cheatsheet': 'Cheat Sheet de C',
     'image-resizer': 'Redimensionador de Imagem',
     'xpath-tester': 'XPath Tester',
+    'hex-dump': 'Visualizador Hex Dump (xxd)',
   },
   en: {
     home: 'Home',
@@ -1113,6 +1114,7 @@ export const LABELS = {
     'c-cheatsheet': 'C Cheat Sheet',
     'image-resizer': 'Image Resizer',
     'xpath-tester': 'XPath Tester',
+    'hex-dump': 'Hex Dump / xxd Viewer',
   },
 }
 
@@ -1283,6 +1285,7 @@ export function buildMenuItems(l) {
         { key: '/tools/ascii-banner-generator', icon: <FontSizeOutlined />, label: withNewBadge('/tools/ascii-banner-generator', l['ascii-banner-generator'], l) },
         { key: '/tools/image-resizer', icon: <PictureOutlined />, label: withNewBadge('/tools/image-resizer', l['image-resizer'], l) },
         { key: '/tools/xpath-tester', icon: <ApartmentOutlined />, label: withNewBadge('/tools/xpath-tester', l['xpath-tester'], l) },
+        { key: '/tools/hex-dump', icon: <CodeOutlined />, label: withNewBadge('/tools/hex-dump', l['hex-dump'], l) },
       ],
     },
     {
