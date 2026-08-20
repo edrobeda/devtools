@@ -491,6 +491,7 @@ import IdnPunycodeConverterPage from './pages/IdnPunycodeConverterPage'
 import HexDumpPage from './pages/HexDumpPage'
 import LuaCheatsheetPage from './pages/LuaCheatsheetPage'
 import SqlWindowFunctionsPage from './pages/SqlWindowFunctionsPage'
+import EmojiCheatsheetPage from './pages/EmojiCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -691,6 +692,7 @@ const router = createBrowserRouter([
       { path: 'tools/hex-dump', element: <HexDumpPage /> },
       { path: 'references/lua-cheatsheet', element: <LuaCheatsheetPage /> },
       { path: 'references/sql-window-functions', element: <SqlWindowFunctionsPage /> },
+      { path: 'references/emoji-cheatsheet', element: <EmojiCheatsheetPage /> },
       { path: 'tools/iban-tool', element: <IbanToolPage /> },
       { path: 'tools/roman-numeral-converter', element: <RomanNumeralConverterPage /> },
       { path: 'tools/file-size-converter', element: <FileSizeConverterPage /> },
