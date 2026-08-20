@@ -608,6 +608,7 @@ export const LABELS = {
     'helm-cheatsheet': 'Cheat Sheet de Helm',
     'c-cheatsheet': 'Cheat Sheet de C',
     'lua-cheatsheet': 'Cheat Sheet de Lua',
+    'sql-window-functions': 'Funções de Janela SQL (OVER)',
     'image-resizer': 'Redimensionador de Imagem',
     'xpath-tester': 'XPath Tester',
     'hex-dump': 'Visualizador Hex Dump (xxd)',
@@ -1116,6 +1117,7 @@ export const LABELS = {
     'helm-cheatsheet': 'Helm Cheat Sheet',
     'c-cheatsheet': 'C Cheat Sheet',
     'lua-cheatsheet': 'Lua Cheat Sheet',
+    'sql-window-functions': 'SQL Window Functions (OVER)',
     'image-resizer': 'Image Resizer',
     'xpath-tester': 'XPath Tester',
     'hex-dump': 'Hex Dump / xxd Viewer',
@@ -1717,6 +1719,7 @@ export function buildMenuItems(l) {
         { key: '/references/helm-cheatsheet', icon: <ContainerOutlined />, label: withNewBadge('/references/helm-cheatsheet', l['helm-cheatsheet'], l) },
         { key: '/references/c-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/c-cheatsheet', l['c-cheatsheet'], l) },
         { key: '/references/lua-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/lua-cheatsheet', l['lua-cheatsheet'], l) },
+        { key: '/references/sql-window-functions', icon: <TableOutlined />, label: withNewBadge('/references/sql-window-functions', l['sql-window-functions'], l) },
       ],
     },
     {
