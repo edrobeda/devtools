@@ -484,6 +484,7 @@ import JwtSignatureVerifierPage from './pages/JwtSignatureVerifierPage'
 import CCheatsheetPage from './pages/CCheatsheetPage'
 import ImageResizerPage from './pages/ImageResizerPage'
 import XPathTesterPage from './pages/XPathTesterPage'
+import SearchReplacePage from './pages/SearchReplacePage'
 
 const router = createBrowserRouter([
   {
@@ -645,6 +646,7 @@ const router = createBrowserRouter([
       { path: 'snippets/deep-clone-deep-equal', element: <DeepCloneDeepEqualPage /> },
       { path: 'devops/branch-name-generator', element: <BranchNameGeneratorPage /> },
       { path: 'text/lines-tool', element: <LinesToolPage /> },
+      { path: 'text/search-replace', element: <SearchReplacePage /> },
       { path: 'tools/html-to-jsx-converter', element: <HtmlToJsxConverterPage /> },
       { path: 'tools/html-to-markdown', element: <HtmlToMarkdownPage /> },
       { path: 'devops/changelog-generator', element: <ChangelogGeneratorPage /> },

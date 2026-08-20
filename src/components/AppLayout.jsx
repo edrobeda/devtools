@@ -324,6 +324,7 @@ export const LABELS = {
     'deep-clone-deep-equal': 'deepClone & deepEqual',
     'branch-name-generator': 'Gerador de Nome de Branch',
     'lines-tool': 'Processador de Linhas',
+    'search-replace': 'Pesquisar & Substituir',
     'html-to-jsx-converter': 'Conversor HTML → JSX',
     'html-to-markdown': 'Conversor HTML → Markdown',
     'uuid-collision-simulator': 'Simulador de Colisão de UUID',
@@ -826,6 +827,7 @@ export const LABELS = {
     'deep-clone-deep-equal': 'deepClone & deepEqual',
     'branch-name-generator': 'Branch Name Generator',
     'lines-tool': 'Lines Tool',
+    'search-replace': 'Search & Replace',
     'html-to-jsx-converter': 'HTML → JSX Converter',
     'html-to-markdown': 'HTML → Markdown Converter',
     'uuid-collision-simulator': 'UUID Collision Simulator',
@@ -1628,6 +1630,7 @@ export function buildMenuItems(l) {
         { key: '/text/word-counter', label: l['word-counter'] },
         { key: '/text/remove-accents', icon: <FontSizeOutlined />, label: withNewBadge('/text/remove-accents', l['remove-accents'], l) },
         { key: '/text/lines-tool', icon: <OrderedListOutlined />, label: withNewBadge('/text/lines-tool', l['lines-tool'], l) },
+        { key: '/text/search-replace', icon: <SearchOutlined />, label: withNewBadge('/text/search-replace', l['search-replace'], l) },
       ],
     },
     {
