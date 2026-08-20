@@ -106,6 +106,19 @@ HEAD_AFTER="$(git -C "$PROJECT_DIR" rev-parse HEAD 2>/dev/null)"
 
 echo "$(date -Iseconds) — rodada concluída ($ROUND_KIND, exit $AGENT_EXIT), log em $LOG_FILE" >> "$LOG_DIR/runs.log"
 
+# Sem commit novo = sem prova de que a rodada terminou com sucesso, então
+# qualquer mudança que tenha ficado no working tree é lixo de uma rodada
+# incompleta. O prompt já pede pro agente se auto-limpar antes de terminar,
+# mas o processo às vezes é cortado no meio por um erro do provider (visto
+# 2026-08-20: "Streaming response failed: 502 Upstream error") sem chance
+# de rodar esse passo — então o wrapper garante o reset de qualquer jeito,
+# senão a rodada seguinte começa de um working tree sujo e alheio.
+if [ "$HEAD_BEFORE" = "$HEAD_AFTER" ] && [ -n "$(git -C "$PROJECT_DIR" status --porcelain)" ]; then
+    git -C "$PROJECT_DIR" checkout -- .
+    git -C "$PROJECT_DIR" clean -fd
+    echo "$(date -Iseconds) — rodada sem commit deixou o working tree sujo, resetado" >> "$LOG_DIR/runs.log"
+fi
+
 CONTAINER_UP=$(docker ps --filter "name=DK_DEVTOOLS" --filter "status=running" -q)
 
 # Só apaga a flag de bug se: rodada era de bugfix, o opencode saiu com
