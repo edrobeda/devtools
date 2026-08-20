@@ -17,7 +17,7 @@ set -uo pipefail
 
 PROJECT_DIR="/home/devtools-bot/devtools"
 OPENCODE_BIN="/home/devtools-bot/.local/bin/opencode"
-MODEL="opencode/nemotron-3-ultra-free"
+MODEL="opencode/nemotron-3.5-lightning-free"
 
 cd "$PROJECT_DIR" || exit 1
 
