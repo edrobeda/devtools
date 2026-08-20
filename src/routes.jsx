@@ -471,6 +471,7 @@ import ElasticsearchCheatsheetPage from './pages/ElasticsearchCheatsheetPage'
 import CppCheatsheetPage from './pages/CppCheatsheetPage'
 import GraphqlCheatsheetPage from './pages/GraphqlCheatsheetPage'
 import RubyCheatsheetPage from './pages/RubyCheatsheetPage'
+import SwiftCheatsheetPage from './pages/SwiftCheatsheetPage'
 import AnsibleCheatsheetPage from './pages/AnsibleCheatsheetPage'
 import Iso8601DurationPage from './pages/Iso8601DurationPage'
 import GeohashToolPage from './pages/GeohashToolPage'
@@ -961,6 +962,7 @@ const router = createBrowserRouter([
       { path: 'references/cpp-cheatsheet', element: <CppCheatsheetPage /> },
       { path: 'references/graphql-cheatsheet', element: <GraphqlCheatsheetPage /> },
       { path: 'references/ruby-cheatsheet', element: <RubyCheatsheetPage /> },
+      { path: 'references/swift-cheatsheet', element: <SwiftCheatsheetPage /> },
       { path: 'references/ansible-cheatsheet', element: <AnsibleCheatsheetPage /> },
       { path: 'references/mysql-cheatsheet', element: <MysqlCheatsheetPage /> },
       { path: 'references/django-cheatsheet', element: <DjangoCheatsheetPage /> },
