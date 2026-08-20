@@ -41,11 +41,10 @@ app.post('/api/bugs', bugReportLimiter, (req, res) => {
     return res.status(400).json({ error: 'invalid description' })
   }
 
-  const itemExists = db.prepare('SELECT 1 FROM items WHERE key = ?').get(item_key)
-  if (!itemExists) {
-    return res.status(404).json({ error: 'unknown item_key' })
-  }
-
+  // Não exige que item_key exista na tabela `items` — essa tabela só cataloga
+  // itens "novos" pro badge, então página como a home ("/") ou /bastidores
+  // nunca entram nela e ficavam impossíveis de reportar (bug real: usuário
+  // na home tentava reportar algo e recebia 404 "unknown item_key").
   db.prepare('INSERT INTO bugs (item_key, description) VALUES (?, ?)').run(
     item_key,
     description.trim()
