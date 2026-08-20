@@ -40,4 +40,15 @@ db.exec(`
   );
 `)
 
+// `visits` nasceu antes da classificação de bot/IA existir, então as duas
+// colunas abaixo entram via ALTER em bancos já existentes (CREATE TABLE IF
+// NOT EXISTS não adiciona coluna nova a uma tabela que já existe).
+const visitsColumns = db.prepare("PRAGMA table_info(visits)").all().map((c) => c.name)
+if (!visitsColumns.includes('bot_count')) {
+  db.exec('ALTER TABLE visits ADD COLUMN bot_count INTEGER NOT NULL DEFAULT 0')
+}
+if (!visitsColumns.includes('ai_bot_count')) {
+  db.exec('ALTER TABLE visits ADD COLUMN ai_bot_count INTEGER NOT NULL DEFAULT 0')
+}
+
 export default db

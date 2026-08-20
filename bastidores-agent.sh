@@ -9,7 +9,7 @@ set -uo pipefail
 
 PROJECT_DIR="/home/devtools-bot/devtools"
 OPENCODE_BIN="/home/devtools-bot/.local/bin/opencode"
-MODEL="opencode/deepseek-v4-flash-free"
+MODEL="opencode/nemotron-3-ultra-free"
 
 cd "$PROJECT_DIR" || exit 1
 

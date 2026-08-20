@@ -17,6 +17,8 @@ const translations = {
     visitsTitle: 'Ferramentas mais visitadas',
     visitsEmpty: 'Ainda sem visitas registradas.',
     visitsUnit: (n) => (n === 1 ? '1 visita' : `${n} visitas`),
+    visitsBotBreakdown: (bot, ai) =>
+      ai > 0 ? `${bot} de bots (${ai} de IA)` : `${bot} de bots`,
   },
   en: {
     title: 'Behind the scenes',
@@ -26,6 +28,8 @@ const translations = {
     visitsTitle: 'Most visited tools',
     visitsEmpty: 'No visits recorded yet.',
     visitsUnit: (n) => (n === 1 ? '1 visit' : `${n} visits`),
+    visitsBotBreakdown: (bot, ai) =>
+      ai > 0 ? `${bot} from bots (${ai} from AI)` : `${bot} from bots`,
   },
 }
 
@@ -104,7 +108,12 @@ export default function BastidoresPage() {
           renderItem={(v) => (
             <List.Item key={v.key}>
               <Text>{labelForKey(v.key, l)}</Text>
-              <Tag>{t.visitsUnit(v.count)}</Tag>
+              <span>
+                <Tag>{t.visitsUnit(v.count)}</Tag>
+                {v.bot_count > 0 && (
+                  <Tag color="default">{t.visitsBotBreakdown(v.bot_count, v.ai_bot_count)}</Tag>
+                )}
+              </span>
             </List.Item>
           )}
         />

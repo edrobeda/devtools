@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import rateLimit from 'express-rate-limit'
 import db from './db.js'
+import { classifyUserAgent } from './botDetect.js'
 
 const app = express()
 app.use(cors())
@@ -52,9 +53,10 @@ app.post('/api/bugs', bugReportLimiter, (req, res) => {
   res.status(201).json({ ok: true })
 })
 
-// Contador anônimo de visita por rota — sem IP, sem user-agent, só um
-// incremento por chave. Alimenta a seção "ferramentas mais visitadas" de
-// /bastidores.
+// Contador anônimo de visita por rota — sem IP, sem user-agent persistido,
+// só a classificação (human/bot/ai) do User-Agent do próprio request vira
+// incremento num dos três contadores. Alimenta a seção "ferramentas mais
+// visitadas" de /bastidores.
 app.post('/api/visits', visitLimiter, (req, res) => {
   const { key } = req.body || {}
 
@@ -62,16 +64,28 @@ app.post('/api/visits', visitLimiter, (req, res) => {
     return res.status(400).json({ error: 'invalid key' })
   }
 
+  const kind = classifyUserAgent(req.headers['user-agent'])
+  // `ai` conta em dobro: incrementa ai_bot_count (breakdown) e bot_count
+  // (todo bot, IA ou não) ao mesmo tempo, sem tocar em `count` (humanos).
+  const humanDelta = kind === 'human' ? 1 : 0
+  const botDelta = kind === 'human' ? 0 : 1
+  const aiDelta = kind === 'ai' ? 1 : 0
+
   db.prepare(
-    `INSERT INTO visits (key, count, last_visited_at) VALUES (?, 1, datetime('now'))
-     ON CONFLICT(key) DO UPDATE SET count = count + 1, last_visited_at = datetime('now')`
-  ).run(key)
+    `INSERT INTO visits (key, count, bot_count, ai_bot_count, last_visited_at)
+     VALUES (?, ?, ?, ?, datetime('now'))
+     ON CONFLICT(key) DO UPDATE SET
+       count = count + excluded.count,
+       bot_count = bot_count + excluded.bot_count,
+       ai_bot_count = ai_bot_count + excluded.ai_bot_count,
+       last_visited_at = datetime('now')`
+  ).run(key, humanDelta, botDelta, aiDelta)
   res.status(204).end()
 })
 
 app.get('/api/visits', (req, res) => {
   const visits = db
-    .prepare('SELECT key, count, last_visited_at FROM visits ORDER BY count DESC')
+    .prepare('SELECT key, count, bot_count, ai_bot_count, last_visited_at FROM visits ORDER BY count DESC')
     .all()
   res.json(visits)
 })
