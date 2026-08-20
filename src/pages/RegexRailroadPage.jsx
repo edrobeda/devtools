@@ -68,7 +68,7 @@ const translations = {
         <br/>
         <Text strong>Caixas azuis</Text> = grupos capturantes <Text code>(...)</Text> ou <Text code>(?&lt;nome&gt;...)</Text>
         <br/>
-        <Text strong>Badges rosas</Text> = quantificadores (<Text code>*</Text>, <Text code>+</Text>, <Text code>?</Text>, <Text code>{n,m}</Text>, lazy/possessive)
+        <Text strong>Badges rosas</Text> = quantificadores (<Text code>*</Text>, <Text code>+</Text>, <Text code>?</Text>, <Text code>{'{n,m}'}</Text>, lazy/possessive)
         <br/>
         Círculo verde = início, círculo vermelho duplo = fim.
       </>
@@ -205,7 +205,7 @@ const translations = {
         <br/>
         <Text strong>Blue boxes</Text> = capturing groups <Text code>(...)</Text> or <Text code>(?&lt;name&gt;...)</Text>
         <br/>
-        <Text strong>Pink badges</Text> = quantifiers (<Text code>*</Text>, <Text code>+</Text>, <Text code>?</Text>, <Text code>{n,m}</Text>, lazy/possessive)
+        <Text strong>Pink badges</Text> = quantifiers (<Text code>*</Text>, <Text code>+</Text>, <Text code>?</Text>, <Text code>{'{n,m}'}</Text>, lazy/possessive)
         <br/>
         Green circle = start, red double circle = end.
       </>
