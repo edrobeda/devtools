@@ -485,6 +485,7 @@ import CCheatsheetPage from './pages/CCheatsheetPage'
 import ImageResizerPage from './pages/ImageResizerPage'
 import XPathTesterPage from './pages/XPathTesterPage'
 import SearchReplacePage from './pages/SearchReplacePage'
+import IdnPunycodeConverterPage from './pages/IdnPunycodeConverterPage'
 
 const router = createBrowserRouter([
   {
@@ -680,6 +681,7 @@ const router = createBrowserRouter([
       { path: 'network/dns-record-generator', element: <DnsRecordGeneratorPage /> },
       { path: 'network/tcp-throughput-calculator', element: <TcpThroughputCalculatorPage /> },
       { path: 'network/shannon-capacity-calculator', element: <ShannonCapacityCalculatorPage /> },
+      { path: 'network/idn-punycode-converter', element: <IdnPunycodeConverterPage /> },
       { path: 'tools/iban-tool', element: <IbanToolPage /> },
       { path: 'tools/roman-numeral-converter', element: <RomanNumeralConverterPage /> },
       { path: 'tools/file-size-converter', element: <FileSizeConverterPage /> },
