@@ -1,12 +1,17 @@
 #!/bin/bash
-# Agente do devtools — disparado via cron do usuário devtools-bot, de hora
-# em hora. Só deve tocar em /home/devtools-bot/devtools (ver
-# .agent-prompt.md / .agent-prompt-bugfix.md pro escopo completo).
+# Agente do devtools — disparado via cron do usuário devtools-bot, a cada 3
+# horas. Só deve tocar em /home/devtools-bot/devtools (ver .agent-prompt.md /
+# .agent-prompt-bugfix.md / .agent-prompt-housekeeping.md pro escopo
+# completo). O organizer-agent.sh roda entre estas rodadas, só analisando e
+# alimentando a fila de housekeeping — nunca edita nada.
 #
 # Roda `opencode run` com um modelo free (sem custo, sem sessão OAuth pra
-# expirar). Cada rodada é UMA das duas coisas, nunca as duas:
-#   - se existe bug pendente (tabela `bugs` em data/devtools.db), corrige
-#     só esse bug (.agent-prompt-bugfix.md) — prioridade sobre conteúdo novo;
+# expirar). Cada rodada é UMA das três coisas, nunca mais de uma:
+#   - se existe bug pendente (tabela `bugs`), corrige só esse bug
+#     (.agent-prompt-bugfix.md) — prioridade máxima;
+#   - senão, se existe achado de organização pendente (tabela
+#     `housekeeping`, alimentada pelo organizer-agent.sh), resolve só esse
+#     achado (.agent-prompt-housekeeping.md);
 #   - senão, roda de conteúdo normal (.agent-prompt.md), no máximo 1 item.
 set -uo pipefail
 
@@ -23,16 +28,21 @@ LOG_DIR="$PROJECT_DIR/.agent-logs"
 mkdir -p "$LOG_DIR"
 LOG_FILE="$LOG_DIR/$(date +%Y-%m-%d_%H-%M-%S).log"
 
-# Evita rodadas sobrepostas caso uma rodada demore mais que 1h.
+# Evita rodadas sobrepostas caso uma rodada demore mais que o intervalo do cron.
 LOCK_FILE="$PROJECT_DIR/.hourly-agent.lock"
 exec 200>"$LOCK_FILE"
 if ! flock -n 200; then
-    echo "$(date -Iseconds) — rodada anterior ainda rodando, pulando esta hora" >> "$LOG_DIR/runs.log"
+    echo "$(date -Iseconds) — rodada anterior ainda rodando, pulando esta rodada" >> "$LOG_DIR/runs.log"
     exit 0
 fi
 
+# Manifest sempre fresco antes de montar qualquer prompt — barato (<1s),
+# determinístico, sem chamada de modelo. Ver scripts/generate_manifest.py.
+python3 "$PROJECT_DIR/scripts/generate_manifest.py" >> "$LOG_DIR/runs.log" 2>&1
+
 # Checa bug pendente ANTES de decidir o prompt — ver scripts/pending_bug.py.
 mapfile -t BUG_LINES < <(python3 "$PROJECT_DIR/scripts/pending_bug.py")
+mapfile -t HOUSEKEEPING_LINES < <(python3 "$PROJECT_DIR/scripts/pending_housekeeping.py")
 
 if [ "${BUG_LINES[0]:-NONE}" != "NONE" ]; then
     ROUND_KIND="bugfix"
@@ -55,6 +65,27 @@ print(
 PYEOF
 )"
     echo "$(date -Iseconds) — rodada de bugfix (bug #$BUG_ID, $BUG_ITEM_KEY)" >> "$LOG_DIR/runs.log"
+elif [ "${HOUSEKEEPING_LINES[0]:-NONE}" != "NONE" ]; then
+    ROUND_KIND="housekeeping"
+    HOUSEKEEPING_ID="${HOUSEKEEPING_LINES[0]}"
+    HOUSEKEEPING_ROUTES="${HOUSEKEEPING_LINES[1]}"
+    HOUSEKEEPING_DESCRIPTION="$(printf '%s' "${HOUSEKEEPING_LINES[2]}" | base64 -d)"
+
+    PROMPT="$(ROUTES="$HOUSEKEEPING_ROUTES" HOUSEKEEPING_DESCRIPTION="$HOUSEKEEPING_DESCRIPTION" python3 - "$PROJECT_DIR/.agent-prompt-housekeeping.md" <<'PYEOF'
+import os
+import sys
+
+with open(sys.argv[1], encoding="utf-8") as f:
+    template = f.read()
+
+print(
+    template
+    .replace("{{ROUTES}}", os.environ["ROUTES"])
+    .replace("{{HOUSEKEEPING_DESCRIPTION}}", os.environ["HOUSEKEEPING_DESCRIPTION"])
+)
+PYEOF
+)"
+    echo "$(date -Iseconds) — rodada de housekeeping (achado #$HOUSEKEEPING_ID, $HOUSEKEEPING_ROUTES)" >> "$LOG_DIR/runs.log"
 else
     ROUND_KIND="content"
     PROMPT="$(cat "$PROJECT_DIR/.agent-prompt.md")"
@@ -84,6 +115,12 @@ CONTAINER_UP=$(docker ps --filter "name=DK_DEVTOOLS" --filter "status=running" -
 # rodada tenta de novo.
 if [ "$ROUND_KIND" = "bugfix" ] && [ "$AGENT_EXIT" -eq 0 ] && [ -n "$CONTAINER_UP" ] && [ "$HEAD_BEFORE" != "$HEAD_AFTER" ]; then
     python3 "$PROJECT_DIR/scripts/resolve_bug.py" "$BUG_ID" >> "$LOG_DIR/runs.log" 2>&1
+fi
+
+# Mesma lógica acima, pro achado de organização: só marca resolvido com
+# prova de commit real (senão a rodada seguinte tenta de novo).
+if [ "$ROUND_KIND" = "housekeeping" ] && [ "$AGENT_EXIT" -eq 0 ] && [ -n "$CONTAINER_UP" ] && [ "$HEAD_BEFORE" != "$HEAD_AFTER" ]; then
+    python3 "$PROJECT_DIR/scripts/resolve_housekeeping.py" "$HOUSEKEEPING_ID" >> "$LOG_DIR/runs.log" 2>&1
 fi
 
 # Avisa por WhatsApp só se algo real quebrou (comando falhou, ex.: erro do

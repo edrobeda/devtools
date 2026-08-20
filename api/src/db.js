@@ -38,6 +38,18 @@ db.exec(`
     summary TEXT NOT NULL,
     created_at TEXT NOT NULL DEFAULT (datetime('now'))
   );
+
+  -- Achados do organizer-agent.sh (duplicação/desorganização entre páginas)
+  -- que o hourly-agent.sh resolve um de cada vez, com a mesma prioridade
+  -- que já dá pra bugs reportados.
+  CREATE TABLE IF NOT EXISTS housekeeping (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    routes TEXT NOT NULL,
+    description TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'pending',
+    created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    resolved_at TEXT
+  );
 `)
 
 // `visits` nasceu antes da classificação de bot/IA existir, então as duas

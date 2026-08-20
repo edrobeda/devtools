@@ -4,5 +4,7 @@ dist/
 .env
 .hourly-agent.lock
 .bastidores-agent.lock
+.organizer-agent.lock
+manifest.xml
 data/
 .scratch/

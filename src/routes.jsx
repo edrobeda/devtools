@@ -24,6 +24,7 @@ import CurlGeneratorPage from './pages/CurlGeneratorPage'
 import CurlToCodePage from './pages/CurlToCodePage'
 import GraphqlFormatterPage from './pages/GraphqlFormatterPage'
 import OpenapiSpecGeneratorPage from './pages/OpenapiSpecGeneratorPage'
+import ProblemDetailsGeneratorPage from './pages/ProblemDetailsGeneratorPage'
 import GitignoreGeneratorPage from './pages/GitignoreGeneratorPage'
 import RateLimitCalculatorPage from './pages/RateLimitCalculatorPage'
 import ArnParserPage from './pages/ArnParserPage'
@@ -42,6 +43,7 @@ import DateTimeCalculatorPage from './pages/DateTimeCalculatorPage'
 import RegexTesterPage from './pages/RegexTesterPage'
 import RegexPatternGeneratorPage from './pages/RegexPatternGeneratorPage'
 import RegexExplainerPage from './pages/RegexExplainerPage'
+import RegexRailroadPage from './pages/RegexRailroadPage'
 import KeyboardEventTesterPage from './pages/KeyboardEventTesterPage'
 import Base64ToolPage from './pages/Base64ToolPage'
 import Base32ToolPage from './pages/Base32ToolPage'
@@ -492,6 +494,7 @@ import HexDumpPage from './pages/HexDumpPage'
 import LuaCheatsheetPage from './pages/LuaCheatsheetPage'
 import SqlWindowFunctionsPage from './pages/SqlWindowFunctionsPage'
 import EmojiCheatsheetPage from './pages/EmojiCheatsheetPage'
+import MarkdownTableConverterPage from './pages/MarkdownTableConverterPage'
 
 const router = createBrowserRouter([
   {
@@ -521,6 +524,7 @@ const router = createBrowserRouter([
       { path: 'apis/curl-to-code', element: <CurlToCodePage /> },
       { path: 'apis/graphql-formatter', element: <GraphqlFormatterPage /> },
       { path: 'apis/openapi-spec-generator', element: <OpenapiSpecGeneratorPage /> },
+      { path: 'apis/problem-details-generator', element: <ProblemDetailsGeneratorPage /> },
       { path: 'devops/gitignore-generator', element: <GitignoreGeneratorPage /> },
       { path: 'database/rate-limit-calculator', element: <RateLimitCalculatorPage /> },
       { path: 'cloud/arn-parser', element: <ArnParserPage /> },
@@ -539,6 +543,7 @@ const router = createBrowserRouter([
       { path: 'tools/regex-tester', element: <RegexTesterPage /> },
       { path: 'tools/regex-pattern-generator', element: <RegexPatternGeneratorPage /> },
       { path: 'tools/regex-explainer', element: <RegexExplainerPage /> },
+      { path: 'tools/regex-railroad', element: <RegexRailroadPage /> },
       { path: 'tools/keyboard-event-tester', element: <KeyboardEventTesterPage /> },
       { path: 'tools/base64-tool', element: <Base64ToolPage /> },
       { path: 'tools/base32-tool', element: <Base32ToolPage /> },
@@ -988,6 +993,7 @@ const router = createBrowserRouter([
       { path: 'tools/paxos-simulator', element: <PaxosSimulatorPage /> },
       { path: 'tools/bully-algorithm-simulator', element: <BullyAlgorithmSimulatorPage /> },
       { path: 'tools/ring-election-simulator', element: <RingElectionSimulatorPage /> },
+      { path: 'data/markdown-table-converter', element: <MarkdownTableConverterPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
