@@ -5,8 +5,12 @@
 # completo). O organizer-agent.sh roda entre estas rodadas, só analisando e
 # alimentando a fila de housekeeping — nunca edita nada.
 #
-# Roda `opencode run` com um modelo free (sem custo, sem sessão OAuth pra
-# expirar). Cada rodada é UMA das três coisas, nunca mais de uma:
+# Roda `opencode run` com um modelo pago do OpenCode Go (assinatura
+# mensal, sem sessão OAuth pra expirar — motivo original da migração pra
+# `opencode run`). Trocado dos modelos free em 2026-08-20: os modelos
+# `opencode/*-free` vinham falhando ~80% das rodadas com erro de
+# sobrecarga do backend (502/504) sob carga real de tool-use. Cada rodada
+# é UMA das três coisas, nunca mais de uma:
 #   - se existe bug pendente (tabela `bugs`), corrige só esse bug
 #     (.agent-prompt-bugfix.md) — prioridade máxima;
 #   - senão, se existe achado de organização pendente (tabela
@@ -17,7 +21,7 @@ set -uo pipefail
 
 PROJECT_DIR="/home/devtools-bot/devtools"
 OPENCODE_BIN="/home/devtools-bot/.local/bin/opencode"
-MODEL="opencode/nemotron-3.5-lightning-free"
+MODEL="opencode-go/glm-5.2"
 
 cd "$PROJECT_DIR" || exit 1
 
@@ -93,10 +97,11 @@ fi
 
 HEAD_BEFORE="$(git -C "$PROJECT_DIR" rev-parse HEAD 2>/dev/null)"
 
-# O modelo free às vezes trava a chamada sem retornar nada (visto 2x em
-# 2026-08-10: processo ficava horas parado, sem filhos, sem log novo,
-# segurando o lock e travando toda rodada seguinte). Rodadas normais levam
-# 15-40min — 45min de margem + SIGKILL depois de 30s se o TERM não bastar.
+# A chamada pode travar sem retornar nada (visto 2x em 2026-08-10 com um
+# modelo free: processo ficava horas parado, sem filhos, sem log novo,
+# segurando o lock e travando toda rodada seguinte) — guarda-chuva que vale
+# independente do modelo. Rodadas normais levam 15-40min — 45min de margem
+# + SIGKILL depois de 30s se o TERM não bastar.
 timeout --signal=TERM --kill-after=30s 45m \
     "$OPENCODE_BIN" run --auto --dir "$PROJECT_DIR" -m "$MODEL" --title "devtools-hourly-$(date +%Y%m%d-%H%M%S)" "$PROMPT" \
     > "$LOG_FILE" 2>&1

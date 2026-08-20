@@ -11,7 +11,7 @@ set -uo pipefail
 
 PROJECT_DIR="/home/devtools-bot/devtools"
 OPENCODE_BIN="/home/devtools-bot/.local/bin/opencode"
-MODEL="opencode/nemotron-3.5-lightning-free"
+MODEL="opencode-go/glm-5.2"
 
 cd "$PROJECT_DIR" || exit 1
 
@@ -39,7 +39,7 @@ PROMPT="$(cat "$PROJECT_DIR/.agent-prompt-organizer.md")"
 FINDINGS_BEFORE="$(sqlite3 "$PROJECT_DIR/data/devtools.db" 'SELECT COUNT(*) FROM housekeeping;' 2>/dev/null || echo 0)"
 
 # Rodada é só leitura + no máximo 1 insert no sqlite — mesma margem de
-# segurança contra travamento do modelo free que os outros agentes (ver
+# segurança contra travamento do modelo que os outros agentes (ver
 # hourly-agent.sh), mas com timeout menor por ser um trabalho mais leve.
 timeout --signal=TERM --kill-after=30s 20m \
     "$OPENCODE_BIN" run --auto --dir "$PROJECT_DIR" -m "$MODEL" --title "devtools-organizer-$(date +%Y%m%d-%H%M%S)" "$PROMPT" \
