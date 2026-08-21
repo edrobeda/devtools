@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { Layout, Menu, Segmented, Tag, theme, Drawer } from 'antd'
 import {
   HomeOutlined,
@@ -1770,10 +1770,20 @@ export default function AppLayout() {
   // useNewItemKeys.js) antes de montar o menu — não precisamos do valor de
   // retorno aqui, só que o efeito rode e force este componente (e a
   // HomePage, filha dele) a re-renderizar quando os dados chegarem.
-  useNewItemKeys()
+  const newItemsVersion = useNewItemKeys()
   useVisitTracker()
 
-  const menuItems = buildMenuItems(LABELS[lang])
+  // buildMenuItems monta a árvore inteira do menu (centenas de itens com
+  // ícones JSX e badges "Novo"). Sem memoização ela é recriada a cada render
+  // — ex.: ao togglar o drawer no mobile — e bloqueia a thread principal
+  // num long task, atrasando a abertura da sidebar. LABELS[lang] é
+  // referencialmente estável por idioma (const de módulo); newItemsVersion
+  // muda quando NEW_ITEM_KEYS (mutado in-place por useNewItemKeys) é
+  // atualizado, forçando a reconstrução dos badges "Novo".
+  const menuItems = useMemo(
+    () => buildMenuItems(LABELS[lang]),
+    [lang, newItemsVersion]
+  )
 
   // O menu (Sider/Drawer) e o conteúdo rolam em containers separados — ao
   // trocar de rota, o scroll do conteúdo precisa voltar pro topo mesmo que o
@@ -1788,12 +1798,29 @@ export default function AppLayout() {
     if (key.startsWith('/')) navigate(key)
   }
 
+  // Desktop: o Sider é fixo e sempre visível (com scroll), faz sentido manter
+  // todas as categorias expandidas pra navegação rápida.
   const navMenu = (
     <Menu
       theme="dark"
       mode="inline"
       selectedKeys={[location.pathname]}
       defaultOpenKeys={MOBILE_MENU_OPEN_KEYS}
+      items={menuItems}
+      onClick={handleMenuClick}
+    />
+  )
+
+  // Mobile: o Drawer abre sob demanda. Abrir com as 16 categorias todas
+  // expandidas forçava a renderização de ~505 nós de uma vez (long task de
+  // até ~1.3s, abertura "travando" no mobile). Categorias colapsadas por
+  // padrão renderizam só os ~18 cabeçalhos; o usuário expande a que quer.
+  const mobileNavMenu = (
+    <Menu
+      theme="dark"
+      mode="inline"
+      selectedKeys={[location.pathname]}
+      defaultOpenKeys={[]}
       items={menuItems}
       onClick={handleMenuClick}
     />
@@ -1820,7 +1847,7 @@ export default function AppLayout() {
           }}>
             DevTools
           </div>
-          {navMenu}
+          {mobileNavMenu}
         </Drawer>
       ) : (
         <Sider trigger={null} collapsible collapsed={collapsed} style={{ height: '100vh', overflow: 'auto' }}>
