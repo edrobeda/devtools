@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import { Typography, Card, Space, InputNumber, Select, Descriptions } from 'antd'
-import { DatabaseOutlined } from '@ant-design/icons'
+import { CalculatorOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 
 const { Title, Paragraph, Text } = Typography
@@ -109,7 +109,7 @@ export default function RateLimitCalculatorPage() {
 
   return (
     <Space direction="vertical" size="large" style={{ width: '100%' }}>
-      <Title level={2}><DatabaseOutlined /> {t.title}</Title>
+      <Title level={2}><CalculatorOutlined /> {t.title}</Title>
       <Paragraph type="secondary">{t.intro}</Paragraph>
 
       <Card>

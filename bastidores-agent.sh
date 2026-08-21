@@ -9,7 +9,7 @@ set -uo pipefail
 
 PROJECT_DIR="/home/devtools-bot/devtools"
 OPENCODE_BIN="/home/devtools-bot/.local/bin/opencode"
-MODEL="opencode/deepseek-v4-flash-free"
+MODEL="opencode-go/glm-5.2"
 
 cd "$PROJECT_DIR" || exit 1
 
@@ -35,7 +35,7 @@ ENTRIES_BEFORE="$(sqlite3 "$PROJECT_DIR/data/devtools.db" 'SELECT COUNT(*) FROM 
 
 # Rodada é só leitura + 1 insert no sqlite — bem mais rápida que uma rodada
 # de conteúdo, mas mantém a mesma margem de segurança contra travamento do
-# modelo free (ver hourly-agent.sh).
+# modelo (ver hourly-agent.sh).
 timeout --signal=TERM --kill-after=30s 20m \
     "$OPENCODE_BIN" run --auto --dir "$PROJECT_DIR" -m "$MODEL" --title "devtools-bastidores-$(date +%Y%m%d-%H%M%S)" "$PROMPT" \
     > "$LOG_FILE" 2>&1

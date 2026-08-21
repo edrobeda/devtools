@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { Layout, Menu, Segmented, Tag, theme, Drawer } from 'antd'
 import {
   HomeOutlined,
@@ -162,6 +162,7 @@ export const LABELS = {
     'regex-tester': 'Regex Tester',
     'regex-pattern-generator': 'Gerador de Padrões Regex',
     'regex-explainer': 'Regex Explainer (explica a regex)',
+    'regex-railroad': 'Regex Railroad Diagram',
     'keyboard-event-tester': 'Testador de Eventos de Teclado',
     'base64-tool': 'Base64 Encode/Decode',
     'base32-tool': 'Base32 Encode/Decode',
@@ -179,6 +180,7 @@ export const LABELS = {
     'url-parser': 'URL Parser & Query Editor',
     'graphql-formatter': 'GraphQL Formatter & Minifier',
     'openapi-spec-generator': 'Gerador de Especificação OpenAPI',
+    'problem-details-generator': 'Gerador de Problem Details (RFC 7807)',
     'utm-url-builder': 'Construtor de URL com UTM',
     'email-signature-generator': 'Gerador de Assinatura de E-mail',
     'config-converter': 'Conversor de Arquivos de Configuração',
@@ -608,6 +610,8 @@ export const LABELS = {
     'helm-cheatsheet': 'Cheat Sheet de Helm',
     'c-cheatsheet': 'Cheat Sheet de C',
     'lua-cheatsheet': 'Cheat Sheet de Lua',
+    'sql-window-functions': 'Funções de Janela SQL (OVER)',
+    'emoji-cheatsheet': 'Cheat Sheet de Emojis',
     'image-resizer': 'Redimensionador de Imagem',
     'xpath-tester': 'XPath Tester',
     'hex-dump': 'Visualizador Hex Dump (xxd)',
@@ -670,6 +674,7 @@ export const LABELS = {
     'regex-tester': 'Regex Tester',
     'regex-pattern-generator': 'Regex Pattern Generator',
     'regex-explainer': 'Regex Explainer (explains the regex)',
+    'regex-railroad': 'Regex Railroad Diagram',
     'keyboard-event-tester': 'Keyboard Event Tester',
     'base64-tool': 'Base64 Encode/Decode',
     'base32-tool': 'Base32 Encode/Decode',
@@ -687,6 +692,7 @@ export const LABELS = {
     'url-parser': 'URL Parser & Query Editor',
     'graphql-formatter': 'GraphQL Formatter & Minifier',
     'openapi-spec-generator': 'OpenAPI Spec Generator',
+    'problem-details-generator': 'Problem Details Generator (RFC 7807)',
     'utm-url-builder': 'UTM URL Builder',
     'email-signature-generator': 'E-mail Signature Generator',
     'config-converter': 'Config File Converter',
@@ -1116,6 +1122,8 @@ export const LABELS = {
     'helm-cheatsheet': 'Helm Cheat Sheet',
     'c-cheatsheet': 'C Cheat Sheet',
     'lua-cheatsheet': 'Lua Cheat Sheet',
+    'sql-window-functions': 'SQL Window Functions (OVER)',
+    'emoji-cheatsheet': 'Emoji Cheat Sheet',
     'image-resizer': 'Image Resizer',
     'xpath-tester': 'XPath Tester',
     'hex-dump': 'Hex Dump / xxd Viewer',
@@ -1160,6 +1168,7 @@ export function buildMenuItems(l) {
         { key: '/tools/regex-tester', icon: <SearchOutlined />, label: withNewBadge('/tools/regex-tester', l['regex-tester'], l) },
         { key: '/tools/regex-pattern-generator', icon: <SearchOutlined />, label: withNewBadge('/tools/regex-pattern-generator', l['regex-pattern-generator'], l) },
         { key: '/tools/regex-explainer', icon: <SearchOutlined />, label: withNewBadge('/tools/regex-explainer', l['regex-explainer'], l) },
+        { key: '/tools/regex-railroad', icon: <BranchesOutlined />, label: withNewBadge('/tools/regex-railroad', l['regex-railroad'], l) },
         { key: '/tools/keyboard-event-tester', icon: <KeyOutlined />, label: withNewBadge('/tools/keyboard-event-tester', l['keyboard-event-tester'], l) },
         { key: '/tools/base64-tool', icon: <SwapOutlined />, label: withNewBadge('/tools/base64-tool', l['base64-tool'], l) },
         { key: '/tools/base32-tool', icon: <SwapOutlined />, label: withNewBadge('/tools/base32-tool', l['base32-tool'], l) },
@@ -1260,6 +1269,7 @@ export function buildMenuItems(l) {
         { key: '/tools/logical-clocks-simulator', icon: <ClockCircleOutlined />, label: withNewBadge('/tools/logical-clocks-simulator', l['logical-clocks-simulator'], l) },
         { key: '/tools/circuit-breaker-simulator', icon: <ThunderboltOutlined />, label: withNewBadge('/tools/circuit-breaker-simulator', l['circuit-breaker-simulator'], l) },
         { key: '/tools/rate-limiter-simulator', icon: <DashboardOutlined />, label: withNewBadge('/tools/rate-limiter-simulator', l['rate-limiter-simulator'], l) },
+        { key: '/tools/rate-limit-calculator', icon: <CalculatorOutlined />, label: withNewBadge('/tools/rate-limit-calculator', l['rate-limit-calculator'], l) },
         { key: '/tools/two-phase-commit-simulator', icon: <ApartmentOutlined />, label: withNewBadge('/tools/two-phase-commit-simulator', l['two-phase-commit-simulator'], l) },
         { key: '/tools/three-phase-commit-simulator', icon: <ApartmentOutlined />, label: withNewBadge('/tools/three-phase-commit-simulator', l['three-phase-commit-simulator'], l) },
         { key: '/tools/raid-simulator', icon: <HddOutlined />, label: withNewBadge('/tools/raid-simulator', l['raid-simulator'], l) },
@@ -1538,7 +1548,6 @@ export function buildMenuItems(l) {
       icon: <DatabaseOutlined />,
       label: l.database,
       children: [
-        { key: '/database/rate-limit-calculator', label: l['rate-limit-calculator'] },
         { key: '/database/json-to-sql', icon: <DatabaseOutlined />, label: withNewBadge('/database/json-to-sql', l['json-to-sql'], l) },
         { key: '/database/sql-formatter', icon: <FileTextOutlined />, label: withNewBadge('/database/sql-formatter', l['sql-formatter'], l) },
         { key: '/database/sql-isolation-levels', icon: <DatabaseOutlined />, label: withNewBadge('/database/sql-isolation-levels', l['sql-isolation-levels'], l) },
@@ -1717,6 +1726,8 @@ export function buildMenuItems(l) {
         { key: '/references/helm-cheatsheet', icon: <ContainerOutlined />, label: withNewBadge('/references/helm-cheatsheet', l['helm-cheatsheet'], l) },
         { key: '/references/c-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/c-cheatsheet', l['c-cheatsheet'], l) },
         { key: '/references/lua-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/lua-cheatsheet', l['lua-cheatsheet'], l) },
+        { key: '/references/sql-window-functions', icon: <TableOutlined />, label: withNewBadge('/references/sql-window-functions', l['sql-window-functions'], l) },
+        { key: '/references/emoji-cheatsheet', icon: <SmileOutlined />, label: withNewBadge('/references/emoji-cheatsheet', l['emoji-cheatsheet'], l) },
       ],
     },
     {
@@ -1759,10 +1770,20 @@ export default function AppLayout() {
   // useNewItemKeys.js) antes de montar o menu — não precisamos do valor de
   // retorno aqui, só que o efeito rode e force este componente (e a
   // HomePage, filha dele) a re-renderizar quando os dados chegarem.
-  useNewItemKeys()
+  const newItemsVersion = useNewItemKeys()
   useVisitTracker()
 
-  const menuItems = buildMenuItems(LABELS[lang])
+  // buildMenuItems monta a árvore inteira do menu (centenas de itens com
+  // ícones JSX e badges "Novo"). Sem memoização ela é recriada a cada render
+  // — ex.: ao togglar o drawer no mobile — e bloqueia a thread principal
+  // num long task, atrasando a abertura da sidebar. LABELS[lang] é
+  // referencialmente estável por idioma (const de módulo); newItemsVersion
+  // muda quando NEW_ITEM_KEYS (mutado in-place por useNewItemKeys) é
+  // atualizado, forçando a reconstrução dos badges "Novo".
+  const menuItems = useMemo(
+    () => buildMenuItems(LABELS[lang]),
+    [lang, newItemsVersion]
+  )
 
   // O menu (Sider/Drawer) e o conteúdo rolam em containers separados — ao
   // trocar de rota, o scroll do conteúdo precisa voltar pro topo mesmo que o
@@ -1777,12 +1798,29 @@ export default function AppLayout() {
     if (key.startsWith('/')) navigate(key)
   }
 
+  // Desktop: o Sider é fixo e sempre visível (com scroll), faz sentido manter
+  // todas as categorias expandidas pra navegação rápida.
   const navMenu = (
     <Menu
       theme="dark"
       mode="inline"
       selectedKeys={[location.pathname]}
       defaultOpenKeys={MOBILE_MENU_OPEN_KEYS}
+      items={menuItems}
+      onClick={handleMenuClick}
+    />
+  )
+
+  // Mobile: o Drawer abre sob demanda. Abrir com as 16 categorias todas
+  // expandidas forçava a renderização de ~505 nós de uma vez (long task de
+  // até ~1.3s, abertura "travando" no mobile). Categorias colapsadas por
+  // padrão renderizam só os ~18 cabeçalhos; o usuário expande a que quer.
+  const mobileNavMenu = (
+    <Menu
+      theme="dark"
+      mode="inline"
+      selectedKeys={[location.pathname]}
+      defaultOpenKeys={[]}
       items={menuItems}
       onClick={handleMenuClick}
     />
@@ -1809,7 +1847,7 @@ export default function AppLayout() {
           }}>
             DevTools
           </div>
-          {navMenu}
+          {mobileNavMenu}
         </Drawer>
       ) : (
         <Sider trigger={null} collapsible collapsed={collapsed} style={{ height: '100vh', overflow: 'auto' }}>

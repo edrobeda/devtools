@@ -24,6 +24,7 @@ import CurlGeneratorPage from './pages/CurlGeneratorPage'
 import CurlToCodePage from './pages/CurlToCodePage'
 import GraphqlFormatterPage from './pages/GraphqlFormatterPage'
 import OpenapiSpecGeneratorPage from './pages/OpenapiSpecGeneratorPage'
+import ProblemDetailsGeneratorPage from './pages/ProblemDetailsGeneratorPage'
 import GitignoreGeneratorPage from './pages/GitignoreGeneratorPage'
 import RateLimitCalculatorPage from './pages/RateLimitCalculatorPage'
 import ArnParserPage from './pages/ArnParserPage'
@@ -42,6 +43,7 @@ import DateTimeCalculatorPage from './pages/DateTimeCalculatorPage'
 import RegexTesterPage from './pages/RegexTesterPage'
 import RegexPatternGeneratorPage from './pages/RegexPatternGeneratorPage'
 import RegexExplainerPage from './pages/RegexExplainerPage'
+import RegexRailroadPage from './pages/RegexRailroadPage'
 import KeyboardEventTesterPage from './pages/KeyboardEventTesterPage'
 import Base64ToolPage from './pages/Base64ToolPage'
 import Base32ToolPage from './pages/Base32ToolPage'
@@ -490,6 +492,9 @@ import SearchReplacePage from './pages/SearchReplacePage'
 import IdnPunycodeConverterPage from './pages/IdnPunycodeConverterPage'
 import HexDumpPage from './pages/HexDumpPage'
 import LuaCheatsheetPage from './pages/LuaCheatsheetPage'
+import SqlWindowFunctionsPage from './pages/SqlWindowFunctionsPage'
+import EmojiCheatsheetPage from './pages/EmojiCheatsheetPage'
+import MarkdownTableConverterPage from './pages/MarkdownTableConverterPage'
 
 const router = createBrowserRouter([
   {
@@ -519,8 +524,9 @@ const router = createBrowserRouter([
       { path: 'apis/curl-to-code', element: <CurlToCodePage /> },
       { path: 'apis/graphql-formatter', element: <GraphqlFormatterPage /> },
       { path: 'apis/openapi-spec-generator', element: <OpenapiSpecGeneratorPage /> },
+      { path: 'apis/problem-details-generator', element: <ProblemDetailsGeneratorPage /> },
       { path: 'devops/gitignore-generator', element: <GitignoreGeneratorPage /> },
-      { path: 'database/rate-limit-calculator', element: <RateLimitCalculatorPage /> },
+      { path: 'tools/rate-limit-calculator', element: <RateLimitCalculatorPage /> },
       { path: 'cloud/arn-parser', element: <ArnParserPage /> },
       { path: 'cloud/cost-estimator', element: <CloudCostEstimatorPage /> },
       { path: 'cloud/iam-policy-generator', element: <IamPolicyGeneratorPage /> },
@@ -537,6 +543,7 @@ const router = createBrowserRouter([
       { path: 'tools/regex-tester', element: <RegexTesterPage /> },
       { path: 'tools/regex-pattern-generator', element: <RegexPatternGeneratorPage /> },
       { path: 'tools/regex-explainer', element: <RegexExplainerPage /> },
+      { path: 'tools/regex-railroad', element: <RegexRailroadPage /> },
       { path: 'tools/keyboard-event-tester', element: <KeyboardEventTesterPage /> },
       { path: 'tools/base64-tool', element: <Base64ToolPage /> },
       { path: 'tools/base32-tool', element: <Base32ToolPage /> },
@@ -689,6 +696,8 @@ const router = createBrowserRouter([
       { path: 'network/idn-punycode-converter', element: <IdnPunycodeConverterPage /> },
       { path: 'tools/hex-dump', element: <HexDumpPage /> },
       { path: 'references/lua-cheatsheet', element: <LuaCheatsheetPage /> },
+      { path: 'references/sql-window-functions', element: <SqlWindowFunctionsPage /> },
+      { path: 'references/emoji-cheatsheet', element: <EmojiCheatsheetPage /> },
       { path: 'tools/iban-tool', element: <IbanToolPage /> },
       { path: 'tools/roman-numeral-converter', element: <RomanNumeralConverterPage /> },
       { path: 'tools/file-size-converter', element: <FileSizeConverterPage /> },
@@ -984,6 +993,7 @@ const router = createBrowserRouter([
       { path: 'tools/paxos-simulator', element: <PaxosSimulatorPage /> },
       { path: 'tools/bully-algorithm-simulator', element: <BullyAlgorithmSimulatorPage /> },
       { path: 'tools/ring-election-simulator', element: <RingElectionSimulatorPage /> },
+      { path: 'data/markdown-table-converter', element: <MarkdownTableConverterPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

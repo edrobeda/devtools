@@ -1,18 +1,27 @@
 #!/bin/bash
-# Agente do devtools — disparado via cron do usuário devtools-bot, de hora
-# em hora. Só deve tocar em /home/devtools-bot/devtools (ver
-# .agent-prompt.md / .agent-prompt-bugfix.md pro escopo completo).
+# Agente do devtools — disparado via cron do usuário devtools-bot, a cada 3
+# horas. Só deve tocar em /home/devtools-bot/devtools (ver .agent-prompt.md /
+# .agent-prompt-bugfix.md / .agent-prompt-housekeeping.md pro escopo
+# completo). O organizer-agent.sh roda entre estas rodadas, só analisando e
+# alimentando a fila de housekeeping — nunca edita nada.
 #
-# Roda `opencode run` com um modelo free (sem custo, sem sessão OAuth pra
-# expirar). Cada rodada é UMA das duas coisas, nunca as duas:
-#   - se existe bug pendente (tabela `bugs` em data/devtools.db), corrige
-#     só esse bug (.agent-prompt-bugfix.md) — prioridade sobre conteúdo novo;
+# Roda `opencode run` com um modelo pago do OpenCode Go (assinatura
+# mensal, sem sessão OAuth pra expirar — motivo original da migração pra
+# `opencode run`). Trocado dos modelos free em 2026-08-20: os modelos
+# `opencode/*-free` vinham falhando ~80% das rodadas com erro de
+# sobrecarga do backend (502/504) sob carga real de tool-use. Cada rodada
+# é UMA das três coisas, nunca mais de uma:
+#   - se existe bug pendente (tabela `bugs`), corrige só esse bug
+#     (.agent-prompt-bugfix.md) — prioridade máxima;
+#   - senão, se existe achado de organização pendente (tabela
+#     `housekeeping`, alimentada pelo organizer-agent.sh), resolve só esse
+#     achado (.agent-prompt-housekeeping.md);
 #   - senão, roda de conteúdo normal (.agent-prompt.md), no máximo 1 item.
 set -uo pipefail
 
 PROJECT_DIR="/home/devtools-bot/devtools"
 OPENCODE_BIN="/home/devtools-bot/.local/bin/opencode"
-MODEL="opencode/deepseek-v4-flash-free"
+MODEL="opencode-go/glm-5.2"
 
 cd "$PROJECT_DIR" || exit 1
 
@@ -23,16 +32,21 @@ LOG_DIR="$PROJECT_DIR/.agent-logs"
 mkdir -p "$LOG_DIR"
 LOG_FILE="$LOG_DIR/$(date +%Y-%m-%d_%H-%M-%S).log"
 
-# Evita rodadas sobrepostas caso uma rodada demore mais que 1h.
+# Evita rodadas sobrepostas caso uma rodada demore mais que o intervalo do cron.
 LOCK_FILE="$PROJECT_DIR/.hourly-agent.lock"
 exec 200>"$LOCK_FILE"
 if ! flock -n 200; then
-    echo "$(date -Iseconds) — rodada anterior ainda rodando, pulando esta hora" >> "$LOG_DIR/runs.log"
+    echo "$(date -Iseconds) — rodada anterior ainda rodando, pulando esta rodada" >> "$LOG_DIR/runs.log"
     exit 0
 fi
 
+# Manifest sempre fresco antes de montar qualquer prompt — barato (<1s),
+# determinístico, sem chamada de modelo. Ver scripts/generate_manifest.py.
+python3 "$PROJECT_DIR/scripts/generate_manifest.py" >> "$LOG_DIR/runs.log" 2>&1
+
 # Checa bug pendente ANTES de decidir o prompt — ver scripts/pending_bug.py.
 mapfile -t BUG_LINES < <(python3 "$PROJECT_DIR/scripts/pending_bug.py")
+mapfile -t HOUSEKEEPING_LINES < <(python3 "$PROJECT_DIR/scripts/pending_housekeeping.py")
 
 if [ "${BUG_LINES[0]:-NONE}" != "NONE" ]; then
     ROUND_KIND="bugfix"
@@ -55,6 +69,27 @@ print(
 PYEOF
 )"
     echo "$(date -Iseconds) — rodada de bugfix (bug #$BUG_ID, $BUG_ITEM_KEY)" >> "$LOG_DIR/runs.log"
+elif [ "${HOUSEKEEPING_LINES[0]:-NONE}" != "NONE" ]; then
+    ROUND_KIND="housekeeping"
+    HOUSEKEEPING_ID="${HOUSEKEEPING_LINES[0]}"
+    HOUSEKEEPING_ROUTES="${HOUSEKEEPING_LINES[1]}"
+    HOUSEKEEPING_DESCRIPTION="$(printf '%s' "${HOUSEKEEPING_LINES[2]}" | base64 -d)"
+
+    PROMPT="$(ROUTES="$HOUSEKEEPING_ROUTES" HOUSEKEEPING_DESCRIPTION="$HOUSEKEEPING_DESCRIPTION" python3 - "$PROJECT_DIR/.agent-prompt-housekeeping.md" <<'PYEOF'
+import os
+import sys
+
+with open(sys.argv[1], encoding="utf-8") as f:
+    template = f.read()
+
+print(
+    template
+    .replace("{{ROUTES}}", os.environ["ROUTES"])
+    .replace("{{HOUSEKEEPING_DESCRIPTION}}", os.environ["HOUSEKEEPING_DESCRIPTION"])
+)
+PYEOF
+)"
+    echo "$(date -Iseconds) — rodada de housekeeping (achado #$HOUSEKEEPING_ID, $HOUSEKEEPING_ROUTES)" >> "$LOG_DIR/runs.log"
 else
     ROUND_KIND="content"
     PROMPT="$(cat "$PROJECT_DIR/.agent-prompt.md")"
@@ -62,10 +97,11 @@ fi
 
 HEAD_BEFORE="$(git -C "$PROJECT_DIR" rev-parse HEAD 2>/dev/null)"
 
-# O modelo free às vezes trava a chamada sem retornar nada (visto 2x em
-# 2026-08-10: processo ficava horas parado, sem filhos, sem log novo,
-# segurando o lock e travando toda rodada seguinte). Rodadas normais levam
-# 15-40min — 45min de margem + SIGKILL depois de 30s se o TERM não bastar.
+# A chamada pode travar sem retornar nada (visto 2x em 2026-08-10 com um
+# modelo free: processo ficava horas parado, sem filhos, sem log novo,
+# segurando o lock e travando toda rodada seguinte) — guarda-chuva que vale
+# independente do modelo. Rodadas normais levam 15-40min — 45min de margem
+# + SIGKILL depois de 30s se o TERM não bastar.
 timeout --signal=TERM --kill-after=30s 45m \
     "$OPENCODE_BIN" run --auto --dir "$PROJECT_DIR" -m "$MODEL" --title "devtools-hourly-$(date +%Y%m%d-%H%M%S)" "$PROMPT" \
     > "$LOG_FILE" 2>&1
@@ -74,6 +110,19 @@ AGENT_EXIT=$?
 HEAD_AFTER="$(git -C "$PROJECT_DIR" rev-parse HEAD 2>/dev/null)"
 
 echo "$(date -Iseconds) — rodada concluída ($ROUND_KIND, exit $AGENT_EXIT), log em $LOG_FILE" >> "$LOG_DIR/runs.log"
+
+# Sem commit novo = sem prova de que a rodada terminou com sucesso, então
+# qualquer mudança que tenha ficado no working tree é lixo de uma rodada
+# incompleta. O prompt já pede pro agente se auto-limpar antes de terminar,
+# mas o processo às vezes é cortado no meio por um erro do provider (visto
+# 2026-08-20: "Streaming response failed: 502 Upstream error") sem chance
+# de rodar esse passo — então o wrapper garante o reset de qualquer jeito,
+# senão a rodada seguinte começa de um working tree sujo e alheio.
+if [ "$HEAD_BEFORE" = "$HEAD_AFTER" ] && [ -n "$(git -C "$PROJECT_DIR" status --porcelain)" ]; then
+    git -C "$PROJECT_DIR" checkout -- .
+    git -C "$PROJECT_DIR" clean -fd
+    echo "$(date -Iseconds) — rodada sem commit deixou o working tree sujo, resetado" >> "$LOG_DIR/runs.log"
+fi
 
 CONTAINER_UP=$(docker ps --filter "name=DK_DEVTOOLS" --filter "status=running" -q)
 
@@ -84,6 +133,12 @@ CONTAINER_UP=$(docker ps --filter "name=DK_DEVTOOLS" --filter "status=running" -
 # rodada tenta de novo.
 if [ "$ROUND_KIND" = "bugfix" ] && [ "$AGENT_EXIT" -eq 0 ] && [ -n "$CONTAINER_UP" ] && [ "$HEAD_BEFORE" != "$HEAD_AFTER" ]; then
     python3 "$PROJECT_DIR/scripts/resolve_bug.py" "$BUG_ID" >> "$LOG_DIR/runs.log" 2>&1
+fi
+
+# Mesma lógica acima, pro achado de organização: só marca resolvido com
+# prova de commit real (senão a rodada seguinte tenta de novo).
+if [ "$ROUND_KIND" = "housekeeping" ] && [ "$AGENT_EXIT" -eq 0 ] && [ -n "$CONTAINER_UP" ] && [ "$HEAD_BEFORE" != "$HEAD_AFTER" ]; then
+    python3 "$PROJECT_DIR/scripts/resolve_housekeeping.py" "$HOUSEKEEPING_ID" >> "$LOG_DIR/runs.log" 2>&1
 fi
 
 # Avisa por WhatsApp só se algo real quebrou (comando falhou, ex.: erro do
