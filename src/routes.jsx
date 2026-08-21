@@ -495,6 +495,7 @@ import LuaCheatsheetPage from './pages/LuaCheatsheetPage'
 import SqlWindowFunctionsPage from './pages/SqlWindowFunctionsPage'
 import EmojiCheatsheetPage from './pages/EmojiCheatsheetPage'
 import MarkdownTableConverterPage from './pages/MarkdownTableConverterPage'
+import BitwiseCalculatorPage from './pages/BitwiseCalculatorPage'
 
 const router = createBrowserRouter([
   {
@@ -994,6 +995,7 @@ const router = createBrowserRouter([
       { path: 'tools/bully-algorithm-simulator', element: <BullyAlgorithmSimulatorPage /> },
       { path: 'tools/ring-election-simulator', element: <RingElectionSimulatorPage /> },
       { path: 'data/markdown-table-converter', element: <MarkdownTableConverterPage /> },
+      { path: 'tools/bitwise-calculator', element: <BitwiseCalculatorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
