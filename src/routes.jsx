@@ -526,7 +526,7 @@ const router = createBrowserRouter([
       { path: 'apis/openapi-spec-generator', element: <OpenapiSpecGeneratorPage /> },
       { path: 'apis/problem-details-generator', element: <ProblemDetailsGeneratorPage /> },
       { path: 'devops/gitignore-generator', element: <GitignoreGeneratorPage /> },
-      { path: 'database/rate-limit-calculator', element: <RateLimitCalculatorPage /> },
+      { path: 'tools/rate-limit-calculator', element: <RateLimitCalculatorPage /> },
       { path: 'cloud/arn-parser', element: <ArnParserPage /> },
       { path: 'cloud/cost-estimator', element: <CloudCostEstimatorPage /> },
       { path: 'cloud/iam-policy-generator', element: <IamPolicyGeneratorPage /> },

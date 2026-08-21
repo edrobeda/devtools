@@ -1269,6 +1269,7 @@ export function buildMenuItems(l) {
         { key: '/tools/logical-clocks-simulator', icon: <ClockCircleOutlined />, label: withNewBadge('/tools/logical-clocks-simulator', l['logical-clocks-simulator'], l) },
         { key: '/tools/circuit-breaker-simulator', icon: <ThunderboltOutlined />, label: withNewBadge('/tools/circuit-breaker-simulator', l['circuit-breaker-simulator'], l) },
         { key: '/tools/rate-limiter-simulator', icon: <DashboardOutlined />, label: withNewBadge('/tools/rate-limiter-simulator', l['rate-limiter-simulator'], l) },
+        { key: '/tools/rate-limit-calculator', icon: <CalculatorOutlined />, label: withNewBadge('/tools/rate-limit-calculator', l['rate-limit-calculator'], l) },
         { key: '/tools/two-phase-commit-simulator', icon: <ApartmentOutlined />, label: withNewBadge('/tools/two-phase-commit-simulator', l['two-phase-commit-simulator'], l) },
         { key: '/tools/three-phase-commit-simulator', icon: <ApartmentOutlined />, label: withNewBadge('/tools/three-phase-commit-simulator', l['three-phase-commit-simulator'], l) },
         { key: '/tools/raid-simulator', icon: <HddOutlined />, label: withNewBadge('/tools/raid-simulator', l['raid-simulator'], l) },
@@ -1547,7 +1548,6 @@ export function buildMenuItems(l) {
       icon: <DatabaseOutlined />,
       label: l.database,
       children: [
-        { key: '/database/rate-limit-calculator', label: l['rate-limit-calculator'] },
         { key: '/database/json-to-sql', icon: <DatabaseOutlined />, label: withNewBadge('/database/json-to-sql', l['json-to-sql'], l) },
         { key: '/database/sql-formatter', icon: <FileTextOutlined />, label: withNewBadge('/database/sql-formatter', l['sql-formatter'], l) },
         { key: '/database/sql-isolation-levels', icon: <DatabaseOutlined />, label: withNewBadge('/database/sql-isolation-levels', l['sql-isolation-levels'], l) },
