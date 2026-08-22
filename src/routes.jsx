@@ -117,7 +117,6 @@ import TeamRoulettePage from './pages/TeamRoulettePage'
 import JwtGeneratorPage from './pages/JwtGeneratorPage'
 import JwtSecretGeneratorPage from './pages/JwtSecretGeneratorPage'
 import ToastNotificationPage from './pages/ToastNotificationPage'
-import UseUndoSnippetPage from './pages/UseUndoSnippetPage'
 import BashShortcutsPage from './pages/BashShortcutsPage'
 import CommitMessageGeneratorPage from './pages/CommitMessageGeneratorPage'
 import RobotsTxtGeneratorPage from './pages/RobotsTxtGeneratorPage'
@@ -628,7 +627,6 @@ const router = createBrowserRouter([
       { path: 'tools/jwt-generator', element: <JwtGeneratorPage /> },
       { path: 'tools/jwt-secret-generator', element: <JwtSecretGeneratorPage /> },
       { path: 'styles/toast-notification', element: <ToastNotificationPage /> },
-      { path: 'snippets/use-undo', element: <UseUndoSnippetPage /> },
       { path: 'references/bash-shortcuts', element: <BashShortcutsPage /> },
       { path: 'devops/commit-message-generator', element: <CommitMessageGeneratorPage /> },
       { path: 'security/robots-txt-generator', element: <RobotsTxtGeneratorPage /> },
