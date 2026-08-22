@@ -117,7 +117,6 @@ import TeamRoulettePage from './pages/TeamRoulettePage'
 import JwtGeneratorPage from './pages/JwtGeneratorPage'
 import JwtSecretGeneratorPage from './pages/JwtSecretGeneratorPage'
 import ToastNotificationPage from './pages/ToastNotificationPage'
-import UseUndoSnippetPage from './pages/UseUndoSnippetPage'
 import BashShortcutsPage from './pages/BashShortcutsPage'
 import CommitMessageGeneratorPage from './pages/CommitMessageGeneratorPage'
 import RobotsTxtGeneratorPage from './pages/RobotsTxtGeneratorPage'
@@ -495,6 +494,7 @@ import LuaCheatsheetPage from './pages/LuaCheatsheetPage'
 import SqlWindowFunctionsPage from './pages/SqlWindowFunctionsPage'
 import EmojiCheatsheetPage from './pages/EmojiCheatsheetPage'
 import MarkdownTableConverterPage from './pages/MarkdownTableConverterPage'
+import BitwiseCalculatorPage from './pages/BitwiseCalculatorPage'
 
 const router = createBrowserRouter([
   {
@@ -627,7 +627,6 @@ const router = createBrowserRouter([
       { path: 'tools/jwt-generator', element: <JwtGeneratorPage /> },
       { path: 'tools/jwt-secret-generator', element: <JwtSecretGeneratorPage /> },
       { path: 'styles/toast-notification', element: <ToastNotificationPage /> },
-      { path: 'snippets/use-undo', element: <UseUndoSnippetPage /> },
       { path: 'references/bash-shortcuts', element: <BashShortcutsPage /> },
       { path: 'devops/commit-message-generator', element: <CommitMessageGeneratorPage /> },
       { path: 'security/robots-txt-generator', element: <RobotsTxtGeneratorPage /> },
@@ -764,7 +763,7 @@ const router = createBrowserRouter([
       { path: 'tools/caesar-cipher', element: <CaesarCipherPage /> },
       { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
       { path: 'references/markdown-syntax', element: <MarkdownSyntaxPage /> },
-      { path: 'devops/kubectl-commands', element: <KubeCtlCommandsPage /> },
+      { path: 'references/kubectl-commands', element: <KubeCtlCommandsPage /> },
       { path: 'devops/chmod-calculator', element: <ChmodCalculatorPage /> },
       { path: 'tools/float-explorer', element: <FloatExplorerPage /> },
       { path: 'frontend/svg-placeholder-generator', element: <SvgPlaceholderGeneratorPage /> },
@@ -784,7 +783,7 @@ const router = createBrowserRouter([
       { path: 'data/json-flatten', element: <JsonFlattenPage /> },
       { path: 'devops/docker-compose-generator', element: <DockerComposeGeneratorPage /> },
       { path: 'devops/docker-run-to-compose', element: <DockerRunToComposePage /> },
-      { path: 'devops/openssl-commands', element: <OpensslCommandsPage /> },
+      { path: 'references/openssl-commands', element: <OpensslCommandsPage /> },
       { path: 'devops/nginx-config-generator', element: <NginxConfigGeneratorPage /> },
       { path: 'devops/ssh-config-generator', element: <SshConfigGeneratorPage /> },
       { path: 'devops/disk-performance-calculator', element: <DiskPerformanceCalculatorPage /> },
@@ -994,6 +993,7 @@ const router = createBrowserRouter([
       { path: 'tools/bully-algorithm-simulator', element: <BullyAlgorithmSimulatorPage /> },
       { path: 'tools/ring-election-simulator', element: <RingElectionSimulatorPage /> },
       { path: 'data/markdown-table-converter', element: <MarkdownTableConverterPage /> },
+      { path: 'tools/bitwise-calculator', element: <BitwiseCalculatorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
