@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, Navigate } from 'react-router-dom'
 import AppLayout from './components/AppLayout'
 import HomePage from './pages/HomePage'
 import NotFoundPage from './pages/NotFoundPage'
@@ -14,7 +14,6 @@ import UseSessionStorageSnippetPage from './pages/UseSessionStorageSnippetPage'
 import UseClickOutsideSnippetPage from './pages/UseClickOutsideSnippetPage'
 import JsonFormatterPage from './pages/JsonFormatterPage'
 import ColorConverterPage from './pages/ColorConverterPage'
-import SkeletonShimmerPage from './pages/SkeletonShimmerPage'
 import SpotlightCardShowcasePage from './pages/SpotlightCardShowcasePage'
 import TimestampConverterPage from './pages/TimestampConverterPage'
 import GradientBorderButtonPage from './pages/GradientBorderButtonPage'
@@ -49,7 +48,7 @@ import Base64ToolPage from './pages/Base64ToolPage'
 import Base32ToolPage from './pages/Base32ToolPage'
 import Base58ToolPage from './pages/Base58ToolPage'
 import UuidGeneratorPage from './pages/UuidGeneratorPage'
-import UuidV7GeneratorPage from './pages/UuidV7GeneratorPage'
+import UuidV7ToolPage from './pages/UuidV7ToolPage'
 import UlidToolPage from './pages/UlidToolPage'
 import HtmlFormatterPage from './pages/HtmlFormatterPage'
 import CaseConverterPage from './pages/CaseConverterPage'
@@ -79,7 +78,6 @@ import FakeDataGeneratorPage from './pages/FakeDataGeneratorPage'
 import WebhookPayloadGeneratorPage from './pages/WebhookPayloadGeneratorPage'
 import CpfCnpjGeneratorPage from './pages/CpfCnpjGeneratorPage'
 import BaseConverterPage from './pages/BaseConverterPage'
-import UseToggleSnippetPage from './pages/UseToggleSnippetPage'
 import UseWindowSizeSnippetPage from './pages/UseWindowSizeSnippetPage'
 import BouncingDotsLoaderPage from './pages/BouncingDotsLoaderPage'
 import DockerCommandsPage from './pages/DockerCommandsPage'
@@ -510,7 +508,7 @@ const router = createBrowserRouter([
       { path: 'tools/timestamp-converter', element: <TimestampConverterPage /> },
       { path: 'styles/glass-card', element: <GlassCardShowcasePage /> },
       { path: 'styles/copy-button', element: <CopyButtonShowcasePage /> },
-      { path: 'styles/skeleton-shimmer', element: <SkeletonShimmerPage /> },
+      { path: 'styles/skeleton-shimmer', element: <Navigate to="/frontend/css-skeleton-generator" replace /> },
       { path: 'styles/spotlight-card', element: <SpotlightCardShowcasePage /> },
       { path: 'styles/gradient-border-button', element: <GradientBorderButtonPage /> },
       { path: 'snippets/use-debounce', element: <UseDebounceSnippetPage /> },
@@ -548,7 +546,7 @@ const router = createBrowserRouter([
       { path: 'tools/base32-tool', element: <Base32ToolPage /> },
       { path: 'tools/base58-tool', element: <Base58ToolPage /> },
       { path: 'tools/uuid-generator', element: <UuidGeneratorPage /> },
-      { path: 'tools/uuid-v7-generator', element: <UuidV7GeneratorPage /> },
+      { path: 'tools/uuid-v7-tool', element: <UuidV7ToolPage /> },
       { path: 'tools/ulid-tool', element: <UlidToolPage /> },
       { path: 'tools/case-converter', element: <CaseConverterPage /> },
       { path: 'tools/password-generator', element: <PasswordGeneratorPage /> },
@@ -589,7 +587,6 @@ const router = createBrowserRouter([
       { path: 'apis/webhook-payload-generator', element: <WebhookPayloadGeneratorPage /> },
       { path: 'tools/cpf-cnpj-generator', element: <CpfCnpjGeneratorPage /> },
       { path: 'tools/base-converter', element: <BaseConverterPage /> },
-      { path: 'snippets/use-toggle', element: <UseToggleSnippetPage /> },
       { path: 'snippets/use-window-size', element: <UseWindowSizeSnippetPage /> },
       { path: 'styles/bouncing-dots-loader', element: <BouncingDotsLoaderPage /> },
       { path: 'references/docker-commands', element: <DockerCommandsPage /> },

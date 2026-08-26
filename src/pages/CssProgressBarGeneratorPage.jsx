@@ -19,39 +19,33 @@ const translations = {
     title: 'Gerador de Progress Bar CSS',
     intro: (
       <>
-        Monte barras e anéis de progresso usando só CSS. Escolha entre linear
-        (horizontal/vertical) ou circular, ajuste cores, dimensões e valor; o
-        preview usa o CSS exato que será copiado.
+        Monte barras de progresso usando só CSS. Escolha entre linear
+        horizontal ou vertical, ajuste cores, dimensões e valor; o preview usa
+        o CSS exato que será copiado. Para anéis/donuts circulares, use o{' '}
+        <Text code>{'/frontend/css-progress-ring-generator'}</Text>.
       </>
     ),
     tipTitle: 'Como usar (e as pegadinhas)',
     tipBody: (
       <>
-        A versão linear usa um container com uma div filha cujo{' '}
-        <Text code>{'width/height'}</Text> representa o percentual. A versão
-        circular usa <Text code>{'conic-gradient'}</Text> controlado pela
-        variável <Text code>{'--value'}</Text>. Adicione atributos{' '}
-        <Text code>{'aria-*'}</Text> para acessibilidade e lembre-se: animações
-        de <Text code>{'conic-gradient'}</Text> só funcionam quando a variável
-        muda, não quando a cor é trocada diretamente.
+        A barra usa um container com uma div filha cujo{' '}
+        <Text code>{'width/height'}</Text> representa o percentual. Adicione
+        atributos <Text code>{'aria-*'}</Text> para acessibilidade. Anéis
+        circulares ficaram na ferramenta dedicada{' '}
+        <Text code>{'/frontend/css-progress-ring-generator'}</Text> (SVG +
+        stroke-dasharray, com mais opções).
       </>
     ),
     settings: 'Configurações',
-    type: 'Tipo',
-    typeLinear: 'Linear',
-    typeCircular: 'Circular',
     direction: 'Direção',
     directionHorizontal: 'Horizontal',
     directionVertical: 'Vertical',
     width: 'Largura (px)',
     height: 'Altura (px)',
-    size: 'Diâmetro (px)',
-    thickness: 'Espessura do anel (px)',
     value: 'Valor atual',
     max: 'Valor máximo',
     showLabel: 'Mostrar percentual',
     rounded: 'Bordas arredondadas',
-    roundedCap: 'Ponta arredondada',
     animation: 'Animação',
     animationDuration: 'Duração da animação (ms)',
     colors: 'Cores',
@@ -71,45 +65,39 @@ const translations = {
     presets: 'Presets',
     sourceCol: 'Código-fonte',
     sourceBody:
-      'O núcleo vive em src/utils/cssProgressBarGenerator.js. buildProgressBarCss monta as regras para a barra linear, a barra vertical e o círculo/donut. buildProgressBarHtml gera o markup semântico com atributos ARIA.',
+      'O núcleo vive em src/utils/cssProgressBarGenerator.js. buildProgressBarCss monta as regras para a barra linear (horizontal/vertical). buildProgressBarHtml gera o markup semântico com atributos ARIA.',
   },
   en: {
     title: 'CSS Progress Bar Generator',
     intro: (
       <>
-        Build progress bars and rings using only CSS. Choose linear
-        (horizontal/vertical) or circular, adjust colors, dimensions and value;
-        the preview uses the exact CSS that will be copied.
+        Build progress bars using only CSS. Choose linear horizontal or
+        vertical, adjust colors, dimensions and value; the preview uses the
+        exact CSS that will be copied. For circular rings/donuts, use{' '}
+        <Text code>{'/frontend/css-progress-ring-generator'}</Text>.
       </>
     ),
     tipTitle: 'How to use (and the gotchas)',
     tipBody: (
       <>
-        The linear version uses a container with a child div whose{' '}
-        <Text code>{'width/height'}</Text> represents the percentage. The
-        circular version uses a <Text code>{'conic-gradient'}</Text> driven by
-        the <Text code>{'--value'}</Text> variable. Add{' '}
-        <Text code>{'aria-*'}</Text> attributes for accessibility and remember:
-        <Text code>{'conic-gradient'}</Text> animations only work when the
-        variable changes, not when the color itself is swapped.
+        The bar uses a container with a child div whose{' '}
+        <Text code>{'width/height'}</Text> represents the percentage. Add{' '}
+        <Text code>{'aria-*'}</Text> attributes for accessibility. Circular
+        rings live in the dedicated tool{' '}
+        <Text code>{'/frontend/css-progress-ring-generator'}</Text> (SVG +
+        stroke-dasharray, with more options).
       </>
     ),
     settings: 'Settings',
-    type: 'Type',
-    typeLinear: 'Linear',
-    typeCircular: 'Circular',
     direction: 'Direction',
     directionHorizontal: 'Horizontal',
     directionVertical: 'Vertical',
     width: 'Width (px)',
     height: 'Height (px)',
-    size: 'Diameter (px)',
-    thickness: 'Ring thickness (px)',
     value: 'Current value',
     max: 'Max value',
     showLabel: 'Show percentage',
     rounded: 'Rounded corners',
-    roundedCap: 'Rounded cap',
     animation: 'Animation',
     animationDuration: 'Animation duration (ms)',
     colors: 'Colors',
@@ -129,7 +117,7 @@ const translations = {
     presets: 'Presets',
     sourceCol: 'Source code',
     sourceBody:
-      'The core lives in src/utils/cssProgressBarGenerator.js. buildProgressBarCss builds the rules for linear, vertical and circular/donut bars. buildProgressBarHtml generates semantic markup with ARIA attributes.',
+      'The core lives in src/utils/cssProgressBarGenerator.js. buildProgressBarCss builds the rules for linear (horizontal/vertical) bars. buildProgressBarHtml generates semantic markup with ARIA attributes.',
   },
 }
 
@@ -140,17 +128,13 @@ export default function CssProgressBarGeneratorPage() {
   const t = translations[lang]
   const [messageApi, messageContextHolder] = message.useMessage()
 
-  const [type, setType] = useState('linear')
   const [direction, setDirection] = useState('horizontal')
   const [width, setWidth] = useState(320)
   const [height, setHeight] = useState(24)
-  const [size, setSize] = useState(120)
-  const [thickness, setThickness] = useState(12)
   const [value, setValue] = useState(65)
   const [max, setMax] = useState(100)
   const [showLabel, setShowLabel] = useState(true)
   const [rounded, setRounded] = useState(true)
-  const [roundedCap, setRoundedCap] = useState(false)
   const [animation, setAnimation] = useState(false)
   const [animationDuration, setAnimationDuration] = useState(1000)
   const [trackColor, setTrackColor] = useState('#f0f0f0')
@@ -162,17 +146,13 @@ export default function CssProgressBarGeneratorPage() {
   const options = useMemo(
     () => ({
       className: PREVIEW_CLASS,
-      type,
       direction,
       width,
       height,
-      size,
-      thickness,
       value,
       max,
       showLabel,
       rounded,
-      roundedCap,
       animation,
       animationDuration,
       trackColor,
@@ -182,8 +162,8 @@ export default function CssProgressBarGeneratorPage() {
       borderWidth,
     }),
     [
-      type, direction, width, height, size, thickness, value, max, showLabel,
-      rounded, roundedCap, animation, animationDuration, trackColor, fillColor,
+      direction, width, height, value, max, showLabel,
+      rounded, animation, animationDuration, trackColor, fillColor,
       borderColor, textColor, borderWidth,
     ]
   )
@@ -205,41 +185,30 @@ export default function CssProgressBarGeneratorPage() {
     const preset = PROGRESS_PRESETS.find((p) => p.key === key)
     if (!preset) return
     const o = preset.opts
-    if (o.type !== undefined) setType(o.type)
     if (o.direction !== undefined) setDirection(o.direction)
     if (o.width !== undefined) setWidth(o.width)
     if (o.height !== undefined) setHeight(o.height)
-    if (o.size !== undefined) setSize(o.size)
-    if (o.thickness !== undefined) setThickness(o.thickness)
     if (o.value !== undefined) setValue(o.value)
     if (o.max !== undefined) setMax(o.max)
     if (o.fillColor !== undefined) setFillColor(o.fillColor)
     if (o.trackColor !== undefined) setTrackColor(o.trackColor)
     if (o.animation !== undefined) setAnimation(o.animation)
-    if (o.roundedCap !== undefined) setRoundedCap(o.roundedCap)
   }
 
   const renderPreview = () => {
     const percent = Math.round(Math.max(0, Math.min(100, (value / Math.max(max, 1)) * 100)))
     const animClass = animation ? ' animated' : ''
     const label = `${percent}%`
-    if (type === 'linear') {
-      return (
-        <div className={PREVIEW_CLASS}>
-          <div
-            className={`progress-fill${animClass}`}
-            style={{ [direction === 'vertical' ? 'height' : 'width']: `${percent}%` }}
-            role="progressbar"
-            aria-valuenow={value}
-            aria-valuemin={0}
-            aria-valuemax={max}
-          />
-          {showLabel && <span className="progress-label">{label}</span>}
-        </div>
-      )
-    }
     return (
-      <div className={`${PREVIEW_CLASS}${animClass}`} role="progressbar" aria-valuenow={value} aria-valuemin={0} aria-valuemax={max}>
+      <div className={PREVIEW_CLASS}>
+        <div
+          className={`progress-fill${animClass}`}
+          style={{ [direction === 'vertical' ? 'height' : 'width']: `${percent}%` }}
+          role="progressbar"
+          aria-valuenow={value}
+          aria-valuemin={0}
+          aria-valuemax={max}
+        />
         {showLabel && <span className="progress-label">{label}</span>}
       </div>
     )
@@ -269,68 +238,32 @@ export default function CssProgressBarGeneratorPage() {
               />
 
               <Space direction="vertical" size={4} style={{ width: '100%', marginTop: 8 }}>
-                <Text>{t.type}</Text>
+                <Text>{t.direction}</Text>
                 <Segmented
                   style={{ width: '100%' }}
                   block
-                  value={type}
-                  onChange={setType}
+                  value={direction}
+                  onChange={setDirection}
                   options={[
-                    { label: t.typeLinear, value: 'linear' },
-                    { label: t.typeCircular, value: 'circular' },
+                    { label: t.directionHorizontal, value: 'horizontal' },
+                    { label: t.directionVertical, value: 'vertical' },
                   ]}
                 />
               </Space>
 
-              {type === 'linear' && (
-                <Space direction="vertical" size={4} style={{ width: '100%' }}>
-                  <Text>{t.direction}</Text>
-                  <Segmented
-                    style={{ width: '100%' }}
-                    block
-                    value={direction}
-                    onChange={setDirection}
-                    options={[
-                      { label: t.directionHorizontal, value: 'horizontal' },
-                      { label: t.directionVertical, value: 'vertical' },
-                    ]}
-                  />
-                </Space>
-              )}
-
               <Row gutter={16}>
-                {type === 'linear' && (
-                  <>
-                    <Col span={12}>
-                      <Space direction="vertical" size={4} style={{ width: '100%' }}>
-                        <Text>{direction === 'vertical' ? t.height : t.width}</Text>
-                        <InputNumber min={80} max={600} value={width} onChange={setWidth} style={{ width: '100%' }} />
-                      </Space>
-                    </Col>
-                    <Col span={12}>
-                      <Space direction="vertical" size={4} style={{ width: '100%' }}>
-                        <Text>{direction === 'vertical' ? t.width : t.height}</Text>
-                        <InputNumber min={8} max={80} value={height} onChange={setHeight} style={{ width: '100%' }} />
-                      </Space>
-                    </Col>
-                  </>
-                )}
-                {type === 'circular' && (
-                  <>
-                    <Col span={12}>
-                      <Space direction="vertical" size={4} style={{ width: '100%' }}>
-                        <Text>{t.size}</Text>
-                        <InputNumber min={40} max={300} value={size} onChange={setSize} style={{ width: '100%' }} />
-                      </Space>
-                    </Col>
-                    <Col span={12}>
-                      <Space direction="vertical" size={4} style={{ width: '100%' }}>
-                        <Text>{t.thickness}</Text>
-                        <InputNumber min={4} max={60} value={thickness} onChange={setThickness} style={{ width: '100%' }} />
-                      </Space>
-                    </Col>
-                  </>
-                )}
+                <Col span={12}>
+                  <Space direction="vertical" size={4} style={{ width: '100%' }}>
+                    <Text>{direction === 'vertical' ? t.height : t.width}</Text>
+                    <InputNumber min={80} max={600} value={width} onChange={setWidth} style={{ width: '100%' }} />
+                  </Space>
+                </Col>
+                <Col span={12}>
+                  <Space direction="vertical" size={4} style={{ width: '100%' }}>
+                    <Text>{direction === 'vertical' ? t.width : t.height}</Text>
+                    <InputNumber min={8} max={80} value={height} onChange={setHeight} style={{ width: '100%' }} />
+                  </Space>
+                </Col>
               </Row>
 
               <Row gutter={16}>
@@ -381,8 +314,8 @@ export default function CssProgressBarGeneratorPage() {
               <Row gutter={16}>
                 <Col span={12}>
                   <Space style={{ width: '100%', justifyContent: 'space-between' }}>
-                    <Text>{type === 'linear' ? t.rounded : t.roundedCap}</Text>
-                    <Switch checked={type === 'linear' ? rounded : roundedCap} onChange={type === 'linear' ? setRounded : setRoundedCap} />
+                    <Text>{t.rounded}</Text>
+                    <Switch checked={rounded} onChange={setRounded} />
                   </Space>
                 </Col>
               </Row>
