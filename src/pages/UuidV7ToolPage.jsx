@@ -209,7 +209,7 @@ function formatOutput(uuids, { uppercase, noDashes }) {
   })
 }
 
-export default function UuidV7GeneratorPage() {
+export default function UuidV7ToolPage() {
   const { lang } = useLanguage()
   const t = translations[lang]
   const locale = lang === 'pt' ? 'pt-BR' : 'en-US'

@@ -49,7 +49,7 @@ import Base64ToolPage from './pages/Base64ToolPage'
 import Base32ToolPage from './pages/Base32ToolPage'
 import Base58ToolPage from './pages/Base58ToolPage'
 import UuidGeneratorPage from './pages/UuidGeneratorPage'
-import UuidV7GeneratorPage from './pages/UuidV7GeneratorPage'
+import UuidV7ToolPage from './pages/UuidV7ToolPage'
 import UlidToolPage from './pages/UlidToolPage'
 import HtmlFormatterPage from './pages/HtmlFormatterPage'
 import CaseConverterPage from './pages/CaseConverterPage'
@@ -547,7 +547,7 @@ const router = createBrowserRouter([
       { path: 'tools/base32-tool', element: <Base32ToolPage /> },
       { path: 'tools/base58-tool', element: <Base58ToolPage /> },
       { path: 'tools/uuid-generator', element: <UuidGeneratorPage /> },
-      { path: 'tools/uuid-v7-generator', element: <UuidV7GeneratorPage /> },
+      { path: 'tools/uuid-v7-tool', element: <UuidV7ToolPage /> },
       { path: 'tools/ulid-tool', element: <UlidToolPage /> },
       { path: 'tools/case-converter', element: <CaseConverterPage /> },
       { path: 'tools/password-generator', element: <PasswordGeneratorPage /> },
