@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, Navigate } from 'react-router-dom'
 import AppLayout from './components/AppLayout'
 import HomePage from './pages/HomePage'
 import NotFoundPage from './pages/NotFoundPage'
@@ -14,7 +14,6 @@ import UseSessionStorageSnippetPage from './pages/UseSessionStorageSnippetPage'
 import UseClickOutsideSnippetPage from './pages/UseClickOutsideSnippetPage'
 import JsonFormatterPage from './pages/JsonFormatterPage'
 import ColorConverterPage from './pages/ColorConverterPage'
-import SkeletonShimmerPage from './pages/SkeletonShimmerPage'
 import SpotlightCardShowcasePage from './pages/SpotlightCardShowcasePage'
 import TimestampConverterPage from './pages/TimestampConverterPage'
 import GradientBorderButtonPage from './pages/GradientBorderButtonPage'
@@ -509,7 +508,7 @@ const router = createBrowserRouter([
       { path: 'tools/timestamp-converter', element: <TimestampConverterPage /> },
       { path: 'styles/glass-card', element: <GlassCardShowcasePage /> },
       { path: 'styles/copy-button', element: <CopyButtonShowcasePage /> },
-      { path: 'styles/skeleton-shimmer', element: <SkeletonShimmerPage /> },
+      { path: 'styles/skeleton-shimmer', element: <Navigate to="/frontend/css-skeleton-generator" replace /> },
       { path: 'styles/spotlight-card', element: <SpotlightCardShowcasePage /> },
       { path: 'styles/gradient-border-button', element: <GradientBorderButtonPage /> },
       { path: 'snippets/use-debounce', element: <UseDebounceSnippetPage /> },

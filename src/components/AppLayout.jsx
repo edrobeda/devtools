@@ -132,7 +132,6 @@ export const LABELS = {
     'timestamp-converter': 'Conversor de Timestamp',
     'glass-card': 'Glass Card',
     'copy-button': 'Botão de Copiar Animado',
-    'skeleton-shimmer': 'Skeleton Shimmer',
     'spotlight-card': 'Spotlight Card',
     'gradient-border-button': 'Botão com Borda Gradiente',
     'use-debounce': 'useDebounce',
@@ -642,7 +641,6 @@ export const LABELS = {
     'timestamp-converter': 'Timestamp Converter',
     'glass-card': 'Glass Card',
     'copy-button': 'Animated Copy Button',
-    'skeleton-shimmer': 'Skeleton Shimmer',
     'spotlight-card': 'Spotlight Card',
     'gradient-border-button': 'Gradient Border Button',
     'use-debounce': 'useDebounce',
@@ -1307,7 +1305,6 @@ export function buildMenuItems(l) {
       children: [
         { key: '/styles/glass-card', label: l['glass-card'] },
         { key: '/styles/copy-button', label: l['copy-button'] },
-        { key: '/styles/skeleton-shimmer', label: l['skeleton-shimmer'] },
         { key: '/styles/spotlight-card', label: withNewBadge('/styles/spotlight-card', l['spotlight-card'], l) },
         { key: '/styles/gradient-border-button', label: l['gradient-border-button'] },
         { key: '/styles/neumorphic-card', label: withNewBadge('/styles/neumorphic-card', l['neumorphic-card'], l) },
