@@ -4,7 +4,6 @@ import HomePage from './pages/HomePage'
 import NotFoundPage from './pages/NotFoundPage'
 import BastidoresPage from './pages/BastidoresPage'
 import JwtDecoderPage from './pages/JwtDecoderPage'
-import GlassCardShowcasePage from './pages/GlassCardShowcasePage'
 import UseDebounceSnippetPage from './pages/UseDebounceSnippetPage'
 import CronParserPage from './pages/CronParserPage'
 import HashGeneratorPage from './pages/HashGeneratorPage'
@@ -506,7 +505,7 @@ const router = createBrowserRouter([
       { path: 'tools/json-formatter', element: <JsonFormatterPage /> },
       { path: 'tools/color-converter', element: <ColorConverterPage /> },
       { path: 'tools/timestamp-converter', element: <TimestampConverterPage /> },
-      { path: 'styles/glass-card', element: <GlassCardShowcasePage /> },
+      { path: 'styles/glass-card', element: <Navigate to="/frontend/css-glassmorphism-generator" replace /> },
       { path: 'styles/copy-button', element: <CopyButtonShowcasePage /> },
       { path: 'styles/skeleton-shimmer', element: <Navigate to="/frontend/css-skeleton-generator" replace /> },
       { path: 'styles/spotlight-card', element: <SpotlightCardShowcasePage /> },
