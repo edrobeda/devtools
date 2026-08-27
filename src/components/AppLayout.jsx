@@ -153,7 +153,6 @@ export const LABELS = {
     'cost-estimator': 'Estimador de Custo de Nuvem',
     'iam-policy-generator': 'Gerador de Política IAM',
     'deep-link-tester': 'Testador de Deep Link',
-    'word-counter': 'Contador de Palavras',
     'git-commands': 'Comandos Git',
     'days-until': 'Quantos dias até...',
     'date-time-calculator': 'Calculadora de Data e Hora',
@@ -661,7 +660,6 @@ export const LABELS = {
     'cost-estimator': 'Cloud Cost Estimator',
     'iam-policy-generator': 'IAM Policy Generator',
     'deep-link-tester': 'Deep Link Tester',
-    'word-counter': 'Word Counter',
     'git-commands': 'Git Commands',
     'days-until': 'Days Until...',
     'date-time-calculator': 'Date & Time Calculator',
@@ -1635,7 +1633,6 @@ export function buildMenuItems(l) {
       icon: <FontSizeOutlined />,
       label: l.text,
       children: [
-        { key: '/text/word-counter', label: l['word-counter'] },
         { key: '/text/remove-accents', icon: <FontSizeOutlined />, label: withNewBadge('/text/remove-accents', l['remove-accents'], l) },
         { key: '/text/lines-tool', icon: <OrderedListOutlined />, label: withNewBadge('/text/lines-tool', l['lines-tool'], l) },
         { key: '/text/search-replace', icon: <SearchOutlined />, label: withNewBadge('/text/search-replace', l['search-replace'], l) },

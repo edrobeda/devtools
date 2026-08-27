@@ -34,7 +34,6 @@ import SubnetCalculatorPage from './pages/SubnetCalculatorPage'
 import AnthropicCostCalculatorPage from './pages/AnthropicCostCalculatorPage'
 import LlmPromptBuilderPage from './pages/LlmPromptBuilderPage'
 import DeepLinkTesterPage from './pages/DeepLinkTesterPage'
-import WordCounterPage from './pages/WordCounterPage'
 import GitCommandsPage from './pages/GitCommandsPage'
 import DaysUntilPage from './pages/DaysUntilPage'
 import DateTimeCalculatorPage from './pages/DateTimeCalculatorPage'
@@ -532,7 +531,7 @@ const router = createBrowserRouter([
       { path: 'ai/anthropic-cost-calculator', element: <AnthropicCostCalculatorPage /> },
       { path: 'ai/llm-prompt-builder', element: <LlmPromptBuilderPage /> },
       { path: 'mobile/deep-link-tester', element: <DeepLinkTesterPage /> },
-      { path: 'text/word-counter', element: <WordCounterPage /> },
+      { path: 'text/word-counter', element: <Navigate to="/tools/reading-time-calculator" replace /> },
       { path: 'references/git-commands', element: <GitCommandsPage /> },
       { path: 'extras/days-until', element: <DaysUntilPage /> },
       { path: 'tools/date-time-calculator', element: <DateTimeCalculatorPage /> },
