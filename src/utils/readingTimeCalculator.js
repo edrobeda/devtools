@@ -54,6 +54,16 @@ export function countParagraphs(text) {
 }
 
 /**
+ * Conta linhas (segmentos separados por quebra de linha).
+ * @param {string} text
+ * @returns {number}
+ */
+export function countLines(text) {
+  if (!text) return 0
+  return text.split('\n').length
+}
+
+/**
  * Estima o numero de silabas de uma palavra.
  * Heuristica inglesa/portuguesa: conta grupos de vogais.
  * @param {string} word
@@ -179,6 +189,7 @@ export function readabilityLabel(score) {
  *   charactersNoSpaces: number,
  *   sentences: number,
  *   paragraphs: number,
+ *   lines: number,
  *   syllables: number,
  *   avgWordLength: number,
  *   avgSentenceLength: number,
@@ -194,6 +205,7 @@ export function analyzeText(text, readingWpm = DEFAULT_READING_WPM, speakingWpm 
   const charactersNoSpaces = countCharacters(text, false)
   const sentences = countSentences(text)
   const paragraphs = countParagraphs(text)
+  const lines = countLines(text)
   const syllables = countSyllables(text)
 
   const avgWordLength = words > 0 ? charactersNoSpaces / words : 0
@@ -211,6 +223,7 @@ export function analyzeText(text, readingWpm = DEFAULT_READING_WPM, speakingWpm 
     charactersNoSpaces,
     sentences,
     paragraphs,
+    lines,
     syllables,
     avgWordLength,
     avgSentenceLength,

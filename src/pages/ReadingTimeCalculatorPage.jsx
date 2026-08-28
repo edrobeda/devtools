@@ -71,6 +71,7 @@ const translations = {
     charactersNoSpaces: 'Caracteres sem espacos',
     sentences: 'Frases',
     paragraphs: 'Paragrafos',
+    lines: 'Linhas',
     syllables: 'Silabas estimadas',
     avgWordLength: 'Media de letras/palavra',
     avgSentenceLength: 'Media de palavras/frase',
@@ -102,6 +103,7 @@ const translations = {
     charactersNoSpaces: 'Characters without spaces',
     sentences: 'Sentences',
     paragraphs: 'Paragraphs',
+    lines: 'Lines',
     syllables: 'Estimated syllables',
     avgWordLength: 'Avg letters/word',
     avgSentenceLength: 'Avg words/sentence',
@@ -286,6 +288,11 @@ export default function ReadingTimeCalculatorPage() {
         <Col xs={12} sm={8} md={6}>
           <Card>
             <Statistic title={t.paragraphs} value={metrics.paragraphs} />
+          </Card>
+        </Col>
+        <Col xs={12} sm={8} md={6}>
+          <Card>
+            <Statistic title={t.lines} value={metrics.lines} />
           </Card>
         </Col>
         <Col xs={12} sm={8} md={6}>

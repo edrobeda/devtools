@@ -4,7 +4,6 @@ import HomePage from './pages/HomePage'
 import NotFoundPage from './pages/NotFoundPage'
 import BastidoresPage from './pages/BastidoresPage'
 import JwtDecoderPage from './pages/JwtDecoderPage'
-import GlassCardShowcasePage from './pages/GlassCardShowcasePage'
 import UseDebounceSnippetPage from './pages/UseDebounceSnippetPage'
 import CronParserPage from './pages/CronParserPage'
 import HashGeneratorPage from './pages/HashGeneratorPage'
@@ -35,7 +34,6 @@ import SubnetCalculatorPage from './pages/SubnetCalculatorPage'
 import AnthropicCostCalculatorPage from './pages/AnthropicCostCalculatorPage'
 import LlmPromptBuilderPage from './pages/LlmPromptBuilderPage'
 import DeepLinkTesterPage from './pages/DeepLinkTesterPage'
-import WordCounterPage from './pages/WordCounterPage'
 import GitCommandsPage from './pages/GitCommandsPage'
 import DaysUntilPage from './pages/DaysUntilPage'
 import DateTimeCalculatorPage from './pages/DateTimeCalculatorPage'
@@ -331,6 +329,7 @@ import TypographyScaleCalculatorPage from './pages/TypographyScaleCalculatorPage
 import TypingSpeedTestPage from './pages/TypingSpeedTestPage'
 import ConwaysGameOfLifePage from './pages/ConwaysGameOfLifePage'
 import PathfindingSimulatorPage from './pages/PathfindingSimulatorPage'
+import BinarySearchVisualizerPage from './pages/BinarySearchVisualizerPage'
 import UrlEmailExtractorPage from './pages/UrlEmailExtractorPage'
 import BarcodeGeneratorPage from './pages/BarcodeGeneratorPage'
 import UseLockBodyScrollSnippetPage from './pages/UseLockBodyScrollSnippetPage'
@@ -492,6 +491,7 @@ import SqlWindowFunctionsPage from './pages/SqlWindowFunctionsPage'
 import EmojiCheatsheetPage from './pages/EmojiCheatsheetPage'
 import MarkdownTableConverterPage from './pages/MarkdownTableConverterPage'
 import BitwiseCalculatorPage from './pages/BitwiseCalculatorPage'
+import CombinatoricsCalculatorPage from './pages/CombinatoricsCalculatorPage'
 
 const router = createBrowserRouter([
   {
@@ -506,7 +506,7 @@ const router = createBrowserRouter([
       { path: 'tools/json-formatter', element: <JsonFormatterPage /> },
       { path: 'tools/color-converter', element: <ColorConverterPage /> },
       { path: 'tools/timestamp-converter', element: <TimestampConverterPage /> },
-      { path: 'styles/glass-card', element: <GlassCardShowcasePage /> },
+      { path: 'styles/glass-card', element: <Navigate to="/frontend/css-glassmorphism-generator" replace /> },
       { path: 'styles/copy-button', element: <CopyButtonShowcasePage /> },
       { path: 'styles/skeleton-shimmer', element: <Navigate to="/frontend/css-skeleton-generator" replace /> },
       { path: 'styles/spotlight-card', element: <SpotlightCardShowcasePage /> },
@@ -533,7 +533,7 @@ const router = createBrowserRouter([
       { path: 'ai/anthropic-cost-calculator', element: <AnthropicCostCalculatorPage /> },
       { path: 'ai/llm-prompt-builder', element: <LlmPromptBuilderPage /> },
       { path: 'mobile/deep-link-tester', element: <DeepLinkTesterPage /> },
-      { path: 'text/word-counter', element: <WordCounterPage /> },
+      { path: 'text/word-counter', element: <Navigate to="/tools/reading-time-calculator" replace /> },
       { path: 'references/git-commands', element: <GitCommandsPage /> },
       { path: 'extras/days-until', element: <DaysUntilPage /> },
       { path: 'tools/date-time-calculator', element: <DateTimeCalculatorPage /> },
@@ -721,7 +721,7 @@ const router = createBrowserRouter([
       { path: 'tools/connection-string-parser', element: <ConnectionStringParserPage /> },
       { path: 'references/sql-joins', element: <SqlJoinsPage /> },
       { path: 'references/big-o-cheatsheet', element: <BigOCheatsheetPage /> },
-      { path: 'tools/json-to-zod-schema', element: <JsonToZodSchemaPage /> },
+      { path: 'tools/json-to-zod-schema', element: <Navigate to="/data/json-to-zod-schema" replace /> },
       { path: 'tools/loan-amortization-calculator', element: <LoanAmortizationCalculatorPage /> },
       { path: 'tools/bash-to-powershell', element: <BashToPowershellPage /> },
       { path: 'tools/retry-calculator', element: <RetryCalculatorPage /> },
@@ -776,6 +776,7 @@ const router = createBrowserRouter([
       { path: 'tools/crc-calculator', element: <CrcCalculatorPage /> },
       { path: 'data/json-to-typescript', element: <JsonToTypeScriptPage /> },
       { path: 'data/json-to-yaml', element: <JsonToYamlPage /> },
+      { path: 'data/json-to-zod-schema', element: <JsonToZodSchemaPage /> },
       { path: 'data/json-flatten', element: <JsonFlattenPage /> },
       { path: 'devops/docker-compose-generator', element: <DockerComposeGeneratorPage /> },
       { path: 'devops/docker-run-to-compose', element: <DockerRunToComposePage /> },
@@ -838,7 +839,8 @@ const router = createBrowserRouter([
       { path: 'frontend/grid-areas-generator', element: <GridAreasGeneratorPage /> },
       { path: 'frontend/pattern-background-generator', element: <PatternBackgroundGeneratorPage /> },
       { path: 'frontend/sitemap-generator', element: <SitemapGeneratorPage /> },
-      { path: 'frontend/web-app-manifest', element: <WebAppManifestGeneratorPage /> },
+      { path: 'frontend/web-app-manifest-generator', element: <WebAppManifestGeneratorPage /> },
+      { path: 'frontend/web-app-manifest', element: <Navigate to="/frontend/web-app-manifest-generator" replace /> },
       { path: 'devops/editorconfig-generator', element: <EditorconfigGeneratorPage /> },
       { path: 'devops/codeowners-generator', element: <CodeownersGeneratorPage /> },
       { path: 'devops/license-generator', element: <LicenseGeneratorPage /> },
@@ -924,6 +926,7 @@ const router = createBrowserRouter([
       { path: 'extras/typing-speed-test', element: <TypingSpeedTestPage /> },
       { path: 'extras/conways-game-of-life', element: <ConwaysGameOfLifePage /> },
       { path: 'extras/pathfinding-simulator', element: <PathfindingSimulatorPage /> },
+      { path: 'extras/binary-search-visualizer', element: <BinarySearchVisualizerPage /> },
       { path: 'tools/url-email-extractor', element: <UrlEmailExtractorPage /> },
       { path: 'snippets/use-lock-body-scroll', element: <UseLockBodyScrollSnippetPage /> },
       { path: 'snippets/use-stable-callback', element: <UseStableCallbackSnippetPage /> },
@@ -989,6 +992,7 @@ const router = createBrowserRouter([
       { path: 'tools/ring-election-simulator', element: <RingElectionSimulatorPage /> },
       { path: 'data/markdown-table-converter', element: <MarkdownTableConverterPage /> },
       { path: 'tools/bitwise-calculator', element: <BitwiseCalculatorPage /> },
+      { path: 'tools/combinatorics-calculator', element: <CombinatoricsCalculatorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
