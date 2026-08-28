@@ -613,6 +613,7 @@ export const LABELS = {
     'image-resizer': 'Redimensionador de Imagem',
     'xpath-tester': 'XPath Tester',
     'hex-dump': 'Visualizador Hex Dump (xxd)',
+    'intl-playground': 'Playground de Intl (i18n)',
   },
   en: {
     home: 'Home',
@@ -1123,6 +1124,7 @@ export const LABELS = {
     'image-resizer': 'Image Resizer',
     'xpath-tester': 'XPath Tester',
     'hex-dump': 'Hex Dump / xxd Viewer',
+    'intl-playground': 'Intl Playground (i18n)',
   },
 }
 
@@ -1299,6 +1301,7 @@ export function buildMenuItems(l) {
         { key: '/tools/image-resizer', icon: <PictureOutlined />, label: withNewBadge('/tools/image-resizer', l['image-resizer'], l) },
         { key: '/tools/xpath-tester', icon: <ApartmentOutlined />, label: withNewBadge('/tools/xpath-tester', l['xpath-tester'], l) },
         { key: '/tools/hex-dump', icon: <CodeOutlined />, label: withNewBadge('/tools/hex-dump', l['hex-dump'], l) },
+        { key: '/tools/intl-playground', icon: <GlobalOutlined />, label: withNewBadge('/tools/intl-playground', l['intl-playground'], l) },
       ],
     },
     {

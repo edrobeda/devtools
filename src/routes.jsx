@@ -493,6 +493,7 @@ import MarkdownTableConverterPage from './pages/MarkdownTableConverterPage'
 import BitwiseCalculatorPage from './pages/BitwiseCalculatorPage'
 import CombinatoricsCalculatorPage from './pages/CombinatoricsCalculatorPage'
 import ImageToAsciiPage from './pages/ImageToAsciiPage'
+import IntlPlaygroundPage from './pages/IntlPlaygroundPage'
 
 const router = createBrowserRouter([
   {
@@ -691,6 +692,7 @@ const router = createBrowserRouter([
       { path: 'network/shannon-capacity-calculator', element: <ShannonCapacityCalculatorPage /> },
       { path: 'network/idn-punycode-converter', element: <IdnPunycodeConverterPage /> },
       { path: 'tools/hex-dump', element: <HexDumpPage /> },
+      { path: 'tools/intl-playground', element: <IntlPlaygroundPage /> },
       { path: 'references/lua-cheatsheet', element: <LuaCheatsheetPage /> },
       { path: 'references/sql-window-functions', element: <SqlWindowFunctionsPage /> },
       { path: 'references/emoji-cheatsheet', element: <EmojiCheatsheetPage /> },
