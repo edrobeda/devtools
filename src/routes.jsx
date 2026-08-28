@@ -103,6 +103,7 @@ import PackageManagerCommandsPage from './pages/PackageManagerCommandsPage'
 import HmacGeneratorPage from './pages/HmacGeneratorPage'
 import LoremIpsumGeneratorPage from './pages/LoremIpsumGeneratorPage'
 import JsonDiffPage from './pages/JsonDiffPage'
+import JsonPatchPage from './pages/JsonPatchPage'
 import DarkModeTogglePage from './pages/DarkModeTogglePage'
 import UseThrottleSnippetPage from './pages/UseThrottleSnippetPage'
 import VscodeShortcutsPage from './pages/VscodeShortcutsPage'
@@ -614,6 +615,7 @@ const router = createBrowserRouter([
       { path: 'tools/hmac-generator', element: <HmacGeneratorPage /> },
       { path: 'tools/lorem-ipsum-generator', element: <LoremIpsumGeneratorPage /> },
       { path: 'data/json-diff', element: <JsonDiffPage /> },
+      { path: 'data/json-patch', element: <JsonPatchPage /> },
       { path: 'styles/dark-mode-toggle', element: <DarkModeTogglePage /> },
       { path: 'snippets/use-throttle', element: <UseThrottleSnippetPage /> },
       { path: 'references/vscode-shortcuts', element: <VscodeShortcutsPage /> },
