@@ -329,6 +329,7 @@ import TypographyScaleCalculatorPage from './pages/TypographyScaleCalculatorPage
 import TypingSpeedTestPage from './pages/TypingSpeedTestPage'
 import ConwaysGameOfLifePage from './pages/ConwaysGameOfLifePage'
 import PathfindingSimulatorPage from './pages/PathfindingSimulatorPage'
+import BinarySearchVisualizerPage from './pages/BinarySearchVisualizerPage'
 import UrlEmailExtractorPage from './pages/UrlEmailExtractorPage'
 import BarcodeGeneratorPage from './pages/BarcodeGeneratorPage'
 import UseLockBodyScrollSnippetPage from './pages/UseLockBodyScrollSnippetPage'
@@ -924,6 +925,7 @@ const router = createBrowserRouter([
       { path: 'extras/typing-speed-test', element: <TypingSpeedTestPage /> },
       { path: 'extras/conways-game-of-life', element: <ConwaysGameOfLifePage /> },
       { path: 'extras/pathfinding-simulator', element: <PathfindingSimulatorPage /> },
+      { path: 'extras/binary-search-visualizer', element: <BinarySearchVisualizerPage /> },
       { path: 'tools/url-email-extractor', element: <UrlEmailExtractorPage /> },
       { path: 'snippets/use-lock-body-scroll', element: <UseLockBodyScrollSnippetPage /> },
       { path: 'snippets/use-stable-callback', element: <UseStableCallbackSnippetPage /> },
