@@ -492,6 +492,7 @@ import EmojiCheatsheetPage from './pages/EmojiCheatsheetPage'
 import MarkdownTableConverterPage from './pages/MarkdownTableConverterPage'
 import BitwiseCalculatorPage from './pages/BitwiseCalculatorPage'
 import CombinatoricsCalculatorPage from './pages/CombinatoricsCalculatorPage'
+import ImageToAsciiPage from './pages/ImageToAsciiPage'
 
 const router = createBrowserRouter([
   {
@@ -982,6 +983,7 @@ const router = createBrowserRouter([
       { path: 'references/c-cheatsheet', element: <CCheatsheetPage /> },
       { path: 'tools/email-header-analyzer', element: <EmailHeaderAnalyzerPage /> },
       { path: 'tools/ascii-banner-generator', element: <AsciiBannerGeneratorPage /> },
+      { path: 'tools/image-to-ascii', element: <ImageToAsciiPage /> },
       { path: 'tools/image-resizer', element: <ImageResizerPage /> },
       { path: 'tools/xpath-tester', element: <XPathTesterPage /> },
       { path: 'tools/bankers-algorithm-simulator', element: <BankersAlgorithmSimulatorPage /> },
