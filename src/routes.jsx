@@ -103,6 +103,7 @@ import PackageManagerCommandsPage from './pages/PackageManagerCommandsPage'
 import HmacGeneratorPage from './pages/HmacGeneratorPage'
 import LoremIpsumGeneratorPage from './pages/LoremIpsumGeneratorPage'
 import JsonDiffPage from './pages/JsonDiffPage'
+import JsonPatchPage from './pages/JsonPatchPage'
 import DarkModeTogglePage from './pages/DarkModeTogglePage'
 import UseThrottleSnippetPage from './pages/UseThrottleSnippetPage'
 import VscodeShortcutsPage from './pages/VscodeShortcutsPage'
@@ -492,6 +493,8 @@ import EmojiCheatsheetPage from './pages/EmojiCheatsheetPage'
 import MarkdownTableConverterPage from './pages/MarkdownTableConverterPage'
 import BitwiseCalculatorPage from './pages/BitwiseCalculatorPage'
 import CombinatoricsCalculatorPage from './pages/CombinatoricsCalculatorPage'
+import ImageToAsciiPage from './pages/ImageToAsciiPage'
+import IntlPlaygroundPage from './pages/IntlPlaygroundPage'
 
 const router = createBrowserRouter([
   {
@@ -612,6 +615,7 @@ const router = createBrowserRouter([
       { path: 'tools/hmac-generator', element: <HmacGeneratorPage /> },
       { path: 'tools/lorem-ipsum-generator', element: <LoremIpsumGeneratorPage /> },
       { path: 'data/json-diff', element: <JsonDiffPage /> },
+      { path: 'data/json-patch', element: <JsonPatchPage /> },
       { path: 'styles/dark-mode-toggle', element: <DarkModeTogglePage /> },
       { path: 'snippets/use-throttle', element: <UseThrottleSnippetPage /> },
       { path: 'references/vscode-shortcuts', element: <VscodeShortcutsPage /> },
@@ -690,6 +694,7 @@ const router = createBrowserRouter([
       { path: 'network/shannon-capacity-calculator', element: <ShannonCapacityCalculatorPage /> },
       { path: 'network/idn-punycode-converter', element: <IdnPunycodeConverterPage /> },
       { path: 'tools/hex-dump', element: <HexDumpPage /> },
+      { path: 'tools/intl-playground', element: <IntlPlaygroundPage /> },
       { path: 'references/lua-cheatsheet', element: <LuaCheatsheetPage /> },
       { path: 'references/sql-window-functions', element: <SqlWindowFunctionsPage /> },
       { path: 'references/emoji-cheatsheet', element: <EmojiCheatsheetPage /> },
@@ -982,6 +987,7 @@ const router = createBrowserRouter([
       { path: 'references/c-cheatsheet', element: <CCheatsheetPage /> },
       { path: 'tools/email-header-analyzer', element: <EmailHeaderAnalyzerPage /> },
       { path: 'tools/ascii-banner-generator', element: <AsciiBannerGeneratorPage /> },
+      { path: 'tools/image-to-ascii', element: <ImageToAsciiPage /> },
       { path: 'tools/image-resizer', element: <ImageResizerPage /> },
       { path: 'tools/xpath-tester', element: <XPathTesterPage /> },
       { path: 'tools/bankers-algorithm-simulator', element: <BankersAlgorithmSimulatorPage /> },
