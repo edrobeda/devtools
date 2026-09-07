@@ -89,6 +89,7 @@ import {
   NodeIndexOutlined,
   DollarOutlined,
   GitlabOutlined,
+  PlayCircleOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -329,6 +330,7 @@ export const LABELS = {
     'search-replace': 'Pesquisar & Substituir',
     'html-to-jsx-converter': 'Conversor HTML → JSX',
     'html-to-markdown': 'Conversor HTML → Markdown',
+    'html-playground': 'Playground HTML/CSS/JS',
     'uuid-collision-simulator': 'Simulador de Colisão de UUID',
     'unicode-inspector': 'Inspetor de Unicode',
     'json-to-sql': 'JSON → SQL INSERT',
@@ -841,6 +843,7 @@ export const LABELS = {
     'search-replace': 'Search & Replace',
     'html-to-jsx-converter': 'HTML → JSX Converter',
     'html-to-markdown': 'HTML → Markdown Converter',
+    'html-playground': 'HTML/CSS/JS Playground',
     'uuid-collision-simulator': 'UUID Collision Simulator',
     'unicode-inspector': 'Unicode Inspector',
     'json-to-sql': 'JSON → SQL INSERT',
@@ -1305,6 +1308,7 @@ export function buildMenuItems(l) {
         { key: '/tools/hex-dump', icon: <CodeOutlined />, label: withNewBadge('/tools/hex-dump', l['hex-dump'], l) },
         { key: '/tools/intl-playground', icon: <GlobalOutlined />, label: withNewBadge('/tools/intl-playground', l['intl-playground'], l) },
         { key: '/tools/json-repair', icon: <FileTextOutlined />, label: withNewBadge('/tools/json-repair', l['json-repair'], l) },
+        { key: '/tools/html-playground', icon: <PlayCircleOutlined />, label: withNewBadge('/tools/html-playground', l['html-playground'], l) },
       ],
     },
     {

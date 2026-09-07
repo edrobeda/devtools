@@ -142,6 +142,7 @@ import DeepCloneDeepEqualPage from './pages/DeepCloneDeepEqualPage'
 import BranchNameGeneratorPage from './pages/BranchNameGeneratorPage'
 import LinesToolPage from './pages/LinesToolPage'
 import HtmlToJsxConverterPage from './pages/HtmlToJsxConverterPage'
+import HtmlPlaygroundPage from './pages/HtmlPlaygroundPage'
 import ImagePaletteExtractorPage from './pages/ImagePaletteExtractorPage'
 import ImageDiffVisualizerPage from './pages/ImageDiffVisualizerPage'
 import UuidCollisionSimulatorPage from './pages/UuidCollisionSimulatorPage'
@@ -704,6 +705,7 @@ const router = createBrowserRouter([
       { path: 'tools/file-size-converter', element: <FileSizeConverterPage /> },
       { path: 'tools/file-hash-calculator', element: <FileHashCalculatorPage /> },
       { path: 'tools/geo-coordinates-converter', element: <GeoCoordinatesConverterPage /> },
+      { path: 'tools/html-playground', element: <HtmlPlaygroundPage /> },
       { path: 'tools/geohash-tool', element: <GeohashToolPage /> },
       { path: 'tools/haversine-distance-calculator', element: <HaversineDistanceCalculatorPage /> },
       { path: 'tools/iso-8601-duration', element: <Iso8601DurationPage /> },
