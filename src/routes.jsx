@@ -495,6 +495,7 @@ import BitwiseCalculatorPage from './pages/BitwiseCalculatorPage'
 import CombinatoricsCalculatorPage from './pages/CombinatoricsCalculatorPage'
 import ImageToAsciiPage from './pages/ImageToAsciiPage'
 import IntlPlaygroundPage from './pages/IntlPlaygroundPage'
+import JsonRepairPage from './pages/JsonRepairPage'
 
 const router = createBrowserRouter([
   {
@@ -695,6 +696,7 @@ const router = createBrowserRouter([
       { path: 'network/idn-punycode-converter', element: <IdnPunycodeConverterPage /> },
       { path: 'tools/hex-dump', element: <HexDumpPage /> },
       { path: 'tools/intl-playground', element: <IntlPlaygroundPage /> },
+      { path: 'tools/json-repair', element: <JsonRepairPage /> },
       { path: 'references/lua-cheatsheet', element: <LuaCheatsheetPage /> },
       { path: 'references/sql-window-functions', element: <SqlWindowFunctionsPage /> },
       { path: 'references/emoji-cheatsheet', element: <EmojiCheatsheetPage /> },

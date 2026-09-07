@@ -615,6 +615,7 @@ export const LABELS = {
     'xpath-tester': 'XPath Tester',
     'hex-dump': 'Visualizador Hex Dump (xxd)',
     'intl-playground': 'Playground de Intl (i18n)',
+    'json-repair': 'Consertador de JSON',
   },
   en: {
     home: 'Home',
@@ -1127,6 +1128,7 @@ export const LABELS = {
     'xpath-tester': 'XPath Tester',
     'hex-dump': 'Hex Dump / xxd Viewer',
     'intl-playground': 'Intl Playground (i18n)',
+    'json-repair': 'JSON Repair Tool',
   },
 }
 
@@ -1304,6 +1306,7 @@ export function buildMenuItems(l) {
         { key: '/tools/xpath-tester', icon: <ApartmentOutlined />, label: withNewBadge('/tools/xpath-tester', l['xpath-tester'], l) },
         { key: '/tools/hex-dump', icon: <CodeOutlined />, label: withNewBadge('/tools/hex-dump', l['hex-dump'], l) },
         { key: '/tools/intl-playground', icon: <GlobalOutlined />, label: withNewBadge('/tools/intl-playground', l['intl-playground'], l) },
+        { key: '/tools/json-repair', icon: <FileTextOutlined />, label: withNewBadge('/tools/json-repair', l['json-repair'], l) },
       ],
     },
     {
