@@ -282,7 +282,6 @@ import CssAnimationStaggerGeneratorPage from './pages/CssAnimationStaggerGenerat
 import CssAtPropertyGeneratorPage from './pages/CssAtPropertyGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
-import SlaCalculatorPage from './pages/SlaCalculatorPage'
 import CreditCardToolPage from './pages/CreditCardToolPage'
 import QrCodeGeneratorPage from './pages/QrCodeGeneratorPage'
 import GithubActionsCheatsheetPage from './pages/GithubActionsCheatsheetPage'
@@ -814,7 +813,6 @@ const router = createBrowserRouter([
       { path: 'frontend/scrollbar-generator', element: <ScrollbarCssGeneratorPage /> },
       { path: 'references/bash-scripting', element: <BashScriptingCheatsheetPage /> },
       { path: 'references/systemd-commands', element: <SystemdCheatsheetPage /> },
-      { path: 'devops/sla-calculator', element: <SlaCalculatorPage /> },
       { path: 'tools/credit-card-tool', element: <CreditCardToolPage /> },
       { path: 'tools/qr-code-generator', element: <QrCodeGeneratorPage /> },
       { path: 'tools/barcode-generator', element: <BarcodeGeneratorPage /> },
