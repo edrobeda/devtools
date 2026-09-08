@@ -1492,7 +1492,6 @@ export function buildMenuItems(l) {
         { key: '/frontend/favicon-generator', icon: <PictureOutlined />, label: withNewBadge('/frontend/favicon-generator', l['favicon-generator'], l) },
         { key: '/frontend/css-has-selector-tester', icon: <SelectOutlined />, label: withNewBadge('/frontend/css-has-selector-tester', l['css-has-selector-tester'], l) },
         { key: '/frontend/typography-scale-calculator', icon: <FontSizeOutlined />, label: withNewBadge('/frontend/typography-scale-calculator', l['typography-scale-calculator'], l) },
-        { key: '/frontend/vite-config-generator', icon: <CodeOutlined />, label: withNewBadge('/frontend/vite-config-generator', l['vite-config-generator'], l) },
       ],
     },
     {
@@ -1544,6 +1543,7 @@ export function buildMenuItems(l) {
         { key: '/devops/tsconfig-generator', icon: <CodeOutlined />, label: withNewBadge('/devops/tsconfig-generator', l['tsconfig-generator'], l) },
         { key: '/devops/eslint-config-generator', icon: <CodeOutlined />, label: withNewBadge('/devops/eslint-config-generator', l['eslint-config-generator'], l) },
         { key: '/devops/renovate-config-generator', icon: <FileTextOutlined />, label: withNewBadge('/devops/renovate-config-generator', l['renovate-config-generator'], l) },
+        { key: '/devops/vite-config-generator', icon: <CodeOutlined />, label: withNewBadge('/devops/vite-config-generator', l['vite-config-generator'], l) },
         { key: '/devops/cors-config-generator', icon: <SafetyOutlined />, label: withNewBadge('/devops/cors-config-generator', l['cors-config-generator'], l) },
         { key: '/devops/pull-request-template-generator', icon: <FileTextOutlined />, label: withNewBadge('/devops/pull-request-template-generator', l['pull-request-template-generator'], l) },
       ],
