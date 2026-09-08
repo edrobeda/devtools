@@ -497,6 +497,7 @@ import CombinatoricsCalculatorPage from './pages/CombinatoricsCalculatorPage'
 import ImageToAsciiPage from './pages/ImageToAsciiPage'
 import IntlPlaygroundPage from './pages/IntlPlaygroundPage'
 import JsonRepairPage from './pages/JsonRepairPage'
+import GrepCommandBuilderPage from './pages/GrepCommandBuilderPage'
 
 const router = createBrowserRouter([
   {
@@ -1003,6 +1004,7 @@ const router = createBrowserRouter([
       { path: 'data/markdown-table-converter', element: <MarkdownTableConverterPage /> },
       { path: 'tools/bitwise-calculator', element: <BitwiseCalculatorPage /> },
       { path: 'tools/combinatorics-calculator', element: <CombinatoricsCalculatorPage /> },
+      { path: 'tools/grep-command-builder', element: <GrepCommandBuilderPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

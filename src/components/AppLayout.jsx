@@ -618,6 +618,7 @@ export const LABELS = {
     'hex-dump': 'Visualizador Hex Dump (xxd)',
     'intl-playground': 'Playground de Intl (i18n)',
     'json-repair': 'Consertador de JSON',
+    'grep-command-builder': 'Construtor de Comando grep',
   },
   en: {
     home: 'Home',
@@ -1132,6 +1133,7 @@ export const LABELS = {
     'hex-dump': 'Hex Dump / xxd Viewer',
     'intl-playground': 'Intl Playground (i18n)',
     'json-repair': 'JSON Repair Tool',
+    'grep-command-builder': 'grep Command Builder',
   },
 }
 
@@ -1310,6 +1312,7 @@ export function buildMenuItems(l) {
         { key: '/tools/hex-dump', icon: <CodeOutlined />, label: withNewBadge('/tools/hex-dump', l['hex-dump'], l) },
         { key: '/tools/intl-playground', icon: <GlobalOutlined />, label: withNewBadge('/tools/intl-playground', l['intl-playground'], l) },
         { key: '/tools/json-repair', icon: <FileTextOutlined />, label: withNewBadge('/tools/json-repair', l['json-repair'], l) },
+        { key: '/tools/grep-command-builder', icon: <SearchOutlined />, label: withNewBadge('/tools/grep-command-builder', l['grep-command-builder'], l) },
         { key: '/tools/html-playground', icon: <PlayCircleOutlined />, label: withNewBadge('/tools/html-playground', l['html-playground'], l) },
       ],
     },
