@@ -142,6 +142,7 @@ import DeepCloneDeepEqualPage from './pages/DeepCloneDeepEqualPage'
 import BranchNameGeneratorPage from './pages/BranchNameGeneratorPage'
 import LinesToolPage from './pages/LinesToolPage'
 import HtmlToJsxConverterPage from './pages/HtmlToJsxConverterPage'
+import HtmlPlaygroundPage from './pages/HtmlPlaygroundPage'
 import ImagePaletteExtractorPage from './pages/ImagePaletteExtractorPage'
 import ImageDiffVisualizerPage from './pages/ImageDiffVisualizerPage'
 import UuidCollisionSimulatorPage from './pages/UuidCollisionSimulatorPage'
@@ -152,6 +153,7 @@ import OtpInputPage from './pages/OtpInputPage'
 import TimezoneConverterPage from './pages/TimezoneConverterPage'
 import UserAgentParserPage from './pages/UserAgentParserPage'
 import CronBuilderPage from './pages/CronBuilderPage'
+import CronExpressionDebuggerPage from './pages/CronExpressionDebuggerPage'
 import MimeLookupPage from './pages/MimeLookupPage'
 import HttpMethodsPage from './pages/HttpMethodsPage'
 import NumberToWordsPage from './pages/NumberToWordsPage'
@@ -208,6 +210,7 @@ import OpensslCommandsPage from './pages/OpensslCommandsPage'
 import PythonCheatsheetPage from './pages/PythonCheatsheetPage'
 import GrepSedAwkCheatsheetPage from './pages/GrepSedAwkCheatsheetPage'
 import JqCheatsheetPage from './pages/JqCheatsheetPage'
+import CurlCheatsheetPage from './pages/CurlCheatsheetPage'
 import ScrollbarCssGeneratorPage from './pages/ScrollbarCssGeneratorPage'
 import SitemapGeneratorPage from './pages/SitemapGeneratorPage'
 import EditorconfigGeneratorPage from './pages/EditorconfigGeneratorPage'
@@ -282,7 +285,6 @@ import CssAnimationStaggerGeneratorPage from './pages/CssAnimationStaggerGenerat
 import CssAtPropertyGeneratorPage from './pages/CssAtPropertyGeneratorPage'
 import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
-import SlaCalculatorPage from './pages/SlaCalculatorPage'
 import CreditCardToolPage from './pages/CreditCardToolPage'
 import QrCodeGeneratorPage from './pages/QrCodeGeneratorPage'
 import GithubActionsCheatsheetPage from './pages/GithubActionsCheatsheetPage'
@@ -495,6 +497,7 @@ import BitwiseCalculatorPage from './pages/BitwiseCalculatorPage'
 import CombinatoricsCalculatorPage from './pages/CombinatoricsCalculatorPage'
 import ImageToAsciiPage from './pages/ImageToAsciiPage'
 import IntlPlaygroundPage from './pages/IntlPlaygroundPage'
+import JsonRepairPage from './pages/JsonRepairPage'
 
 const router = createBrowserRouter([
   {
@@ -672,6 +675,7 @@ const router = createBrowserRouter([
       { path: 'tools/timezone-converter', element: <TimezoneConverterPage /> },
       { path: 'network/user-agent-parser', element: <UserAgentParserPage /> },
       { path: 'tools/cron-builder', element: <CronBuilderPage /> },
+      { path: 'devops/cron-expression-debugger', element: <CronExpressionDebuggerPage /> },
       { path: 'network/mime-lookup', element: <MimeLookupPage /> },
       { path: 'references/http-methods', element: <HttpMethodsPage /> },
       { path: 'tools/number-to-words', element: <NumberToWordsPage /> },
@@ -695,6 +699,7 @@ const router = createBrowserRouter([
       { path: 'network/idn-punycode-converter', element: <IdnPunycodeConverterPage /> },
       { path: 'tools/hex-dump', element: <HexDumpPage /> },
       { path: 'tools/intl-playground', element: <IntlPlaygroundPage /> },
+      { path: 'tools/json-repair', element: <JsonRepairPage /> },
       { path: 'references/lua-cheatsheet', element: <LuaCheatsheetPage /> },
       { path: 'references/sql-window-functions', element: <SqlWindowFunctionsPage /> },
       { path: 'references/emoji-cheatsheet', element: <EmojiCheatsheetPage /> },
@@ -703,6 +708,7 @@ const router = createBrowserRouter([
       { path: 'tools/file-size-converter', element: <FileSizeConverterPage /> },
       { path: 'tools/file-hash-calculator', element: <FileHashCalculatorPage /> },
       { path: 'tools/geo-coordinates-converter', element: <GeoCoordinatesConverterPage /> },
+      { path: 'tools/html-playground', element: <HtmlPlaygroundPage /> },
       { path: 'tools/geohash-tool', element: <GeohashToolPage /> },
       { path: 'tools/haversine-distance-calculator', element: <HaversineDistanceCalculatorPage /> },
       { path: 'tools/iso-8601-duration', element: <Iso8601DurationPage /> },
@@ -809,10 +815,10 @@ const router = createBrowserRouter([
       { path: 'references/python-cheatsheet', element: <PythonCheatsheetPage /> },
       { path: 'references/grep-sed-awk', element: <GrepSedAwkCheatsheetPage /> },
       { path: 'references/jq-cheatsheet', element: <JqCheatsheetPage /> },
+      { path: 'references/curl-cheatsheet', element: <CurlCheatsheetPage /> },
       { path: 'frontend/scrollbar-generator', element: <ScrollbarCssGeneratorPage /> },
       { path: 'references/bash-scripting', element: <BashScriptingCheatsheetPage /> },
       { path: 'references/systemd-commands', element: <SystemdCheatsheetPage /> },
-      { path: 'devops/sla-calculator', element: <SlaCalculatorPage /> },
       { path: 'tools/credit-card-tool', element: <CreditCardToolPage /> },
       { path: 'tools/qr-code-generator', element: <QrCodeGeneratorPage /> },
       { path: 'tools/barcode-generator', element: <BarcodeGeneratorPage /> },

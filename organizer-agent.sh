@@ -11,7 +11,7 @@ set -uo pipefail
 
 PROJECT_DIR="/home/devtools-bot/devtools"
 OPENCODE_BIN="/home/devtools-bot/.local/bin/opencode"
-MODEL="opencode-go/glm-5.2"
+MODEL="opencode/big-pickle"  # migrado do opencode-go pago (chave expirada + limite do plano) p/ free tier Zen em 2026-09-07
 
 cd "$PROJECT_DIR" || exit 1
 

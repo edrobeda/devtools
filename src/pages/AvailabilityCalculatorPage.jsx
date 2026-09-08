@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import {
   Typography,
   Card,
@@ -15,12 +15,21 @@ import {
   Table,
   Select,
   Tabs,
+  Segmented,
+  List,
+  Descriptions,
+  Progress,
+  Divider,
+  message,
 } from 'antd'
 import {
   CheckCircleOutlined,
   HistoryOutlined,
   InfoCircleOutlined,
   DashboardOutlined,
+  PlusOutlined,
+  DeleteOutlined,
+  CopyOutlined,
 } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import {
@@ -100,6 +109,30 @@ const translations = {
     sourceIntro: 'O motor é puro JavaScript client-side — nenhum dado sai do navegador.',
     note: 'Os valores de downtime budget usam um ano de 365,25 dias como referência. O cálculo MTBF/MTTR assume que todas as unidades são as mesmas (horas, minutos etc.).',
     invalid: 'Valor inválido',
+    incidentsTab: 'Checar incidentes',
+    incidentsTitle: 'Conferir incidentes reais',
+    incidentsIntro: 'Registre as durações dos incidentes do período pra ver quanto do SLA foi consumido.',
+    incident: 'Incidente',
+    addIncident: 'Adicionar incidente',
+    totalIncident: 'Downtime total registrado',
+    effectiveAvail: 'Disponibilidade efetiva',
+    budgetStatus: 'Status vs. orçamento',
+    withinBudget: 'Dentro do orçamento',
+    withinBudgetDesc: 'Sobrou',
+    overBudget: 'Orçamento estourado',
+    overBudgetDesc: 'Estourou em',
+    periodLabel: 'Período avaliado',
+    periodDay: '1 dia',
+    periodWeek: '7 dias',
+    periodMonth: '30 dias',
+    periodYear: '1 ano',
+    periodCustom: 'Período customizado',
+    customDays: 'Dias',
+    copy: 'Copiar resultado',
+    copied: 'Copiado',
+    copyErr: 'Falha ao copiar',
+    ninesInfo: (target, periodDays, budgetSeconds) =>
+      `SLA ${target}% em ${periodDays} dia(s): orçamento de downtime = ${formatDuration(budgetSeconds)}.`,
   },
   en: {
     title: 'Availability Calculator',
@@ -131,6 +164,30 @@ const translations = {
     sourceIntro: 'The engine is pure client-side JavaScript — no data leaves the browser.',
     note: 'Downtime budget values use a 365.25-day year as reference. The MTBF/MTTR calculation assumes all values share the same unit (hours, minutes, etc.).',
     invalid: 'Invalid value',
+    incidentsTab: 'Incident checker',
+    incidentsTitle: 'Check real incidents',
+    incidentsIntro: 'Log the incident durations in the period to see how much of the SLA has been consumed.',
+    incident: 'Incident',
+    addIncident: 'Add incident',
+    totalIncident: 'Total logged downtime',
+    effectiveAvail: 'Effective availability',
+    budgetStatus: 'Status vs. budget',
+    withinBudget: 'Within budget',
+    withinBudgetDesc: 'Left over',
+    overBudget: 'Budget exceeded',
+    overBudgetDesc: 'Exceeded by',
+    periodLabel: 'Evaluation period',
+    periodDay: '1 day',
+    periodWeek: '7 days',
+    periodMonth: '30 days',
+    periodYear: '1 year',
+    periodCustom: 'Custom period',
+    customDays: 'Days',
+    copy: 'Copy result',
+    copied: 'Copied',
+    copyErr: 'Copy failed',
+    ninesInfo: (target, periodDays, budgetSeconds) =>
+      `SLA ${target}% over ${periodDays} day(s): downtime budget = ${formatDuration(budgetSeconds)}.`,
   },
 }
 
@@ -230,6 +287,90 @@ export default function AvailabilityCalculatorPage() {
       </Text>
     </div>
   )
+
+  const [messageApi, messageContextHolder] = message.useMessage()
+  const [incidentTarget, setIncidentTarget] = useState(99.9)
+  const [incidentPeriodKey, setIncidentPeriodKey] = useState('month')
+  const [incidentCustomDays, setIncidentCustomDays] = useState(30)
+  const [incidents, setIncidents] = useState([{ id: 1, value: 30, unit: 'min' }])
+
+  const INCIDENT_UNITS = { s: 1, min: 60, h: 3600, d: 86400 }
+  const INCIDENT_PERIODS = { day: 1, week: 7, month: 30, year: 365 }
+
+  const incidentPeriodDays = useMemo(() => {
+    if (incidentPeriodKey === 'custom') return incidentCustomDays || 0
+    return INCIDENT_PERIODS[incidentPeriodKey] || 0
+  }, [incidentPeriodKey, incidentCustomDays])
+
+  const incidentPeriodSeconds = incidentPeriodDays * 86400
+
+  const incidentBudgetSeconds = useMemo(() => {
+    if (incidentPeriodSeconds <= 0) return 0
+    return incidentPeriodSeconds * (1 - incidentTarget / 100)
+  }, [incidentPeriodSeconds, incidentTarget])
+
+  const totalIncidentSeconds = useMemo(
+    () =>
+      incidents.reduce((sum, inc) => sum + (Number(inc.value) || 0) * (INCIDENT_UNITS[inc.unit] || 1), 0),
+    [incidents]
+  )
+
+  const incidentActualAvailability = useMemo(() => {
+    if (incidentPeriodSeconds <= 0) return 0
+    return 100 * (1 - totalIncidentSeconds / incidentPeriodSeconds)
+  }, [incidentPeriodSeconds, totalIncidentSeconds])
+
+  const incidentRemainingSeconds = incidentBudgetSeconds - totalIncidentSeconds
+  const incidentConsumedPct = useMemo(() => {
+    if (incidentPeriodSeconds <= 0 || incidentBudgetSeconds <= 0) return 0
+    return Math.min(100, Math.max(0, (totalIncidentSeconds / incidentBudgetSeconds) * 100))
+  }, [incidentPeriodSeconds, incidentBudgetSeconds, totalIncidentSeconds])
+
+  const setIncident = useCallback((id, patch) => {
+    setIncidents((list) => list.map((inc) => (inc.id === id ? { ...inc, ...patch } : inc)))
+  }, [])
+
+  const removeIncident = useCallback((id) => {
+    setIncidents((list) => list.filter((inc) => inc.id !== id))
+  }, [])
+
+  const addIncident = useCallback(() => {
+    setIncidents((list) => {
+      const nextId = list.reduce((m, inc) => Math.max(m, inc.id), 0) + 1
+      return [...list, { id: nextId, value: 1, unit: 'h' }]
+    })
+  }, [])
+
+  const copyIncidentResult = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(
+        t.ninesInfo(incidentTarget, incidentPeriodDays, incidentBudgetSeconds)
+      )
+      messageApi.success(t.copied)
+    } catch {
+      messageApi.error(t.copyErr)
+    }
+  }, [t, incidentTarget, incidentPeriodDays, incidentBudgetSeconds, messageApi])
+
+  const incidentBudgetStatus =
+    incidentRemainingSeconds >= 0
+      ? {
+          key: 'withinBudget',
+          tag: 'green',
+          desc: t.withinBudgetDesc,
+          val: formatDuration(incidentRemainingSeconds),
+        }
+      : {
+          key: 'overBudget',
+          tag: 'red',
+          desc: t.overBudgetDesc,
+          val: formatDuration(-incidentRemainingSeconds),
+        }
+
+  const incidentPeriodOptions = Object.keys(INCIDENT_PERIODS).map((k) => ({
+    value: k,
+    label: t[`period${k[0].toUpperCase()}${k.slice(1)}`],
+  }))
 
   return (
     <div style={{ padding: 24, maxWidth: 960, margin: '0 auto' }}>
@@ -493,7 +634,127 @@ export default function AvailabilityCalculatorPage() {
             </Space>
           </Card>
         </TabPane>
+        <TabPane tab={t.incidentsTab} key="incidents">
+          <Alert type="info" showIcon message={t.incidentsTitle} description={t.incidentsIntro} style={{ marginBottom: 16 }} />
+          <Card style={{ marginBottom: 16 }}>
+            <Space direction="vertical" style={{ width: '100%' }} size="middle">
+              <Space wrap align="center">
+                <Text strong>{t.uptimePercent}:</Text>
+                <InputNumber
+                  min={0}
+                  max={100}
+                  step={0.001}
+                  precision={4}
+                  value={incidentTarget}
+                  onChange={setIncidentTarget}
+                  addonAfter="%"
+                  style={{ width: 150 }}
+                />
+              </Space>
+              <Space wrap align="center" size="large">
+                <Segmented options={incidentPeriodOptions} value={incidentPeriodKey} onChange={setIncidentPeriodKey} />
+                {incidentPeriodKey === 'custom' && (
+                  <Space align="center">
+                    <Text>{t.customDays}</Text>
+                    <InputNumber
+                      min={1}
+                      value={incidentCustomDays}
+                      onChange={setIncidentCustomDays}
+                      style={{ width: 100 }}
+                    />
+                  </Space>
+                )}
+              </Space>
+            </Space>
+          </Card>
+
+          <Card
+            title={t.downtimeBudget}
+            extra={
+              <Button size="small" icon={<CopyOutlined />} onClick={copyIncidentResult}>
+                {t.copy}
+              </Button>
+            }
+            style={{ marginBottom: 16 }}
+          >
+            <Descriptions bordered size="small" column={1}>
+              <Descriptions.Item label={t.uptimePercent}>
+                {formatPercent(incidentTarget)}%
+              </Descriptions.Item>
+              <Descriptions.Item label={t.downtimeBudget}>
+                <Text strong style={{ fontSize: 15 }}>{formatDuration(incidentBudgetSeconds)}</Text>
+              </Descriptions.Item>
+              <Descriptions.Item label={t.periodLabel}>
+                {incidentPeriodDays} {incidentPeriodDays === 1 ? 'day' : 'days'}
+              </Descriptions.Item>
+            </Descriptions>
+          </Card>
+
+          <Card title={t.incidentsTitle}>
+            <Paragraph type="secondary">{t.incidentsIntro}</Paragraph>
+            <List
+              size="small"
+              dataSource={incidents}
+              locale={{ emptyText: ' ' }}
+              renderItem={(inc) => (
+                <List.Item
+                  actions={[
+                    <Button
+                      key="del"
+                      type="text"
+                      danger
+                      icon={<DeleteOutlined />}
+                      disabled={incidents.length === 1}
+                      onClick={() => removeIncident(inc.id)}
+                    />,
+                  ]}
+                >
+                  <Space wrap>
+                    <Text type="secondary" style={{ width: 90, display: 'inline-block' }}>
+                      {t.incident} #{inc.id}
+                    </Text>
+                    <InputNumber
+                      min={0}
+                      value={inc.value}
+                      onChange={(v) => setIncident(inc.id, { value: v })}
+                      style={{ width: 110 }}
+                    />
+                    <Select
+                      value={inc.unit}
+                      onChange={(v) => setIncident(inc.id, { unit: v })}
+                      style={{ width: 90 }}
+                      options={Object.keys(INCIDENT_UNITS).map((u) => ({ value: u, label: u }))}
+                    />
+                  </Space>
+                </List.Item>
+              )}
+            />
+            <Button icon={<PlusOutlined />} style={{ marginTop: 12 }} onClick={addIncident}>
+              {t.addIncident}
+            </Button>
+
+            <Divider />
+            <Progress
+              percent={incidentConsumedPct}
+              status={incidentRemainingSeconds >= 0 ? 'active' : 'exception'}
+              format={() => formatDuration(totalIncidentSeconds)}
+            />
+            <Descriptions bordered size="small" column={2} style={{ marginTop: 12 }}>
+              <Descriptions.Item label={t.totalIncident}>
+                <Text strong>{formatDuration(totalIncidentSeconds)}</Text>
+              </Descriptions.Item>
+              <Descriptions.Item label={t.effectiveAvail}>
+                {incidentActualAvailability >= 0 ? `${formatPercent(incidentActualAvailability)}%` : '0%'}
+              </Descriptions.Item>
+              <Descriptions.Item label={t.budgetStatus} span={2}>
+                <Tag color={incidentBudgetStatus.tag}>{t[incidentBudgetStatus.key]}</Tag>{' '}
+                {incidentBudgetStatus.desc}: <Text code>{incidentBudgetStatus.val}</Text>
+              </Descriptions.Item>
+            </Descriptions>
+          </Card>
+        </TabPane>
       </Tabs>
+      {messageContextHolder}
 
       <Card style={{ marginTop: 16 }} title={t.ninesTable}>
         <Table
