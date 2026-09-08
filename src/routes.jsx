@@ -470,6 +470,7 @@ import KafkaCheatsheetPage from './pages/KafkaCheatsheetPage'
 import ElasticsearchCheatsheetPage from './pages/ElasticsearchCheatsheetPage'
 import CppCheatsheetPage from './pages/CppCheatsheetPage'
 import GraphqlCheatsheetPage from './pages/GraphqlCheatsheetPage'
+import GrpcCheatsheetPage from './pages/GrpcCheatsheetPage'
 import RubyCheatsheetPage from './pages/RubyCheatsheetPage'
 import SwiftCheatsheetPage from './pages/SwiftCheatsheetPage'
 import AnsibleCheatsheetPage from './pages/AnsibleCheatsheetPage'
@@ -983,6 +984,7 @@ const router = createBrowserRouter([
       { path: 'references/elasticsearch-cheatsheet', element: <ElasticsearchCheatsheetPage /> },
       { path: 'references/cpp-cheatsheet', element: <CppCheatsheetPage /> },
       { path: 'references/graphql-cheatsheet', element: <GraphqlCheatsheetPage /> },
+      { path: 'references/grpc-cheatsheet', element: <GrpcCheatsheetPage /> },
       { path: 'references/ruby-cheatsheet', element: <RubyCheatsheetPage /> },
       { path: 'references/swift-cheatsheet', element: <SwiftCheatsheetPage /> },
       { path: 'references/ansible-cheatsheet', element: <AnsibleCheatsheetPage /> },
