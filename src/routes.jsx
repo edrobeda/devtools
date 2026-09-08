@@ -209,6 +209,7 @@ import OpensslCommandsPage from './pages/OpensslCommandsPage'
 import PythonCheatsheetPage from './pages/PythonCheatsheetPage'
 import GrepSedAwkCheatsheetPage from './pages/GrepSedAwkCheatsheetPage'
 import JqCheatsheetPage from './pages/JqCheatsheetPage'
+import CurlCheatsheetPage from './pages/CurlCheatsheetPage'
 import ScrollbarCssGeneratorPage from './pages/ScrollbarCssGeneratorPage'
 import SitemapGeneratorPage from './pages/SitemapGeneratorPage'
 import EditorconfigGeneratorPage from './pages/EditorconfigGeneratorPage'
@@ -812,6 +813,7 @@ const router = createBrowserRouter([
       { path: 'references/python-cheatsheet', element: <PythonCheatsheetPage /> },
       { path: 'references/grep-sed-awk', element: <GrepSedAwkCheatsheetPage /> },
       { path: 'references/jq-cheatsheet', element: <JqCheatsheetPage /> },
+      { path: 'references/curl-cheatsheet', element: <CurlCheatsheetPage /> },
       { path: 'frontend/scrollbar-generator', element: <ScrollbarCssGeneratorPage /> },
       { path: 'references/bash-scripting', element: <BashScriptingCheatsheetPage /> },
       { path: 'references/systemd-commands', element: <SystemdCheatsheetPage /> },
