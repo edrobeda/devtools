@@ -620,6 +620,7 @@ export const LABELS = {
     'intl-playground': 'Playground de Intl (i18n)',
     'json-repair': 'Consertador de JSON',
     'grep-command-builder': 'Construtor de Comando grep',
+    'css-reset-generator': 'Gerador de CSS Reset',
   },
   en: {
     home: 'Home',
@@ -1136,6 +1137,7 @@ export const LABELS = {
     'intl-playground': 'Intl Playground (i18n)',
     'json-repair': 'JSON Repair Tool',
     'grep-command-builder': 'grep Command Builder',
+    'css-reset-generator': 'CSS Reset Generator',
   },
 }
 
@@ -1493,6 +1495,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-layer-generator', icon: <PartitionOutlined />, label: withNewBadge('/frontend/css-layer-generator', l['css-layer-generator'], l) },
         { key: '/frontend/favicon-generator', icon: <PictureOutlined />, label: withNewBadge('/frontend/favicon-generator', l['favicon-generator'], l) },
         { key: '/frontend/css-has-selector-tester', icon: <SelectOutlined />, label: withNewBadge('/frontend/css-has-selector-tester', l['css-has-selector-tester'], l) },
+        { key: '/frontend/css-reset-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-reset-generator', l['css-reset-generator'], l) },
         { key: '/frontend/typography-scale-calculator', icon: <FontSizeOutlined />, label: withNewBadge('/frontend/typography-scale-calculator', l['typography-scale-calculator'], l) },
       ],
     },

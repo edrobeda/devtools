@@ -499,6 +499,7 @@ import ImageToAsciiPage from './pages/ImageToAsciiPage'
 import IntlPlaygroundPage from './pages/IntlPlaygroundPage'
 import JsonRepairPage from './pages/JsonRepairPage'
 import GrepCommandBuilderPage from './pages/GrepCommandBuilderPage'
+import CssResetGeneratorPage from './pages/CssResetGeneratorPage'
 
 const router = createBrowserRouter([
   {
@@ -1007,6 +1008,7 @@ const router = createBrowserRouter([
       { path: 'tools/bitwise-calculator', element: <BitwiseCalculatorPage /> },
       { path: 'tools/combinatorics-calculator', element: <CombinatoricsCalculatorPage /> },
       { path: 'tools/grep-command-builder', element: <GrepCommandBuilderPage /> },
+      { path: 'frontend/css-reset-generator', element: <CssResetGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
