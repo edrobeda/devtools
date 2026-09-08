@@ -153,6 +153,7 @@ import OtpInputPage from './pages/OtpInputPage'
 import TimezoneConverterPage from './pages/TimezoneConverterPage'
 import UserAgentParserPage from './pages/UserAgentParserPage'
 import CronBuilderPage from './pages/CronBuilderPage'
+import CronExpressionDebuggerPage from './pages/CronExpressionDebuggerPage'
 import MimeLookupPage from './pages/MimeLookupPage'
 import HttpMethodsPage from './pages/HttpMethodsPage'
 import NumberToWordsPage from './pages/NumberToWordsPage'
@@ -674,6 +675,7 @@ const router = createBrowserRouter([
       { path: 'tools/timezone-converter', element: <TimezoneConverterPage /> },
       { path: 'network/user-agent-parser', element: <UserAgentParserPage /> },
       { path: 'tools/cron-builder', element: <CronBuilderPage /> },
+      { path: 'devops/cron-expression-debugger', element: <CronExpressionDebuggerPage /> },
       { path: 'network/mime-lookup', element: <MimeLookupPage /> },
       { path: 'references/http-methods', element: <HttpMethodsPage /> },
       { path: 'tools/number-to-words', element: <NumberToWordsPage /> },

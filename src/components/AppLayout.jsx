@@ -339,6 +339,7 @@ export const LABELS = {
     'timezone-converter': 'Conversor de Fuso Horário',
     'user-agent-parser': 'Parser de User-Agent',
     'cron-builder': 'Construtor de Cron',
+    'cron-expression-debugger': 'Debugger de Expressao Cron',
     'mime-lookup': 'Lookup de MIME Types',
     'http-methods': 'Métodos HTTP',
     'number-to-words': 'Número por Extenso',
@@ -853,6 +854,7 @@ export const LABELS = {
     'timezone-converter': 'Timezone Converter',
     'user-agent-parser': 'User-Agent Parser',
     'cron-builder': 'Cron Builder',
+    'cron-expression-debugger': 'Cron Expression Debugger',
     'mime-lookup': 'MIME Types Lookup',
     'http-methods': 'HTTP Methods',
     'number-to-words': 'Number to Words',
@@ -1543,6 +1545,7 @@ export function buildMenuItems(l) {
         { key: '/devops/renovate-config-generator', icon: <FileTextOutlined />, label: withNewBadge('/devops/renovate-config-generator', l['renovate-config-generator'], l) },
         { key: '/devops/cors-config-generator', icon: <SafetyOutlined />, label: withNewBadge('/devops/cors-config-generator', l['cors-config-generator'], l) },
         { key: '/devops/pull-request-template-generator', icon: <FileTextOutlined />, label: withNewBadge('/devops/pull-request-template-generator', l['pull-request-template-generator'], l) },
+        { key: '/devops/cron-expression-debugger', icon: <FieldTimeOutlined />, label: withNewBadge('/devops/cron-expression-debugger', l['cron-expression-debugger'], l) },
       ],
     },
     {
