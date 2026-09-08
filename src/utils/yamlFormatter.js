@@ -1,1162 +1,734 @@
 // ─────────────────────────────────────────────────────────────
 // YAML Formatter / Minifier / Validator — 100% client-side.
-//
-// Um parser de blocos YAML (mappings, sequences, flow, scalars,
-// block scalars |/>, âncoras & e aliases *) + um re-emissor que
-// reconstrói o documento a partir da árvore. Assim indentação,
-// alinhamento e comentários são normalizados de forma consistente
-// e o interior de strings/quoted nunca é tocado.
-//
-// Saídas por modo:
-//   'format'   → YAML normalizado (indent 2/4, comentários opcionais)
-//   'minify'   → remove comentários e linhas em branco
-//   'validate' → roda o parser e devolve apenas diagnóstico
-//   'json'     → converte a árvore em JSON (merge keys <<: expandidos)
-//
-// Tipagem YAML 1.1 de scalars simples: null/~, true/false e
-// yes/no/on/off (com aviso), inteiros (dec/hex/oct/bin com _),
-// floats (incl. .inf/.nan); o resto vira string. Datas continuam
-// como string (fiel ao texto original).
+// Parser próprio e simplificado, à base de indentação (o mesmo
+// modelo do conversor de configs), que cobre o dia a dia: mapas e
+// sequências em bloco, aninhamento, coleções em fluxo [ ] / { },
+// strings com aspas e block scalars (| >). Detecta os erros mais
+// comuns com posição (linha/coluna): tab na indentação, coleção
+// de fluxo sem fechamento, indentação órfã e marcadores de
+// documento no meio do arquivo. O re-emitidor reconstrói a árvore
+// do zero, então a saída sai limpa mesmo com entrada bagunçada.
 // ─────────────────────────────────────────────────────────────
 
-const N = { null: 'null', bool: 'boolean', int: 'int', float: 'float', string: 'string' }
-
-const NULL_RE = /^(?:null|Null|NULL|~)$/
-const BOOL_RE = /^(?:true|True|TRUE|false|False|FALSE)$/
-const BOOL11_RE = /^(?:yes|Yes|YES|no|No|NO|on|On|ON|off|Off|OFF)$/
-const INT_RE = /^[-+]?[0-9](?:_?[0-9])*$/
-const HEX_RE = /^0x[0-9a-fA-F](?:_?[0-9a-fA-F])*$/
-const OCT_RE = /^0o[0-7](?:_?[0-7])*$/
-const BIN_RE = /^0b[01](?:_?[01])*$/
-const FLOAT_RE =
-  /^[-+]?(?:(?:[0-9](?:_?[0-9])*\.[0-9](?:_?[0-9])*(?:[eE][-+]?[0-9](?:_?[0-9])*)?)|(?:[0-9](?:_?[0-9])*[eE][-+]?[0-9](?:_?[0-9])*)|(?:\.inf|\.Inf|\.INF|\.nan|\.NaN|\.NAN))$/
-const LEADING_CHARS = /^[\s\-?:,\[\]{}#&*!|>'"%@`]/
-const COLON_SPACE = /:[\s\u00a0]/ // ': ' no meio de um scalar simples
-
-function classifyScalar(raw) {
-  if (raw === '') return { type: N.string }
-  if (NULL_RE.test(raw)) return { type: N.null }
-  if (BOOL_RE.test(raw)) return { type: N.bool }
-  if (BOOL11_RE.test(raw)) return { type: N.bool, yaml11: true }
-  if (INT_RE.test(raw)) return { type: N.int }
-  if (HEX_RE.test(raw)) return { type: N.int }
-  if (OCT_RE.test(raw)) return { type: N.int }
-  if (BIN_RE.test(raw)) return { type: N.int }
-  if (FLOAT_RE.test(raw)) return { type: N.float }
-  return { type: N.string }
+class YamlError extends Error {
+  constructor(key, line) {
+    super(key)
+    this.key = key
+    this.line = line
+    this.col = 1
+  }
 }
 
-function scalarToJs(node) {
-  if (!node) return null
-  if (node.kind === 'map') {
-    const out = {}
-    for (const e of node.entries) {
-      if (e.key === '<<') {
-        const m = node.anchorRef && node.anchorRef.anchor ? null : e.value
-        if (e.value && e.value.anchorRef && e.value.anchorRef.value) {
-          const merged = scalarToJs(e.value.anchorRef.value)
-          if (merged && typeof merged === 'object' && !Array.isArray(merged)) Object.assign(out, merged)
-        }
-        if (e.value && e.value.kind === 'map') {
-          const merged = scalarToJs(e.value)
-          if (merged && typeof merged === 'object' && !Array.isArray(merged)) Object.assign(out, merged)
-        }
-        void m
-        continue
-      }
-      out[e.key] = scalarToJs(e.value)
-    }
-    return out
-  }
-  if (node.kind === 'seq') {
-    return node.items.map((it) => scalarToJs(it.value))
-  }
-  if (node.kind === 'alias') {
-    if (node.anchorRef && node.anchorRef.value) return scalarToJs(node.anchorRef.value)
-    return null
-  }
-  if (node.kind === 'blockScalar') return node.text
-  if (node.kind !== 'scalar') return null
-  const raw = node.raw || ''
-  if (node.type === N.null) return null
-  if (node.type === N.bool) {
-    return raw === 'true' || raw === 'True' || raw === 'TRUE' || raw === 'yes' || raw === 'Yes' || raw === 'YES' || raw === 'on' || raw === 'On' || raw === 'ON'
-  }
-  if (node.type === N.int) {
-    const clean = raw.replace(/_/g, '')
-    if (/^0[xX]/.test(clean)) return parseInt(clean.slice(2), 16)
-    if (/^0[oO]/.test(clean)) return parseInt(clean.slice(2), 8)
-    if (/^0[bB]/.test(clean)) return parseInt(clean.slice(2), 2)
-    return parseInt(clean, 10)
-  }
-  if (node.type === N.float) {
-    const clean = raw.replace(/_/g, '')
-    if (/\.inf/i.test(clean)) return Infinity
-    if (/\.nan/i.test(clean)) return NaN
-    return parseFloat(clean)
-  }
-  return node.text !== undefined ? node.text : raw
+function makeErr(key, line, col) {
+  return { ok: false, error: key, line, col }
 }
 
-function quoteString(raw) {
-  if (raw.indexOf("'") === -1 && raw.indexOf('"') === -1 && !/[\n\r\t]/.test(raw)) {
-    return `'${raw}'`
-  }
-  if (raw.indexOf('"') === -1 && !/[\n\r\t\\]/.test(raw)) {
-    return `"${raw}"`
-  }
-  let out = '"'
-  for (const ch of raw) {
-    if (ch === '"') out += '\\"'
-    else if (ch === '\\') out += '\\\\'
-    else if (ch === '\n') out += '\\n'
-    else if (ch === '\r') out += '\\r'
-    else if (ch === '\t') out += '\\t'
-    else if (ch.charCodeAt(0) < 0x20) out += `\\x${ch.charCodeAt(0).toString(16).padStart(2, '0')}`
-    else out += ch
-  }
-  return out + '"'
+function isPlainObject(v) {
+  return v !== null && typeof v === 'object' && !Array.isArray(v)
 }
 
-function needsQuotes(node) {
-  const raw = node.raw || ''
-  if (/[\n\r]/.test(raw)) return true
-  if (LEADING_CHARS.test(raw)) return true
-  if (COLON_SPACE.test(raw) || /#\s/.test(raw) || /[ \t]$/.test(raw)) return true
-  if (classifyScalar(raw).type !== N.string) return true
+function isScalar(v) {
+  return v === null || typeof v !== 'object'
+}
+
+function isSeqItem(content) {
+  return /^-(?:\s|$)/.test(content.trimStart())
+}
+
+// ─── Helpers de string (mesmos critérios do configConverter) ──
+
+function yamlNeedsQuotes(s) {
+  if (typeof s !== 'string') return false
+  if (s === '') return true
+  if (/^\s|\s$/.test(s)) return true
+  if (/[\x00-\x08\x0A-\x1F\x7F]/.test(s)) return true
+  if (s.includes('\n')) return true
+  if (/^[\-\?:,\[\]{}#&*!|>'"%@`]/.test(s)) return true
+  if (/#(\s|$)|:(\s|$)/.test(s)) return true
+  if (/^[-+]?[0-9]/.test(s)) return true
+  if (/^(true|True|TRUE|false|False|FALSE|null|Null|NULL|~|yes|Yes|YES|no|No|NO|on|On|ON|off|Off|OFF)$/.test(s)) return true
   return false
 }
 
-// ─── parseYaml: constrói a árvore ────────────────────────────
+// Nós também protegemos valores que, no formato bloco, usariam um
+// caractere de coleção em fluxo (vimariam ambíguos na releitura).
+function yamlQuote(s) {
+  return yamlNeedsQuotes(s) || /[\[\]{},]/.test(s) ? JSON.stringify(s) : s
+}
 
-export function parseYaml(input) {
-  const src = String(input ?? '').replace(/\r\n?/g, '\n')
-  const lines = src.split('\n')
-  const L = lines.length
-  const warnings = []
-
-  const state = { lines, L, i: 0, anchors: {}, warnings, trailingComments: [] }
-
-  const readLine = (k) => lines[k] || ''
-
-  function analyze(k) {
-    const line = readLine(k)
-    const m = /^( *)(.*)$/.exec(line)
-    const ws = m[1]
-    const body = m[2]
-    if (body === '') return { kind: 'blank', indent: ws.length, raw: line }
-    if (body[0] === '#') return { kind: 'comment', indent: ws.length, raw: line, text: body.slice(1) }
-    if (ws.indexOf('\t') !== -1 || body[0] === '\t') return { kind: 'tab-error', line: k + 1 }
-    return { kind: 'content', indent: ws.length, body, raw: line }
+function yamlScalar(v) {
+  if (v === null) return 'null'
+  if (typeof v === 'boolean') return v ? 'true' : 'false'
+  if (typeof v === 'number') {
+    const s = String(v)
+    if (!Number.isFinite(v)) return JSON.stringify(s)
+    return /^[0-9.eE+-]+$/.test(s) ? s : JSON.stringify(s)
   }
+  return yamlQuote(v)
+}
 
-  function advance(nodeIndent) {
-    const comments = []
-    let k = state.i + 1
-    while (k < L) {
-      const a = analyze(k)
-      if (a.kind === 'blank') { k++; continue }
-      if (a.kind === 'comment') {
-        if (a.indent < nodeIndent) break
-        comments.push(a.text)
-        k++
+function scalarKey(k) {
+  return yamlQuote(String(k))
+}
+
+function unquoteYaml(s) {
+  s = s.trim()
+  if ((s.startsWith('"') && s.endsWith('"')) || (s.startsWith("'") && s.endsWith("'"))) {
+    const q = s[0]
+    const inner = s.slice(1, -1)
+    if (q === "'") return inner.replace(/''/g, "'")
+    return inner
+      .replace(/\\n/g, '\n')
+      .replace(/\\t/g, '\t')
+      .replace(/\\"/g, '"')
+      .replace(/\\\\/g, '\\')
+  }
+  return s
+}
+
+function parseYamlScalar(s) {
+  s = s.trim()
+  if (s === '' || s === '~' || s === 'null' || s === 'Null' || s === 'NULL') return null
+  if (/^(true|True|TRUE|yes|Yes|YES|on|On|ON)$/.test(s)) return true
+  if (/^(false|False|FALSE|no|No|NO|off|Off|OFF)$/.test(s)) return false
+  if (/^[-+]?\d+$/.test(s)) return Number(s)
+  if (/^[-+]?(\d+\.\d*|\.\d+|\d+)([eE][-+]?\d+)?$/.test(s)) return Number(s)
+  return unquoteYaml(s)
+}
+
+function findUnquotedColon(s) {
+  let inQuotes = false
+  let quoteChar = null
+  for (let i = 0; i < s.length; i++) {
+    const c = s[i]
+    if (inQuotes) {
+      if (c === quoteChar && s[i - 1] !== '\\') inQuotes = false
+    } else if (c === '"' || c === "'") {
+      inQuotes = true
+      quoteChar = c
+    } else if (c === ':') {
+      return i
+    }
+  }
+  return -1
+}
+
+function splitTopLevel(text, delimiter) {
+  const parts = []
+  let current = ''
+  let depth = 0
+  let inQuotes = false
+  let quoteChar = null
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i]
+    if (inQuotes) {
+      if (c === quoteChar && text[i - 1] !== '\\') inQuotes = false
+      current += c
+    } else if (c === '"' || c === "'") {
+      inQuotes = true
+      quoteChar = c
+      current += c
+    } else if (c === '[' || c === '{' || c === '(') {
+      depth++
+      current += c
+    } else if (c === ']' || c === '}' || c === ')') {
+      depth--
+      current += c
+    } else if (c === delimiter && depth === 0) {
+      parts.push(current.trim())
+      current = ''
+    } else {
+      current += c
+    }
+  }
+  if (current.trim() !== '') parts.push(current.trim())
+  return parts
+}
+
+// ─── Flow collections (inline) ────────────────────────────────
+
+function parseYamlInline(text) {
+  const t = text.trim()
+  if (t.startsWith('[')) return parseYamlInlineArray(t)
+  if (t.startsWith('{')) return parseYamlInlineObject(t)
+  return parseYamlScalar(t)
+}
+
+function parseYamlInlineArray(text) {
+  const inner = text.trim().slice(1, -1).trim()
+  if (!inner) return []
+  return splitTopLevel(inner, ',').map((p) => parseYamlInline(p))
+}
+
+function parseYamlInlineObject(text) {
+  const inner = text.trim().slice(1, -1).trim()
+  if (!inner) return {}
+  const obj = {}
+  const parts = splitTopLevel(inner, ',')
+  for (const part of parts) {
+    const colonIdx = part.indexOf(':')
+    if (colonIdx > 0) {
+      const key = unquoteYaml(part.slice(0, colonIdx).trim())
+      obj[key] = parseYamlInline(part.slice(colonIdx + 1).trim())
+    }
+  }
+  return obj
+}
+
+function flowQuote(s) {
+  // no contexto de fluxo, vírgula e colchetes simples quebram o item
+  return yamlNeedsQuotes(s) || /[,:\[\]{}]/.test(s) ? JSON.stringify(s) : s
+}
+
+function flowValue(v) {
+  if (v === null) return 'null'
+  if (typeof v === 'boolean') return v ? 'true' : 'false'
+  if (typeof v === 'number') return yamlScalar(v)
+  if (typeof v === 'string') return flowQuote(v)
+  if (Array.isArray(v)) return '[' + v.map(flowValue).join(', ') + ']'
+  return (
+    '{ ' +
+    Object.keys(v)
+      .map((k) => flowQuote(String(k)) + ': ' + flowValue(v[k]))
+      .join(', ') +
+    ' }'
+  )
+}
+
+// ─── Tokenizer ─────────────────────────────────────────────────
+
+function stripComment(raw) {
+  let inQuotes = false
+  let quoteChar = null
+  for (let i = 0; i < raw.length; i++) {
+    const c = raw[i]
+    if (!inQuotes && (c === '"' || c === "'")) {
+      inQuotes = true
+      quoteChar = c
+    } else if (inQuotes && c === quoteChar && raw[i - 1] !== '\\') {
+      inQuotes = false
+    } else if (!inQuotes && c === '#') {
+      return raw.slice(0, i)
+    }
+  }
+  return raw
+}
+
+function flowBalance(text) {
+  let bal = 0
+  let inQuotes = false
+  let quoteChar = null
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i]
+    if (inQuotes) {
+      if (c === quoteChar && text[i - 1] !== '\\') inQuotes = false
+      continue
+    }
+    if (c === '"' || c === "'") {
+      inQuotes = true
+      quoteChar = c
+      continue
+    }
+    if (c === '[' || c === '{') bal++
+    else if (c === ']' || c === '}') bal--
+  }
+  return bal
+}
+
+function isBlockScalarHeader(content) {
+  const trimmed = content.trim()
+  let value = null
+  if (findUnquotedColon(trimmed) > 0) {
+    value = trimmed.slice(findUnquotedColon(trimmed) + 1).trim()
+  } else if (trimmed === '-' || /^-\s+/.test(trimmed)) {
+    value = trimmed.slice(1).trim()
+  }
+  return value !== null && /^[|>][+-]?\d*$/.test(value)
+}
+
+export function tokenizeYaml(text) {
+  const srcLines = String(text).replace(/\r\n?/g, '\n').split('\n')
+  const tokens = []
+  let flowDepth = 0
+  let flowOpen = 0
+  let blockIndent = -1
+  let docStart = false
+
+  for (let ln = 0; ln < srcLines.length; ln++) {
+    const lineNo = ln + 1
+    const rawLine = srcLines[ln]
+
+    if (blockIndent >= 0) {
+      if (rawLine.trim() === '') {
+        tokens.push({ type: 'blocktext', raw: '', indent: blockIndent + 1, line: lineNo })
         continue
       }
-      if (a.kind === 'tab-error') return { error: { key: 'tabIndent', line: a.line }, idx: -1, comments }
-      if (a.indent < nodeIndent) return { idx: -1, comments }
-      if (a.indent > nodeIndent) return { error: { key: 'strayIndent', line: k + 1 }, idx: -1, comments }
-      return { idx: k, comments }
-    }
-    return { idx: -1, comments }
-  }
-
-  function popAnchorAndAlias(text) {
-    let rest = text
-    let anchor = null
-    for (;;) {
-      const t = rest.trimStart()
-      if (t[0] === '&') {
-        const m = /^&([A-Za-z0-9_-]+)(?:\s|$)/.exec(t)
-        if (!m) throw { key: 'badAnchor', line: 0 }
-        anchor = m[1]
-        rest = t.slice(m[0].length).trimStart()
+      const ind = rawLine.search(/\S/)
+      if (ind > blockIndent) {
+        tokens.push({ type: 'blocktext', raw: rawLine, indent: ind, line: lineNo })
         continue
       }
-      if (t[0] === '*') {
-        const m = /^\*([A-Za-z0-9_-]+)(?:\s|$)/.exec(t)
-        if (!m) throw { key: 'badAlias', line: 0 }
-        return { text: t.slice(m[0].length).trimStart(), anchor, alias: m[1] }
-      }
-      return { text: rest, anchor, alias: null }
+      blockIndent = -1
     }
+
+    const trimmed = rawLine.trim()
+    if (trimmed === '') continue
+
+    const tabIdx = rawLine.indexOf('\t')
+    if (tabIdx >= 0 && rawLine.slice(0, tabIdx).trim() === '') {
+      return makeErr('tabIndent', lineNo, tabIdx + 1)
+    }
+
+    const ind = rawLine.search(/\S/)
+
+    if ((trimmed === '---' || trimmed === '...') && ind === 0) {
+      if (trimmed === '---' && !docStart && tokens.length === 0) {
+        docStart = true
+        continue
+      }
+      return makeErr('multiDoc', lineNo, 1)
+    }
+
+    const content = stripComment(rawLine).trimEnd()
+    if (content.trim() === '') continue
+
+    const bal = flowBalance(content)
+    if (bal !== 0) {
+      const net = flowDepth + bal
+      if (net < 0) return makeErr('unclosedFlow', lineNo, 1)
+      if (flowDepth === 0 && bal > 0) flowOpen = lineNo
+      flowDepth = net
+    }
+
+    tokens.push({ type: 'line', indent: ind, content, line: lineNo })
+    if (isBlockScalarHeader(content)) blockIndent = ind
   }
 
-  function parseDoubleQuoted(s) {
-    let out = ''
-    let i = 1
-    while (i < s.length) {
-      const c = s[i]
-      if (c === '"') return { value: out, rest: s.slice(i + 1), ok: true }
-      if (c === '\\') {
-        const e = s[i + 1]
-        if (e === undefined) return { error: 'unclosedDouble' }
-        const map = { n: '\n', t: '\t', r: '\r', '"': '"', '\\': '\\', '/': '/', 0: '\0', a: '\u0007', b: '\b', f: '\f', v: '\v', e: '\u001b', ' ': ' ' }
-        if (e in map) { out += map[e]; i += 2; continue }
-        if (e === 'x' && /^[0-9a-fA-F]{2}/.test(s.slice(i + 2))) { out += String.fromCharCode(parseInt(s.slice(i + 2, i + 4), 16)); i += 4; continue }
-        if (e === 'u' && /^[0-9a-fA-F]{4}/.test(s.slice(i + 2))) { out += String.fromCharCode(parseInt(s.slice(i + 2, i + 6), 16)); i += 6; continue }
-        return { error: 'badEscape' }
+  if (flowDepth !== 0) return makeErr('unclosedFlow', flowOpen || 1, 1)
+  return { ok: true, tokens, docStart }
+}
+
+// ─── Block scalars ─────────────────────────────────────────────
+
+function blockMarker(value) {
+  const trailing = value.match(/\n*$/)[0].length
+  if (trailing === 0) return { marker: '|-', body: value }
+  if (trailing === 1) return { marker: '|', body: value.slice(0, value.length - 1) }
+  return { marker: '|+', body: value }
+}
+
+// Emite um block scalar. base = coluna da linha do marcador;
+// prefix = texto à esquerda do marcador nessa mesma linha (ex.:
+// "chave: " ou "- "); contentPad = indentação dos conteúdos.
+function appendBlockScalar(value, base, prefix, contentPad, lines) {
+  const { marker, body } = blockMarker(value)
+  const bodyLines = body.split('\n')
+  let min = Infinity
+  for (const l of bodyLines) if (l.trim() !== '') min = Math.min(min, l.search(/\S/))
+  if (!Number.isFinite(min)) min = 0
+  lines.push(' '.repeat(base) + prefix + marker)
+  for (const l of bodyLines) lines.push(l === '' ? contentPad : contentPad + l.slice(min))
+}
+
+// lê o conteúdo de um block scalar iniciado no token idx (header).
+// baseIndent é a coluna do nó pai (chave ou traço da sequência).
+function parseBlockScalar(tokens, idx, baseIndent) {
+  const header = tokens[idx]
+  const marker = header.content.match(/[|>][+-]?\d*/)[0]
+  const literal = marker[0] === '|'
+  const match = marker.match(/\d+/)
+  const explicit = match ? parseInt(match[0], 10) : -1
+  const lines = []
+  let i = idx + 1
+  while (i < tokens.length && tokens[i].type === 'blocktext') {
+    lines.push(tokens[i])
+    i++
+  }
+  // sem indicador de indentação, o conteúdo começa na primeira linha
+  // não vazia (mais funda que o nó pai)
+  let contentIndent = explicit
+  if (contentIndent === -1) {
+    for (const t of lines) {
+      const s = t.raw !== '' ? t.raw.search(/\S/) : -1
+      if (s > baseIndent) {
+        contentIndent = s
+        break
       }
-      out += c
-      i++
     }
-    return { error: 'unclosedDouble' }
+  }
+  if (contentIndent === -1) contentIndent = baseIndent + 1
+  let value
+  if (literal) {
+    value = lines
+      .map((t) => (t.raw === '' ? '' : t.raw.slice(Math.min(contentIndent, t.indent))))
+      .join('\n')
+  } else {
+    const acc = []
+    for (const t of lines) {
+      const l = t.raw === '' ? '' : t.raw.slice(Math.min(contentIndent, t.indent))
+      if (l === '') acc.push('\n')
+      else if (acc.length === 0 || acc[acc.length - 1] === '\n') acc.push(l)
+      else acc[acc.length - 1] += ' ' + l
+    }
+    value = acc.join('')
+  }
+  if (marker.endsWith('-')) value = value.replace(/\n+$/, '')
+  return { value, nextIdx: i }
+}
+
+// para { flow: [x] } os marcadores doc-junto não se aplicam; aqui
+// testamos coleções de fluxo fechadas na própria linha
+function isClosedFlow(content) {
+  const c = content.trim()
+  return (c.startsWith('[') || c.startsWith('{')) && flowBalance(c) === 0
+}
+
+// ─── Parser ────────────────────────────────────────────────────
+
+function parseYamlNode(tokens, idx, baseIndent) {
+  const token = tokens[idx]
+  if (!token) return { value: null, nextIdx: idx }
+
+  // block scalar como nó raiz (raro, mas possível)
+  if (token.indent === baseIndent && /^[|>][+-]?\d*$/.test(token.content)) {
+    const bs = parseBlockScalar(tokens, idx, baseIndent)
+    return { value: bs.value, nextIdx: bs.nextIdx }
   }
 
-  function parseSingleQuoted(s) {
-    let out = ''
-    let i = 1
-    while (i < s.length) {
-      const c = s[i]
-      if (c === "'") {
-        if (s[i + 1] === "'") { out += "'"; i += 2; continue }
-        return { value: out, rest: s.slice(i + 1), ok: true }
-      }
-      out += c
-      i++
-    }
-    return { error: 'unclosedSingle' }
+  // documento inteiro em flow: { ... } / [ ... ]
+  if (token.indent === baseIndent && isClosedFlow(token.content)) {
+    const c = token.content.trim()
+    const value = c.startsWith('{') ? parseYamlInlineObject(c) : parseYamlInlineArray(c)
+    return { value, nextIdx: idx + 1 }
   }
 
-  function collectFlow(text, idx) {
-    let joined = text
-    let cur = idx + 1
-    let balance = 0
-    let q = null
-    const scanSegment = (seg) => {
-      for (let j = 0; j < seg.length; j++) {
-        const c = seg[j]
-        if (q === '"') { if (c === '\\') j++; else if (c === '"') q = null; continue }
-        if (q === "'") { if (c === "'" && seg[j + 1] === "'") j++; else if (c === "'") q = null; continue }
-        if (c === '"' || c === "'") { q = c; continue }
-        if (c === '[' || c === '{') balance++
-        else if (c === ']' || c === '}') balance--
-      }
-    }
-    scanSegment(text)
-    while (balance > 0 && cur < L) {
-      const line = readLine(cur)
-      joined += '\n' + line
-      scanSegment(line)
-      cur++
-    }
-    return { text: joined, closed: balance <= 0, endIdx: cur - 1 }
+  // sequência em bloco
+  if (isSeqItem(token.content)) {
+    return parseSeq(tokens, idx)
   }
 
-  function parseFlow(text, lineNo) {
-    let i = 0
-    const s = text
-    const len = s.length
-    let error = null
+  // mapa em bloco
+  if (findUnquotedColon(token.content) >= 0) {
+    return parseObject(tokens, idx, baseIndent)
+  }
 
-    const skipWs = () => { while (i < len && (s[i] === ' ' || s[i] === '\t' || s[i] === '\n')) i++ }
+  // scalar puro
+  return { value: parseYamlScalar(token.content), nextIdx: idx + 1 }
+}
 
-    const parseQuoted = () => {
-      if (i >= len) return null
-      if (s[i] === '"') {
-        const r = parseDoubleQuoted(s.slice(i))
-        if (r.error) { error = { key: r.error, line: lineNo }; return null }
-        i = s.length - r.rest.length
-        return { kind: 'scalar', type: N.string, text: r.value, raw: r.value, quoted: '"', line: lineNo }
-      }
-      if (s[i] === "'") {
-        const r = parseSingleQuoted(s.slice(i))
-        if (r.error) { error = { key: r.error, line: lineNo }; return null }
-        i = s.length - r.rest.length
-        return { kind: 'scalar', type: N.string, text: r.value, raw: r.value, quoted: "'", line: lineNo }
-      }
-      return null
-    }
+function parseObject(tokens, idx, baseIndent) {
+  const obj = {}
+  let i = idx
+  while (i < tokens.length && tokens[i].type === 'line' && tokens[i].indent === baseIndent) {
+    const cur = tokens[i]
+    if (isSeqItem(cur.content)) break
+    const colonIdx = findUnquotedColon(cur.content)
+    if (colonIdx < 0) break
+    const rawKey = cur.content.slice(0, colonIdx).trim()
+    if (rawKey === '') throw new YamlError('badKey', cur.line)
+    const key = unquoteYaml(rawKey)
+    const after = cur.content.slice(colonIdx + 1).trim()
 
-    const parsePlain = () => {
-      let j = i
-      let depth = 0
-      while (j < len) {
-        const c = s[j]
-        if (depth === 0) {
-          if (c === ',' || c === ']' || c === '}') break
-          if (c === '#' && (j === i || s[j - 1] === ' ' || s[j - 1] === '\t')) break
-        }
-        if (c === '"' || c === "'") {
-          if (c === '"') { j += skipDouble(s, j) - j } else { j += skipSingle(s, j) - j }
+    if (after === '') {
+      const next = tokens[i + 1]
+      if (next && next.type === 'line') {
+        const childIndent = next.indent
+        const isSeqAtSameLevel = childIndent === baseIndent && isSeqItem(next.content)
+        if (childIndent > baseIndent || isSeqAtSameLevel) {
+          const child = parseYamlNode(tokens, i + 1, childIndent)
+          obj[key] = child.value
+          i = child.nextIdx
           continue
         }
-        if (c === '[' || c === '{') depth++
-        if (c === ']' || c === '}') depth--
-        j++
       }
-      const token = s.slice(i, j).trim()
-      i = j
-      if (token === '') return null
-      const cls = classifyScalar(token)
-      const node = { kind: 'scalar', type: cls.type, raw: token, text: token, line: lineNo }
-      if (cls.yaml11) warnings.push({ key: 'bool11', line: lineNo, detail: token })
-      return node
+      obj[key] = null
+      i++
+    } else if (/^[|>][+-]?\d*$/.test(after)) {
+      const bs = parseBlockScalar(tokens, i, baseIndent)
+      obj[key] = bs.value
+      i = bs.nextIdx
+    } else if (/^[\[\{]/.test(after)) {
+      obj[key] = parseYamlInline(after)
+      i++
+    } else {
+      obj[key] = parseYamlScalar(after)
+      i++
     }
+  }
+  if (tokens[i] && tokens[i].type === 'line' && tokens[i].indent > baseIndent) {
+    throw new YamlError('orphanIndent', tokens[i].line)
+  }
+  return { value: obj, nextIdx: i }
+}
 
-    const skipDouble = (str, start) => {
-      let k = start + 1
-      while (k < str.length) {
-        if (str[k] === '\\') { k += 2; continue }
-        if (str[k] === '"') return k + 1
-        k++
-      }
-      return k
-    }
-    const skipSingle = (str, start) => {
-      let k = start + 1
-      while (k < str.length) {
-        if (str[k] === "'") {
-          if (str[k + 1] === "'") { k += 2; continue }
-          return k + 1
-        }
-        k++
-      }
-      return k
-    }
+function parseSeq(tokens, idx) {
+  const arr = []
+  let i = idx
+  const arrayIndent = tokens[idx].indent
+  while (i < tokens.length && tokens[i].type === 'line' && tokens[i].indent === arrayIndent && isSeqItem(tokens[i].content)) {
+    const item = parseSeqItem(tokens, i, arrayIndent)
+    arr.push(item.value)
+    i = item.nextIdx
+  }
+  if (tokens[i] && tokens[i].type === 'line' && tokens[i].indent > arrayIndent && !isSeqItem(tokens[i].content)) {
+    throw new YamlError('orphanIndent', tokens[i].line)
+  }
+  return { value: arr, nextIdx: i }
+}
 
-    const parseValue = () => {
-      skipWs()
-      if (i >= len) return { value: null, has: false }
-      const c = s[i]
-      if (c === '[') return { value: parseArray(), has: true }
-      if (c === '{') return { value: parseObject(), has: true }
-      if (c === '"' || c === "'") {
-        const q = parseQuoted()
-        return q ? { value: q, has: true } : { value: null, has: false }
-      }
-      const p = parsePlain()
-      return p ? { value: p, has: true } : { value: null, has: false }
-    }
+// entrada: o índice de um item "- ..." dentro de uma sequência.
+// Lida com os casos de item que é um mapa com várias chaves.
+function parseSeqItem(tokens, i, arrayIndent) {
+  const cur = tokens[i]
+  const rest = cur.content.trimStart().slice(1).trim()
+  const itemIndent = arrayIndent + 2
 
-    const parseArray = () => {
-      i++ // [
-      const items = []
-      skipWs()
-      if (s[i] === ']') { i++; return { kind: 'seq', items } }
-      for (;;) {
-        const v = parseValue()
-        if (error) return { kind: 'seq', items }
-        items.push(v)
-        skipWs()
-        if (s[i] === ',') { i++; skipWs(); if (s[i] === ']') break; continue }
-        if (s[i] === ']') { i++; break }
-        error = { key: 'flowComma', line: lineNo }
-        break
-      }
-      return { kind: 'seq', items }
+  // item vazio "- "
+  if (rest === '') {
+    const next = tokens[i + 1]
+    if (next && next.type === 'line' && next.indent > arrayIndent) {
+      const child = parseYamlNode(tokens, i + 1, next.indent)
+      return { value: child.value, nextIdx: child.nextIdx }
     }
-
-    const parseObject = () => {
-      i++ // {
-      const entries = []
-      skipWs()
-      if (s[i] === '}') { i++; return { kind: 'map', entries } }
-      for (;;) {
-        skipWs()
-        let key
-        if (s[i] === '"' || s[i] === "'") {
-          const k = parseQuoted()
-          if (error) return { kind: 'map', entries }
-          key = k.text
-        } else {
-          let j = i
-          while (j < len && !':,}['.includes(s[j])) j++
-          key = s.slice(i, j).trim()
-          i = j
-          if (key === '') { error = { key: 'emptyKey', line: lineNo }; return { kind: 'map', entries } }
-        }
-        skipWs()
-        if (s[i] !== ':') { error = { key: 'flowColon', line: lineNo }; return { kind: 'map', entries } }
-        i++
-        const v = parseValue()
-        if (error) return { kind: 'map', entries }
-        entries.push({ key, value: v.value, line: lineNo })
-        skipWs()
-        if (s[i] === ',') { i++; skipWs(); if (s[i] === '}') break; continue }
-        if (s[i] === '}') { i++; break }
-        error = { key: 'flowComma', line: lineNo }
-        break
-      }
-      return { kind: 'map', entries }
-    }
-
-    const result = parseValue()
-    if (error) return { error }
-    skipWs()
-    if (i < len && s[i] !== ',') return { error: { key: 'flowGarbage', line: lineNo } }
-    return { node: result.value }
+    return { value: null, nextIdx: i + 1 }
   }
 
-  function plainScalarNode(token, lineNo) {
-    const cls = classifyScalar(token)
-    const node = { kind: 'scalar', type: cls.type, raw: token, text: token, line: lineNo }
-    if (cls.yaml11) warnings.push({ key: 'bool11', line: lineNo, detail: token })
-    return node
-  }
-
-  // sequência cujo(s) marcador(es) '-' começam inline na linha atual
-  // (ex.: '- - 1' dentro de uma lista) e continuam em linhas mais profundas.
-  function parseInlineSeq(content, nodeIndent, lineNo) {
-    const node = { kind: 'seq', items: [], line: lineNo }
-
-    const itemFromContent = (c2, baseIndent, lineNo) => {
-      const trailSplit = splitTrailingComment(c2)
-      const inner = trailSplit.content.trim()
-      if (inner === '') {
-        let m = state.i + 1
-        let fc = -1
-        while (m < L) {
-          const bb = analyze(m)
-          if (bb.kind === 'tab-error') throw { key: 'tabIndent', line: bb.line }
-          if (bb.kind === 'blank' || bb.kind === 'comment') { m++; continue }
-          if (bb.indent > baseIndent) { fc = m; break }
-          break
-        }
-        if (fc === -1) return { kind: 'scalar', type: N.null, raw: 'null', text: 'null', line: lineNo }
-        return parseBlock(analyze(fc).indent)
-      }
-      if (inner === '-' || inner.startsWith('- ')) return parseInlineSeq(inner, baseIndent, lineNo)
-      return parseValue(inner, baseIndent, lineNo).node
-    }
-
-    node.items.push({ value: itemFromContent(content.slice(1), nodeIndent + 2, lineNo), preComments: [], trailComment: null })
-    let k = state.i + 1
-    while (k < L) {
-      const a = analyze(k)
-      const sc = splitTrailingComment(a.kind === 'content' ? a.body : '')
-      if (a.kind === 'blank') { k++; continue }
-      if (a.kind === 'comment') { k++; continue }
-      if (a.kind === 'tab-error') throw { key: 'tabIndent', line: a.line }
-      if (a.indent <= nodeIndent) break
-      if (!(a.body === '-' || a.body.startsWith('- '))) break
-      state.i = k
-      const afterk = a.body.slice(1).replace(/^ /, '')
-      node.items.push({ value: itemFromContent(afterk, a.indent + 2, k + 1), preComments: [], trailComment: sc.comment || null })
-      k = state.i + 1
-    }
-    state.i = k - 1
-    return node
-  }
-
-  function parseBlockScalar(head, nodeIndent, lineNo) {
-    let rest = head.slice(1)
-    let chomp = ''
-    if (rest[0] === '+' || rest[0] === '-') { chomp = rest[0]; rest = rest.slice(1) }
-    let explicit = null
-    if (/^[1-9]$/.test(rest[0] || '')) { explicit = parseInt(rest[0], 10); rest = rest.slice(1) }
-    if ((rest[0] === '+' || rest[0] === '-') && !chomp) { chomp = rest[0]; rest = rest.slice(1) }
-    if (rest.trim() !== '') {
-      // se sobrou algo, provavelmente um comentário depois (ex.: '| # keep') — aceita
-      return { error: { key: 'badBlockScalar', line: lineNo } }
-    }
-    const style = head[0]
-
-    const pieces = []
-    let k = state.i + 1
-    let blockIndent = explicit !== null ? nodeIndent + explicit : null
-    while (k < L) {
-      const line = readLine(k)
-      const m = /^( *)(.*)$/.exec(line)
-      const ws = m[1]
-      const body = m[2]
-      if (body === '') { pieces.push({ blank: true, text: '' }); k++; continue }
-      if (blockIndent === null) blockIndent = ws.length
-      if (blockIndent !== null && ws.length < blockIndent) break
-      if (ws.indexOf('\t') !== -1) return { error: { key: 'tabIndent', line: k + 1 } }
-      pieces.push({ blank: false, text: (ws.length > blockIndent ? ' '.repeat(ws.length - blockIndent) : '') + body })
-      k++
-    }
-    state.i = k - 1
-
-    const text = foldBlock(pieces, style)
-    let final = text
-    if (chomp === '-') final = text.replace(/\n+$/, '')
-    else if (chomp === '+') final = text
-    else final = text.replace(/\n+$/, '') + '\n'
-
-    return { node: { kind: 'blockScalar', style, chomp, text: final, pieces, line: lineNo } }
-  }
-
-  function foldBlock(pieces, style) {
-    if (style === '|') return pieces.map((p) => (p.blank ? '' : p.text)).join('\n')
-    let out = ''
-    let lineStart = true
-    for (const p of pieces) {
-      if (p.blank) { out += '\n'; lineStart = true; continue }
-      if (lineStart) { out += p.text; lineStart = false } else { out += ' ' + p.text }
-    }
-    return out
-  }
-
-  function splitTrailingComment(s) {
-    let inS = false, inD = false, depth = 0
-    for (let i = 0; i < s.length; i++) {
-      const c = s[i]
-      if (inD) {
-        if (c === '\\') i++
-        else if (c === '"') inD = false
-      } else if (inS) {
-        if (c === "'" && s[i + 1] === "'") i++
-        else if (c === "'") inS = false
-      } else if (c === '"') inD = true
-      else if (c === "'") inS = true
-      else if (c === '[' || c === '{') depth++
-      else if (c === ']' || c === '}') depth--
-      else if (c === '#' && depth === 0 && (i === 0 || s[i - 1] === ' ' || s[i - 1] === '\t')) {
-        return { content: s.slice(0, i).trimEnd(), comment: s.slice(i).trimEnd() }
-      }
-    }
-    return { content: s, comment: null }
-  }
-
-  function findTopColon(s) {
-    let inS = false, inD = false, depth = 0
-    for (let i = 0; i < s.length; i++) {
-      const c = s[i]
-      if (inD) { if (c === '\\') i++; else if (c === '"') inD = false }
-      else if (inS) { if (c === "'" && s[i + 1] === "'") i++; else if (c === "'") inS = false }
-      else if (c === '"') inD = true
-      else if (c === "'") inS = true
-      else if (c === '[' || c === '{') depth++
-      else if (c === ']' || c === '}') depth--
-      else if (c === ':' && depth === 0) {
-        const next = s[i + 1]
-        if (next === undefined || next === ' ' || next === '\t') return i
-      }
-    }
-    return -1
-  }
-
-  function parseKey(keyText, lineNo) {
-    const t = keyText.trim()
-    if (t[0] === '"') {
-      const r = parseDoubleQuoted(t)
-      if (r.error) throw { key: r.error, line: lineNo }
-      if (r.rest.trim() !== '') throw { key: 'badKey', line: lineNo }
-      return { key: r.value, quoted: '"' }
-    }
-    if (t[0] === "'") {
-      const r = parseSingleQuoted(t)
-      if (r.error) throw { key: r.error, line: lineNo }
-      if (r.rest.trim() !== '') throw { key: 'badKey', line: lineNo }
-      return { key: r.value, quoted: "'" }
-    }
-    if (t === '') throw { key: 'emptyKey', line: lineNo }
-    if (COLON_SPACE.test(t) || /[ \t]$/.test(t)) throw { key: 'badKey', line: lineNo }
-    return { key: t, quoted: null }
-  }
-
-  // parse de um valor — reutilizado para valores de mapping, itens de
-  // sequence, âncoras etc. Consome linhas via state.i quando necessário.
-  function parseValue(valueText, nodeIndent, lineBlock) {
-    // âncora/alias primeiro (podem envolver qualquer outro valor)
-    const t0 = valueText.trimStart()
-    if (t0[0] === '&' || t0[0] === '*') {
-      const pa = popAnchorAndAlias(t0)
-      if (pa.alias) {
-        const ref = state.anchors[pa.alias]
-        if (!ref) throw { key: 'unknownAlias', line: lineBlock, detail: pa.alias }
-        const node = { kind: 'alias', name: pa.alias, anchorRef: ref, line: lineBlock }
-        if (pa.anchor) {
-          node.anchorName = pa.anchor
-          const ref2 = { anchor: pa.anchor, value: node }
-          state.anchors[pa.anchor] = ref2
-          node.anchorRef = ref2
-        }
-        return { node }
-      }
-      const anchorName = pa.anchor
-      if (pa.text === '') {
-        // âncora sem valor na linha → bloco aninhado abaixo
-        let k = state.i + 1
-        let firstContent = -1
-        while (k < L) {
-          const a = analyze(k)
-          if (a.kind === 'tab-error') throw { key: 'tabIndent', line: a.line }
-          if (a.kind === 'blank' || a.kind === 'comment') { k++; continue }
-          if (a.indent > nodeIndent) { firstContent = k; break }
-          break
-        }
-        let inner
-        if (firstContent === -1) {
-          inner = { kind: 'scalar', type: N.null, raw: 'null', text: 'null', line: lineBlock }
-        } else {
-          inner = parseBlock(analyze(firstContent).indent)
-        }
-        const ref = { anchor: anchorName, value: inner }
-        state.anchors[anchorName] = ref
-        inner.anchorRef = ref
-        inner.anchorName = anchorName
-        return { node: inner }
-      }
-      const sub = parseValue(pa.text, nodeIndent, lineBlock)
-      const ref = { anchor: anchorName, value: sub.node }
-      state.anchors[anchorName] = ref
-      sub.node.anchorRef = ref
-      sub.node.anchorName = anchorName
-      return { node: sub.node }
-    }
-
-    if (valueText === '') {
-      let k = state.i + 1
-      let firstContent = -1
-      while (k < L) {
-        const a = analyze(k)
-        if (a.kind === 'tab-error') throw { key: 'tabIndent', line: a.line }
-        if (a.kind === 'blank' || a.kind === 'comment') { k++; continue }
-        if (a.indent > nodeIndent) { firstContent = k; break }
-        break
-      }
-      if (firstContent === -1) {
-        return { node: { kind: 'scalar', type: N.null, raw: 'null', text: 'null', line: lineBlock } }
-      }
-      const nextIndent = analyze(firstContent).indent
-      return { node: parseBlock(nextIndent) }
-    }
-
-    const vt = valueText.trim()
-    if (vt === '') throw { key: 'valueExpected', line: lineBlock }
-
-    if (vt[0] === '|' || vt[0] === '>') {
-      const r = parseBlockScalar(vt, nodeIndent, lineBlock)
-      if (r.error) throw r.error
-      return { node: r.node }
-    }
-
-    if (vt[0] === '[' || vt[0] === '{') {
-      const coll = collectFlow(vt, state.i)
-      if (!coll.closed) throw { key: 'unclosedFlow', line: lineBlock }
-      state.i = coll.endIdx
-      const res = parseFlow(' ' + coll.text, lineBlock)
-      if (res.error) throw res.error
-      const node = res.node
-      if (node) node.line = lineBlock
-      return { node: node || { kind: 'scalar', type: N.null, raw: 'null', text: 'null', line: lineBlock } }
-    }
-
-    if (vt[0] === '"') {
-      const r = parseDoubleQuoted(vt)
-      if (r.error) throw { key: r.error, line: lineBlock }
-      if (r.rest.trim() !== '') throw { key: 'trailingAfterString', line: lineBlock }
-      return { node: { kind: 'scalar', type: N.string, text: r.value, raw: r.value, quoted: '"', line: lineBlock } }
-    }
-    if (vt[0] === "'") {
-      const r = parseSingleQuoted(vt)
-      if (r.error) throw { key: r.error, line: lineBlock }
-      if (r.rest.trim() !== '') throw { key: 'trailingAfterString', line: lineBlock }
-      return { node: { kind: 'scalar', type: N.string, text: r.value, raw: r.value, quoted: "'", line: lineBlock } }
-    }
-
-    if (vt === '-' || vt.startsWith('- ')) {
-      const inner = parseInlineSeq(vt, nodeIndent, lineBlock)
-      return { node: inner }
-    }
-
-    if (COLON_SPACE.test(vt)) throw { key: 'plainColonSpace', line: lineBlock }
-
-    const node = plainScalarNode(vt, lineBlock)
-    // continuação foldada de plain scalar (linhas seguintes com indent maior,
-    // sem ':' e sem marcador de sequence)
-    let k = state.i + 1
-    let folded = false
-    while (k < L) {
-      const a = analyze(k)
-      if (a.kind === 'blank' || a.kind === 'comment') break
-      if (a.kind === 'tab-error') break
-      if (a.indent <= nodeIndent) break
-      if (a.body === '-' || a.body.startsWith('- ')) break
-      if (findTopColon(a.body) !== -1) break
-      node.text += ' ' + a.body.trim()
-      node.raw = node.text
-      folded = true
-      k++
-    }
-    if (folded) state.i = k - 1
-    const cls = classifyScalar(node.text)
-    node.type = cls.type
-    if (cls.yaml11) warnings.push({ key: 'bool11', line: lineBlock, detail: node.text })
-    return { node }
-  }
-
-  function parseBlock(nodeIndent) {
-    const at = analyze(state.i + 1)
-    if (at.kind === 'content' && at.indent === nodeIndent && (at.body === '-' || at.body.startsWith('- '))) {
-      return parseSequence(nodeIndent)
-    }
-    return parseMapping(nodeIndent)
-  }
-
-  function parseMapping(nodeIndent) {
-    const node = { kind: 'map', entries: [], line: state.i + 1 }
-    const pending = []
-
-    const addEntry = (entry) => {
-      const dup = node.entries.find((e) => e.key === entry.key)
-      if (dup) warnings.push({ key: 'duplicateKey', line: entry.line, detail: entry.key })
-      node.entries.push(entry)
-    }
-
-    for (;;) {
-      const res = advance(nodeIndent)
-      if (res.error) throw res.error
-      pending.length = 0
-      pending.push(...res.comments)
-      const idx = res.idx
-      if (idx === -1) break
-      const a = analyze(idx)
-      state.i = idx
-      if (a.body === '...' && a.indent === nodeIndent) break
-
-      const sel = splitTrailingComment(a.body)
-      const colon = findTopColon(sel.content)
-      if (colon === -1) {
-        if (a.body === '-' || a.body.startsWith('- ')) throw { key: 'expectInMap', line: idx + 1 }
-        throw { key: 'expectColon', line: idx + 1 }
-      }
-      const keyText = sel.content.slice(0, colon)
-      const kv = parseKey(keyText, idx + 1)
-      const keyStr = kv.key
-      const keyQuoted = kv.quoted
-
-      const restRaw = sel.content.slice(colon + 1)
-      const trailSplit = splitTrailingComment(restRaw)
-      const value = parseValue(trailSplit.content, nodeIndent, idx + 1)
-
-      const entry = {
-        key: keyStr,
-        keyQuoted,
-        value: value.node,
-        line: idx + 1,
-        preComments: [...pending],
-        trailComment: trailSplit.comment || null,
-      }
-      addEntry(entry)
-      pending.length = 0
-    }
-    return node
-  }
-
-  function parseSequence(nodeIndent) {
-    const node = { kind: 'seq', items: [], line: state.i + 1 }
-
-    for (;;) {
-      const res = advance(nodeIndent)
-      if (res.error) throw res.error
-      const comments = res.comments
-      const idx = res.idx
-      if (idx === -1) break
-      const a = analyze(idx)
-      if (a.body === '...' && a.indent === nodeIndent) break
-      if (!(a.body === '-' || a.body.startsWith('- '))) {
-        throw { key: 'notInSequence', line: idx + 1 }
-      }
-      state.i = idx
-      let after = a.body.slice(1)
-      if (after[0] === ' ') after = after.slice(1)
-      const itemLine = idx + 1
-      const itemTrail = splitTrailingComment(after)
-      const content = itemTrail.content.trim()
-
-      let value
-      if (content === '') {
-        let k = state.i + 1
-        let firstContent = -1
-        while (k < L) {
-          const aa = analyze(k)
-          if (aa.kind === 'tab-error') throw { key: 'tabIndent', line: aa.line }
-          if (aa.kind === 'blank' || aa.kind === 'comment') { k++; continue }
-          if (aa.indent > nodeIndent) { firstContent = k; break }
-          break
-        }
-        if (firstContent === -1) {
-          value = { kind: 'scalar', type: N.null, raw: 'null', text: 'null', line: itemLine }
-        } else {
-          value = parseBlock(analyze(firstContent).indent)
-        }
-        node.items.push({ value, preComments: [...comments], trailComment: itemTrail.comment || null })
-        comments.length = 0
-        continue
-      }
-
-      const colon = findTopColon(content)
-      if (colon !== -1) {
-        // item começa com "chave: valor" → é um mapping
-        const kv = parseKey(content.slice(0, colon), itemLine)
-        const restRaw = content.slice(colon + 1)
-        const trailSplit = splitTrailingComment(restRaw)
-        const map = { kind: 'map', entries: [], line: itemLine }
-        const entry = {
-          key: kv.key,
-          keyQuoted: kv.quoted,
-          line: itemLine,
-          preComments: [...comments],
-          trailComment: trailSplit.comment || null,
-        }
-        entry.value = parseValue(trailSplit.content, nodeIndent, itemLine).node
-        map.entries.push(entry)
-        comments.length = 0
-        parseMappingContinuation(map, nodeIndent)
-        value = map
+  // item que é um mapa: "- chave:" ou "- chave: valor" (e talvez irmãs)
+  const colonIdx = findUnquotedColon(rest)
+  if (colonIdx > 0) {
+    const key = unquoteYaml(rest.slice(0, colonIdx).trim())
+    const after = rest.slice(colonIdx + 1).trim()
+    let value
+    let i2 = i + 1
+    if (after === '') {
+      const next = tokens[i2]
+      if (next && next.type === 'line' && next.indent > arrayIndent && !(next.indent === itemIndent && findUnquotedColon(next.content) > 0)) {
+        const child = parseYamlNode(tokens, i2, next.indent)
+        value = child.value
+        i2 = child.nextIdx
       } else {
-        value = parseValue(content, nodeIndent, itemLine).node
+        value = null
       }
-
-      node.items.push({ value, preComments: [...comments], trailComment: itemTrail.comment || null })
-      comments.length = 0
+    } else if (/^[|>][+-]?\d*$/.test(after)) {
+      const bs = parseBlockScalar(tokens, i, arrayIndent)
+      value = bs.value
+      i2 = bs.nextIdx
+    } else if (/^[\[\{]/.test(after)) {
+      value = parseYamlInline(after)
+      i2 = i + 1
+    } else {
+      value = parseYamlScalar(after)
+      i2 = i + 1
     }
-    return node
-  }
+    const item = { [key]: value }
 
-  function parseMappingContinuation(map, parentIndent) {
-    for (;;) {
-      let k = state.i + 1
-      const pre = []
-      let subIndent = -1
-      while (k < L) {
-        const aa = analyze(k)
-        if (aa.kind === 'blank') { k++; continue }
-        if (aa.kind === 'comment') { pre.push(aa.text); k++; continue }
-        if (aa.kind === 'tab-error') throw { key: 'tabIndent', line: aa.line }
-        if (aa.indent > parentIndent) { subIndent = aa.indent; break }
-        break
-      }
-      if (subIndent === -1) break
-      state.i = k
-      const a = analyze(k)
-      if (a.body === '...') break
-      const sel = splitTrailingComment(a.body)
-      const colon = findTopColon(sel.content)
-      if (colon === -1) {
-        if (a.body === '-' || a.body.startsWith('- ')) break
-        throw { key: 'expectColon', line: k + 1 }
-      }
-      const kv = parseKey(sel.content.slice(0, colon), k + 1)
-      const restRaw = sel.content.slice(colon + 1)
-      const trailSplit = splitTrailingComment(restRaw)
-      const entry = {
-        key: kv.key,
-        keyQuoted: kv.quoted,
-        line: k + 1,
-        preComments: pre,
-        trailComment: trailSplit.comment || null,
-      }
-      entry.value = parseValue(trailSplit.content, subIndent, k + 1).node
-      const dup = map.entries.find((e) => e.key === entry.key)
-      if (dup) warnings.push({ key: 'duplicateKey', line: entry.line, detail: entry.key })
-      map.entries.push(entry)
-    }
-  }
-
-  // ── peeling de marcadores de documento no topo ──
-  for (;;) {
-    const a = analyze(state.i)
-    if (a.kind === 'blank' || a.kind === 'comment') { state.i++; continue }
-    if (a.kind === 'content' && a.indent === 0 && (a.body === '---' || a.body === '...')) { state.i++; continue }
-    if (a.kind === 'tab-error') return { ok: false, error: { key: 'tabIndent', line: a.line }, warnings }
-    break
-  }
-
-  // múltiplos documentos = erro claro
-  let docs = 0
-  for (let k = 0; k < L; k++) {
-    const a = analyze(k)
-    if (a.kind === 'content' && a.indent === 0 && a.body === '---') docs++
-  }
-  if (docs > 1) {
-    for (let k = 1; k < L; k++) {
-      const a = analyze(k)
-      if (a.kind === 'content' && a.indent === 0 && a.body === '---') {
-        return { ok: false, error: { key: 'multipleDocs', line: k + 1 }, warnings }
+    // chaves irmãs do mesmo item: linhas mais fundas que o traço
+    const next = tokens[i2]
+    if (next && next.type === 'line' && next.indent > arrayIndent && !isSeqItem(next.content) && findUnquotedColon(next.content) > 0) {
+      const child = parseYamlNode(tokens, i2, next.indent)
+      if (child.value && typeof child.value === 'object' && !Array.isArray(child.value)) {
+        Object.assign(item, child.value)
+        i2 = child.nextIdx
+      } else {
+        i2 = child.nextIdx
       }
     }
+    return { value: item, nextIdx: i2 }
   }
 
-  if (state.i >= L) {
-    return { ok: true, root: null, warnings }
-  }
-  const rootAt = analyze(state.i)
-  if (rootAt.kind !== 'content') {
-    return { ok: true, root: null, warnings }
+  // item com chave nua: "- foo" vira mapa quando uma chave irmã
+  // (mais funda que o traço) existe logo abaixo; caso contrário é
+  // um scalar (ex.: "- a", "- \"80:80\"", "- noite na colina").
+  if (isBlockScalarHeader(cur.content)) {
+    const bs = parseBlockScalar(tokens, i, arrayIndent)
+    return { value: bs.value, nextIdx: bs.nextIdx }
   }
 
-  let root = null
+  if (/^[\[\{]/.test(rest)) {
+    return { value: parseYamlInline(rest), nextIdx: i + 1 }
+  }
+
+  // item que é uma sequência aninhada: "- - 1" / "  - 2"
+  if (/^-(?:\s|$)/.test(rest)) {
+    const nestedIndent = arrayIndent + 2
+    const nestedTokens = [
+      { type: 'line', indent: nestedIndent, content: rest, line: cur.line },
+      ...tokens.slice(i + 1),
+    ]
+    const child = parseSeq(nestedTokens, 0)
+    return { value: child.value, nextIdx: i + child.nextIdx }
+  }
+
+  const next = tokens[i + 1]
+  const isContinuation =
+    next && next.type === 'line' && next.indent > arrayIndent && findUnquotedColon(next.content) > 0 && !isSeqItem(next.content)
+  if (!isContinuation) {
+    return { value: parseYamlScalar(rest), nextIdx: i + 1 }
+  }
+
+  const key = unquoteYaml(rest)
+  const item = { [key]: null }
+  const child = parseYamlNode(tokens, i + 1, next.indent)
+  if (child.value && typeof child.value === 'object' && !Array.isArray(child.value)) {
+    Object.assign(item, child.value)
+  } else {
+    item[key] = child.value
+  }
+  return { value: item, nextIdx: child.nextIdx }
+}
+
+// ─── API pública ───────────────────────────────────────────────
+
+export function parseYaml(text) {
+  if (!String(text).trim()) return { ok: true, value: null, docStart: false }
+  const tok = tokenizeYaml(text)
+  if (!tok.ok) return tok
   try {
-    const rootLine = state.i
-    const body = rootAt.body
-    let rootScalarTrail = null
-    if (body === '-' || body.startsWith('- ')) {
-      state.i = rootLine - 1
-      root = parseSequence(rootAt.indent)
-    } else if (findTopColon(body) !== -1) {
-      state.i = rootLine - 1
-      root = parseMapping(rootAt.indent)
-    } else {
-      const sc = splitTrailingComment(body)
-      rootScalarTrail = sc.comment
-      root = parseValue(sc.content, rootAt.indent, rootLine + 1).node
+    const res = parseYamlNode(tok.tokens, 0, tok.tokens[0].indent)
+    if (res.nextIdx !== tok.tokens.length) {
+      return { ok: false, error: 'orphanIndent', line: tok.tokens[res.nextIdx].line, col: 1 }
     }
-    const tail = []
-    if (rootScalarTrail) tail.push(rootScalarTrail.slice(1).trimStart())
-    let k = state.i + 1
-    while (k < L) {
-      const aa = analyze(k)
-      if (aa.kind === 'blank') { k++; continue }
-      if (aa.kind === 'comment') { tail.push(aa.text); k++; continue }
-      if (aa.kind === 'content' && aa.indent === 0 && aa.body === '...') { k++; continue }
-      if (aa.kind === 'tab-error') throw { key: 'tabIndent', line: aa.line }
-      throw { key: 'strayIndent', line: aa.line }
-    }
-    state.i = k - 1
-    state.trailingComments = tail
+    return { ok: true, value: res.value, docStart: tok.docStart }
   } catch (e) {
-    if (e && e.key) return { ok: false, error: { key: e.key, line: e.line || 1, detail: e.detail }, warnings }
-    return { ok: false, error: { key: 'generic', line: 1 }, warnings }
+    if (e instanceof YamlError) return { ok: false, error: e.key, line: e.line, col: e.col }
+    throw e
   }
-
-  return { ok: true, root, warnings, trailingComments: state.trailingComments }
 }
 
-// ─── Re-emissão ──────────────────────────────────────────────
+let INDENT_UNIT = '  '
 
-function anchorText(node) {
-  if (node && node.anchorName) return `&${node.anchorName} `
-  return ''
-}
+function renderPretty(value, opts) {
+  const lines = []
+  if (opts.docStart) lines.push('---')
 
-function keyText(entry) {
-  if (entry.keyQuoted === "'") return `'${entry.key.replace(/'/g, "''")}'`
-  if (entry.keyQuoted === '"') return quoteString(entry.key)
-  return entry.key
-}
-
-function emitScalar(node, pad, inSeq) {
-  if (!node) return 'null'
-  const prefix = inSeq ? anchorText(node) : ''
-  if (node.kind === 'blockScalar') {
-    return blockScalarText(node, pad)
-  }
-  if (node.kind === 'alias') {
-    return `${prefix}*${node.name}`
-  }
-  let text
-  if (node.type === N.string) {
-    const raw = node.raw || ''
-    if (node.quoted) text = node.quoted === '"' ? quoteString(raw) : `'${raw.replace(/'/g, "''")}'`
-    else text = needsQuotes(node) ? quoteString(raw) : raw
-  } else {
-    text = node.raw || node.text || 'null'
-  }
-  return prefix + text
-}
-
-function blockScalarText(node, pad) {
-  const marker = node.style + (node.chomp || '')
-  const linesOut = node.pieces.map((p) => (p.blank ? '' : pad + p.text))
-  return `${pad}${marker}\n${linesOut.join('\n')}`
-}
-
-function emitComments(pre, pad, minify) {
-  let out = ''
-  if (!minify) {
-    for (const c of pre || []) out += `${pad}#${c}\n`
-  }
-  return out
-}
-
-function emitMap(node, indent, minify) {
-  let out = ''
-  const pad = ' '.repeat(indent)
-  for (const e of node.entries) {
-    out += emitComments(e.preComments, pad, minify)
-    const key = keyText(e)
-    const v = e.value
-    const trail = e.trailComment && !minify ? ` #${e.trailComment}` : ''
-    if (v && v.kind === 'blockScalar') {
-      const mark = v.style + (v.chomp || '')
-      out += `${pad}${key}: ${anchorText(v)}${mark}${trail}\n`
-      out += emitBlockLines(v, pad + '  ')
-      continue
+  function emitObject(obj, col) {
+    const keys = Object.keys(obj)
+    if (keys.length === 0) {
+      lines.push(' '.repeat(col) + '{}')
+      return
     }
-    if (v && v.kind === 'map') {
-      if (v.entries.length === 0) {
-        out += `${pad}${key}:{}${trail}\n`
+    for (const k of keys) {
+      const v = obj[k]
+      const head = ' '.repeat(col) + scalarKey(k) + ':'
+      if (isScalar(v)) {
+        if (typeof v === 'string' && v.includes('\n')) {
+          appendBlockScalar(v, col, scalarKey(k) + ': ', ' '.repeat(col + INDENT_UNIT.length), lines)
+        } else {
+          lines.push(head + ' ' + yamlScalar(v))
+        }
+      } else if (Array.isArray(v)) {
+        if (v.length === 0) lines.push(head + ' []')
+        else {
+          lines.push(head)
+          emitArray(v, col + INDENT_UNIT.length)
+        }
       } else {
-        const a = v.anchorName ? ` &${v.anchorName}` : ''
-        out += `${pad}${key}:${a}${trail}\n`
-        out += emitMap(v, indent + 2, minify)
+        if (Object.keys(v).length === 0) lines.push(head + ' {}')
+        else {
+          lines.push(head)
+          emitObject(v, col + INDENT_UNIT.length)
+        }
       }
-      continue
     }
-    if (v && v.kind === 'seq') {
-      if (v.items.length === 0) {
-        out += `${pad}${key}:[]${trail}\n`
+  }
+
+  function emitArray(arr, col) {
+    if (arr.length === 0) {
+      lines.push(' '.repeat(col) + '[]')
+      return
+    }
+    for (const item of arr) {
+      if (isScalar(item)) {
+        if (typeof item === 'string' && item.includes('\n')) {
+          appendBlockScalar(item, col, '- ', ' '.repeat(col + INDENT_UNIT.length), lines)
+        } else {
+          lines.push(' '.repeat(col) + '- ' + yamlScalar(item))
+        }
+      } else if (Array.isArray(item)) {
+        if (item.length === 0) lines.push(' '.repeat(col) + '- []')
+        else {
+          lines.push(' '.repeat(col) + '-')
+          emitArray(item, col + INDENT_UNIT.length)
+        }
+      } else if (Object.keys(item).length === 0) {
+        lines.push(' '.repeat(col) + '- {}')
       } else {
-        const a = v.anchorName ? ` &${v.anchorName}` : ''
-        out += `${pad}${key}:${a}${trail}\n`
-        out += emitSeq(v, indent + 2, minify)
+        emitObjectAsListItem(item, col)
       }
-      continue
     }
-    out += `${pad}${key}: ${anchorText(v)}${emitScalar(v, pad, false)}${trail}\n`
   }
-  return out
-}
 
-function emitSeq(node, indent, minify) {
-  let out = ''
-  const pad = ' '.repeat(indent)
-  for (const it of node.items) {
-    const v = it.value
-    if (v && v.kind === 'blockScalar') {
-      out += emitComments(it.preComments, pad, minify)
-      const mark = v.style + (v.chomp || '')
-      out += `${pad}- ${anchorText(v)}${mark}${it.trailComment && !minify ? ` #${it.trailComment}` : ''}\n`
-      out += emitBlockLines(v, pad + '  ')
-      continue
-    }
-    out += emitComments(it.preComments, pad, minify)
-    const trail = it.trailComment && !minify ? ` #${it.trailComment}` : ''
-    if (v && (v.kind === 'map' || v.kind === 'seq')) {
-      out += `${pad}-${v.anchorName ? ` &${v.anchorName}` : ''}${trail}\n`
-      out += emitSeqBody(v, indent + 2, minify)
-      continue
-    }
-    out += `${pad}- ${emitScalar(v, pad, true)}${trail}\n`
-  }
-  return out
-}
-
-function emitBlockLines(v, childPad) {
-  let b = ''
-  for (const p of v.pieces) b += (p.blank ? '' : childPad + p.text) + '\n'
-  return b
-}
-
-function emitSeqBody(v, indent, minify) {
-  if (v.kind === 'seq') return emitSeq(v, indent, minify)
-  let out = ''
-  const pad = ' '.repeat(indent)
-  for (let k = 0; k < v.entries.length; k++) {
-    const e = v.entries[k]
-    out += emitComments(e.preComments, pad, minify)
-    const key = keyText(e)
-    const ev = e.value
-    const trail = e.trailComment && !minify ? ` #${e.trailComment}` : ''
-    const lead = k === 0 ? '- ' : ''
-    if (ev && ev.kind === 'blockScalar') {
-      const mark = ev.style + (ev.chomp || '')
-      out += `${pad}${lead}${key}: ${mark}\n`
-      out += emitBlockLines(ev, pad + '  ')
-      continue
-    }
-    if (ev && ev.kind === 'map') {
-      if (ev.entries.length === 0) {
-        out += `${pad}${lead}${key}:{}${trail}\n`
+  function emitObjectAsListItem(obj, col) {
+    const keys = Object.keys(obj)
+    keys.forEach((k, i) => {
+      const v = obj[k]
+      const pre = i === 0 ? ' '.repeat(col) + '- ' : ' '.repeat(col + 2)
+      if (isScalar(v)) {
+        if (typeof v === 'string' && v.includes('\n')) {
+          const prefix = (i === 0 ? '- ' : '  ') + scalarKey(k) + ': '
+          appendBlockScalar(v, col, prefix, ' '.repeat(col + 2 + INDENT_UNIT.length), lines)
+        } else {
+          lines.push(pre + scalarKey(k) + ': ' + yamlScalar(v))
+        }
+      } else if (Array.isArray(v)) {
+        if (v.length === 0) lines.push(pre + scalarKey(k) + ': []')
+        else {
+          lines.push(pre + scalarKey(k) + ':')
+          emitArray(v, col + 2 + INDENT_UNIT.length)
+        }
       } else {
-        const a = ev.anchorName ? ` &${ev.anchorName}` : ''
-        out += `${pad}${lead}${key}:${a}${trail}\n`
-        out += emitMap(ev, indent + 2, minify)
+        if (Object.keys(v).length === 0) lines.push(pre + scalarKey(k) + ': {}')
+        else {
+          lines.push(pre + scalarKey(k) + ':')
+          emitObject(v, col + 2 + INDENT_UNIT.length)
+        }
       }
-      continue
-    }
-    if (ev && ev.kind === 'seq') {
-      if (ev.items.length === 0) {
-        out += `${pad}${lead}${key}:[]${trail}\n`
-      } else {
-        const a = ev.anchorName ? ` &${ev.anchorName}` : ''
-        out += `${pad}${lead}${key}:${a}${trail}\n`
-        out += emitSeq(ev, indent + 2, minify)
-      }
-      continue
-    }
-    out += `${pad}${lead}${key}: ${anchorText(ev)}${emitScalar(ev, pad, true)}${trail}\n`
+    })
   }
-  return out
+
+  if (Array.isArray(value)) emitArray(value, 0)
+  else if (isPlainObject(value)) emitObject(value, 0)
+  else lines.push(yamlScalar(value))
+
+  return lines.join('\n').trimEnd()
 }
 
-export function countNodes(node) {
-  const c = { keys: 0, items: 0, scalars: 0, blocks: 0 }
-  const walk = (n) => {
-    if (!n) return
-    if (n.kind === 'map') {
-      c.blocks++
-      for (const e of n.entries) { c.keys++; walk(e.value) }
-    } else if (n.kind === 'seq') {
-      c.blocks++
-      for (const it of n.items) { c.items++; walk(it.value) }
-    } else {
-      c.scalars++
-    }
-  }
-  walk(node)
-  return c
+function renderMin(value) {
+  if (value === null) return 'null'
+  if (isScalar(value)) return yamlScalar(value)
+  return flowValue(value)
 }
 
-export function processYaml(input, options = {}) {
-  const mode = options.mode || 'format'
-  const indent = options.indent || 2
-  const minify = mode === 'minify'
-  const res = parseYaml(input)
-
-  if (!res.ok) {
-    return { ok: false, error: res.error, warnings: res.warnings, output: '', stats: null }
-  }
-  const warnings = res.warnings
-
-  let output = ''
-  let stats = null
-  if (mode === 'validate') {
-    output = ''
-  } else if (mode === 'json') {
-    const js = res.root ? scalarToJs(res.root) : null
-    output = js === null || js === undefined ? 'null' : JSON.stringify(js, null, 2)
-  } else {
-    if (res.root) {
-      const body = emitInnerByKind(res.root, minify ? 1 : 0, minify)
-      output = body
-    }
-    if (res.trailingComments && res.trailingComments.length && !minify) {
-      output += output.endsWith('\n') ? '' : '\n'
-      output += res.trailingComments.map((c) => `#${c}`).join('\n')
-    }
-  }
-
-  output = output
-    .split('\n')
-    .map((l) => l.replace(/[ \t]+$/, ''))
-    .join('\n')
-  if (!minify && mode !== 'json') {
-    output = output.replace(/\n+$/, '\n')
-  }
-
-  const counts = res.root ? countNodes(res.root) : { keys: 0, items: 0, scalars: 0, blocks: 0 }
-  stats = {
-    ...counts,
-    bytesIn: String(input ?? '').length,
-    bytesOut: output.length,
-  }
-  if (minify && stats.bytesIn > 0 && stats.bytesOut < stats.bytesIn) {
-    stats.saved = Math.round(((stats.bytesIn - stats.bytesOut) / stats.bytesIn) * 1000) / 10
-  }
-  return { ok: true, output, warnings, stats, root: res.root }
+export function formatYaml(input, opts = {}) {
+  INDENT_UNIT = opts.indent === 4 ? '    ' : '  '
+  const parsed = parseYaml(input)
+  if (!parsed.ok) return { ok: false, error: parsed.error, line: parsed.line, col: parsed.col, text: '' }
+  const mode = opts.mode === 'min' ? 'min' : 'pretty'
+  const text = mode === 'min' ? renderMin(parsed.value) : renderPretty(parsed.value, { docStart: parsed.docStart })
+  return { ok: true, text, tree: parsed.value }
 }
 
-function emitInnerByKind(node, indent, minify) {
-  if (node.kind === 'map') return emitMap(node, indent, minify)
-  if (node.kind === 'seq') return emitSeq(node, indent, minify)
-  // root scalar
-  if (node.type === N.null) return ''
-  const pad = ' '.repeat(indent)
-  const v = emitScalar(node, pad, false)
-  return `${pad}${v}\n`
+export function yamlStats(tree, input, output) {
+  const enc = new TextEncoder()
+  let keys = 0
+  let lists = 0
+  let depth = 0
+  const walk = (v, d) => {
+    if (d > depth) depth = d
+    if (Array.isArray(v)) {
+      lists++
+      for (const it of v) walk(it, d + 1)
+    } else if (isPlainObject(v)) {
+      keys += Object.keys(v).length
+      for (const k of Object.keys(v)) walk(v[k], d + 1)
+    }
+  }
+  walk(tree, 1)
+  return {
+    keys,
+    lists,
+    depth,
+    bytesIn: enc.encode(input).length,
+    bytesOut: enc.encode(output).length,
+  }
 }

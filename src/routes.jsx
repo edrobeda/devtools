@@ -198,6 +198,7 @@ import SqlIsolationLevelsPage from './pages/SqlIsolationLevelsPage'
 import KeyframeGeneratorPage from './pages/KeyframeGeneratorPage'
 import ClipPathGeneratorPage from './pages/ClipPathGeneratorPage'
 import TomlFormatterPage from './pages/TomlFormatterPage'
+import YamlFormatterPage from './pages/YamlFormatterPage'
 import HtmlToMarkdownPage from './pages/HtmlToMarkdownPage'
 import ChangelogGeneratorPage from './pages/ChangelogGeneratorPage'
 import GitattributesGeneratorPage from './pages/GitattributesGeneratorPage'
@@ -659,6 +660,7 @@ const router = createBrowserRouter([
       { path: 'text/remove-accents', element: <RemoveAccentsPage /> },
       { path: 'tools/xml-formatter', element: <XmlFormatterPage /> },
       { path: 'tools/toml-formatter', element: <TomlFormatterPage /> },
+      { path: 'tools/yaml-formatter', element: <YamlFormatterPage /> },
       { path: 'tools/html-formatter', element: <HtmlFormatterPage /> },
       { path: 'snippets/deep-clone-deep-equal', element: <DeepCloneDeepEqualPage /> },
       { path: 'devops/branch-name-generator', element: <BranchNameGeneratorPage /> },
