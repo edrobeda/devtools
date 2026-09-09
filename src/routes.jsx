@@ -70,7 +70,6 @@ import UseMousePositionSnippetPage from './pages/UseMousePositionSnippetPage'
 import UsePageVisibilitySnippetPage from './pages/UsePageVisibilitySnippetPage'
 import UseAsyncSnippetPage from './pages/UseAsyncSnippetPage'
 import MarkdownPreviewerPage from './pages/MarkdownPreviewerPage'
-import NeumorphicCardPage from './pages/NeumorphicCardPage'
 import UsePreviousSnippetPage from './pages/UsePreviousSnippetPage'
 import FakeDataGeneratorPage from './pages/FakeDataGeneratorPage'
 import WebhookPayloadGeneratorPage from './pages/WebhookPayloadGeneratorPage'
@@ -589,7 +588,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-page-visibility', element: <UsePageVisibilitySnippetPage /> },
       { path: 'snippets/use-async', element: <UseAsyncSnippetPage /> },
       { path: 'tools/markdown-previewer', element: <MarkdownPreviewerPage /> },
-      { path: 'styles/neumorphic-card', element: <NeumorphicCardPage /> },
+      { path: 'styles/neumorphic-card', element: <Navigate to="/frontend/css-neumorphism-generator" replace /> },
       { path: 'snippets/use-previous', element: <UsePreviousSnippetPage /> },
       { path: 'data/fake-data-generator', element: <FakeDataGeneratorPage /> },
       { path: 'apis/webhook-payload-generator', element: <WebhookPayloadGeneratorPage /> },
