@@ -150,6 +150,7 @@ export const LABELS = {
     'json-tree-viewer': 'Visualizador de Árvore JSON',
     'subnet-calculator': 'Calculadora de Sub-rede',
     'anthropic-cost-calculator': 'Calculadora de Custo Anthropic',
+    'openai-cost-calculator': 'Calculadora de Custo OpenAI',
     'llm-prompt-builder': 'LLM Prompt Builder',
     'cost-estimator': 'Estimador de Custo de Nuvem',
     'iam-policy-generator': 'Gerador de Política IAM',
@@ -669,6 +670,7 @@ export const LABELS = {
     'json-tree-viewer': 'JSON Tree Viewer',
     'subnet-calculator': 'Subnet Calculator',
     'anthropic-cost-calculator': 'Anthropic Cost Calculator',
+    'openai-cost-calculator': 'OpenAI Cost Calculator',
     'llm-prompt-builder': 'LLM Prompt Builder',
     'cost-estimator': 'Cloud Cost Estimator',
     'iam-policy-generator': 'IAM Policy Generator',
@@ -1650,6 +1652,7 @@ export function buildMenuItems(l) {
       label: l.ai,
       children: [
         { key: '/ai/anthropic-cost-calculator', label: l['anthropic-cost-calculator'] },
+        { key: '/ai/openai-cost-calculator', label: withNewBadge('/ai/openai-cost-calculator', l['openai-cost-calculator'], l) },
         { key: '/ai/llm-prompt-builder', icon: <RobotOutlined />, label: withNewBadge('/ai/llm-prompt-builder', l['llm-prompt-builder'], l) },
         { key: '/ai/token-counter', label: withNewBadge('/ai/token-counter', l['token-counter'], l) },
       ],

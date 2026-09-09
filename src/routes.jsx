@@ -32,6 +32,7 @@ import PasswordStrengthPage from './pages/PasswordStrengthPage'
 import JsonTreeViewerPage from './pages/JsonTreeViewerPage'
 import SubnetCalculatorPage from './pages/SubnetCalculatorPage'
 import AnthropicCostCalculatorPage from './pages/AnthropicCostCalculatorPage'
+import OpenAiCostCalculatorPage from './pages/OpenAiCostCalculatorPage'
 import LlmPromptBuilderPage from './pages/LlmPromptBuilderPage'
 import DeepLinkTesterPage from './pages/DeepLinkTesterPage'
 import GitCommandsPage from './pages/GitCommandsPage'
@@ -540,6 +541,7 @@ const router = createBrowserRouter([
       { path: 'data/json-tree-viewer', element: <JsonTreeViewerPage /> },
       { path: 'network/subnet-calculator', element: <SubnetCalculatorPage /> },
       { path: 'ai/anthropic-cost-calculator', element: <AnthropicCostCalculatorPage /> },
+      { path: 'ai/openai-cost-calculator', element: <OpenAiCostCalculatorPage /> },
       { path: 'ai/llm-prompt-builder', element: <LlmPromptBuilderPage /> },
       { path: 'mobile/deep-link-tester', element: <DeepLinkTesterPage /> },
       { path: 'text/word-counter', element: <Navigate to="/tools/reading-time-calculator" replace /> },
