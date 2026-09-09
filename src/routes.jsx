@@ -70,7 +70,6 @@ import UseMousePositionSnippetPage from './pages/UseMousePositionSnippetPage'
 import UsePageVisibilitySnippetPage from './pages/UsePageVisibilitySnippetPage'
 import UseAsyncSnippetPage from './pages/UseAsyncSnippetPage'
 import MarkdownPreviewerPage from './pages/MarkdownPreviewerPage'
-import NeumorphicCardPage from './pages/NeumorphicCardPage'
 import UsePreviousSnippetPage from './pages/UsePreviousSnippetPage'
 import FakeDataGeneratorPage from './pages/FakeDataGeneratorPage'
 import WebhookPayloadGeneratorPage from './pages/WebhookPayloadGeneratorPage'
@@ -153,7 +152,6 @@ import OtpInputPage from './pages/OtpInputPage'
 import TimezoneConverterPage from './pages/TimezoneConverterPage'
 import UserAgentParserPage from './pages/UserAgentParserPage'
 import CronBuilderPage from './pages/CronBuilderPage'
-import CronExpressionDebuggerPage from './pages/CronExpressionDebuggerPage'
 import MimeLookupPage from './pages/MimeLookupPage'
 import HttpMethodsPage from './pages/HttpMethodsPage'
 import NumberToWordsPage from './pages/NumberToWordsPage'
@@ -199,6 +197,7 @@ import SqlIsolationLevelsPage from './pages/SqlIsolationLevelsPage'
 import KeyframeGeneratorPage from './pages/KeyframeGeneratorPage'
 import ClipPathGeneratorPage from './pages/ClipPathGeneratorPage'
 import TomlFormatterPage from './pages/TomlFormatterPage'
+import YamlFormatterPage from './pages/YamlFormatterPage'
 import HtmlToMarkdownPage from './pages/HtmlToMarkdownPage'
 import ChangelogGeneratorPage from './pages/ChangelogGeneratorPage'
 import GitattributesGeneratorPage from './pages/GitattributesGeneratorPage'
@@ -471,6 +470,7 @@ import KafkaCheatsheetPage from './pages/KafkaCheatsheetPage'
 import ElasticsearchCheatsheetPage from './pages/ElasticsearchCheatsheetPage'
 import CppCheatsheetPage from './pages/CppCheatsheetPage'
 import GraphqlCheatsheetPage from './pages/GraphqlCheatsheetPage'
+import GrpcCheatsheetPage from './pages/GrpcCheatsheetPage'
 import RubyCheatsheetPage from './pages/RubyCheatsheetPage'
 import SwiftCheatsheetPage from './pages/SwiftCheatsheetPage'
 import AnsibleCheatsheetPage from './pages/AnsibleCheatsheetPage'
@@ -492,12 +492,13 @@ import HexDumpPage from './pages/HexDumpPage'
 import LuaCheatsheetPage from './pages/LuaCheatsheetPage'
 import SqlWindowFunctionsPage from './pages/SqlWindowFunctionsPage'
 import EmojiCheatsheetPage from './pages/EmojiCheatsheetPage'
-import MarkdownTableConverterPage from './pages/MarkdownTableConverterPage'
 import BitwiseCalculatorPage from './pages/BitwiseCalculatorPage'
 import CombinatoricsCalculatorPage from './pages/CombinatoricsCalculatorPage'
 import ImageToAsciiPage from './pages/ImageToAsciiPage'
 import IntlPlaygroundPage from './pages/IntlPlaygroundPage'
 import JsonRepairPage from './pages/JsonRepairPage'
+import GrepCommandBuilderPage from './pages/GrepCommandBuilderPage'
+import CssResetGeneratorPage from './pages/CssResetGeneratorPage'
 
 const router = createBrowserRouter([
   {
@@ -587,7 +588,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-page-visibility', element: <UsePageVisibilitySnippetPage /> },
       { path: 'snippets/use-async', element: <UseAsyncSnippetPage /> },
       { path: 'tools/markdown-previewer', element: <MarkdownPreviewerPage /> },
-      { path: 'styles/neumorphic-card', element: <NeumorphicCardPage /> },
+      { path: 'styles/neumorphic-card', element: <Navigate to="/frontend/css-neumorphism-generator" replace /> },
       { path: 'snippets/use-previous', element: <UsePreviousSnippetPage /> },
       { path: 'data/fake-data-generator', element: <FakeDataGeneratorPage /> },
       { path: 'apis/webhook-payload-generator', element: <WebhookPayloadGeneratorPage /> },
@@ -657,6 +658,7 @@ const router = createBrowserRouter([
       { path: 'text/remove-accents', element: <RemoveAccentsPage /> },
       { path: 'tools/xml-formatter', element: <XmlFormatterPage /> },
       { path: 'tools/toml-formatter', element: <TomlFormatterPage /> },
+      { path: 'tools/yaml-formatter', element: <YamlFormatterPage /> },
       { path: 'tools/html-formatter', element: <HtmlFormatterPage /> },
       { path: 'snippets/deep-clone-deep-equal', element: <DeepCloneDeepEqualPage /> },
       { path: 'devops/branch-name-generator', element: <BranchNameGeneratorPage /> },
@@ -675,7 +677,6 @@ const router = createBrowserRouter([
       { path: 'tools/timezone-converter', element: <TimezoneConverterPage /> },
       { path: 'network/user-agent-parser', element: <UserAgentParserPage /> },
       { path: 'tools/cron-builder', element: <CronBuilderPage /> },
-      { path: 'devops/cron-expression-debugger', element: <CronExpressionDebuggerPage /> },
       { path: 'network/mime-lookup', element: <MimeLookupPage /> },
       { path: 'references/http-methods', element: <HttpMethodsPage /> },
       { path: 'tools/number-to-words', element: <NumberToWordsPage /> },
@@ -861,6 +862,7 @@ const router = createBrowserRouter([
       { path: 'devops/tsconfig-generator', element: <TsconfigGeneratorPage /> },
       { path: 'devops/eslint-config-generator', element: <EslintConfigGeneratorPage /> },
       { path: 'devops/renovate-config-generator', element: <RenovateConfigGeneratorPage /> },
+      { path: 'devops/vite-config-generator', element: <ViteConfigGeneratorPage /> },
       { path: 'devops/cors-config-generator', element: <CorsConfigGeneratorPage /> },
       { path: 'devops/pull-request-template-generator', element: <PullRequestTemplateGeneratorPage /> },
       { path: 'frontend/css-spinner-generator', element: <CssSpinnerGeneratorPage /> },
@@ -928,7 +930,6 @@ const router = createBrowserRouter([
       { path: 'frontend/favicon-generator', element: <FaviconGeneratorPage /> },
       { path: 'frontend/css-has-selector-tester', element: <CssHasSelectorTesterPage /> },
       { path: 'frontend/typography-scale-calculator', element: <TypographyScaleCalculatorPage /> },
-      { path: 'frontend/vite-config-generator', element: <ViteConfigGeneratorPage /> },
       { path: 'snippets/use-update-effect', element: <UseUpdateEffectSnippetPage /> },
       { path: 'snippets/use-why-did-you-update', element: <UseWhyDidYouUpdateSnippetPage /> },
       { path: 'snippets/use-boolean', element: <UseBooleanSnippetPage /> },
@@ -984,6 +985,7 @@ const router = createBrowserRouter([
       { path: 'references/elasticsearch-cheatsheet', element: <ElasticsearchCheatsheetPage /> },
       { path: 'references/cpp-cheatsheet', element: <CppCheatsheetPage /> },
       { path: 'references/graphql-cheatsheet', element: <GraphqlCheatsheetPage /> },
+      { path: 'references/grpc-cheatsheet', element: <GrpcCheatsheetPage /> },
       { path: 'references/ruby-cheatsheet', element: <RubyCheatsheetPage /> },
       { path: 'references/swift-cheatsheet', element: <SwiftCheatsheetPage /> },
       { path: 'references/ansible-cheatsheet', element: <AnsibleCheatsheetPage /> },
@@ -1002,9 +1004,10 @@ const router = createBrowserRouter([
       { path: 'tools/paxos-simulator', element: <PaxosSimulatorPage /> },
       { path: 'tools/bully-algorithm-simulator', element: <BullyAlgorithmSimulatorPage /> },
       { path: 'tools/ring-election-simulator', element: <RingElectionSimulatorPage /> },
-      { path: 'data/markdown-table-converter', element: <MarkdownTableConverterPage /> },
       { path: 'tools/bitwise-calculator', element: <BitwiseCalculatorPage /> },
       { path: 'tools/combinatorics-calculator', element: <CombinatoricsCalculatorPage /> },
+      { path: 'tools/grep-command-builder', element: <GrepCommandBuilderPage /> },
+      { path: 'frontend/css-reset-generator', element: <CssResetGeneratorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react'
-import { Typography, Card, Space, Input, Segmented, Button, Alert, message } from 'antd'
-import { TableOutlined, CopyOutlined, CheckOutlined, ClearOutlined, FileAddOutlined } from '@ant-design/icons'
+import { Typography, Card, Space, Input, Segmented, Button, Alert, message, Tabs } from 'antd'
+import { TableOutlined, CopyOutlined, CheckOutlined, ClearOutlined, FileAddOutlined, SwapOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 
 const { Title, Paragraph, Text } = Typography
@@ -32,11 +32,52 @@ const PARSE_SOURCE = `function parseDelimited(text, delim) {
   return rows
 }`
 
-const SAMPLE = `service,status,instances,region
+const PARSE_MD_SOURCE = `function parseMarkdownTable(text) {
+  const lines = text.trim().split('\\n').map(l => l.trim()).filter(l => l.length > 0)
+  if (lines.length === 0) return { headers: [], rows: [], hasHeader: false }
+
+  const isSeparator = (line) => /^\\|?\\s*:?-+:?\\s*(\\|\\s*:?-+:?\\s*)*\\|?$/.test(line)
+  const splitRow = (line) => {
+    const trimmed = line.replace(/^\\|/, '').replace(/\\|$/, '')
+    return trimmed.split('|').map(c => c.trim())
+  }
+
+  let headerIdx = -1
+  for (let i = 0; i < lines.length; i++) {
+    if (isSeparator(lines[i])) {
+      headerIdx = i
+      break
+    }
+  }
+
+  if (headerIdx >= 0) {
+    const headers = splitRow(lines[headerIdx - 1] || '')
+    const rows = lines.slice(headerIdx + 1).map(splitRow)
+    return { headers, rows, hasHeader: true }
+  }
+
+  const allRows = lines.map(splitRow)
+  const cols = Math.max(...allRows.map(r => r.length))
+  const padded = allRows.map(r => { const out = [...r]; while (out.length < cols) out.push(''); return out })
+  return { headers: [], rows: padded, hasHeader: false }
+}`
+
+const SAMPLE_CSV = `service,status,instances,region
 auth-api,healthy,3,us-east-1
 ingress-nginx,running,2,eu-west-1
 prometheus,degraded,1,sa-east-1
 postgres-primary,healthy,1,us-east-1`
+
+const SAMPLE_MD = `| service | status | instances | region
+|---------|--------|-----------|--------
+| auth-api | healthy | 3 | us-east-1
+| ingress-nginx | running | 2 | eu-west-1
+| prometheus | degraded | 1 | sa-east-1
+| postgres-primary | healthy | 1 | us-east-1`
+
+const SAMPLE_MD_NO_HEADER = `auth-api | healthy | 3 | us-east-1
+ingress-nginx | running | 2 | eu-west-1
+prometheus | degraded | 1 | sa-east-1`
 
 const DELIMITERS = { comma: ',', semicolon: ';', tab: '\t' }
 
@@ -118,10 +159,72 @@ function buildHtml(rows, hasHeader) {
   return html
 }
 
+function parseMarkdownTable(text) {
+  const lines = text.trim().split('\n').map(l => l.trim()).filter(l => l.length > 0)
+  if (lines.length === 0) return { headers: [], rows: [], hasHeader: false }
+
+  const isSeparator = (line) => /^\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)*\|?$/.test(line)
+  const splitRow = (line) => {
+    const trimmed = line.replace(/^\|/, '').replace(/\|$/, '')
+    return trimmed.split('|').map(c => c.trim())
+  }
+
+  let headerIdx = -1
+  for (let i = 0; i < lines.length; i++) {
+    if (isSeparator(lines[i])) {
+      headerIdx = i
+      break
+    }
+  }
+
+  if (headerIdx >= 0) {
+    const headers = splitRow(lines[headerIdx - 1] || '')
+    const rows = lines.slice(headerIdx + 1).map(splitRow)
+    return { headers, rows, hasHeader: true }
+  }
+
+  const allRows = lines.map(splitRow)
+  const cols = Math.max(...allRows.map(r => r.length))
+  const padded = allRows.map(r => { const out = [...r]; while (out.length < cols) out.push(''); return out })
+  return { headers: [], rows: padded, hasHeader: false }
+}
+
+function escapeCsvField(value, delimiter) {
+  const s = value === null || value === undefined ? '' : String(value)
+  if (s.includes(delimiter) || s.includes('"') || s.includes('\n') || s.includes('\r')) {
+    return `"${s.replace(/"/g, '""')}"`
+  }
+  return s
+}
+
+function buildCsv(headers, rows, delimiter) {
+  const allRows = headers.length > 0 ? [headers, ...rows] : rows
+  return allRows.map(r => r.map(c => escapeCsvField(c, delimiter)).join(delimiter)).join('\n')
+}
+
+function buildJson(headers, rows) {
+  if (headers.length === 0) {
+    return rows.map((r, i) => {
+      const obj = {}
+      r.forEach((c, idx) => { obj[`col${idx + 1}`] = c })
+      return obj
+    })
+  }
+  return rows.map(r => {
+    const obj = {}
+    headers.forEach((h, idx) => { obj[h] = r[idx] ?? '' })
+    return obj
+  })
+}
+
 const en = {
-  title: 'CSV → Markdown Table',
-  intro: <>Paste a spreadsheet/CSV/TSV and get a clean <Text code>Markdown</Text> table for docs, PRs or README, plus the <Text code>HTML</Text> equivalent. RFC4180-style parser: quoted fields, doubled quotes, embedded newlines — all client-side.</>,
-  pastePlaceholder: 'Paste the data here (CSV, TSV...)',
+  title: 'CSV ↔ Markdown Table',
+  intro: <>Two-way table converter: paste a CSV/TSV spreadsheet and get a clean <Text code>Markdown</Text> table for docs, PRs or README (plus the <Text code>HTML</Text> equivalent); or paste a <Text code>Markdown</Text> table (GitHub/GitLab/Notion style) and convert it back to <Text code>CSV</Text> or <Text code>JSON</Text>. RFC4180-style parser on one side, separator-row header detection on the other — all client-side.</>,
+  direction: 'Direction',
+  dirCsvToMd: 'CSV/TSV → Markdown',
+  dirMdToCsv: 'Markdown → CSV/JSON',
+  pasteCsvPlaceholder: 'Paste the data here (CSV, TSV...)',
+  pasteMdPlaceholder: 'Paste Markdown table here...',
   delimiter: 'Delimiter',
   delimiterComma: 'Comma',
   delimiterSemicolon: 'Semicolon',
@@ -130,34 +233,50 @@ const en = {
   headerAuto: 'Auto',
   headerYes: 'Yes',
   headerNo: 'No',
-  headerTip: 'Auto treats top row as header unless it looks all numeric. Yes forces it, No treats all rows as data.',
+  headerTip: 'Auto treats top row as header unless it looks all numeric (or detects the |---| separator row). Yes forces it, No treats all rows as data.',
   alignLabel: 'Alignment',
   alignNone: 'Default',
   alignLeft: 'Left',
   alignCenter: 'Center',
   alignRight: 'Right',
-  sample: 'Sample',
+  sampleCsv: 'Sample',
+  sampleMd: 'Sample (with header)',
+  sampleMdNoHeader: 'Sample (no header)',
   clear: 'Clear',
   copyMarkdown: 'Copy Markdown',
   copyHtml: 'Copy HTML',
+  outputFormat: 'Output format',
+  outputCsv: 'CSV',
+  outputJson: 'JSON',
+  copy: 'Copy',
   copied: 'Copied!',
   copyError: 'Could not copy',
   mdTitle: 'Markdown table',
   htmlTitle: 'HTML table',
-  empty: 'Nothing to render yet — paste some data or load the sample.',
+  csvTitle: 'CSV',
+  jsonTitle: 'JSON',
+  emptyCsv: 'Nothing to render yet — paste some data or load the sample.',
+  emptyMd: 'Nothing to render yet — paste a Markdown table or load a sample.',
   note: 'The parser handles quoted fields containing delimiters, doubled double-quotes and embedded newlines. In Markdown, | inside a cell is escaped as \\| and newlines become <br>.',
   rowsOne: 'row',
   rowsMany: 'rows',
   colsOne: 'column',
   colsMany: 'columns',
   colPlaceholder: (i) => `Col ${i + 1}`,
-  howTitle: 'Source algorithm (parser & table)',
+  detectedHeader: 'Detected header:',
+  noHeaderDetected: 'No header detected (all rows are data)',
+  howCsvToMdTitle: 'Source algorithm (RFC4180 parser & Markdown table)',
+  howMdToCsvTitle: 'How the Markdown parser works',
 }
 
 const pt = {
-  title: 'CSV → Tabela Markdown',
-  intro: <>Cola uma planilha em CSV, TSV ou lista e gera uma tabela <Text code>Markdown</Text> limpa pra documentação, PR ou README, além da versão <Text code>HTML</Text>. Parser estilo RFC4180 embutido: campos entre aspas, aspas duplicadas e quebras de linha — tudo client-side.</>,
-  pastePlaceholder: 'Cole os dados aqui (CSV, TSV...)',
+  title: 'Tabela CSV ↔ Markdown',
+  intro: <>Conversor bidirecional de tabelas: cola uma planilha em CSV/TSV e gera uma tabela <Text code>Markdown</Text> limpa pra documentação, PR ou README (além da versão <Text code>HTML</Text>); ou cola uma tabela <Text code>Markdown</Text> (estilo GitHub/GitLab/Notion) e converte de volta pra <Text code>CSV</Text> ou <Text code>JSON</Text>. Parser estilo RFC4180 embutido de um lado, detecção de cabeçalho pela linha de separação do outro — tudo local.</>,
+  direction: 'Direção',
+  dirCsvToMd: 'CSV/TSV → Markdown',
+  dirMdToCsv: 'Markdown → CSV/JSON',
+  pasteCsvPlaceholder: 'Cole os dados aqui (CSV, TSV...)',
+  pasteMdPlaceholder: 'Cole a tabela Markdown aqui...',
   delimiter: 'Delimitador',
   delimiterComma: 'Vírgula',
   delimiterSemicolon: 'Ponto e vírgula',
@@ -166,56 +285,89 @@ const pt = {
   headerAuto: 'Auto',
   headerYes: 'Sim',
   headerNo: 'Não',
-  headerTip: 'Auto trata a primeira linha como cabeçalho quando não parece toda numérica. "Sim" força como cabeçalho; "Não" trata todas como dados.',
+  headerTip: 'Auto trata a primeira linha como cabeçalho quando não parece toda numérica (ou detecta a linha de separação |---|). "Sim" força como cabeçalho; "Não" trata todas como dados.',
   alignLabel: 'Alinhamento',
   alignNone: 'Padrão',
   alignLeft: 'Esquerda',
   alignCenter: 'Centro',
   alignRight: 'Direita',
-  sample: 'Exemplo',
+  sampleCsv: 'Exemplo',
+  sampleMd: 'Exemplo (com header)',
+  sampleMdNoHeader: 'Exemplo (sem header)',
   clear: 'Limpar',
   copyMarkdown: 'Copiar Markdown',
   copyHtml: 'Copiar HTML',
+  outputFormat: 'Formato de saída',
+  outputCsv: 'CSV',
+  outputJson: 'JSON',
+  copy: 'Copiar',
   copied: 'Copiado!',
   copyError: 'Não foi possível copiar',
   mdTitle: 'Tabela Markdown',
   htmlTitle: 'Tabela HTML',
-  empty: 'Nada pra renderizar ainda — cola dados ou carrega o exemplo.',
+  csvTitle: 'CSV',
+  jsonTitle: 'JSON',
+  emptyCsv: 'Nada pra renderizar ainda — cola dados ou carrega o exemplo.',
+  emptyMd: 'Nada pra renderizar ainda — cola uma tabela Markdown ou carrega um exemplo.',
   note: 'O parser trata campos entre aspas contendo delimitadores, aspas duplicadas e quebras de linha. No Markdown, "|" dentro de célula vira "\\|" e quebras de linha viram <br>.',
   rowsOne: 'linha',
   rowsMany: 'linhas',
   colsOne: 'coluna',
   colsMany: 'colunas',
   colPlaceholder: (i) => `Col ${i + 1}`,
-  howTitle: 'Algoritmo-fonte (parser e tabela)',
+  detectedHeader: 'Cabeçalho detectado:',
+  noHeaderDetected: 'Nenhum cabeçalho detectado (todas as linhas são dados)',
+  howCsvToMdTitle: 'Algoritmo-fonte (parser RFC4180 e tabela)',
+  howMdToCsvTitle: 'Como funciona o parser de Markdown',
 }
 
 export default function CsvMarkdownTablePage() {
   const { lang } = useLanguage()
   const t = lang === 'pt' ? pt : en
+  const [direction, setDirection] = useState('csv2md')
   const [input, setInput] = useState('')
   const [delimiter, setDelimiter] = useState('comma')
   const [headerMode, setHeaderMode] = useState('auto')
   const [align, setAlign] = useState('none')
+  const [outputFormat, setOutputFormat] = useState('csv')
   const [copied, setCopied] = useState(null)
 
-  const rows = useMemo(() => parseDelimited(input, DELIMITERS[delimiter]), [input, delimiter])
+  const rowsCsv = useMemo(() => parseDelimited(input, DELIMITERS[delimiter]), [input, delimiter])
 
-  const hasHeader = useMemo(() => {
+  const hasHeaderCsv = useMemo(() => {
     if (headerMode === 'yes') return true
     if (headerMode === 'no') return false
-    if (rows.length < 2) return false
-    return !rows[0].every((c) => /^[+-]?[\d.,\s%]+$/.test(String(c).trim()))
-  }, [headerMode, rows])
+    if (rowsCsv.length < 2) return false
+    return !rowsCsv[0].every((c) => /^[+-]?[\d.,\s%]+$/.test(String(c).trim()))
+  }, [headerMode, rowsCsv])
 
-  const md = useMemo(() => buildMarkdown(rows, hasHeader, align, (i) => t.colPlaceholder(i)), [rows, hasHeader, align, t])
-  const html = useMemo(() => buildHtml(rows, hasHeader), [rows, hasHeader])
+  const md = useMemo(() => buildMarkdown(rowsCsv, hasHeaderCsv, align, (i) => t.colPlaceholder(i)), [rowsCsv, hasHeaderCsv, align, t])
+  const html = useMemo(() => buildHtml(rowsCsv, hasHeaderCsv), [rowsCsv, hasHeaderCsv])
 
-  const stats = useMemo(() => {
-    const cols = rows.length ? Math.max(...rows.map((r) => r.length)) : 0
-    const n = hasHeader && rows.length ? rows.length - 1 : rows.length
+  const statsCsv = useMemo(() => {
+    const cols = rowsCsv.length ? Math.max(...rowsCsv.map((r) => r.length)) : 0
+    const n = hasHeaderCsv && rowsCsv.length ? rowsCsv.length - 1 : rowsCsv.length
     return { cols, n }
-  }, [rows, hasHeader])
+  }, [rowsCsv, hasHeaderCsv])
+
+  const parsedMd = useMemo(() => parseMarkdownTable(input), [input])
+
+  const hasHeaderMd = useMemo(() => {
+    if (headerMode === 'yes') return true
+    if (headerMode === 'no') return false
+    return parsedMd.hasHeader
+  }, [headerMode, parsedMd])
+
+  const finalHeaders = hasHeaderMd ? parsedMd.headers : []
+  const finalRows = parsedMd.rows
+
+  const csv = useMemo(() => buildCsv(finalHeaders, finalRows, DELIMITERS[delimiter]), [finalHeaders, finalRows, delimiter])
+  const json = useMemo(() => JSON.stringify(buildJson(finalHeaders, finalRows), null, 2), [finalHeaders, finalRows])
+
+  const statsMd = useMemo(() => {
+    const cols = finalRows.length ? Math.max(...finalRows.map(r => r.length)) : (finalHeaders.length || 0)
+    return { cols, n: finalRows.length }
+  }, [finalHeaders, finalRows])
 
   async function copy(text, key) {
     if (!text) return
@@ -228,7 +380,8 @@ export default function CsvMarkdownTablePage() {
     }
   }
 
-  const hasData = rows.length > 0
+  const isCsvToMd = direction === 'csv2md'
+  const hasData = isCsvToMd ? rowsCsv.length > 0 : finalRows.length > 0
 
   return (
     <Space direction="vertical" size="large" style={{ width: '100%' }}>
@@ -237,14 +390,38 @@ export default function CsvMarkdownTablePage() {
 
       <Card>
         <Space direction="vertical" size="middle" style={{ width: '100%' }}>
+          <Space wrap>
+            <Text type="secondary">{t.direction}</Text>
+            <Segmented
+              value={direction}
+              onChange={setDirection}
+              options={[
+                { label: t.dirCsvToMd, value: 'csv2md' },
+                { label: t.dirMdToCsv, value: 'md2csv' },
+              ]}
+            />
+          </Space>
           <TextArea
             rows={7}
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder={t.pastePlaceholder}
+            placeholder={isCsvToMd ? t.pasteCsvPlaceholder : t.pasteMdPlaceholder}
             style={{ fontFamily: 'monospace' }}
           />
           <Space wrap style={{ rowGap: 12 }}>
+            {!isCsvToMd && (
+              <Space>
+                <Text type="secondary">{t.outputFormat}</Text>
+                <Segmented
+                  value={outputFormat}
+                  onChange={setOutputFormat}
+                  options={[
+                    { label: t.outputCsv, value: 'csv' },
+                    { label: t.outputJson, value: 'json' },
+                  ]}
+                />
+              </Space>
+            )}
             <Space>
               <Text type="secondary">{t.delimiter}</Text>
               <Segmented
@@ -269,34 +446,41 @@ export default function CsvMarkdownTablePage() {
                 ]}
               />
             </Space>
-            <Space>
-              <Text type="secondary">{t.alignLabel}</Text>
-              <Segmented
-                value={align}
-                onChange={setAlign}
-                options={[
-                  { label: t.alignNone, value: 'none' },
-                  { label: t.alignLeft, value: 'left' },
-                  { label: t.alignCenter, value: 'center' },
-                  { label: t.alignRight, value: 'right' },
-                ]}
-              />
-            </Space>
+            {isCsvToMd && (
+              <Space>
+                <Text type="secondary">{t.alignLabel}</Text>
+                <Segmented
+                  value={align}
+                  onChange={setAlign}
+                  options={[
+                    { label: t.alignNone, value: 'none' },
+                    { label: t.alignLeft, value: 'left' },
+                    { label: t.alignCenter, value: 'center' },
+                    { label: t.alignRight, value: 'right' },
+                  ]}
+                />
+              </Space>
+            )}
           </Space>
           <Text type="secondary" style={{ fontSize: 12 }}>{t.headerTip}</Text>
           <Space wrap>
-            <Button icon={<FileAddOutlined />} onClick={() => setInput(SAMPLE)}>{t.sample}</Button>
+            <Button icon={<FileAddOutlined />} onClick={() => setInput(isCsvToMd ? SAMPLE_CSV : SAMPLE_MD)}>
+              {isCsvToMd ? t.sampleCsv : t.sampleMd}
+            </Button>
+            {!isCsvToMd && (
+              <Button icon={<FileAddOutlined />} onClick={() => setInput(SAMPLE_MD_NO_HEADER)}>{t.sampleMdNoHeader}</Button>
+            )}
             <Button icon={<ClearOutlined />} disabled={!input} onClick={() => { setInput(''); setCopied(null) }}>{t.clear}</Button>
           </Space>
         </Space>
       </Card>
 
       {!hasData ? (
-        <Alert type="info" showIcon message={t.empty} />
-      ) : (
+        <Alert type="info" showIcon message={isCsvToMd ? t.emptyCsv : t.emptyMd} />
+      ) : isCsvToMd ? (
         <>
           <Card
-            title={`${t.mdTitle} — ${stats.n} ${stats.n === 1 ? t.rowsOne : t.rowsMany} × ${stats.cols} ${stats.cols === 1 ? t.colsOne : t.colsMany}`}
+            title={`${t.mdTitle} — ${statsCsv.n} ${statsCsv.n === 1 ? t.rowsOne : t.rowsMany} × ${statsCsv.cols} ${statsCsv.cols === 1 ? t.colsOne : t.colsMany}`}
             extra={
               <Button
                 size="small"
@@ -332,11 +516,64 @@ export default function CsvMarkdownTablePage() {
 
           <Alert type="info" showIcon message={t.note} />
         </>
+      ) : (
+        <>
+          <Tabs
+            activeKey={outputFormat}
+            onChange={setOutputFormat}
+            items={[
+              { key: 'csv', label: t.csvTitle, children: (
+                <Card
+                  title={`${t.csvTitle} — ${statsMd.n} ${statsMd.n === 1 ? t.rowsOne : t.rowsMany} × ${statsMd.cols} ${statsMd.cols === 1 ? t.colsOne : t.colsMany}`}
+                  extra={
+                    <Button
+                      size="small"
+                      type="primary"
+                      icon={copied === 'csv' ? <CheckOutlined /> : <CopyOutlined />}
+                      onClick={() => { setOutputFormat('csv'); copy(csv, 'csv') }}
+                    >
+                      {copied === 'csv' ? t.copied : t.copy}
+                    </Button>
+                  }
+                >
+                  <pre style={{ margin: 0, overflowX: 'auto', maxHeight: 380, overflowY: 'auto', fontSize: 13 }}>
+                    <code>{csv}</code>
+                  </pre>
+                </Card>
+              )},
+              { key: 'json', label: t.jsonTitle, children: (
+                <Card
+                  title={`${t.jsonTitle} — ${statsMd.n} ${statsMd.n === 1 ? t.rowsOne : t.rowsMany}`}
+                  extra={
+                    <Button
+                      size="small"
+                      type="primary"
+                      icon={copied === 'json' ? <CheckOutlined /> : <CopyOutlined />}
+                      onClick={() => { setOutputFormat('json'); copy(json, 'json') }}
+                    >
+                      {copied === 'json' ? t.copied : t.copy}
+                    </Button>
+                  }
+                >
+                  <pre style={{ margin: 0, overflowX: 'auto', maxHeight: 380, overflowY: 'auto', fontSize: 13 }}>
+                    <code>{json}</code>
+                  </pre>
+                </Card>
+              )},
+            ]}
+          />
+
+          <Alert type="info" showIcon message={
+            hasHeaderMd
+              ? <><Text strong>{t.detectedHeader} </Text>{finalHeaders.join(', ')}</>
+              : t.noHeaderDetected
+          } />
+        </>
       )}
 
-      <Card title={t.howTitle}>
+      <Card title={isCsvToMd ? t.howCsvToMdTitle : t.howMdToCsvTitle}>
         <pre style={{ margin: 0, overflowX: 'auto' }}>
-          <code>{PARSE_SOURCE}</code>
+          <code>{isCsvToMd ? PARSE_SOURCE : PARSE_MD_SOURCE}</code>
         </pre>
       </Card>
     </Space>
