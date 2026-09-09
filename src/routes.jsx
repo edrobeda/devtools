@@ -493,7 +493,6 @@ import HexDumpPage from './pages/HexDumpPage'
 import LuaCheatsheetPage from './pages/LuaCheatsheetPage'
 import SqlWindowFunctionsPage from './pages/SqlWindowFunctionsPage'
 import EmojiCheatsheetPage from './pages/EmojiCheatsheetPage'
-import MarkdownTableConverterPage from './pages/MarkdownTableConverterPage'
 import BitwiseCalculatorPage from './pages/BitwiseCalculatorPage'
 import CombinatoricsCalculatorPage from './pages/CombinatoricsCalculatorPage'
 import ImageToAsciiPage from './pages/ImageToAsciiPage'
@@ -1006,7 +1005,6 @@ const router = createBrowserRouter([
       { path: 'tools/paxos-simulator', element: <PaxosSimulatorPage /> },
       { path: 'tools/bully-algorithm-simulator', element: <BullyAlgorithmSimulatorPage /> },
       { path: 'tools/ring-election-simulator', element: <RingElectionSimulatorPage /> },
-      { path: 'data/markdown-table-converter', element: <MarkdownTableConverterPage /> },
       { path: 'tools/bitwise-calculator', element: <BitwiseCalculatorPage /> },
       { path: 'tools/combinatorics-calculator', element: <CombinatoricsCalculatorPage /> },
       { path: 'tools/grep-command-builder', element: <GrepCommandBuilderPage /> },
