@@ -499,6 +499,7 @@ import IntlPlaygroundPage from './pages/IntlPlaygroundPage'
 import JsonRepairPage from './pages/JsonRepairPage'
 import GrepCommandBuilderPage from './pages/GrepCommandBuilderPage'
 import CssResetGeneratorPage from './pages/CssResetGeneratorPage'
+import GridBuilderPage from './pages/GridBuilderPage'
 
 const router = createBrowserRouter([
   {
@@ -849,6 +850,7 @@ const router = createBrowserRouter([
       { path: 'references/oauth2-cheatsheet', element: <Oauth2CheatsheetPage /> },
       { path: 'references/design-patterns', element: <DesignPatternsCheatsheetPage /> },
       { path: 'frontend/grid-areas-generator', element: <GridAreasGeneratorPage /> },
+      { path: 'frontend/grid-builder', element: <GridBuilderPage /> },
       { path: 'frontend/pattern-background-generator', element: <PatternBackgroundGeneratorPage /> },
       { path: 'frontend/sitemap-generator', element: <SitemapGeneratorPage /> },
       { path: 'frontend/web-app-manifest-generator', element: <WebAppManifestGeneratorPage /> },
