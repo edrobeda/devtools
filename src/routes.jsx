@@ -500,6 +500,7 @@ import JsonRepairPage from './pages/JsonRepairPage'
 import GrepCommandBuilderPage from './pages/GrepCommandBuilderPage'
 import CssResetGeneratorPage from './pages/CssResetGeneratorPage'
 import GridBuilderPage from './pages/GridBuilderPage'
+import JsonPathBuilderPage from './pages/JsonPathBuilderPage'
 
 const router = createBrowserRouter([
   {
@@ -625,6 +626,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-throttle', element: <UseThrottleSnippetPage /> },
       { path: 'references/vscode-shortcuts', element: <VscodeShortcutsPage /> },
       { path: 'data/json-path-explorer', element: <JsonPathExplorerPage /> },
+      { path: 'data/json-path-builder', element: <JsonPathBuilderPage /> },
       { path: 'references/css-grid-cheatsheet', element: <CssGridCheatsheetPage /> },
       { path: 'snippets/fisher-yates-shuffle', element: <FisherYatesShufflePage /> },
       { path: 'extras/team-roulette', element: <TeamRoulettePage /> },
