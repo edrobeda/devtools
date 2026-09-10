@@ -288,7 +288,7 @@ const translations = {
         <Text code>[1, 2]</Text> — comportamento válido e muito mais legível
         que <Text code>- - 1</Text> aninhado. Complementa o{' '}
         <Text code>json-formatter</Text> (formata JSON) e o{' '}
-        <Text code>json-to-sql</Text> (emite INSERTs): nenhum deles produz o
+        <Text code>csv-to-sql</Text> (CSV/JSON para SQL): nenhum deles produz o
         formato YAML consumido por Compose/CI/Ansible/k8s.
       </>
     ),
@@ -338,7 +338,7 @@ const translations = {
         quotes. Nested arrays become inline style <Text code>[1, 2]</Text>{' '}
         instead of deep <Text code>- - 1</Text>. Complements the{' '}
         <Text code>json-formatter</Text> (formats JSON) and the{' '}
-        <Text code>json-to-sql</Text> (emits INSERTs): neither produces the
+        <Text code>csv-to-sql</Text> (CSV/JSON to SQL): neither produces the
         YAML consumed by Compose/CI/Ansible/k8s.
       </>
     ),
