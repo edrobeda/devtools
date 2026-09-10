@@ -146,6 +146,7 @@ export const LABELS = {
     'rate-limit-calculator': 'Calculadora de Rate Limit',
     'arn-parser': 'AWS ARN Parser',
     'password-strength': 'Força de Senha',
+    'password-entropy-calculator': 'Calculadora de Entropia de Senha',
     'json-tree-viewer': 'Visualizador de Árvore JSON',
     'subnet-calculator': 'Calculadora de Sub-rede',
     'anthropic-cost-calculator': 'Calculadora de Custo Anthropic',
@@ -662,6 +663,7 @@ export const LABELS = {
     'rate-limit-calculator': 'Rate Limit Calculator',
     'arn-parser': 'AWS ARN Parser',
     'password-strength': 'Password Strength',
+    'password-entropy-calculator': 'Password Entropy Calculator',
     'json-tree-viewer': 'JSON Tree Viewer',
     'subnet-calculator': 'Subnet Calculator',
     'anthropic-cost-calculator': 'Anthropic Cost Calculator',
@@ -1578,6 +1580,7 @@ export function buildMenuItems(l) {
       label: l.security,
       children: [
         { key: '/security/password-strength', label: l['password-strength'] },
+        { key: '/security/password-entropy-calculator', icon: <LockOutlined />, label: withNewBadge('/security/password-entropy-calculator', l['password-entropy-calculator'], l) },
         { key: '/security/robots-txt-generator', label: withNewBadge('/security/robots-txt-generator', l['robots-txt-generator'], l) },
         { key: '/security/csp-generator', label: withNewBadge('/security/csp-generator', l['csp-generator'], l) },
         { key: '/security/security-headers-generator', label: withNewBadge('/security/security-headers-generator', l['security-headers-generator'], l) },

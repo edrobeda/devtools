@@ -499,6 +499,7 @@ import GrepCommandBuilderPage from './pages/GrepCommandBuilderPage'
 import CssResetGeneratorPage from './pages/CssResetGeneratorPage'
 import GridBuilderPage from './pages/GridBuilderPage'
 import JsonPathBuilderPage from './pages/JsonPathBuilderPage'
+import PasswordEntropyCalculatorPage from './pages/PasswordEntropyCalculatorPage'
 
 const router = createBrowserRouter([
   {
@@ -1009,6 +1010,7 @@ const router = createBrowserRouter([
       { path: 'tools/combinatorics-calculator', element: <CombinatoricsCalculatorPage /> },
       { path: 'tools/grep-command-builder', element: <GrepCommandBuilderPage /> },
       { path: 'frontend/css-reset-generator', element: <CssResetGeneratorPage /> },
+      { path: 'security/password-entropy-calculator', element: <PasswordEntropyCalculatorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
