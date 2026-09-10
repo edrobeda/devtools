@@ -32,6 +32,7 @@ import PasswordStrengthPage from './pages/PasswordStrengthPage'
 import JsonTreeViewerPage from './pages/JsonTreeViewerPage'
 import SubnetCalculatorPage from './pages/SubnetCalculatorPage'
 import AnthropicCostCalculatorPage from './pages/AnthropicCostCalculatorPage'
+import OpenAiCostCalculatorPage from './pages/OpenAiCostCalculatorPage'
 import LlmPromptBuilderPage from './pages/LlmPromptBuilderPage'
 import DeepLinkTesterPage from './pages/DeepLinkTesterPage'
 import GitCommandsPage from './pages/GitCommandsPage'
@@ -499,6 +500,8 @@ import IntlPlaygroundPage from './pages/IntlPlaygroundPage'
 import JsonRepairPage from './pages/JsonRepairPage'
 import GrepCommandBuilderPage from './pages/GrepCommandBuilderPage'
 import CssResetGeneratorPage from './pages/CssResetGeneratorPage'
+import GridBuilderPage from './pages/GridBuilderPage'
+import JsonPathBuilderPage from './pages/JsonPathBuilderPage'
 
 const router = createBrowserRouter([
   {
@@ -538,6 +541,7 @@ const router = createBrowserRouter([
       { path: 'data/json-tree-viewer', element: <JsonTreeViewerPage /> },
       { path: 'network/subnet-calculator', element: <SubnetCalculatorPage /> },
       { path: 'ai/anthropic-cost-calculator', element: <AnthropicCostCalculatorPage /> },
+      { path: 'ai/openai-cost-calculator', element: <OpenAiCostCalculatorPage /> },
       { path: 'ai/llm-prompt-builder', element: <LlmPromptBuilderPage /> },
       { path: 'mobile/deep-link-tester', element: <DeepLinkTesterPage /> },
       { path: 'text/word-counter', element: <Navigate to="/tools/reading-time-calculator" replace /> },
@@ -624,6 +628,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-throttle', element: <UseThrottleSnippetPage /> },
       { path: 'references/vscode-shortcuts', element: <VscodeShortcutsPage /> },
       { path: 'data/json-path-explorer', element: <JsonPathExplorerPage /> },
+      { path: 'data/json-path-builder', element: <JsonPathBuilderPage /> },
       { path: 'references/css-grid-cheatsheet', element: <CssGridCheatsheetPage /> },
       { path: 'snippets/fisher-yates-shuffle', element: <FisherYatesShufflePage /> },
       { path: 'extras/team-roulette', element: <TeamRoulettePage /> },
@@ -849,6 +854,7 @@ const router = createBrowserRouter([
       { path: 'references/oauth2-cheatsheet', element: <Oauth2CheatsheetPage /> },
       { path: 'references/design-patterns', element: <DesignPatternsCheatsheetPage /> },
       { path: 'frontend/grid-areas-generator', element: <GridAreasGeneratorPage /> },
+      { path: 'frontend/grid-builder', element: <GridBuilderPage /> },
       { path: 'frontend/pattern-background-generator', element: <PatternBackgroundGeneratorPage /> },
       { path: 'frontend/sitemap-generator', element: <SitemapGeneratorPage /> },
       { path: 'frontend/web-app-manifest-generator', element: <WebAppManifestGeneratorPage /> },
