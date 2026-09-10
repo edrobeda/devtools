@@ -19,6 +19,7 @@ import {
   ThunderboltOutlined,
   PlusOutlined,
   DeleteOutlined,
+  ExportOutlined,
 } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 
@@ -27,6 +28,7 @@ const { Title, Paragraph, Text } = Typography
 const EXAMPLE_SIMPLE = 'https://example.com/products?id=42&sort=price#reviews'
 const EXAMPLE_AUTH = 'https://admin:secret@api.example.com:8443/v1/users?active=true'
 const EXAMPLE_MAILTO = 'mailto:team@example.com?subject=Hello&body=How are you'
+const EXAMPLE_DEEP_LINK = 'meuapp://product/123?ref=email&utm_source=campaign'
 
 // Resumo legível do algoritmo usado para parsear e reconstruir a URL.
 const SOURCE_SNIPPET = `// Parse: new URL(input)
@@ -54,9 +56,10 @@ const translations = {
     title: 'URL Parser & Query Editor',
     intro: (
       <>
-        Cole uma URL e veja cada componente separado — ou monte/edit a URL
-        trocando protocolo, host, caminho, query params e hash. Tudo local,
-        nada é enviado para lugar nenhum.
+        Cole uma URL ou deep link (incluindo esquemas customizados como{' '}
+        <Text code>meuapp://</Text>) e veja cada componente separado — ou
+        monte/edit a URL trocando protocolo, host, caminho, query params e
+        hash. Tudo local, nada é enviado para lugar nenhum.
       </>
     ),
     inputLabel: 'URL de entrada',
@@ -66,6 +69,9 @@ const translations = {
     simple: 'Simples',
     withAuth: 'Com autenticação',
     mailto: 'mailto',
+    deepLink: 'Deep link',
+    tryOpen: 'Tentar abrir',
+    tryOpenNote: 'Abre o link no navegador — funciona para esquemas registrados no seu sistema (ex: apps instalados); a maioria dos navegadores bloqueia esquemas desconhecidos silenciosamente.',
     clear: 'Limpar',
     rebuiltTitle: 'URL reconstruída',
     copy: 'Copiar',
@@ -124,9 +130,10 @@ const translations = {
     title: 'URL Parser & Query Editor',
     intro: (
       <>
-        Paste a URL and see every component split apart — or build/edit the URL
-        by changing protocol, host, path, query params and hash. Fully local,
-        nothing is ever sent anywhere.
+        Paste a URL or deep link (including custom schemes like{' '}
+        <Text code>myapp://</Text>) and see every component split apart — or
+        build/edit the URL by changing protocol, host, path, query params and
+        hash. Fully local, nothing is ever sent anywhere.
       </>
     ),
     inputLabel: 'Input URL',
@@ -136,6 +143,9 @@ const translations = {
     simple: 'Simple',
     withAuth: 'With auth',
     mailto: 'mailto',
+    deepLink: 'Deep link',
+    tryOpen: 'Try opening',
+    tryOpenNote: "Opens the link in the browser — works for schemes registered on your system (e.g. installed apps); most browsers silently block unknown schemes.",
     clear: 'Clear',
     rebuiltTitle: 'Rebuilt URL',
     copy: 'Copy',
@@ -389,13 +399,23 @@ export default function UrlParserPage() {
 
       <Card title={t.inputLabel}>
         <Space direction="vertical" size="middle" style={{ width: '100%' }}>
-          <Input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder={t.inputPlaceholder}
-            spellCheck={false}
-            style={{ fontFamily: 'monospace' }}
-          />
+          <Space.Compact style={{ width: '100%' }}>
+            <Input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder={t.inputPlaceholder}
+              spellCheck={false}
+              style={{ fontFamily: 'monospace' }}
+            />
+            <Button
+              icon={<ExportOutlined />}
+              onClick={() => window.open(input, '_self')}
+              disabled={!parsed.ok}
+              title={t.tryOpenNote}
+            >
+              {t.tryOpen}
+            </Button>
+          </Space.Compact>
           <Space wrap>
             <Button size="small" icon={<ThunderboltOutlined />} onClick={() => loadExample(EXAMPLE_SIMPLE)}>
               {t.simple}
@@ -406,10 +426,14 @@ export default function UrlParserPage() {
             <Button size="small" icon={<ThunderboltOutlined />} onClick={() => loadExample(EXAMPLE_MAILTO)}>
               {t.mailto}
             </Button>
+            <Button size="small" icon={<ThunderboltOutlined />} onClick={() => loadExample(EXAMPLE_DEEP_LINK)}>
+              {t.deepLink}
+            </Button>
             <Button danger size="small" icon={<ClearOutlined />} onClick={() => setInput('')}>
               {t.clear}
             </Button>
           </Space>
+          <Text type="secondary" style={{ fontSize: 12 }}>{t.tryOpenNote}</Text>
         </Space>
       </Card>
 

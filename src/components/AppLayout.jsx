@@ -120,7 +120,6 @@ export const LABELS = {
     data: 'Arquivos & Dados',
     network: 'Rede',
     ai: 'IA',
-    mobile: 'Mobile',
     text: 'Texto',
     references: 'Referências',
     extras: 'Fora da caixa',
@@ -154,7 +153,6 @@ export const LABELS = {
     'llm-prompt-builder': 'LLM Prompt Builder',
     'cost-estimator': 'Estimador de Custo de Nuvem',
     'iam-policy-generator': 'Gerador de Política IAM',
-    'deep-link-tester': 'Testador de Deep Link',
     'git-commands': 'Comandos Git',
     'days-until': 'Quantos dias até...',
     'date-time-calculator': 'Calculadora de Data e Hora',
@@ -639,7 +637,6 @@ export const LABELS = {
     data: 'Files & Data',
     network: 'Network',
     ai: 'AI',
-    mobile: 'Mobile',
     text: 'Text',
     references: 'References',
     extras: 'Out of the box',
@@ -673,7 +670,6 @@ export const LABELS = {
     'llm-prompt-builder': 'LLM Prompt Builder',
     'cost-estimator': 'Cloud Cost Estimator',
     'iam-policy-generator': 'IAM Policy Generator',
-    'deep-link-tester': 'Deep Link Tester',
     'git-commands': 'Git Commands',
     'days-until': 'Days Until...',
     'date-time-calculator': 'Date & Time Calculator',
@@ -1655,14 +1651,6 @@ export function buildMenuItems(l) {
       ],
     },
     {
-      key: 'group-mobile',
-      icon: <MobileOutlined />,
-      label: l.mobile,
-      children: [
-        { key: '/mobile/deep-link-tester', label: l['deep-link-tester'] },
-      ],
-    },
-    {
       key: 'group-text',
       icon: <FontSizeOutlined />,
       label: l.text,
@@ -1773,7 +1761,7 @@ export function buildMenuItems(l) {
 const MOBILE_MENU_OPEN_KEYS = [
   'group-tools', 'group-styles', 'group-snippets', 'group-frontend', 'group-apis',
   'group-devops', 'group-database', 'group-cloud', 'group-security', 'group-data',
-  'group-network', 'group-ai', 'group-mobile', 'group-text', 'group-references', 'group-extras',
+  'group-network', 'group-ai', 'group-text', 'group-references', 'group-extras',
 ]
 
 export default function AppLayout() {
