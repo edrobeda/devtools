@@ -133,7 +133,7 @@ import HashIdentifierPage from './pages/HashIdentifierPage'
 import PkceGeneratorPage from './pages/PkceGeneratorPage'
 import TokenCounterPage from './pages/TokenCounterPage'
 import PomodoroTimerPage from './pages/PomodoroTimerPage'
-import EnvToolPage from './pages/EnvToolPage'
+import EnvFileValidatorPage from './pages/EnvFileValidatorPage'
 import RemoveAccentsPage from './pages/RemoveAccentsPage'
 import XmlFormatterPage from './pages/XmlFormatterPage'
 import DeepCloneDeepEqualPage from './pages/DeepCloneDeepEqualPage'
@@ -657,7 +657,8 @@ const router = createBrowserRouter([
       { path: 'security/saml-decoder', element: <SamlDecoderPage /> },
       { path: 'security/jwt-signature-verifier', element: <JwtSignatureVerifierPage /> },
       { path: 'ai/token-counter', element: <TokenCounterPage /> },
-      { path: 'devops/env-tool', element: <EnvToolPage /> },
+      { path: 'devops/env-tool', element: <Navigate to="/devops/env-file-validator" replace /> },
+      { path: 'devops/env-file-validator', element: <EnvFileValidatorPage /> },
       { path: 'text/remove-accents', element: <RemoveAccentsPage /> },
       { path: 'tools/xml-formatter', element: <XmlFormatterPage /> },
       { path: 'tools/toml-formatter', element: <TomlFormatterPage /> },

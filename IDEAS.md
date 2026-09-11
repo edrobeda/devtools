@@ -104,7 +104,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 ## 🛠 Desenvolvimento & DevOps
 
 - [ ] Environment Variables Manager
-- [x] Parser/validador de arquivo `.env` — `/devops/env-tool`
+- [x] Parser/validador de arquivo `.env` — `/devops/env-file-validator`
 - [x] Docker Compose Generator — `/devops/docker-compose-generator`
 - [ ] Docker Compose Visualizer 🔥
 - [x] Dockerfile Generator — `/devops/dockerfile-generator`
