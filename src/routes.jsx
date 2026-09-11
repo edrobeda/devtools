@@ -499,6 +499,7 @@ import IntlPlaygroundPage from './pages/IntlPlaygroundPage'
 import JsonRepairPage from './pages/JsonRepairPage'
 import GrepCommandBuilderPage from './pages/GrepCommandBuilderPage'
 import CssResetGeneratorPage from './pages/CssResetGeneratorPage'
+import JsonToGraphqlPage from './pages/JsonToGraphqlPage'
 import GridBuilderPage from './pages/GridBuilderPage'
 import JsonPathBuilderPage from './pages/JsonPathBuilderPage'
 import PasswordEntropyCalculatorPage from './pages/PasswordEntropyCalculatorPage'
@@ -798,6 +799,7 @@ const router = createBrowserRouter([
       { path: 'data/json-to-typescript', element: <JsonToTypeScriptPage /> },
       { path: 'data/json-to-yaml', element: <JsonToYamlPage /> },
       { path: 'data/json-to-zod-schema', element: <JsonToZodSchemaPage /> },
+      { path: 'data/json-to-graphql', element: <JsonToGraphqlPage /> },
       { path: 'data/json-flatten', element: <JsonFlattenPage /> },
       { path: 'devops/docker-compose-generator', element: <DockerComposeGeneratorPage /> },
       { path: 'devops/docker-run-to-compose', element: <DockerRunToComposePage /> },
