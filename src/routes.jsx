@@ -23,6 +23,7 @@ import CurlToCodePage from './pages/CurlToCodePage'
 import GraphqlFormatterPage from './pages/GraphqlFormatterPage'
 import OpenapiSpecGeneratorPage from './pages/OpenapiSpecGeneratorPage'
 import ProblemDetailsGeneratorPage from './pages/ProblemDetailsGeneratorPage'
+import HttpRequestToolPage from './pages/HttpRequestToolPage'
 import GitignoreGeneratorPage from './pages/GitignoreGeneratorPage'
 import RateLimitCalculatorPage from './pages/RateLimitCalculatorPage'
 import ArnParserPage from './pages/ArnParserPage'
@@ -535,6 +536,7 @@ const router = createBrowserRouter([
       { path: 'apis/graphql-formatter', element: <GraphqlFormatterPage /> },
       { path: 'apis/openapi-spec-generator', element: <OpenapiSpecGeneratorPage /> },
       { path: 'apis/problem-details-generator', element: <ProblemDetailsGeneratorPage /> },
+      { path: 'apis/http-request-tool', element: <HttpRequestToolPage /> },
       { path: 'devops/gitignore-generator', element: <GitignoreGeneratorPage /> },
       { path: 'tools/rate-limit-calculator', element: <RateLimitCalculatorPage /> },
       { path: 'cloud/arn-parser', element: <ArnParserPage /> },

@@ -178,6 +178,7 @@ export const LABELS = {
     'url-parser': 'URL Parser & Query Editor',
     'graphql-formatter': 'GraphQL Formatter & Minifier',
     'openapi-spec-generator': 'Gerador de Especificação OpenAPI',
+    'http-request-tool': 'Cliente HTTP / REST',
     'problem-details-generator': 'Gerador de Problem Details (RFC 7807)',
     'utm-url-builder': 'Construtor de URL com UTM',
     'email-signature-generator': 'Gerador de Assinatura de E-mail',
@@ -700,6 +701,7 @@ export const LABELS = {
     'url-parser': 'URL Parser & Query Editor',
     'graphql-formatter': 'GraphQL Formatter & Minifier',
     'openapi-spec-generator': 'OpenAPI Spec Generator',
+    'http-request-tool': 'HTTP Request / REST Client',
     'problem-details-generator': 'Problem Details Generator (RFC 7807)',
     'utm-url-builder': 'UTM URL Builder',
     'email-signature-generator': 'E-mail Signature Generator',
@@ -1520,6 +1522,7 @@ export function buildMenuItems(l) {
         { key: '/apis/curl-to-code', icon: <CodeOutlined />, label: withNewBadge('/apis/curl-to-code', l['curl-to-code'], l) },
         { key: '/apis/openapi-spec-generator', icon: <FileTextOutlined />, label: withNewBadge('/apis/openapi-spec-generator', l['openapi-spec-generator'], l) },
         { key: '/apis/webhook-payload-generator', label: withNewBadge('/apis/webhook-payload-generator', l['webhook-payload-generator'], l) },
+        { key: '/apis/http-request-tool', icon: <ApiOutlined />, label: withNewBadge('/apis/http-request-tool', l['http-request-tool'], l) },
       ],
     },
     {
