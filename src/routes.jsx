@@ -47,6 +47,7 @@ import Base32ToolPage from './pages/Base32ToolPage'
 import Base58ToolPage from './pages/Base58ToolPage'
 import UuidGeneratorPage from './pages/UuidGeneratorPage'
 import UuidV7ToolPage from './pages/UuidV7ToolPage'
+import SnowflakeIdToolPage from './pages/SnowflakeIdToolPage'
 import HtmlFormatterPage from './pages/HtmlFormatterPage'
 import CaseConverterPage from './pages/CaseConverterPage'
 import PasswordGeneratorPage from './pages/PasswordGeneratorPage'
@@ -558,6 +559,7 @@ const router = createBrowserRouter([
       { path: 'tools/base58-tool', element: <Base58ToolPage /> },
       { path: 'tools/uuid-generator', element: <UuidGeneratorPage /> },
       { path: 'tools/uuid-v7-tool', element: <UuidV7ToolPage /> },
+      { path: 'tools/snowflake-id-tool', element: <SnowflakeIdToolPage /> },
       { path: 'tools/ulid-tool', element: <Navigate to="/tools/uuid-v7-tool" replace /> },
       { path: 'tools/case-converter', element: <CaseConverterPage /> },
       { path: 'tools/password-generator', element: <PasswordGeneratorPage /> },
