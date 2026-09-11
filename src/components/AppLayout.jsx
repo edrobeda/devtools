@@ -616,6 +616,7 @@ export const LABELS = {
     'lua-cheatsheet': 'Cheat Sheet de Lua',
     'sql-window-functions': 'Funções de Janela SQL (OVER)',
     'emoji-cheatsheet': 'Cheat Sheet de Emojis',
+    'css-color-names': 'Cores Nomeadas do CSS',
     'image-resizer': 'Redimensionador de Imagem',
     'xpath-tester': 'XPath Tester',
     'hex-dump': 'Visualizador Hex Dump (xxd)',
@@ -1135,6 +1136,7 @@ export const LABELS = {
     'lua-cheatsheet': 'Lua Cheat Sheet',
     'sql-window-functions': 'SQL Window Functions (OVER)',
     'emoji-cheatsheet': 'Emoji Cheat Sheet',
+    'css-color-names': 'CSS Named Colors',
     'image-resizer': 'Image Resizer',
     'xpath-tester': 'XPath Tester',
     'hex-dump': 'Hex Dump / xxd Viewer',
@@ -1743,6 +1745,7 @@ export function buildMenuItems(l) {
         { key: '/references/lua-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/lua-cheatsheet', l['lua-cheatsheet'], l) },
         { key: '/references/sql-window-functions', icon: <TableOutlined />, label: withNewBadge('/references/sql-window-functions', l['sql-window-functions'], l) },
         { key: '/references/emoji-cheatsheet', icon: <SmileOutlined />, label: withNewBadge('/references/emoji-cheatsheet', l['emoji-cheatsheet'], l) },
+        { key: '/references/css-color-names', icon: <BgColorsOutlined />, label: withNewBadge('/references/css-color-names', l['css-color-names'], l) },
       ],
     },
     {

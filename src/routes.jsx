@@ -502,6 +502,7 @@ import GridBuilderPage from './pages/GridBuilderPage'
 import JsonPathBuilderPage from './pages/JsonPathBuilderPage'
 import PasswordEntropyCalculatorPage from './pages/PasswordEntropyCalculatorPage'
 import CronScheduleTimelinePage from './pages/CronScheduleTimelinePage'
+import CssColorNamesPage from './pages/CssColorNamesPage'
 
 const router = createBrowserRouter([
   {
@@ -682,6 +683,7 @@ const router = createBrowserRouter([
       { path: 'network/user-agent-parser', element: <UserAgentParserPage /> },
       { path: 'tools/cron-builder', element: <CronBuilderPage /> },
       { path: 'tools/cron-schedule-timeline', element: <CronScheduleTimelinePage /> },
+      { path: 'references/css-color-names', element: <CssColorNamesPage /> },
       { path: 'network/mime-lookup', element: <MimeLookupPage /> },
       { path: 'references/http-methods', element: <HttpMethodsPage /> },
       { path: 'tools/number-to-words', element: <NumberToWordsPage /> },
