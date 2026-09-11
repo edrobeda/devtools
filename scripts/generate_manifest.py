@@ -24,7 +24,21 @@ OUTPUT_FILE = os.path.join(ROOT, "manifest.xml")
 
 ROUTE_RE = re.compile(r"\{\s*path:\s*['\"]([^'\"]+)['\"]\s*,\s*element:\s*<(\w+)\s*/>\s*\}")
 TITLE_RE = re.compile(r"title:\s*['\"]([^'\"]+)['\"]")
+# O título real da página é SEMPRE a primeira chave `title:`/`heading:` do bloco
+# `pt:` de traduções — não a primeira ocorrência de `title:` no arquivo inteiro
+# (que pode ser um rótulo de campo, dado de exemplo ou fixture).
+PT_TITLE_RE = re.compile(
+    r"const\s+translations\s*=\s*\{[\s\S]*?pt:\s*\{[\s\S]*?(?:title|heading):\s*['\"]([^'\"]+)['\"]"
+)
 INTRO_RE = re.compile(r"intro:\s*(.*?)(?=\n\s{4}\w[\w]*:|\n\s{2}\},)", re.DOTALL)
+
+
+def extract_title(page_src, component):
+    pt_title_match = PT_TITLE_RE.search(page_src)
+    if pt_title_match:
+        return pt_title_match.group(1)
+    title_match = TITLE_RE.search(page_src)
+    return title_match.group(1) if title_match else component
 
 
 def extract_description(text):
@@ -60,8 +74,7 @@ def main():
         with open(page_file, encoding="utf-8") as f:
             page_src = f.read()
 
-        title_match = TITLE_RE.search(page_src)
-        title = title_match.group(1) if title_match else component
+        title = extract_title(page_src, component)
 
         intro_match = INTRO_RE.search(page_src)
         description = extract_description(intro_match.group(1)) if intro_match else ""
