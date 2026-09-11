@@ -36,7 +36,7 @@ const { TextArea } = Input
 
 const DELIMITERS = { comma: ',', semicolon: ';', tab: '\t' }
 
-const EXAMPLES = {
+const CSV_EXAMPLES = {
   users:
     `id,name,email,active,age,created_at
 1,Dana Reyes,dana@example.com,true,34,2024-08-01 10:00:00
@@ -50,6 +50,18 @@ XYZ-789,Gadget,49.50,false,23`,
     `order_id,user_id,total,created_at,paid
 1001,1,120.00,2024-09-01 14:00:00,true
 1002,3,45.50,2024-09-02 09:30:00,false`,
+}
+
+const JSON_EXAMPLES = {
+  jsonUsers: JSON.stringify(
+    [
+      { id: 1, name: 'Dana Reyes', email: 'dana@example.com', active: true, age: 34, created_at: '2024-08-01 10:00:00', meta: { plan: 'pro' } },
+      { id: 2, name: 'Leo Costa', email: 'leo@example.com', active: false, age: 28, created_at: '2024-08-02 11:30:00', meta: { plan: 'free' } },
+      { id: 3, name: 'Mara Lima', email: 'mara@example.com', active: true, age: 41, created_at: '2024-08-03 09:15:00', meta: null },
+    ],
+    null,
+    2,
+  ),
 }
 
 const SOURCE_SNIPPET = `function parseCsv(text, delimiter) {
@@ -87,18 +99,62 @@ function inferType(values) {
 const createSql = generateCreateTable(tableName, columns, dialect, opts)
 const insertSql = generateInsert(tableName, columns, rows, dialect, batchSize)`
 
+function serializeNestedCell(v, nestedOn) {
+  if (v === null || v === undefined) return ''
+  if (typeof v === 'object') return nestedOn ? JSON.stringify(v) : ''
+  return String(v)
+}
+
+function parseJsonRows(text, nestedOn) {
+  const parsed = JSON.parse(text)
+  const raw = Array.isArray(parsed) ? parsed : [parsed]
+  const objectRows = raw.filter(
+    (r) => r !== null && typeof r === 'object' && !Array.isArray(r),
+  )
+  const useObjects = objectRows.length > 0
+
+  const cols = []
+  if (useObjects) {
+    const seen = new Set()
+    for (const r of objectRows) {
+      for (const k of Object.keys(r)) {
+        if (!seen.has(k)) {
+          seen.add(k)
+          cols.push(k)
+        }
+      }
+    }
+  }
+  if (cols.length === 0) cols.push('value')
+
+  const header = [...cols]
+  const dataRows = raw.map((r) => {
+    if (useObjects && r !== null && typeof r === 'object' && !Array.isArray(r)) {
+      return cols.map((c) => serializeNestedCell(r[c], nestedOn))
+    }
+    return [serializeNestedCell(r, nestedOn)]
+  })
+
+  return [header, ...dataRows]
+}
+
 const translations = {
   pt: {
-    title: 'CSV → SQL',
+    title: 'CSV / JSON → SQL',
     intro:
-      'Cole uma planilha CSV e gere comandos CREATE TABLE + INSERT prontos para rodar no PostgreSQL, MySQL, SQLite ou SQL Server. O motor infere os tipos a partir dos dados, normaliza os nomes das colunas e deixa você ajustar cada campo antes de gerar o SQL. Tudo acontece no navegador — nenhum dado sai daqui.',
-    inputTitle: 'CSV de entrada',
-    inputPlaceholder:
-      'id,nome,email\n1,Ana,ana@example.com\n2,Bruno,bruno@example.com',
+      'Cole dados tabulares em CSV ou JSON e gere comandos CREATE TABLE + INSERT prontos para rodar no PostgreSQL, MySQL, SQLite ou SQL Server. O motor infere os tipos a partir dos dados, normaliza os nomes das colunas e deixa você ajustar cada campo antes de gerar o SQL. Objetos/arrays aninhados do JSON são serializados como JSON string ou NULL. Tudo acontece no navegador — nenhum dado sai daqui.',
+    inputTitle: 'Dados de entrada',
+    inputPlaceholder: 'Cole CSV (cabeçalho + dados) ou JSON (array de objetos)...',
+    formatLabel: 'Formato',
+    formatCsv: 'CSV',
+    formatJson: 'JSON',
     delimiter: 'Delimitador',
     comma: 'Vírgula',
     semicolon: 'Ponto e vírgula',
     tab: 'Tab',
+    nested: 'Aninhados',
+    nestedJson: 'JSON string',
+    nestedText: 'NULL',
     optionsTitle: 'Opções do SQL',
     tableLabel: 'Tabela',
     dialect: 'Dialeto',
@@ -118,31 +174,39 @@ const translations = {
     primaryKey: 'PK',
     resetColumns: 'Redefinir colunas',
     resultTitle: 'SQL gerado',
-    empty: 'Cole um CSV com cabeçalho e pelo menos uma linha de dados para gerar o SQL.',
+    empty: 'Cole dados tabulares (CSV ou JSON) para gerar o SQL.',
     copy: 'Copiar SQL',
     copied: 'Copiado!',
     clear: 'Limpar',
     example: 'Exemplo',
-    exampleUsers: 'Usuários',
-    exampleProducts: 'Produtos',
-    exampleOrders: 'Pedidos',
+    exampleUsers: 'Usuários (CSV)',
+    exampleProducts: 'Produtos (CSV)',
+    exampleOrders: 'Pedidos (CSV)',
+    exampleJsonUsers: 'Usuários (JSON)',
+    errInvalid: 'JSON inválido: ',
+    errTitle: 'Não foi possível gerar o SQL.',
     statRows: 'linhas',
     statCols: 'colunas',
     statBytes: 'bytes',
-    note: 'O parser entende aspas, aspas duplicadas ("") e quebras de linha dentro de campos. Tipos são inferidos heuristicamente: booleanos, inteiros, decimais, datas e timestamps. Revise as colunas antes de copiar o SQL para produção — a inferência é uma conveniência, não um schema definitivo.',
+    note: 'CSV: entende aspas, aspas duplicadas ("") e quebras de linha dentro de campos. JSON: serializa objetos/arrays aninhados como JSON string ou NULL, conforme a opção. Tipos são inferidos heuristicamente: booleanos, inteiros, decimais, datas, timestamps e JSON. Revise as colunas antes de copiar o SQL para produção — a inferência é uma conveniência, não um schema definitivo.',
     sourceTitle: 'Como funciona',
   },
   en: {
-    title: 'CSV → SQL',
+    title: 'CSV / JSON → SQL',
     intro:
-      'Paste a CSV spreadsheet and generate ready-to-run CREATE TABLE + INSERT statements for PostgreSQL, MySQL, SQLite or SQL Server. The engine infers column types from the data, normalizes column names and lets you adjust each field before generating SQL. Fully client-side.',
-    inputTitle: 'Input CSV',
-    inputPlaceholder:
-      'id,name,email\n1,Ana,ana@example.com\n2,Bruno,bruno@example.com',
+      'Paste tabular data as CSV or JSON and generate ready-to-run CREATE TABLE + INSERT statements for PostgreSQL, MySQL, SQLite or SQL Server. The engine infers column types from the data, normalizes column names and lets you adjust each field before generating SQL. Nested objects/arrays in JSON are serialized as JSON text or NULL. Fully client-side.',
+    inputTitle: 'Input data',
+    inputPlaceholder: 'Paste CSV (header + rows) or JSON (array of objects)...',
+    formatLabel: 'Format',
+    formatCsv: 'CSV',
+    formatJson: 'JSON',
     delimiter: 'Delimiter',
     comma: 'Comma',
     semicolon: 'Semicolon',
     tab: 'Tab',
+    nested: 'Nested',
+    nestedJson: 'JSON string',
+    nestedText: 'NULL',
     optionsTitle: 'SQL options',
     tableLabel: 'Table',
     dialect: 'Dialect',
@@ -162,18 +226,21 @@ const translations = {
     primaryKey: 'PK',
     resetColumns: 'Reset columns',
     resultTitle: 'Generated SQL',
-    empty: 'Paste a CSV with a header row and at least one data row to generate SQL.',
+    empty: 'Paste tabular data (CSV or JSON) to generate SQL.',
     copy: 'Copy SQL',
     copied: 'Copied!',
     clear: 'Clear',
     example: 'Example',
-    exampleUsers: 'Users',
-    exampleProducts: 'Products',
-    exampleOrders: 'Orders',
+    exampleUsers: 'Users (CSV)',
+    exampleProducts: 'Products (CSV)',
+    exampleOrders: 'Orders (CSV)',
+    exampleJsonUsers: 'Users (JSON)',
+    errInvalid: 'Invalid JSON: ',
+    errTitle: 'Could not generate the SQL.',
     statRows: 'rows',
     statCols: 'columns',
     statBytes: 'bytes',
-    note: 'The parser handles quotes, doubled quotes ("") and line breaks inside fields. Types are heuristically inferred: booleans, integers, decimals, dates and timestamps. Review the columns before copying the SQL to production — inference is a convenience, not a definitive schema.',
+    note: 'CSV: handles quotes, doubled quotes ("") and line breaks inside fields. JSON: serializes nested objects/arrays as JSON text or NULL. Types are inferred heuristically: booleans, integers, decimals, dates, timestamps, and JSON. Review the columns before copying the SQL to production — inference is a convenience, not a definitive schema.',
     sourceTitle: 'Under the hood',
   },
 }
@@ -183,7 +250,9 @@ export default function CsvToSqlPage() {
   const t = translations[lang]
 
   const [input, setInput] = useState('')
+  const [format, setFormat] = useState('csv')
   const [delimiterKey, setDelimiterKey] = useState('comma')
+  const [nested, setNested] = useState('json')
   const [tableName, setTableName] = useState('my_table')
   const [dialect, setDialect] = useState('postgres')
   const [batchSize, setBatchSize] = useState('all')
@@ -195,7 +264,26 @@ export default function CsvToSqlPage() {
 
   const delimiter = DELIMITERS[delimiterKey]
 
-  const rows = useMemo(() => parseCsv(input, delimiter), [input, delimiter])
+  const jsonError = useMemo(() => {
+    if (format === 'csv' || !input.trim()) return null
+    try {
+      parseJsonRows(input, nested === 'json')
+      return null
+    } catch (e) {
+      return `${t.errInvalid}${e?.message || e}`
+    }
+  }, [input, format, nested, t.errInvalid])
+
+  const rows = useMemo(() => {
+    if (format === 'csv') return parseCsv(input, delimiter)
+    if (!input.trim()) return []
+    try {
+      return parseJsonRows(input, nested === 'json')
+    } catch {
+      return []
+    }
+  }, [input, delimiter, format, nested])
+
   const inferredColumns = useMemo(() => inferColumns(rows), [rows])
 
   const columns = useMemo(() => {
@@ -233,7 +321,13 @@ export default function CsvToSqlPage() {
   ])
 
   function loadExample(key) {
-    setInput(EXAMPLES[key])
+    if (JSON_EXAMPLES[key]) {
+      setInput(JSON_EXAMPLES[key])
+      setFormat('json')
+    } else if (CSV_EXAMPLES[key]) {
+      setInput(CSV_EXAMPLES[key])
+      setFormat('csv')
+    }
     setOverrides({})
   }
 
@@ -273,6 +367,17 @@ export default function CsvToSqlPage() {
       <Row gutter={[16, 16]}>
         <Col xs={24} lg={12}>
           <Card title={t.inputTitle}>
+            <Space style={{ marginBottom: 12 }}>
+              <Text>{t.formatLabel}:</Text>
+              <Segmented
+                value={format}
+                onChange={setFormat}
+                options={[
+                  { label: t.formatCsv, value: 'csv' },
+                  { label: t.formatJson, value: 'json' },
+                ]}
+              />
+            </Space>
             <TextArea
               rows={10}
               value={input}
@@ -280,18 +385,35 @@ export default function CsvToSqlPage() {
               placeholder={t.inputPlaceholder}
               style={{ fontFamily: 'monospace' }}
             />
-            <Space style={{ marginTop: 12 }}>
-              <Text>{t.delimiter}:</Text>
-              <Radio.Group
-                value={delimiterKey}
-                onChange={(e) => setDelimiterKey(e.target.value)}
-                optionType="button"
-                size="small"
-              >
-                <Radio.Button value="comma">{t.comma}</Radio.Button>
-                <Radio.Button value="semicolon">{t.semicolon}</Radio.Button>
-                <Radio.Button value="tab">{t.tab}</Radio.Button>
-              </Radio.Group>
+            <Space style={{ marginTop: 12 }} wrap>
+              {format === 'csv' && (
+                <>
+                  <Text>{t.delimiter}:</Text>
+                  <Radio.Group
+                    value={delimiterKey}
+                    onChange={(e) => setDelimiterKey(e.target.value)}
+                    optionType="button"
+                    size="small"
+                  >
+                    <Radio.Button value="comma">{t.comma}</Radio.Button>
+                    <Radio.Button value="semicolon">{t.semicolon}</Radio.Button>
+                    <Radio.Button value="tab">{t.tab}</Radio.Button>
+                  </Radio.Group>
+                </>
+              )}
+              {format === 'json' && (
+                <>
+                  <Text>{t.nested}:</Text>
+                  <Segmented
+                    value={nested}
+                    onChange={setNested}
+                    options={[
+                      { label: t.nestedJson, value: 'json' },
+                      { label: t.nestedText, value: 'null' },
+                    ]}
+                  />
+                </>
+              )}
             </Space>
           </Card>
         </Col>
@@ -357,6 +479,10 @@ export default function CsvToSqlPage() {
           </Card>
         </Col>
       </Row>
+
+      {jsonError && (
+        <Alert type="error" showIcon message={t.errTitle} description={jsonError} />
+      )}
 
       <Card
         title={t.columnsTitle}
@@ -433,12 +559,13 @@ export default function CsvToSqlPage() {
               value={undefined}
               placeholder={t.example}
               size="small"
-              style={{ width: 140 }}
+              style={{ width: 160 }}
               onChange={loadExample}
               options={[
                 { value: 'users', label: t.exampleUsers },
                 { value: 'products', label: t.exampleProducts },
                 { value: 'orders', label: t.exampleOrders },
+                { value: 'jsonUsers', label: t.exampleJsonUsers },
               ]}
             />
             <Button
@@ -469,7 +596,9 @@ export default function CsvToSqlPage() {
             <code>{fullSql}</code>
           </pre>
         ) : (
-          <Text type="secondary">{t.empty}</Text>
+          <Text type="secondary">
+            {jsonError ? t.errTitle : t.empty}
+          </Text>
         )}
       </Card>
 

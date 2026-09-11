@@ -34,7 +34,6 @@ import SubnetCalculatorPage from './pages/SubnetCalculatorPage'
 import AnthropicCostCalculatorPage from './pages/AnthropicCostCalculatorPage'
 import OpenAiCostCalculatorPage from './pages/OpenAiCostCalculatorPage'
 import LlmPromptBuilderPage from './pages/LlmPromptBuilderPage'
-import DeepLinkTesterPage from './pages/DeepLinkTesterPage'
 import GitCommandsPage from './pages/GitCommandsPage'
 import DaysUntilPage from './pages/DaysUntilPage'
 import DateTimeCalculatorPage from './pages/DateTimeCalculatorPage'
@@ -48,7 +47,6 @@ import Base32ToolPage from './pages/Base32ToolPage'
 import Base58ToolPage from './pages/Base58ToolPage'
 import UuidGeneratorPage from './pages/UuidGeneratorPage'
 import UuidV7ToolPage from './pages/UuidV7ToolPage'
-import UlidToolPage from './pages/UlidToolPage'
 import HtmlFormatterPage from './pages/HtmlFormatterPage'
 import CaseConverterPage from './pages/CaseConverterPage'
 import PasswordGeneratorPage from './pages/PasswordGeneratorPage'
@@ -135,7 +133,7 @@ import HashIdentifierPage from './pages/HashIdentifierPage'
 import PkceGeneratorPage from './pages/PkceGeneratorPage'
 import TokenCounterPage from './pages/TokenCounterPage'
 import PomodoroTimerPage from './pages/PomodoroTimerPage'
-import EnvToolPage from './pages/EnvToolPage'
+import EnvFileValidatorPage from './pages/EnvFileValidatorPage'
 import RemoveAccentsPage from './pages/RemoveAccentsPage'
 import XmlFormatterPage from './pages/XmlFormatterPage'
 import DeepCloneDeepEqualPage from './pages/DeepCloneDeepEqualPage'
@@ -147,7 +145,6 @@ import ImagePaletteExtractorPage from './pages/ImagePaletteExtractorPage'
 import ImageDiffVisualizerPage from './pages/ImageDiffVisualizerPage'
 import UuidCollisionSimulatorPage from './pages/UuidCollisionSimulatorPage'
 import UnicodeInspectorPage from './pages/UnicodeInspectorPage'
-import JsonToSqlPage from './pages/JsonToSqlPage'
 import SortingVisualizerPage from './pages/SortingVisualizerPage'
 import OtpInputPage from './pages/OtpInputPage'
 import TimezoneConverterPage from './pages/TimezoneConverterPage'
@@ -470,6 +467,7 @@ import PrometheusCheatsheetPage from './pages/PrometheusCheatsheetPage'
 import KafkaCheatsheetPage from './pages/KafkaCheatsheetPage'
 import ElasticsearchCheatsheetPage from './pages/ElasticsearchCheatsheetPage'
 import CppCheatsheetPage from './pages/CppCheatsheetPage'
+import VueCheatsheetPage from './pages/VueCheatsheetPage'
 import GraphqlCheatsheetPage from './pages/GraphqlCheatsheetPage'
 import GrpcCheatsheetPage from './pages/GrpcCheatsheetPage'
 import RubyCheatsheetPage from './pages/RubyCheatsheetPage'
@@ -502,6 +500,8 @@ import GrepCommandBuilderPage from './pages/GrepCommandBuilderPage'
 import CssResetGeneratorPage from './pages/CssResetGeneratorPage'
 import GridBuilderPage from './pages/GridBuilderPage'
 import JsonPathBuilderPage from './pages/JsonPathBuilderPage'
+import PasswordEntropyCalculatorPage from './pages/PasswordEntropyCalculatorPage'
+import CronScheduleTimelinePage from './pages/CronScheduleTimelinePage'
 
 const router = createBrowserRouter([
   {
@@ -543,7 +543,6 @@ const router = createBrowserRouter([
       { path: 'ai/anthropic-cost-calculator', element: <AnthropicCostCalculatorPage /> },
       { path: 'ai/openai-cost-calculator', element: <OpenAiCostCalculatorPage /> },
       { path: 'ai/llm-prompt-builder', element: <LlmPromptBuilderPage /> },
-      { path: 'mobile/deep-link-tester', element: <DeepLinkTesterPage /> },
       { path: 'text/word-counter', element: <Navigate to="/tools/reading-time-calculator" replace /> },
       { path: 'references/git-commands', element: <GitCommandsPage /> },
       { path: 'extras/days-until', element: <DaysUntilPage /> },
@@ -558,7 +557,7 @@ const router = createBrowserRouter([
       { path: 'tools/base58-tool', element: <Base58ToolPage /> },
       { path: 'tools/uuid-generator', element: <UuidGeneratorPage /> },
       { path: 'tools/uuid-v7-tool', element: <UuidV7ToolPage /> },
-      { path: 'tools/ulid-tool', element: <UlidToolPage /> },
+      { path: 'tools/ulid-tool', element: <Navigate to="/tools/uuid-v7-tool" replace /> },
       { path: 'tools/case-converter', element: <CaseConverterPage /> },
       { path: 'tools/password-generator', element: <PasswordGeneratorPage /> },
       { path: 'tools/url-encoder', element: <UrlEncoderPage /> },
@@ -659,7 +658,8 @@ const router = createBrowserRouter([
       { path: 'security/saml-decoder', element: <SamlDecoderPage /> },
       { path: 'security/jwt-signature-verifier', element: <JwtSignatureVerifierPage /> },
       { path: 'ai/token-counter', element: <TokenCounterPage /> },
-      { path: 'devops/env-tool', element: <EnvToolPage /> },
+      { path: 'devops/env-tool', element: <Navigate to="/devops/env-file-validator" replace /> },
+      { path: 'devops/env-file-validator', element: <EnvFileValidatorPage /> },
       { path: 'text/remove-accents', element: <RemoveAccentsPage /> },
       { path: 'tools/xml-formatter', element: <XmlFormatterPage /> },
       { path: 'tools/toml-formatter', element: <TomlFormatterPage /> },
@@ -676,12 +676,12 @@ const router = createBrowserRouter([
       { path: 'references/vim-cheatsheet', element: <VimCheatsheetPage /> },
       { path: 'extras/uuid-collision-simulator', element: <UuidCollisionSimulatorPage /> },
       { path: 'tools/unicode-inspector', element: <UnicodeInspectorPage /> },
-      { path: 'database/json-to-sql', element: <JsonToSqlPage /> },
       { path: 'extras/sorting-visualizer', element: <SortingVisualizerPage /> },
       { path: 'styles/otp-input', element: <OtpInputPage /> },
       { path: 'tools/timezone-converter', element: <TimezoneConverterPage /> },
       { path: 'network/user-agent-parser', element: <UserAgentParserPage /> },
       { path: 'tools/cron-builder', element: <CronBuilderPage /> },
+      { path: 'tools/cron-schedule-timeline', element: <CronScheduleTimelinePage /> },
       { path: 'network/mime-lookup', element: <MimeLookupPage /> },
       { path: 'references/http-methods', element: <HttpMethodsPage /> },
       { path: 'tools/number-to-words', element: <NumberToWordsPage /> },
@@ -999,6 +999,7 @@ const router = createBrowserRouter([
       { path: 'references/django-cheatsheet', element: <DjangoCheatsheetPage /> },
       { path: 'references/helm-cheatsheet', element: <HelmCheatsheetPage /> },
       { path: 'references/c-cheatsheet', element: <CCheatsheetPage /> },
+      { path: 'references/vue-cheatsheet', element: <VueCheatsheetPage /> },
       { path: 'tools/email-header-analyzer', element: <EmailHeaderAnalyzerPage /> },
       { path: 'tools/ascii-banner-generator', element: <AsciiBannerGeneratorPage /> },
       { path: 'tools/image-to-ascii', element: <ImageToAsciiPage /> },
@@ -1014,6 +1015,7 @@ const router = createBrowserRouter([
       { path: 'tools/combinatorics-calculator', element: <CombinatoricsCalculatorPage /> },
       { path: 'tools/grep-command-builder', element: <GrepCommandBuilderPage /> },
       { path: 'frontend/css-reset-generator', element: <CssResetGeneratorPage /> },
+      { path: 'security/password-entropy-calculator', element: <PasswordEntropyCalculatorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

@@ -158,7 +158,7 @@ const SOURCE = `export function parseEnv(input) {
   return { entries, issues, warnings }
 }`
 
-export default function EnvToolPage() {
+export default function EnvFileValidatorPage() {
   const { lang } = useLanguage()
   const t = translations[lang]
   const [content, setContent] = useState('')

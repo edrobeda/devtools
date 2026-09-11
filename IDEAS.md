@@ -104,7 +104,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 ## 🛠 Desenvolvimento & DevOps
 
 - [ ] Environment Variables Manager
-- [x] Parser/validador de arquivo `.env` — `/devops/env-tool`
+- [x] Parser/validador de arquivo `.env` — `/devops/env-file-validator`
 - [x] Docker Compose Generator — `/devops/docker-compose-generator`
 - [ ] Docker Compose Visualizer 🔥
 - [x] Dockerfile Generator — `/devops/dockerfile-generator`
@@ -315,7 +315,7 @@ Itens que quase ninguém oferece — bons candidatos pra se destacar:
 - [x] JWT Timeline 🔥 *(ver também em Código)* — `/tools/jwt-timeline`
 - [ ] Redis TTL Simulator 🔥 *(ver também em Banco de Dados)*
 - [ ] Rate Limit Calculator 🔥 *(ver também em Banco de Dados)*
-- [ ] Password Entropy Checker 🔥 *(ver também em Código)*
+- [x] Password Entropy Calculator 🔥 *(ver também em Segurança)* — `/security/password-entropy-calculator`
 - [ ] HTTP Request Replay 🔥 *(ver também em APIs)*
 - [ ] Git Commit Generator por IA 🔥 *(ver também em DevOps)*
 - [ ] API Mock Server instantâneo 🔥 *(ver também em APIs)*
