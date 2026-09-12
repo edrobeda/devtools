@@ -266,6 +266,7 @@ import CssFlipCardGeneratorPage from './pages/CssFlipCardGeneratorPage'
 import CssProgressRingGeneratorPage from './pages/CssProgressRingGeneratorPage'
 import CssDividerGeneratorPage from './pages/CssDividerGeneratorPage'
 import SvgSpriteGeneratorPage from './pages/SvgSpriteGeneratorPage'
+import SvgBlobGeneratorPage from './pages/SvgBlobGeneratorPage'
 import CssMarqueeGeneratorPage from './pages/CssMarqueeGeneratorPage'
 import CssCarouselGeneratorPage from './pages/CssCarouselGeneratorPage'
 import CssLoginFormGeneratorPage from './pages/CssLoginFormGeneratorPage'
@@ -791,6 +792,7 @@ const router = createBrowserRouter([
       { path: 'devops/ansi-colors', element: <AnsiColorsPage /> },
       { path: 'references/ascii-table', element: <AsciiTablePage /> },
       { path: 'frontend/svg-wave-generator', element: <SvgWaveGeneratorPage /> },
+      { path: 'frontend/svg-blob-generator', element: <SvgBlobGeneratorPage /> },
       { path: 'frontend/css-filter-generator', element: <CssFilterGeneratorPage /> },
       { path: 'frontend/meta-tags-generator', element: <MetaTagsGeneratorPage /> },
       { path: 'frontend/keyframe-generator', element: <KeyframeGeneratorPage /> },

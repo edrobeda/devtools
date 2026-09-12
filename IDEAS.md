@@ -70,7 +70,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Neumorphism Generator
 - [ ] Gradient Generator
 - [ ] SVG Background Generator
-- [ ] SVG Blob Generator
+- [x] SVG Blob Generator
 - [x] SVG Wave Generator (ondas decorativas empilhadas em SVG, com data URI) — `/frontend/svg-wave-generator`
 - [ ] SVG Icon Browser
 - [ ] Google Fonts Preview
