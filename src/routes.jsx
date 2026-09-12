@@ -23,6 +23,7 @@ import CurlToCodePage from './pages/CurlToCodePage'
 import GraphqlFormatterPage from './pages/GraphqlFormatterPage'
 import OpenapiSpecGeneratorPage from './pages/OpenapiSpecGeneratorPage'
 import ProblemDetailsGeneratorPage from './pages/ProblemDetailsGeneratorPage'
+import HttpRequestToolPage from './pages/HttpRequestToolPage'
 import GitignoreGeneratorPage from './pages/GitignoreGeneratorPage'
 import RateLimitCalculatorPage from './pages/RateLimitCalculatorPage'
 import ArnParserPage from './pages/ArnParserPage'
@@ -47,6 +48,7 @@ import Base32ToolPage from './pages/Base32ToolPage'
 import Base58ToolPage from './pages/Base58ToolPage'
 import UuidGeneratorPage from './pages/UuidGeneratorPage'
 import UuidV7ToolPage from './pages/UuidV7ToolPage'
+import SnowflakeIdToolPage from './pages/SnowflakeIdToolPage'
 import HtmlFormatterPage from './pages/HtmlFormatterPage'
 import CaseConverterPage from './pages/CaseConverterPage'
 import PasswordGeneratorPage from './pages/PasswordGeneratorPage'
@@ -75,7 +77,6 @@ import WebhookPayloadGeneratorPage from './pages/WebhookPayloadGeneratorPage'
 import CpfCnpjGeneratorPage from './pages/CpfCnpjGeneratorPage'
 import BaseConverterPage from './pages/BaseConverterPage'
 import UseWindowSizeSnippetPage from './pages/UseWindowSizeSnippetPage'
-import BouncingDotsLoaderPage from './pages/BouncingDotsLoaderPage'
 import DockerCommandsPage from './pages/DockerCommandsPage'
 import SemverComparatorPage from './pages/SemverComparatorPage'
 import SlugGeneratorPage from './pages/SlugGeneratorPage'
@@ -498,10 +499,12 @@ import IntlPlaygroundPage from './pages/IntlPlaygroundPage'
 import JsonRepairPage from './pages/JsonRepairPage'
 import GrepCommandBuilderPage from './pages/GrepCommandBuilderPage'
 import CssResetGeneratorPage from './pages/CssResetGeneratorPage'
+import JsonToGraphqlPage from './pages/JsonToGraphqlPage'
 import GridBuilderPage from './pages/GridBuilderPage'
 import JsonPathBuilderPage from './pages/JsonPathBuilderPage'
-import PasswordEntropyCalculatorPage from './pages/PasswordEntropyCalculatorPage'
+
 import CronScheduleTimelinePage from './pages/CronScheduleTimelinePage'
+import CssColorNamesPage from './pages/CssColorNamesPage'
 
 const router = createBrowserRouter([
   {
@@ -532,6 +535,7 @@ const router = createBrowserRouter([
       { path: 'apis/graphql-formatter', element: <GraphqlFormatterPage /> },
       { path: 'apis/openapi-spec-generator', element: <OpenapiSpecGeneratorPage /> },
       { path: 'apis/problem-details-generator', element: <ProblemDetailsGeneratorPage /> },
+      { path: 'apis/http-request-tool', element: <HttpRequestToolPage /> },
       { path: 'devops/gitignore-generator', element: <GitignoreGeneratorPage /> },
       { path: 'tools/rate-limit-calculator', element: <RateLimitCalculatorPage /> },
       { path: 'cloud/arn-parser', element: <ArnParserPage /> },
@@ -557,6 +561,7 @@ const router = createBrowserRouter([
       { path: 'tools/base58-tool', element: <Base58ToolPage /> },
       { path: 'tools/uuid-generator', element: <UuidGeneratorPage /> },
       { path: 'tools/uuid-v7-tool', element: <UuidV7ToolPage /> },
+      { path: 'tools/snowflake-id-tool', element: <SnowflakeIdToolPage /> },
       { path: 'tools/ulid-tool', element: <Navigate to="/tools/uuid-v7-tool" replace /> },
       { path: 'tools/case-converter', element: <CaseConverterPage /> },
       { path: 'tools/password-generator', element: <PasswordGeneratorPage /> },
@@ -598,7 +603,7 @@ const router = createBrowserRouter([
       { path: 'tools/cpf-cnpj-generator', element: <CpfCnpjGeneratorPage /> },
       { path: 'tools/base-converter', element: <BaseConverterPage /> },
       { path: 'snippets/use-window-size', element: <UseWindowSizeSnippetPage /> },
-      { path: 'styles/bouncing-dots-loader', element: <BouncingDotsLoaderPage /> },
+      { path: 'styles/bouncing-dots-loader', element: <Navigate to="/frontend/css-spinner-generator" replace /> },
       { path: 'references/docker-commands', element: <DockerCommandsPage /> },
       { path: 'tools/semver-comparator', element: <SemverComparatorPage /> },
       { path: 'tools/slug-generator', element: <SlugGeneratorPage /> },
@@ -682,6 +687,7 @@ const router = createBrowserRouter([
       { path: 'network/user-agent-parser', element: <UserAgentParserPage /> },
       { path: 'tools/cron-builder', element: <CronBuilderPage /> },
       { path: 'tools/cron-schedule-timeline', element: <CronScheduleTimelinePage /> },
+      { path: 'references/css-color-names', element: <CssColorNamesPage /> },
       { path: 'network/mime-lookup', element: <MimeLookupPage /> },
       { path: 'references/http-methods', element: <HttpMethodsPage /> },
       { path: 'tools/number-to-words', element: <NumberToWordsPage /> },
@@ -794,6 +800,7 @@ const router = createBrowserRouter([
       { path: 'data/json-to-typescript', element: <JsonToTypeScriptPage /> },
       { path: 'data/json-to-yaml', element: <JsonToYamlPage /> },
       { path: 'data/json-to-zod-schema', element: <JsonToZodSchemaPage /> },
+      { path: 'data/json-to-graphql', element: <JsonToGraphqlPage /> },
       { path: 'data/json-flatten', element: <JsonFlattenPage /> },
       { path: 'devops/docker-compose-generator', element: <DockerComposeGeneratorPage /> },
       { path: 'devops/docker-run-to-compose', element: <DockerRunToComposePage /> },
@@ -838,6 +845,7 @@ const router = createBrowserRouter([
       { path: 'frontend/font-face-generator', element: <FontFaceGeneratorPage /> },
       { path: 'frontend/font-stack-generator', element: <FontStackGeneratorPage /> },
       { path: 'references/typescript-cheatsheet', element: <TypescriptCheatsheetPage /> },
+      { path: 'references/js-testing-cheatsheet', element: <JsTestingCheatsheetPage /> },
       { path: 'tools/morse-code-converter', element: <MorseConverterPage /> },
       { path: 'tools/glob-tester', element: <GlobTesterPage /> },
       { path: 'tools/data-uri-tool', element: <DataUriToolPage /> },
@@ -1015,7 +1023,7 @@ const router = createBrowserRouter([
       { path: 'tools/combinatorics-calculator', element: <CombinatoricsCalculatorPage /> },
       { path: 'tools/grep-command-builder', element: <GrepCommandBuilderPage /> },
       { path: 'frontend/css-reset-generator', element: <CssResetGeneratorPage /> },
-      { path: 'security/password-entropy-calculator', element: <PasswordEntropyCalculatorPage /> },
+      { path: 'security/password-entropy-calculator', element: <Navigate to="/security/password-strength" replace /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
