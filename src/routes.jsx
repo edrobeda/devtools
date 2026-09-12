@@ -846,6 +846,7 @@ const router = createBrowserRouter([
       { path: 'frontend/font-face-generator', element: <FontFaceGeneratorPage /> },
       { path: 'frontend/font-stack-generator', element: <FontStackGeneratorPage /> },
       { path: 'references/typescript-cheatsheet', element: <TypescriptCheatsheetPage /> },
+      { path: 'references/js-testing-cheatsheet', element: <JsTestingCheatsheetPage /> },
       { path: 'tools/morse-code-converter', element: <MorseConverterPage /> },
       { path: 'tools/glob-tester', element: <GlobTesterPage /> },
       { path: 'tools/data-uri-tool', element: <DataUriToolPage /> },
