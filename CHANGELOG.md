@@ -8,6 +8,9 @@ mesmo no início de cada rodada, pra nunca repetir algo que já existe.
 <!-- NOVAS ENTRADAS ENTRAM NO TOPO, formato:
 ## AAAA-MM-DD
 - <tipo do item>: <nome> — <rota> (<descrição curta>)
+
+## 2026-09-12
+- Organização: `/styles/bouncing-dots-loader` (showcase fixo de loading de dots saltitantes) removido e redirecionado para `/frontend/css-spinner-generator`, que já tinha um tipo "dots" (Pontos saltitantes / Bouncing dots) com o mesmo loader e mais opções (tamanho 8-120px, cor via ColorPicker, duração, quantidade de N) — duplicata real; página, rota, import e entradas de menu removidos, redirect preserva links antigos.
 -->
 
 ## 2026-09-12

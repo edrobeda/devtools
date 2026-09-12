@@ -77,7 +77,6 @@ import WebhookPayloadGeneratorPage from './pages/WebhookPayloadGeneratorPage'
 import CpfCnpjGeneratorPage from './pages/CpfCnpjGeneratorPage'
 import BaseConverterPage from './pages/BaseConverterPage'
 import UseWindowSizeSnippetPage from './pages/UseWindowSizeSnippetPage'
-import BouncingDotsLoaderPage from './pages/BouncingDotsLoaderPage'
 import DockerCommandsPage from './pages/DockerCommandsPage'
 import SemverComparatorPage from './pages/SemverComparatorPage'
 import SlugGeneratorPage from './pages/SlugGeneratorPage'
@@ -604,7 +603,7 @@ const router = createBrowserRouter([
       { path: 'tools/cpf-cnpj-generator', element: <CpfCnpjGeneratorPage /> },
       { path: 'tools/base-converter', element: <BaseConverterPage /> },
       { path: 'snippets/use-window-size', element: <UseWindowSizeSnippetPage /> },
-      { path: 'styles/bouncing-dots-loader', element: <BouncingDotsLoaderPage /> },
+      { path: 'styles/bouncing-dots-loader', element: <Navigate to="/frontend/css-spinner-generator" replace /> },
       { path: 'references/docker-commands', element: <DockerCommandsPage /> },
       { path: 'tools/semver-comparator', element: <SemverComparatorPage /> },
       { path: 'tools/slug-generator', element: <SlugGeneratorPage /> },
