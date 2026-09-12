@@ -317,6 +317,7 @@ import GridAreasGeneratorPage from './pages/GridAreasGeneratorPage'
 import XmlJsonConverterPage from './pages/XmlJsonConverterPage'
 import PatternBackgroundGeneratorPage from './pages/PatternBackgroundGeneratorPage'
 import WebAppManifestGeneratorPage from './pages/WebAppManifestGeneratorPage'
+import JsonLdStructuredDataGeneratorPage from './pages/JsonLdStructuredDataGeneratorPage'
 import DataUriToolPage from './pages/DataUriToolPage'
 import DirectoryTreeGeneratorPage from './pages/DirectoryTreeGeneratorPage'
 import PayloadCompressionCalculatorPage from './pages/PayloadCompressionCalculatorPage'
@@ -866,6 +867,7 @@ const router = createBrowserRouter([
       { path: 'frontend/sitemap-generator', element: <SitemapGeneratorPage /> },
       { path: 'frontend/web-app-manifest-generator', element: <WebAppManifestGeneratorPage /> },
       { path: 'frontend/web-app-manifest', element: <Navigate to="/frontend/web-app-manifest-generator" replace /> },
+      { path: 'frontend/json-ld-generator', element: <JsonLdStructuredDataGeneratorPage /> },
       { path: 'devops/editorconfig-generator', element: <EditorconfigGeneratorPage /> },
       { path: 'devops/codeowners-generator', element: <CodeownersGeneratorPage /> },
       { path: 'devops/license-generator', element: <LicenseGeneratorPage /> },
