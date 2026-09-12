@@ -284,6 +284,7 @@ import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import CreditCardToolPage from './pages/CreditCardToolPage'
 import QrCodeGeneratorPage from './pages/QrCodeGeneratorPage'
+import PixPayloadGeneratorPage from './pages/PixPayloadGeneratorPage'
 import GithubActionsCheatsheetPage from './pages/GithubActionsCheatsheetPage'
 import CssToJsPage from './pages/CssToJsPage'
 import NginxCheatsheetPage from './pages/NginxCheatsheetPage'
@@ -834,6 +835,7 @@ const router = createBrowserRouter([
       { path: 'references/systemd-commands', element: <SystemdCheatsheetPage /> },
       { path: 'tools/credit-card-tool', element: <CreditCardToolPage /> },
       { path: 'tools/qr-code-generator', element: <QrCodeGeneratorPage /> },
+      { path: 'tools/pix-payload-generator', element: <PixPayloadGeneratorPage /> },
       { path: 'tools/barcode-generator', element: <BarcodeGeneratorPage /> },
       { path: 'references/github-actions-cheatsheet', element: <GithubActionsCheatsheetPage /> },
       { path: 'frontend/css-to-js', element: <CssToJsPage /> },
