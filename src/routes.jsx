@@ -95,7 +95,6 @@ import SqlCommandsPage from './pages/SqlCommandsPage'
 import NanoIdGeneratorPage from './pages/NanoIdGeneratorPage'
 import HtmlEntityEncoderPage from './pages/HtmlEntityEncoderPage'
 import BorderRadiusGeneratorPage from './pages/BorderRadiusGeneratorPage'
-import IosToggleSwitchPage from './pages/IosToggleSwitchPage'
 import UseEventListenerSnippetPage from './pages/UseEventListenerSnippetPage'
 import PackageManagerCommandsPage from './pages/PackageManagerCommandsPage'
 import HmacGeneratorPage from './pages/HmacGeneratorPage'
@@ -622,7 +621,7 @@ const router = createBrowserRouter([
       { path: 'tools/nanoid-generator', element: <NanoIdGeneratorPage /> },
       { path: 'tools/html-entity-encoder', element: <HtmlEntityEncoderPage /> },
       { path: 'frontend/border-radius-generator', element: <BorderRadiusGeneratorPage /> },
-      { path: 'styles/ios-toggle-switch', element: <IosToggleSwitchPage /> },
+      { path: 'styles/ios-toggle-switch', element: <Navigate to="/frontend/css-toggle-switch-generator" replace /> },
       { path: 'snippets/use-event-listener', element: <UseEventListenerSnippetPage /> },
       { path: 'references/package-manager-commands', element: <PackageManagerCommandsPage /> },
       { path: 'tools/hmac-generator', element: <HmacGeneratorPage /> },
