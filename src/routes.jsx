@@ -506,7 +506,6 @@ import JsonToGraphqlPage from './pages/JsonToGraphqlPage'
 import GridBuilderPage from './pages/GridBuilderPage'
 import JsonPathBuilderPage from './pages/JsonPathBuilderPage'
 
-import CronScheduleTimelinePage from './pages/CronScheduleTimelinePage'
 import CssColorNamesPage from './pages/CssColorNamesPage'
 
 const router = createBrowserRouter([
@@ -690,7 +689,7 @@ const router = createBrowserRouter([
       { path: 'tools/timezone-converter', element: <TimezoneConverterPage /> },
       { path: 'network/user-agent-parser', element: <UserAgentParserPage /> },
       { path: 'tools/cron-builder', element: <CronBuilderPage /> },
-      { path: 'tools/cron-schedule-timeline', element: <CronScheduleTimelinePage /> },
+      { path: 'tools/cron-schedule-timeline', element: <Navigate to="/tools/cron-parser" replace /> },
       { path: 'references/css-color-names', element: <CssColorNamesPage /> },
       { path: 'network/mime-lookup', element: <MimeLookupPage /> },
       { path: 'references/http-methods', element: <HttpMethodsPage /> },

@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useCallback } from 'react'
 import { Typography, Card, Input, Space, Alert, Table, Tag, Tooltip, Button } from 'antd'
-import { FieldTimeOutlined, CopyOutlined, CheckOutlined } from '@ant-design/icons'
+import { FieldTimeOutlined, CalendarOutlined, CopyOutlined, CheckOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 
 const { Title, Paragraph, Text } = Typography
@@ -118,6 +118,8 @@ const translations = {
 +---------- minuto (0-59)
 
 Suporta: * , - / e atalhos @yearly @monthly @weekly @daily @hourly`,
+    calendarTitle: 'Calendário mensal',
+    calendarNote: 'Dias com execuções programadas estão destacados.',
   },
   en: {
     title: 'Cron Expression Explainer',
@@ -182,6 +184,8 @@ Suporta: * , - / e atalhos @yearly @monthly @weekly @daily @hourly`,
 +---------- minute (0-59)
 
 Supports: * , - / and shorthands @yearly @monthly @weekly @daily @hourly`,
+    calendarTitle: 'Monthly calendar',
+    calendarNote: 'Days with scheduled runs are highlighted.',
   },
 }
 
@@ -325,6 +329,33 @@ function describeField(set, def, t) {
   return sorted.join(', ')
 }
 
+function hasRunOnDay(parsed, year, month, day) {
+  const { dom, month: months, dow, domRestricted, dowRestricted } = parsed
+  if (!months.has(month + 1)) return false
+  const domOk = dom.has(day)
+  const dowOk = dow.has(new Date(year, month, day).getDay())
+  if (domRestricted && dowRestricted) return domOk || dowOk
+  return domOk && dowOk
+}
+
+function getMonthCalendarData(parsed, year, month) {
+  const daysInMonth = new Date(year, month + 1, 0).getDate()
+  const firstDow = new Date(year, month, 1).getDay()
+  const runDays = new Set()
+  for (let d = 1; d <= daysInMonth; d++) {
+    if (hasRunOnDay(parsed, year, month, d)) runDays.add(d)
+  }
+  return { daysInMonth, firstDow, runDays }
+}
+
+const calendarStyle = {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(7, 1fr)',
+  gap: 4,
+  width: '100%',
+  maxWidth: 420,
+}
+
 export default function CronParserPage() {
   const { lang } = useLanguage()
   const t = translations[lang]
@@ -398,6 +429,36 @@ export default function CronParserPage() {
     },
   ], [lang])
 
+  const calendarData = useMemo(() => {
+    if (!result.data) return null
+    const now = new Date()
+    const base = getMonthCalendarData(result.data.parsed, now.getFullYear(), now.getMonth())
+    return {
+      year: now.getFullYear(),
+      month: now.getMonth(),
+      day: now.getDate(),
+      monthName: t.monthNames[now.getMonth() + 1],
+      ...base,
+    }
+  }, [result.data, t])
+
+  const calendarGrid = useMemo(() => {
+    if (!calendarData) return []
+    const cells = []
+    for (let i = 0; i < calendarData.firstDow; i++) {
+      cells.push({ key: `empty-${i}`, empty: true })
+    }
+    for (let d = 1; d <= calendarData.daysInMonth; d++) {
+      cells.push({
+        key: `day-${d}`,
+        day: d,
+        hasRun: calendarData.runDays.has(d),
+        isToday: d === calendarData.day,
+      })
+    }
+    return cells
+  }, [calendarData])
+
   const handleCopy = useCallback(() => {
     navigator.clipboard.writeText(expr)
     setCopied(true)
@@ -457,6 +518,46 @@ export default function CronParserPage() {
               bordered
             />
           </Card>
+
+          {calendarData && calendarGrid.length > 0 && (
+            <Card size="small" title={<><CalendarOutlined /> {t.calendarTitle} — {calendarData.monthName} {calendarData.year}</>}>
+              <Paragraph type="secondary" style={{ marginBottom: 12 }}>{t.calendarNote}</Paragraph>
+              <div style={calendarStyle}>
+                {t.weekdayNames.map((n) => (
+                  <div key={n} style={{ textAlign: 'center', fontWeight: 600, fontSize: 12, color: '#666', padding: '4px 0' }}>
+                    {n.slice(0, 3)}
+                  </div>
+                ))}
+                {calendarGrid.map((cell) => {
+                  if (cell.empty) return <div key={cell.key} />
+                  return (
+                    <Tooltip
+                      key={cell.key}
+                      title={cell.hasRun ? `${cell.day} — ${lang === 'pt' ? 'roda nesta data' : 'runs on this date'}` : undefined}
+                    >
+                      <div
+                        style={{
+                          textAlign: 'center',
+                          padding: '6px 2px',
+                          borderRadius: 6,
+                          fontSize: 13,
+                          fontWeight: cell.isToday ? 700 : 400,
+                          border: cell.isToday ? '2px solid #1677ff' : '1px solid transparent',
+                          background: cell.hasRun ? '#f6ffed' : 'transparent',
+                          color: cell.hasRun ? '#389e0d' : '#333',
+                        }}
+                      >
+                        {cell.day}
+                        {cell.hasRun && (
+                          <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#52c41a', margin: '2px auto 0' }} />
+                        )}
+                      </div>
+                    </Tooltip>
+                  )
+                })}
+              </div>
+            </Card>
+          )}
         </>
       )}
 
