@@ -369,6 +369,7 @@ import LevenshteinCalculatorPage from './pages/LevenshteinCalculatorPage'
 import BandwidthCalculatorPage from './pages/BandwidthCalculatorPage'
 import CookieToolPage from './pages/CookieToolPage'
 import CompoundInterestCalculatorPage from './pages/CompoundInterestCalculatorPage'
+import ConicGradientGeneratorPage from './pages/ConicGradientGeneratorPage'
 import PercentageCalculatorPage from './pages/PercentageCalculatorPage'
 import AbTestCalculatorPage from './pages/AbTestCalculatorPage'
 import ReadingTimeCalculatorPage from './pages/ReadingTimeCalculatorPage'
@@ -583,6 +584,7 @@ const router = createBrowserRouter([
       { path: 'tools/brazilian-data-generator', element: <BrazilianDataGeneratorPage /> },
       { path: 'tools/xml-json-converter', element: <XmlJsonConverterPage /> },
       { path: 'frontend/gradient-generator', element: <GradientGeneratorPage /> },
+      { path: 'frontend/conic-gradient-generator', element: <ConicGradientGeneratorPage /> },
       { path: 'snippets/use-copy-to-clipboard', element: <UseCopyToClipboardSnippetPage /> },
       { path: 'references/http-status-codes', element: <HttpStatusCodesPage /> },
       { path: 'tools/diff-checker', element: <DiffCheckerPage /> },

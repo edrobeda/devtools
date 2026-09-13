@@ -202,6 +202,7 @@ export const LABELS = {
     'ring-election-simulator': 'Simulador de Eleição em Anel',
     'xml-json-converter': 'Conversor XML ↔ JSON',
     'gradient-generator': 'Gerador de Gradiente CSS',
+    'conic-gradient-generator': 'Gerador de Gradiente Cônico CSS',
     'use-copy-to-clipboard': 'useCopyToClipboard',
     'http-status-codes': 'HTTP Status Codes',
     'diff-checker': 'Comparador de Texto (Diff)',
@@ -725,6 +726,7 @@ export const LABELS = {
     'ring-election-simulator': 'Ring Election Simulator',
     'xml-json-converter': 'XML ↔ JSON Converter',
     'gradient-generator': 'CSS Gradient Generator',
+    'conic-gradient-generator': 'CSS Conic Gradient Generator',
     'use-copy-to-clipboard': 'useCopyToClipboard',
     'http-status-codes': 'HTTP Status Codes',
     'diff-checker': 'Text Diff Checker',
@@ -1424,6 +1426,7 @@ export function buildMenuItems(l) {
       children: [
         { key: '/frontend/contrast-checker', label: l['contrast-checker'] },
         { key: '/frontend/gradient-generator', label: withNewBadge('/frontend/gradient-generator', l['gradient-generator'], l) },
+        { key: '/frontend/conic-gradient-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/conic-gradient-generator', l['conic-gradient-generator'], l) },
         { key: '/frontend/box-shadow-generator', label: withNewBadge('/frontend/box-shadow-generator', l['box-shadow-generator'], l) },
         { key: '/frontend/palette-generator', label: withNewBadge('/frontend/palette-generator', l['palette-generator'], l) },
         { key: '/frontend/border-radius-generator', label: withNewBadge('/frontend/border-radius-generator', l['border-radius-generator'], l) },
