@@ -187,6 +187,7 @@ import MacAddressToolPage from './pages/MacAddressToolPage'
 import CidrOverlapAggregatorPage from './pages/CidrOverlapAggregatorPage'
 import IbanToolPage from './pages/IbanToolPage'
 import WebsocketTesterPage from './pages/WebsocketTesterPage'
+import SseTesterPage from './pages/SseTesterPage'
 import HarViewerPage from './pages/HarViewerPage'
 import RomanNumeralConverterPage from './pages/RomanNumeralConverterPage'
 import SqlJoinsPage from './pages/SqlJoinsPage'
@@ -704,6 +705,7 @@ const router = createBrowserRouter([
       { path: 'network/mac-address-tool', element: <MacAddressToolPage /> },
       { path: 'network/cidr-overlap-aggregator', element: <CidrOverlapAggregatorPage /> },
       { path: 'network/websocket-tester', element: <WebsocketTesterPage /> },
+      { path: 'network/sse-tester', element: <SseTesterPage /> },
       { path: 'network/har-viewer', element: <HarViewerPage /> },
       { path: 'network/http-cache-analyzer', element: <HttpCacheAnalyzerPage /> },
       { path: 'network/dns-record-generator', element: <DnsRecordGeneratorPage /> },
