@@ -328,6 +328,7 @@ import UseBooleanSnippetPage from './pages/UseBooleanSnippetPage'
 import UseSetSnippetPage from './pages/UseSetSnippetPage'
 import UseCounterSnippetPage from './pages/UseCounterSnippetPage'
 import TypographyScaleCalculatorPage from './pages/TypographyScaleCalculatorPage'
+import CssNestingGeneratorPage from './pages/CssNestingGeneratorPage'
 import TypingSpeedTestPage from './pages/TypingSpeedTestPage'
 import ConwaysGameOfLifePage from './pages/ConwaysGameOfLifePage'
 import PathfindingSimulatorPage from './pages/PathfindingSimulatorPage'
@@ -948,6 +949,7 @@ const router = createBrowserRouter([
       { path: 'frontend/favicon-generator', element: <FaviconGeneratorPage /> },
       { path: 'frontend/css-has-selector-tester', element: <CssHasSelectorTesterPage /> },
       { path: 'frontend/typography-scale-calculator', element: <TypographyScaleCalculatorPage /> },
+      { path: 'frontend/css-nesting-generator', element: <CssNestingGeneratorPage /> },
       { path: 'snippets/use-update-effect', element: <UseUpdateEffectSnippetPage /> },
       { path: 'snippets/use-why-did-you-update', element: <UseWhyDidYouUpdateSnippetPage /> },
       { path: 'snippets/use-boolean', element: <UseBooleanSnippetPage /> },

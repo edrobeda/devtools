@@ -521,6 +521,7 @@ export const LABELS = {
     'color-blindness-simulator': 'Simulador de Daltonismo',
     'text-shadow-generator': 'Gerador de Text Shadow',
     'typography-scale-calculator': 'Calculadora de Escala Tipográfica',
+    'css-nesting-generator': 'Gerador de CSS Nesting',
     'transform-generator': 'Gerador de Transform CSS',
     'container-query-generator': 'Gerador de Container Queries CSS',
     'scroll-snap-generator': 'Gerador de Scroll Snap CSS',
@@ -1043,6 +1044,7 @@ export const LABELS = {
     'color-blindness-simulator': 'Color Blindness Simulator',
     'text-shadow-generator': 'Text Shadow Generator',
     'typography-scale-calculator': 'Typography Scale Calculator',
+    'css-nesting-generator': 'CSS Nesting Generator',
     'transform-generator': 'CSS Transform Generator',
     'container-query-generator': 'CSS Container Queries Generator',
     'scroll-snap-generator': 'CSS Scroll Snap Generator',
@@ -1511,6 +1513,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/css-has-selector-tester', icon: <SelectOutlined />, label: withNewBadge('/frontend/css-has-selector-tester', l['css-has-selector-tester'], l) },
         { key: '/frontend/css-reset-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-reset-generator', l['css-reset-generator'], l) },
         { key: '/frontend/typography-scale-calculator', icon: <FontSizeOutlined />, label: withNewBadge('/frontend/typography-scale-calculator', l['typography-scale-calculator'], l) },
+        { key: '/frontend/css-nesting-generator', icon: <ApartmentOutlined />, label: withNewBadge('/frontend/css-nesting-generator', l['css-nesting-generator'], l) },
       ],
     },
     {
