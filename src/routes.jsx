@@ -32,7 +32,6 @@ import IamPolicyGeneratorPage from './pages/IamPolicyGeneratorPage'
 import PasswordStrengthPage from './pages/PasswordStrengthPage'
 import JsonTreeViewerPage from './pages/JsonTreeViewerPage'
 import SubnetCalculatorPage from './pages/SubnetCalculatorPage'
-import AnthropicCostCalculatorPage from './pages/AnthropicCostCalculatorPage'
 import OpenAiCostCalculatorPage from './pages/OpenAiCostCalculatorPage'
 import LlmPromptBuilderPage from './pages/LlmPromptBuilderPage'
 import GitCommandsPage from './pages/GitCommandsPage'
@@ -96,7 +95,6 @@ import SqlCommandsPage from './pages/SqlCommandsPage'
 import NanoIdGeneratorPage from './pages/NanoIdGeneratorPage'
 import HtmlEntityEncoderPage from './pages/HtmlEntityEncoderPage'
 import BorderRadiusGeneratorPage from './pages/BorderRadiusGeneratorPage'
-import IosToggleSwitchPage from './pages/IosToggleSwitchPage'
 import UseEventListenerSnippetPage from './pages/UseEventListenerSnippetPage'
 import PackageManagerCommandsPage from './pages/PackageManagerCommandsPage'
 import HmacGeneratorPage from './pages/HmacGeneratorPage'
@@ -268,6 +266,7 @@ import CssFlipCardGeneratorPage from './pages/CssFlipCardGeneratorPage'
 import CssProgressRingGeneratorPage from './pages/CssProgressRingGeneratorPage'
 import CssDividerGeneratorPage from './pages/CssDividerGeneratorPage'
 import SvgSpriteGeneratorPage from './pages/SvgSpriteGeneratorPage'
+import SvgBlobGeneratorPage from './pages/SvgBlobGeneratorPage'
 import CssMarqueeGeneratorPage from './pages/CssMarqueeGeneratorPage'
 import CssCarouselGeneratorPage from './pages/CssCarouselGeneratorPage'
 import CssLoginFormGeneratorPage from './pages/CssLoginFormGeneratorPage'
@@ -285,6 +284,7 @@ import BashScriptingCheatsheetPage from './pages/BashScriptingCheatsheetPage'
 import SystemdCheatsheetPage from './pages/SystemdCheatsheetPage'
 import CreditCardToolPage from './pages/CreditCardToolPage'
 import QrCodeGeneratorPage from './pages/QrCodeGeneratorPage'
+import PixPayloadGeneratorPage from './pages/PixPayloadGeneratorPage'
 import GithubActionsCheatsheetPage from './pages/GithubActionsCheatsheetPage'
 import CssToJsPage from './pages/CssToJsPage'
 import NginxCheatsheetPage from './pages/NginxCheatsheetPage'
@@ -318,6 +318,7 @@ import GridAreasGeneratorPage from './pages/GridAreasGeneratorPage'
 import XmlJsonConverterPage from './pages/XmlJsonConverterPage'
 import PatternBackgroundGeneratorPage from './pages/PatternBackgroundGeneratorPage'
 import WebAppManifestGeneratorPage from './pages/WebAppManifestGeneratorPage'
+import JsonLdStructuredDataGeneratorPage from './pages/JsonLdStructuredDataGeneratorPage'
 import DataUriToolPage from './pages/DataUriToolPage'
 import DirectoryTreeGeneratorPage from './pages/DirectoryTreeGeneratorPage'
 import PayloadCompressionCalculatorPage from './pages/PayloadCompressionCalculatorPage'
@@ -327,6 +328,7 @@ import UseBooleanSnippetPage from './pages/UseBooleanSnippetPage'
 import UseSetSnippetPage from './pages/UseSetSnippetPage'
 import UseCounterSnippetPage from './pages/UseCounterSnippetPage'
 import TypographyScaleCalculatorPage from './pages/TypographyScaleCalculatorPage'
+import CssNestingGeneratorPage from './pages/CssNestingGeneratorPage'
 import TypingSpeedTestPage from './pages/TypingSpeedTestPage'
 import ConwaysGameOfLifePage from './pages/ConwaysGameOfLifePage'
 import PathfindingSimulatorPage from './pages/PathfindingSimulatorPage'
@@ -367,6 +369,7 @@ import LevenshteinCalculatorPage from './pages/LevenshteinCalculatorPage'
 import BandwidthCalculatorPage from './pages/BandwidthCalculatorPage'
 import CookieToolPage from './pages/CookieToolPage'
 import CompoundInterestCalculatorPage from './pages/CompoundInterestCalculatorPage'
+import ConicGradientGeneratorPage from './pages/ConicGradientGeneratorPage'
 import PercentageCalculatorPage from './pages/PercentageCalculatorPage'
 import AbTestCalculatorPage from './pages/AbTestCalculatorPage'
 import ReadingTimeCalculatorPage from './pages/ReadingTimeCalculatorPage'
@@ -544,7 +547,7 @@ const router = createBrowserRouter([
       { path: 'security/password-strength', element: <PasswordStrengthPage /> },
       { path: 'data/json-tree-viewer', element: <JsonTreeViewerPage /> },
       { path: 'network/subnet-calculator', element: <SubnetCalculatorPage /> },
-      { path: 'ai/anthropic-cost-calculator', element: <AnthropicCostCalculatorPage /> },
+      { path: 'ai/anthropic-cost-calculator', element: <Navigate to="/ai/openai-cost-calculator" replace /> },
       { path: 'ai/openai-cost-calculator', element: <OpenAiCostCalculatorPage /> },
       { path: 'ai/llm-prompt-builder', element: <LlmPromptBuilderPage /> },
       { path: 'text/word-counter', element: <Navigate to="/tools/reading-time-calculator" replace /> },
@@ -581,6 +584,7 @@ const router = createBrowserRouter([
       { path: 'tools/brazilian-data-generator', element: <BrazilianDataGeneratorPage /> },
       { path: 'tools/xml-json-converter', element: <XmlJsonConverterPage /> },
       { path: 'frontend/gradient-generator', element: <GradientGeneratorPage /> },
+      { path: 'frontend/conic-gradient-generator', element: <ConicGradientGeneratorPage /> },
       { path: 'snippets/use-copy-to-clipboard', element: <UseCopyToClipboardSnippetPage /> },
       { path: 'references/http-status-codes', element: <HttpStatusCodesPage /> },
       { path: 'tools/diff-checker', element: <DiffCheckerPage /> },
@@ -621,7 +625,7 @@ const router = createBrowserRouter([
       { path: 'tools/nanoid-generator', element: <NanoIdGeneratorPage /> },
       { path: 'tools/html-entity-encoder', element: <HtmlEntityEncoderPage /> },
       { path: 'frontend/border-radius-generator', element: <BorderRadiusGeneratorPage /> },
-      { path: 'styles/ios-toggle-switch', element: <IosToggleSwitchPage /> },
+      { path: 'styles/ios-toggle-switch', element: <Navigate to="/frontend/css-toggle-switch-generator" replace /> },
       { path: 'snippets/use-event-listener', element: <UseEventListenerSnippetPage /> },
       { path: 'references/package-manager-commands', element: <PackageManagerCommandsPage /> },
       { path: 'tools/hmac-generator', element: <HmacGeneratorPage /> },
@@ -791,6 +795,7 @@ const router = createBrowserRouter([
       { path: 'devops/ansi-colors', element: <AnsiColorsPage /> },
       { path: 'references/ascii-table', element: <AsciiTablePage /> },
       { path: 'frontend/svg-wave-generator', element: <SvgWaveGeneratorPage /> },
+      { path: 'frontend/svg-blob-generator', element: <SvgBlobGeneratorPage /> },
       { path: 'frontend/css-filter-generator', element: <CssFilterGeneratorPage /> },
       { path: 'frontend/meta-tags-generator', element: <MetaTagsGeneratorPage /> },
       { path: 'frontend/keyframe-generator', element: <KeyframeGeneratorPage /> },
@@ -834,6 +839,7 @@ const router = createBrowserRouter([
       { path: 'references/systemd-commands', element: <SystemdCheatsheetPage /> },
       { path: 'tools/credit-card-tool', element: <CreditCardToolPage /> },
       { path: 'tools/qr-code-generator', element: <QrCodeGeneratorPage /> },
+      { path: 'tools/pix-payload-generator', element: <PixPayloadGeneratorPage /> },
       { path: 'tools/barcode-generator', element: <BarcodeGeneratorPage /> },
       { path: 'references/github-actions-cheatsheet', element: <GithubActionsCheatsheetPage /> },
       { path: 'frontend/css-to-js', element: <CssToJsPage /> },
@@ -867,6 +873,7 @@ const router = createBrowserRouter([
       { path: 'frontend/sitemap-generator', element: <SitemapGeneratorPage /> },
       { path: 'frontend/web-app-manifest-generator', element: <WebAppManifestGeneratorPage /> },
       { path: 'frontend/web-app-manifest', element: <Navigate to="/frontend/web-app-manifest-generator" replace /> },
+      { path: 'frontend/json-ld-generator', element: <JsonLdStructuredDataGeneratorPage /> },
       { path: 'devops/editorconfig-generator', element: <EditorconfigGeneratorPage /> },
       { path: 'devops/codeowners-generator', element: <CodeownersGeneratorPage /> },
       { path: 'devops/license-generator', element: <LicenseGeneratorPage /> },
@@ -944,6 +951,7 @@ const router = createBrowserRouter([
       { path: 'frontend/favicon-generator', element: <FaviconGeneratorPage /> },
       { path: 'frontend/css-has-selector-tester', element: <CssHasSelectorTesterPage /> },
       { path: 'frontend/typography-scale-calculator', element: <TypographyScaleCalculatorPage /> },
+      { path: 'frontend/css-nesting-generator', element: <CssNestingGeneratorPage /> },
       { path: 'snippets/use-update-effect', element: <UseUpdateEffectSnippetPage /> },
       { path: 'snippets/use-why-did-you-update', element: <UseWhyDidYouUpdateSnippetPage /> },
       { path: 'snippets/use-boolean', element: <UseBooleanSnippetPage /> },

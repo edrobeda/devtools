@@ -31,6 +31,17 @@ const STYLE_OPTIONS = {
   ],
 }
 
+const EASING_OPTIONS = {
+  pt: [
+    { label: 'Bounce (iOS)', value: 'cubic-bezier(0.34, 1.56, 0.64, 1)' },
+    { label: 'Suave (ease)', value: 'ease' },
+  ],
+  en: [
+    { label: 'Bounce (iOS)', value: 'cubic-bezier(0.34, 1.56, 0.64, 1)' },
+    { label: 'Smooth (ease)', value: 'ease' },
+  ],
+}
+
 const translations = {
   pt: {
     title: 'Gerador de Toggle Switch CSS',
@@ -67,6 +78,7 @@ const translations = {
     borderWidth: 'Espessura da borda',
     thumbShadow: 'Sombra do thumb',
     transitionDuration: 'Duração da transição (ms)',
+    easing: 'Curva de transição',
     showLabels: 'Mostrar labels ON/OFF',
     labelOn: 'Texto "ligado"',
     labelOff: 'Texto "desligado"',
@@ -120,6 +132,7 @@ const translations = {
     borderWidth: 'Border width',
     thumbShadow: 'Thumb shadow',
     transitionDuration: 'Transition duration (ms)',
+    easing: 'Transition curve',
     showLabels: 'Show ON/OFF labels',
     labelOn: '"On" text',
     labelOff: '"Off" text',
@@ -157,6 +170,7 @@ export default function CssToggleSwitchGeneratorPage() {
   const [borderWidth, setBorderWidth] = useState(DEFAULTS.borderWidth)
   const [thumbShadow, setThumbShadow] = useState(DEFAULTS.thumbShadow)
   const [transitionDuration, setTransitionDuration] = useState(DEFAULTS.transitionDuration)
+  const [easing, setEasing] = useState(DEFAULTS.easing)
   const [showLabels, setShowLabels] = useState(DEFAULTS.showLabels)
   const [labelOn, setLabelOn] = useState(DEFAULTS.labelOn)
   const [labelOff, setLabelOff] = useState(DEFAULTS.labelOff)
@@ -175,6 +189,7 @@ export default function CssToggleSwitchGeneratorPage() {
       borderWidth,
       thumbShadow,
       transitionDuration,
+      easing,
       showLabels,
       labelOn,
       labelOff,
@@ -192,6 +207,7 @@ export default function CssToggleSwitchGeneratorPage() {
       borderWidth,
       thumbShadow,
       transitionDuration,
+      easing,
       showLabels,
       labelOn,
       labelOff,
@@ -217,6 +233,7 @@ export default function CssToggleSwitchGeneratorPage() {
     setBorderWidth(p.borderWidth)
     setThumbShadow(p.thumbShadow)
     setTransitionDuration(p.transitionDuration)
+    setEasing(p.easing ?? DEFAULTS.easing)
     setShowLabels(p.showLabels)
     if (p.showLabels) {
       setLabelOn(p.labelOn)
@@ -349,6 +366,17 @@ export default function CssToggleSwitchGeneratorPage() {
                 <Text code>{transitionDuration}ms</Text>
               </Space>
               <Slider min={0} max={1000} value={transitionDuration} onChange={setTransitionDuration} />
+
+              <Space direction="vertical" size={4} style={{ width: '100%' }}>
+                <Text>{t.easing}</Text>
+                <Segmented
+                  style={{ width: '100%' }}
+                  block
+                  value={easing}
+                  onChange={setEasing}
+                  options={EASING_OPTIONS[lang]}
+                />
+              </Space>
 
               {(style === 'rounded' || style === 'square') && (
                 <>

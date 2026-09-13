@@ -88,7 +88,7 @@ const translations = {
         de linguagem — a mesma unidade de contexto usada por modelos tipo
         GPT/Claude. Escolha o tamanho do contexto do modelo (ex.: 128k) e vê
         a proporção que o texto preencheria. Complementa a{' '}
-        <Text code>/ai/anthropic-cost-calculator</Text>, que precisa do
+        <Text code>/ai/openai-cost-calculator</Text>, que precisa do
         número de tokens pra estimar custo.
       </>
     ),
@@ -128,7 +128,7 @@ const translations = {
         Estimates how many <Text code>tokens</Text> a piece of text would
         occupy in a language model — the same unit of context usage used by
         GPT/Claude-class models. Pick a model context window, and it shows
-        how much of it the text would fill. Complements the Anthropic cost
+        how much of it the text would fill. Complements the LLM cost
         calculator page, which needs a token count to estimate price.
       </>
     ),

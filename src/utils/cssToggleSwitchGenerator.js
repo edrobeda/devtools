@@ -23,14 +23,15 @@ function clamp(n, min, max) {
 const DEFAULTS = {
   style: 'ios',
   width: 52,
-  height: 28,
+  height: 30,
   activeColor: '#34c759',
-  inactiveColor: '#e5e5ea',
+  inactiveColor: '#d9d9d9',
   thumbColor: '#ffffff',
   borderColor: 'transparent',
   borderWidth: 0,
-  thumbShadow: '0 2px 4px rgba(0,0,0,0.25)',
-  transitionDuration: 250,
+  thumbShadow: '0 1px 3px rgba(0,0,0,0.35)',
+  transitionDuration: 200,
+  easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
   showLabels: false,
   labelOn: '',
   labelOff: '',
@@ -41,14 +42,15 @@ const DEFAULTS = {
 const PRESETS = {
   ios: {
     width: 52,
-    height: 28,
+    height: 30,
     activeColor: '#34c759',
-    inactiveColor: '#e5e5ea',
+    inactiveColor: '#d9d9d9',
     thumbColor: '#ffffff',
     borderColor: 'transparent',
     borderWidth: 0,
-    thumbShadow: '0 2px 4px rgba(0,0,0,0.25)',
-    transitionDuration: 250,
+    thumbShadow: '0 1px 3px rgba(0,0,0,0.35)',
+    transitionDuration: 200,
+    easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
     showLabels: false,
   },
   material: {
@@ -61,6 +63,7 @@ const PRESETS = {
     borderWidth: 0,
     thumbShadow: '0 1px 3px rgba(0,0,0,0.35)',
     transitionDuration: 200,
+    easing: 'ease',
     showLabels: false,
   },
   rounded: {
@@ -73,6 +76,7 @@ const PRESETS = {
     borderWidth: 0,
     thumbShadow: '0 2px 6px rgba(0,0,0,0.2)',
     transitionDuration: 200,
+    easing: 'ease',
     showLabels: true,
     labelOn: 'ON',
     labelOff: 'OFF',
@@ -87,6 +91,7 @@ const PRESETS = {
     borderWidth: 1,
     thumbShadow: 'none',
     transitionDuration: 150,
+    easing: 'ease',
     showLabels: false,
   },
 }
@@ -110,6 +115,7 @@ export function buildToggleSwitchCss(options = {}) {
   const border = parseColor(opts.borderColor)
   const borderWidth = clamp(Number(opts.borderWidth) || 0, 0, 8)
   const duration = clamp(Number(opts.transitionDuration) || 200, 0, 2000)
+  const easing = String(opts.easing || 'ease')
   const shadow = opts.thumbShadow || 'none'
   const disabled = Boolean(opts.disabled)
 
@@ -148,7 +154,7 @@ export function buildToggleSwitchCss(options = {}) {
     `  background: ${inactive};`,
     `  border: ${borderWidth > 0 ? `${toPx(borderWidth)} solid ${border}` : 'none'};`,
     `  border-radius: ${toPx(trackRadius)};`,
-    `  transition: background ${duration}ms ease, border-color ${duration}ms ease;`,
+    `  transition: background ${duration}ms ${easing}, border-color ${duration}ms ${easing};`,
     `  ${disabled ? 'opacity: 0.6; cursor: not-allowed;' : 'cursor: pointer;'}`,
     '}',
     '',
@@ -163,7 +169,7 @@ export function buildToggleSwitchCss(options = {}) {
     `  background: ${thumb};`,
     `  border-radius: ${toPx(thumbRadius)};`,
     `  box-shadow: ${shadow};`,
-    `  transition: transform ${duration}ms ease, background ${duration}ms ease;`,
+    `  transition: transform ${duration}ms ${easing}, background ${duration}ms ${easing};`,
     '}',
   ]
 
@@ -183,7 +189,7 @@ export function buildToggleSwitchCss(options = {}) {
       `  font-weight: 700;`,
       `  color: ${inactive};`,
       `  letter-spacing: 0.02em;`,
-      `  transition: color ${duration}ms ease;`,
+      `  transition: color ${duration}ms ${easing};`,
       `  white-space: nowrap;`,
       '}'
     )
