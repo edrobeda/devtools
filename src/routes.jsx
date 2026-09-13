@@ -361,7 +361,6 @@ import UseHotkeysSnippetPage from './pages/UseHotkeysSnippetPage'
 import UseSpeechSynthesisSnippetPage from './pages/UseSpeechSynthesisSnippetPage'
 import UsePaginationSnippetPage from './pages/UsePaginationSnippetPage'
 import UseControllableStateSnippetPage from './pages/UseControllableStateSnippetPage'
-import FileHashCalculatorPage from './pages/FileHashCalculatorPage'
 import GeoCoordinatesConverterPage from './pages/GeoCoordinatesConverterPage'
 import HaversineDistanceCalculatorPage from './pages/HaversineDistanceCalculatorPage'
 import LevenshteinCalculatorPage from './pages/LevenshteinCalculatorPage'
@@ -720,7 +719,7 @@ const router = createBrowserRouter([
       { path: 'tools/iban-tool', element: <IbanToolPage /> },
       { path: 'tools/roman-numeral-converter', element: <RomanNumeralConverterPage /> },
       { path: 'tools/file-size-converter', element: <Navigate to="/tools/units-converter" replace /> },
-      { path: 'tools/file-hash-calculator', element: <FileHashCalculatorPage /> },
+      { path: 'tools/file-hash-calculator', element: <Navigate to="/tools/hash-generator" replace /> },
       { path: 'tools/geo-coordinates-converter', element: <GeoCoordinatesConverterPage /> },
       { path: 'tools/html-playground', element: <HtmlPlaygroundPage /> },
       { path: 'tools/geohash-tool', element: <GeohashToolPage /> },

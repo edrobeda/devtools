@@ -23,35 +23,21 @@ function leftRotate(x, c) {
   return (((x << c) | (x >>> (32 - c))) >>> 0)
 }
 
-function bytesToWords(bytes) {
-  const words = []
-  for (let i = 0; i < bytes.length; i++) {
-    words[i >> 2] |= (bytes[i] << ((i % 4) * 8))
-  }
-  return words
-}
-
 export function md5FromBuffer(buffer) {
-  const bytes = new Uint8Array(buffer)
-  const bitLen = (bytes.length * 8) >>> 0
-  const bitLenHi = (bytes.length * 8) / 2 ** 32
+  const src = new Uint8Array(buffer)
+  const bitLen64 = BigInt(src.length) * 8n
 
-  // Padding
-  const padLen = (bytes.length % 64) < 56 ? 56 - (bytes.length % 64) : 120 - (bytes.length % 64)
-  const totalLen = bytes.length + 1 + padLen + 8
-  const padded = new Uint8Array(totalLen)
-  padded.set(bytes)
-  padded[bytes.length] = 0x80
+  const padTotal = (src.length % 64) < 56 ? 56 - (src.length % 64) : 120 - (src.length % 64)
+  const msg = new Uint8Array(src.length + padTotal + 8)
+  msg.set(src)
+  msg[src.length] = 0x80
+  const view = new DataView(msg.buffer)
+  view.setBigUint64(src.length + padTotal, bitLen64, true)
 
-  // Length em bits como 64 bits little-endian
-  const view = new DataView(padded.buffer)
-  view.setUint32(bytes.length + 1 + padLen, bitLen >>> 0, true)
-  view.setUint32(bytes.length + 1 + padLen + 4, Math.floor(bitLenHi) >>> 0, true)
-
-  let a = 0x67452301
-  let b = 0xEFCDAB89
-  let c = 0x98BADCFE
-  let d = 0x10325476
+  let a0 = 0x67452301
+  let b0 = 0xEFCDAB89
+  let c0 = 0x98BADCFE
+  let d0 = 0x10325476
 
   const S = [
     7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,
@@ -65,46 +51,54 @@ export function md5FromBuffer(buffer) {
     K[i] = Math.floor(Math.abs(Math.sin(i + 1)) * 2 ** 32) >>> 0
   }
 
-  for (let offset = 0; offset < totalLen; offset += 64) {
-    const chunk = new Uint32Array(padded.buffer, offset, 16)
-    const M = Array.from(chunk)
+  for (let offset = 0; offset < msg.length; offset += 64) {
+    const M = new Array(16)
+    for (let i = 0; i < 16; i++) {
+      M[i] = view.getUint32(offset + i * 4, true)
+    }
 
-    let A = a
-    let B = b
-    let C = c
-    let D = d
+    let A = a0
+    let B = b0
+    let C = c0
+    let D = d0
 
     for (let i = 0; i < 64; i++) {
       let f
       let g
       if (i < 16) {
-        f = (B & C) | ((~B >>> 0) & D)
+        f = (B & C) | (~B & D)
         g = i
       } else if (i < 32) {
-        f = (D & B) | ((~D >>> 0) & C)
-        g = ((5 * i + 1) % 16)
+        f = (D & B) | (~D & C)
+        g = (5 * i + 1) % 16
       } else if (i < 48) {
         f = B ^ C ^ D
-        g = ((3 * i + 5) % 16)
+        g = (3 * i + 5) % 16
       } else {
-        f = C ^ (B | ((~D >>> 0)))
-        g = ((7 * i) % 16)
+        f = C ^ (B | ~D)
+        g = (7 * i) % 16
       }
 
-      const temp = D >>> 0
-      D = C >>> 0
-      C = B >>> 0
-      B = ((B + leftRotate((A + f + K[i] + M[g]) >>> 0, S[i])) >>> 0)
-      A = temp
+      f = (f + A + K[i] + M[g]) >>> 0
+      A = D
+      D = C
+      C = B
+      B = (B + leftRotate(f, S[i])) >>> 0
     }
 
-    a = (a + A) >>> 0
-    b = (b + B) >>> 0
-    c = (c + C) >>> 0
-    d = (d + D) >>> 0
+    a0 = (a0 + A) >>> 0
+    b0 = (b0 + B) >>> 0
+    c0 = (c0 + C) >>> 0
+    d0 = (d0 + D) >>> 0
   }
 
-  return [a, b, c, d].map((v) => v.toString(16).padStart(8, '0')).join('')
+  return [a0, b0, c0, d0]
+    .map((v) => {
+      const out = new Uint8Array(4)
+      new DataView(out.buffer).setUint32(0, v >>> 0, true)
+      return Array.from(out, (x) => x.toString(16).padStart(2, '0')).join('')
+    })
+    .join('')
 }
 
 // ---------- SHA via Web Crypto ----------
