@@ -507,6 +507,7 @@ import CssResetGeneratorPage from './pages/CssResetGeneratorPage'
 import JsonToGraphqlPage from './pages/JsonToGraphqlPage'
 import GridBuilderPage from './pages/GridBuilderPage'
 import JsonPathBuilderPage from './pages/JsonPathBuilderPage'
+import JsonMergePatchPage from './pages/JsonMergePatchPage'
 
 import CssColorNamesPage from './pages/CssColorNamesPage'
 
@@ -634,6 +635,7 @@ const router = createBrowserRouter([
       { path: 'tools/lorem-ipsum-generator', element: <LoremIpsumGeneratorPage /> },
       { path: 'data/json-diff', element: <JsonDiffPage /> },
       { path: 'data/json-patch', element: <JsonPatchPage /> },
+      { path: 'data/json-merge-patch', element: <JsonMergePatchPage /> },
       { path: 'styles/dark-mode-toggle', element: <DarkModeTogglePage /> },
       { path: 'snippets/use-throttle', element: <UseThrottleSnippetPage /> },
       { path: 'references/vscode-shortcuts', element: <VscodeShortcutsPage /> },
