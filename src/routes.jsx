@@ -505,6 +505,7 @@ import IntlPlaygroundPage from './pages/IntlPlaygroundPage'
 import JsonRepairPage from './pages/JsonRepairPage'
 import GrepCommandBuilderPage from './pages/GrepCommandBuilderPage'
 import CssResetGeneratorPage from './pages/CssResetGeneratorPage'
+import CssParallaxGeneratorPage from './pages/CssParallaxGeneratorPage'
 import JsonToGraphqlPage from './pages/JsonToGraphqlPage'
 import GridBuilderPage from './pages/GridBuilderPage'
 import JsonPathBuilderPage from './pages/JsonPathBuilderPage'
@@ -1040,6 +1041,7 @@ const router = createBrowserRouter([
       { path: 'tools/combinatorics-calculator', element: <CombinatoricsCalculatorPage /> },
       { path: 'tools/grep-command-builder', element: <GrepCommandBuilderPage /> },
       { path: 'frontend/css-reset-generator', element: <CssResetGeneratorPage /> },
+      { path: 'frontend/css-parallax-generator', element: <CssParallaxGeneratorPage /> },
       { path: 'security/password-entropy-calculator', element: <Navigate to="/security/password-strength" replace /> },
       { path: '*', element: <NotFoundPage /> },
     ],

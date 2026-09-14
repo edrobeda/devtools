@@ -634,6 +634,7 @@ export const LABELS = {
     'json-repair': 'Consertador de JSON',
     'grep-command-builder': 'Construtor de Comando grep',
     'css-reset-generator': 'Gerador de CSS Reset',
+    'css-parallax-generator': 'Gerador de Parallax CSS',
   },
   en: {
     home: 'Home',
@@ -1161,6 +1162,7 @@ export const LABELS = {
     'json-repair': 'JSON Repair Tool',
     'grep-command-builder': 'grep Command Builder',
     'css-reset-generator': 'CSS Reset Generator',
+    'css-parallax-generator': 'CSS Parallax Generator',
   },
 }
 
@@ -1521,6 +1523,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/favicon-generator', icon: <PictureOutlined />, label: withNewBadge('/frontend/favicon-generator', l['favicon-generator'], l) },
         { key: '/frontend/css-has-selector-tester', icon: <SelectOutlined />, label: withNewBadge('/frontend/css-has-selector-tester', l['css-has-selector-tester'], l) },
         { key: '/frontend/css-reset-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/css-reset-generator', l['css-reset-generator'], l) },
+        { key: '/frontend/css-parallax-generator', icon: <PicCenterOutlined />, label: withNewBadge('/frontend/css-parallax-generator', l['css-parallax-generator'], l) },
         { key: '/frontend/typography-scale-calculator', icon: <FontSizeOutlined />, label: withNewBadge('/frontend/typography-scale-calculator', l['typography-scale-calculator'], l) },
         { key: '/frontend/css-nesting-generator', icon: <ApartmentOutlined />, label: withNewBadge('/frontend/css-nesting-generator', l['css-nesting-generator'], l) },
       ],
