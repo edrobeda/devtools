@@ -34,6 +34,7 @@ import JsonTreeViewerPage from './pages/JsonTreeViewerPage'
 import SubnetCalculatorPage from './pages/SubnetCalculatorPage'
 import OpenAiCostCalculatorPage from './pages/OpenAiCostCalculatorPage'
 import LlmPromptBuilderPage from './pages/LlmPromptBuilderPage'
+import RagChunkVisualizerPage from './pages/RagChunkVisualizerPage'
 import GitCommandsPage from './pages/GitCommandsPage'
 import DaysUntilPage from './pages/DaysUntilPage'
 import DateTimeCalculatorPage from './pages/DateTimeCalculatorPage'
@@ -187,6 +188,7 @@ import MacAddressToolPage from './pages/MacAddressToolPage'
 import CidrOverlapAggregatorPage from './pages/CidrOverlapAggregatorPage'
 import IbanToolPage from './pages/IbanToolPage'
 import WebsocketTesterPage from './pages/WebsocketTesterPage'
+import SseTesterPage from './pages/SseTesterPage'
 import HarViewerPage from './pages/HarViewerPage'
 import RomanNumeralConverterPage from './pages/RomanNumeralConverterPage'
 import SqlJoinsPage from './pages/SqlJoinsPage'
@@ -361,8 +363,6 @@ import UseHotkeysSnippetPage from './pages/UseHotkeysSnippetPage'
 import UseSpeechSynthesisSnippetPage from './pages/UseSpeechSynthesisSnippetPage'
 import UsePaginationSnippetPage from './pages/UsePaginationSnippetPage'
 import UseControllableStateSnippetPage from './pages/UseControllableStateSnippetPage'
-import FileSizeConverterPage from './pages/FileSizeConverterPage'
-import FileHashCalculatorPage from './pages/FileHashCalculatorPage'
 import GeoCoordinatesConverterPage from './pages/GeoCoordinatesConverterPage'
 import HaversineDistanceCalculatorPage from './pages/HaversineDistanceCalculatorPage'
 import LevenshteinCalculatorPage from './pages/LevenshteinCalculatorPage'
@@ -388,6 +388,7 @@ import DescriptiveStatisticsCalculatorPage from './pages/DescriptiveStatisticsCa
 import LoadBalancerSimulatorPage from './pages/LoadBalancerSimulatorPage'
 import ConsistentHashingSimulatorPage from './pages/ConsistentHashingSimulatorPage'
 import BloomFilterSimulatorPage from './pages/BloomFilterSimulatorPage'
+import HashTableVisualizerPage from './pages/HashTableVisualizerPage'
 import CpuSchedulingSimulatorPage from './pages/CpuSchedulingSimulatorPage'
 import DiskSchedulingSimulatorPage from './pages/DiskSchedulingSimulatorPage'
 import GossipProtocolSimulatorPage from './pages/GossipProtocolSimulatorPage'
@@ -506,7 +507,6 @@ import JsonToGraphqlPage from './pages/JsonToGraphqlPage'
 import GridBuilderPage from './pages/GridBuilderPage'
 import JsonPathBuilderPage from './pages/JsonPathBuilderPage'
 
-import CronScheduleTimelinePage from './pages/CronScheduleTimelinePage'
 import CssColorNamesPage from './pages/CssColorNamesPage'
 
 const router = createBrowserRouter([
@@ -550,6 +550,7 @@ const router = createBrowserRouter([
       { path: 'ai/anthropic-cost-calculator', element: <Navigate to="/ai/openai-cost-calculator" replace /> },
       { path: 'ai/openai-cost-calculator', element: <OpenAiCostCalculatorPage /> },
       { path: 'ai/llm-prompt-builder', element: <LlmPromptBuilderPage /> },
+      { path: 'ai/rag-chunk-visualizer', element: <RagChunkVisualizerPage /> },
       { path: 'text/word-counter', element: <Navigate to="/tools/reading-time-calculator" replace /> },
       { path: 'references/git-commands', element: <GitCommandsPage /> },
       { path: 'extras/days-until', element: <DaysUntilPage /> },
@@ -690,7 +691,7 @@ const router = createBrowserRouter([
       { path: 'tools/timezone-converter', element: <TimezoneConverterPage /> },
       { path: 'network/user-agent-parser', element: <UserAgentParserPage /> },
       { path: 'tools/cron-builder', element: <CronBuilderPage /> },
-      { path: 'tools/cron-schedule-timeline', element: <CronScheduleTimelinePage /> },
+      { path: 'tools/cron-schedule-timeline', element: <Navigate to="/tools/cron-parser" replace /> },
       { path: 'references/css-color-names', element: <CssColorNamesPage /> },
       { path: 'network/mime-lookup', element: <MimeLookupPage /> },
       { path: 'references/http-methods', element: <HttpMethodsPage /> },
@@ -707,6 +708,7 @@ const router = createBrowserRouter([
       { path: 'network/mac-address-tool', element: <MacAddressToolPage /> },
       { path: 'network/cidr-overlap-aggregator', element: <CidrOverlapAggregatorPage /> },
       { path: 'network/websocket-tester', element: <WebsocketTesterPage /> },
+      { path: 'network/sse-tester', element: <SseTesterPage /> },
       { path: 'network/har-viewer', element: <HarViewerPage /> },
       { path: 'network/http-cache-analyzer', element: <HttpCacheAnalyzerPage /> },
       { path: 'network/dns-record-generator', element: <DnsRecordGeneratorPage /> },
@@ -721,8 +723,8 @@ const router = createBrowserRouter([
       { path: 'references/emoji-cheatsheet', element: <EmojiCheatsheetPage /> },
       { path: 'tools/iban-tool', element: <IbanToolPage /> },
       { path: 'tools/roman-numeral-converter', element: <RomanNumeralConverterPage /> },
-      { path: 'tools/file-size-converter', element: <FileSizeConverterPage /> },
-      { path: 'tools/file-hash-calculator', element: <FileHashCalculatorPage /> },
+      { path: 'tools/file-size-converter', element: <Navigate to="/tools/units-converter" replace /> },
+      { path: 'tools/file-hash-calculator', element: <Navigate to="/tools/hash-generator" replace /> },
       { path: 'tools/geo-coordinates-converter', element: <GeoCoordinatesConverterPage /> },
       { path: 'tools/html-playground', element: <HtmlPlaygroundPage /> },
       { path: 'tools/geohash-tool', element: <GeohashToolPage /> },
@@ -754,6 +756,7 @@ const router = createBrowserRouter([
       { path: 'tools/retry-calculator', element: <RetryCalculatorPage /> },
       { path: 'tools/load-balancer-simulator', element: <LoadBalancerSimulatorPage /> },
       { path: 'tools/consistent-hashing-simulator', element: <ConsistentHashingSimulatorPage /> },
+      { path: 'tools/hash-table-visualizer', element: <HashTableVisualizerPage /> },
       { path: 'tools/bloom-filter-simulator', element: <BloomFilterSimulatorPage /> },
       { path: 'tools/cpu-scheduling-simulator', element: <CpuSchedulingSimulatorPage /> },
       { path: 'tools/disk-scheduling-simulator', element: <DiskSchedulingSimulatorPage /> },

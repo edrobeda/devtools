@@ -107,6 +107,7 @@ const CATEGORIES = [
     key: 'data',
     names: { pt: 'Dados', en: 'Data' },
     units: [
+      { code: 'bit', factor: 1 / 8, name: { pt: 'Bit', en: 'Bit' } },
       { code: 'B', factor: 1, name: { pt: 'Byte', en: 'Byte' } },
       { code: 'KB', factor: 1e3, name: { pt: 'Quilobyte (decimal)', en: 'Kilobyte (decimal)' } },
       { code: 'MB', factor: 1e6, name: { pt: 'Megabyte (decimal)', en: 'Megabyte (decimal)' } },
@@ -194,8 +195,9 @@ const translations = {
         <Text code>base = v × factor + offset</Text>. Por isso{' '}
         <Text code>32 °F</Text> vira <Text code>0 °C</Text>: primeiro vai pra
         kelvin (escala universal) e depois volta. Em <Text code>Dados</Text>,
-        cuidado com a pegadinha dos prefixos: <Text code>KB</Text> é decimal
-        (×1000), <Text code>KiB</Text> é binário (×1024) — um disco de{' '}
+        além do <Text code>bit</Text> (1/8 de byte), cuidado com a pegadinha
+        dos prefixos: <Text code>KB</Text> é decimal (×1000),{' '}
+        <Text code>KiB</Text> é binário (×1024) — um disco de{' '}
         <Text code>500 GB</Text> tem ~465 GiB utilizáveis. Nos fatores usei os
         valores exatos das definições (polegada = 25,4&nbsp;mm, libra =
         453,59&nbsp;g, milha náutica = 1852&nbsp;m); mês = ano/12 (365,25&nbsp;d).
@@ -231,7 +233,8 @@ const translations = {
         <Text code>temperature</Text> adds an offset because the zero points
         differ, so <Text code>base = v × factor + offset</Text>. That&apos;s why{' '}
         <Text code>32 °F</Text> becomes <Text code>0 °C</Text>: first to kelvin,
-        then back out. In <Text code>Data</Text> watch the prefix trap:{' '}
+        then back out. In <Text code>Data</Text> besides the <Text code>bit</Text>{' '}
+        (1/8 of a byte), watch the prefix trap:{' '}
         <Text code>KB</Text> is decimal (×1000) while <Text code>KiB</Text> is
         binary (×1024) — a <Text code>500 GB</Text> drive shows ~465 GiB. The
         factors are the exact definitions (inch = 25.4&nbsp;mm, pound =
