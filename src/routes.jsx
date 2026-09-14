@@ -387,6 +387,7 @@ import DescriptiveStatisticsCalculatorPage from './pages/DescriptiveStatisticsCa
 import LoadBalancerSimulatorPage from './pages/LoadBalancerSimulatorPage'
 import ConsistentHashingSimulatorPage from './pages/ConsistentHashingSimulatorPage'
 import BloomFilterSimulatorPage from './pages/BloomFilterSimulatorPage'
+import HashTableVisualizerPage from './pages/HashTableVisualizerPage'
 import CpuSchedulingSimulatorPage from './pages/CpuSchedulingSimulatorPage'
 import DiskSchedulingSimulatorPage from './pages/DiskSchedulingSimulatorPage'
 import GossipProtocolSimulatorPage from './pages/GossipProtocolSimulatorPage'
@@ -753,6 +754,7 @@ const router = createBrowserRouter([
       { path: 'tools/retry-calculator', element: <RetryCalculatorPage /> },
       { path: 'tools/load-balancer-simulator', element: <LoadBalancerSimulatorPage /> },
       { path: 'tools/consistent-hashing-simulator', element: <ConsistentHashingSimulatorPage /> },
+      { path: 'tools/hash-table-visualizer', element: <HashTableVisualizerPage /> },
       { path: 'tools/bloom-filter-simulator', element: <BloomFilterSimulatorPage /> },
       { path: 'tools/cpu-scheduling-simulator', element: <CpuSchedulingSimulatorPage /> },
       { path: 'tools/disk-scheduling-simulator', element: <DiskSchedulingSimulatorPage /> },
