@@ -50,6 +50,7 @@ const PRESETS = [
       ['#52c41a', 240],
       ['#faad14', 240],
       ['#faad14', 320],
+      ['#1677ff', 320],
       ['#1677ff', 360],
     ].map(([color, position]) => makeStop(color, position)),
   },
