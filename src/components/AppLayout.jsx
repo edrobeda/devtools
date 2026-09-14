@@ -91,6 +91,7 @@ import {
   DollarOutlined,
   GitlabOutlined,
   PlayCircleOutlined,
+  SplitCellsOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -151,6 +152,7 @@ export const LABELS = {
     'subnet-calculator': 'Calculadora de Sub-rede',
     'openai-cost-calculator': 'Calculadora de Custo de LLM (OpenAI/Anthropic)',
     'llm-prompt-builder': 'LLM Prompt Builder',
+    'rag-chunk-visualizer': 'Visualizador de Chunking RAG',
     'cost-estimator': 'Estimador de Custo de Nuvem',
     'iam-policy-generator': 'Gerador de Política IAM',
     'git-commands': 'Comandos Git',
@@ -674,6 +676,7 @@ export const LABELS = {
     'subnet-calculator': 'Subnet Calculator',
     'openai-cost-calculator': 'LLM Cost Calculator (OpenAI/Anthropic)',
     'llm-prompt-builder': 'LLM Prompt Builder',
+    'rag-chunk-visualizer': 'RAG Chunking Visualizer',
     'cost-estimator': 'Cloud Cost Estimator',
     'iam-policy-generator': 'IAM Policy Generator',
     'git-commands': 'Git Commands',
@@ -1664,6 +1667,7 @@ export function buildMenuItems(l) {
       children: [
         { key: '/ai/openai-cost-calculator', label: withNewBadge('/ai/openai-cost-calculator', l['openai-cost-calculator'], l) },
         { key: '/ai/llm-prompt-builder', icon: <RobotOutlined />, label: withNewBadge('/ai/llm-prompt-builder', l['llm-prompt-builder'], l) },
+        { key: '/ai/rag-chunk-visualizer', icon: <SplitCellsOutlined />, label: withNewBadge('/ai/rag-chunk-visualizer', l['rag-chunk-visualizer'], l) },
         { key: '/ai/token-counter', label: withNewBadge('/ai/token-counter', l['token-counter'], l) },
       ],
     },
