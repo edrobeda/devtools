@@ -107,6 +107,7 @@ import UseThrottleSnippetPage from './pages/UseThrottleSnippetPage'
 import VscodeShortcutsPage from './pages/VscodeShortcutsPage'
 import JsonPathExplorerPage from './pages/JsonPathExplorerPage'
 import CssGridCheatsheetPage from './pages/CssGridCheatsheetPage'
+import CssEasingCheatsheetPage from './pages/CssEasingCheatsheetPage'
 import FisherYatesShufflePage from './pages/FisherYatesShufflePage'
 import TeamRoulettePage from './pages/TeamRoulettePage'
 import JwtGeneratorPage from './pages/JwtGeneratorPage'
@@ -639,6 +640,7 @@ const router = createBrowserRouter([
       { path: 'data/json-path-explorer', element: <JsonPathExplorerPage /> },
       { path: 'data/json-path-builder', element: <JsonPathBuilderPage /> },
       { path: 'references/css-grid-cheatsheet', element: <CssGridCheatsheetPage /> },
+      { path: 'references/css-easing-cheatsheet', element: <CssEasingCheatsheetPage /> },
       { path: 'snippets/fisher-yates-shuffle', element: <FisherYatesShufflePage /> },
       { path: 'extras/team-roulette', element: <TeamRoulettePage /> },
       { path: 'extras/pomodoro-timer', element: <PomodoroTimerPage /> },
