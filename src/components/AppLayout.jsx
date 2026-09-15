@@ -257,6 +257,7 @@ export const LABELS = {
     'json-path-builder': 'Construtor de JSON Path',
     'css-grid-cheatsheet': 'Cheat Sheet de CSS Grid',
     'css-easing-cheatsheet': 'Cheat Sheet de Easing CSS',
+    'file-signatures': 'Assinaturas de Arquivo (Magic Bytes)',
     'fisher-yates-shuffle': 'Fisher-Yates Shuffle',
     'team-roulette': 'Roleta de Sorteio',
     'jwt-generator': 'Gerador de JWT',
@@ -784,6 +785,7 @@ export const LABELS = {
     'json-path-builder': 'JSON Path Builder',
     'css-grid-cheatsheet': 'CSS Grid Cheat Sheet',
     'css-easing-cheatsheet': 'CSS Easing Cheat Sheet',
+    'file-signatures': 'File Signatures (Magic Bytes)',
     'fisher-yates-shuffle': 'Fisher-Yates Shuffle',
     'team-roulette': 'Team Roulette',
     'jwt-generator': 'JWT Generator',
@@ -1770,6 +1772,7 @@ export function buildMenuItems(l) {
         { key: '/references/emoji-cheatsheet', icon: <SmileOutlined />, label: withNewBadge('/references/emoji-cheatsheet', l['emoji-cheatsheet'], l) },
         { key: '/references/css-color-names', icon: <BgColorsOutlined />, label: withNewBadge('/references/css-color-names', l['css-color-names'], l) },
         { key: '/references/css-easing-cheatsheet', icon: <StockOutlined />, label: withNewBadge('/references/css-easing-cheatsheet', l['css-easing-cheatsheet'], l) },
+        { key: '/references/file-signatures', icon: <FileTextOutlined />, label: withNewBadge('/references/file-signatures', l['file-signatures'], l) },
       ],
     },
     {
