@@ -105,6 +105,7 @@ import JsonPatchPage from './pages/JsonPatchPage'
 import DarkModeTogglePage from './pages/DarkModeTogglePage'
 import UseThrottleSnippetPage from './pages/UseThrottleSnippetPage'
 import VscodeShortcutsPage from './pages/VscodeShortcutsPage'
+import IntellijShortcutsPage from './pages/IntellijShortcutsPage'
 import JsonPathExplorerPage from './pages/JsonPathExplorerPage'
 import CssGridCheatsheetPage from './pages/CssGridCheatsheetPage'
 import CssEasingCheatsheetPage from './pages/CssEasingCheatsheetPage'
@@ -640,6 +641,7 @@ const router = createBrowserRouter([
       { path: 'styles/dark-mode-toggle', element: <DarkModeTogglePage /> },
       { path: 'snippets/use-throttle', element: <UseThrottleSnippetPage /> },
       { path: 'references/vscode-shortcuts', element: <VscodeShortcutsPage /> },
+      { path: 'references/intellij-shortcuts', element: <IntellijShortcutsPage /> },
       { path: 'data/json-path-explorer', element: <JsonPathExplorerPage /> },
       { path: 'data/json-path-builder', element: <JsonPathBuilderPage /> },
       { path: 'references/css-grid-cheatsheet', element: <CssGridCheatsheetPage /> },
