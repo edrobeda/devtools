@@ -66,7 +66,6 @@ import UseTimeoutSnippetPage from './pages/UseTimeoutSnippetPage'
 import UseCountdownSnippetPage from './pages/UseCountdownSnippetPage'
 import UseFetchSnippetPage from './pages/UseFetchSnippetPage'
 import UseNetworkStatusSnippetPage from './pages/UseNetworkStatusSnippetPage'
-import UseElementSizeSnippetPage from './pages/UseElementSizeSnippetPage'
 import UseMousePositionSnippetPage from './pages/UseMousePositionSnippetPage'
 import UsePageVisibilitySnippetPage from './pages/UsePageVisibilitySnippetPage'
 import UseAsyncSnippetPage from './pages/UseAsyncSnippetPage'
@@ -600,7 +599,6 @@ const router = createBrowserRouter([
       { path: 'snippets/use-countdown', element: <UseCountdownSnippetPage /> },
       { path: 'snippets/use-fetch', element: <UseFetchSnippetPage /> },
       { path: 'snippets/use-network-status', element: <UseNetworkStatusSnippetPage /> },
-      { path: 'snippets/use-element-size', element: <UseElementSizeSnippetPage /> },
       { path: 'snippets/use-mouse-position', element: <UseMousePositionSnippetPage /> },
       { path: 'snippets/use-page-visibility', element: <UsePageVisibilitySnippetPage /> },
       { path: 'snippets/use-async', element: <UseAsyncSnippetPage /> },
