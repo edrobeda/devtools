@@ -512,6 +512,7 @@ import JsonMergePatchPage from './pages/JsonMergePatchPage'
 
 import CssColorNamesPage from './pages/CssColorNamesPage'
 import FileSignaturesPage from './pages/FileSignaturesPage'
+import TanstackQueryCheatsheetPage from './pages/TanstackQueryCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -1043,6 +1044,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-reset-generator', element: <CssResetGeneratorPage /> },
       { path: 'frontend/css-parallax-generator', element: <CssParallaxGeneratorPage /> },
       { path: 'security/password-entropy-calculator', element: <Navigate to="/security/password-strength" replace /> },
+      { path: 'references/tanstack-query-cheatsheet', element: <TanstackQueryCheatsheetPage /> },
       { path: 'references/file-signatures', element: <FileSignaturesPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],

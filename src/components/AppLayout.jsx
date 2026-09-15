@@ -635,6 +635,7 @@ export const LABELS = {
     'grep-command-builder': 'Construtor de Comando grep',
     'css-reset-generator': 'Gerador de CSS Reset',
     'css-parallax-generator': 'Gerador de Parallax CSS',
+    'tanstack-query-cheatsheet': 'Cheat Sheet de TanStack Query (React Query)',
   },
   en: {
     home: 'Home',
@@ -1163,6 +1164,7 @@ export const LABELS = {
     'grep-command-builder': 'grep Command Builder',
     'css-reset-generator': 'CSS Reset Generator',
     'css-parallax-generator': 'CSS Parallax Generator',
+    'tanstack-query-cheatsheet': 'TanStack Query (React Query) Cheat Sheet',
   },
 }
 
@@ -1773,6 +1775,7 @@ export function buildMenuItems(l) {
         { key: '/references/css-color-names', icon: <BgColorsOutlined />, label: withNewBadge('/references/css-color-names', l['css-color-names'], l) },
         { key: '/references/css-easing-cheatsheet', icon: <StockOutlined />, label: withNewBadge('/references/css-easing-cheatsheet', l['css-easing-cheatsheet'], l) },
         { key: '/references/file-signatures', icon: <FileTextOutlined />, label: withNewBadge('/references/file-signatures', l['file-signatures'], l) },
+        { key: '/references/tanstack-query-cheatsheet', icon: <DatabaseOutlined />, label: withNewBadge('/references/tanstack-query-cheatsheet', l['tanstack-query-cheatsheet'], l) },
       ],
     },
     {
