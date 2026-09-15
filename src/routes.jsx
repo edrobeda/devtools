@@ -105,8 +105,10 @@ import JsonPatchPage from './pages/JsonPatchPage'
 import DarkModeTogglePage from './pages/DarkModeTogglePage'
 import UseThrottleSnippetPage from './pages/UseThrottleSnippetPage'
 import VscodeShortcutsPage from './pages/VscodeShortcutsPage'
+import IntellijShortcutsPage from './pages/IntellijShortcutsPage'
 import JsonPathExplorerPage from './pages/JsonPathExplorerPage'
 import CssGridCheatsheetPage from './pages/CssGridCheatsheetPage'
+import CssEasingCheatsheetPage from './pages/CssEasingCheatsheetPage'
 import FisherYatesShufflePage from './pages/FisherYatesShufflePage'
 import TeamRoulettePage from './pages/TeamRoulettePage'
 import JwtGeneratorPage from './pages/JwtGeneratorPage'
@@ -173,7 +175,7 @@ import CssFilterGeneratorPage from './pages/CssFilterGeneratorPage'
 import MetaTagsGeneratorPage from './pages/MetaTagsGeneratorPage'
 import RegexCheatSheetPage from './pages/RegexCheatSheetPage'
 import CrcCalculatorPage from './pages/CrcCalculatorPage'
-import JsonToTypeScriptPage from './pages/JsonToTypeScriptPage'
+import JsonToTypesPage from './pages/JsonToTypesPage'
 import JsonToYamlPage from './pages/JsonToYamlPage'
 import JsonFlattenPage from './pages/JsonFlattenPage'
 import CaddyfileGeneratorPage from './pages/CaddyfileGeneratorPage'
@@ -503,9 +505,11 @@ import IntlPlaygroundPage from './pages/IntlPlaygroundPage'
 import JsonRepairPage from './pages/JsonRepairPage'
 import GrepCommandBuilderPage from './pages/GrepCommandBuilderPage'
 import CssResetGeneratorPage from './pages/CssResetGeneratorPage'
+import CssParallaxGeneratorPage from './pages/CssParallaxGeneratorPage'
 import JsonToGraphqlPage from './pages/JsonToGraphqlPage'
 import GridBuilderPage from './pages/GridBuilderPage'
 import JsonPathBuilderPage from './pages/JsonPathBuilderPage'
+import JsonMergePatchPage from './pages/JsonMergePatchPage'
 
 import CssColorNamesPage from './pages/CssColorNamesPage'
 
@@ -633,12 +637,15 @@ const router = createBrowserRouter([
       { path: 'tools/lorem-ipsum-generator', element: <LoremIpsumGeneratorPage /> },
       { path: 'data/json-diff', element: <JsonDiffPage /> },
       { path: 'data/json-patch', element: <JsonPatchPage /> },
+      { path: 'data/json-merge-patch', element: <JsonMergePatchPage /> },
       { path: 'styles/dark-mode-toggle', element: <DarkModeTogglePage /> },
       { path: 'snippets/use-throttle', element: <UseThrottleSnippetPage /> },
       { path: 'references/vscode-shortcuts', element: <VscodeShortcutsPage /> },
+      { path: 'references/intellij-shortcuts', element: <IntellijShortcutsPage /> },
       { path: 'data/json-path-explorer', element: <JsonPathExplorerPage /> },
       { path: 'data/json-path-builder', element: <JsonPathBuilderPage /> },
       { path: 'references/css-grid-cheatsheet', element: <CssGridCheatsheetPage /> },
+      { path: 'references/css-easing-cheatsheet', element: <CssEasingCheatsheetPage /> },
       { path: 'snippets/fisher-yates-shuffle', element: <FisherYatesShufflePage /> },
       { path: 'extras/team-roulette', element: <TeamRoulettePage /> },
       { path: 'extras/pomodoro-timer', element: <PomodoroTimerPage /> },
@@ -805,7 +812,8 @@ const router = createBrowserRouter([
       { path: 'frontend/clip-path-generator', element: <ClipPathGeneratorPage /> },
       { path: 'references/regex-cheatsheet', element: <RegexCheatSheetPage /> },
       { path: 'tools/crc-calculator', element: <CrcCalculatorPage /> },
-      { path: 'data/json-to-typescript', element: <JsonToTypeScriptPage /> },
+      { path: 'data/json-to-typescript', element: <Navigate to="/data/json-to-types" replace /> },
+      { path: 'data/json-to-types', element: <JsonToTypesPage /> },
       { path: 'data/json-to-yaml', element: <JsonToYamlPage /> },
       { path: 'data/json-to-zod-schema', element: <JsonToZodSchemaPage /> },
       { path: 'data/json-to-graphql', element: <JsonToGraphqlPage /> },
@@ -1034,6 +1042,7 @@ const router = createBrowserRouter([
       { path: 'tools/combinatorics-calculator', element: <CombinatoricsCalculatorPage /> },
       { path: 'tools/grep-command-builder', element: <GrepCommandBuilderPage /> },
       { path: 'frontend/css-reset-generator', element: <CssResetGeneratorPage /> },
+      { path: 'frontend/css-parallax-generator', element: <CssParallaxGeneratorPage /> },
       { path: 'security/password-entropy-calculator', element: <Navigate to="/security/password-strength" replace /> },
       { path: '*', element: <NotFoundPage /> },
     ],
