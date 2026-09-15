@@ -174,7 +174,6 @@ import CssFilterGeneratorPage from './pages/CssFilterGeneratorPage'
 import MetaTagsGeneratorPage from './pages/MetaTagsGeneratorPage'
 import RegexCheatSheetPage from './pages/RegexCheatSheetPage'
 import CrcCalculatorPage from './pages/CrcCalculatorPage'
-import JsonToTypeScriptPage from './pages/JsonToTypeScriptPage'
 import JsonToTypesPage from './pages/JsonToTypesPage'
 import JsonToYamlPage from './pages/JsonToYamlPage'
 import JsonFlattenPage from './pages/JsonFlattenPage'
@@ -811,7 +810,7 @@ const router = createBrowserRouter([
       { path: 'frontend/clip-path-generator', element: <ClipPathGeneratorPage /> },
       { path: 'references/regex-cheatsheet', element: <RegexCheatSheetPage /> },
       { path: 'tools/crc-calculator', element: <CrcCalculatorPage /> },
-      { path: 'data/json-to-typescript', element: <JsonToTypeScriptPage /> },
+      { path: 'data/json-to-typescript', element: <Navigate to="/data/json-to-types" replace /> },
       { path: 'data/json-to-types', element: <JsonToTypesPage /> },
       { path: 'data/json-to-yaml', element: <JsonToYamlPage /> },
       { path: 'data/json-to-zod-schema', element: <JsonToZodSchemaPage /> },

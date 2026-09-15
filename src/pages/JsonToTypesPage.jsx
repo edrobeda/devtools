@@ -74,6 +74,23 @@ function singular(base) {
   return base
 }
 
+const IDENT_RE = /^[A-Za-z_$][A-Za-z0-9_$]*$/
+// Palavras reservadas do ECMAScript — em interfaces TS qualquer palavra
+// reservada é permitida como nome de propriedade, então só entra aqui o que
+// de fato quebraria a sintaxe se usado sem aspas (quase nada).
+const RESERVED = new Set([
+  'break', 'case', 'catch', 'class', 'const', 'continue', 'debugger', 'default',
+  'delete', 'do', 'else', 'enum', 'export', 'extends', 'false', 'finally', 'for',
+  'function', 'if', 'import', 'in', 'instanceof', 'new', 'null', 'return',
+  'super', 'switch', 'this', 'throw', 'true', 'try', 'typeof', 'var', 'void',
+  'while', 'with', 'yield', 'let', 'static', 'implements', 'package', 'private',
+  'protected', 'public',
+])
+
+function isIdent(k) {
+  return IDENT_RE.test(k) && !RESERVED.has(k)
+}
+
 function shapeSig(node) {
   if (node === null) return 'null'
   if (typeof node === 'boolean') return 'bool'
@@ -133,7 +150,8 @@ function genTypeScript(value, rootName, camelKeys) {
       memo.set(sig, n)
       const lines = Object.keys(node).map((k) => {
         const key = camelKeys ? camelize(k) : k
-        return '  ' + key + ': ' + typeOf(node[k], pascalCase(k))
+        const label = isIdent(key) ? key : JSON.stringify(key)
+        return '  ' + label + ': ' + typeOf(node[k], pascalCase(k))
       })
       defs.push({ name: n, body: lines.join('\n') })
       return n
@@ -145,11 +163,11 @@ function genTypeScript(value, rootName, camelKeys) {
 
   const rootDef = isObj ? defs.find((d) => d.name === root) : null
   const others = defs.filter((d) => d.name !== root)
-  let out = others.map((d) => `interface ${d.name} {\n${d.body}\n}`).join('\n\n')
+  let out = others.map((d) => `export interface ${d.name} {\n${d.body}\n}`).join('\n\n')
   if (isObj) {
-    out = (out ? out + '\n\n' : '') + `interface ${rootDef.name} {\n${rootDef.body}\n}`
+    out = (out ? out + '\n\n' : '') + `export interface ${rootDef.name} {\n${rootDef.body}\n}`
   } else {
-    out = (out ? out + '\n\n' : '') + `type ${root} = ${typeOf(value, root)}`
+    out = (out ? out + '\n\n' : '') + `export type ${root} = ${typeOf(value, root)}`
   }
   return out + '\n'
 }
