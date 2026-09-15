@@ -513,6 +513,7 @@ import JsonMergePatchPage from './pages/JsonMergePatchPage'
 import CssColorNamesPage from './pages/CssColorNamesPage'
 import FileSignaturesPage from './pages/FileSignaturesPage'
 import TanstackQueryCheatsheetPage from './pages/TanstackQueryCheatsheetPage'
+import SvgToJsxConverterPage from './pages/SvgToJsxConverterPage'
 
 const router = createBrowserRouter([
   {
@@ -687,6 +688,7 @@ const router = createBrowserRouter([
       { path: 'text/lines-tool', element: <LinesToolPage /> },
       { path: 'text/search-replace', element: <SearchReplacePage /> },
       { path: 'tools/html-to-jsx-converter', element: <HtmlToJsxConverterPage /> },
+      { path: 'tools/svg-to-jsx-converter', element: <SvgToJsxConverterPage /> },
       { path: 'tools/html-to-markdown', element: <HtmlToMarkdownPage /> },
       { path: 'devops/changelog-generator', element: <ChangelogGeneratorPage /> },
       { path: 'devops/gitattributes-generator', element: <GitattributesGeneratorPage /> },
