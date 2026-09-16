@@ -517,7 +517,6 @@ import FileSignaturesPage from './pages/FileSignaturesPage'
 import TanstackQueryCheatsheetPage from './pages/TanstackQueryCheatsheetPage'
 import SvgToJsxConverterPage from './pages/SvgToJsxConverterPage'
 import WindowsPowershellCheatsheetPage from './pages/WindowsPowershellCheatsheetPage'
-import EmojiReferencePage from './pages/EmojiReferencePage'
 
 const router = createBrowserRouter([
   {
@@ -1057,7 +1056,6 @@ const router = createBrowserRouter([
       { path: 'references/tanstack-query-cheatsheet', element: <TanstackQueryCheatsheetPage /> },
       { path: 'references/file-signatures', element: <FileSignaturesPage /> },
       { path: 'references/powershell-cmd-cheatsheet', element: <WindowsPowershellCheatsheetPage /> },
-      { path: 'references/emoji-reference', element: <EmojiReferencePage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
