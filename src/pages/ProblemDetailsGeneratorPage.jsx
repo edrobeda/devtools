@@ -489,6 +489,7 @@ ${jsonOutput}`,
 const translations = {
   pt: {
     title: 'Gerador de Problem Details (RFC 7807 / RFC 9457)',
+    intro: 'Crie respostas de erro padronizadas para APIs HTTP seguindo o padrão Problem Details. Útil para documentar contratos de erro, testar clientes e garantir consistência entre serviços.',
     description:
       'Crie respostas de erro padronizadas para APIs HTTP seguindo o padrão Problem Details. ' +
       'Útil para documentar contratos de erro, testar clientes e garantir consistência entre serviços.',
@@ -570,6 +571,7 @@ const translations = {
   },
   en: {
     title: 'Problem Details Generator (RFC 7807 / RFC 9457)',
+    intro: 'Create standardized error responses for HTTP APIs following the Problem Details pattern. Useful for documenting error contracts, testing clients, and ensuring consistency across services.',
     description:
       'Create standardized error responses for HTTP APIs following the Problem Details pattern. ' +
       'Useful for documenting error contracts, testing clients, and ensuring consistency across services.',

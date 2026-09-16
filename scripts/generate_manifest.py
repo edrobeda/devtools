@@ -30,7 +30,21 @@ TITLE_RE = re.compile(r"title:\s*['\"]([^'\"]+)['\"]")
 PT_TITLE_RE = re.compile(
     r"const\s+translations\s*=\s*\{[\s\S]*?pt:\s*\{[\s\S]*?(?:title|heading):\s*['\"]([^'\"]+)['\"]"
 )
-INTRO_RE = re.compile(r"intro:\s*(.*?)(?=\n\s{4}\w[\w]*:|\n\s{2}\},)", re.DOTALL)
+# A captura do intro precisa parar na PRIMEIRA key irmã, na MESMA indentação do
+# `intro:` — não só nas de exatamente 4 espaços. Páginas com o objeto
+# `translations` aninhado em função indentam as keys do bloco `pt:` em 6
+# espaços, e aí o intro engolia os campos vizinhos (run:, download:, ...) até o
+# fim do objeto. Não dá pra usar `\s{2,}` (para cobrir 4 e 6): o texto de
+# continuação de intros multi-linha (JSX <>...</>) fica indentado 6–8 espaços e
+# pode conter `palavra:` no meio — cortaria a descrição cedo demais. Então o
+# lookahead usa um backreference (`intro_indent`) e bloqueia em qualquer chave
+# `\w[\w]*:` com a EXATA indentação do `intro:` (só os irmãos de verdade), mais
+# o fechamento `},` em 0–2 espaços como parada de segurança.
+INTRO_RE = re.compile(
+    r"(?P<intro_indent>[ \t]*)intro:\s*(?P<intro_body>.*?)"
+    r"(?=\n(?P=intro_indent)\w[\w]*:|\n\s{0,2}\},)",
+    re.DOTALL,
+)
 
 
 def extract_title(page_src, component):
@@ -77,7 +91,7 @@ def main():
         title = extract_title(page_src, component)
 
         intro_match = INTRO_RE.search(page_src)
-        description = extract_description(intro_match.group(1)) if intro_match else ""
+        description = extract_description(intro_match.group("intro_body")) if intro_match else ""
 
         category = path.split("/")[0] if "/" in path else path
         entries.append((path, category, title, description))
