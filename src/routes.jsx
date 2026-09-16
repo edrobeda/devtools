@@ -407,7 +407,6 @@ import MediaQueryGeneratorPage from './pages/MediaQueryGeneratorPage'
 import CssSupportsGeneratorPage from './pages/CssSupportsGeneratorPage'
 import CssLayerGeneratorPage from './pages/CssLayerGeneratorPage'
 import FaviconGeneratorPage from './pages/FaviconGeneratorPage'
-import CssHasSelectorTesterPage from './pages/CssHasSelectorTesterPage'
 import CircuitBreakerSimulatorPage from './pages/CircuitBreakerSimulatorPage'
 import RateLimiterSimulatorPage from './pages/RateLimiterSimulatorPage'
 import TwoPhaseCommitSimulatorPage from './pages/TwoPhaseCommitSimulatorPage'
@@ -967,7 +966,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-supports-generator', element: <CssSupportsGeneratorPage /> },
       { path: 'frontend/css-layer-generator', element: <CssLayerGeneratorPage /> },
       { path: 'frontend/favicon-generator', element: <FaviconGeneratorPage /> },
-      { path: 'frontend/css-has-selector-tester', element: <CssHasSelectorTesterPage /> },
+      { path: 'frontend/css-has-selector-tester', element: <Navigate to="/tools/css-selector-tester" replace /> },
       { path: 'frontend/typography-scale-calculator', element: <TypographyScaleCalculatorPage /> },
       { path: 'frontend/css-nesting-generator', element: <CssNestingGeneratorPage /> },
       { path: 'snippets/use-update-effect', element: <UseUpdateEffectSnippetPage /> },
