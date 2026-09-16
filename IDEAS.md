@@ -106,7 +106,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Environment Variables Manager
 - [x] Parser/validador de arquivo `.env` — `/devops/env-file-validator`
 - [x] Docker Compose Generator — `/devops/docker-compose-generator`
-- [ ] Docker Compose Visualizer 🔥
+- [x] Docker Compose Visualizer 🔥 — `/devops/docker-compose-visualizer`
 - [x] Dockerfile Generator — `/devops/dockerfile-generator`
 - [ ] Docker Logs Viewer
 - [ ] Docker Layer Explorer 🔥
@@ -310,7 +310,7 @@ Itens que quase ninguém oferece — bons candidatos pra se destacar:
 - [x] Roleta/sorteio simples (ex.: "quem revisa esse PR") — `/extras/team-roulette`
 - [x] CSS Specificity Calculator 🔥 *(ver também em Front-end)* — `/tools/css-specificity-calculator`
 - [ ] SQL Explain Visualizer 🔥 *(ver também em Banco de Dados)*
-- [ ] Docker Compose Visualizer 🔥 *(ver também em DevOps)*
+- [x] Docker Compose Visualizer 🔥 *(ver também em DevOps)* — `/devops/docker-compose-visualizer`
 - [ ] API Flow Designer 🔥 *(ver também em APIs)*
 - [x] JWT Timeline 🔥 *(ver também em Código)* — `/tools/jwt-timeline`
 - [ ] Redis TTL Simulator 🔥 *(ver também em Banco de Dados)*

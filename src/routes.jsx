@@ -298,6 +298,7 @@ import SystemdUnitGeneratorPage from './pages/SystemdUnitGeneratorPage'
 import ShieldsBadgeGeneratorPage from './pages/ShieldsBadgeGeneratorPage'
 import KubernetesManifestGeneratorPage from './pages/KubernetesManifestGeneratorPage'
 import OtelCollectorConfigGeneratorPage from './pages/OtelCollectorConfigGeneratorPage'
+import DockerComposeVisualizerPage from './pages/DockerComposeVisualizerPage'
 import GitlabCiConfigGeneratorPage from './pages/GitlabCiConfigGeneratorPage'
 import GithubActionsWorkflowGeneratorPage from './pages/GithubActionsWorkflowGeneratorPage'
 import CiCdCostCalculatorPage from './pages/CiCdCostCalculatorPage'
@@ -826,6 +827,7 @@ const router = createBrowserRouter([
       { path: 'data/json-flatten', element: <JsonFlattenPage /> },
       { path: 'devops/docker-compose-generator', element: <DockerComposeGeneratorPage /> },
       { path: 'devops/docker-run-to-compose', element: <DockerRunToComposePage /> },
+      { path: 'devops/docker-compose-visualizer', element: <DockerComposeVisualizerPage /> },
       { path: 'references/openssl-commands', element: <OpensslCommandsPage /> },
       { path: 'devops/nginx-config-generator', element: <NginxConfigGeneratorPage /> },
       { path: 'devops/ssh-config-generator', element: <SshConfigGeneratorPage /> },
