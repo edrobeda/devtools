@@ -46,6 +46,7 @@ import KeyboardEventTesterPage from './pages/KeyboardEventTesterPage'
 import Base64ToolPage from './pages/Base64ToolPage'
 import Base32ToolPage from './pages/Base32ToolPage'
 import Base58ToolPage from './pages/Base58ToolPage'
+import Base85ToolPage from './pages/Base85ToolPage'
 import UuidGeneratorPage from './pages/UuidGeneratorPage'
 import UuidV7ToolPage from './pages/UuidV7ToolPage'
 import SnowflakeIdToolPage from './pages/SnowflakeIdToolPage'
@@ -569,6 +570,7 @@ const router = createBrowserRouter([
       { path: 'tools/base64-tool', element: <Base64ToolPage /> },
       { path: 'tools/base32-tool', element: <Base32ToolPage /> },
       { path: 'tools/base58-tool', element: <Base58ToolPage /> },
+      { path: 'tools/base85-tool', element: <Base85ToolPage /> },
       { path: 'tools/uuid-generator', element: <UuidGeneratorPage /> },
       { path: 'tools/uuid-v7-tool', element: <UuidV7ToolPage /> },
       { path: 'tools/snowflake-id-tool', element: <SnowflakeIdToolPage /> },
