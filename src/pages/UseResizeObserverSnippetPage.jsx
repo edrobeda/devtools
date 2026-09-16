@@ -88,7 +88,17 @@ export default function useResizeObserver(options = {}, onResize) {
 //   <div ref={ref}>
 //     {entry?.contentRect?.width.toFixed(0)} x {entry?.contentRect?.height.toFixed(0)}
 //   </div>
-// )`
+// )
+//
+// Caso de uso simples (substitui o antigo hook useElementSize, mesclado aqui):
+// se você só precisa de { width, height } arredondados, derive do entry:
+//   const [ref, entry] = useResizeObserver()
+//   const width = Math.round(entry?.contentRect?.width ?? 0)
+//   const height = Math.round(entry?.contentRect?.height ?? 0)
+//
+// Nota: diferente do antigo useElementSize, este hook não tem fallback para
+// \`window.resize\` — em navegadores sem ResizeObserver, considere um fallback
+// manual ouvindo o evento \`resize\`.`
 
 const translations = {
   pt: {
@@ -101,7 +111,12 @@ const translations = {
         incluindo dimensões de content-box, border-box ou device-pixel. Útil
         para layouts responsivos baseados no container, redimensionar canvas,
         gráficos e qualquer componente que precise reagir ao próprio tamanho.
-        Implementação SSR-safe em{' '}
+        Cobre também o caso simples do antigo <Text code>useElementSize</Text>{' '}
+        (mesclado aqui): basta derivar{' '}
+        <Text code>{'{ width, height }'}</Text> arredondado de{' '}
+        <Text code>entry?.contentRect</Text> — veja o comentário de uso no
+        código. Ao contrário do antigo hook, este não tem fallback para o
+        evento <Text code>window.resize</Text>. Implementação SSR-safe em{' '}
         <Text code>src/hooks/useResizeObserver.js</Text>.
       </>
     ),
@@ -138,8 +153,13 @@ const translations = {
         and the latest <Text code>ResizeObserverEntry</Text>, including
         content-box, border-box or device-pixel dimensions. Useful for
         container-based responsive layouts, resizing canvas, charts and any
-        component that needs to react to its own size. SSR-safe implementation
-        in <Text code>src/hooks/useResizeObserver.js</Text>.
+        component that needs to react to its own size. Also covers the simple
+        case of the former <Text code>useElementSize</Text> (merged here): just
+        derive a rounded <Text code>{'{ width, height }'}</Text> from{' '}
+        <Text code>entry?.contentRect</Text> — see the usage comment in the
+        code. Unlike the old hook, this one has no fallback to the{' '}
+        <Text code>window.resize</Text> event. SSR-safe implementation in{' '}
+        <Text code>src/hooks/useResizeObserver.js</Text>.
       </>
     ),
     sourceTitle: 'Source code',

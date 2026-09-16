@@ -15,6 +15,14 @@ import { useCallback, useEffect, useRef, useState } from 'react'
  *       {entry?.contentRect.width.toFixed(0)} x {entry?.contentRect.height.toFixed(0)}
  *     </div>
  *   )
+ *
+ * Se você só precisa das dimensões arredondadas (caso do antigo hook
+ * useElementSize, mesclado aqui):
+ *   const width = Math.round(entry?.contentRect?.width ?? 0)
+ *   const height = Math.round(entry?.contentRect?.height ?? 0)
+ *
+ * Nota: este hook não tem fallback para window.resize — em navegadores sem
+ * ResizeObserver, considere um fallback manual com o evento `resize`.
  */
 export default function useResizeObserver(options = {}, onResize) {
   const [entry, setEntry] = useState(null)

@@ -46,6 +46,7 @@ import KeyboardEventTesterPage from './pages/KeyboardEventTesterPage'
 import Base64ToolPage from './pages/Base64ToolPage'
 import Base32ToolPage from './pages/Base32ToolPage'
 import Base58ToolPage from './pages/Base58ToolPage'
+import Base85ToolPage from './pages/Base85ToolPage'
 import UuidGeneratorPage from './pages/UuidGeneratorPage'
 import UuidV7ToolPage from './pages/UuidV7ToolPage'
 import SnowflakeIdToolPage from './pages/SnowflakeIdToolPage'
@@ -66,7 +67,6 @@ import UseTimeoutSnippetPage from './pages/UseTimeoutSnippetPage'
 import UseCountdownSnippetPage from './pages/UseCountdownSnippetPage'
 import UseFetchSnippetPage from './pages/UseFetchSnippetPage'
 import UseNetworkStatusSnippetPage from './pages/UseNetworkStatusSnippetPage'
-import UseElementSizeSnippetPage from './pages/UseElementSizeSnippetPage'
 import UseMousePositionSnippetPage from './pages/UseMousePositionSnippetPage'
 import UsePageVisibilitySnippetPage from './pages/UsePageVisibilitySnippetPage'
 import UseAsyncSnippetPage from './pages/UseAsyncSnippetPage'
@@ -512,6 +512,9 @@ import JsonPathBuilderPage from './pages/JsonPathBuilderPage'
 import JsonMergePatchPage from './pages/JsonMergePatchPage'
 
 import CssColorNamesPage from './pages/CssColorNamesPage'
+import FileSignaturesPage from './pages/FileSignaturesPage'
+import TanstackQueryCheatsheetPage from './pages/TanstackQueryCheatsheetPage'
+import SvgToJsxConverterPage from './pages/SvgToJsxConverterPage'
 
 const router = createBrowserRouter([
   {
@@ -567,6 +570,7 @@ const router = createBrowserRouter([
       { path: 'tools/base64-tool', element: <Base64ToolPage /> },
       { path: 'tools/base32-tool', element: <Base32ToolPage /> },
       { path: 'tools/base58-tool', element: <Base58ToolPage /> },
+      { path: 'tools/base85-tool', element: <Base85ToolPage /> },
       { path: 'tools/uuid-generator', element: <UuidGeneratorPage /> },
       { path: 'tools/uuid-v7-tool', element: <UuidV7ToolPage /> },
       { path: 'tools/snowflake-id-tool', element: <SnowflakeIdToolPage /> },
@@ -600,7 +604,6 @@ const router = createBrowserRouter([
       { path: 'snippets/use-countdown', element: <UseCountdownSnippetPage /> },
       { path: 'snippets/use-fetch', element: <UseFetchSnippetPage /> },
       { path: 'snippets/use-network-status', element: <UseNetworkStatusSnippetPage /> },
-      { path: 'snippets/use-element-size', element: <UseElementSizeSnippetPage /> },
       { path: 'snippets/use-mouse-position', element: <UseMousePositionSnippetPage /> },
       { path: 'snippets/use-page-visibility', element: <UsePageVisibilitySnippetPage /> },
       { path: 'snippets/use-async', element: <UseAsyncSnippetPage /> },
@@ -687,6 +690,7 @@ const router = createBrowserRouter([
       { path: 'text/lines-tool', element: <LinesToolPage /> },
       { path: 'text/search-replace', element: <SearchReplacePage /> },
       { path: 'tools/html-to-jsx-converter', element: <HtmlToJsxConverterPage /> },
+      { path: 'tools/svg-to-jsx-converter', element: <SvgToJsxConverterPage /> },
       { path: 'tools/html-to-markdown', element: <HtmlToMarkdownPage /> },
       { path: 'devops/changelog-generator', element: <ChangelogGeneratorPage /> },
       { path: 'devops/gitattributes-generator', element: <GitattributesGeneratorPage /> },
@@ -952,8 +956,8 @@ const router = createBrowserRouter([
       { path: 'frontend/color-mix-generator', element: <ColorMixGeneratorPage /> },
       { path: 'frontend/blend-mode-generator', element: <BlendModeGeneratorPage /> },
       { path: 'frontend/html-boilerplate-generator', element: <HtmlBoilerplateGeneratorPage /> },
-      { path: 'frontend/image-palette-extractor', element: <ImagePaletteExtractorPage /> },
-      { path: 'frontend/image-diff-visualizer', element: <ImageDiffVisualizerPage /> },
+      { path: 'frontend/image-palette-extractor', element: <Navigate to="/tools/image-palette-extractor" replace /> },
+      { path: 'frontend/image-diff-visualizer', element: <Navigate to="/tools/image-diff-visualizer" replace /> },
       { path: 'frontend/css-animation-stagger-generator', element: <CssAnimationStaggerGeneratorPage /> },
       { path: 'frontend/css-at-property-generator', element: <CssAtPropertyGeneratorPage /> },
       { path: 'frontend/media-query-generator', element: <MediaQueryGeneratorPage /> },
@@ -1031,6 +1035,8 @@ const router = createBrowserRouter([
       { path: 'tools/ascii-banner-generator', element: <AsciiBannerGeneratorPage /> },
       { path: 'tools/image-to-ascii', element: <ImageToAsciiPage /> },
       { path: 'tools/image-resizer', element: <ImageResizerPage /> },
+      { path: 'tools/image-palette-extractor', element: <ImagePaletteExtractorPage /> },
+      { path: 'tools/image-diff-visualizer', element: <ImageDiffVisualizerPage /> },
       { path: 'tools/xpath-tester', element: <XPathTesterPage /> },
       { path: 'tools/bankers-algorithm-simulator', element: <BankersAlgorithmSimulatorPage /> },
       { path: 'tools/memory-allocation-simulator', element: <MemoryAllocationSimulatorPage /> },
@@ -1044,6 +1050,8 @@ const router = createBrowserRouter([
       { path: 'frontend/css-reset-generator', element: <CssResetGeneratorPage /> },
       { path: 'frontend/css-parallax-generator', element: <CssParallaxGeneratorPage /> },
       { path: 'security/password-entropy-calculator', element: <Navigate to="/security/password-strength" replace /> },
+      { path: 'references/tanstack-query-cheatsheet', element: <TanstackQueryCheatsheetPage /> },
+      { path: 'references/file-signatures', element: <FileSignaturesPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
