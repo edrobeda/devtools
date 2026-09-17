@@ -171,6 +171,7 @@ import CubicBezierEditorPage from './pages/CubicBezierEditorPage'
 import AnsiColorsPage from './pages/AnsiColorsPage'
 import AsciiTablePage from './pages/AsciiTablePage'
 import SvgWaveGeneratorPage from './pages/SvgWaveGeneratorPage'
+import SvgOptimizerPage from './pages/SvgOptimizerPage'
 import CssFilterGeneratorPage from './pages/CssFilterGeneratorPage'
 import MetaTagsGeneratorPage from './pages/MetaTagsGeneratorPage'
 import RegexCheatSheetPage from './pages/RegexCheatSheetPage'
@@ -818,6 +819,7 @@ const router = createBrowserRouter([
       { path: 'frontend/keyframe-generator', element: <KeyframeGeneratorPage /> },
       { path: 'frontend/clip-path-generator', element: <ClipPathGeneratorPage /> },
       { path: 'frontend/css-mask-generator', element: <CssMaskGeneratorPage /> },
+      { path: 'frontend/svg-optimizer', element: <SvgOptimizerPage /> },
       { path: 'references/regex-cheatsheet', element: <RegexCheatSheetPage /> },
       { path: 'tools/crc-calculator', element: <CrcCalculatorPage /> },
       { path: 'data/json-to-typescript', element: <Navigate to="/data/json-to-types" replace /> },
