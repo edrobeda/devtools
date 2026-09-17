@@ -206,6 +206,7 @@ import ChangelogGeneratorPage from './pages/ChangelogGeneratorPage'
 import GitattributesGeneratorPage from './pages/GitattributesGeneratorPage'
 import VimCheatsheetPage from './pages/VimCheatsheetPage'
 import SshCheatsheetPage from './pages/SshCheatsheetPage'
+import RsyncCheatsheetPage from './pages/RsyncCheatsheetPage'
 import DockerComposeGeneratorPage from './pages/DockerComposeGeneratorPage'
 import DockerRunToComposePage from './pages/DockerRunToComposePage'
 import OpensslCommandsPage from './pages/OpensslCommandsPage'
@@ -852,6 +853,7 @@ const router = createBrowserRouter([
       { path: 'references/tmux-cheatsheet', element: <TmuxCheatsheetPage /> },
       { path: 'references/devtools-shortcuts', element: <DevToolsShortcutsPage /> },
       { path: 'references/ssh-cheatsheet', element: <SshCheatsheetPage /> },
+      { path: 'references/rsync-cheatsheet', element: <RsyncCheatsheetPage /> },
       { path: 'references/python-cheatsheet', element: <PythonCheatsheetPage /> },
       { path: 'references/grep-sed-awk', element: <GrepSedAwkCheatsheetPage /> },
       { path: 'references/jq-cheatsheet', element: <JqCheatsheetPage /> },
