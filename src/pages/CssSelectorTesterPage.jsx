@@ -76,6 +76,42 @@ const EXAMPLE_COMBINATORS = `<section>
   <p>Outro irmão</p>
 </section>`
 
+const EXAMPLE_HAS_LINK = `<article class="card">
+  <h2>Título do card</h2>
+  <p>Descrição sem link.</p>
+</article>
+
+<article class="card">
+  <h2>Outro card</h2>
+  <p>Descrição com <a href="#">link</a>.</p>
+</article>
+
+<ul class="list">
+  <li>Item sem destaque</li>
+  <li><strong>Item forte</strong></li>
+  <li>Item com <span class="tag">tag</span></li>
+</ul>`
+
+const EXAMPLE_HAS_IMAGE = `<section class="gallery">
+  <figure>
+    <figcaption>Sem imagem</figcaption>
+  </figure>
+  <figure>
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'/%3E" alt="exemplo">
+    <figcaption>Com imagem</figcaption>
+  </figure>
+</section>`
+
+const EXAMPLE_NOT_HAS = `<form>
+  <div class="field">
+    <label for="nome">Nome</label>
+    <input id="nome" type="text">
+  </div>
+  <div class="field">
+    <input type="text" placeholder="sem label">
+  </div>
+</form>`
+
 const translations = {
   pt: {
     title: 'Testador de Seletores CSS',
@@ -95,6 +131,11 @@ const translations = {
     pseudo: 'Pseudo-classes',
     attr: 'Atributos',
     combinators: 'Combinadores',
+    hasCard: ':has() · Card com link',
+    hasFigure: ':has() · Figure com imagem',
+    hasNotLabel: ':has() · Campos sem label',
+    hasSupported: ':has() suportado neste navegador',
+    hasNotSupported: ':has() não suportado — Chrome/Edge 105+, Firefox 121+ ou Safari 15.4+',
     clear: 'Limpar',
     previewTitle: 'Preview ao vivo',
     matchesTitle: 'Elementos encontrados',
@@ -159,6 +200,11 @@ const translations = {
     pseudo: 'Pseudo-classes',
     attr: 'Attributes',
     combinators: 'Combinators',
+    hasCard: ':has() · Card with link',
+    hasFigure: ':has() · Figure with image',
+    hasNotLabel: ':has() · Fields without label',
+    hasSupported: ':has() supported in this browser',
+    hasNotSupported: ':has() unsupported — Chrome/Edge 105+, Firefox 121+ or Safari 15.4+',
     clear: 'Clear',
     previewTitle: 'Live preview',
     matchesTitle: 'Matched elements',
@@ -250,8 +296,15 @@ export default function CssSelectorTesterPage() {
   const [html, setHtml] = useState(EXAMPLE_SIMPLE)
   const [matches, setMatches] = useState([])
   const [error, setError] = useState(null)
+  const [hasSupported, setHasSupported] = useState(true)
 
   const iframeRef = useRef(null)
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.CSS && typeof window.CSS.supports === 'function') {
+      setHasSupported(window.CSS.supports('selector(:has(*))'))
+    }
+  }, [])
 
   const exampleOptions = useMemo(
     () => [
@@ -259,6 +312,9 @@ export default function CssSelectorTesterPage() {
       { key: 'pseudo', label: t.pseudo, selector: 'li:first-child, li:last-child', html: EXAMPLE_PSEUDO },
       { key: 'attr', label: t.attr, selector: '[data-status="open"], a[target="_blank"]', html: EXAMPLE_ATTR },
       { key: 'combinators', label: t.combinators, selector: 'section > h1 + p', html: EXAMPLE_COMBINATORS },
+      { key: 'has-link', label: t.hasCard, selector: '.card:has(a)', html: EXAMPLE_HAS_LINK },
+      { key: 'has-image', label: t.hasFigure, selector: 'figure:has(img)', html: EXAMPLE_HAS_IMAGE },
+      { key: 'not-has', label: t.hasNotLabel, selector: '.field:not(:has(label))', html: EXAMPLE_NOT_HAS },
     ],
     [t]
   )
@@ -308,7 +364,8 @@ export default function CssSelectorTesterPage() {
       setError(null)
     } catch (e) {
       setMatches([])
-      setError(e.message || t.invalid)
+      const msg = e.message || t.invalid
+      setError(!hasSupported && /:has\(/.test(selector) ? t.hasNotSupported : msg)
     }
   }
 
@@ -406,6 +463,11 @@ export default function CssSelectorTesterPage() {
             >
               {t.clear}
             </Button>
+          </Space>
+          <Space wrap>
+            <Tag color={hasSupported ? 'success' : 'warning'}>
+              {hasSupported ? t.hasSupported : t.hasNotSupported}
+            </Tag>
           </Space>
         </Space>
       </Card>

@@ -197,6 +197,7 @@ import SqlJoinsPage from './pages/SqlJoinsPage'
 import SqlIsolationLevelsPage from './pages/SqlIsolationLevelsPage'
 import KeyframeGeneratorPage from './pages/KeyframeGeneratorPage'
 import ClipPathGeneratorPage from './pages/ClipPathGeneratorPage'
+import CssMaskGeneratorPage from './pages/CssMaskGeneratorPage'
 import TomlFormatterPage from './pages/TomlFormatterPage'
 import YamlFormatterPage from './pages/YamlFormatterPage'
 import HtmlToMarkdownPage from './pages/HtmlToMarkdownPage'
@@ -298,6 +299,7 @@ import SystemdUnitGeneratorPage from './pages/SystemdUnitGeneratorPage'
 import ShieldsBadgeGeneratorPage from './pages/ShieldsBadgeGeneratorPage'
 import KubernetesManifestGeneratorPage from './pages/KubernetesManifestGeneratorPage'
 import OtelCollectorConfigGeneratorPage from './pages/OtelCollectorConfigGeneratorPage'
+import DockerComposeVisualizerPage from './pages/DockerComposeVisualizerPage'
 import GitlabCiConfigGeneratorPage from './pages/GitlabCiConfigGeneratorPage'
 import GithubActionsWorkflowGeneratorPage from './pages/GithubActionsWorkflowGeneratorPage'
 import CiCdCostCalculatorPage from './pages/CiCdCostCalculatorPage'
@@ -338,6 +340,7 @@ import ConwaysGameOfLifePage from './pages/ConwaysGameOfLifePage'
 import PathfindingSimulatorPage from './pages/PathfindingSimulatorPage'
 import BinarySearchVisualizerPage from './pages/BinarySearchVisualizerPage'
 import UrlEmailExtractorPage from './pages/UrlEmailExtractorPage'
+import PiiRedactorPage from './pages/PiiRedactorPage'
 import BarcodeGeneratorPage from './pages/BarcodeGeneratorPage'
 import UseLockBodyScrollSnippetPage from './pages/UseLockBodyScrollSnippetPage'
 import UseStableCallbackSnippetPage from './pages/UseStableCallbackSnippetPage'
@@ -406,7 +409,6 @@ import MediaQueryGeneratorPage from './pages/MediaQueryGeneratorPage'
 import CssSupportsGeneratorPage from './pages/CssSupportsGeneratorPage'
 import CssLayerGeneratorPage from './pages/CssLayerGeneratorPage'
 import FaviconGeneratorPage from './pages/FaviconGeneratorPage'
-import CssHasSelectorTesterPage from './pages/CssHasSelectorTesterPage'
 import CircuitBreakerSimulatorPage from './pages/CircuitBreakerSimulatorPage'
 import RateLimiterSimulatorPage from './pages/RateLimiterSimulatorPage'
 import TwoPhaseCommitSimulatorPage from './pages/TwoPhaseCommitSimulatorPage'
@@ -515,6 +517,7 @@ import CssColorNamesPage from './pages/CssColorNamesPage'
 import FileSignaturesPage from './pages/FileSignaturesPage'
 import TanstackQueryCheatsheetPage from './pages/TanstackQueryCheatsheetPage'
 import SvgToJsxConverterPage from './pages/SvgToJsxConverterPage'
+import WindowsPowershellCheatsheetPage from './pages/WindowsPowershellCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -814,6 +817,7 @@ const router = createBrowserRouter([
       { path: 'frontend/meta-tags-generator', element: <MetaTagsGeneratorPage /> },
       { path: 'frontend/keyframe-generator', element: <KeyframeGeneratorPage /> },
       { path: 'frontend/clip-path-generator', element: <ClipPathGeneratorPage /> },
+      { path: 'frontend/css-mask-generator', element: <CssMaskGeneratorPage /> },
       { path: 'references/regex-cheatsheet', element: <RegexCheatSheetPage /> },
       { path: 'tools/crc-calculator', element: <CrcCalculatorPage /> },
       { path: 'data/json-to-typescript', element: <Navigate to="/data/json-to-types" replace /> },
@@ -824,6 +828,7 @@ const router = createBrowserRouter([
       { path: 'data/json-flatten', element: <JsonFlattenPage /> },
       { path: 'devops/docker-compose-generator', element: <DockerComposeGeneratorPage /> },
       { path: 'devops/docker-run-to-compose', element: <DockerRunToComposePage /> },
+      { path: 'devops/docker-compose-visualizer', element: <DockerComposeVisualizerPage /> },
       { path: 'references/openssl-commands', element: <OpensslCommandsPage /> },
       { path: 'devops/nginx-config-generator', element: <NginxConfigGeneratorPage /> },
       { path: 'devops/ssh-config-generator', element: <SshConfigGeneratorPage /> },
@@ -964,7 +969,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-supports-generator', element: <CssSupportsGeneratorPage /> },
       { path: 'frontend/css-layer-generator', element: <CssLayerGeneratorPage /> },
       { path: 'frontend/favicon-generator', element: <FaviconGeneratorPage /> },
-      { path: 'frontend/css-has-selector-tester', element: <CssHasSelectorTesterPage /> },
+      { path: 'frontend/css-has-selector-tester', element: <Navigate to="/tools/css-selector-tester" replace /> },
       { path: 'frontend/typography-scale-calculator', element: <TypographyScaleCalculatorPage /> },
       { path: 'frontend/css-nesting-generator', element: <CssNestingGeneratorPage /> },
       { path: 'snippets/use-update-effect', element: <UseUpdateEffectSnippetPage /> },
@@ -977,6 +982,7 @@ const router = createBrowserRouter([
       { path: 'extras/pathfinding-simulator', element: <PathfindingSimulatorPage /> },
       { path: 'extras/binary-search-visualizer', element: <BinarySearchVisualizerPage /> },
       { path: 'tools/url-email-extractor', element: <UrlEmailExtractorPage /> },
+      { path: 'tools/pii-redactor', element: <PiiRedactorPage /> },
       { path: 'snippets/use-lock-body-scroll', element: <UseLockBodyScrollSnippetPage /> },
       { path: 'snippets/use-stable-callback', element: <UseStableCallbackSnippetPage /> },
       { path: 'snippets/use-hover', element: <UseHoverSnippetPage /> },
@@ -1052,6 +1058,7 @@ const router = createBrowserRouter([
       { path: 'security/password-entropy-calculator', element: <Navigate to="/security/password-strength" replace /> },
       { path: 'references/tanstack-query-cheatsheet', element: <TanstackQueryCheatsheetPage /> },
       { path: 'references/file-signatures', element: <FileSignaturesPage /> },
+      { path: 'references/powershell-cmd-cheatsheet', element: <WindowsPowershellCheatsheetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
