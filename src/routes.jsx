@@ -79,6 +79,7 @@ import BaseConverterPage from './pages/BaseConverterPage'
 import UseWindowSizeSnippetPage from './pages/UseWindowSizeSnippetPage'
 import DockerCommandsPage from './pages/DockerCommandsPage'
 import SemverComparatorPage from './pages/SemverComparatorPage'
+import SemverRangePage from './pages/SemverRangePage'
 import SlugGeneratorPage from './pages/SlugGeneratorPage'
 import PaletteGeneratorPage from './pages/PaletteGeneratorPage'
 import RippleButtonPage from './pages/RippleButtonPage'
@@ -623,6 +624,7 @@ const router = createBrowserRouter([
       { path: 'styles/bouncing-dots-loader', element: <Navigate to="/frontend/css-spinner-generator" replace /> },
       { path: 'references/docker-commands', element: <DockerCommandsPage /> },
       { path: 'tools/semver-comparator', element: <SemverComparatorPage /> },
+      { path: 'tools/semver-range-checker', element: <SemverRangePage /> },
       { path: 'tools/slug-generator', element: <SlugGeneratorPage /> },
       { path: 'frontend/palette-generator', element: <PaletteGeneratorPage /> },
       { path: 'styles/ripple-button', element: <RippleButtonPage /> },

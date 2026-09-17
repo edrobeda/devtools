@@ -94,6 +94,7 @@ import {
   GitlabOutlined,
   PlayCircleOutlined,
   SplitCellsOutlined,
+  TagsOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -228,6 +229,7 @@ export const LABELS = {
     'use-window-size': 'useWindowSize',
     'docker-commands': 'Comandos Docker',
     'semver-comparator': 'Comparador de SemVer',
+    'semver-range-checker': 'Verificador de Range SemVer',
     'pii-redactor': 'Redator de PII',
     'slug-generator': 'Gerador de Slug',
     'palette-generator': 'Gerador de Paleta de Cores',
@@ -765,6 +767,7 @@ export const LABELS = {
     'use-window-size': 'useWindowSize',
     'docker-commands': 'Docker Commands',
     'semver-comparator': 'SemVer Comparator',
+    'semver-range-checker': 'SemVer Range Checker',
     'pii-redactor': 'PII Redactor',
     'slug-generator': 'Slug Generator',
     'palette-generator': 'Color Palette Generator',
@@ -1256,6 +1259,7 @@ export function buildMenuItems(l) {
         { key: '/tools/bitwise-calculator', icon: <CalculatorOutlined />, label: withNewBadge('/tools/bitwise-calculator', l['bitwise-calculator'], l) },
         { key: '/tools/combinatorics-calculator', icon: <CalculatorOutlined />, label: withNewBadge('/tools/combinatorics-calculator', l['combinatorics-calculator'], l) },
         { key: '/tools/semver-comparator', icon: <BranchesOutlined />, label: withNewBadge('/tools/semver-comparator', l['semver-comparator'], l) },
+        { key: '/tools/semver-range-checker', icon: <TagsOutlined />, label: withNewBadge('/tools/semver-range-checker', l['semver-range-checker'], l) },
         { key: '/tools/pii-redactor', icon: <EyeInvisibleOutlined />, label: withNewBadge('/tools/pii-redactor', l['pii-redactor'], l) },
         { key: '/tools/slug-generator', icon: <LinkOutlined />, label: withNewBadge('/tools/slug-generator', l['slug-generator'], l) },
         { key: '/tools/css-unit-converter', icon: <ColumnWidthOutlined />, label: withNewBadge('/tools/css-unit-converter', l['css-unit-converter'], l) },
