@@ -197,6 +197,7 @@ import SqlJoinsPage from './pages/SqlJoinsPage'
 import SqlIsolationLevelsPage from './pages/SqlIsolationLevelsPage'
 import KeyframeGeneratorPage from './pages/KeyframeGeneratorPage'
 import ClipPathGeneratorPage from './pages/ClipPathGeneratorPage'
+import CssMaskGeneratorPage from './pages/CssMaskGeneratorPage'
 import TomlFormatterPage from './pages/TomlFormatterPage'
 import YamlFormatterPage from './pages/YamlFormatterPage'
 import HtmlToMarkdownPage from './pages/HtmlToMarkdownPage'
@@ -816,6 +817,7 @@ const router = createBrowserRouter([
       { path: 'frontend/meta-tags-generator', element: <MetaTagsGeneratorPage /> },
       { path: 'frontend/keyframe-generator', element: <KeyframeGeneratorPage /> },
       { path: 'frontend/clip-path-generator', element: <ClipPathGeneratorPage /> },
+      { path: 'frontend/css-mask-generator', element: <CssMaskGeneratorPage /> },
       { path: 'references/regex-cheatsheet', element: <RegexCheatSheetPage /> },
       { path: 'tools/crc-calculator', element: <CrcCalculatorPage /> },
       { path: 'data/json-to-typescript', element: <Navigate to="/data/json-to-types" replace /> },
