@@ -137,6 +137,7 @@ export const LABELS = {
     'timestamp-converter': 'Conversor de Timestamp',
     'copy-button': 'Botão de Copiar Animado',
     'spotlight-card': 'Spotlight Card',
+    'tilt-card': '3D Tilt Card',
     'gradient-border-button': 'Botão com Borda Gradiente',
     'use-debounce': 'useDebounce',
     'use-local-storage': 'useLocalStorage',
@@ -675,6 +676,7 @@ export const LABELS = {
     'timestamp-converter': 'Timestamp Converter',
     'copy-button': 'Animated Copy Button',
     'spotlight-card': 'Spotlight Card',
+    'tilt-card': '3D Tilt Card',
     'gradient-border-button': 'Gradient Border Button',
     'use-debounce': 'useDebounce',
     'use-local-storage': 'useLocalStorage',
@@ -1379,6 +1381,7 @@ export function buildMenuItems(l) {
       label: l.styles,
       children: [
         { key: '/styles/copy-button', label: l['copy-button'] },
+        { key: '/styles/tilt-card', label: withNewBadge('/styles/tilt-card', l['tilt-card'], l) },
         { key: '/styles/spotlight-card', label: withNewBadge('/styles/spotlight-card', l['spotlight-card'], l) },
         { key: '/styles/gradient-border-button', label: l['gradient-border-button'] },
         { key: '/styles/ripple-button', label: withNewBadge('/styles/ripple-button', l['ripple-button'], l) },

@@ -14,6 +14,7 @@ import UseClickOutsideSnippetPage from './pages/UseClickOutsideSnippetPage'
 import JsonFormatterPage from './pages/JsonFormatterPage'
 import ColorConverterPage from './pages/ColorConverterPage'
 import SpotlightCardShowcasePage from './pages/SpotlightCardShowcasePage'
+import TiltCardShowcasePage from './pages/TiltCardShowcasePage'
 import TimestampConverterPage from './pages/TimestampConverterPage'
 import GradientBorderButtonPage from './pages/GradientBorderButtonPage'
 import UseMediaQuerySnippetPage from './pages/UseMediaQuerySnippetPage'
@@ -539,6 +540,7 @@ const router = createBrowserRouter([
       { path: 'styles/copy-button', element: <CopyButtonShowcasePage /> },
       { path: 'styles/skeleton-shimmer', element: <Navigate to="/frontend/css-skeleton-generator" replace /> },
       { path: 'styles/spotlight-card', element: <SpotlightCardShowcasePage /> },
+      { path: 'styles/tilt-card', element: <TiltCardShowcasePage /> },
       { path: 'styles/gradient-border-button', element: <GradientBorderButtonPage /> },
       { path: 'snippets/use-debounce', element: <UseDebounceSnippetPage /> },
       { path: 'snippets/use-local-storage', element: <UseLocalStorageSnippetPage /> },
