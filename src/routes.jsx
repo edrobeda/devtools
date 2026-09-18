@@ -179,7 +179,6 @@ import MetaTagsGeneratorPage from './pages/MetaTagsGeneratorPage'
 import RegexCheatSheetPage from './pages/RegexCheatSheetPage'
 import CrcCalculatorPage from './pages/CrcCalculatorPage'
 import JsonToTypesPage from './pages/JsonToTypesPage'
-import JsonToYamlPage from './pages/JsonToYamlPage'
 import JsonFlattenPage from './pages/JsonFlattenPage'
 import CaddyfileGeneratorPage from './pages/CaddyfileGeneratorPage'
 import HtaccessGeneratorPage from './pages/HtaccessGeneratorPage'
@@ -830,7 +829,7 @@ const router = createBrowserRouter([
       { path: 'tools/crc-calculator', element: <CrcCalculatorPage /> },
       { path: 'data/json-to-typescript', element: <Navigate to="/data/json-to-types" replace /> },
       { path: 'data/json-to-types', element: <JsonToTypesPage /> },
-      { path: 'data/json-to-yaml', element: <JsonToYamlPage /> },
+      { path: 'data/json-to-yaml', element: <Navigate to="/tools/config-converter" replace /> },
       { path: 'data/json-to-zod-schema', element: <JsonToZodSchemaPage /> },
       { path: 'data/json-to-graphql', element: <JsonToGraphqlPage /> },
       { path: 'data/json-flatten', element: <JsonFlattenPage /> },

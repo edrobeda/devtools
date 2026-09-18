@@ -94,8 +94,14 @@ function flowYamlValue(v) {
 export function stringifyYaml(value, opts = {}) {
   const indent = opts.indent || 2
   const docStart = opts.docStart || false
+  const keepNull = opts.keepNull || false
   const lines = []
   if (docStart) lines.push('---')
+
+  const scalar = (v) => {
+    if (v === null && keepNull) return ''
+    return yamlScalar(v)
+  }
 
   function emitObject(obj, col) {
     const keys = Object.keys(obj)
@@ -107,7 +113,7 @@ export function stringifyYaml(value, opts = {}) {
       const v = obj[k]
       const head = ' '.repeat(col) + yamlKey(k) + ':'
       if (isScalar(v)) {
-        lines.push(head + ' ' + yamlScalar(v))
+        lines.push(head + ' ' + scalar(v))
       } else if (Array.isArray(v)) {
         if (v.length === 0) lines.push(head + ' []')
         else {
@@ -139,7 +145,7 @@ export function stringifyYaml(value, opts = {}) {
           emitObjectAsListItem(item, col)
         }
       } else {
-        lines.push(' '.repeat(col) + '- ' + yamlScalar(item))
+        lines.push(' '.repeat(col) + '- ' + scalar(item))
       }
     }
   }
@@ -150,7 +156,7 @@ export function stringifyYaml(value, opts = {}) {
       const v = obj[k]
       const pre = i === 0 ? ' '.repeat(col) + '- ' : ' '.repeat(col + 2)
       if (isScalar(v)) {
-        lines.push(pre + yamlKey(k) + ': ' + yamlScalar(v))
+        lines.push(pre + yamlKey(k) + ': ' + scalar(v))
       } else if (Array.isArray(v)) {
         if (v.length === 0) lines.push(pre + yamlKey(k) + ': []')
         else {
@@ -169,7 +175,7 @@ export function stringifyYaml(value, opts = {}) {
 
   if (Array.isArray(value)) emitArray(value, 0)
   else if (isPlainObject(value)) emitObject(value, 0)
-  else lines.push(yamlScalar(value))
+  else lines.push(scalar(value))
 
   return lines.join('\n')
 }
