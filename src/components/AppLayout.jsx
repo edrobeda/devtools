@@ -1484,6 +1484,7 @@ export function buildMenuItems(l) {
         { key: '/frontend/grid-builder', icon: <AppstoreOutlined />, label: withNewBadge('/frontend/grid-builder', l['grid-builder'], l) },
         { key: '/frontend/pattern-background-generator', icon: <BgColorsOutlined />, label: withNewBadge('/frontend/pattern-background-generator', l['pattern-background-generator'], l) },
         { key: '/frontend/sitemap-generator', icon: <GlobalOutlined />, label: withNewBadge('/frontend/sitemap-generator', l['sitemap-generator'], l) },
+        { key: '/frontend/robots-txt-generator', icon: <GlobalOutlined />, label: withNewBadge('/frontend/robots-txt-generator', l['robots-txt-generator'], l) },
         { key: '/frontend/web-app-manifest-generator', icon: <MobileOutlined />, label: withNewBadge('/frontend/web-app-manifest-generator', l['web-app-manifest-generator'], l) },
         { key: '/frontend/json-ld-generator', icon: <ApartmentOutlined />, label: withNewBadge('/frontend/json-ld-generator', l['json-ld-generator'], l) },
         { key: '/frontend/css-spinner-generator', icon: <LoadingOutlined />, label: withNewBadge('/frontend/css-spinner-generator', l['css-spinner-generator'], l) },
@@ -1636,7 +1637,6 @@ export function buildMenuItems(l) {
       label: l.security,
       children: [
         { key: '/security/password-strength', icon: <SafetyCertificateOutlined />, label: l['password-strength'] },
-        { key: '/security/robots-txt-generator', label: withNewBadge('/security/robots-txt-generator', l['robots-txt-generator'], l) },
         { key: '/security/csp-generator', label: withNewBadge('/security/csp-generator', l['csp-generator'], l) },
         { key: '/security/security-headers-generator', label: withNewBadge('/security/security-headers-generator', l['security-headers-generator'], l) },
         { key: '/security/sri-hash-generator', icon: <SafetyOutlined />, label: withNewBadge('/security/sri-hash-generator', l['sri-hash-generator'], l) },
