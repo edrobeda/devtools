@@ -14,6 +14,7 @@ import UseClickOutsideSnippetPage from './pages/UseClickOutsideSnippetPage'
 import JsonFormatterPage from './pages/JsonFormatterPage'
 import ColorConverterPage from './pages/ColorConverterPage'
 import SpotlightCardShowcasePage from './pages/SpotlightCardShowcasePage'
+import TiltCardShowcasePage from './pages/TiltCardShowcasePage'
 import TimestampConverterPage from './pages/TimestampConverterPage'
 import GradientBorderButtonPage from './pages/GradientBorderButtonPage'
 import UseMediaQuerySnippetPage from './pages/UseMediaQuerySnippetPage'
@@ -79,6 +80,7 @@ import BaseConverterPage from './pages/BaseConverterPage'
 import UseWindowSizeSnippetPage from './pages/UseWindowSizeSnippetPage'
 import DockerCommandsPage from './pages/DockerCommandsPage'
 import SemverComparatorPage from './pages/SemverComparatorPage'
+import SemverRangePage from './pages/SemverRangePage'
 import SlugGeneratorPage from './pages/SlugGeneratorPage'
 import PaletteGeneratorPage from './pages/PaletteGeneratorPage'
 import RippleButtonPage from './pages/RippleButtonPage'
@@ -171,6 +173,7 @@ import CubicBezierEditorPage from './pages/CubicBezierEditorPage'
 import AnsiColorsPage from './pages/AnsiColorsPage'
 import AsciiTablePage from './pages/AsciiTablePage'
 import SvgWaveGeneratorPage from './pages/SvgWaveGeneratorPage'
+import SvgOptimizerPage from './pages/SvgOptimizerPage'
 import CssFilterGeneratorPage from './pages/CssFilterGeneratorPage'
 import MetaTagsGeneratorPage from './pages/MetaTagsGeneratorPage'
 import RegexCheatSheetPage from './pages/RegexCheatSheetPage'
@@ -205,6 +208,7 @@ import ChangelogGeneratorPage from './pages/ChangelogGeneratorPage'
 import GitattributesGeneratorPage from './pages/GitattributesGeneratorPage'
 import VimCheatsheetPage from './pages/VimCheatsheetPage'
 import SshCheatsheetPage from './pages/SshCheatsheetPage'
+import RsyncCheatsheetPage from './pages/RsyncCheatsheetPage'
 import DockerComposeGeneratorPage from './pages/DockerComposeGeneratorPage'
 import DockerRunToComposePage from './pages/DockerRunToComposePage'
 import OpensslCommandsPage from './pages/OpensslCommandsPage'
@@ -431,7 +435,6 @@ import DnsRecordGeneratorPage from './pages/DnsRecordGeneratorPage'
 import TcpThroughputCalculatorPage from './pages/TcpThroughputCalculatorPage'
 import ShannonCapacityCalculatorPage from './pages/ShannonCapacityCalculatorPage'
 import LittlesLawCalculatorPage from './pages/LittlesLawCalculatorPage'
-import ConcurrencyThroughputCalculatorPage from './pages/ConcurrencyThroughputCalculatorPage'
 import QueueingTheoryCalculatorPage from './pages/QueueingTheoryCalculatorPage'
 import PertCalculatorPage from './pages/PertCalculatorPage'
 import ConfidenceIntervalCalculatorPage from './pages/ConfidenceIntervalCalculatorPage'
@@ -536,6 +539,7 @@ const router = createBrowserRouter([
       { path: 'styles/copy-button', element: <CopyButtonShowcasePage /> },
       { path: 'styles/skeleton-shimmer', element: <Navigate to="/frontend/css-skeleton-generator" replace /> },
       { path: 'styles/spotlight-card', element: <SpotlightCardShowcasePage /> },
+      { path: 'styles/tilt-card', element: <TiltCardShowcasePage /> },
       { path: 'styles/gradient-border-button', element: <GradientBorderButtonPage /> },
       { path: 'snippets/use-debounce', element: <UseDebounceSnippetPage /> },
       { path: 'snippets/use-local-storage', element: <UseLocalStorageSnippetPage /> },
@@ -588,7 +592,7 @@ const router = createBrowserRouter([
       { path: 'tools/network-latency-calculator', element: <NetworkLatencyCalculatorPage /> },
       { path: 'tools/availability-calculator', element: <AvailabilityCalculatorPage /> },
       { path: 'tools/littles-law-calculator', element: <LittlesLawCalculatorPage /> },
-      { path: 'tools/concurrency-throughput-calculator', element: <ConcurrencyThroughputCalculatorPage /> },
+      { path: 'tools/concurrency-throughput-calculator', element: <Navigate to="/tools/littles-law-calculator" replace /> },
       { path: 'tools/queueing-theory-calculator', element: <QueueingTheoryCalculatorPage /> },
       { path: 'tools/pert-calculator', element: <PertCalculatorPage /> },
       { path: 'tools/confidence-interval-calculator', element: <ConfidenceIntervalCalculatorPage /> },
@@ -621,6 +625,7 @@ const router = createBrowserRouter([
       { path: 'styles/bouncing-dots-loader', element: <Navigate to="/frontend/css-spinner-generator" replace /> },
       { path: 'references/docker-commands', element: <DockerCommandsPage /> },
       { path: 'tools/semver-comparator', element: <SemverComparatorPage /> },
+      { path: 'tools/semver-range-checker', element: <SemverRangePage /> },
       { path: 'tools/slug-generator', element: <SlugGeneratorPage /> },
       { path: 'frontend/palette-generator', element: <PaletteGeneratorPage /> },
       { path: 'styles/ripple-button', element: <RippleButtonPage /> },
@@ -660,7 +665,8 @@ const router = createBrowserRouter([
       { path: 'styles/toast-notification', element: <ToastNotificationPage /> },
       { path: 'references/bash-shortcuts', element: <BashShortcutsPage /> },
       { path: 'devops/commit-message-generator', element: <CommitMessageGeneratorPage /> },
-      { path: 'security/robots-txt-generator', element: <RobotsTxtGeneratorPage /> },
+      { path: 'security/robots-txt-generator', element: <Navigate to="/frontend/robots-txt-generator" replace /> },
+      { path: 'frontend/robots-txt-generator', element: <RobotsTxtGeneratorPage /> },
       { path: 'styles/scroll-progress-bar', element: <ScrollProgressBarPage /> },
       { path: 'styles/confetti-effect', element: <ConfettiEffectPage /> },
       { path: 'snippets/debounce-throttle-functions', element: <DebounceThrottleFunctionsPage /> },
@@ -818,6 +824,7 @@ const router = createBrowserRouter([
       { path: 'frontend/keyframe-generator', element: <KeyframeGeneratorPage /> },
       { path: 'frontend/clip-path-generator', element: <ClipPathGeneratorPage /> },
       { path: 'frontend/css-mask-generator', element: <CssMaskGeneratorPage /> },
+      { path: 'frontend/svg-optimizer', element: <SvgOptimizerPage /> },
       { path: 'references/regex-cheatsheet', element: <RegexCheatSheetPage /> },
       { path: 'tools/crc-calculator', element: <CrcCalculatorPage /> },
       { path: 'data/json-to-typescript', element: <Navigate to="/data/json-to-types" replace /> },
@@ -850,6 +857,7 @@ const router = createBrowserRouter([
       { path: 'references/tmux-cheatsheet', element: <TmuxCheatsheetPage /> },
       { path: 'references/devtools-shortcuts', element: <DevToolsShortcutsPage /> },
       { path: 'references/ssh-cheatsheet', element: <SshCheatsheetPage /> },
+      { path: 'references/rsync-cheatsheet', element: <RsyncCheatsheetPage /> },
       { path: 'references/python-cheatsheet', element: <PythonCheatsheetPage /> },
       { path: 'references/grep-sed-awk', element: <GrepSedAwkCheatsheetPage /> },
       { path: 'references/jq-cheatsheet', element: <JqCheatsheetPage /> },
