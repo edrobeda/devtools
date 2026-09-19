@@ -10,6 +10,7 @@ import {
   Tag,
   Segmented,
   Collapse,
+  Switch,
   message,
 } from 'antd'
 import { SwapOutlined, CopyOutlined, CheckOutlined, ClearOutlined } from '@ant-design/icons'
@@ -120,6 +121,10 @@ const translations = {
     outputTitle: 'Saída',
     options: 'Opções',
     indent: 'Indentação',
+    docStart: 'Prefixo de documento',
+    docStartHint: 'Adiciona "---" no topo, o marcador de início de documento.',
+    keepNull: 'null como placeholder',
+    keepNullHint: 'Por padrão null vira "null"; com isto, vira linha vazia (ex.: "key:").',
     sample: 'Exemplos rápidos',
     empty: 'Cole uma config no formato escolhido para converter.',
     error: 'Não foi possível converter:',
@@ -142,6 +147,10 @@ const translations = {
     outputTitle: 'Output',
     options: 'Options',
     indent: 'Indentation',
+    docStart: 'Document start',
+    docStartHint: 'Adds "---" at the top, the YAML document start marker.',
+    keepNull: 'null as placeholder',
+    keepNullHint: 'By default null becomes "null"; with this on it becomes an empty value (e.g. "key:").',
     sample: 'Quick samples',
     empty: 'Paste a config in the selected format to convert.',
     error: 'Could not convert:',
@@ -165,6 +174,8 @@ export default function ConfigConverterPage() {
   const [toFmt, setToFmt] = useState('yaml')
   const [input, setInput] = useState(SAMPLES.json.value)
   const [indent, setIndent] = useState(2)
+  const [docStart, setDocStart] = useState(false)
+  const [keepNull, setKeepNull] = useState(false)
   const [copied, setCopied] = useState(false)
 
   const formatOptions = useMemo(
@@ -183,8 +194,8 @@ export default function ConfigConverterPage() {
 
   const outputResult = useMemo(() => {
     if (!parsed.ok) return { ok: false, error: parsed.error }
-    return convertConfig(input, fromFmt, toFmt, { indent })
-  }, [input, fromFmt, toFmt, indent, parsed.ok, parsed.error])
+    return convertConfig(input, fromFmt, toFmt, { indent, docStart, keepNull })
+  }, [input, fromFmt, toFmt, indent, docStart, keepNull, parsed.ok, parsed.error])
 
   const bytes = useMemo(() => {
     return outputResult.ok && outputResult.text ? new TextEncoder().encode(outputResult.text).length : 0
@@ -212,30 +223,43 @@ export default function ConfigConverterPage() {
       <Paragraph type="secondary">{t.intro}</Paragraph>
 
       <Card title={t.options}>
-        <Space wrap size="large" align="center">
-          <Space>
-            <Text type="secondary">{t.from}</Text>
-            <Select
-              value={fromFmt}
-              onChange={setFromFmt}
-              options={formatOptions}
-              style={{ width: 140 }}
-            />
+        <Space direction="vertical" size="middle" style={{ width: '100%' }}>
+          <Space wrap size="large" align="center">
+            <Space>
+              <Text type="secondary">{t.from}</Text>
+              <Select
+                value={fromFmt}
+                onChange={setFromFmt}
+                options={formatOptions}
+                style={{ width: 140 }}
+              />
+            </Space>
+            <Button icon={<SwapOutlined />} onClick={swapFormats} />
+            <Space>
+              <Text type="secondary">{t.to}</Text>
+              <Select
+                value={toFmt}
+                onChange={setToFmt}
+                options={formatOptions}
+                style={{ width: 140 }}
+              />
+            </Space>
+            <Space>
+              <Text type="secondary">{t.indent}</Text>
+              <Segmented value={indent} onChange={setIndent} options={[2, 4]} />
+            </Space>
           </Space>
-          <Button icon={<SwapOutlined />} onClick={swapFormats} />
-          <Space>
-            <Text type="secondary">{t.to}</Text>
-            <Select
-              value={toFmt}
-              onChange={setToFmt}
-              options={formatOptions}
-              style={{ width: 140 }}
-            />
-          </Space>
-          <Space>
-            <Text type="secondary">{t.indent}</Text>
-            <Segmented value={indent} onChange={setIndent} options={[2, 4]} />
-          </Space>
+          {toFmt === 'yaml' && (
+            <Space wrap>
+              <Switch checked={keepNull} onChange={setKeepNull} />
+              <Text>{t.keepNull}</Text>
+              <Switch checked={docStart} onChange={setDocStart} />
+              <Text>{t.docStart}</Text>
+              <Text type="secondary" style={{ fontSize: 12 }}>
+                {t.docStartHint}
+              </Text>
+            </Space>
+          )}
         </Space>
       </Card>
 

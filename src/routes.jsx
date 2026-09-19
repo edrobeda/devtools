@@ -141,6 +141,7 @@ import EnvFileValidatorPage from './pages/EnvFileValidatorPage'
 import RemoveAccentsPage from './pages/RemoveAccentsPage'
 import XmlFormatterPage from './pages/XmlFormatterPage'
 import DeepCloneDeepEqualPage from './pages/DeepCloneDeepEqualPage'
+import PriorityQueueSnippetPage from './pages/PriorityQueueSnippetPage'
 import BranchNameGeneratorPage from './pages/BranchNameGeneratorPage'
 import LinesToolPage from './pages/LinesToolPage'
 import HtmlToJsxConverterPage from './pages/HtmlToJsxConverterPage'
@@ -179,7 +180,6 @@ import MetaTagsGeneratorPage from './pages/MetaTagsGeneratorPage'
 import RegexCheatSheetPage from './pages/RegexCheatSheetPage'
 import CrcCalculatorPage from './pages/CrcCalculatorPage'
 import JsonToTypesPage from './pages/JsonToTypesPage'
-import JsonToYamlPage from './pages/JsonToYamlPage'
 import JsonFlattenPage from './pages/JsonFlattenPage'
 import CaddyfileGeneratorPage from './pages/CaddyfileGeneratorPage'
 import HtaccessGeneratorPage from './pages/HtaccessGeneratorPage'
@@ -589,7 +589,7 @@ const router = createBrowserRouter([
       { path: 'tools/utm-url-builder', element: <UtmUrlBuilderPage /> },
       { path: 'tools/email-signature-generator', element: <EmailSignatureGeneratorPage /> },
       { path: 'tools/config-converter', element: <ConfigConverterPage /> },
-      { path: 'tools/network-latency-calculator', element: <NetworkLatencyCalculatorPage /> },
+      { path: 'tools/network-latency-calculator', element: <Navigate to="/network/network-latency-calculator" replace /> },
       { path: 'tools/availability-calculator', element: <AvailabilityCalculatorPage /> },
       { path: 'tools/littles-law-calculator', element: <LittlesLawCalculatorPage /> },
       { path: 'tools/concurrency-throughput-calculator', element: <Navigate to="/tools/littles-law-calculator" replace /> },
@@ -695,6 +695,7 @@ const router = createBrowserRouter([
       { path: 'tools/yaml-formatter', element: <YamlFormatterPage /> },
       { path: 'tools/html-formatter', element: <HtmlFormatterPage /> },
       { path: 'snippets/deep-clone-deep-equal', element: <DeepCloneDeepEqualPage /> },
+      { path: 'snippets/priority-queue', element: <PriorityQueueSnippetPage /> },
       { path: 'devops/branch-name-generator', element: <BranchNameGeneratorPage /> },
       { path: 'text/lines-tool', element: <LinesToolPage /> },
       { path: 'text/search-replace', element: <SearchReplacePage /> },
@@ -733,6 +734,7 @@ const router = createBrowserRouter([
       { path: 'network/http-cache-analyzer', element: <HttpCacheAnalyzerPage /> },
       { path: 'network/dns-record-generator', element: <DnsRecordGeneratorPage /> },
       { path: 'network/tcp-throughput-calculator', element: <TcpThroughputCalculatorPage /> },
+      { path: 'network/network-latency-calculator', element: <NetworkLatencyCalculatorPage /> },
       { path: 'network/shannon-capacity-calculator', element: <ShannonCapacityCalculatorPage /> },
       { path: 'network/idn-punycode-converter', element: <IdnPunycodeConverterPage /> },
       { path: 'tools/hex-dump', element: <HexDumpPage /> },
@@ -829,7 +831,7 @@ const router = createBrowserRouter([
       { path: 'tools/crc-calculator', element: <CrcCalculatorPage /> },
       { path: 'data/json-to-typescript', element: <Navigate to="/data/json-to-types" replace /> },
       { path: 'data/json-to-types', element: <JsonToTypesPage /> },
-      { path: 'data/json-to-yaml', element: <JsonToYamlPage /> },
+      { path: 'data/json-to-yaml', element: <Navigate to="/tools/config-converter" replace /> },
       { path: 'data/json-to-zod-schema', element: <JsonToZodSchemaPage /> },
       { path: 'data/json-to-graphql', element: <JsonToGraphqlPage /> },
       { path: 'data/json-flatten', element: <JsonFlattenPage /> },
