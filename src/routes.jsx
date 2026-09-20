@@ -316,6 +316,7 @@ import GlobTesterPage from './pages/GlobTesterPage'
 import HtmlCheatsheetPage from './pages/HtmlCheatsheetPage'
 import UrlParserPage from './pages/UrlParserPage'
 import JsTestingCheatsheetPage from './pages/JsTestingCheatsheetPage'
+import PlaywrightCheatsheetPage from './pages/PlaywrightCheatsheetPage'
 import ReactCheatsheetPage from './pages/ReactCheatsheetPage'
 import TailwindCheatsheetPage from './pages/TailwindCheatsheetPage'
 import CssSelectorsCheatsheetPage from './pages/CssSelectorsCheatsheetPage'
@@ -881,6 +882,7 @@ const router = createBrowserRouter([
       { path: 'frontend/font-stack-generator', element: <FontStackGeneratorPage /> },
       { path: 'references/typescript-cheatsheet', element: <TypescriptCheatsheetPage /> },
       { path: 'references/js-testing-cheatsheet', element: <JsTestingCheatsheetPage /> },
+      { path: 'references/playwright-cheatsheet', element: <PlaywrightCheatsheetPage /> },
       { path: 'tools/morse-code-converter', element: <MorseConverterPage /> },
       { path: 'tools/glob-tester', element: <GlobTesterPage /> },
       { path: 'tools/data-uri-tool', element: <DataUriToolPage /> },
