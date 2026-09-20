@@ -56,7 +56,7 @@ import CaseConverterPage from './pages/CaseConverterPage'
 import PasswordGeneratorPage from './pages/PasswordGeneratorPage'
 import PassphraseGeneratorPage from './pages/PassphraseGeneratorPage'
 import TotpGeneratorPage from './pages/TotpGeneratorPage'
-import UrlEncoderPage from './pages/UrlEncoderPage'
+
 import GradientGeneratorPage from './pages/GradientGeneratorPage'
 import UseCopyToClipboardSnippetPage from './pages/UseCopyToClipboardSnippetPage'
 import HttpStatusCodesPage from './pages/HttpStatusCodesPage'
@@ -96,7 +96,6 @@ import FloatingLabelInputPage from './pages/FloatingLabelInputPage'
 import UseKeyPressSnippetPage from './pages/UseKeyPressSnippetPage'
 import SqlCommandsPage from './pages/SqlCommandsPage'
 import NanoIdGeneratorPage from './pages/NanoIdGeneratorPage'
-import HtmlEntityEncoderPage from './pages/HtmlEntityEncoderPage'
 import BorderRadiusGeneratorPage from './pages/BorderRadiusGeneratorPage'
 import UseEventListenerSnippetPage from './pages/UseEventListenerSnippetPage'
 import PackageManagerCommandsPage from './pages/PackageManagerCommandsPage'
@@ -584,7 +583,7 @@ const router = createBrowserRouter([
       { path: 'tools/ulid-tool', element: <Navigate to="/tools/uuid-v7-tool" replace /> },
       { path: 'tools/case-converter', element: <CaseConverterPage /> },
       { path: 'tools/password-generator', element: <PasswordGeneratorPage /> },
-      { path: 'tools/url-encoder', element: <UrlEncoderPage /> },
+      { path: 'tools/url-encoder', element: <Navigate to="/tools/string-escape" replace /> },
       { path: 'tools/url-parser', element: <UrlParserPage /> },
       { path: 'tools/utm-url-builder', element: <UtmUrlBuilderPage /> },
       { path: 'tools/email-signature-generator', element: <EmailSignatureGeneratorPage /> },
@@ -639,7 +638,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-key-press', element: <UseKeyPressSnippetPage /> },
       { path: 'references/sql-commands', element: <SqlCommandsPage /> },
       { path: 'tools/nanoid-generator', element: <NanoIdGeneratorPage /> },
-      { path: 'tools/html-entity-encoder', element: <HtmlEntityEncoderPage /> },
+      { path: 'tools/html-entity-encoder', element: <Navigate to="/tools/string-escape" replace /> },
       { path: 'frontend/border-radius-generator', element: <BorderRadiusGeneratorPage /> },
       { path: 'styles/ios-toggle-switch', element: <Navigate to="/frontend/css-toggle-switch-generator" replace /> },
       { path: 'snippets/use-event-listener', element: <UseEventListenerSnippetPage /> },
