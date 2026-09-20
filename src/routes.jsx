@@ -56,7 +56,7 @@ import CaseConverterPage from './pages/CaseConverterPage'
 import PasswordGeneratorPage from './pages/PasswordGeneratorPage'
 import PassphraseGeneratorPage from './pages/PassphraseGeneratorPage'
 import TotpGeneratorPage from './pages/TotpGeneratorPage'
-import UrlEncoderPage from './pages/UrlEncoderPage'
+
 import GradientGeneratorPage from './pages/GradientGeneratorPage'
 import UseCopyToClipboardSnippetPage from './pages/UseCopyToClipboardSnippetPage'
 import HttpStatusCodesPage from './pages/HttpStatusCodesPage'
@@ -583,7 +583,7 @@ const router = createBrowserRouter([
       { path: 'tools/ulid-tool', element: <Navigate to="/tools/uuid-v7-tool" replace /> },
       { path: 'tools/case-converter', element: <CaseConverterPage /> },
       { path: 'tools/password-generator', element: <PasswordGeneratorPage /> },
-      { path: 'tools/url-encoder', element: <UrlEncoderPage /> },
+      { path: 'tools/url-encoder', element: <Navigate to="/tools/string-escape" replace /> },
       { path: 'tools/url-parser', element: <UrlParserPage /> },
       { path: 'tools/utm-url-builder', element: <UtmUrlBuilderPage /> },
       { path: 'tools/email-signature-generator', element: <EmailSignatureGeneratorPage /> },
