@@ -1223,6 +1223,7 @@ export function buildMenuItems(l) {
         { key: '/tools/toml-formatter', icon: <FileTextOutlined />, label: withNewBadge('/tools/toml-formatter', l['toml-formatter'], l) },
         { key: '/tools/yaml-formatter', icon: <FileTextOutlined />, label: withNewBadge('/tools/yaml-formatter', l['yaml-formatter'], l) },
         { key: '/tools/html-formatter', icon: <FileTextOutlined />, label: withNewBadge('/tools/html-formatter', l['html-formatter'], l) },
+        { key: '/tools/sql-formatter', icon: <FileTextOutlined />, label: withNewBadge('/tools/sql-formatter', l['sql-formatter'], l) },
         { key: '/tools/timestamp-converter', icon: <FieldTimeOutlined />, label: l['timestamp-converter'] },
         { key: '/tools/date-time-calculator', icon: <FieldTimeOutlined />, label: withNewBadge('/tools/date-time-calculator', l['date-time-calculator'], l) },
         { key: '/tools/regex-tester', icon: <SearchOutlined />, label: withNewBadge('/tools/regex-tester', l['regex-tester'], l) },
@@ -1614,7 +1615,6 @@ export function buildMenuItems(l) {
       icon: <DatabaseOutlined />,
       label: l.database,
       children: [
-        { key: '/database/sql-formatter', icon: <FileTextOutlined />, label: withNewBadge('/database/sql-formatter', l['sql-formatter'], l) },
         { key: '/database/sql-isolation-levels', icon: <DatabaseOutlined />, label: withNewBadge('/database/sql-isolation-levels', l['sql-isolation-levels'], l) },
         { key: '/database/csv-to-sql', icon: <DatabaseOutlined />, label: withNewBadge('/database/csv-to-sql', l['csv-to-sql'], l) },
         { key: '/database/storage-estimator', icon: <DatabaseOutlined />, label: withNewBadge('/database/storage-estimator', l['storage-estimator'], l) },
