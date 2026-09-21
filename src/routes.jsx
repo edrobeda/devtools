@@ -181,6 +181,7 @@ import CrcCalculatorPage from './pages/CrcCalculatorPage'
 import JsonToTypesPage from './pages/JsonToTypesPage'
 import JsonFlattenPage from './pages/JsonFlattenPage'
 import CaddyfileGeneratorPage from './pages/CaddyfileGeneratorPage'
+import HaproxyConfigGeneratorPage from './pages/HaproxyConfigGeneratorPage'
 import HtaccessGeneratorPage from './pages/HtaccessGeneratorPage'
 import UnitsConverterPage from './pages/UnitsConverterPage'
 import HttpHeadersPage from './pages/HttpHeadersPage'
@@ -855,6 +856,7 @@ const router = createBrowserRouter([
       { path: 'devops/git-hooks-generator', element: <GitHooksGeneratorPage /> },
       { path: 'tools/business-days-calculator', element: <BusinessDaysCalculatorPage /> },
       { path: 'devops/caddyfile-generator', element: <CaddyfileGeneratorPage /> },
+      { path: 'devops/haproxy-config-generator', element: <HaproxyConfigGeneratorPage /> },
       { path: 'devops/htaccess-generator', element: <HtaccessGeneratorPage /> },
       { path: 'tools/units-converter', element: <UnitsConverterPage /> },
       { path: 'references/http-headers', element: <HttpHeadersPage /> },
