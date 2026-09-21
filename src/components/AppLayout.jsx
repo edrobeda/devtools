@@ -645,6 +645,7 @@ export const LABELS = {
     'css-reset-generator': 'Gerador de CSS Reset',
     'css-parallax-generator': 'Gerador de Parallax CSS',
     'tanstack-query-cheatsheet': 'Cheat Sheet de TanStack Query (React Query)',
+    'react-router-cheatsheet': 'Cheat Sheet de React Router v7',
     'powershell-cmd-cheatsheet': 'Cheat Sheet de PowerShell & CMD',
   },
 
@@ -1182,6 +1183,7 @@ export const LABELS = {
     'css-reset-generator': 'CSS Reset Generator',
     'css-parallax-generator': 'CSS Parallax Generator',
     'tanstack-query-cheatsheet': 'TanStack Query (React Query) Cheat Sheet',
+    'react-router-cheatsheet': 'React Router v7 Cheat Sheet',
     'powershell-cmd-cheatsheet': 'PowerShell & CMD Cheat Sheet',
   },
 }
@@ -1800,6 +1802,7 @@ export function buildMenuItems(l) {
         { key: '/references/css-easing-cheatsheet', icon: <StockOutlined />, label: withNewBadge('/references/css-easing-cheatsheet', l['css-easing-cheatsheet'], l) },
         { key: '/references/file-signatures', icon: <FileTextOutlined />, label: withNewBadge('/references/file-signatures', l['file-signatures'], l) },
         { key: '/references/tanstack-query-cheatsheet', icon: <DatabaseOutlined />, label: withNewBadge('/references/tanstack-query-cheatsheet', l['tanstack-query-cheatsheet'], l) },
+        { key: '/references/react-router-cheatsheet', icon: <LinkOutlined />, label: withNewBadge('/references/react-router-cheatsheet', l['react-router-cheatsheet'], l) },
         { key: '/references/powershell-cmd-cheatsheet', icon: <WindowsOutlined />, label: withNewBadge('/references/powershell-cmd-cheatsheet', l['powershell-cmd-cheatsheet'], l) },
       ],
     },

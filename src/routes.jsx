@@ -519,6 +519,7 @@ import JsonMergePatchPage from './pages/JsonMergePatchPage'
 import CssColorNamesPage from './pages/CssColorNamesPage'
 import FileSignaturesPage from './pages/FileSignaturesPage'
 import TanstackQueryCheatsheetPage from './pages/TanstackQueryCheatsheetPage'
+import ReactRouterCheatsheetPage from './pages/ReactRouterCheatsheetPage'
 import SvgToJsxConverterPage from './pages/SvgToJsxConverterPage'
 import WindowsPowershellCheatsheetPage from './pages/WindowsPowershellCheatsheetPage'
 
@@ -1068,6 +1069,7 @@ const router = createBrowserRouter([
       { path: 'frontend/css-parallax-generator', element: <CssParallaxGeneratorPage /> },
       { path: 'security/password-entropy-calculator', element: <Navigate to="/security/password-strength" replace /> },
       { path: 'references/tanstack-query-cheatsheet', element: <TanstackQueryCheatsheetPage /> },
+      { path: 'references/react-router-cheatsheet', element: <ReactRouterCheatsheetPage /> },
       { path: 'references/file-signatures', element: <FileSignaturesPage /> },
       { path: 'references/powershell-cmd-cheatsheet', element: <WindowsPowershellCheatsheetPage /> },
       { path: '*', element: <NotFoundPage /> },
