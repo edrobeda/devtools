@@ -745,6 +745,7 @@ const router = createBrowserRouter([
       { path: 'references/lua-cheatsheet', element: <LuaCheatsheetPage /> },
       { path: 'references/sql-window-functions', element: <SqlWindowFunctionsPage /> },
       { path: 'references/emoji-cheatsheet', element: <EmojiCheatsheetPage /> },
+      { path: 'references/emoji-reference', element: <Navigate to="/references/emoji-cheatsheet" replace /> },
       { path: 'tools/iban-tool', element: <IbanToolPage /> },
       { path: 'tools/roman-numeral-converter', element: <RomanNumeralConverterPage /> },
       { path: 'tools/file-size-converter', element: <Navigate to="/tools/units-converter" replace /> },
