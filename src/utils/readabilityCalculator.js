@@ -77,6 +77,7 @@ export function analyzeReadability(text, readingWpm = DEFAULT_READING_WPM, speak
   const charactersNoSpaces = countCharacters(text)
   const letters = countLetters(text)
   const paragraphs = trimmed ? trimmed.split(/\n\s*\n/).filter((p) => p.trim().length > 0).length : 0
+  const lines = text ? text.split('\n').length : 0
 
   let syllables = 0
   let complexWords = 0
@@ -134,6 +135,7 @@ export function analyzeReadability(text, readingWpm = DEFAULT_READING_WPM, speak
     words,
     sentences,
     paragraphs,
+    lines,
     characters,
     charactersNoSpaces,
     letters,
@@ -168,14 +170,19 @@ export function classifyFlesch(score) {
 }
 
 /**
- * Formata minutos em string legível (ex.: "1min 23s" ou "0min 12s").
+ * Formata minutos em string legível (ex.: "1min 23s", "2h 30min").
  */
 export function formatDuration(minutes) {
-  if (!Number.isFinite(minutes) || minutes < 0) return '0min 0s'
+  if (!Number.isFinite(minutes) || minutes < 0) return '0s'
   const totalSeconds = Math.round(minutes * 60)
-  const m = Math.floor(totalSeconds / 60)
-  const s = totalSeconds % 60
-  return `${m}min ${s}s`
+  const hours = Math.floor(totalSeconds / 3600)
+  const mins = Math.floor((totalSeconds % 3600) / 60)
+  const secs = totalSeconds % 60
+  const parts = []
+  if (hours > 0) parts.push(`${hours}h`)
+  if (mins > 0) parts.push(`${mins}min`)
+  if (secs > 0 || parts.length === 0) parts.push(`${secs}s`)
+  return parts.join(' ')
 }
 
 /**
@@ -225,6 +232,27 @@ export const gradeLabels = {
   grade12: { pt: '12º ano', en: '12th grade' },
   college: { pt: 'Universitário', en: 'College' },
   graduate: { pt: 'Pós-graduação', en: 'Graduate' },
+}
+
+/**
+ * Comparativo com documentos conhecidos (tweet, página A4, artigo de blog,
+ * conto e romance).
+ * @param {number} wordCount
+ * @returns {Array<{key: string, words: number, pct: number}>}
+ */
+export function compareToKnownWorks(wordCount) {
+  const works = [
+    { key: 'tweet', words: 280 },
+    { key: 'page', words: 500 },
+    { key: 'blogPost', words: 1500 },
+    { key: 'shortStory', words: 7500 },
+    { key: 'novel', words: 90000 },
+  ]
+  return works.map((w) => ({
+    key: w.key,
+    words: w.words,
+    pct: w.words > 0 ? Math.min(100, Math.round((wordCount / w.words) * 100)) : 0,
+  }))
 }
 
 /**
