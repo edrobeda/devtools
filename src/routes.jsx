@@ -382,7 +382,6 @@ import CompoundInterestCalculatorPage from './pages/CompoundInterestCalculatorPa
 import ConicGradientGeneratorPage from './pages/ConicGradientGeneratorPage'
 import PercentageCalculatorPage from './pages/PercentageCalculatorPage'
 import AbTestCalculatorPage from './pages/AbTestCalculatorPage'
-import ReadingTimeCalculatorPage from './pages/ReadingTimeCalculatorPage'
 import ConnectionStringParserPage from './pages/ConnectionStringParserPage'
 import BigOCheatsheetPage from './pages/BigOCheatsheetPage'
 import JsonToZodSchemaPage from './pages/JsonToZodSchemaPage'
@@ -567,7 +566,7 @@ const router = createBrowserRouter([
       { path: 'ai/openai-cost-calculator', element: <OpenAiCostCalculatorPage /> },
       { path: 'ai/llm-prompt-builder', element: <LlmPromptBuilderPage /> },
       { path: 'ai/rag-chunk-visualizer', element: <RagChunkVisualizerPage /> },
-      { path: 'text/word-counter', element: <Navigate to="/tools/reading-time-calculator" replace /> },
+      { path: 'text/word-counter', element: <Navigate to="/tools/readability-calculator" replace /> },
       { path: 'references/git-commands', element: <GitCommandsPage /> },
       { path: 'extras/days-until', element: <DaysUntilPage /> },
       { path: 'tools/date-time-calculator', element: <DateTimeCalculatorPage /> },
@@ -762,7 +761,7 @@ const router = createBrowserRouter([
       { path: 'tools/compound-interest-calculator', element: <CompoundInterestCalculatorPage /> },
       { path: 'tools/percentage-calculator', element: <PercentageCalculatorPage /> },
       { path: 'tools/ab-test-calculator', element: <AbTestCalculatorPage /> },
-      { path: 'tools/reading-time-calculator', element: <ReadingTimeCalculatorPage /> },
+      { path: 'tools/reading-time-calculator', element: <Navigate to="/tools/readability-calculator" replace /> },
       { path: 'tools/readability-calculator', element: <ReadabilityCalculatorPage /> },
       { path: 'tools/linear-regression-calculator', element: <LinearRegressionCalculatorPage /> },
       { path: 'tools/npv-irr-roi-calculator', element: <NpvIrrRoiCalculatorPage /> },

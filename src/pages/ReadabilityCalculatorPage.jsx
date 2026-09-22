@@ -13,6 +13,7 @@ import {
   Select,
   Divider,
   Slider,
+  Progress,
 } from 'antd'
 import { ReadOutlined, FieldTimeOutlined, SoundOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -23,6 +24,7 @@ import {
   describeGradeLevel,
   readabilityLabels,
   gradeLabels,
+  compareToKnownWorks,
   DEFAULT_READING_WPM,
   DEFAULT_SPEAKING_WPM,
   SAMPLE_TEXTS,
@@ -60,6 +62,7 @@ const translations = {
     words: 'Palavras',
     sentences: 'Frases',
     paragraphs: 'Parágrafos',
+    lines: 'Linhas',
     characters: 'Caracteres',
     charactersNoSpaces: 'Sem espaços',
     syllables: 'Sílabas',
@@ -81,6 +84,13 @@ const translations = {
     wpm: 'ppm',
     readingTime: 'Tempo de leitura',
     speakingTime: 'Tempo de fala',
+    compareTitle: 'Comparativo com formatos',
+    compareIntro: 'Seu texto em comparação com formatos comuns:',
+    tweet: 'Post (280 palavras)',
+    page: 'Página A4 (500 palavras)',
+    blogPost: 'Artigo de blog (1.500 palavras)',
+    shortStory: 'Conto (7.500 palavras)',
+    novel: 'Romance (90.000 palavras)',
     formulasNote: 'As fórmulas foram calibradas originalmente para textos em inglês, mas os contadores funcionam para qualquer idioma.',
     score: 'Pontuação',
     sourceTitle: 'Motor de cálculo',
@@ -99,6 +109,7 @@ const translations = {
     words: 'Words',
     sentences: 'Sentences',
     paragraphs: 'Paragraphs',
+    lines: 'Lines',
     characters: 'Characters',
     charactersNoSpaces: 'Without spaces',
     syllables: 'Syllables',
@@ -120,6 +131,13 @@ const translations = {
     wpm: 'wpm',
     readingTime: 'Reading time',
     speakingTime: 'Speaking time',
+    compareTitle: 'Comparison with formats',
+    compareIntro: 'Your text compared to common formats:',
+    tweet: 'Social post (280 words)',
+    page: 'A4 page (500 words)',
+    blogPost: 'Blog article (1,500 words)',
+    shortStory: 'Short story (7,500 words)',
+    novel: 'Novel (90,000 words)',
     formulasNote: 'The formulas were originally calibrated for English texts, but the counters work for any language.',
     score: 'Score',
     sourceTitle: 'Calculation engine',
@@ -152,6 +170,16 @@ export default function ReadabilityCalculatorPage() {
 
   const difficultyKey = useMemo(() => classifyFlesch(metrics.fleschReadingEase), [metrics.fleschReadingEase])
   const gradeKey = useMemo(() => describeGradeLevel(metrics.fleschKincaidGrade), [metrics.fleschKincaidGrade])
+
+  const comparison = useMemo(() => compareToKnownWorks(metrics.words), [metrics.words])
+
+  const knownWorkLabels = {
+    tweet: t.tweet,
+    page: t.page,
+    blogPost: t.blogPost,
+    shortStory: t.shortStory,
+    novel: t.novel,
+  }
 
   const difficultyLabel = readabilityLabels[difficultyKey]?.[lang] || difficultyKey
   const gradeLabel = gradeLabels[gradeKey]?.[lang] || gradeKey
@@ -305,6 +333,9 @@ export default function ReadabilityCalculatorPage() {
             <Statistic title={t.paragraphs} value={fmtInt(metrics.paragraphs)} />
           </Col>
           <Col xs={12} sm={8} md={4}>
+            <Statistic title={t.lines} value={fmtInt(metrics.lines)} />
+          </Col>
+          <Col xs={12} sm={8} md={4}>
             <Statistic title={t.characters} value={fmtInt(metrics.characters)} />
           </Col>
           <Col xs={12} sm={8} md={4}>
@@ -326,6 +357,25 @@ export default function ReadabilityCalculatorPage() {
             <Statistic title={t.avgLettersPerWord} value={fmt(metrics.avgLettersPerWord)} />
           </Col>
         </Row>
+      </Card>
+
+      <Card title={t.compareTitle} style={{ marginBottom: 16 }}>
+        <Paragraph>{t.compareIntro}</Paragraph>
+        <Space direction="vertical" style={{ width: '100%' }}>
+          {comparison.map((item) => (
+            <div key={item.key}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
+                <Text>{knownWorkLabels[item.key]}</Text>
+                <Text type="secondary">{item.pct}%</Text>
+              </div>
+              <Progress
+                percent={item.pct}
+                showInfo={false}
+                strokeColor={item.pct >= 100 ? '#52c41a' : '#1890ff'}
+              />
+            </div>
+          ))}
+        </Space>
       </Card>
 
       <Collapse defaultActiveKey={[]}>
