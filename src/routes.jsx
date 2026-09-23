@@ -522,6 +522,7 @@ import TanstackQueryCheatsheetPage from './pages/TanstackQueryCheatsheetPage'
 import ReactRouterCheatsheetPage from './pages/ReactRouterCheatsheetPage'
 import SvgToJsxConverterPage from './pages/SvgToJsxConverterPage'
 import WindowsPowershellCheatsheetPage from './pages/WindowsPowershellCheatsheetPage'
+import TarCompressionCheatsheetPage from './pages/TarCompressionCheatsheetPage'
 
 const router = createBrowserRouter([
   {
@@ -1075,6 +1076,7 @@ const router = createBrowserRouter([
       { path: 'references/react-router-cheatsheet', element: <ReactRouterCheatsheetPage /> },
       { path: 'references/file-signatures', element: <FileSignaturesPage /> },
       { path: 'references/powershell-cmd-cheatsheet', element: <WindowsPowershellCheatsheetPage /> },
+      { path: 'references/tar-compression-cheatsheet', element: <TarCompressionCheatsheetPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
