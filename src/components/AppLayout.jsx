@@ -1228,6 +1228,7 @@ export function buildMenuItems(l) {
         { key: '/tools/yaml-formatter', icon: <FileTextOutlined />, label: withNewBadge('/tools/yaml-formatter', l['yaml-formatter'], l) },
         { key: '/tools/html-formatter', icon: <FileTextOutlined />, label: withNewBadge('/tools/html-formatter', l['html-formatter'], l) },
         { key: '/tools/sql-formatter', icon: <FileTextOutlined />, label: withNewBadge('/tools/sql-formatter', l['sql-formatter'], l) },
+        { key: '/tools/graphql-formatter', icon: <FileTextOutlined />, label: l['graphql-formatter'] },
         { key: '/tools/timestamp-converter', icon: <FieldTimeOutlined />, label: l['timestamp-converter'] },
         { key: '/tools/date-time-calculator', icon: <FieldTimeOutlined />, label: withNewBadge('/tools/date-time-calculator', l['date-time-calculator'], l) },
         { key: '/tools/regex-tester', icon: <SearchOutlined />, label: withNewBadge('/tools/regex-tester', l['regex-tester'], l) },
