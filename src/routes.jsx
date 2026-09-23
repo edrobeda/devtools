@@ -480,6 +480,7 @@ import KafkaCheatsheetPage from './pages/KafkaCheatsheetPage'
 import ElasticsearchCheatsheetPage from './pages/ElasticsearchCheatsheetPage'
 import CppCheatsheetPage from './pages/CppCheatsheetPage'
 import VueCheatsheetPage from './pages/VueCheatsheetPage'
+import AngularCheatsheetPage from './pages/AngularCheatsheetPage'
 import GraphqlCheatsheetPage from './pages/GraphqlCheatsheetPage'
 import GrpcCheatsheetPage from './pages/GrpcCheatsheetPage'
 import RubyCheatsheetPage from './pages/RubyCheatsheetPage'
@@ -1053,6 +1054,7 @@ const router = createBrowserRouter([
       { path: 'references/helm-cheatsheet', element: <HelmCheatsheetPage /> },
       { path: 'references/c-cheatsheet', element: <CCheatsheetPage /> },
       { path: 'references/vue-cheatsheet', element: <VueCheatsheetPage /> },
+      { path: 'references/angular-cheatsheet', element: <AngularCheatsheetPage /> },
       { path: 'tools/email-header-analyzer', element: <EmailHeaderAnalyzerPage /> },
       { path: 'tools/ascii-banner-generator', element: <AsciiBannerGeneratorPage /> },
       { path: 'tools/image-to-ascii', element: <ImageToAsciiPage /> },
