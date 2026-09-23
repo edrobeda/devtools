@@ -146,7 +146,6 @@ export const LABELS = {
     'use-click-outside': 'useClickOutside',
     'use-media-query': 'useMediaQuery',
     'contrast-checker': 'Checador de Contraste',
-    'curl-generator': 'Gerador de cURL',
     'curl-to-code': 'cURL → Código (fetch/axios)',
     'gitignore-generator': 'Gerador de .gitignore',
     'gitattributes-generator': 'Gerador de .gitattributes',
@@ -686,7 +685,6 @@ export const LABELS = {
     'use-click-outside': 'useClickOutside',
     'use-media-query': 'useMediaQuery',
     'contrast-checker': 'Contrast Checker',
-    'curl-generator': 'cURL Generator',
     'curl-to-code': 'cURL → Code (fetch/axios)',
     'gitignore-generator': '.gitignore Generator',
     'gitattributes-generator': '.gitattributes Generator',
@@ -1563,7 +1561,6 @@ export function buildMenuItems(l) {
       icon: <ApiOutlined />,
       label: l.apis,
       children: [
-        { key: '/apis/curl-generator', label: l['curl-generator'] },
         { key: '/apis/curl-to-code', icon: <CodeOutlined />, label: withNewBadge('/apis/curl-to-code', l['curl-to-code'], l) },
         { key: '/apis/openapi-spec-generator', icon: <FileTextOutlined />, label: withNewBadge('/apis/openapi-spec-generator', l['openapi-spec-generator'], l) },
         { key: '/apis/webhook-payload-generator', label: withNewBadge('/apis/webhook-payload-generator', l['webhook-payload-generator'], l) },

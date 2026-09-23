@@ -19,7 +19,6 @@ import TimestampConverterPage from './pages/TimestampConverterPage'
 import GradientBorderButtonPage from './pages/GradientBorderButtonPage'
 import UseMediaQuerySnippetPage from './pages/UseMediaQuerySnippetPage'
 import ContrastCheckerPage from './pages/ContrastCheckerPage'
-import CurlGeneratorPage from './pages/CurlGeneratorPage'
 import CurlToCodePage from './pages/CurlToCodePage'
 import GraphqlFormatterPage from './pages/GraphqlFormatterPage'
 import OpenapiSpecGeneratorPage from './pages/OpenapiSpecGeneratorPage'
@@ -550,7 +549,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-click-outside', element: <UseClickOutsideSnippetPage /> },
       { path: 'snippets/use-media-query', element: <UseMediaQuerySnippetPage /> },
       { path: 'frontend/contrast-checker', element: <ContrastCheckerPage /> },
-      { path: 'apis/curl-generator', element: <CurlGeneratorPage /> },
+      { path: 'apis/curl-generator', element: <Navigate to="/apis/http-request-tool" replace /> },
       { path: 'apis/curl-to-code', element: <CurlToCodePage /> },
       { path: 'apis/graphql-formatter', element: <Navigate to="/tools/graphql-formatter" replace /> },
       { path: 'apis/openapi-spec-generator', element: <OpenapiSpecGeneratorPage /> },

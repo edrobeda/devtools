@@ -79,9 +79,8 @@ const translations = {
         direto do navegador com <Text code>fetch</Text>, sem um backend no meio.
         A resposta aparece com status, tempo, headers e corpo formatado, junto
         com o código <Text code>fetch</Text> e o comando <Text code>curl</Text>{' '}
-        equivalentes pra reusar. Complementa o{' '}
-        gerador de cURL (que só monta texto) e o conversor cURL → código: aqui
-        a requisição sai de verdade.
+        equivalentes pra reusar. Complementa o conversor{' '}
+        cURL → código: aqui a requisição sai de verdade.
       </>
     ),
     corsWarning: (
@@ -146,8 +145,8 @@ const translations = {
         straight from the browser with <Text code>fetch</Text>, no backend in
         between. The response shows status, time, headers and a formatted body,
         plus the equivalent <Text code>fetch</Text> code and <Text code>curl</Text>{' '}
-        command to reuse. Complements the cURL generator (which only builds
-        text) and the cURL → code converter: here the request really goes out.
+        command to reuse. Complements the cURL → code converter: here the
+        request really goes out.
       </>
     ),
     corsWarning: (
