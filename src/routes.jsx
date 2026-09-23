@@ -450,6 +450,7 @@ import UnicodeNormalizerPage from './pages/UnicodeNormalizerPage'
 import AwsSigv4SignatureGeneratorPage from './pages/AwsSigv4SignatureGeneratorPage'
 import ReadabilityCalculatorPage from './pages/ReadabilityCalculatorPage'
 import LinearRegressionCalculatorPage from './pages/LinearRegressionCalculatorPage'
+import MatrixCalculatorPage from './pages/MatrixCalculatorPage'
 import NpvIrrRoiCalculatorPage from './pages/NpvIrrRoiCalculatorPage'
 import SaasUnitEconomicsCalculatorPage from './pages/SaasUnitEconomicsCalculatorPage'
 import SoftwareBugCostCalculatorPage from './pages/SoftwareBugCostCalculatorPage'
@@ -766,6 +767,7 @@ const router = createBrowserRouter([
       { path: 'tools/reading-time-calculator', element: <Navigate to="/tools/readability-calculator" replace /> },
       { path: 'tools/readability-calculator', element: <ReadabilityCalculatorPage /> },
       { path: 'tools/linear-regression-calculator', element: <LinearRegressionCalculatorPage /> },
+      { path: 'tools/matrix-calculator', element: <MatrixCalculatorPage /> },
       { path: 'tools/npv-irr-roi-calculator', element: <NpvIrrRoiCalculatorPage /> },
       { path: 'tools/saas-unit-economics-calculator', element: <SaasUnitEconomicsCalculatorPage /> },
       { path: 'tools/software-bug-cost-calculator', element: <SoftwareBugCostCalculatorPage /> },
