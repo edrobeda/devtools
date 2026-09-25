@@ -1313,6 +1313,7 @@ export function buildMenuItems(l) {
         { key: '/tools/confidence-interval-calculator', icon: <CalculatorOutlined />, label: withNewBadge('/tools/confidence-interval-calculator', l['confidence-interval-calculator'], l) },
         { key: '/tools/downtime-cost-calculator', icon: <DollarOutlined />, label: withNewBadge('/tools/downtime-cost-calculator', l['downtime-cost-calculator'], l) },
         { key: '/tools/sre-burn-rate-calculator', icon: <FireOutlined />, label: withNewBadge('/tools/sre-burn-rate-calculator', l['sre-burn-rate-calculator'], l) },
+        { key: '/tools/availability-calculator', icon: <CalculatorOutlined />, label: withNewBadge('/tools/availability-calculator', l['availability-calculator'], l) },
         { key: '/tools/amdahls-law-calculator', icon: <ThunderboltOutlined />, label: withNewBadge('/tools/amdahls-law-calculator', l['amdahls-law-calculator'], l) },
         { key: '/tools/connection-string-parser', icon: <DatabaseOutlined />, label: withNewBadge('/tools/connection-string-parser', l['connection-string-parser'], l) },
         { key: '/tools/loan-amortization-calculator', icon: <BankOutlined />, label: withNewBadge('/tools/loan-amortization-calculator', l['loan-amortization-calculator'], l) },
@@ -1566,6 +1567,7 @@ export function buildMenuItems(l) {
       children: [
         { key: '/apis/curl-to-code', icon: <CodeOutlined />, label: withNewBadge('/apis/curl-to-code', l['curl-to-code'], l) },
         { key: '/apis/openapi-spec-generator', icon: <FileTextOutlined />, label: withNewBadge('/apis/openapi-spec-generator', l['openapi-spec-generator'], l) },
+        { key: '/apis/problem-details-generator', icon: <FileTextOutlined />, label: withNewBadge('/apis/problem-details-generator', l['problem-details-generator'], l) },
         { key: '/apis/webhook-payload-generator', label: withNewBadge('/apis/webhook-payload-generator', l['webhook-payload-generator'], l) },
         { key: '/apis/http-request-tool', icon: <ApiOutlined />, label: withNewBadge('/apis/http-request-tool', l['http-request-tool'], l) },
       ],
@@ -1775,6 +1777,7 @@ export function buildMenuItems(l) {
         { key: '/references/terraform-cheatsheet', icon: <BlockOutlined />, label: withNewBadge('/references/terraform-cheatsheet', l['terraform-cheatsheet'], l) },
         { key: '/references/nodejs-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/nodejs-cheatsheet', l['nodejs-cheatsheet'], l) },
         { key: '/references/postgresql-cheatsheet', icon: <DatabaseOutlined />, label: withNewBadge('/references/postgresql-cheatsheet', l['postgresql-cheatsheet'], l) },
+        { key: '/references/mongodb-cheatsheet', icon: <DatabaseOutlined />, label: withNewBadge('/references/mongodb-cheatsheet', l['mongodb-cheatsheet'], l) },
         { key: '/references/go-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/go-cheatsheet', l['go-cheatsheet'], l) },
         { key: '/references/rust-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/rust-cheatsheet', l['rust-cheatsheet'], l) },
         { key: '/references/java-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/java-cheatsheet', l['java-cheatsheet'], l) },
