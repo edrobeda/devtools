@@ -202,8 +202,8 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Prompt Variables / Versioning / Compare
 - [x] Token Counter — `/ai/token-counter`
 - [ ] Embedding Visualizer
-- [ ] OpenAI Cost Calculator
-- [x] Anthropic Cost Calculator — `/ai/anthropic-cost-calculator`
+- [x] OpenAI Cost Calculator — `/ai/llm-cost-calculator` (virou multi-provedor, OpenAI + Anthropic)
+- [x] Anthropic Cost Calculator — absorvida por `/ai/llm-cost-calculator` (rota antiga é redirect)
 - [ ] Ollama Playground
 - [ ] RAG Chunk Visualizer
 

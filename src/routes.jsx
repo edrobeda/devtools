@@ -32,7 +32,7 @@ import IamPolicyGeneratorPage from './pages/IamPolicyGeneratorPage'
 import PasswordStrengthPage from './pages/PasswordStrengthPage'
 import JsonTreeViewerPage from './pages/JsonTreeViewerPage'
 import SubnetCalculatorPage from './pages/SubnetCalculatorPage'
-import OpenAiCostCalculatorPage from './pages/OpenAiCostCalculatorPage'
+import LlmCostCalculatorPage from './pages/LlmCostCalculatorPage'
 import LlmPromptBuilderPage from './pages/LlmPromptBuilderPage'
 import RagChunkVisualizerPage from './pages/RagChunkVisualizerPage'
 import GitCommandsPage from './pages/GitCommandsPage'
@@ -564,8 +564,9 @@ const router = createBrowserRouter([
       { path: 'security/password-strength', element: <PasswordStrengthPage /> },
       { path: 'data/json-tree-viewer', element: <JsonTreeViewerPage /> },
       { path: 'network/subnet-calculator', element: <SubnetCalculatorPage /> },
-      { path: 'ai/anthropic-cost-calculator', element: <Navigate to="/ai/openai-cost-calculator" replace /> },
-      { path: 'ai/openai-cost-calculator', element: <OpenAiCostCalculatorPage /> },
+      { path: 'ai/anthropic-cost-calculator', element: <Navigate to="/ai/llm-cost-calculator" replace /> },
+      { path: 'ai/openai-cost-calculator', element: <Navigate to="/ai/llm-cost-calculator" replace /> },
+      { path: 'ai/llm-cost-calculator', element: <LlmCostCalculatorPage /> },
       { path: 'ai/llm-prompt-builder', element: <LlmPromptBuilderPage /> },
       { path: 'ai/rag-chunk-visualizer', element: <RagChunkVisualizerPage /> },
       { path: 'text/word-counter', element: <Navigate to="/tools/readability-calculator" replace /> },

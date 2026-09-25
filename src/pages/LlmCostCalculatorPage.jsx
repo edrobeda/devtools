@@ -105,7 +105,7 @@ function formatUsd(n) {
   return `$${n.toLocaleString(undefined, { minimumFractionDigits: 4, maximumFractionDigits: 6 })}`
 }
 
-export default function OpenAiCostCalculatorPage() {
+export default function LlmCostCalculatorPage() {
   const { lang } = useLanguage()
   const t = translations[lang]
   const [provider, setProvider] = useState('openai')
