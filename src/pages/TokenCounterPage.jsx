@@ -88,7 +88,7 @@ const translations = {
         de linguagem — a mesma unidade de contexto usada por modelos tipo
         GPT/Claude. Escolha o tamanho do contexto do modelo (ex.: 128k) e vê
         a proporção que o texto preencheria. Complementa a{' '}
-        <Text code>/ai/openai-cost-calculator</Text>, que precisa do
+        <Text code>/ai/llm-cost-calculator</Text>, que precisa do
         número de tokens pra estimar custo.
       </>
     ),
