@@ -62,7 +62,7 @@ const translations = {
     sourceTitle: 'Como funciona',
   },
   en: {
-    title: 'Text Lines Tool',
+    title: 'Text Lines Processor',
     intro: 'Cleans and transforms a block of lines with chained operations: trim, remove blanks, dedupe, sort and number lines. Fully client-side and live. Handy for tidying lists, terminal output or simple arrays before pasting them elsewhere.',
     inputPlaceholder: 'Paste the lines here, one per line...',
     optionsTitle: 'Options (applied in order)',

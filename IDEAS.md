@@ -220,7 +220,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] Remove Accents — `/text/remove-accents`
 - [x] Remove Duplicates (linhas)
 - [x] Sort Lines
-- [x] Line Number Generator — coberto pelo `/text/lines-tool`
+- [x] Line Number Generator — coberto pelo `/text/lines-processor`
 - [x] Contador de palavras/caracteres/linhas — `/text/word-counter`
 
 ## ✨ Estilos — componentes e padrões visuais (UI)
