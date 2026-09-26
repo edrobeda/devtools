@@ -1272,7 +1272,6 @@ export function buildMenuItems(l) {
         { key: '/tools/css-selector-tester', icon: <SelectOutlined />, label: withNewBadge('/tools/css-selector-tester', l['css-selector-tester'], l) },
         { key: '/tools/nanoid-generator', icon: <IdcardOutlined />, label: withNewBadge('/tools/nanoid-generator', l['nanoid-generator'], l) },
         { key: '/tools/hmac-generator', icon: <KeyOutlined />, label: withNewBadge('/tools/hmac-generator', l['hmac-generator'], l) },
-        { key: '/tools/aws-sigv4-signature-generator', icon: <SafetyCertificateOutlined />, label: withNewBadge('/tools/aws-sigv4-signature-generator', l['aws-sigv4-signature-generator'], l) },
         { key: '/tools/lorem-ipsum-generator', icon: <FileTextOutlined />, label: withNewBadge('/tools/lorem-ipsum-generator', l['lorem-ipsum-generator'], l) },
         { key: '/tools/jwt-generator', icon: <KeyOutlined />, label: withNewBadge('/tools/jwt-generator', l['jwt-generator'], l) },
         { key: '/tools/jwt-secret-generator', icon: <KeyOutlined />, label: withNewBadge('/tools/jwt-secret-generator', l['jwt-secret-generator'], l) },
@@ -1630,6 +1629,7 @@ export function buildMenuItems(l) {
       label: l.cloud,
       children: [
         { key: '/cloud/arn-parser', label: l['arn-parser'] },
+        { key: '/cloud/aws-sigv4-signature-generator', icon: <SafetyCertificateOutlined />, label: withNewBadge('/cloud/aws-sigv4-signature-generator', l['aws-sigv4-signature-generator'], l) },
         { key: '/cloud/cost-estimator', icon: <DollarOutlined />, label: withNewBadge('/cloud/cost-estimator', l['cost-estimator'], l) },
         { key: '/cloud/iam-policy-generator', icon: <SafetyCertificateOutlined />, label: withNewBadge('/cloud/iam-policy-generator', l['iam-policy-generator'], l) },
       ],
