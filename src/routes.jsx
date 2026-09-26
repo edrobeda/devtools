@@ -152,7 +152,6 @@ import SortingVisualizerPage from './pages/SortingVisualizerPage'
 import OtpInputPage from './pages/OtpInputPage'
 import TimezoneConverterPage from './pages/TimezoneConverterPage'
 import UserAgentParserPage from './pages/UserAgentParserPage'
-import CronBuilderPage from './pages/CronBuilderPage'
 import MimeLookupPage from './pages/MimeLookupPage'
 import HttpMethodsPage from './pages/HttpMethodsPage'
 import NumberToWordsPage from './pages/NumberToWordsPage'
@@ -716,7 +715,7 @@ const router = createBrowserRouter([
       { path: 'styles/otp-input', element: <OtpInputPage /> },
       { path: 'tools/timezone-converter', element: <TimezoneConverterPage /> },
       { path: 'network/user-agent-parser', element: <UserAgentParserPage /> },
-      { path: 'tools/cron-builder', element: <CronBuilderPage /> },
+      { path: 'tools/cron-builder', element: <Navigate to="/tools/cron-parser" replace /> },
       { path: 'tools/cron-schedule-timeline', element: <Navigate to="/tools/cron-parser" replace /> },
       { path: 'references/css-color-names', element: <CssColorNamesPage /> },
       { path: 'network/mime-lookup', element: <MimeLookupPage /> },

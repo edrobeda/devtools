@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useCallback } from 'react'
-import { Typography, Card, Input, Space, Alert, Table, Tag, Tooltip, Button } from 'antd'
+import { Typography, Card, Input, Space, Alert, Table, Tag, Tooltip, Button, Segmented } from 'antd'
 import { FieldTimeOutlined, CalendarOutlined, CopyOutlined, CheckOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 
@@ -120,6 +120,21 @@ const translations = {
 Suporta: * , - / e atalhos @yearly @monthly @weekly @daily @hourly`,
     calendarTitle: 'Calendário mensal',
     calendarNote: 'Dias com execuções programadas estão destacados.',
+    modeExplain: 'Explicar',
+    modeBuild: 'Montar',
+    buildIntro: (
+      <>
+        O caminho inverso: monte uma expressao cron de 5 campos a partir de controles visuais — por campo,
+        escolha se ele roda em qualquer valor (<Text code>*</Text>) ou num conjunto específico — e a
+        descricao e as proximas execucoes vem do mesmo motor do modo Explain.
+      </>
+    ),
+    expressionTitle: 'Expressao gerada',
+    anyLabel: 'Qualquer',
+    setLabel: 'Especificos',
+    anyTip: 'Qualquer valor (*). Mude pra escolher valores especificos.',
+    buildNote: 'A regra OR entre dia-do-mes e dia-da-semana vale quando ambos estão restritos — ex.: dia 1 OU segunda-feira. Valores sao limitados à faixa de cada campo.',
+    presetsNoteBuild: 'Neste modo, clicar num exemplo monta os campos com ele.',
   },
   en: {
     title: 'Cron Expression Explainer',
@@ -186,6 +201,21 @@ Suporta: * , - / e atalhos @yearly @monthly @weekly @daily @hourly`,
 Supports: * , - / and shorthands @yearly @monthly @weekly @daily @hourly`,
     calendarTitle: 'Monthly calendar',
     calendarNote: 'Days with scheduled runs are highlighted.',
+    modeExplain: 'Explain',
+    modeBuild: 'Build',
+    buildIntro: (
+      <>
+        The inverse path: build a 5-field cron expression from visual controls — per field choose whether it
+        runs at any value (<Text code>*</Text>) or a specific set — and the description and next runs come from
+        the same engine the Explain mode uses.
+      </>
+    ),
+    expressionTitle: 'Generated expression',
+    anyLabel: 'Any',
+    setLabel: 'Specific',
+    anyTip: 'Any value (*). Switch to pick specific values.',
+    buildNote: 'Day-of-month and day-of-week are OR-ed when both are restricted — e.g. on the 1st OR Monday. Values are limited to each field range.',
+    presetsNoteBuild: 'In Build mode, clicking an example fills the fields with it.',
   },
 }
 
@@ -356,16 +386,199 @@ const calendarStyle = {
   maxWidth: 420,
 }
 
+// ─── Modo "Montar": o mesmo motor, alimentado por controles visuais ──────
+const FIELD_ORDER = ['minute', 'hour', 'dom', 'month', 'dow']
+const FIELD_LABEL_KEYS = {
+  minute: 'fieldMinute',
+  hour: 'fieldHour',
+  dom: 'fieldDom',
+  month: 'fieldMonth',
+  dow: 'fieldDow',
+}
+
+function fieldDefByKey(key) {
+  return FIELD_DEFS.find((d) => d.key === key)
+}
+
+function defaultFields() {
+  return {
+    minute: { any: true, values: [] },
+    hour: { any: true, values: [] },
+    dom: { any: true, values: [] },
+    month: { any: true, values: [] },
+    dow: { any: true, values: [] },
+  }
+}
+
+function rangeValues(def) {
+  const out = []
+  for (let v = def.min; v <= def.max; v++) out.push(v)
+  return out
+}
+
+function tokenFor(field) {
+  if (field.any) return '*'
+  const vals = field.values.slice().sort((a, b) => a - b)
+  return vals.length ? vals.join(',') : '*'
+}
+
+function valueLabel(key, v, t) {
+  if (key === 'dow') return `${v} ${t.weekdayNames[v]}`
+  if (key === 'month') return t.monthNames[v]
+  return String(v)
+}
+
+// Converte uma expressão já existente (ou um preset) no estado dos campos,
+// para o modo Montar começar de onde o usuário está.
+function fieldsFromExpr(rawExpr) {
+  const expr = SHORTHANDS[String(rawExpr).trim().toLowerCase()] || String(rawExpr).trim()
+  const tokens = expr.split(/\s+/)
+  const out = defaultFields()
+  if (tokens.length !== FIELD_DEFS.length) return out
+  FIELD_DEFS.forEach((def, i) => {
+    const token = tokens[i]
+    if (token === '*') return
+    const values = []
+    for (const part of token.split(',')) {
+      const [range, stepRaw] = part.split('/')
+      const step = stepRaw !== undefined ? Number(stepRaw) || 1 : 1
+      let start = def.min
+      let end = def.max
+      if (range !== '*') {
+        if (range.includes('-')) {
+          const [a, b] = range.split('-')
+          start = Number(a)
+          end = Number(b)
+        } else {
+          start = end = Number(range)
+        }
+      }
+      if (!Number.isInteger(start) || !Number.isInteger(end) || step <= 0) continue
+      for (let v = start; v <= end; v += step) {
+        if (v >= def.min && v <= def.max) values.push(v)
+      }
+    }
+    if (values.length > 0) out[def.key] = { any: false, values: [...new Set(values)] }
+  })
+  return out
+}
+
+function BuilderPanel({ t, fields, setFields, expr, copied, onCopy }) {
+  const setAny = (k, any) => setFields((prev) => ({ ...prev, [k]: { ...prev[k], any } }))
+
+  const toggleValue = (k, v) => {
+    setFields((prev) => {
+      const values = prev[k].values.includes(v)
+        ? prev[k].values.filter((x) => x !== v)
+        : [...prev[k].values, v]
+      return { ...prev, [k]: { ...prev[k], values } }
+    })
+  }
+
+  const selectAll = (k) => {
+    setFields((prev) => ({ ...prev, [k]: { ...prev[k], values: rangeValues(fieldDefByKey(k)) } }))
+  }
+
+  const clearValues = (k) => {
+    setFields((prev) => ({ ...prev, [k]: { ...prev[k], values: [] } }))
+  }
+
+  return (
+    <>
+      <Card title={t.expressionTitle}>
+        <Space wrap style={{ width: '100%', justifyContent: 'space-between' }}>
+          <Text code strong style={{ fontSize: 16, fontFamily: 'monospace' }}>{expr}</Text>
+          <Button icon={copied ? <CheckOutlined /> : <CopyOutlined />} onClick={onCopy}>
+            {copied ? t.copied : t.copy}
+          </Button>
+        </Space>
+      </Card>
+
+      <Card>
+        {FIELD_ORDER.map((k) => {
+          const f = fields[k]
+          const def = fieldDefByKey(k)
+          return (
+            <div
+              key={k}
+              style={{
+                display: 'flex',
+                gap: 16,
+                alignItems: 'center',
+                padding: '10px 0',
+                borderBottom: '1px dashed rgba(128,128,128,0.25)',
+                flexWrap: 'wrap',
+              }}
+            >
+              <div style={{ width: 130 }}>
+                <Text strong>{t[FIELD_LABEL_KEYS[k]]}</Text>
+                <br />
+                <Text type="secondary" style={{ fontSize: 12 }}>
+                  {def.min}–{def.max}
+                </Text>
+              </div>
+              <Segmented
+                size="small"
+                value={f.any ? 'any' : 'set'}
+                options={[
+                  { label: t.anyLabel, value: 'any' },
+                  { label: t.setLabel, value: 'set' },
+                ]}
+                onChange={(v) => setAny(k, v === 'any')}
+              />
+              {f.any ? (
+                <Text type="secondary" style={{ fontSize: 12 }}>{t.anyTip}</Text>
+              ) : (
+                <Space direction="vertical" size="small" style={{ flex: 1, minWidth: 200 }}>
+                  <Space wrap>
+                    {rangeValues(def).map((v) => (
+                      <Tag.CheckableTag
+                        key={v}
+                        checked={f.values.includes(v)}
+                        onChange={() => toggleValue(k, v)}
+                      >
+                        {valueLabel(k, v, t)}
+                      </Tag.CheckableTag>
+                    ))}
+                  </Space>
+                  <Space size="small">
+                    <Button size="small" onClick={() => selectAll(k)}>{t.anyLabel} *</Button>
+                    <Button size="small" onClick={() => clearValues(k)}>×</Button>
+                  </Space>
+                </Space>
+              )}
+            </div>
+          )
+        })}
+        <Paragraph type="secondary" style={{ marginTop: 12, marginBottom: 0 }}>
+          {t.buildNote}
+        </Paragraph>
+      </Card>
+    </>
+  )
+}
+
 export default function CronParserPage() {
   const { lang } = useLanguage()
   const t = translations[lang]
   const [expr, setExpr] = useState('0 0 * * *')
+  const [mode, setMode] = useState('explain')
+  const [fields, setFields] = useState(defaultFields)
   const [copied, setCopied] = useState(false)
 
+  const buildExpr = useMemo(
+    () => FIELD_ORDER.map((k) => tokenFor(fields[k])).join(' '),
+    [fields]
+  )
+
+  // Fonte de verdade única: no modo Montar a expressão gerada alimenta
+  // exatamente o mesmo parseCron/describeCron/findNextRuns do modo Explicar.
+  const activeExpr = mode === 'build' ? buildExpr : expr
+
   const result = useMemo(() => {
-    if (!expr.trim()) return { data: null, error: null }
+    if (!activeExpr.trim()) return { data: null, error: null }
     try {
-      const parsed = parseCron(expr, t)
+      const parsed = parseCron(activeExpr, t)
       return {
         data: {
           description: describeCron(parsed, t),
@@ -377,7 +590,7 @@ export default function CronParserPage() {
     } catch (err) {
       return { data: null, error: err.message }
     }
-  }, [expr, t])
+  }, [activeExpr, t])
 
   const fieldTable = useMemo(() => {
     if (result.error || !result.data) return []
@@ -460,10 +673,20 @@ export default function CronParserPage() {
   }, [calendarData])
 
   const handleCopy = useCallback(() => {
-    navigator.clipboard.writeText(expr)
+    navigator.clipboard.writeText(activeExpr)
     setCopied(true)
     setTimeout(() => setCopied(false), 1500)
+  }, [activeExpr])
+
+  const handleModeChange = useCallback((next) => {
+    if (next === 'build') setFields(fieldsFromExpr(expr))
+    setMode(next)
   }, [expr])
+
+  const applyPreset = useCallback((presetExpr) => {
+    if (mode === 'build') setFields(fieldsFromExpr(presetExpr))
+    else setExpr(presetExpr)
+  }, [mode])
 
   return (
     <Space direction="vertical" size="large" style={{ width: '100%' }}>
@@ -474,25 +697,37 @@ export default function CronParserPage() {
             {t.title}
           </Space>
         </Title>
-        <Paragraph>{t.intro}</Paragraph>
+        <Paragraph>{mode === 'build' ? t.buildIntro : t.intro}</Paragraph>
+        <Segmented
+          value={mode}
+          options={[
+            { label: t.modeExplain, value: 'explain' },
+            { label: t.modeBuild, value: 'build' },
+          ]}
+          onChange={handleModeChange}
+        />
       </div>
 
-      <Card>
-        <Space.Compact style={{ width: '100%' }}>
-          <Input
-            size="large"
-            value={expr}
-            onChange={(e) => setExpr(e.target.value)}
-            placeholder={t.inputPlaceholder}
-            style={{ fontFamily: 'monospace', fontSize: 16 }}
-          />
-          <Tooltip title={copied ? t.copied : t.copy}>
-            <Button size="large" icon={copied ? <CheckOutlined /> : <CopyOutlined />} onClick={handleCopy} />
-          </Tooltip>
-        </Space.Compact>
-      </Card>
+      {mode === 'explain' ? (
+        <Card>
+          <Space.Compact style={{ width: '100%' }}>
+            <Input
+              size="large"
+              value={expr}
+              onChange={(e) => setExpr(e.target.value)}
+              placeholder={t.inputPlaceholder}
+              style={{ fontFamily: 'monospace', fontSize: 16 }}
+            />
+            <Tooltip title={copied ? t.copied : t.copy}>
+              <Button size="large" icon={copied ? <CheckOutlined /> : <CopyOutlined />} onClick={handleCopy} />
+            </Tooltip>
+          </Space.Compact>
+        </Card>
+      ) : (
+        <BuilderPanel t={t} fields={fields} setFields={setFields} expr={activeExpr} copied={copied} onCopy={handleCopy} />
+      )}
 
-      {result.error && expr.trim() && (
+      {result.error && mode === 'explain' && expr.trim() && (
         <Alert
           type="error"
           showIcon
@@ -610,12 +845,15 @@ export default function CronParserPage() {
       )}
 
       <Card title={t.presets}>
+        {mode === 'build' && (
+          <Paragraph type="secondary" style={{ marginTop: -4 }}>{t.presetsNoteBuild}</Paragraph>
+        )}
         <Space wrap>
           {PRESETS.map((p) => (
             <Tooltip key={p.key} title={p.expr}>
               <Button
                 size="small"
-                onClick={() => setExpr(p.expr)}
+                onClick={() => applyPreset(p.expr)}
                 style={{ fontFamily: 'monospace' }}
               >
                 {p.expr}
