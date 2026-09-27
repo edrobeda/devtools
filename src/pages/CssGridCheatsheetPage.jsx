@@ -1,31 +1,18 @@
-import React, { useState } from 'react'
-import { Typography, Card, Space, Segmented, Slider, Table, Button, message, Input } from 'antd'
-import { TableOutlined, CopyOutlined } from '@ant-design/icons'
+import React from 'react'
+import { Typography, Card, Space, Table, Alert } from 'antd'
+import { TableOutlined } from '@ant-design/icons'
+import { Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
 
 const { Title, Paragraph, Text } = Typography
 
-const COLUMN_PRESETS = ['repeat(3, 1fr)', 'repeat(auto-fit, minmax(100px, 1fr))', '1fr 2fr 1fr', '100px 1fr 100px']
-const JUSTIFY_CONTENT = ['start', 'center', 'end', 'space-between', 'space-around', 'space-evenly']
-const ALIGN_ITEMS = ['stretch', 'start', 'center', 'end']
-const JUSTIFY_ITEMS = ['stretch', 'start', 'center', 'end']
-const BOX_COLORS = ['#1677ff', '#52c41a', '#faad14', '#eb2f96', '#722ed1', '#13c2c2']
-
 const translations = {
   pt: {
-    title: 'Cheat Sheet Interativo: CSS Grid',
-    intro: 'Ajuste as propriedades abaixo e veja a grade reagir ao vivo — inclui também um exemplo de item ocupando várias colunas via grid-column.',
-    playgroundTitle: 'Playground',
-    columns: 'grid-template-columns',
-    gap: 'gap',
-    boxCount: 'Nº de itens',
-    justifyContent: 'justify-content',
-    alignItems: 'align-items',
-    justifyItems: 'justify-items',
-    spanLabel: 'Item 1 ocupa (grid-column: span N)',
-    css: 'CSS gerado',
-    copy: 'Copiar CSS',
-    copied: 'CSS copiado',
+    title: 'Cheat Sheet de CSS Grid',
+    intro: 'Referência rápida das propriedades do CSS Grid: o que cada uma faz, em qual elemento se aplica e por que importa. Para consultar, é só rolar a tabela abaixo.',
+    builderTitle: 'Quer montar o layout, não só consultar?',
+    builderBody: 'O Gerador de Grid CSS monta o CSS de display:grid a partir de trilhas de coluna e linha (fr/px/%/auto), espaçamento, alinhamento, grid-auto-flow e presets de layout — com preview ao vivo, resumo das trilhas e o CSS + HTML prontos pra copiar.',
+    builderLink: 'Abrir o Gerador de Grid CSS',
     refTitle: 'Referência rápida',
     col: { property: 'Propriedade', appliesTo: 'Aplica em', description: 'O que faz' },
     rows: [
@@ -42,19 +29,11 @@ const translations = {
     ],
   },
   en: {
-    title: 'Interactive Cheat Sheet: CSS Grid',
-    intro: 'Tweak the properties below and watch the grid react live — also includes an example of an item spanning multiple columns via grid-column.',
-    playgroundTitle: 'Playground',
-    columns: 'grid-template-columns',
-    gap: 'gap',
-    boxCount: 'Item count',
-    justifyContent: 'justify-content',
-    alignItems: 'align-items',
-    justifyItems: 'justify-items',
-    spanLabel: 'Item 1 spans (grid-column: span N)',
-    css: 'Generated CSS',
-    copy: 'Copy CSS',
-    copied: 'CSS copied',
+    title: 'CSS Grid Cheat Sheet',
+    intro: 'Quick reference for the CSS Grid properties: what each one does, which element it applies to and why it matters. To look something up, just scroll to the table below.',
+    builderTitle: 'Building a layout instead of looking one up?',
+    builderBody: 'The CSS Grid Builder generates display: grid CSS from column and row tracks (fr/px/%/auto), spacing, alignment, grid-auto-flow and layout presets — with a live preview, a track summary and the CSS + HTML ready to copy.',
+    builderLink: 'Open the CSS Grid Builder',
     refTitle: 'Quick reference',
     col: { property: 'Property', appliesTo: 'Applies to', description: 'What it does' },
     rows: [
@@ -75,30 +54,6 @@ const translations = {
 export default function CssGridCheatsheetPage() {
   const { lang } = useLanguage()
   const t = translations[lang]
-  const [columns, setColumns] = useState(COLUMN_PRESETS[0])
-  const [gap, setGap] = useState(8)
-  const [boxCount, setBoxCount] = useState(6)
-  const [justifyContent, setJustifyContent] = useState('start')
-  const [alignItems, setAlignItems] = useState('stretch')
-  const [justifyItems, setJustifyItems] = useState('stretch')
-  const [span, setSpan] = useState(1)
-
-  const css = `.container {
-  display: grid;
-  grid-template-columns: ${columns};
-  gap: ${gap}px;
-  justify-content: ${justifyContent};
-  align-items: ${alignItems};
-  justify-items: ${justifyItems};
-}
-.item:first-child {
-  grid-column: span ${span};
-}`
-
-  function copyCss() {
-    navigator.clipboard.writeText(css)
-    message.success(t.copied)
-  }
 
   const columnsTable = [
     { title: t.col.property, dataIndex: 'property', key: 'property', render: (v) => <Text code>{v}</Text> },
@@ -111,95 +66,19 @@ export default function CssGridCheatsheetPage() {
       <Title level={2}><TableOutlined /> {t.title}</Title>
       <Paragraph type="secondary">{t.intro}</Paragraph>
 
-      <Card title={t.playgroundTitle}>
-        <Space direction="vertical" size="large" style={{ width: '100%' }}>
-          <Space size="large" wrap align="start">
-            <Space direction="vertical" size={4}>
-              <Text type="secondary">{t.columns}</Text>
-              <Segmented value={columns} onChange={setColumns} options={COLUMN_PRESETS} />
-              <Input value={columns} onChange={(e) => setColumns(e.target.value)} style={{ width: 280, fontFamily: 'monospace' }} />
-            </Space>
-          </Space>
-
-          <Space size="large" wrap>
-            <Space direction="vertical" size={4}>
-              <Text type="secondary">{t.justifyContent}</Text>
-              <Segmented value={justifyContent} onChange={setJustifyContent} options={JUSTIFY_CONTENT} />
-            </Space>
-            <Space direction="vertical" size={4}>
-              <Text type="secondary">{t.alignItems}</Text>
-              <Segmented value={alignItems} onChange={setAlignItems} options={ALIGN_ITEMS} />
-            </Space>
-            <Space direction="vertical" size={4}>
-              <Text type="secondary">{t.justifyItems}</Text>
-              <Segmented value={justifyItems} onChange={setJustifyItems} options={JUSTIFY_ITEMS} />
-            </Space>
-          </Space>
-
-          <Space size="large" wrap align="start">
-            <Space direction="vertical" size={4} style={{ width: 200 }}>
-              <Text type="secondary">{t.gap}: {gap}px</Text>
-              <Slider min={0} max={32} value={gap} onChange={setGap} />
-            </Space>
-            <Space direction="vertical" size={4} style={{ width: 200 }}>
-              <Text type="secondary">{t.boxCount}: {boxCount}</Text>
-              <Slider min={3} max={9} value={boxCount} onChange={setBoxCount} />
-            </Space>
-            <Space direction="vertical" size={4} style={{ width: 200 }}>
-              <Text type="secondary">{t.spanLabel}: {span}</Text>
-              <Slider min={1} max={3} value={span} onChange={setSpan} />
-            </Space>
-          </Space>
-
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: columns,
-              gap,
-              justifyContent,
-              alignItems,
-              justifyItems,
-              minHeight: 220,
-              padding: 16,
-              background: '#fafafa',
-              border: '1px dashed #d9d9d9',
-              borderRadius: 8,
-            }}
-          >
-            {Array.from({ length: boxCount }, (_, i) => (
-              <div
-                key={i}
-                style={{
-                  gridColumn: i === 0 ? `span ${span}` : undefined,
-                  width: justifyItems === 'stretch' ? undefined : 56,
-                  height: alignItems === 'stretch' ? undefined : 56,
-                  minWidth: 56,
-                  minHeight: 56,
-                  borderRadius: 8,
-                  background: BOX_COLORS[i % BOX_COLORS.length],
-                  color: '#fff',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontWeight: 700,
-                }}
-              >
-                {i + 1}
-              </div>
-            ))}
-          </div>
-
-          <Space direction="vertical" style={{ width: '100%' }}>
-            <Space style={{ width: '100%', justifyContent: 'space-between' }}>
-              <Text strong>{t.css}</Text>
-              <Button size="small" icon={<CopyOutlined />} onClick={copyCss}>{t.copy}</Button>
-            </Space>
-            <pre style={{ margin: 0, overflowX: 'auto', background: '#fafafa', padding: 12, borderRadius: 8 }}>
-              <code>{css}</code>
-            </pre>
-          </Space>
-        </Space>
-      </Card>
+      <Alert
+        type="info"
+        showIcon
+        message={t.builderTitle}
+        description={(
+          <>
+            {t.builderBody}{' '}
+            <Link to="/frontend/grid-builder" style={{ color: '#1677ff', fontWeight: 600 }}>
+              → {t.builderLink}
+            </Link>
+          </>
+        )}
+      />
 
       <Card title={t.refTitle}>
         <Table

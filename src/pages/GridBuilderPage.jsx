@@ -4,6 +4,7 @@ import {
   Slider, Switch, Tag, Row, Col, InputNumber,
 } from 'antd'
 import { AppstoreOutlined, CopyOutlined, ReloadOutlined, PlusOutlined, DeleteOutlined } from '@ant-design/icons'
+import { Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
 import {
   ALIGN_CONTENTS, ALIGN_ITEMS, AUTO_FLOWS, DEFAULT_SETTINGS, JUSTIFY_CONTENTS,
@@ -20,7 +21,7 @@ const translations = {
   pt: {
     title: 'Gerador de Grid CSS',
     intro: (
-      <>Monte um layout <Text code>display: grid</Text> visualmente: defina trilhas de coluna e linha (<Text code>fr</Text>, <Text code>px</Text>, <Text code>%</Text>, <Text code>auto</Text>), espaçamento, alinhamento e fluxo automático, e copie o CSS pronto. Complementa o <Text code>grid-areas-generator</Text>, que desenha áreas nomeadas (<Text code>grid-template-areas</Text>).</>
+      <>Monte um layout <Text code>display: grid</Text> visualmente: defina trilhas de coluna e linha (<Text code>fr</Text>, <Text code>px</Text>, <Text code>%</Text>, <Text code>auto</Text>), espaçamento, alinhamento e fluxo automático, e copie o CSS pronto. Complementa o <Text code>grid-areas-generator</Text>, que desenha áreas nomeadas (<Text code>grid-template-areas</Text>). Para consultar o que cada propriedade faz, veja o <Link to="/references/css-grid-cheatsheet" style={{ color: '#1677ff', fontWeight: 600 }}>cheat sheet de CSS Grid</Link>.</>
     ),
     tipTitle: 'Como funciona (e as pegadinhas)',
     tipBody: (
@@ -59,7 +60,7 @@ const translations = {
   en: {
     title: 'CSS Grid Builder',
     intro: (
-      <>Visually build a <Text code>display: grid</Text> layout: define column and row tracks (<Text code>fr</Text>, <Text code>px</Text>, <Text code>%</Text>, <Text code>auto</Text>), gap, alignment and auto-flow, and copy the ready CSS. Complements the <Text code>grid-areas-generator</Text>, which draws named areas (<Text code>grid-template-areas</Text>).</>
+      <>Visually build a <Text code>display: grid</Text> layout: define column and row tracks (<Text code>fr</Text>, <Text code>px</Text>, <Text code>%</Text>, <Text code>auto</Text>), gap, alignment and auto-flow, and copy the ready CSS. Complements the <Text code>grid-areas-generator</Text>, which draws named areas (<Text code>grid-template-areas</Text>). To look up what each property does, see the <Link to="/references/css-grid-cheatsheet" style={{ color: '#1677ff', fontWeight: 600 }}>CSS Grid cheat sheet</Link>.</>
     ),
     tipTitle: 'How it works (and the gotchas)',
     tipBody: (
