@@ -1692,7 +1692,7 @@ export function buildMenuItems(l) {
         { key: '/network/http-cache-analyzer', icon: <FieldTimeOutlined />, label: withNewBadge('/network/http-cache-analyzer', l['http-cache-analyzer'], l) },
         { key: '/network/dns-record-generator', icon: <GlobalOutlined />, label: withNewBadge('/network/dns-record-generator', l['dns-record-generator'], l) },
         { key: '/network/tcp-throughput-calculator', icon: <ThunderboltOutlined />, label: withNewBadge('/network/tcp-throughput-calculator', l['tcp-throughput-calculator'], l) },
-        { key: '/network/network-latency-calculator', icon: <ThunderboltOutlined />, label: withNewBadge('/network/network-latency-calculator', l['network-latency-calculator'], l) },
+        { key: '/network/latency-calculator', icon: <ThunderboltOutlined />, label: withNewBadge('/network/latency-calculator', l['network-latency-calculator'], l) },
         { key: '/network/shannon-capacity-calculator', icon: <ThunderboltOutlined />, label: withNewBadge('/network/shannon-capacity-calculator', l['shannon-capacity-calculator'], l) },
         { key: '/network/idn-punycode-converter', icon: <GlobalOutlined />, label: withNewBadge('/network/idn-punycode-converter', l['idn-punycode-converter'], l) },
       ],
