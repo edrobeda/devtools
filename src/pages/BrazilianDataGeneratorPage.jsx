@@ -1,20 +1,23 @@
 import React, { useCallback, useMemo, useState } from 'react'
-import { Typography, Card, Space, Segmented, Select, InputNumber, Button, List, message, Collapse, Alert } from 'antd'
-import { IdcardOutlined, ReloadOutlined, CopyOutlined, CodeOutlined } from '@ant-design/icons'
+import { Typography, Card, Space, Segmented, Select, InputNumber, Button, List, message, Collapse, Alert, Input } from 'antd'
+import { IdcardOutlined, ReloadOutlined, CopyOutlined, CodeOutlined, EditOutlined, ThunderboltOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import useMediaQuery from '../hooks/useMediaQuery'
-import { GENERATORS, MOTOR_SOURCE } from '../utils/brazilianDataGenerator'
+import { GENERATORS, MOTOR_SOURCE, mod11CheckDigit, cnpjCheckDigit, cnpjAlfaCheckDigit } from '../utils/brazilianDataGenerator'
 
 const { Title, Paragraph, Text } = Typography
+
+const CUSTOM_TYPES = ['cpf', 'cnpj', 'cnpj-alfa']
 
 const translations = {
   pt: {
     title: 'Gerador de Dados Brasileiros',
     intro: (
       <>
-        Gera dados brasileiros fictícios com máscaras e dígitos verificadores
+        Gera dados brasileiros fictícios (CPF, CNPJ — inclusive alfanumérico —,
+        CEP, telefones, placas, PIS e mais) com máscaras e dígitos verificadores
         matematicamente válidos para popular formulários e ambientes de teste.
-        <Text strong> Nenhum número corresponde a pessoas, veículos ou
+        <Text strong> Nenhum número corresponde a pessoas, empresas, veículos ou
         endereços reais</Text> — são apenas sequências que passam nas validações
         de formato e DV. Tudo é gerado no navegador via{' '}
         <Text code>Math.random</Text>.
@@ -29,7 +32,20 @@ const translations = {
     plain: 'Sem formatação',
     formatted: 'Formatado',
     source: 'Código-fonte do motor',
+    mode: 'Modo',
+    modeGenerate: 'Gerar',
+    modeCustom: 'Customizar',
+    customPlaceholder: 'Digite a base (sem formatação)',
+    customLabel: 'Base',
+    customHintCpf: '9 dígitos (com ou sem formatação)',
+    customHintCnpj: '12 dígitos (com ou sem formatação)',
+    customHintCnpjAlfa: '12 caracteres alfanuméricos',
+    customError: 'Base inválida para o tipo selecionado.',
+    calculate: 'Completar dígitos',
     types: {
+      cpf: 'CPF',
+      cnpj: 'CNPJ',
+      'cnpj-alfa': 'CNPJ Alfanumérico',
       cep: 'CEP',
       phoneMobile: 'Celular',
       phoneLandline: 'Telefone fixo',
@@ -45,11 +61,13 @@ const translations = {
     title: 'Brazilian Data Generator',
     intro: (
       <>
-        Generates fictitious Brazilian data with masks and mathematically valid
-        check digits for populating forms and test environments.{' '}
-        <Text strong>No number corresponds to real people, vehicles or
-        addresses</Text> — they're just sequences that pass format and check-digit
-        validation. Everything is generated in the browser via{' '}
+        Generates fictitious Brazilian data (CPF, CNPJ — including alphanumeric
+        —, ZIP codes, phones, license plates, PIS and more) with masks and
+        mathematically valid check digits for populating forms and test
+        environments.{' '}
+        <Text strong>No number corresponds to real people, companies, vehicles
+        or addresses</Text> — they're just sequences that pass format and
+        check-digit validation. Everything is generated in the browser via{' '}
         <Text code>Math.random</Text>.
       </>
     ),
@@ -62,7 +80,20 @@ const translations = {
     plain: 'Plain',
     formatted: 'Formatted',
     source: 'Motor source code',
+    mode: 'Mode',
+    modeGenerate: 'Generate',
+    modeCustom: 'Custom',
+    customPlaceholder: 'Enter the base (no formatting)',
+    customLabel: 'Base',
+    customHintCpf: '9 digits (formatted or plain)',
+    customHintCnpj: '12 digits (formatted or plain)',
+    customHintCnpjAlfa: '12 alphanumeric characters',
+    customError: 'Invalid base for the selected type.',
+    calculate: 'Complete check digits',
     types: {
+      cpf: 'CPF',
+      cnpj: 'CNPJ',
+      'cnpj-alfa': 'Alphanumeric CNPJ',
       cep: 'ZIP (CEP)',
       phoneMobile: 'Mobile phone',
       phoneLandline: 'Landline phone',
@@ -77,6 +108,9 @@ const translations = {
 }
 
 const TYPE_ORDER = [
+  'cpf',
+  'cnpj',
+  'cnpj-alfa',
   'cep',
   'phoneMobile',
   'phoneLandline',
@@ -88,16 +122,44 @@ const TYPE_ORDER = [
   'renavam',
 ]
 
+function parseCustomInput(type, raw) {
+  const cleaned = raw.replace(/[\s.\-/]/g, '').trim()
+  if (type === 'cpf') {
+    if (!/^\d{9,11}$/.test(cleaned)) return null
+    const base = cleaned.slice(0, 9).split('').map(Number)
+    const d1 = mod11CheckDigit(base)
+    return [...base, d1, mod11CheckDigit([...base, d1])].join('')
+  }
+  if (type === 'cnpj') {
+    if (!/^\d{12,14}$/.test(cleaned)) return null
+    const base = cleaned.slice(0, 12).split('').map(Number)
+    const d1 = cnpjCheckDigit(base)
+    return [...base, d1, cnpjCheckDigit([...base, d1])].join('')
+  }
+  if (type === 'cnpj-alfa') {
+    if (!/^[a-zA-Z0-9]{12,14}$/.test(cleaned)) return null
+    const base = cleaned.slice(0, 12).split('')
+    const d1 = cnpjAlfaCheckDigit(base)
+    return [...base, String(d1), String(cnpjAlfaCheckDigit([...base, String(d1)]))].join('')
+  }
+  return null
+}
+
 export default function BrazilianDataGeneratorPage() {
   const { lang } = useLanguage()
   const t = translations[lang]
   const isMobile = useMediaQuery('(max-width: 768px)')
   const [type, setType] = useState('cep')
+  const [mode, setMode] = useState('generate')
   const [quantity, setQuantity] = useState(5)
   const [formatted, setFormatted] = useState(true)
+  const [customInput, setCustomInput] = useState('')
+  const [customError, setCustomError] = useState(false)
   const [results, setResults] = useState(() =>
     Array.from({ length: 5 }, () => GENERATORS.cep.generate())
   )
+
+  const isCustomType = CUSTOM_TYPES.includes(type)
 
   const typeOptions = useMemo(
     () => TYPE_ORDER.map((key) => ({ label: t.types[key], value: key })),
@@ -112,11 +174,41 @@ export default function BrazilianDataGeneratorPage() {
   const handleTypeChange = useCallback(
     (nextType) => {
       setType(nextType)
-      const { generate: gen } = GENERATORS[nextType]
-      setResults(Array.from({ length: quantity }, gen))
+      setCustomError(false)
+      setMode((currentMode) => (!CUSTOM_TYPES.includes(nextType) ? 'generate' : currentMode))
+      if (!CUSTOM_TYPES.includes(nextType) || mode === 'generate') {
+        const { generate: gen } = GENERATORS[nextType]
+        setResults(Array.from({ length: quantity }, gen))
+      } else {
+        setResults([])
+      }
     },
-    [quantity]
+    [mode, quantity]
   )
+
+  const handleModeChange = useCallback(
+    (nextMode) => {
+      setMode(nextMode)
+      setCustomError(false)
+      if (nextMode === 'generate') {
+        const { generate: gen } = GENERATORS[type]
+        setResults(Array.from({ length: quantity }, gen))
+      } else {
+        setResults([])
+      }
+    },
+    [type, quantity]
+  )
+
+  const calculateCustom = useCallback(() => {
+    const parsed = parseCustomInput(type, customInput)
+    if (!parsed) {
+      setCustomError(true)
+      return
+    }
+    setCustomError(false)
+    setResults([parsed])
+  }, [type, customInput])
 
   const copy = useCallback(
     (value) => {
@@ -132,6 +224,29 @@ export default function BrazilianDataGeneratorPage() {
     [formatted, format]
   )
 
+  const customHint =
+    type === 'cpf'
+      ? t.customHintCpf
+      : type === 'cnpj'
+        ? t.customHintCnpj
+        : t.customHintCnpjAlfa
+
+  const typeSelector =
+    typeOptions.length > 10 || isMobile ? (
+      <Select
+        style={{ width: isMobile ? '100%' : 320 }}
+        value={type}
+        onChange={handleTypeChange}
+        options={typeOptions}
+      />
+    ) : (
+      <Segmented
+        value={type}
+        onChange={handleTypeChange}
+        options={typeOptions}
+      />
+    )
+
   return (
     <Space direction="vertical" size="large" style={{ width: '100%' }}>
       <Title level={2}><IdcardOutlined /> {t.title}</Title>
@@ -141,25 +256,27 @@ export default function BrazilianDataGeneratorPage() {
         <Space wrap size="large" align="end">
           <Space direction="vertical" size={4} style={{ width: isMobile ? '100%' : undefined }}>
             <Text type="secondary">{t.type}</Text>
-            {isMobile ? (
-              <Select
-                style={{ width: '100%' }}
-                value={type}
-                onChange={handleTypeChange}
-                options={typeOptions}
-              />
-            ) : (
+            {typeSelector}
+          </Space>
+          {isCustomType ? (
+            <Space direction="vertical" size={4}>
+              <Text type="secondary">{t.mode}</Text>
               <Segmented
-                value={type}
-                onChange={handleTypeChange}
-                options={typeOptions}
+                value={mode}
+                onChange={handleModeChange}
+                options={[
+                  { label: <><ThunderboltOutlined /> {t.modeGenerate}</>, value: 'generate' },
+                  { label: <><EditOutlined /> {t.modeCustom}</>, value: 'custom' },
+                ]}
               />
-            )}
-          </Space>
-          <Space direction="vertical" size={4}>
-            <Text type="secondary">{t.quantity}</Text>
-            <InputNumber min={1} max={50} value={quantity} onChange={(v) => setQuantity(v || 1)} />
-          </Space>
+            </Space>
+          ) : null}
+          {mode === 'generate' ? (
+            <Space direction="vertical" size={4}>
+              <Text type="secondary">{t.quantity}</Text>
+              <InputNumber min={1} max={50} value={quantity} onChange={(v) => setQuantity(v || 1)} />
+            </Space>
+          ) : null}
           <Space direction="vertical" size={4}>
             <Text type="secondary">{formatted ? t.formatted : t.plain}</Text>
             <Segmented
@@ -172,8 +289,35 @@ export default function BrazilianDataGeneratorPage() {
               ]}
             />
           </Space>
-          <Button type="primary" icon={<ReloadOutlined />} onClick={generate}>{t.generate}</Button>
+          {mode === 'generate' ? (
+            <Button type="primary" icon={<ReloadOutlined />} onClick={generate}>{t.generate}</Button>
+          ) : (
+            <Button type="primary" icon={<ThunderboltOutlined />} onClick={calculateCustom}>{t.calculate}</Button>
+          )}
         </Space>
+
+        {mode === 'custom' ? (
+          <Space direction="vertical" size={8} style={{ marginTop: 16, width: '100%' }}>
+            <Space direction="vertical" size={2} style={{ width: '100%' }}>
+              <Text type="secondary">{t.customLabel}</Text>
+              <Input
+                value={customInput}
+                onChange={(e) => {
+                  setCustomInput(e.target.value)
+                  if (customError) setCustomError(false)
+                }}
+                onPressEnter={calculateCustom}
+                placeholder={customHint}
+                status={customError ? 'error' : ''}
+                style={{ maxWidth: 400 }}
+              />
+              <Text type="secondary" style={{ fontSize: 12 }}>{customHint}</Text>
+            </Space>
+            {customError ? (
+              <Alert message={t.customError} type="error" showIcon style={{ maxWidth: 400 }} />
+            ) : null}
+          </Space>
+        ) : null}
       </Card>
 
       <Alert
