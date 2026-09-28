@@ -73,7 +73,7 @@ export default function CssGridCheatsheetPage() {
         description={(
           <>
             {t.builderBody}{' '}
-            <Link to="/frontend/grid-builder" style={{ color: '#1677ff', fontWeight: 600 }}>
+            <Link to="/frontend/grid-generator" style={{ color: '#1677ff', fontWeight: 600 }}>
               → {t.builderLink}
             </Link>
           </>
