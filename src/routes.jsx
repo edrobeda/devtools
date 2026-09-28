@@ -73,7 +73,6 @@ import MarkdownPreviewerPage from './pages/MarkdownPreviewerPage'
 import UsePreviousSnippetPage from './pages/UsePreviousSnippetPage'
 import FakeDataGeneratorPage from './pages/FakeDataGeneratorPage'
 import WebhookPayloadGeneratorPage from './pages/WebhookPayloadGeneratorPage'
-import CpfCnpjGeneratorPage from './pages/CpfCnpjGeneratorPage'
 import BaseConverterPage from './pages/BaseConverterPage'
 import UseWindowSizeSnippetPage from './pages/UseWindowSizeSnippetPage'
 import DockerCommandsPage from './pages/DockerCommandsPage'
@@ -623,7 +622,7 @@ const router = createBrowserRouter([
       { path: 'tools/fake-data-generator', element: <FakeDataGeneratorPage /> },
       { path: 'data/fake-data-generator', element: <Navigate to="/tools/fake-data-generator" replace /> },
       { path: 'apis/webhook-payload-generator', element: <WebhookPayloadGeneratorPage /> },
-      { path: 'tools/cpf-cnpj-generator', element: <CpfCnpjGeneratorPage /> },
+      { path: 'tools/cpf-cnpj-generator', element: <Navigate to="/tools/brazilian-data-generator" replace /> },
       { path: 'tools/base-converter', element: <BaseConverterPage /> },
       { path: 'snippets/use-window-size', element: <UseWindowSizeSnippetPage /> },
       { path: 'styles/bouncing-dots-loader', element: <Navigate to="/frontend/css-spinner-generator" replace /> },

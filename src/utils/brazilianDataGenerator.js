@@ -1,10 +1,11 @@
 /**
  * Gerador de dados brasileiros fictícios 100% client-side.
  *
- * Gera CEP, telefones, placas (antiga e Mercosul), PIS/PASEP/NIT,
- * título de eleitor, RG e RENAVAM com dígitos verificadores matematicamente
- * válidos. Os números são aleatórios e não correspondem a pessoas, veículos
- * ou endereços reais — servem apenas para testes e formulários.
+ * Gera CPF, CNPJ (inclusive alfanumérico), CEP, telefones, placas (antiga e
+ * Mercosul), PIS/PASEP/NIT, título de eleitor, RG e RENAVAM com dígitos
+ * verificadores matematicamente válidos. Os números são aleatórios e não
+ * correspondem a pessoas, empresas, veículos ou endereços reais — servem
+ * apenas para testes e formulários.
  */
 
 const DDD_LIST = [
@@ -217,9 +218,95 @@ export function formatRenavam(raw) {
 }
 
 /**
+ * CPF: 11 dígitos. Os dois DVs usam o mesmo módulo 11 de pesos
+ * decrescentes (mod11CheckDigit).
+ */
+export function generateCpf() {
+  const base = Array.from({ length: 9 }, randomDigit)
+  const d1 = mod11CheckDigit(base)
+  const d2 = mod11CheckDigit([...base, d1])
+  return [...base, d1, d2].join('')
+}
+
+export function formatCpf(raw) {
+  const s = String(raw)
+  return `${s.slice(0, 3)}.${s.slice(3, 6)}.${s.slice(6, 9)}-${s.slice(9, 11)}`
+}
+
+/**
+ * DV do CNPJ: módulo 11 da direita pra esquerda, com peso subindo de 2 a 9
+ * e reiniciando em 2 — diferente do CPF, que não tem esse reinício.
+ */
+export function cnpjCheckDigit(digits) {
+  let sum = 0
+  let weight = 2
+  for (let i = digits.length - 1; i >= 0; i--) {
+    sum += digits[i] * weight
+    weight = weight === 9 ? 2 : weight + 1
+  }
+  const rest = sum % 11
+  return rest < 2 ? 0 : 11 - rest
+}
+
+/**
+ * CNPJ: raiz de 8 dígitos + filial "0001" (padrão da matriz) + 2 DVs.
+ */
+export function generateCnpj() {
+  const root = Array.from({ length: 8 }, randomDigit)
+  const branch = [0, 0, 0, 1]
+  const base = [...root, ...branch]
+  const d1 = cnpjCheckDigit(base)
+  const d2 = cnpjCheckDigit([...base, d1])
+  return [...base, d1, d2].join('')
+}
+
+export function formatCnpj(raw) {
+  const s = String(raw)
+  return `${s.slice(0, 2)}.${s.slice(2, 5)}.${s.slice(5, 8)}/${s.slice(8, 12)}-${s.slice(12, 14)}`
+}
+
+/**
+ * CNPJ alfanumérico (Resolução da Receita Federal nº 2.200/2026): raiz de 8
+ * caracteres + "0001" + 2 DVs. Letras A-Z valem 17-42 no cálculo do DV.
+ */
+function cnpjAlfaCharValue(char) {
+  const c = String(char).toUpperCase()
+  if (c >= '0' && c <= '9') return c.charCodeAt(0) - '0'.charCodeAt(0)
+  if (c >= 'A' && c <= 'Z') return 17 + (c.charCodeAt(0) - 'A'.charCodeAt(0))
+  return -1
+}
+
+export function cnpjAlfaCheckDigit(chars) {
+  return cnpjCheckDigit(chars.map(cnpjAlfaCharValue))
+}
+
+const ALFA_CHARS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+function randomAlfaChar() {
+  return ALFA_CHARS[Math.floor(Math.random() * ALFA_CHARS.length)]
+}
+
+export function generateCnpjAlfa() {
+  const root = Array.from({ length: 8 }, randomAlfaChar)
+  const branch = ['0', '0', '0', '1']
+  const base = [...root, ...branch]
+  const d1 = cnpjAlfaCheckDigit(base)
+  const d2 = cnpjAlfaCheckDigit([...base, String(d1)])
+  return [...base, String(d1), String(d2)].join('')
+}
+
+export function formatCnpjAlfa(raw) {
+  const s = String(raw).toUpperCase()
+  return `${s.slice(0, 2)}.${s.slice(2, 5)}.${s.slice(5, 8)}/${s.slice(8, 12)}-${s.slice(12, 14)}`
+}
+
+/**
  * Objeto com todas as categorias disponíveis e seus geradores/formatadores.
  */
 export const GENERATORS = {
+  cpf: { generate: generateCpf, format: formatCpf },
+  cnpj: { generate: generateCnpj, format: formatCnpj },
+  'cnpj-alfa': { generate: generateCnpjAlfa, format: formatCnpjAlfa },
   cep: { generate: generateCep, format: formatCep },
   phoneMobile: { generate: () => generatePhone('mobile'), format: formatPhone },
   phoneLandline: { generate: () => generatePhone('landline'), format: formatPhone },
@@ -240,6 +327,7 @@ const UPPER_LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 function randomDigit() { return Math.floor(Math.random() * 10) }
 function randomInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min }
 function randomLetter() { return UPPER_LETTERS[Math.floor(Math.random() * 26)] }
+function randomAlfaChar() { return ALFA_CHARS[Math.floor(Math.random() * ALFA_CHARS.length)] }
 function pick(array) { return array[Math.floor(Math.random() * array.length)] }
 function padLeft(value, length) { return String(value).padStart(length, '0') }
 
@@ -261,6 +349,39 @@ export function generatePhone(type = 'any') {
   const prefix = randomInt(1000, 9999)
   const suffix = randomInt(0, 9999)
   return padLeft(ddd, 2) + padLeft(prefix, 4) + padLeft(suffix, 4)
+}
+
+// CPF — módulo 11, pesos decrescentes (N+1..2), reaproveitando mod11CheckDigit
+export function generateCpf() {
+  const base = Array.from({ length: 9 }, randomDigit)
+  const d1 = mod11CheckDigit(base)
+  const d2 = mod11CheckDigit([...base, d1])
+  return [...base, d1, d2].join('')
+}
+
+// CNPJ — raiz 8 + filial "0001" + 2 DVs módulo 11 com pesos 2..9 (da direita p/ esquerda)
+export function cnpjCheckDigit(digits) {
+  let sum = 0, weight = 2
+  for (let i = digits.length - 1; i >= 0; i--) {
+    sum += digits[i] * weight
+    weight = weight === 9 ? 2 : weight + 1
+  }
+  const rest = sum % 11
+  return rest < 2 ? 0 : 11 - rest
+}
+
+export function generateCnpj() {
+  const root = Array.from({ length: 8 }, randomDigit)
+  const base = [...root, 0, 0, 0, 1]
+  return [...base, cnpjCheckDigit(base), cnpjCheckDigit([...base, cnpjCheckDigit(base)])].join('')
+}
+
+// CNPJ alfanumérico — Resolução RFB 2.200/2026, letras A-Z valem 17-42 no DV
+export function generateCnpjAlfa() {
+  const root = Array.from({ length: 8 }, randomAlfaChar)
+  const base = [...root, '0', '0', '0', '1']
+  const d1 = cnpjAlfaCheckDigit(base)
+  return [...base, String(d1), String(cnpjAlfaCheckDigit([...base, String(d1)]))].join('')
 }
 
 // Placas
