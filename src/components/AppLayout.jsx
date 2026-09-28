@@ -1248,6 +1248,7 @@ export function buildMenuItems(l) {
         { key: '/tools/xml-json-converter', icon: <SwapOutlined />, label: withNewBadge('/tools/xml-json-converter', l['xml-json-converter'], l) },
         { key: '/tools/diff-checker', icon: <DiffOutlined />, label: withNewBadge('/tools/diff-checker', l['diff-checker'], l) },
         { key: '/tools/markdown-previewer', icon: <FileMarkdownOutlined />, label: withNewBadge('/tools/markdown-previewer', l['markdown-previewer'], l) },
+        { key: '/tools/fake-data-generator', label: withNewBadge('/tools/fake-data-generator', l['fake-data-generator'], l) },
         { key: '/tools/cpf-cnpj-generator', icon: <IdcardOutlined />, label: withNewBadge('/tools/cpf-cnpj-generator', l['cpf-cnpj-generator'], l) },
         { key: '/tools/brazilian-data-generator', icon: <IdcardOutlined />, label: withNewBadge('/tools/brazilian-data-generator', l['brazilian-data-generator'], l) },
         { key: '/tools/bankers-algorithm-simulator', icon: <SafetyOutlined />, label: withNewBadge('/tools/bankers-algorithm-simulator', l['bankers-algorithm-simulator'], l) },
@@ -1659,7 +1660,6 @@ export function buildMenuItems(l) {
       children: [
         { key: '/data/json-tree-viewer', label: l['json-tree-viewer'] },
         { key: '/data/csv-json-converter', label: withNewBadge('/data/csv-json-converter', l['csv-json-converter'], l) },
-        { key: '/data/fake-data-generator', label: withNewBadge('/data/fake-data-generator', l['fake-data-generator'], l) },
         { key: '/data/json-diff', label: withNewBadge('/data/json-diff', l['json-diff'], l) },
         { key: '/data/json-patch', label: withNewBadge('/data/json-patch', l['json-patch'], l) },
         { key: '/data/json-merge-patch', icon: <SwapOutlined />, label: withNewBadge('/data/json-merge-patch', l['json-merge-patch'], l) },
