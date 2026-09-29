@@ -1,77 +1,55 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
+import useAsync from './useAsync'
 
+// Receita: o useAsync + três acréscimos para requisições HTTP.
+// - AbortController: cancela a requisição anterior e a que estiver pendente no unmount
+// - content-type: lê json ou text conforme o header da resposta
+// - response.ok falso vira Error, caem no mesmo tratamento do useAsync
 export default function useFetch(url, options = {}) {
-  const [state, setState] = useState({
-    data: null,
-    error: null,
-    loading: false,
-  })
+  const { immediate = true } = options
 
-  const abortControllerRef = useRef(null)
+  // options é um objeto novo a cada render; guardar em ref evita refazer a requisição
+  const optionsRef = useRef(options)
+  optionsRef.current = options
 
-  const execute = useCallback(
-    async (overrideOptions = {}) => {
-      if (abortControllerRef.current) {
-        abortControllerRef.current.abort()
+  const controllerRef = useRef(null)
+
+  const request = useCallback(
+    async (target = url) => {
+      controllerRef.current?.abort()
+      const controller = new AbortController()
+      controllerRef.current = controller
+
+      const { fetcher = fetch, immediate: _immediate, ...init } = optionsRef.current
+      const response = await fetcher(target, { ...init, signal: controller.signal })
+
+      if (controller.signal.aborted) {
+        const aborted = new Error('Request aborted')
+        aborted.name = 'AbortError'
+        throw aborted
       }
-      abortControllerRef.current = new AbortController()
 
-      setState((s) => ({ ...s, loading: true, error: null }))
+      const contentType = response.headers.get('content-type') || ''
+      const data = contentType.includes('application/json')
+        ? await response.json()
+        : await response.text()
 
-      try {
-        const mergedOptions = {
-          ...options,
-          ...overrideOptions,
-          signal: abortControllerRef.current.signal,
-        }
-        const fetcher = mergedOptions.fetcher || fetch
-        delete mergedOptions.fetcher
-        delete mergedOptions.manual
-
-        const response = await fetcher(url, mergedOptions)
-
-        let data
-        const contentType = response.headers.get('content-type') || ''
-        if (contentType.includes('application/json')) {
-          data = await response.json()
-        } else {
-          data = await response.text()
-        }
-
-        if (!response.ok) {
-          throw new Error(response.statusText || 'HTTP ' + response.status)
-        }
-
-        setState({ data, error: null, loading: false })
-        return { data, error: null }
-      } catch (error) {
-        if (error.name === 'AbortError') {
-          return { data: null, error: null }
-        }
-        setState({ data: null, error, loading: false })
-        return { data: null, error }
+      if (!response.ok) {
+        throw new Error(response.statusText || 'HTTP ' + response.status)
       }
+
+      return data
     },
-    [url, options]
+    [url]
   )
 
-  useEffect(() => {
-    if (options.manual) return undefined
+  const { execute, reset, status, data, error, loading } = useAsync(request, { immediate })
 
-    execute()
+  const abort = useCallback(() => {
+    controllerRef.current?.abort()
+  }, [])
 
-    return () => {
-      if (abortControllerRef.current) {
-        abortControllerRef.current.abort()
-      }
-    }
-  }, [execute, options.manual])
+  useEffect(() => () => controllerRef.current?.abort(), [])
 
-  return {
-    ...state,
-    execute,
-    abort: () => {
-      abortControllerRef.current?.abort()
-    },
-  }
+  return { execute, abort, reset, status, data, error, loading }
 }
