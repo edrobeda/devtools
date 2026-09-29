@@ -65,7 +65,6 @@ import CsvJsonConverterPage from './pages/CsvJsonConverterPage'
 import UseIntervalSnippetPage from './pages/UseIntervalSnippetPage'
 import UseTimeoutSnippetPage from './pages/UseTimeoutSnippetPage'
 import UseCountdownSnippetPage from './pages/UseCountdownSnippetPage'
-import UseFetchSnippetPage from './pages/UseFetchSnippetPage'
 import UseNetworkStatusSnippetPage from './pages/UseNetworkStatusSnippetPage'
 import UseMousePositionSnippetPage from './pages/UseMousePositionSnippetPage'
 import UsePageVisibilitySnippetPage from './pages/UsePageVisibilitySnippetPage'
@@ -613,7 +612,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-interval', element: <UseIntervalSnippetPage /> },
       { path: 'snippets/use-timeout', element: <UseTimeoutSnippetPage /> },
       { path: 'snippets/use-countdown', element: <UseCountdownSnippetPage /> },
-      { path: 'snippets/use-fetch', element: <UseFetchSnippetPage /> },
+      { path: 'snippets/use-fetch', element: <Navigate to="/snippets/use-async" replace /> },
       { path: 'snippets/use-network-status', element: <UseNetworkStatusSnippetPage /> },
       { path: 'snippets/use-mouse-position', element: <UseMousePositionSnippetPage /> },
       { path: 'snippets/use-page-visibility', element: <UsePageVisibilitySnippetPage /> },
