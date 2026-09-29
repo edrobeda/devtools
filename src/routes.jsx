@@ -340,6 +340,7 @@ import TypingSpeedTestPage from './pages/TypingSpeedTestPage'
 import ConwaysGameOfLifePage from './pages/ConwaysGameOfLifePage'
 import PathfindingSimulatorPage from './pages/PathfindingSimulatorPage'
 import BinarySearchVisualizerPage from './pages/BinarySearchVisualizerPage'
+import EventLoopVisualizerPage from './pages/EventLoopVisualizerPage'
 import UrlEmailExtractorPage from './pages/UrlEmailExtractorPage'
 import PiiRedactorPage from './pages/PiiRedactorPage'
 import BarcodeGeneratorPage from './pages/BarcodeGeneratorPage'
@@ -1011,6 +1012,7 @@ const router = createBrowserRouter([
       { path: 'extras/conways-game-of-life', element: <ConwaysGameOfLifePage /> },
       { path: 'extras/pathfinding-simulator', element: <PathfindingSimulatorPage /> },
       { path: 'extras/binary-search-visualizer', element: <BinarySearchVisualizerPage /> },
+      { path: 'extras/event-loop-visualizer', element: <EventLoopVisualizerPage /> },
       { path: 'tools/url-email-extractor', element: <UrlEmailExtractorPage /> },
       { path: 'tools/pii-redactor', element: <PiiRedactorPage /> },
       { path: 'snippets/use-lock-body-scroll', element: <UseLockBodyScrollSnippetPage /> },
