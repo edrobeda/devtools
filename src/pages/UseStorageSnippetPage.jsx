@@ -159,7 +159,7 @@ function DemoUsage({ t, kind, lang }) {
   )
 }
 
-export default function UseLocalStorageSnippetPage() {
+export default function UseStorageSnippetPage() {
   const { lang } = useLanguage()
   const t = translations[lang]
   const [tab, setTab] = useState('local')

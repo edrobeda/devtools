@@ -8,7 +8,7 @@ import UseDebounceSnippetPage from './pages/UseDebounceSnippetPage'
 import CronParserPage from './pages/CronParserPage'
 import HashGeneratorPage from './pages/HashGeneratorPage'
 import CopyButtonShowcasePage from './pages/CopyButtonShowcasePage'
-import UseLocalStorageSnippetPage from './pages/UseLocalStorageSnippetPage'
+import UseStorageSnippetPage from './pages/UseStorageSnippetPage'
 import UseClickOutsideSnippetPage from './pages/UseClickOutsideSnippetPage'
 import JsonFormatterPage from './pages/JsonFormatterPage'
 import ColorConverterPage from './pages/ColorConverterPage'
@@ -543,8 +543,9 @@ const router = createBrowserRouter([
       { path: 'styles/tilt-card', element: <TiltCardShowcasePage /> },
       { path: 'styles/gradient-border-button', element: <GradientBorderButtonPage /> },
       { path: 'snippets/use-debounce', element: <UseDebounceSnippetPage /> },
-      { path: 'snippets/use-local-storage', element: <UseLocalStorageSnippetPage /> },
-      { path: 'snippets/use-session-storage', element: <Navigate to="/snippets/use-local-storage" replace /> },
+      { path: 'snippets/use-storage', element: <UseStorageSnippetPage /> },
+      { path: 'snippets/use-local-storage', element: <Navigate to="/snippets/use-storage" replace /> },
+      { path: 'snippets/use-session-storage', element: <Navigate to="/snippets/use-storage" replace /> },
       { path: 'snippets/use-click-outside', element: <UseClickOutsideSnippetPage /> },
       { path: 'snippets/use-media-query', element: <UseMediaQuerySnippetPage /> },
       { path: 'frontend/contrast-checker', element: <ContrastCheckerPage /> },
