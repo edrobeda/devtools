@@ -25,6 +25,8 @@ const translations = {
       graphemes: 'Grafemas',
       bytes: 'Bytes UTF-8',
       invisible: 'Invisíveis',
+      unique: 'Caracteres distintos',
+      unusual: 'Incomuns',
     },
     normalizeTo: 'Normalizar para',
     forms: {
@@ -46,6 +48,10 @@ const translations = {
     },
     tableTitle: 'Caracteres únicos',
     emptyInput: 'Cole algum texto acima para analisar.',
+    noUnusual: 'Nenhum caractere incomum na lista — altere o filtro.',
+    filterAll: 'Todos',
+    filterUnusual: 'Só os incomuns',
+    copyTable: 'Copiar tabela',
     colChar: 'Caractere',
     colPoint: 'Code point',
     colName: 'Nome / Bloco',
@@ -92,6 +98,8 @@ Cada caractere é classificado por propriedades Unicode (\\p{L}, \\p{M}, \\p{N},
       graphemes: 'Grapheme clusters',
       bytes: 'UTF-8 bytes',
       invisible: 'Invisible',
+      unique: 'Distinct characters',
+      unusual: 'Unusual',
     },
     normalizeTo: 'Normalize to',
     forms: {
@@ -113,6 +121,10 @@ Cada caractere é classificado por propriedades Unicode (\\p{L}, \\p{M}, \\p{N},
     },
     tableTitle: 'Unique characters',
     emptyInput: 'Paste some text above to analyze.',
+    noUnusual: 'No unusual characters — change the filter.',
+    filterAll: 'All',
+    filterUnusual: 'Only unusual',
+    copyTable: 'Copy table',
     colChar: 'Character',
     colPoint: 'Code point',
     colName: 'Name / Block',
@@ -157,11 +169,18 @@ export default function UnicodeNormalizerPage() {
   const [text, setText] = useState('')
   const [copiedForm, setCopiedForm] = useState(null)
   const [copiedEscape, setCopiedEscape] = useState(null)
+  const [copiedTable, setCopiedTable] = useState(false)
+  const [filter, setFilter] = useState('all')
 
   const analysis = useMemo(() => {
     if (!text) return null
-    return analyzeText(text)
-  }, [text])
+    return analyzeText(text, lang)
+  }, [text, lang])
+
+  const shownRows = useMemo(() => {
+    if (!analysis) return []
+    return filter === 'unusual' ? analysis.unique.filter((r) => r.unusual) : analysis.unique
+  }, [analysis, filter])
 
   function handleNormalize(form) {
     setText((prev) => normalize(prev, form))
@@ -175,6 +194,14 @@ export default function UnicodeNormalizerPage() {
     } catch {
       setter(null)
     }
+  }
+
+  async function handleCopyTable() {
+    const head = [t.colChar, t.colPoint, t.colName, t.colCategory, t.colUtf8, t.colHtml, t.colCount].join('\t')
+    const lines = shownRows.map((r) =>
+      [r.char, `U+${r.hex}`, r.name, `${r.kindLabel} (${r.category})`, r.utf8, r.html, r.count].join('\t')
+    )
+    await copyToClipboard([head, ...lines].join('\n'), setCopiedTable, 'table')
   }
 
   return (
@@ -211,9 +238,11 @@ export default function UnicodeNormalizerPage() {
               { title: t.stats.codePoints, value: analysis.codePoints },
               { title: t.stats.graphemes, value: analysis.graphemeClusters },
               { title: t.stats.bytes, value: analysis.bytes },
+              { title: t.stats.unique, value: analysis.uniqueCount },
+              { title: t.stats.unusual, value: analysis.unusualCount, highlight: analysis.unusualCount > 0 },
               { title: t.stats.invisible, value: analysis.invisibleCount, highlight: analysis.invisibleCount > 0 },
             ].map((s, i) => (
-              <Col xs={12} sm={8} md={4} key={i}>
+              <Col xs={12} sm={8} md={6} key={i}>
                 <Card size="small">
                   <Statistic
                     title={s.title}
@@ -285,15 +314,39 @@ export default function UnicodeNormalizerPage() {
             </Space>
           </Card>
 
-          <Card title={t.tableTitle} size="small">
-            {analysis.unique.length === 0 ? (
-              <Text type="secondary">{t.emptyInput}</Text>
+          <Card
+            title={t.tableTitle}
+            size="small"
+            extra={
+              <Space wrap>
+                <Segmented
+                  value={filter}
+                  onChange={setFilter}
+                  options={[
+                    { label: t.filterAll, value: 'all' },
+                    { label: t.filterUnusual, value: 'unusual' },
+                  ]}
+                />
+                <Button
+                  size="small"
+                  type="primary"
+                  icon={copiedTable ? <CheckOutlined /> : <CopyOutlined />}
+                  onClick={handleCopyTable}
+                  disabled={shownRows.length === 0}
+                >
+                  {copiedTable ? t.copied : t.copyTable}
+                </Button>
+              </Space>
+            }
+          >
+            {shownRows.length === 0 ? (
+              <Text type="secondary">{analysis.unique.length === 0 ? t.emptyInput : t.noUnusual}</Text>
             ) : (
               <Table
                 rowKey="code"
                 size="small"
-                pagination={{ pageSize: 20, showSizeChanger: false }}
-                dataSource={analysis.unique}
+                pagination={filter === 'all' ? { pageSize: 20, showSizeChanger: false } : false}
+                dataSource={shownRows}
                 columns={[
                   {
                     title: t.colChar,
@@ -316,8 +369,12 @@ export default function UnicodeNormalizerPage() {
                   },
                   {
                     title: t.colCategory,
-                    dataIndex: 'categoryLabel',
-                    render: (v, row) => <Tag color="blue">{v} ({row.category})</Tag>,
+                    render: (_, row) => (
+                      <Space size={4}>
+                        <Tag color={row.kindColor}>{row.kindLabel}</Tag>
+                        <Text type="secondary" style={{ fontSize: 11 }}>{row.category}</Text>
+                      </Space>
+                    ),
                   },
                   { title: t.colUtf8, dataIndex: 'utf8', render: (v) => <Text code>{v}</Text> },
                   { title: t.colHtml, dataIndex: 'html', render: (v) => <Text code>{v}</Text> },
