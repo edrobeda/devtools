@@ -146,7 +146,6 @@ import HtmlPlaygroundPage from './pages/HtmlPlaygroundPage'
 import ImagePaletteExtractorPage from './pages/ImagePaletteExtractorPage'
 import ImageDiffVisualizerPage from './pages/ImageDiffVisualizerPage'
 import UuidCollisionSimulatorPage from './pages/UuidCollisionSimulatorPage'
-import UnicodeInspectorPage from './pages/UnicodeInspectorPage'
 import SortingVisualizerPage from './pages/SortingVisualizerPage'
 import OtpInputPage from './pages/OtpInputPage'
 import TimezoneConverterPage from './pages/TimezoneConverterPage'
@@ -716,7 +715,7 @@ const router = createBrowserRouter([
       { path: 'references/vim-cheatsheet', element: <Navigate to="/references/vim-commands" replace /> },
       { path: 'references/vim-commands', element: <VimCheatsheetPage /> },
       { path: 'extras/uuid-collision-simulator', element: <UuidCollisionSimulatorPage /> },
-      { path: 'tools/unicode-inspector', element: <UnicodeInspectorPage /> },
+      { path: 'tools/unicode-inspector', element: <Navigate to="/tools/unicode-normalizer" replace /> },
       { path: 'extras/sorting-visualizer', element: <SortingVisualizerPage /> },
       { path: 'styles/otp-input', element: <OtpInputPage /> },
       { path: 'tools/timezone-converter', element: <TimezoneConverterPage /> },

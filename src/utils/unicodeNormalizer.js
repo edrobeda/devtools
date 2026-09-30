@@ -84,14 +84,37 @@ const NAMED_CONTROLS = {
   0xFFFD: 'REPLACEMENT CHARACTER',
 }
 
-const CATEGORIES = {
-  L: 'Letter',
-  M: 'Mark',
-  N: 'Number',
-  P: 'Punctuation',
-  S: 'Symbol',
-  Z: 'Separator',
-  C: 'Other',
+// Propriedade Unicode que exige a flag 'u' (emoji não tem categoria \p{S} própria).
+const RE_EMOJI = /\p{Extended_Pictographic}/u
+
+// Rótulos amigáveis por idioma para o tipo de cada caractere.
+const KIND_LABELS = {
+  pt: {
+    invisible: 'Invizúvel / formatação',
+    control: 'Controle',
+    whitespace: 'Espaço em branco',
+    mark: 'Marca combinável',
+    emoji: 'Emoji',
+    ascii: 'ASCII imprimível',
+    number: 'Número',
+    letter: 'Letra',
+    symbol: 'Símbolo',
+    punct: 'Pontuação',
+    other: 'Outro',
+  },
+  en: {
+    invisible: 'Invisible / format',
+    control: 'Control',
+    whitespace: 'Whitespace',
+    mark: 'Combining mark',
+    emoji: 'Emoji',
+    ascii: 'ASCII printable',
+    number: 'Number',
+    letter: 'Letter',
+    symbol: 'Symbol',
+    punct: 'Punctuation',
+    other: 'Other',
+  },
 }
 
 const BLOCK_RANGES = [
@@ -446,8 +469,24 @@ function categoryOf(char) {
   return 'C'
 }
 
-function categoryLabel(code) {
-  return CATEGORIES[code] || 'Other'
+// Classificação amigável (rótulo por idioma + cor) de um caractere. Reaproveita
+// a categoria Unicode já calculada por categoryOf() em vez de revarre o texto.
+// `unusual` marca invisíveis e controles — os que quebram display/validação.
+export function classifyKind(char, category, lang) {
+  const L = KIND_LABELS[lang] || KIND_LABELS.pt
+  const cp = char.codePointAt(0)
+  const control = cp < 0x20 || cp === 0x7f || (cp >= 0x80 && cp <= 0x9f)
+  if (INVISIBLE.has(char)) return { label: L.invisible, color: 'red', unusual: true }
+  if (control) return { label: L.control, color: 'red', unusual: true }
+  if (category === 'Z') return { label: L.whitespace, color: 'orange', unusual: false }
+  if (category === 'M') return { label: L.mark, color: 'purple', unusual: false }
+  if (RE_EMOJI.test(char)) return { label: L.emoji, color: 'gold', unusual: false }
+  if (cp >= 32 && cp <= 126) return { label: L.ascii, color: 'blue', unusual: false }
+  if (category === 'N') return { label: L.number, color: 'geekblue', unusual: false }
+  if (category === 'L') return { label: L.letter, color: 'green', unusual: false }
+  if (category === 'S') return { label: L.symbol, color: 'purple', unusual: false }
+  if (category === 'P') return { label: L.punct, color: 'cyan', unusual: false }
+  return { label: L.other, color: 'default', unusual: false }
 }
 
 function codePointName(cp) {
@@ -479,7 +518,7 @@ export function countGraphemeClusters(text) {
   return Array.from(text).length
 }
 
-export function listCodePoints(text) {
+export function listCodePoints(text, lang) {
   const chars = Array.from(text)
   const seen = new Map()
   const order = []
@@ -493,6 +532,7 @@ export function listCodePoints(text) {
   return order.map((char) => {
     const cp = char.codePointAt(0)
     const cat = categoryOf(char)
+    const kind = classifyKind(char, cat, lang)
     return {
       char,
       code: cp,
@@ -500,7 +540,9 @@ export function listCodePoints(text) {
       utf8: utf8Bytes(char),
       html: htmlEntity(char),
       category: cat,
-      categoryLabel: categoryLabel(cat),
+      kindLabel: kind.label,
+      kindColor: kind.color,
+      unusual: kind.unusual,
       block: blockName(cp),
       name: codePointName(cp),
       invisible: INVISIBLE.has(char),
@@ -558,9 +600,10 @@ export function toEscaped(text, mode) {
   }
 }
 
-export function analyzeText(text) {
+export function analyzeText(text, lang) {
   const codePoints = Array.from(text)
   const bytes = enc.encode(text)
+  const unique = listCodePoints(text, lang)
   return {
     input: text,
     nfc: text.normalize('NFC'),
@@ -571,8 +614,10 @@ export function analyzeText(text) {
     codePoints: codePoints.length,
     graphemeClusters: countGraphemeClusters(text),
     bytes: bytes.length,
-    unique: listCodePoints(text),
+    unique,
+    uniqueCount: unique.length,
     invisibleCount: codePoints.filter((c) => INVISIBLE.has(c)).length,
+    unusualCount: unique.filter((r) => r.unusual).length,
     hasBom: text.length > 0 && text.charCodeAt(0) === 0xfeff,
   }
 }
