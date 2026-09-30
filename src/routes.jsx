@@ -60,6 +60,7 @@ import UseCopyToClipboardSnippetPage from './pages/UseCopyToClipboardSnippetPage
 import HttpStatusCodesPage from './pages/HttpStatusCodesPage'
 import DiffCheckerPage from './pages/DiffCheckerPage'
 import GitConflictResolverPage from './pages/GitConflictResolverPage'
+import GitRebasePlannerPage from './pages/GitRebasePlannerPage'
 import BoxShadowGeneratorPage from './pages/BoxShadowGeneratorPage'
 import CsvJsonConverterPage from './pages/CsvJsonConverterPage'
 import UseIntervalSnippetPage from './pages/UseIntervalSnippetPage'
@@ -609,6 +610,7 @@ const router = createBrowserRouter([
       { path: 'references/http-status-codes', element: <HttpStatusCodesPage /> },
       { path: 'tools/diff-checker', element: <DiffCheckerPage /> },
       { path: 'tools/git-conflict-resolver', element: <GitConflictResolverPage /> },
+      { path: 'tools/git-rebase-planner', element: <GitRebasePlannerPage /> },
       { path: 'frontend/box-shadow-generator', element: <BoxShadowGeneratorPage /> },
       { path: 'data/csv-json-converter', element: <CsvJsonConverterPage /> },
       { path: 'snippets/use-interval', element: <UseIntervalSnippetPage /> },
