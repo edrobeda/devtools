@@ -1616,6 +1616,7 @@ export function buildMenuItems(l) {
       icon: <DatabaseOutlined />,
       label: l.database,
       children: [
+        { key: '/database/sql-joins', icon: <DatabaseOutlined />, label: withNewBadge('/database/sql-joins', l['sql-joins'], l) },
         { key: '/database/sql-isolation-levels', icon: <DatabaseOutlined />, label: withNewBadge('/database/sql-isolation-levels', l['sql-isolation-levels'], l) },
         { key: '/database/csv-to-sql', icon: <DatabaseOutlined />, label: withNewBadge('/database/csv-to-sql', l['csv-to-sql'], l) },
         { key: '/database/storage-estimator', icon: <DatabaseOutlined />, label: withNewBadge('/database/storage-estimator', l['storage-estimator'], l) },
@@ -1728,7 +1729,6 @@ export function buildMenuItems(l) {
         { key: '/references/docker-commands', label: withNewBadge('/references/docker-commands', l['docker-commands'], l) },
         { key: '/references/flexbox-cheatsheet', label: withNewBadge('/references/flexbox-cheatsheet', l['flexbox-cheatsheet'], l) },
         { key: '/references/sql-commands', label: withNewBadge('/references/sql-commands', l['sql-commands'], l) },
-        { key: '/references/sql-joins', icon: <DatabaseOutlined />, label: withNewBadge('/references/sql-joins', l['sql-joins'], l) },
         { key: '/references/big-o-cheatsheet', icon: <LineChartOutlined />, label: withNewBadge('/references/big-o-cheatsheet', l['big-o-cheatsheet'], l) },
         { key: '/references/package-manager-commands', label: withNewBadge('/references/package-manager-commands', l['package-manager-commands'], l) },
         { key: '/references/vscode-shortcuts', label: withNewBadge('/references/vscode-shortcuts', l['vscode-shortcuts'], l) },
