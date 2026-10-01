@@ -114,6 +114,7 @@ function classify(h, s, l) {
 const translations = {
   pt: {
     title: 'Cores Nomeadas do CSS',
+    intro: 'Consulta as 148 cores nomeadas do CSS (CSS Color Module Level 4) com HEX, RGB e HSL, filtro por família de cor e clique numa amostra para copiar o HEX — tudo calculado localmente, no navegador.',
     subtitle: 'Todas as 148 cores com nome do CSS (CSS Color Module Level 4) com HEX, RGB e HSL. Clique em uma cor para copiar o HEX — tudo calculado localmente, no navegador.',
     searchPlaceholder: 'Filtrar pelo nome… (ex.: sea, dark, gold)',
     familyLabel: 'Família',
@@ -126,6 +127,7 @@ const translations = {
   },
   en: {
     title: 'CSS Named Colors',
+    intro: 'Look up all 148 named CSS colors (CSS Color Module Level 4) with HEX, RGB and HSL, filter by color family and click a swatch to copy its HEX — everything computed locally, in the browser.',
     subtitle: 'All 148 named CSS colors (CSS Color Module Level 4) with HEX, RGB and HSL. Click a color to copy its HEX — everything computed locally, in the browser.',
     searchPlaceholder: 'Filter by name… (e.g. sea, dark, gold)',
     familyLabel: 'Family',
