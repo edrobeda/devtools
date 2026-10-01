@@ -326,6 +326,7 @@ export const LABELS = {
     'certificate-decoder': 'Decodificador de Certificado (X.509)',
     'saml-decoder': 'Decodificador de SAML (Assertion)',
     'jwt-signature-verifier': 'Verificador de Assinatura JWT',
+    'cvss-calculator': 'Calculadora de CVSS v3.1',
     'token-counter': 'Contador de Tokens',
     'pomodoro-timer': 'Timer Pomodoro',
     'env-file-validator': 'Validador de .env',
@@ -863,6 +864,7 @@ export const LABELS = {
     'certificate-decoder': 'Certificate Decoder (X.509)',
     'saml-decoder': 'SAML Assertion Decoder',
     'jwt-signature-verifier': 'JWT Signature Verifier',
+    'cvss-calculator': 'CVSS v3.1 Calculator',
     'token-counter': 'Token Counter',
     'pomodoro-timer': 'Pomodoro Timer',
     'env-file-validator': '.env File Validator',
@@ -1649,6 +1651,7 @@ export function buildMenuItems(l) {
         { key: '/security/certificate-decoder', icon: <SafetyCertificateOutlined />, label: withNewBadge('/security/certificate-decoder', l['certificate-decoder'], l) },
         { key: '/security/saml-decoder', icon: <FileProtectOutlined />, label: withNewBadge('/security/saml-decoder', l['saml-decoder'], l) },
         { key: '/security/jwt-signature-verifier', icon: <FileProtectOutlined />, label: withNewBadge('/security/jwt-signature-verifier', l['jwt-signature-verifier'], l) },
+        { key: '/security/cvss-calculator', icon: <DashboardOutlined />, label: withNewBadge('/security/cvss-calculator', l['cvss-calculator'], l) },
       ],
     },
     {
