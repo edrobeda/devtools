@@ -498,6 +498,7 @@ import SearchReplacePage from './pages/SearchReplacePage'
 import IdnPunycodeConverterPage from './pages/IdnPunycodeConverterPage'
 import HexDumpPage from './pages/HexDumpPage'
 import ProtobufDecoderPage from './pages/ProtobufDecoderPage'
+import CvssCalculatorPage from './pages/CvssCalculatorPage'
 import LuaCheatsheetPage from './pages/LuaCheatsheetPage'
 import SqlWindowFunctionsPage from './pages/SqlWindowFunctionsPage'
 import EmojiCheatsheetPage from './pages/EmojiCheatsheetPage'
@@ -1098,6 +1099,7 @@ const router = createBrowserRouter([
       { path: 'references/powershell-cmd-cheatsheet', element: <WindowsPowershellCheatsheetPage /> },
       { path: 'references/tar-compression-cheatsheet', element: <TarCompressionCheatsheetPage /> },
       { path: 'tools/protobuf-decoder', element: <ProtobufDecoderPage /> },
+      { path: 'security/cvss-calculator', element: <CvssCalculatorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
