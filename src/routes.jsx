@@ -124,7 +124,6 @@ import TypewriterEffectPage from './pages/TypewriterEffectPage'
 import LruCachePage from './pages/LruCachePage'
 import CspGeneratorPage from './pages/CspGeneratorPage'
 import SecurityHeadersGeneratorPage from './pages/SecurityHeadersGeneratorPage'
-import SriHashGeneratorPage from './pages/SriHashGeneratorPage'
 import SecurityTxtGeneratorPage from './pages/SecurityTxtGeneratorPage'
 import WebhookSignatureValidatorPage from './pages/WebhookSignatureValidatorPage'
 import AsymmetricKeyGeneratorPage from './pages/AsymmetricKeyGeneratorPage'
@@ -683,7 +682,7 @@ const router = createBrowserRouter([
       { path: 'snippets/lru-cache', element: <LruCachePage /> },
       { path: 'security/csp-generator', element: <CspGeneratorPage /> },
       { path: 'security/security-headers-generator', element: <SecurityHeadersGeneratorPage /> },
-      { path: 'security/sri-hash-generator', element: <SriHashGeneratorPage /> },
+      { path: 'security/sri-hash-generator', element: <Navigate to="/tools/hash-generator" replace /> },
       { path: 'security/security-txt-generator', element: <SecurityTxtGeneratorPage /> },
       { path: 'security/webhook-signature-validator', element: <WebhookSignatureValidatorPage /> },
       { path: 'security/asymmetric-key-generator', element: <AsymmetricKeyGeneratorPage /> },

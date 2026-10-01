@@ -110,6 +110,31 @@ export async function shaFromBuffer(buffer, algorithm) {
   return Array.from(bytes, (b) => b.toString(16).padStart(2, '0')).join('')
 }
 
+// ---------- SRI (Subresource Integrity, saída em base64) ----------
+
+export const SRI_ALGORITHMS = ['SHA-256', 'SHA-384', 'SHA-512']
+
+export function bufferToBase64(buffer) {
+  const bytes = new Uint8Array(buffer)
+  let binary = ''
+  for (let i = 0; i < bytes.byteLength; i++) binary += String.fromCharCode(bytes[i])
+  return typeof window !== 'undefined' && window.btoa
+    ? window.btoa(binary)
+    : Buffer.from(bytes).toString('base64')
+}
+
+export async function sriFromBuffer(buffer, algorithm) {
+  const digest = await crypto.subtle.digest(algorithm, buffer)
+  return `${algorithm.toLowerCase().replace('-', '')}-${bufferToBase64(digest)}`
+}
+
+export function buildSriTag(url, integrity, kind = 'script') {
+  if (kind === 'script') {
+    return `<script src="${url}" integrity="${integrity}" crossorigin="anonymous" referrerpolicy="no-referrer"></script>`
+  }
+  return `<link rel="stylesheet" href="${url}" integrity="${integrity}" crossorigin="anonymous" referrerpolicy="no-referrer">`
+}
+
 // ---------- API pública ----------
 
 export async function hashBuffer(buffer, algorithms = ALGORITHMS, onProgress) {
@@ -132,12 +157,17 @@ export async function hashBuffer(buffer, algorithms = ALGORITHMS, onProgress) {
 export async function hashFile(file, algorithms = ALGORITHMS, onProgress) {
   const buffer = await file.arrayBuffer()
   const hashes = await hashBuffer(buffer, algorithms, onProgress)
+  const sri = {}
+  for (const algo of SRI_ALGORITHMS) {
+    if (algorithms.includes(algo)) sri[algo] = await sriFromBuffer(buffer, algo)
+  }
   return {
     name: file.name,
     size: file.size,
     type: file.type || 'application/octet-stream',
     lastModified: file.lastModified,
     hashes,
+    sri,
   }
 }
 

@@ -1,7 +1,7 @@
 import React, { useMemo, useRef, useState } from 'react'
 import {
   Typography, Card, Space, Button, Checkbox, Alert, Upload, Row, Col,
-  Statistic, Input, Tag, message, Collapse, Segmented,
+  Statistic, Input, Tag, message, Collapse, Segmented, Radio,
 } from 'antd'
 import {
   NumberOutlined, CopyOutlined, UploadOutlined, FileTextOutlined, FileOutlined,
@@ -10,8 +10,10 @@ import {
 import { useLanguage } from '../i18n/LanguageContext'
 import {
   ALGORITHMS,
+  SRI_ALGORITHMS,
   hashBuffer,
   hashFile,
+  buildSriTag,
   formatBytes,
   verifyHash,
 } from '../utils/fileHashCalculator'
@@ -20,14 +22,18 @@ const { Title, Paragraph, Text } = Typography
 const { TextArea } = Input
 const { Panel } = Collapse
 
+// Referência estável: sem ela, `result?.sri || {}` criaria um objeto novo a
+// cada render e reinvalidatoria os useMemo de SRI abaixo.
+const EMPTY_SRI = {}
+
 const SOURCE_SNIPPET = `import { hashBuffer, hashFile, verifyHash } from '../utils/fileHashCalculator'
 
 // Texto (UTF-8): MD5 + família SHA de qualquer conteúdo em bytes
 const bytes = new TextEncoder().encode('algum texto')
 const { hashes } = await hashBuffer(bytes.buffer, ['MD5', 'SHA-1', 'SHA-256'])
 
-// Arquivo nativo: File, FileList[0] ou drag&drop
-const { name, size, hashes } = await hashFile(file, ['MD5', 'SHA-1', 'SHA-256'])
+// Arquivo nativo: File, FileList[0] ou drag&drop (traz hashes hex + sri base64)
+const { name, size, hashes, sri } = await hashFile(file, ['MD5', 'SHA-1', 'SHA-256'])
 
 // Verifica se um hash bate com o esperado (case/whitespace insensível)
 const ok = verifyHash(hashes['SHA-256'], expectedHash)
@@ -67,8 +73,19 @@ const translations = {
     mismatch: 'Não bate',
     warningTitle: 'Limite de tamanho',
     warningBody: 'O arquivo é lido inteiro na memória do navegador. Arquivos muito grandes podem travar a aba; prefira arquivos menores que algumas centenas de MB.',
+    sriTitle: 'Subresource Integrity (SRI) para CDN',
+    sriIntro: 'No modo Arquivo os mesmos digests saem também em base64 no formato algo-base64, pronto para o atributo integrity de <script> ou <link rel="stylesheet">. Cole a URL do recurso e monte a tag completa.',
+    sriAlgo: 'Algoritmo da tag',
+    sriKind: 'Tipo de recurso',
+    sriScript: 'Script',
+    sriStyle: 'Stylesheet',
+    sriUrl: 'URL do recurso',
+    sriUrlPlaceholder: 'https://cdn.exemplo.com/lib/v1.0.0/app.min.js',
+    sriTag: 'Tag gerada',
+    sriEmpty: 'Informe a URL do recurso para ver a tag com o atributo integrity.',
+    sriMissing: 'Selecione ao menos um algoritmo SHA-256/384/512 no modo Arquivo para gerar o valor SRI.',
     sourceTitle: 'Como funciona',
-    sourceBody: 'O motor em src/utils/fileHashCalculator.js implementa MD5 em JS puro (padding, rounds F/G/H/I e soma final) e delega SHA-* à crypto.subtle.digest. Texto é codificado em UTF-8 com TextEncoder e tratado pelos mesmos bytes que um arquivo; a página calcula os algoritmos selecionados e oferece comparação case/whitespace-insensível.',
+    sourceBody: 'O motor em src/utils/fileHashCalculator.js implementa MD5 em JS puro (padding, rounds F/G/H/I e soma final) e delega SHA-* à crypto.subtle.digest. Texto é codificado em UTF-8 com TextEncoder e tratado pelos mesmos bytes que um arquivo; a página calcula os algoritmos selecionados e oferece comparação case/whitespace-insensível. No modo Arquivo o mesmo digest é convertido para base64 por bufferToBase64, e buildSriTag monta a tag integrity a partir da URL informada.',
     errorText: 'O texto parece vazio.',
     errorGeneric: 'Erro ao calcular hashes.',
   },
@@ -105,8 +122,19 @@ const translations = {
     mismatch: 'Mismatch',
     warningTitle: 'Size limit',
     warningBody: 'The file is read entirely into browser memory. Very large files may freeze the tab; prefer files smaller than a few hundred MB.',
+    sriTitle: 'Subresource Integrity (SRI) for CDNs',
+    sriIntro: 'In File mode the same digests are also emitted as base64 in the algo-base64 format, ready for the integrity attribute of <script> or <link rel="stylesheet">. Paste the resource URL to build the complete tag.',
+    sriAlgo: 'Tag algorithm',
+    sriKind: 'Resource type',
+    sriScript: 'Script',
+    sriStyle: 'Stylesheet',
+    sriUrl: 'Resource URL',
+    sriUrlPlaceholder: 'https://cdn.example.com/lib/v1.0.0/app.min.js',
+    sriTag: 'Generated tag',
+    sriEmpty: 'Fill in the resource URL to see the tag with the integrity attribute.',
+    sriMissing: 'Pick at least one of the SHA-256/384/512 algorithms in File mode to generate the SRI value.',
     sourceTitle: 'How it works',
-    sourceBody: 'The engine in src/utils/fileHashCalculator.js implements MD5 in pure JS (padding, F/G/H/I rounds and final sum) and delegates SHA-* to crypto.subtle.digest. Text is encoded as UTF-8 with TextEncoder and goes through the same bytes as a file; the page computes the selected algorithms and offers case/whitespace-insensitive comparison.',
+    sourceBody: 'The engine in src/utils/fileHashCalculator.js implements MD5 in pure JS (padding, F/G/H/I rounds and final sum) and delegates SHA-* to crypto.subtle.digest. Text is encoded as UTF-8 with TextEncoder and goes through the same bytes as a file; the page computes the selected algorithms and offers case/whitespace-insensitive comparison. In File mode the same digest is converted to base64 by bufferToBase64, and buildSriTag assembles the integrity tag from the URL you provide.',
     errorText: 'The text looks empty.',
     errorGeneric: 'Error calculating hashes.',
   },
@@ -124,11 +152,35 @@ export default function HashGeneratorPage() {
   const [error, setError] = useState('')
   const [result, setResult] = useState(null)
   const [expectedHash, setExpectedHash] = useState('')
+  const [sriAlgo, setSriAlgo] = useState('SHA-384')
+  const [sriKind, setSriKind] = useState('script')
+  const [sriUrl, setSriUrl] = useState('')
   const abortRef = useRef(false)
 
   const allSelected = useMemo(() => ALGORITHMS.every((a) => selected.includes(a)), [selected])
   const isTextMode = mode === 'text'
   const sourceReady = isTextMode ? text.length > 0 : !!file
+  const sriHashes = result?.sri || EMPTY_SRI
+  const sriAlgorithms = useMemo(
+    () => SRI_ALGORITHMS.filter((a) => sriHashes[a]),
+    [sriHashes],
+  )
+  const sriKindOptions = useMemo(() => [
+    { value: 'script', label: t.sriScript },
+    { value: 'style', label: t.sriStyle },
+  ], [t.sriScript, t.sriStyle])
+  const sriAlgoOptions = useMemo(() => sriAlgorithms.map((a) => ({
+    value: a,
+    label: a,
+  })), [sriAlgorithms])
+
+  const generatedSriTag = useMemo(() => {
+    const url = sriUrl.trim()
+    if (!url || sriAlgorithms.length === 0) return null
+    const integrity = sriHashes[sriAlgorithms.includes(sriAlgo) ? sriAlgo : sriAlgorithms[0]]
+    if (!integrity) return null
+    return buildSriTag(url, integrity, sriKind)
+  }, [sriUrl, sriAlgorithms, sriAlgo, sriKind, sriHashes])
 
   const handleUpload = ({ file: f }) => {
     if (!f) return
@@ -192,6 +244,7 @@ export default function HashGeneratorPage() {
     setResult(null)
     setError('')
     setExpectedHash('')
+    setSriUrl('')
   }
 
   const copy = (value) => {
@@ -370,6 +423,83 @@ export default function HashGeneratorPage() {
                 }
               />
             </Card>
+
+            {!isTextMode && sriAlgorithms.length > 0 && (
+              <Card size="small" title={t.sriTitle}>
+                <Space direction="vertical" size="middle" style={{ width: '100%' }}>
+                  <Paragraph type="secondary" style={{ marginBottom: 0 }}>
+                    {t.sriIntro}
+                  </Paragraph>
+
+                  {sriAlgorithms.map((algo) => (
+                    <Row key={algo} gutter={[16, 8]} align="middle">
+                      <Col xs={24} sm={4}>
+                        <Tag color="purple">{algo}</Tag>
+                      </Col>
+                      <Col xs={18} sm={16}>
+                        <Text code style={{ wordBreak: 'break-all' }}>
+                          {sriHashes[algo]}
+                        </Text>
+                      </Col>
+                      <Col xs={6} sm={4} style={{ textAlign: 'right' }}>
+                        <Button size="small" icon={<CopyOutlined />} onClick={() => copy(sriHashes[algo])}>
+                          {t.copy}
+                        </Button>
+                      </Col>
+                    </Row>
+                  ))}
+
+                  <Space wrap size="large" align="start">
+                    <Space direction="vertical" size={4}>
+                      <Text type="secondary">{t.sriAlgo}</Text>
+                      <Segmented
+                        value={sriAlgorithms.includes(sriAlgo) ? sriAlgo : sriAlgorithms[0]}
+                        onChange={setSriAlgo}
+                        options={sriAlgoOptions}
+                      />
+                    </Space>
+                    <Space direction="vertical" size={4}>
+                      <Text type="secondary">{t.sriKind}</Text>
+                      <Radio.Group
+                        options={sriKindOptions}
+                        value={sriKind}
+                        onChange={(e) => setSriKind(e.target.value)}
+                        optionType="button"
+                        buttonStyle="solid"
+                      />
+                    </Space>
+                  </Space>
+
+                  <Space direction="vertical" size={4} style={{ width: '100%' }}>
+                    <Text type="secondary">{t.sriUrl}</Text>
+                    <Input
+                      value={sriUrl}
+                      onChange={(e) => setSriUrl(e.target.value)}
+                      placeholder={t.sriUrlPlaceholder}
+                      prefix={<FileOutlined />}
+                    />
+                  </Space>
+
+                  {generatedSriTag ? (
+                    <div>
+                      <Text strong>{t.sriTag}</Text>
+                      <pre style={{ marginTop: 8, padding: 12, background: '#f6f6f6', borderRadius: 8, overflow: 'auto' }}>
+                        <code>{generatedSriTag}</code>
+                      </pre>
+                      <Button icon={<CopyOutlined />} onClick={() => copy(generatedSriTag)}>
+                        {t.copy}
+                      </Button>
+                    </div>
+                  ) : (
+                    <Text type="secondary">{t.sriEmpty}</Text>
+                  )}
+                </Space>
+              </Card>
+            )}
+
+            {!isTextMode && sriAlgorithms.length === 0 && (
+              <Alert type="info" showIcon message={t.sriMissing} />
+            )}
           </Space>
         )}
       </Card>
