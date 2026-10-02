@@ -298,7 +298,7 @@ const translations = {
         Os comandos do <Text code>gh</Text>, a CLI oficial do GitHub — o{' '}
         <Text code>git</Text> cuida do repositório local, o <Text code>gh</Text>{' '}
         cuida do GitHub (PRs, issues, releases, Actions e a API por cima
-        dele). O irmão que faltava ao lado do <Text code>git-commands</Text>{' '}
+        dele). O irmão que faltava ao lado do <Text code>git-cheatsheet</Text>{' '}
         (git puro, sem GitHub) e do{' '}
         <Text code>github-actions-cheatsheet</Text> (o pipeline, não o CLI).
       </>
@@ -365,7 +365,7 @@ const translations = {
         The commands of <Text code>gh</Text>, the official GitHub CLI —{' '}
         <Text code>git</Text> handles your local repository, <Text code>gh</Text>{' '}
         handles GitHub (PRs, issues, releases, Actions and the API on top of
-        it). The missing sibling next to <Text code>git-commands</Text> (pure
+        it). The missing sibling next to <Text code>git-cheatsheet</Text> (pure
         git, no GitHub) and <Text code>github-actions-cheatsheet</Text> (the
         pipeline, not the CLI).
       </>

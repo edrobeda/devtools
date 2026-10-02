@@ -119,7 +119,7 @@ const translations = {
         <Text code>GROUP BY</Text>: ranking, totais acumulados, médias móveis,
         acesso a linhas vizinhas, frames e percentis. Compatível com
         PostgreSQL, MySQL 8+, SQL Server e SQLite 3.25+. Complementa o{' '}
-        <Text code>sql-commands</Text> e o <Text code>sql-joins</Text> — este
+        <Text code>sql-cheatsheet</Text> e o <Text code>sql-joins</Text> — este
         é o primeiro item do projeto dedicado às janelas. Tudo 100%
         client-side (texto de referência).
       </>
@@ -159,7 +159,7 @@ const translations = {
         without collapsing the result like <Text code>GROUP BY</Text>: ranking,
         running totals, moving averages, access to neighbouring rows, frames
         and percentiles. Works on PostgreSQL, MySQL 8+, SQL Server and SQLite
-        3.25+. Complements <Text code>sql-commands</Text> and{' '}
+        3.25+. Complements <Text code>sql-cheatsheet</Text> and{' '}
         <Text code>sql-joins</Text> — this is the project\'s first item
         dedicated to windows. 100% client-side (reference text only).
       </>
