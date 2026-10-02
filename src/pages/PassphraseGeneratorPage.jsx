@@ -5,7 +5,7 @@ import {
 } from 'antd'
 import { KeyOutlined, CopyOutlined, ReloadOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
-import { generatePassphrase, generateMultiple, BITS_PER_WORD } from '../utils/passphraseGenerator'
+import { generatePassphrase, generateMultiple } from '../utils/passphraseGenerator'
 
 const { Title, Paragraph, Text } = Typography
 
@@ -29,7 +29,7 @@ const translations = {
     intro: (
       <>
         Crie frases-senha memorizáveis e fortes no estilo Diceware. Cada palavra é
-        sorteada da wordlist BIP-39 (2048 palavras, ~{Math.round(BITS_PER_WORD * 100) / 100} bits de entropia cada) com{' '}
+        sorteada da wordlist BIP-39 (2048 palavras, ~11 bits de entropia cada) com{' '}
         <Text code>crypto.getRandomValues</Text> — nada sai do navegador.
       </>
     ),
@@ -63,7 +63,7 @@ const translations = {
     intro: (
       <>
         Create memorable and strong Diceware-style passphrases. Each word is drawn from the
-        BIP-39 wordlist (2048 words, ~{Math.round(BITS_PER_WORD * 100) / 100} bits of entropy each) using{' '}
+        BIP-39 wordlist (2048 words, ~11 bits of entropy each) using{' '}
         <Text code>crypto.getRandomValues</Text> — nothing leaves the browser.
       </>
     ),

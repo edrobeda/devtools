@@ -42,9 +42,7 @@ const { TextArea } = Input
 const translations = {
   pt: {
     title: 'Gerador de SVG Sprite',
-    intro:
-      'Combine vários SVGs em um único sprite com <symbol> e reuse-os com <use>. ' +
-      'Cole os SVGs, defina IDs, visualize o preview e baixe o arquivo. Tudo acontece no navegador.',
+    intro: 'Combine vários SVGs em um único sprite usando a tag symbol e reutilize-os com a tag use. Cole os SVGs, defina IDs, visualize o preview e baixe o arquivo. Tudo acontece no navegador.',
     presets: 'Modelos de um clique',
     reset: 'Limpar tudo',
     addSymbol: 'Adicionar símbolo',
@@ -99,9 +97,7 @@ const translations = {
   },
   en: {
     title: 'SVG Sprite Generator',
-    intro:
-      'Combine multiple SVGs into a single <symbol> sprite and reuse them with <use>. ' +
-      'Paste SVGs, set IDs, preview the result, and download the file. Everything happens in the browser.',
+    intro: 'Combine multiple SVGs into a single sprite using the symbol tag and reuse them with the use tag. Paste SVGs, set IDs, preview the result, and download the file. Everything happens in the browser.',
     presets: 'One-click templates',
     reset: 'Clear all',
     addSymbol: 'Add symbol',
