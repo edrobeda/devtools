@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react'
 import { Typography, Card, Space, Input, Button, message, Row, Col } from 'antd'
 import { FileMarkdownOutlined, CopyOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import { markdownToHtml } from '../utils/markdownParser'
 
 const { Title, Paragraph, Text } = Typography
 const { TextArea } = Input
@@ -28,130 +29,6 @@ function ola() {
 
 [link para o devtools](https://devtools.eventifylab.com)
 `
-
-function escapeHtml(str) {
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-}
-
-function inlineFormat(text) {
-  let out = escapeHtml(text)
-  out = out.replace(/`([^`]+)`/g, '<code>$1</code>')
-  out = out.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer">$1</a>')
-  out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-  out = out.replace(/__([^_]+)__/g, '<strong>$1</strong>')
-  out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>')
-  out = out.replace(/(?<!_)_([^_]+)_(?!_)/g, '<em>$1</em>')
-  return out
-}
-
-// Parser Markdown minimalista, cobre apenas o subconjunto mais comum do
-// dia a dia (headings, negrito/itálico, código inline/bloco, listas,
-// citação, link, linha horizontal, parágrafos) — não é CommonMark completo.
-function markdownToHtml(md) {
-  const lines = md.replace(/\r\n/g, '\n').split('\n')
-  const html = []
-  let i = 0
-  let paragraphBuffer = []
-  let listBuffer = null // { type: 'ul' | 'ol', items: [] }
-
-  function flushParagraph() {
-    if (paragraphBuffer.length) {
-      html.push(`<p>${inlineFormat(paragraphBuffer.join(' '))}</p>`)
-      paragraphBuffer = []
-    }
-  }
-
-  function flushList() {
-    if (listBuffer) {
-      const tag = listBuffer.type
-      html.push(`<${tag}>${listBuffer.items.map((it) => `<li>${inlineFormat(it)}</li>`).join('')}</${tag}>`)
-      listBuffer = null
-    }
-  }
-
-  while (i < lines.length) {
-    const line = lines[i]
-
-    if (/^```/.test(line)) {
-      flushParagraph()
-      flushList()
-      const codeLines = []
-      i += 1
-      while (i < lines.length && !/^```/.test(lines[i])) {
-        codeLines.push(lines[i])
-        i += 1
-      }
-      html.push(`<pre><code>${escapeHtml(codeLines.join('\n'))}</code></pre>`)
-      i += 1
-      continue
-    }
-
-    const headingMatch = line.match(/^(#{1,6})\s+(.*)$/)
-    if (headingMatch) {
-      flushParagraph()
-      flushList()
-      const level = headingMatch[1].length
-      html.push(`<h${level}>${inlineFormat(headingMatch[2])}</h${level}>`)
-      i += 1
-      continue
-    }
-
-    if (/^\s*(-{3,}|\*{3,}|_{3,})\s*$/.test(line)) {
-      flushParagraph()
-      flushList()
-      html.push('<hr />')
-      i += 1
-      continue
-    }
-
-    const quoteMatch = line.match(/^>\s?(.*)$/)
-    if (quoteMatch) {
-      flushParagraph()
-      flushList()
-      const quoteLines = [quoteMatch[1]]
-      i += 1
-      while (i < lines.length && /^>\s?/.test(lines[i])) {
-        quoteLines.push(lines[i].replace(/^>\s?/, ''))
-        i += 1
-      }
-      html.push(`<blockquote>${inlineFormat(quoteLines.join(' '))}</blockquote>`)
-      continue
-    }
-
-    const ulMatch = line.match(/^(\s*)[-*]\s+(.*)$/)
-    const olMatch = line.match(/^(\s*)\d+\.\s+(.*)$/)
-    if (ulMatch || olMatch) {
-      flushParagraph()
-      const type = ulMatch ? 'ul' : 'ol'
-      const text = ulMatch ? ulMatch[2] : olMatch[2]
-      if (!listBuffer || listBuffer.type !== type) {
-        flushList()
-        listBuffer = { type, items: [] }
-      }
-      listBuffer.items.push(text)
-      i += 1
-      continue
-    }
-
-    if (line.trim() === '') {
-      flushParagraph()
-      flushList()
-      i += 1
-      continue
-    }
-
-    flushList()
-    paragraphBuffer.push(line.trim())
-    i += 1
-  }
-
-  flushParagraph()
-  flushList()
-  return html.join('\n')
-}
 
 const translations = {
   pt: {
