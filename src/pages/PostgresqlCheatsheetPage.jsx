@@ -240,7 +240,7 @@ const translations = {
         tipos de dados, operadores de JSONB, funções e agregações, window
         functions, índices e <Text code>EXPLAIN</Text>, transações &
         locking, constraints & schema e administração/backup. Complementa o{' '}
-        <Text code>/references/sql-commands</Text> (SQL genérico) e o{' '}
+        <Text code>/references/sql-cheatsheet</Text> (SQL genérico) e o{' '}
         <Text code>/database/sql-isolation-levels</Text>. Tudo 100%
         client-side (só texto de referência).
       </>
@@ -278,7 +278,7 @@ const translations = {
         queries, data types, JSONB operators, functions & aggregates,
         window functions, indexes & <Text code>EXPLAIN</Text>, transactions
         & locking, constraints & schema, and administration/backup.
-        Complements <Text code>/references/sql-commands</Text> (generic SQL)
+        Complements <Text code>/references/sql-cheatsheet</Text> (generic SQL)
         and <Text code>/database/sql-isolation-levels</Text>. 100%
         client-side (reference text only).
       </>
