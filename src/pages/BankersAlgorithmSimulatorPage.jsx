@@ -38,10 +38,7 @@ const { Option } = Select
 const translations = {
   pt: {
     title: 'Simulador do Algoritmo do Banqueiro',
-    intro:
-      'Explore o clássico algoritmo de Dijkstra/Habermann para evitar deadlock. ' +
-      'Configure processos, tipos de recursos, vetor Available e matrizes Allocation/Max; ' +
-      'descubra se o estado atual é seguro e teste requisições de recursos sem sair do navegador.',
+    intro: 'Explore o clássico algoritmo de Dijkstra/Habermann para evitar deadlock. Configure processos, tipos de recursos, vetor Available e matrizes Allocation/Max; descubra se o estado atual é seguro e teste requisições de recursos sem sair do navegador.',
     dimensionsTitle: 'Dimensões',
     processCountLabel: 'Processos',
     resourceCountLabel: 'Tipos de recurso',
@@ -93,10 +90,7 @@ const translations = {
   },
   en: {
     title: "Banker's Algorithm Simulator",
-    intro:
-      "Explore Dijkstra/Habermann's classic deadlock-avoidance algorithm. " +
-      'Set up processes, resource types, the Available vector and the Allocation/Max matrices; ' +
-      'discover whether the current state is safe and test resource requests — all in the browser.',
+    intro: "Explore Dijkstra/Habermann's classic deadlock-avoidance algorithm. Set up processes, resource types, the Available vector and the Allocation/Max matrices; discover whether the current state is safe and test resource requests — all in the browser.",
     dimensionsTitle: 'Dimensions',
     processCountLabel: 'Processes',
     resourceCountLabel: 'Resource types',

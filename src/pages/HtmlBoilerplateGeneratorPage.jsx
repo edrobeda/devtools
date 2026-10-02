@@ -58,9 +58,7 @@ const JS_OPTIONS = [
 const translations = {
   pt: {
     title: 'Gerador de HTML5 Boilerplate',
-    intro:
-      'Monte um documento HTML5 completo, semântico e pronto para produção. Escolha metadados, ' +
-      'tags sociais (Open Graph e Twitter Card), CSS e JS, e copie o resultado. Tudo acontece no navegador.',
+    intro: 'Monte um documento HTML5 completo, semântico e pronto para produção. Escolha metadados, tags sociais (Open Graph e Twitter Card), CSS e JS, e copie o resultado. Tudo acontece no navegador.',
     presets: 'Modelos de um clique',
     presetMinimal: 'Mínimo',
     presetLanding: 'Landing Page',
@@ -141,9 +139,7 @@ const translations = {
   },
   en: {
     title: 'HTML5 Boilerplate Generator',
-    intro:
-      'Build a complete, semantic, production-ready HTML5 document. Choose metadata, ' +
-      'social tags (Open Graph and Twitter Card), CSS and JS, and copy the result. Everything happens in the browser.',
+    intro: 'Build a complete, semantic, production-ready HTML5 document. Choose metadata, social tags (Open Graph and Twitter Card), CSS and JS, and copy the result. Everything happens in the browser.',
     presets: 'One-click templates',
     presetMinimal: 'Minimal',
     presetLanding: 'Landing Page',
