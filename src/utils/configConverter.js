@@ -25,6 +25,8 @@ export const FORMAT_LABELS = {
   },
 }
 
+// YAML parser compartilhado (mais robusto)
+
 // ═════════════════════════════════════════════════════════════════════════════
 // Utilidades comuns
 // ═════════════════════════════════════════════════════════════════════════════
@@ -50,8 +52,11 @@ function inferIndent(lines) {
   return 2
 }
 
+// YAML parser compartilhado (mais robusto)
+import { parseYaml as parseYamlShared } from './yamlFormatter.js'
+
 // ═════════════════════════════════════════════════════════════════════════════
-// YAML
+// YAML (emissor mantido)
 // ═════════════════════════════════════════════════════════════════════════════
 
 function yamlNeedsQuotes(s) {
@@ -180,260 +185,15 @@ export function stringifyYaml(value, opts = {}) {
   return lines.join('\n')
 }
 
-function tokenizeYaml(text) {
-  const lines = trimTrailingEmpty(text.split('\n'))
-  const out = []
-  for (let raw of lines) {
-    let line = raw
-    // remove comentário fora de string
-    let inQuotes = false
-    let quoteChar = null
-    let commentIdx = -1
-    for (let i = 0; i < line.length; i++) {
-      const c = line[i]
-      if (!inQuotes && (c === '"' || c === "'")) {
-        inQuotes = true
-        quoteChar = c
-      } else if (inQuotes && c === quoteChar && line[i - 1] !== '\\') {
-        inQuotes = false
-      } else if (!inQuotes && c === '#') {
-        commentIdx = i
-        break
-      }
-    }
-    if (commentIdx >= 0) line = line.slice(0, commentIdx)
-    if (line.trim() === '' && raw.trim() === '') continue
-    const indent = line.search(/\S/)
-    out.push({ indent: indent < 0 ? 0 : indent, content: line.trimEnd() })
-  }
-  return out
-}
-
-function unquoteYaml(s) {
-  s = s.trim()
-  if ((s.startsWith('"') && s.endsWith('"')) || (s.startsWith("'") && s.endsWith("'"))) {
-    const q = s[0]
-    const inner = s.slice(1, -1)
-    if (q === "'") return inner.replace(/''/g, "'")
-    return inner
-      .replace(/\\n/g, '\n')
-      .replace(/\\t/g, '\t')
-      .replace(/\\"/g, '"')
-      .replace(/\\\\/g, '\\')
-  }
-  return s
-}
-
-function parseYamlScalar(s) {
-  s = s.trim()
-  if (s === '' || s === '~' || s === 'null' || s === 'Null' || s === 'NULL') return null
-  if (/^(true|True|TRUE|yes|Yes|YES|on|On|ON)$/.test(s)) return true
-  if (/^(false|False|FALSE|no|No|NO|off|Off|OFF)$/.test(s)) return false
-  if (/^[-+]?\d+$/.test(s)) return Number(s)
-  if (/^[-+]?(\d+\.\d*|\.\d+|\d+)([eE][-+]?\d+)?$/.test(s)) return Number(s)
-  return unquoteYaml(s)
-}
-
-function parseBlockScalar(tokens, startIdx, baseIndent) {
-  const first = tokens[startIdx]
-  const literal = first.content.startsWith('|')
-  const folded = first.content.startsWith('>')
-  if (!literal && !folded) return { value: parseYamlScalar(first.content), nextIdx: startIdx + 1 }
-
-  const lines = []
-  let i = startIdx + 1
-  while (i < tokens.length && tokens[i].indent > baseIndent) {
-    const line = tokens[i].content
-    if (literal) {
-      lines.push(line.slice(baseIndent + 1))
-    } else {
-      const trimmed = line.trim()
-      if (trimmed === '') lines.push('\n')
-      else if (lines.length > 0 && !lines[lines.length - 1].endsWith('\n')) lines[lines.length - 1] += ' ' + trimmed
-      else lines.push(trimmed)
-    }
-    i++
-  }
-  let value = literal ? lines.join('\n') : lines.join('').replace(/\n\n/g, '\n')
-  if (first.content.includes('|-')) value = value.replace(/\n+$/, '')
-  return { value, nextIdx: i }
-}
-
-function findUnquotedColon(s) {
-  let inQuotes = false
-  let quoteChar = null
-  for (let i = 0; i < s.length; i++) {
-    const c = s[i]
-    if (inQuotes) {
-      if (c === quoteChar && s[i - 1] !== '\\') inQuotes = false
-    } else if (c === '"' || c === "'") {
-      inQuotes = true
-      quoteChar = c
-    } else if (c === ':') {
-      return i
-    }
-  }
-  return -1
-}
-
-function splitTopLevel(text, delimiter) {
-  const parts = []
-  let current = ''
-  let depth = 0
-  let inQuotes = false
-  let quoteChar = null
-  for (let i = 0; i < text.length; i++) {
-    const c = text[i]
-    if (inQuotes) {
-      if (c === quoteChar && text[i - 1] !== '\\') inQuotes = false
-      current += c
-    } else if (c === '"' || c === "'") {
-      inQuotes = true
-      quoteChar = c
-      current += c
-    } else if (c === '[' || c === '{' || c === '(') {
-      depth++
-      current += c
-    } else if (c === ']' || c === '}' || c === ')') {
-      depth--
-      current += c
-    } else if (c === delimiter && depth === 0) {
-      parts.push(current.trim())
-      current = ''
-    } else {
-      current += c
-    }
-  }
-  if (current.trim() !== '') parts.push(current.trim())
-  return parts
-}
-
-function parseYamlInlineArray(text) {
-  const inner = text.trim().slice(1, -1).trim()
-  if (!inner) return []
-  return splitTopLevel(inner, ',').map((p) => parseYamlScalar(p.trim()))
-}
-
-function parseYamlInlineObject(text) {
-  const inner = text.trim().slice(1, -1).trim()
-  if (!inner) return {}
-  const obj = {}
-  const parts = splitTopLevel(inner, ',')
-  for (const part of parts) {
-    const colonIdx = part.indexOf(':')
-    if (colonIdx > 0) {
-      const key = unquoteYaml(part.slice(0, colonIdx).trim())
-      const val = parseYamlScalar(part.slice(colonIdx + 1).trim())
-      obj[key] = val
-    }
-  }
-  return obj
-}
-
-// Parser YAML recursivo baseado em indentação.
-// baseIndent é o nível de indentação esperado para este nó.
-function parseYamlNode(tokens, idx, baseIndent) {
-  const token = tokens[idx]
-  if (!token) return { value: null, nextIdx: idx }
-
-  // bloco literal/dobrado
-  if (token.indent === baseIndent && (/^\|[-+]?/.test(token.content) || /^>[-+]?/.test(token.content))) {
-    return parseBlockScalar(tokens, idx, baseIndent)
-  }
-
-  // array: itens começam com "- " e podem estar em qualquer nível >= baseIndent
-  // usamos o nível do primeiro item como nível do array
-  if (token.content.trimStart().startsWith('- ')) {
-    const arr = []
-    let i = idx
-    const arrayIndent = token.indent
-    while (i < tokens.length && tokens[i].indent === arrayIndent && tokens[i].content.trimStart().startsWith('- ')) {
-      const rest = tokens[i].content.trimStart().slice(2).trim()
-      if (rest === '') {
-        // filho aninhado nas próximas linhas
-        const next = tokens[i + 1]
-        const childIndent = next ? next.indent : arrayIndent + 2
-        const child = parseYamlNode(tokens, i + 1, childIndent)
-        arr.push(child.value)
-        i = child.nextIdx
-      } else if (/^\[/.test(rest)) {
-        arr.push(parseYamlInlineArray(rest))
-        i++
-      } else if (/^\{/.test(rest)) {
-        arr.push(parseYamlInlineObject(rest))
-        i++
-      } else {
-        const colonIdx = findUnquotedColon(rest)
-        if (colonIdx > 0) {
-          const key = unquoteYaml(rest.slice(0, colonIdx).trim())
-          const after = rest.slice(colonIdx + 1).trim()
-          if (after === '') {
-            const next = tokens[i + 1]
-            const childIndent = next ? next.indent : arrayIndent + 2
-            const child = parseYamlNode(tokens, i + 1, childIndent)
-            arr.push({ [key]: child.value })
-            i = child.nextIdx
-          } else {
-            arr.push({ [key]: parseYamlScalar(after) })
-            i++
-          }
-        } else {
-          arr.push(parseYamlScalar(rest))
-          i++
-        }
-      }
-    }
-    return { value: arr, nextIdx: i }
-  }
-
-  // objeto: chaves no mesmo nível de baseIndent, terminando quando encontrar
-  // linha com indentação < baseIndent
-  if (findUnquotedColon(token.content) >= 0) {
-    const obj = {}
-    let i = idx
-    while (i < tokens.length && tokens[i].indent === baseIndent) {
-      const content = tokens[i].content
-      const colonIdx = findUnquotedColon(content)
-      if (colonIdx <= 0) break
-      const key = unquoteYaml(content.slice(0, colonIdx).trim())
-      const after = content.slice(colonIdx + 1).trim()
-      if (after === '') {
-        if (i + 1 < tokens.length && tokens[i + 1].indent > baseIndent) {
-          const childIndent = tokens[i + 1].indent
-          const child = parseYamlNode(tokens, i + 1, childIndent)
-          obj[key] = child.value
-          i = child.nextIdx
-        } else {
-          obj[key] = null
-          i++
-        }
-      } else if (/^\[/.test(after)) {
-        obj[key] = parseYamlInlineArray(after)
-        i++
-      } else if (/^\{/.test(after)) {
-        obj[key] = parseYamlInlineObject(after)
-        i++
-      } else {
-        obj[key] = parseYamlScalar(after)
-        i++
-      }
-    }
-    return { value: obj, nextIdx: i }
-  }
-
-  // scalar puro
-  return { value: parseYamlScalar(token.content), nextIdx: idx + 1 }
-}
-
 export function parseYaml(text) {
-  const tokens = tokenizeYaml(text)
-  if (tokens.length === 0) return { ok: true, value: null }
-  let idx = 0
-  if (tokens[0].content === '---') idx++
-  const res = parseYamlNode(tokens, idx, tokens[idx]?.indent || 0)
-  return { ok: true, value: res.value }
+  try {
+    const result = parseYamlShared(String(text))
+    if (!result.ok) return result
+    return { ok: true, value: result.value }
+  } catch (e) {
+    return { ok: false, error: e.message || String(e) }
+  }
 }
-
 // ═════════════════════════════════════════════════════════════════════════════
 // TOML
 // ═════════════════════════════════════════════════════════════════════════════
