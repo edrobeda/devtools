@@ -23,8 +23,9 @@ import {
   ReloadOutlined,
 } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import { parseDelimited } from '../utils/csv'
+import csvParserSource from '../utils/csv.js?raw'
 import {
-  parseCsv,
   inferColumns,
   generateCreateTable,
   generateInsert,
@@ -64,27 +65,7 @@ const JSON_EXAMPLES = {
   ),
 }
 
-const SOURCE_SNIPPET = `function parseCsv(text, delimiter) {
-  const rows = []
-  let row = []
-  let field = ''
-  let inQuotes = false
-  for (let i = 0; i < text.length; i++) {
-    const c = text[i]
-    if (inQuotes) {
-      if (c === '"') {
-        if (text[i + 1] === '"') { field += '"'; i++ }
-        else { inQuotes = false }
-      } else { field += c }
-    } else if (c === '"') { inQuotes = true }
-    else if (c === delimiter) { row.push(field); field = '' }
-    else if (c === '\\n') { row.push(field); rows.push(row); row = []; field = '' }
-    else if (c !== '\\r') { field += c }
-  }
-  if (field.length || row.length) { row.push(field); rows.push(row) }
-  return rows.filter((r) => !(r.length === 1 && r[0] === ''))
-}
-
+const SQL_ENGINE_SNIPPET = `// ── resumo da etapa de SQL (o código completo está em src/utils/csvToSql.js) ──
 function inferType(values) {
   if (!values.length) return 'TEXT'
   if (values.every((v) => /^(true|false|1|0|yes|no)$/i.test(v))) return 'BOOLEAN'
@@ -98,6 +79,12 @@ function inferType(values) {
 
 const createSql = generateCreateTable(tableName, columns, dialect, opts)
 const insertSql = generateInsert(tableName, columns, rows, dialect, batchSize)`
+
+// O painel "Como funciona" mostra o parser compartilhado importado como
+// `?raw` — o arquivo real que roda a página, não uma transcrição que pode
+// divergir — seguido do resumo da etapa de inferência/SQL.
+const SOURCE_SNIPPET = `${csvParserSource}
+${SQL_ENGINE_SNIPPET}`
 
 function serializeNestedCell(v, nestedOn) {
   if (v === null || v === undefined) return ''
@@ -275,7 +262,7 @@ export default function CsvToSqlPage() {
   }, [input, format, nested, t.errInvalid])
 
   const rows = useMemo(() => {
-    if (format === 'csv') return parseCsv(input, delimiter)
+    if (format === 'csv') return parseDelimited(input, delimiter)
     if (!input.trim()) return []
     try {
       return parseJsonRows(input, nested === 'json')
