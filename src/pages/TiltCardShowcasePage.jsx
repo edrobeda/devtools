@@ -195,7 +195,7 @@ function TiltCard({ children, maxTilt = 14, scale = 1.03, glare = true, glareOpa
 
 const translations = {
   pt: {
-    title: 'Estilo: 3D Tilt Card',
+    title: 'Componente: 3D Tilt Card',
     intro: 'Cartão que inclina em 3D seguindo o cursor: a posição do mouse dentro do card vira os eixos rotateX / rotateY sobre uma perspectiva, com um brilho (glare) que acompanha o ponteiro. Sem bibliotecas — os valores são escritos direto no estilo via refs e requestAnimationFrame, então não há re-renderizações a cada movimento do mouse.',
     sourceTitle: 'Código-fonte',
     controlsTitle: 'Ajustes do preview',
@@ -214,7 +214,7 @@ const translations = {
     tip: 'Dica: o transform usa perspective() embutido, então funciona em qualquer lugar (sem necessidade de um pai com perspectiva). Quando o mouse sai, o card volta ao normal com uma transição suave.',
   },
   en: {
-    title: 'Style: 3D Tilt Card',
+    title: 'Component: 3D Tilt Card',
     intro: 'A card that tilts in 3D following the cursor: the mouse position inside the card drives rotateX / rotateY over a perspective, plus a glare highlight that follows the pointer. No libraries — values are written straight to the style via refs and requestAnimationFrame, so there are no re-renders on every mouse move.',
     sourceTitle: 'Source code',
     controlsTitle: 'Preview settings',

@@ -134,7 +134,7 @@ function SpotlightCard({ children, glowColor = 'rgba(255,255,255,0.18)', backgro
 
 const translations = {
   pt: {
-    title: 'Estilo: Spotlight Card',
+    title: 'Componente: Spotlight Card',
     intro: 'Cartão com um brilho radial que acompanha o cursor. O efeito é feito apenas com CSS (gradiente radial) e React refs — sem bibliotecas, sem re-renderizações a cada movimento do mouse, porque a posição do brilho é atualizada diretamente via estilo inline.',
     sourceTitle: 'Código-fonte',
     card1Title: 'Deploys hoje',
@@ -149,7 +149,7 @@ const translations = {
     tip: 'Dica: funciona melhor sobre fundos escuros ou gradientes fortes, pois o brilho usa cores com transparência.',
   },
   en: {
-    title: 'Style: Spotlight Card',
+    title: 'Component: Spotlight Card',
     intro: 'A card with a radial glow that follows the cursor. The effect is built with plain CSS (radial gradient) and React refs — no libraries, no re-renders on every mouse move because the glow position is updated directly via inline style.',
     sourceTitle: 'Source code',
     card1Title: 'Deploys today',
