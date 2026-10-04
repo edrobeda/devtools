@@ -2,35 +2,11 @@ import React, { useMemo, useState } from 'react'
 import { Typography, Card, Space, Input, Segmented, Button, Alert, message, Tabs } from 'antd'
 import { TableOutlined, CopyOutlined, CheckOutlined, ClearOutlined, FileAddOutlined, SwapOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import { parseDelimited, escapeCsvField } from '../utils/csv'
+import csvParserSource from '../utils/csv.js?raw'
 
 const { Title, Paragraph, Text } = Typography
 const { TextArea } = Input
-
-// Parser CSV/TSV estilo RFC4180: campos entre aspas duplas podem conter o
-// delimitador, quebras de linha e aspas escapadas ("") — sem dependência,
-// tudo local.
-const PARSE_SOURCE = `function parseDelimited(text, delim) {
-  const rows = []; let row = []; let field = ''
-  let inQuotes = false; let i = 0
-  while (i < text.length) {
-    const ch = text[i]
-    if (inQuotes) {
-      if (ch === '"' && text[i + 1] === '"') { field += '"'; i += 2; continue }
-      if (ch === '"') { inQuotes = false; i++; continue }
-      field += ch; i++; continue
-    }
-    if (ch === '"' && field === '') { inQuotes = true; i++; continue }
-    if (ch === delim) { row.push(field); field = ''; i++; continue }
-    if (ch === '\\n' || ch === '\\r') {
-      if (ch === '\\r' && text[i + 1] === '\\n') i++ // CRLF vira linha única
-      row.push(field); rows.push(row); row = []; field = ''
-      i++; continue
-    }
-    field += ch; i++
-  }
-  if (field !== '' || row.length > 0) { row.push(field); rows.push(row) }
-  return rows
-}`
 
 const PARSE_MD_SOURCE = `function parseMarkdownTable(text) {
   const lines = text.trim().split('\\n').map(l => l.trim()).filter(l => l.length > 0)
@@ -81,35 +57,15 @@ prometheus | degraded | 1 | sa-east-1`
 
 const DELIMITERS = { comma: ',', semicolon: ';', tab: '\t' }
 
-function parseDelimited(text, delim) {
-  const rows = []
-  let row = []
-  let field = ''
-  let inQuotes = false
-  let i = 0
-  while (i < text.length) {
-    const ch = text[i]
-    if (inQuotes) {
-      if (ch === '"' && text[i + 1] === '"') { field += '"'; i += 2; continue }
-      if (ch === '"') { inQuotes = false; i++; continue }
-      field += ch; i++; continue
-    }
-    if (ch === '"' && field === '') { inQuotes = true; i++; continue }
-    if (ch === delim) { row.push(field); field = ''; i++; continue }
-    if (ch === '\n' || ch === '\r') {
-      if (ch === '\r' && text[i + 1] === '\n') i++
-      row.push(field)
-      rows.push(row)
-      row = []
-      field = ''
-      i++
-      continue
-    }
-    field += ch
-    i++
-  }
-  if (field !== '' || row.length > 0) { row.push(field); rows.push(row) }
-  return rows
+// O parser CSV/TSV (RFC4180) vive no módulo compartilhado ../utils/csv.js,
+// importado acima como `?raw` pro painel "Algoritmo-fonte" mostrar exatamente
+// o código que roda — não uma transcrição que pode divergir. Esta página usa o
+// modo tolerante: a citação só abre no início do campo, \r solto também fecha
+// linha e linhas em branco no fim são preservadas.
+const PARSE_OPTIONS = {
+  skipEmptyRows: false,
+  quoteOnlyAtFieldStart: true,
+  carriageReturnEndsRow: true,
 }
 
 function escapeCell(v) {
@@ -187,14 +143,6 @@ function parseMarkdownTable(text) {
   const cols = Math.max(...allRows.map(r => r.length))
   const padded = allRows.map(r => { const out = [...r]; while (out.length < cols) out.push(''); return out })
   return { headers: [], rows: padded, hasHeader: false }
-}
-
-function escapeCsvField(value, delimiter) {
-  const s = value === null || value === undefined ? '' : String(value)
-  if (s.includes(delimiter) || s.includes('"') || s.includes('\n') || s.includes('\r')) {
-    return `"${s.replace(/"/g, '""')}"`
-  }
-  return s
 }
 
 function buildCsv(headers, rows, delimiter) {
@@ -332,7 +280,7 @@ export default function CsvMarkdownTablePage() {
   const [outputFormat, setOutputFormat] = useState('csv')
   const [copied, setCopied] = useState(null)
 
-  const rowsCsv = useMemo(() => parseDelimited(input, DELIMITERS[delimiter]), [input, delimiter])
+  const rowsCsv = useMemo(() => parseDelimited(input, DELIMITERS[delimiter], PARSE_OPTIONS), [input, delimiter])
 
   const hasHeaderCsv = useMemo(() => {
     if (headerMode === 'yes') return true
@@ -573,7 +521,7 @@ export default function CsvMarkdownTablePage() {
 
       <Card title={isCsvToMd ? t.howCsvToMdTitle : t.howMdToCsvTitle}>
         <pre style={{ margin: 0, overflowX: 'auto' }}>
-          <code>{isCsvToMd ? PARSE_SOURCE : PARSE_MD_SOURCE}</code>
+          <code>{isCsvToMd ? csvParserSource : PARSE_MD_SOURCE}</code>
         </pre>
       </Card>
     </Space>

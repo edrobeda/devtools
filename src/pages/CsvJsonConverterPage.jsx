@@ -2,58 +2,15 @@ import React, { useState } from 'react'
 import { Typography, Card, Input, Space, Radio, Button, Alert, message } from 'antd'
 import { SwapOutlined, CopyOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import { parseDelimited, escapeCsvField } from '../utils/csv'
 
 const { Title, Paragraph, Text } = Typography
 const { TextArea } = Input
 
 const DELIMITERS = { comma: ',', semicolon: ';', tab: '\t' }
 
-// RFC4180-ish parser: handles quoted fields, escaped "" quotes, and quoted
-// newlines/delimiters inside a field.
-function parseCsv(text, delimiter) {
-  const rows = []
-  let row = []
-  let field = ''
-  let inQuotes = false
-
-  for (let i = 0; i < text.length; i++) {
-    const c = text[i]
-    if (inQuotes) {
-      if (c === '"') {
-        if (text[i + 1] === '"') {
-          field += '"'
-          i++
-        } else {
-          inQuotes = false
-        }
-      } else {
-        field += c
-      }
-    } else if (c === '"') {
-      inQuotes = true
-    } else if (c === delimiter) {
-      row.push(field)
-      field = ''
-    } else if (c === '\n') {
-      row.push(field)
-      rows.push(row)
-      row = []
-      field = ''
-    } else if (c === '\r') {
-      // skip, \n right after closes the row
-    } else {
-      field += c
-    }
-  }
-  if (field.length > 0 || row.length > 0) {
-    row.push(field)
-    rows.push(row)
-  }
-  return rows.filter((r) => !(r.length === 1 && r[0] === ''))
-}
-
 function csvToJson(text, delimiter) {
-  const rows = parseCsv(text, delimiter)
+  const rows = parseDelimited(text, delimiter)
   if (rows.length === 0) return []
   const [header, ...dataRows] = rows
   return dataRows.map((r) => {
@@ -63,14 +20,6 @@ function csvToJson(text, delimiter) {
     })
     return obj
   })
-}
-
-function escapeCsvField(value, delimiter) {
-  const s = value === null || value === undefined ? '' : String(value)
-  if (s.includes(delimiter) || s.includes('"') || s.includes('\n') || s.includes('\r')) {
-    return `"${s.replace(/"/g, '""')}"`
-  }
-  return s
 }
 
 function jsonToCsv(jsonText, delimiter) {
@@ -156,7 +105,7 @@ export default function CsvJsonConverterPage() {
 
     try {
       if (direction === 'csvToJson') {
-        const rows = parseCsv(input, delimiter)
+        const rows = parseDelimited(input, delimiter)
         if (rows.length < 2) {
           setError(t.errorEmptyCsv)
           return
