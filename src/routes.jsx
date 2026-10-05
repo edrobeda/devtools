@@ -102,6 +102,7 @@ import HmacGeneratorPage from './pages/HmacGeneratorPage'
 import LoremIpsumGeneratorPage from './pages/LoremIpsumGeneratorPage'
 import JsonDiffPage from './pages/JsonDiffPage'
 import JsonPatchPage from './pages/JsonPatchPage'
+import ImageExifViewerPage from './pages/ImageExifViewerPage'
 import DarkModeTogglePage from './pages/DarkModeTogglePage'
 import UseThrottleSnippetPage from './pages/UseThrottleSnippetPage'
 import VscodeShortcutsPage from './pages/VscodeShortcutsPage'
@@ -665,6 +666,7 @@ const router = createBrowserRouter([
       { path: 'tools/lorem-ipsum-generator', element: <LoremIpsumGeneratorPage /> },
       { path: 'data/json-diff', element: <JsonDiffPage /> },
       { path: 'data/json-patch', element: <JsonPatchPage /> },
+      { path: 'tools/image-exif-viewer', element: <ImageExifViewerPage /> },
       { path: 'data/json-merge-patch', element: <JsonMergePatchPage /> },
       { path: 'styles/dark-mode-toggle', element: <DarkModeTogglePage /> },
       { path: 'snippets/use-throttle', element: <UseThrottleSnippetPage /> },
