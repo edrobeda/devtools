@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react'
 import { Typography, Card, Input, Space, Alert, Tag, Descriptions } from 'antd'
 import { KeyOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import { decodeJwt } from '../utils/jwtDecode'
 
 const { Title, Paragraph, Text } = Typography
 const { TextArea } = Input
@@ -37,25 +38,6 @@ const translations = {
     signature: 'Signature (not verified)',
     locale: 'en-US',
   },
-}
-
-function base64UrlDecode(segment) {
-  const normalized = segment.replace(/-/g, '+').replace(/_/g, '/')
-  const padded = normalized.padEnd(normalized.length + ((4 - (normalized.length % 4)) % 4), '=')
-  const binary = atob(padded)
-  const bytes = Uint8Array.from(binary, (c) => c.charCodeAt(0))
-  return new TextDecoder('utf-8').decode(bytes)
-}
-
-function decodeJwt(token, parseErrorMessage) {
-  const parts = token.trim().split('.')
-  if (parts.length !== 3) {
-    throw new Error(parseErrorMessage)
-  }
-  const [rawHeader, rawPayload, signature] = parts
-  const header = JSON.parse(base64UrlDecode(rawHeader))
-  const payload = JSON.parse(base64UrlDecode(rawPayload))
-  return { header, payload, signature }
 }
 
 function formatDate(unixSeconds, locale) {
