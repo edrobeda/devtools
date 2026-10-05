@@ -299,6 +299,7 @@ import SshConfigGeneratorPage from './pages/SshConfigGeneratorPage'
 import SystemdUnitGeneratorPage from './pages/SystemdUnitGeneratorPage'
 import ShieldsBadgeGeneratorPage from './pages/ShieldsBadgeGeneratorPage'
 import KubernetesManifestGeneratorPage from './pages/KubernetesManifestGeneratorPage'
+import KubernetesManifestLinterPage from './pages/KubernetesManifestLinterPage'
 import OtelCollectorConfigGeneratorPage from './pages/OtelCollectorConfigGeneratorPage'
 import DockerComposeVisualizerPage from './pages/DockerComposeVisualizerPage'
 import GitlabCiConfigGeneratorPage from './pages/GitlabCiConfigGeneratorPage'
@@ -872,6 +873,7 @@ const router = createBrowserRouter([
       { path: 'devops/systemd-unit-generator', element: <SystemdUnitGeneratorPage /> },
       { path: 'devops/shields-badge-generator', element: <ShieldsBadgeGeneratorPage /> },
       { path: 'devops/kubernetes-manifest-generator', element: <KubernetesManifestGeneratorPage /> },
+      { path: 'devops/kubernetes-manifest-linter', element: <KubernetesManifestLinterPage /> },
       { path: 'devops/opentelemetry-collector-config-generator', element: <OtelCollectorConfigGeneratorPage /> },
       { path: 'devops/gitlab-ci-config-generator', element: <GitlabCiConfigGeneratorPage /> },
       { path: 'devops/github-actions-workflow-generator', element: <GithubActionsWorkflowGeneratorPage /> },
