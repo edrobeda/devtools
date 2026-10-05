@@ -452,6 +452,7 @@ export const LABELS = {
     'caddyfile-generator': 'Gerador de Caddyfile',
     'haproxy-config-generator': 'Gerador de Configuração HAProxy',
     'traefik-config-generator': 'Gerador de Configuração Traefik',
+    'terraform-config-generator': 'Gerador de Configuração Terraform',
     'htaccess-generator': 'Gerador de .htaccess',
     'docker-compose-generator': 'Gerador de docker-compose',
     'docker-run-to-compose': 'Docker run → Compose',
@@ -991,6 +992,7 @@ export const LABELS = {
     'caddyfile-generator': 'Caddyfile Generator',
     'haproxy-config-generator': 'HAProxy Config Generator',
     'traefik-config-generator': 'Traefik Config Generator',
+    'terraform-config-generator': 'Terraform Config Generator',
     'htaccess-generator': '.htaccess Generator',
     'docker-compose-generator': 'docker-compose Generator',
     'docker-run-to-compose': 'Docker run → Compose',
@@ -1611,6 +1613,7 @@ export function buildMenuItems(l) {
         { key: '/devops/vite-config-generator', icon: <CodeOutlined />, label: withNewBadge('/devops/vite-config-generator', l['vite-config-generator'], l) },
         { key: '/devops/cors-config-generator', icon: <SafetyOutlined />, label: withNewBadge('/devops/cors-config-generator', l['cors-config-generator'], l) },
         { key: '/devops/pull-request-template-generator', icon: <FileTextOutlined />, label: withNewBadge('/devops/pull-request-template-generator', l['pull-request-template-generator'], l) },
+        { key: '/devops/terraform-config-generator', icon: <PartitionOutlined />, label: withNewBadge('/devops/terraform-config-generator', l['terraform-config-generator'], l) },
       ],
     },
     {
