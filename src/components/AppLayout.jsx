@@ -380,6 +380,7 @@ export const LABELS = {
     'sql-isolation-levels': 'Níveis de Isolação SQL',
     'csv-to-sql': 'CSV / JSON → SQL',
     'storage-estimator': 'Estimador de Tamanho de BD',
+    'sql-explain-visualizer': 'Visualizador de EXPLAIN (PostgreSQL)',
     'big-o-cheatsheet': 'Cheat Sheet de Big-O',
     'json-to-zod-schema': 'JSON → Zod Schema',
     'json-to-graphql': 'JSON → GraphQL Schema',
@@ -921,6 +922,7 @@ export const LABELS = {
     'sql-isolation-levels': 'SQL Isolation Levels',
     'csv-to-sql': 'CSV / JSON to SQL',
     'storage-estimator': 'Database Storage Estimator',
+    'sql-explain-visualizer': 'EXPLAIN Visualizer (PostgreSQL)',
     'big-o-cheatsheet': 'Big-O Cheat Sheet',
     'json-to-zod-schema': 'JSON → Zod Schema',
     'json-to-graphql': 'JSON → GraphQL Schema',
@@ -1628,6 +1630,7 @@ export function buildMenuItems(l) {
         { key: '/database/sql-isolation-levels', icon: <DatabaseOutlined />, label: withNewBadge('/database/sql-isolation-levels', l['sql-isolation-levels'], l) },
         { key: '/database/csv-to-sql', icon: <DatabaseOutlined />, label: withNewBadge('/database/csv-to-sql', l['csv-to-sql'], l) },
         { key: '/database/storage-estimator', icon: <DatabaseOutlined />, label: withNewBadge('/database/storage-estimator', l['storage-estimator'], l) },
+        { key: '/database/sql-explain-visualizer', icon: <ClusterOutlined />, label: withNewBadge('/database/sql-explain-visualizer', l['sql-explain-visualizer'], l) },
       ],
     },
     {
