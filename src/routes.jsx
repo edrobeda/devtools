@@ -82,6 +82,7 @@ import SemverRangePage from './pages/SemverRangePage'
 import SlugGeneratorPage from './pages/SlugGeneratorPage'
 import PaletteGeneratorPage from './pages/PaletteGeneratorPage'
 import RippleButtonPage from './pages/RippleButtonPage'
+import MagneticButtonPage from './pages/MagneticButtonPage'
 import UseOnScreenSnippetPage from './pages/UseOnScreenSnippetPage'
 import FlexboxCheatsheetPage from './pages/FlexboxCheatsheetPage'
 import FontFaceGeneratorPage from './pages/FontFaceGeneratorPage'
@@ -643,6 +644,7 @@ const router = createBrowserRouter([
       { path: 'tools/slug-generator', element: <Navigate to="/text/slug-generator" replace /> },
       { path: 'frontend/palette-generator', element: <PaletteGeneratorPage /> },
       { path: 'styles/ripple-button', element: <RippleButtonPage /> },
+      { path: 'styles/magnetic-button', element: <MagneticButtonPage /> },
       { path: 'snippets/use-on-screen', element: <UseOnScreenSnippetPage /> },
       { path: 'references/flexbox-cheatsheet', element: <FlexboxCheatsheetPage /> },
       { path: 'tools/css-unit-converter', element: <CssUnitConverterPage /> },

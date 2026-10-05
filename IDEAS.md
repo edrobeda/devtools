@@ -231,7 +231,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] Botão com Borda Gradiente Animada — `/styles/gradient-border-button`
 - [ ] Botão neumórfico (soft UI)
 - [x] Botão com efeito ripple ao clicar — `/styles/ripple-button`
-- [ ] Botão com hover magnético (segue o cursor levemente)
+- [x] Botão com hover magnético (segue o cursor levemente) — `/styles/magnetic-button`
 - [x] Input com label flutuante (floating label) — `/styles/floating-label-input`
 - [x] Input OTP (código de verificação, um dígito por caixa) — `/styles/otp-input`
 - [ ] Input de busca com sugestões animadas
