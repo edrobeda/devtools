@@ -2,55 +2,9 @@ import React, { useMemo, useState } from 'react'
 import { Typography, Card, Input, Space, Tag, Alert, Button, Row, Col } from 'antd'
 import { BranchesOutlined, CopyOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import { parseVersion, compareSemver } from '../utils/semverRange'
 
 const { Title, Paragraph, Text } = Typography
-
-// Regex oficial de https://semver.org/#is-there-a-suggested-regular-expression-in-javascript-to-check-a-semver-string
-const SEMVER_RE = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/
-
-function parseSemver(raw) {
-  const str = (raw || '').trim()
-  const m = SEMVER_RE.exec(str)
-  if (!m) return null
-  return {
-    raw: str,
-    major: Number(m[1]),
-    minor: Number(m[2]),
-    patch: Number(m[3]),
-    prerelease: m[4] ? m[4].split('.') : [],
-    build: m[5] ? m[5].split('.') : [],
-  }
-}
-
-function compareIdentifier(a, b) {
-  const aNum = /^\d+$/.test(a)
-  const bNum = /^\d+$/.test(b)
-  if (aNum && bNum) return Number(a) - Number(b)
-  if (aNum && !bNum) return -1
-  if (!aNum && bNum) return 1
-  return a < b ? -1 : a > b ? 1 : 0
-}
-
-function comparePrerelease(a, b) {
-  if (a.length === 0 && b.length === 0) return 0
-  if (a.length === 0) return 1 // sem prerelease > com prerelease
-  if (b.length === 0) return -1
-  const len = Math.max(a.length, b.length)
-  for (let i = 0; i < len; i++) {
-    if (a[i] === undefined) return -1
-    if (b[i] === undefined) return 1
-    const c = compareIdentifier(a[i], b[i])
-    if (c !== 0) return c
-  }
-  return 0
-}
-
-function compareSemver(a, b) {
-  if (a.major !== b.major) return a.major - b.major
-  if (a.minor !== b.minor) return a.minor - b.minor
-  if (a.patch !== b.patch) return a.patch - b.patch
-  return comparePrerelease(a.prerelease, b.prerelease)
-}
 
 function bump(version, type) {
   if (type === 'major') return `${version.major + 1}.0.0`
@@ -128,9 +82,9 @@ export default function SemverComparatorPage() {
   const [b, setB] = useState('1.4.0-beta.2')
   const [base, setBase] = useState('2.3.1')
 
-  const parsedA = useMemo(() => parseSemver(a), [a])
-  const parsedB = useMemo(() => parseSemver(b), [b])
-  const parsedBase = useMemo(() => parseSemver(base), [base])
+  const parsedA = useMemo(() => parseVersion(a), [a])
+  const parsedB = useMemo(() => parseVersion(b), [b])
+  const parsedBase = useMemo(() => parseVersion(base), [base])
 
   const cmp = parsedA && parsedB ? compareSemver(parsedA, parsedB) : null
 
