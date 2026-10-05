@@ -652,6 +652,7 @@ export const LABELS = {
     'tanstack-query-cheatsheet': 'Cheat Sheet de TanStack Query (React Query)',
     'react-router-cheatsheet': 'Cheat Sheet de React Router v7',
     'powershell-cmd-cheatsheet': 'Cheat Sheet de PowerShell & CMD',
+    'magnetic-button': 'Botão com Hover Magnético',
   },
 
   en: {
@@ -1194,6 +1195,7 @@ export const LABELS = {
     'tanstack-query-cheatsheet': 'TanStack Query (React Query) Cheat Sheet',
     'react-router-cheatsheet': 'React Router v7 Cheat Sheet',
     'powershell-cmd-cheatsheet': 'PowerShell & CMD Cheat Sheet',
+    'magnetic-button': 'Magnetic Hover Button',
   },
 }
 
@@ -1391,6 +1393,7 @@ export function buildMenuItems(l) {
         { key: '/styles/spotlight-card', label: withNewBadge('/styles/spotlight-card', l['spotlight-card'], l) },
         { key: '/styles/gradient-border-button', label: l['gradient-border-button'] },
         { key: '/styles/ripple-button', label: withNewBadge('/styles/ripple-button', l['ripple-button'], l) },
+        { key: '/styles/magnetic-button', label: withNewBadge('/styles/magnetic-button', l['magnetic-button'], l) },
         { key: '/styles/floating-label-input', label: withNewBadge('/styles/floating-label-input', l['floating-label-input'], l) },
         { key: '/styles/dark-mode-toggle', label: withNewBadge('/styles/dark-mode-toggle', l['dark-mode-toggle'], l) },
         { key: '/styles/toast-notification', label: withNewBadge('/styles/toast-notification', l['toast-notification'], l) },
