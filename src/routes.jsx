@@ -519,6 +519,7 @@ import JsonPathBuilderPage from './pages/JsonPathBuilderPage'
 import JsonMergePatchPage from './pages/JsonMergePatchPage'
 
 import CssColorNamesPage from './pages/CssColorNamesPage'
+import SqlExplainVisualizerPage from './pages/SqlExplainVisualizerPage'
 import FileSignaturesPage from './pages/FileSignaturesPage'
 import TanstackQueryCheatsheetPage from './pages/TanstackQueryCheatsheetPage'
 import ReactRouterCheatsheetPage from './pages/ReactRouterCheatsheetPage'
@@ -746,6 +747,7 @@ const router = createBrowserRouter([
       { path: 'database/sql-joins', element: <SqlJoinsPage /> },
       { path: 'database/csv-to-sql', element: <CsvToSqlPage /> },
       { path: 'database/storage-estimator', element: <DatabaseStorageEstimatorPage /> },
+      { path: 'database/sql-explain-visualizer', element: <SqlExplainVisualizerPage /> },
       { path: 'network/common-ports', element: <CommonPortsPage /> },
       { path: 'network/ipv6-explorer', element: <Ipv6ExplorerPage /> },
       { path: 'network/mac-address-tool', element: <Navigate to="/network/mac-address-generator" replace /> },

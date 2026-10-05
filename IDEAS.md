@@ -136,7 +136,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 
 - [ ] SQL Runner
 - [x] SQL Formatter / Query Formatter — `/database/sql-formatter`
-- [ ] Explain Visualizer / SQL Explain Visualizer 🔥
+- [x] Explain Visualizer / SQL Explain Visualizer 🔥 — `/database/sql-explain-visualizer`
 - [ ] ER Diagram Generator
 - [x] JSON → SQL Insert — `/database/json-to-sql`
 - [ ] CSV → SQL / SQL → CSV
@@ -309,7 +309,7 @@ Itens que quase ninguém oferece — bons candidatos pra se destacar:
 - [x] "Quantos dias até sexta" (ou até qualquer data escolhida) — `/extras/days-until`
 - [x] Roleta/sorteio simples (ex.: "quem revisa esse PR") — `/extras/team-roulette`
 - [x] CSS Specificity Calculator 🔥 *(ver também em Front-end)* — `/tools/css-specificity-calculator`
-- [ ] SQL Explain Visualizer 🔥 *(ver também em Banco de Dados)*
+- [x] SQL Explain Visualizer 🔥 *(ver também em Banco de Dados)* — `/database/sql-explain-visualizer`
 - [x] Docker Compose Visualizer 🔥 *(ver também em DevOps)* — `/devops/docker-compose-visualizer`
 - [ ] API Flow Designer 🔥 *(ver também em APIs)*
 - [x] JWT Timeline 🔥 *(ver também em Código)* — `/tools/jwt-timeline`
