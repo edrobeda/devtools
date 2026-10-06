@@ -306,6 +306,7 @@ export const LABELS = {
     'pathfinding-simulator': 'Simulador de Pathfinding',
     'binary-search-visualizer': 'Visualizador de Busca Binária',
     'event-loop-visualizer': 'Visualizador do Event Loop',
+    'redis-ttl-simulator': 'Simulador de TTL do Redis',
     'bash-shortcuts': 'Atalhos de Terminal/Bash',
     'commit-message-generator': 'Gerador de Mensagem de Commit',
     'robots-txt-generator': 'Gerador de robots.txt',
@@ -853,6 +854,7 @@ export const LABELS = {
     'pathfinding-simulator': 'Pathfinding Simulator',
     'binary-search-visualizer': 'Binary Search Visualizer',
     'event-loop-visualizer': 'Event Loop Visualizer',
+    'redis-ttl-simulator': 'Redis TTL Simulator',
     'bash-shortcuts': 'Terminal/Bash Shortcuts',
     'commit-message-generator': 'Commit Message Generator',
     'robots-txt-generator': 'robots.txt Generator',
@@ -1854,6 +1856,7 @@ export function buildMenuItems(l) {
         { key: '/extras/pathfinding-simulator', icon: <NodeIndexOutlined />, label: withNewBadge('/extras/pathfinding-simulator', l['pathfinding-simulator'], l) },
         { key: '/extras/binary-search-visualizer', icon: <SearchOutlined />, label: withNewBadge('/extras/binary-search-visualizer', l['binary-search-visualizer'], l) },
         { key: '/extras/event-loop-visualizer', icon: <ThunderboltOutlined />, label: withNewBadge('/extras/event-loop-visualizer', l['event-loop-visualizer'], l) },
+        { key: '/extras/redis-ttl-simulator', icon: <ClockCircleOutlined />, label: withNewBadge('/extras/redis-ttl-simulator', l['redis-ttl-simulator'], l) },
       ],
     },
   ]

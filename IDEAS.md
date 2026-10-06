@@ -143,7 +143,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] SQL Data Generator 🔥
 - [ ] Mongo Query Builder
 - [ ] Redis Command Helper
-- [ ] Redis TTL Simulator 🔥
+- [x] Redis TTL Simulator 🔥 — `/extras/redis-ttl-simulator`
 - [x] Rate Limit Calculator 🔥 — `/database/rate-limit-calculator`
 
 ## ☁ Cloud
@@ -313,7 +313,7 @@ Itens que quase ninguém oferece — bons candidatos pra se destacar:
 - [x] Docker Compose Visualizer 🔥 *(ver também em DevOps)* — `/devops/docker-compose-visualizer`
 - [ ] API Flow Designer 🔥 *(ver também em APIs)*
 - [x] JWT Timeline 🔥 *(ver também em Código)* — `/tools/jwt-timeline`
-- [ ] Redis TTL Simulator 🔥 *(ver também em Banco de Dados)*
+- [x] Redis TTL Simulator 🔥 — `/extras/redis-ttl-simulator`
 - [ ] Rate Limit Calculator 🔥 *(ver também em Banco de Dados)*
 - [x] Password Entropy Calculator 🔥 *(ver também em Segurança)* — `/security/password-entropy-calculator`
 - [ ] HTTP Request Replay 🔥 *(ver também em APIs)*
