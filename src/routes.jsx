@@ -517,6 +517,7 @@ import GrepCommandBuilderPage from './pages/GrepCommandBuilderPage'
 import CssResetGeneratorPage from './pages/CssResetGeneratorPage'
 import CssPerformanceAnalyzerPage from './pages/CssPerformanceAnalyzerPage'
 import CssParallaxGeneratorPage from './pages/CssParallaxGeneratorPage'
+import DockerfileLayerExplorerPage from './pages/DockerfileLayerExplorerPage'
 import JsonToGraphqlPage from './pages/JsonToGraphqlPage'
 import GridBuilderPage from './pages/GridBuilderPage'
 import JsonPathBuilderPage from './pages/JsonPathBuilderPage'
@@ -963,6 +964,7 @@ const router = createBrowserRouter([
       { path: 'devops/codeowners-generator', element: <CodeownersGeneratorPage /> },
       { path: 'devops/license-generator', element: <LicenseGeneratorPage /> },
       { path: 'devops/dockerignore-generator', element: <DockerignoreGeneratorPage /> },
+      { path: 'devops/dockerfile-layer-explorer', element: <DockerfileLayerExplorerPage /> },
       { path: 'devops/prettierrc-generator', element: <PrettierrcGeneratorPage /> },
       { path: 'devops/makefile-generator', element: <MakefileGeneratorPage /> },
       { path: 'devops/tsconfig-generator', element: <TsconfigGeneratorPage /> },
