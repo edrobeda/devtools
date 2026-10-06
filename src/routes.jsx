@@ -502,6 +502,7 @@ import XPathTesterPage from './pages/XPathTesterPage'
 import SearchReplacePage from './pages/SearchReplacePage'
 import IdnPunycodeConverterPage from './pages/IdnPunycodeConverterPage'
 import HexDumpPage from './pages/HexDumpPage'
+import SvgPathVisualizerPage from './pages/SvgPathVisualizerPage'
 import ProtobufDecoderPage from './pages/ProtobufDecoderPage'
 import CvssCalculatorPage from './pages/CvssCalculatorPage'
 import LuaCheatsheetPage from './pages/LuaCheatsheetPage'
@@ -773,6 +774,7 @@ const router = createBrowserRouter([
       { path: 'network/shannon-capacity-calculator', element: <ShannonCapacityCalculatorPage /> },
       { path: 'network/idn-punycode-converter', element: <IdnPunycodeConverterPage /> },
       { path: 'tools/hex-dump', element: <HexDumpPage /> },
+      { path: 'tools/svg-path-visualizer', element: <SvgPathVisualizerPage /> },
       { path: 'tools/intl-playground', element: <IntlPlaygroundPage /> },
       { path: 'tools/json-repair', element: <JsonRepairPage /> },
       { path: 'references/lua-cheatsheet', element: <LuaCheatsheetPage /> },
