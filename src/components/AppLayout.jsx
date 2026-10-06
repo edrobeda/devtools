@@ -49,6 +49,7 @@ import {
   TagOutlined,
   ClusterOutlined,
   TeamOutlined,
+  UnorderedListOutlined,
   PictureOutlined,
   ContainerOutlined,
   LineChartOutlined,
@@ -657,8 +658,9 @@ export const LABELS = {
     'react-router-cheatsheet': 'Cheat Sheet de React Router v7',
     'powershell-cmd-cheatsheet': 'Cheat Sheet de PowerShell & CMD',
     'magnetic-button': 'Botão com Hover Magnético',
-'meeting-time-picker': 'Seletor de Horário de Reunião (Multi-Fuso)',
+    'meeting-time-picker': 'Seletor de Horário de Reunião (Multi-Fuso)',
     'heatmap-generator': 'Gerador de Heatmap de Calendário',
+    'markdown-toc-generator': 'Gerador de TOC Markdown',
   },
   en: {
     home: 'Home',
@@ -1207,6 +1209,7 @@ export const LABELS = {
     'magnetic-button': 'Magnetic Hover Button',
     'meeting-time-picker': 'Meeting Time Picker (Multi-Timezone)',
     'heatmap-generator': 'Calendar Heatmap Generator',
+    'markdown-toc-generator': 'Markdown TOC Generator',
   },
 }
 
@@ -1397,6 +1400,7 @@ export function buildMenuItems(l) {
         { key: '/tools/html-playground', icon: <PlayCircleOutlined />, label: withNewBadge('/tools/html-playground', l['html-playground'], l) },
         { key: '/tools/meeting-time-picker', icon: <GlobalOutlined />, label: withNewBadge('/tools/meeting-time-picker', l['meeting-time-picker'], l) },
         { key: '/tools/heatmap-generator', icon: <CalendarOutlined />, label: withNewBadge('/tools/heatmap-generator', l['heatmap-generator'], l) },
+        { key: '/tools/markdown-toc-generator', icon: <UnorderedListOutlined />, label: withNewBadge('/tools/markdown-toc-generator', l['markdown-toc-generator'], l) },
       ],
     },
     {
