@@ -523,6 +523,7 @@ import JsonPathBuilderPage from './pages/JsonPathBuilderPage'
 import JsonMergePatchPage from './pages/JsonMergePatchPage'
 import MeetingTimePickerPage from './pages/MeetingTimePickerPage'
 import HeatmapGeneratorPage from './pages/HeatmapGeneratorPage'
+import MarkdownTocGeneratorPage from './pages/MarkdownTocGeneratorPage'
 
 import CssColorNamesPage from './pages/CssColorNamesPage'
 import SqlExplainVisualizerPage from './pages/SqlExplainVisualizerPage'
@@ -675,6 +676,7 @@ const router = createBrowserRouter([
       { path: 'data/json-merge-patch', element: <JsonMergePatchPage /> },
       { path: 'tools/meeting-time-picker', element: <MeetingTimePickerPage /> },
       { path: 'tools/heatmap-generator', element: <HeatmapGeneratorPage /> },
+      { path: 'tools/markdown-toc-generator', element: <MarkdownTocGeneratorPage /> },
       { path: 'styles/dark-mode-toggle', element: <DarkModeTogglePage /> },
       { path: 'snippets/use-throttle', element: <UseThrottleSnippetPage /> },
       { path: 'references/vscode-shortcuts', element: <VscodeShortcutsPage /> },
