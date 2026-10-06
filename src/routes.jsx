@@ -365,6 +365,7 @@ import UseCountUpSnippetPage from './pages/UseCountUpSnippetPage'
 import UseScriptSnippetPage from './pages/UseScriptSnippetPage'
 import UseBatterySnippetPage from './pages/UseBatterySnippetPage'
 import UseGeolocationSnippetPage from './pages/UseGeolocationSnippetPage'
+import UseDraggableSnippetPage from './pages/UseDraggableSnippetPage'
 import UseMapSnippetPage from './pages/UseMapSnippetPage'
 import UseStateWithHistorySnippetPage from './pages/UseStateWithHistorySnippetPage'
 import UseIdleSnippetPage from './pages/UseIdleSnippetPage'
@@ -1069,6 +1070,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-script', element: <UseScriptSnippetPage /> },
       { path: 'snippets/use-battery', element: <UseBatterySnippetPage /> },
       { path: 'snippets/use-geolocation', element: <UseGeolocationSnippetPage /> },
+      { path: 'snippets/use-draggable', element: <UseDraggableSnippetPage /> },
       { path: 'snippets/use-map', element: <UseMapSnippetPage /> },
       { path: 'snippets/use-state-with-history', element: <UseStateWithHistorySnippetPage /> },
       { path: 'snippets/use-idle', element: <UseIdleSnippetPage /> },
