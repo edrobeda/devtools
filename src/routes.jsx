@@ -532,6 +532,7 @@ import ReactRouterCheatsheetPage from './pages/ReactRouterCheatsheetPage'
 import SvgToJsxConverterPage from './pages/SvgToJsxConverterPage'
 import WindowsPowershellCheatsheetPage from './pages/WindowsPowershellCheatsheetPage'
 import TarCompressionCheatsheetPage from './pages/TarCompressionCheatsheetPage'
+import RedisTtlSimulatorPage from './pages/RedisTtlSimulatorPage'
 
 const router = createBrowserRouter([
   {
@@ -1127,6 +1128,7 @@ const router = createBrowserRouter([
       { path: 'references/file-signatures', element: <FileSignaturesPage /> },
       { path: 'references/powershell-cmd-cheatsheet', element: <WindowsPowershellCheatsheetPage /> },
       { path: 'references/tar-compression-cheatsheet', element: <TarCompressionCheatsheetPage /> },
+      { path: 'extras/redis-ttl-simulator', element: <RedisTtlSimulatorPage /> },
       { path: 'tools/protobuf-decoder', element: <ProtobufDecoderPage /> },
       { path: 'security/cvss-calculator', element: <CvssCalculatorPage /> },
       { path: '*', element: <NotFoundPage /> },
