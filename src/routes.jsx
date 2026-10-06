@@ -520,6 +520,7 @@ import JsonToGraphqlPage from './pages/JsonToGraphqlPage'
 import GridBuilderPage from './pages/GridBuilderPage'
 import JsonPathBuilderPage from './pages/JsonPathBuilderPage'
 import JsonMergePatchPage from './pages/JsonMergePatchPage'
+import MeetingTimePickerPage from './pages/MeetingTimePickerPage'
 
 import CssColorNamesPage from './pages/CssColorNamesPage'
 import SqlExplainVisualizerPage from './pages/SqlExplainVisualizerPage'
@@ -669,6 +670,7 @@ const router = createBrowserRouter([
       { path: 'data/json-patch', element: <JsonPatchPage /> },
       { path: 'tools/image-exif-viewer', element: <ImageExifViewerPage /> },
       { path: 'data/json-merge-patch', element: <JsonMergePatchPage /> },
+      { path: 'tools/meeting-time-picker', element: <MeetingTimePickerPage /> },
       { path: 'styles/dark-mode-toggle', element: <DarkModeTogglePage /> },
       { path: 'snippets/use-throttle', element: <UseThrottleSnippetPage /> },
       { path: 'references/vscode-shortcuts', element: <VscodeShortcutsPage /> },

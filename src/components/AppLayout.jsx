@@ -655,6 +655,7 @@ export const LABELS = {
     'react-router-cheatsheet': 'Cheat Sheet de React Router v7',
     'powershell-cmd-cheatsheet': 'Cheat Sheet de PowerShell & CMD',
     'magnetic-button': 'Botão com Hover Magnético',
+    'meeting-time-picker': 'Seletor de Horário de Reunião (Multi-Fuso)',
   },
 
   en: {
@@ -1200,6 +1201,7 @@ export const LABELS = {
     'react-router-cheatsheet': 'React Router v7 Cheat Sheet',
     'powershell-cmd-cheatsheet': 'PowerShell & CMD Cheat Sheet',
     'magnetic-button': 'Magnetic Hover Button',
+    'meeting-time-picker': 'Meeting Time Picker (Multi-Timezone)',
   },
 }
 
@@ -1387,6 +1389,7 @@ export function buildMenuItems(l) {
         { key: '/tools/grep-command-builder', icon: <SearchOutlined />, label: withNewBadge('/tools/grep-command-builder', l['grep-command-builder'], l) },
         { key: '/tools/css-performance-analyzer', icon: <ThunderboltOutlined />, label: withNewBadge('/tools/css-performance-analyzer', l['css-performance-analyzer'], l) },
         { key: '/tools/html-playground', icon: <PlayCircleOutlined />, label: withNewBadge('/tools/html-playground', l['html-playground'], l) },
+        { key: '/tools/meeting-time-picker', icon: <GlobalOutlined />, label: withNewBadge('/tools/meeting-time-picker', l['meeting-time-picker'], l) },
       ],
     },
     {
