@@ -536,6 +536,7 @@ import SvgToJsxConverterPage from './pages/SvgToJsxConverterPage'
 import WindowsPowershellCheatsheetPage from './pages/WindowsPowershellCheatsheetPage'
 import TarCompressionCheatsheetPage from './pages/TarCompressionCheatsheetPage'
 import RedisTtlSimulatorPage from './pages/RedisTtlSimulatorPage'
+import ErDiagramVisualizerPage from './pages/ErDiagramVisualizerPage'
 
 const router = createBrowserRouter([
   {
@@ -763,6 +764,7 @@ const router = createBrowserRouter([
       { path: 'database/csv-to-sql', element: <CsvToSqlPage /> },
       { path: 'database/storage-estimator', element: <DatabaseStorageEstimatorPage /> },
       { path: 'database/sql-explain-visualizer', element: <SqlExplainVisualizerPage /> },
+      { path: 'database/er-diagram-visualizer', element: <ErDiagramVisualizerPage /> },
       { path: 'network/common-ports', element: <CommonPortsPage /> },
       { path: 'network/ipv6-explorer', element: <Ipv6ExplorerPage /> },
       { path: 'network/mac-address-tool', element: <Navigate to="/network/mac-address-generator" replace /> },

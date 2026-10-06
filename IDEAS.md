@@ -137,7 +137,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] SQL Runner
 - [x] SQL Formatter / Query Formatter — `/database/sql-formatter`
 - [x] Explain Visualizer / SQL Explain Visualizer 🔥 — `/database/sql-explain-visualizer`
-- [ ] ER Diagram Generator
+- [x] ER Diagram Generator — `/database/er-diagram-visualizer`
 - [x] JSON → SQL Insert — `/database/json-to-sql`
 - [ ] CSV → SQL / SQL → CSV
 - [ ] SQL Data Generator 🔥
