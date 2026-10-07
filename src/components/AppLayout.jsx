@@ -320,6 +320,7 @@ export const LABELS = {
     'typewriter-effect': 'Efeito de Máquina de Escrever',
     'lru-cache': 'LRU Cache',
     'csp-generator': 'Gerador de CSP',
+    'csp-validator': 'Validador de CSP',
     'security-headers-generator': 'Gerador de Cabeçalhos de Segurança',
     'security-txt-generator': 'Gerador de security.txt',
     'webhook-signature-validator': 'Validador de Assinatura de Webhook',
@@ -873,6 +874,7 @@ export const LABELS = {
     'typewriter-effect': 'Typewriter Effect',
     'lru-cache': 'LRU Cache',
     'csp-generator': 'CSP Generator',
+    'csp-validator': 'CSP Validator',
     'security-headers-generator': 'Security Headers Generator',
     'security-txt-generator': 'security.txt Generator',
     'webhook-signature-validator': 'Webhook Signature Validator',
@@ -1686,6 +1688,7 @@ export function buildMenuItems(l) {
       children: [
         { key: '/security/password-strength', icon: <SafetyCertificateOutlined />, label: l['password-strength'] },
         { key: '/security/csp-generator', label: withNewBadge('/security/csp-generator', l['csp-generator'], l) },
+        { key: '/security/csp-validator', label: withNewBadge('/security/csp-validator', l['csp-validator'], l) },
         { key: '/security/security-headers-generator', label: withNewBadge('/security/security-headers-generator', l['security-headers-generator'], l) },
         { key: '/security/security-txt-generator', icon: <SafetyOutlined />, label: withNewBadge('/security/security-txt-generator', l['security-txt-generator'], l) },
         { key: '/security/webhook-signature-validator', icon: <SafetyOutlined />, label: withNewBadge('/security/webhook-signature-validator', l['webhook-signature-validator'], l) },
