@@ -375,6 +375,7 @@ import UseHotkeysSnippetPage from './pages/UseHotkeysSnippetPage'
 import UseSpeechSynthesisSnippetPage from './pages/UseSpeechSynthesisSnippetPage'
 import UsePaginationSnippetPage from './pages/UsePaginationSnippetPage'
 import UseControllableStateSnippetPage from './pages/UseControllableStateSnippetPage'
+import UseVirtualListSnippetPage from './pages/UseVirtualListSnippetPage'
 import GeoCoordinatesConverterPage from './pages/GeoCoordinatesConverterPage'
 import HaversineDistanceCalculatorPage from './pages/HaversineDistanceCalculatorPage'
 import LevenshteinCalculatorPage from './pages/LevenshteinCalculatorPage'
@@ -1082,6 +1083,7 @@ const router = createBrowserRouter([
       { path: 'snippets/use-speech-synthesis', element: <UseSpeechSynthesisSnippetPage /> },
       { path: 'snippets/use-pagination', element: <UsePaginationSnippetPage /> },
       { path: 'snippets/use-controllable-state', element: <UseControllableStateSnippetPage /> },
+      { path: 'snippets/use-virtual-list', element: <UseVirtualListSnippetPage /> },
       { path: 'references/aws-cli-cheatsheet', element: <AwsCliCheatsheetPage /> },
       { path: 'references/terraform-cheatsheet', element: <TerraformCheatsheetPage /> },
       { path: 'references/nodejs-cheatsheet', element: <NodejsCheatsheetPage /> },
