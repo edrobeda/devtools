@@ -157,7 +157,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 ## 🔒 Segurança
 
 - [ ] CORS Tester
-- [x] CSP Generator / CSP Validator — `/security/csp-generator` (só o gerador; validar uma CSP colada continua em aberto)
+- [x] CSP Generator / CSP Validator — `/security/csp-generator` (gerador) + `/security/csp-validator` (validador de CSP colada)
 - [ ] SSL Checker
 - [ ] Certificate Decoder
 - [ ] CSR Generator

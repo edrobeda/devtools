@@ -125,6 +125,7 @@ import JwtTimelinePage from './pages/JwtTimelinePage'
 import TypewriterEffectPage from './pages/TypewriterEffectPage'
 import LruCachePage from './pages/LruCachePage'
 import CspGeneratorPage from './pages/CspGeneratorPage'
+import CspValidatorPage from './pages/CspValidatorPage'
 import SecurityHeadersGeneratorPage from './pages/SecurityHeadersGeneratorPage'
 import SecurityTxtGeneratorPage from './pages/SecurityTxtGeneratorPage'
 import WebhookSignatureValidatorPage from './pages/WebhookSignatureValidatorPage'
@@ -706,6 +707,7 @@ const router = createBrowserRouter([
       { path: 'styles/typewriter-effect', element: <TypewriterEffectPage /> },
       { path: 'snippets/lru-cache', element: <LruCachePage /> },
       { path: 'security/csp-generator', element: <CspGeneratorPage /> },
+      { path: 'security/csp-validator', element: <CspValidatorPage /> },
       { path: 'security/security-headers-generator', element: <SecurityHeadersGeneratorPage /> },
       { path: 'security/sri-hash-generator', element: <Navigate to="/tools/hash-generator" replace /> },
       { path: 'security/security-txt-generator', element: <SecurityTxtGeneratorPage /> },
