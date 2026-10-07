@@ -539,6 +539,7 @@ import WindowsPowershellCheatsheetPage from './pages/WindowsPowershellCheatsheet
 import TarCompressionCheatsheetPage from './pages/TarCompressionCheatsheetPage'
 import RedisTtlSimulatorPage from './pages/RedisTtlSimulatorPage'
 import ErDiagramVisualizerPage from './pages/ErDiagramVisualizerPage'
+import ZipInspectorPage from './pages/ZipInspectorPage'
 
 const router = createBrowserRouter([
   {
@@ -1143,6 +1144,7 @@ const router = createBrowserRouter([
       { path: 'extras/redis-ttl-simulator', element: <RedisTtlSimulatorPage /> },
       { path: 'tools/protobuf-decoder', element: <ProtobufDecoderPage /> },
       { path: 'security/cvss-calculator', element: <CvssCalculatorPage /> },
+      { path: 'tools/zip-inspector', element: <ZipInspectorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
