@@ -175,7 +175,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] Image Metadata (EXIF)
 - [x] QR Code Generator (incl. QR pra Wi-Fi)
 - [ ] Gerador/leitor de código de barras
-- [ ] ZIP Preview
+- [x] ZIP Preview — `/tools/zip-inspector`
 - [x] JSON Viewer / Tree Viewer — `/data/json-tree-viewer`
 - [ ] XML Tree / YAML Tree
 
