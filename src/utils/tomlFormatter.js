@@ -384,6 +384,203 @@ function parseDoc(tokens) {
   return { ok: true, stmts }
 }
 
+// ─── Parser para objeto JS ─────────────────────────────────────
+// Converte a AST de statements num objeto JS equivalente. Usado pelo
+// conversor de arquivos de configuração (configConverter.js), que assim
+// reusa este parser em vez de manter uma cópia própria.
+
+function isPlainObject(v) {
+  return v !== null && typeof v === 'object' && !Array.isArray(v)
+}
+
+function unescapeBasicString(raw) {
+  let out = ''
+  for (let i = 0; i < raw.length; i++) {
+    const c = raw[i]
+    if (c !== '\\') {
+      out += c
+      continue
+    }
+    const n = raw[i + 1]
+    i++
+    switch (n) {
+      case 'b': out += '\b'; break
+      case 't': out += '\t'; break
+      case 'n': out += '\n'; break
+      case 'f': out += '\f'; break
+      case 'r': out += '\r'; break
+      case '"': out += '"'; break
+      case '\\': out += '\\'; break
+      case 'u': out += String.fromCodePoint(parseInt(raw.slice(i + 1, i + 5), 16)); i += 4; break
+      case 'U': out += String.fromCodePoint(parseInt(raw.slice(i + 1, i + 9), 16)); i += 8; break
+      default:
+        if (n === '\n' || n === '\r' || n === ' ' || n === '\t') {
+          while (i + 1 < raw.length && /[\n\r \t]/.test(raw[i + 1])) i++
+        } else {
+          out += n
+        }
+    }
+  }
+  return out
+}
+
+function decodeTomlString(text) {
+  if (text.startsWith('"""')) {
+    let body = text.slice(3, -3)
+    if (body.startsWith('\r\n')) body = body.slice(2)
+    else if (body.startsWith('\n')) body = body.slice(1)
+    return unescapeBasicString(body)
+  }
+  if (text.startsWith("'''")) {
+    let body = text.slice(3, -3)
+    if (body.startsWith('\r\n')) body = body.slice(2)
+    else if (body.startsWith('\n')) body = body.slice(1)
+    return body
+  }
+  if (text.startsWith('"')) return unescapeBasicString(text.slice(1, -1))
+  if (text.startsWith("'")) return text.slice(1, -1)
+  return text
+}
+
+function decodeTomlScalar(text) {
+  if (text === 'true') return true
+  if (text === 'false') return false
+  if (DEC_INT.test(text)) return Number(text.replace(/_/g, ''))
+  if (HEX_INT.test(text)) return parseInt(text.replace(/_/g, '').slice(2), 16)
+  if (OCT_INT.test(text)) return parseInt(text.replace(/_/g, '').slice(2), 8)
+  if (BIN_INT.test(text)) return parseInt(text.replace(/_/g, '').slice(2), 2)
+  if (FLOAT_RE.test(text)) {
+    const clean = text.replace(/_/g, '')
+    if (clean === 'inf' || clean === '+inf') return Infinity
+    if (clean === '-inf') return -Infinity
+    if (clean === 'nan' || clean === '+nan' || clean === '-nan') return NaN
+    return Number(clean)
+  }
+  // datas e horas permanecem como string
+  return text
+}
+
+function splitKeyPath(key) {
+  const parts = []
+  let cur = ''
+  let inQuotes = false
+  let quote = ''
+  for (let i = 0; i < key.length; i++) {
+    const c = key[i]
+    if (inQuotes) {
+      cur += c
+      if (c === quote && key[i - 1] !== '\\') inQuotes = false
+    } else if (c === '"' || c === "'") {
+      inQuotes = true
+      quote = c
+      cur += c
+    } else if (c === '.') {
+      parts.push(cur)
+      cur = ''
+    } else {
+      cur += c
+    }
+  }
+  parts.push(cur)
+  return parts
+    .filter((p) => p !== '')
+    .map((p) => (p.startsWith('"') || p.startsWith("'") ? decodeTomlString(p) : p))
+}
+
+function setTomlPath(root, path, value) {
+  let cur = root
+  for (let i = 0; i < path.length - 1; i++) {
+    const k = path[i]
+    if (!isPlainObject(cur[k])) cur[k] = {}
+    cur = cur[k]
+  }
+  const last = path[path.length - 1]
+  if (last in cur && !Array.isArray(cur[last]) && !isPlainObject(cur[last])) {
+    cur[last] = [cur[last], value]
+  } else if (Array.isArray(cur[last])) {
+    cur[last].push(value)
+  } else {
+    cur[last] = value
+  }
+}
+
+function createTable(root, path) {
+  let cur = root
+  for (const k of path) {
+    const next = cur[k]
+    if (Array.isArray(next)) {
+      if (next.length === 0) next.push({})
+      cur = next[next.length - 1]
+    } else if (isPlainObject(next)) {
+      cur = next
+    } else {
+      cur[k] = {}
+      cur = cur[k]
+    }
+  }
+  return cur
+}
+
+function createArrayTable(root, path) {
+  let cur = root
+  for (let i = 0; i < path.length - 1; i++) {
+    const k = path[i]
+    const next = cur[k]
+    if (Array.isArray(next)) cur = next[next.length - 1]
+    else if (isPlainObject(next)) cur = next
+    else {
+      cur[k] = {}
+      cur = cur[k]
+    }
+  }
+  const last = path[path.length - 1]
+  if (!Array.isArray(cur[last])) cur[last] = []
+  const item = {}
+  cur[last].push(item)
+  return item
+}
+
+function tomlValueToJs(v) {
+  if (!v) return null
+  if (v.type === 'str') return decodeTomlString(v.text)
+  if (v.type === 'scalar') return decodeTomlScalar(v.text)
+  if (v.type === 'array') return v.items.map(tomlValueToJs)
+  if (v.type === 'inline') {
+    const obj = {}
+    for (const e of v.entries) setTomlPath(obj, splitKeyPath(e.key), tomlValueToJs(e.value))
+    return obj
+  }
+  return null
+}
+
+function partsToPath(parts) {
+  const out = []
+  for (const p of parts) {
+    if (p.type === 'str') out.push(decodeTomlString(p.text))
+    else for (const seg of p.text.split('.')) if (seg !== '') out.push(seg)
+  }
+  return out
+}
+
+export function parseToml(input) {
+  const { tokens, errorKey, line, col } = tokenizeToml(String(input))
+  if (errorKey) return { ok: false, error: errorKey, line, col }
+  const doc = parseDoc(tokens)
+  if (!doc.ok) return { ok: false, error: doc.error, line: doc.line, col: doc.col }
+  const root = {}
+  let currentTable = root
+  for (const stmt of doc.stmts) {
+    if (!stmt) continue
+    if (stmt.type === 'table') {
+      const path = partsToPath(stmt.parts)
+      currentTable = stmt.isArray ? createArrayTable(root, path) : createTable(root, path)
+    } else if (stmt.type === 'assign') {
+      setTomlPath(currentTable, splitKeyPath(stmt.key), tomlValueToJs(stmt.value))
+    }
+  }
+  return { ok: true, value: root }
+}
+
 // ─── Re-emissão ─────────────────────────────────────────────────
 
 let INDENT_UNIT = '  '
