@@ -605,7 +605,6 @@ const router = createBrowserRouter([
       { path: 'tools/uuid-generator', element: <UuidGeneratorPage /> },
       { path: 'tools/uuid-v7-tool', element: <UuidV7ToolPage /> },
       { path: 'tools/snowflake-id-tool', element: <SnowflakeIdToolPage /> },
-      { path: 'tools/ulid-tool', element: <Navigate to="/tools/uuid-v7-tool" replace /> },
       { path: 'tools/case-converter', element: <Navigate to="/text/case-converter" replace /> },
       { path: 'tools/password-generator', element: <PasswordGeneratorPage /> },
       { path: 'tools/url-encoder', element: <Navigate to="/tools/string-escape" replace /> },
