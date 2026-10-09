@@ -1,5 +1,20 @@
 // Regex Railroad Diagram Generator
 // Converts a JavaScript regex pattern to an SVG railroad (syntax) diagram
+//
+// Por que este arquivo tem um parseRegex próprio, separado do
+// src/utils/regexExplainer.js? Porque as duas páginas querem coisas
+// diferentes do MESMO dialeto ECMAScript:
+//   - o explainer devolve tokens no vocabulário { type, text, depth, data }
+//     (com os agrupamentos que ele precisa pra montar o resumo em linguagem
+//     natural) e complementa com findMatches/tryCompile;
+//   - aqui o parser devolve TOKEN_TYPES + raw/desc (o vocabulário que o
+//     renderer SVG consome) e é complementado por buildRailroadAst/
+//     generateRailroadSvg/validateRegex.
+// Os dois varrem as mesmas construções, mas com coberturas e formatos de
+// saída diferentes (por exemplo, aqui \p{...} e backreferences não têm token
+// próprio). Unificá-los arriscaria mudar o diagrama, então cada página mantém
+// o seu parser e só o que é genuinamente igual (flags, valores iniciais e a
+// renderização de matches) é compartilhado via src/utils/regexShared.js.
 
 // Token types for the railroad diagram
 const TOKEN_TYPES = {

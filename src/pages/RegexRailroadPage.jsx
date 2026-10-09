@@ -1,14 +1,15 @@
-import React, { useMemo, useState, useRef, useEffect } from 'react'
-import { Typography, Card, Space, Input, Button, Checkbox, Select, Alert, Collapse, Tag, Row, Col, message, Tabs, Tooltip } from 'antd'
-import { CodeOutlined, CopyOutlined, SafetyOutlined, ReadOutlined, DownloadOutlined, ReloadOutlined } from '@ant-design/icons'
+import React, { useMemo, useState, useRef } from 'react'
+import { Typography, Card, Space, Input, Button, Alert, Tag, message, Tabs } from 'antd'
+import { CopyOutlined, SafetyOutlined, DownloadOutlined, ReloadOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import { parseRegex, generateRailroadSvg, validateRegex, RAILROAD_PRESETS } from '../utils/regexRailroad'
+import { findMatches } from '../utils/regexExplainer'
+import { DEFAULT_REGEX_PATTERN, DEFAULT_REGEX_FLAGS, DEFAULT_REGEX_TEST_TEXT } from '../utils/regexShared'
+import RegexPatternBar from '../components/RegexPatternBar'
+import RegexHighlightedMatches from '../components/RegexHighlightedMatches'
 
 const { Title, Paragraph, Text } = Typography
-const { Panel } = Collapse
 const { TabPane } = Tabs
-
-const FLAG_OPTIONS = ['g', 'i', 'm', 's', 'u', 'y']
 
 const SOURCE_SNIPPET = `// Simplified railroad diagram generator
 // parseRegex: tokenizes regex into structured parts
@@ -55,7 +56,7 @@ const translations = {
     howTitle: 'Como funciona',
     howBody: (
       <>
-        O motor tokeniza a regex (mesmo parser do <Text strong>Regex Explainer</Text>)
+        O motor tokeniza a regex com um parser próprio do dialeto ECMAScript
         e constrói uma AST simplificada. O renderer SVG desenha:
         <br/>
         <Text strong>Retângulos arredondados</Text> = terminais (literais, classes, shorthands, âncoras, ponto)
@@ -74,7 +75,7 @@ const translations = {
       </>
     ),
     sourceTitle: 'Código-fonte',
-    sourceBody: 'Motor em src/utils/regexRailroad.js: parseRegex (tokenização), buildRailroadAst (AST), generateRailroadSvg (render SVG). Reutiliza a mesma lógica de parsing do Regex Explainer.',
+    sourceBody: 'Motor em src/utils/regexRailroad.js: parseRegex (tokenização própria do dialeto ECMAScript), buildRailroadAst (AST), generateRailroadSvg (render SVG). Este diagrama tem parser próprio, independente do Regex Explainer — as duas páginas só compartilham constantes e helpers genéricos (src/utils/regexShared.js).',
     tipTitle: 'Dica',
     tipBody: (
       <>
@@ -116,51 +117,6 @@ const translations = {
       escape: 'Escape',
       error: 'Erro',
     },
-    summaryLit: (s) => `literal "${s}"`,
-    summaryDot: 'qualquer caractere',
-    summarySh: (name) => ({
-      '\\d': 'um dígito',
-      '\\D': 'um não-dígito',
-      '\\w': 'um caractere de palavra',
-      '\\W': 'um caractere não-de-palavra',
-      '\\s': 'um espaço em branco',
-      '\\S': 'um caractere que não é espaço',
-    })[name],
-    summaryClass: (negated, members) =>
-      negated ? `um caractere fora de [${members}]` : `um caractere de [${members}]`,
-    summaryAnchor: (kind, m) => {
-      if (kind === 'start') return m ? 'início da string ou linha' : 'início da string'
-      if (kind === 'end') return m ? 'fim da string ou linha' : 'fim da string'
-      if (kind === 'word') return 'fronteira de palavra'
-      return 'não-fronteira de palavra'
-    },
-    summaryGroup: (kind, name) => {
-      if (kind === 'capturing') return 'grupo de captura'
-      if (kind === 'named') return `grupo nomeado "${name}"`
-      if (kind === 'noncapturing') return 'grupo não capturante'
-      if (kind === 'lookahead') return 'lookahead positivo'
-      if (kind === 'negLookahead') return 'lookahead negativo'
-      if (kind === 'lookbehind') return 'lookbehind positivo'
-      if (kind === 'negLookbehind') return 'lookbehind negativo'
-      return 'comentário'
-    },
-    summaryQuant: (q) => {
-      const { min, max, lazy, possessive } = q.data
-      let s
-      if (min === 0 && max === Infinity) s = '0+ vezes'
-      else if (min === 1 && max === Infinity) s = '1+ vezes'
-      else if (min === 0 && max === 1) s = 'opcional'
-      else if (max === min) s = `${min} vezes`
-      else if (max === Infinity) s = `${min}+ vezes`
-      else s = `${min} a ${max} vezes`
-      if (lazy) s += ' (mínimo)'
-      if (possessive) s += ' (sem backtracking)'
-      return s
-    },
-    summaryAlt: 'OU',
-    summaryBackref: (label) => `repetição do que o ${label} capturou`,
-    summaryUnicode: (name, negated) => (negated ? `não-${name}` : name),
-    summarySep: ', ',
   },
   en: {
     title: 'Regex Railroad Diagram',
@@ -192,7 +148,7 @@ const translations = {
     howTitle: 'How it works',
     howBody: (
       <>
-        The engine tokenizes the regex (same parser as <Text strong>Regex Explainer</Text>)
+        The engine tokenizes the regex with its own ECMAScript parser
         and builds a simplified AST. The SVG renderer draws:
         <br/>
         <Text strong>Rounded rectangles</Text> = terminals (literals, classes, shorthands, anchors, dot)
@@ -211,7 +167,7 @@ const translations = {
       </>
     ),
     sourceTitle: 'Source code',
-    sourceBody: 'Engine in src/utils/regexRailroad.js: parseRegex (tokenization), buildRailroadAst (AST), generateRailroadSvg (SVG render). Reuses the same parsing logic as Regex Explainer.',
+    sourceBody: 'Engine in src/utils/regexRailroad.js: parseRegex (its own ECMAScript tokenizer), buildRailroadAst (AST), generateRailroadSvg (SVG render). This diagram has its own parser, independent from Regex Explainer — the two pages only share constants and generic helpers (src/utils/regexShared.js).',
     tipTitle: 'Tip',
     tipBody: (
       <>
@@ -253,51 +209,6 @@ const translations = {
       escape: 'Escape',
       error: 'Error',
     },
-    summaryLit: (s) => `literal "${s}"`,
-    summaryDot: 'any character',
-    summarySh: (name) => ({
-      '\\d': 'a digit',
-      '\\D': 'a non-digit',
-      '\\w': 'a word character',
-      '\\W': 'a non-word character',
-      '\\s': 'a whitespace',
-      '\\S': 'a non-whitespace character',
-    })[name],
-    summaryClass: (negated, members) =>
-      negated ? `a character outside [${members}]` : `a character from [${members}]`,
-    summaryAnchor: (kind, m) => {
-      if (kind === 'start') return m ? 'start of string or line' : 'start of string'
-      if (kind === 'end') return m ? 'end of string or line' : 'end of string'
-      if (kind === 'word') return 'word boundary'
-      return 'non-word boundary'
-    },
-    summaryGroup: (kind, name) => {
-      if (kind === 'capturing') return 'capturing group'
-      if (kind === 'named') return `named group "${name}"`
-      if (kind === 'noncapturing') return 'non-capturing group'
-      if (kind === 'lookahead') return 'positive lookahead'
-      if (kind === 'negLookahead') return 'negative lookahead'
-      if (kind === 'lookbehind') return 'positive lookbehind'
-      if (kind === 'negLookbehind') return 'negative lookbehind'
-      return 'comment'
-    },
-    summaryQuant: (q) => {
-      const { min, max, lazy, possessive } = q.data
-      let s
-      if (min === 0 && max === Infinity) s = '0+ times'
-      else if (min === 1 && max === Infinity) s = '1+ times'
-      else if (min === 0 && max === 1) s = 'optional'
-      else if (max === min) s = `${min} times`
-      else if (max === Infinity) s = `${min}+ times`
-      else s = `${min} to ${max} times`
-      if (lazy) s += ' (minimum)'
-      if (possessive) s += ' (no backtracking)'
-      return s
-    },
-    summaryAlt: 'OR',
-    summaryBackref: (label) => `repeat of what ${label} captured`,
-    summaryUnicode: (name, negated) => (negated ? `non-${name}` : name),
-    summarySep: ', ',
   },
 }
 
@@ -312,70 +223,13 @@ const LEGEND_ITEMS = [
   { key: 'end', color: '#ff4d4f', bg: '#fff1f0' },
 ]
 
-function classMembers(data) {
-  const out = []
-  for (const [a, b] of data.ranges) out.push(a === b ? a : `${a}–${b}`)
-  for (const s of data.singles) out.push(s)
-  return out
-}
-
-function describePart(p, t, flags, groupNum) {
-  const d = p.data || {}
-  switch (p.type) {
-    case 'literal':
-      return d.escaped ? t.litEscaped(p.text) : t.lit(p.text)
-    case 'dot':
-      return flags.includes('s') ? t.dotAll : t.dot
-    case 'shorthand':
-      return t.sh(d.name)
-    case 'escape':
-      if (d.name === '\\xHH') return t.escHex(d.value)
-      if (d.name === '\\uHHHH') return t.escUni4(d.value)
-      if (d.name === '\\u{...}') return t.escUniBrace(d.value)
-      if (d.name === '\\cX') return t.escCtrl
-      return t.escName[d.name] || t.error
-    case 'unicodeProp': {
-      const neg = d.negated ? t.unicodePropNeg(d.name) : t.unicodeProp(d.name)
-      return neg + (flags.includes('u') ? '' : ' · requer flag u')
-    }
-    case 'group':
-      if (d.kind === 'capturing') return t.groupCap(groupNum)
-      if (d.kind === 'named') return t.groupNamed(d.name)
-      if (d.kind === 'noncapturing') return t.groupNoncap
-      if (d.kind === 'lookahead') return t.groupLookahead
-      if (d.kind === 'negLookahead') return t.groupNegLookahead
-      if (d.kind === 'lookbehind') return t.groupLookbehind
-      if (d.kind === 'negLookbehind') return t.groupNegLookbehind
-      if (d.kind === 'comment') return t.groupComment
-      return t.groupUnknown
-    case 'groupEnd':
-      return t.groupEnd
-    case 'quantifier':
-      return t.quant(p)
-    case 'anchor':
-      if (d.kind === 'start') return flags.includes('m') ? t.anchorStartM : t.anchorStart
-      if (d.kind === 'end') return flags.includes('m') ? t.anchorEndM : t.anchorEnd
-      if (d.kind === 'word') return t.anchorWord
-      return t.anchorNonWord
-    case 'alternation':
-      return t.alternation
-    case 'backref':
-      if (d.named) return t.backrefNamed(d.name)
-      return t.backrefNum(parseInt(d.name.slice(1), 10))
-    case 'error':
-      return t.error
-    default:
-      return p.type
-  }
-}
-
 export default function RegexRailroadPage() {
   const { lang } = useLanguage()
   const t = translations[lang]
 
-  const [pattern, setPattern] = useState('^(\\d{4})-(\\d{2})-(\\d{2})$')
-  const [flags, setFlags] = useState(['m'])
-  const [testText, setTestText] = useState('2026-08-20\n2026-08-21\n2026-8-1')
+  const [pattern, setPattern] = useState(DEFAULT_REGEX_PATTERN)
+  const [flags, setFlags] = useState(DEFAULT_REGEX_FLAGS)
+  const [testText, setTestText] = useState(DEFAULT_REGEX_TEST_TEXT)
   const [activeTab, setActiveTab] = useState('diagram')
   const svgRef = useRef(null)
 
@@ -385,16 +239,10 @@ export default function RegexRailroadPage() {
 
   const validation = useMemo(() => validateRegex(pattern, flagStr), [pattern, flagStr])
 
-  const matches = useMemo(() => {
-    if (!validation.valid || !testText) return { matches: [], error: null }
-    try {
-      const regex = new RegExp(pattern, flagStr)
-      const result = [...testText.matchAll(regex)]
-      return { matches: result, error: null }
-    } catch (e) {
-      return { matches: [], error: e.message }
-    }
-  }, [pattern, flagStr, testText, validation.valid])
+  const matches = useMemo(
+    () => (validation.valid ? findMatches(pattern, flagStr, testText) : { matches: [], error: null }),
+    [pattern, flagStr, testText, validation.valid]
+  )
 
   const numbering = useMemo(() => {
     let n = 0
@@ -450,47 +298,30 @@ export default function RegexRailroadPage() {
       <Title level={2}><SafetyOutlined /> {t.title}</Title>
       <Paragraph type="secondary">{t.intro}</Paragraph>
 
-      <Card title={t.patternLabel}>
-        <Space direction="vertical" size="middle" style={{ width: '100%' }}>
-          <Row gutter={[16, 16]}>
-            <Col xs={24} md={14}>
-              <Input
-                value={pattern}
-                onChange={(e) => setPattern(e.target.value)}
-                placeholder={t.patternPlaceholder}
-                style={{ fontFamily: 'monospace' }}
-                addonBefore="/"
-                addonAfter={flagStr || ' '}
-              />
-            </Col>
-            <Col xs={24} md={10}>
-              <Select
-                style={{ width: '100%' }}
-                placeholder={t.presetsLabel}
-                allowClear
-                onChange={applyPreset}
-                options={RAILROAD_PRESETS.map((p) => ({ value: p.key, label: p.name }))}
-              />
-            </Col>
-          </Row>
-          <Space direction="vertical" size={4}>
-            <Text type="secondary">{t.flagsLabel}</Text>
-            <Checkbox.Group options={FLAG_OPTIONS} value={flags} onChange={setFlags} />
-            <Text type="secondary" style={{ fontSize: 12 }}>{t.flagsHelp}</Text>
-          </Space>
-          <Space wrap>
-            <Button icon={<ReloadOutlined />} onClick={() => { setPattern(''); setFlags(['m']); setTestText(''); }}>
-              Limpar
-            </Button>
-            <Button icon={<CopyOutlined />} onClick={copySvg} disabled={!svgContent}>
-              {t.copySvg}
-            </Button>
-            <Button icon={<DownloadOutlined />} onClick={downloadSvg} disabled={!svgContent}>
-              {t.downloadSvg}
-            </Button>
-          </Space>
-        </Space>
-      </Card>
+      <RegexPatternBar
+        title={t.patternLabel}
+        pattern={pattern}
+        onPatternChange={setPattern}
+        placeholder={t.patternPlaceholder}
+        flagStr={flagStr}
+        flags={flags}
+        onFlagsChange={setFlags}
+        flagsLabel={t.flagsLabel}
+        flagsHelp={t.flagsHelp}
+        presetsLabel={t.presetsLabel}
+        presetOptions={RAILROAD_PRESETS.map((p) => ({ value: p.key, label: p.name }))}
+        onPresetChange={applyPreset}
+      >
+        <Button icon={<ReloadOutlined />} onClick={() => { setPattern(''); setFlags(DEFAULT_REGEX_FLAGS); setTestText(''); }}>
+          Limpar
+        </Button>
+        <Button icon={<CopyOutlined />} onClick={copySvg} disabled={!svgContent}>
+          {t.copySvg}
+        </Button>
+        <Button icon={<DownloadOutlined />} onClick={downloadSvg} disabled={!svgContent}>
+          {t.downloadSvg}
+        </Button>
+      </RegexPatternBar>
 
       {!validation.valid && hasPattern && (
         <Alert type="error" showIcon message={t.invalidTitle} description={validation.error} />
@@ -553,22 +384,7 @@ export default function RegexRailroadPage() {
                   <Text strong>{t.matchesTitle(matches.matches.length)}</Text>
                   {!matches.matches.length && <Text type="secondary">{t.noMatches}</Text>}
                   <div style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word', fontFamily: 'monospace', maxHeight: 200, overflow: 'auto' }}>
-                    {(() => {
-                      if (!testText || !matches.matches.length) return testText
-                      const nodes = []
-                      let lastIndex = 0
-                      matches.matches.forEach((m, i) => {
-                        if (m.index > lastIndex) nodes.push(<span key={`t-${i}`}>{testText.slice(lastIndex, m.index)}</span>)
-                        nodes.push(
-                          <mark key={`m-${i}`} style={{ background: '#ffe58f', padding: '0 1px', borderRadius: 2 }}>
-                            {m.text}
-                          </mark>
-                        )
-                        lastIndex = m.index + m.text.length
-                      })
-                      if (lastIndex < testText.length) nodes.push(<span key="tail">{testText.slice(lastIndex)}</span>)
-                      return nodes
-                    })()}
+                    <RegexHighlightedMatches text={testText} matches={matches.matches} />
                   </div>
                   {matches.matches.length > 0 && (
                     <Space direction="vertical" size="small" style={{ width: '100%' }}>
@@ -583,7 +399,7 @@ export default function RegexRailroadPage() {
                                 <Text code>{g === null ? '—' : g}</Text>
                               </div>
                             ))}
-                            {m.groups && Object.entries(m.groups).map(([k, v]) => (
+                            {m.named && Object.entries(m.named).map(([k, v]) => (
                               <div key={k}>
                                 <Text type="secondary">Named {k}: </Text>
                                 <Text code>{v === null ? '—' : v}</Text>
