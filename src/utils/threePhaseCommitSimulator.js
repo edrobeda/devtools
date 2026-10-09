@@ -2,6 +2,23 @@
 // Ilustra o protocolo de commit atomico em tres fases (canCommit, preCommit,
 // doCommit) usado em sistemas distribuidos. A fase extra elimina o bloqueio
 // do 2PC quando o coordenador cai depois de uma decisao de commit.
+//
+// A maquina de fases (canCommit/preCommit/doCommit) e exclusiva do 3PC; a
+// estrutura de estado, o log, a queda/recuperacao de nos e a cor da decisao
+// vem do harness compartilhado em ./commitSimulatorShared.
+
+import {
+  clone,
+  pushLog,
+  pushMessage,
+  countCrashed,
+  clampParticipantCount,
+  commitCoordinator,
+  commitParticipant,
+  commitSimulation,
+  crashNode as sharedCrashNode,
+  decisionColor as sharedDecisionColor,
+} from './commitSimulatorShared'
 
 export const STATES = {
   IDLE: 'IDLE',
@@ -151,16 +168,9 @@ export function defaultConfig() {
   }
 }
 
-function clone(obj) {
-  return typeof structuredClone === 'function' ? structuredClone(obj) : JSON.parse(JSON.stringify(obj))
-}
-
 function makeParticipant(index, config) {
   return {
-    id: `P${index + 1}`,
-    state: STATES.IDLE,
-    vote: config.votes[index] || 'yes',
-    crashed: false,
+    ...commitParticipant(index, config, STATES.IDLE),
     ackedPreCommit: false,
     ackedDoCommit: false,
     crashCanCommit: !!config.crashCanCommit[index],
@@ -170,43 +180,13 @@ function makeParticipant(index, config) {
 }
 
 export function createSimulation(config = defaultConfig()) {
-  const count = Math.max(2, Math.min(5, config.participantCount))
-  return {
+  const count = clampParticipantCount(config)
+  return commitSimulation({
     phase: PHASES.IDLE,
-    coordinator: {
-      id: 'C',
-      state: STATES.IDLE,
-      decision: DECISIONS.PENDING,
-      crashed: false,
-      crashAfter: config.coordinatorCrashes || null,
-    },
+    coordinator: commitCoordinator(STATES, DECISIONS, config),
     participants: Array.from({ length: count }, (_, i) => makeParticipant(i, config)),
-    messages: [],
-    log: [],
-    stats: { started: 0, committed: 0, aborted: 0, crashed: 0 },
-    finished: false,
     recoveryCommit: false,
-  }
-}
-
-function pushLog(sim, message, type = 'info') {
-  sim.log.unshift({
-    id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
-    step: sim.phase,
-    message,
-    type,
-    timestamp: Date.now(),
   })
-}
-
-function pushMessage(sim, from, to, type) {
-  sim.messages.push({ from, to, type, delivered: false })
-}
-
-function countCrashed(sim) {
-  const coord = sim.coordinator.crashed ? 1 : 0
-  const parts = sim.participants.filter((p) => p.crashed).length
-  sim.stats.crashed = coord + parts
 }
 
 function isAllYes(sim) {
@@ -453,20 +433,7 @@ export function resetSimulation(config) {
 }
 
 export function crashNode(sim, nodeId) {
-  const next = clone(sim)
-  if (nodeId === 'C') {
-    next.coordinator.crashed = true
-    next.coordinator.state = STATES.CRASHED
-  } else {
-    const p = next.participants.find((x) => x.id === nodeId)
-    if (p) {
-      p.crashed = true
-      p.state = STATES.CRASHED
-    }
-  }
-  pushLog(next, `${nodeId} caiu manualmente.`, 'error')
-  countCrashed(next)
-  return next
+  return sharedCrashNode(sim, nodeId, STATES)
 }
 
 export function recoverNode(sim, nodeId) {
@@ -535,173 +502,5 @@ export function stateColor(state) {
 }
 
 export function decisionColor(decision) {
-  return decision === DECISIONS.COMMIT ? '#52c41a' : decision === DECISIONS.ABORT ? '#ff4d4f' : '#8c8c8c'
-}
-
-export function sourceCode() {
-  return `// Motor do simulador de Three-Phase Commit (3PC)
-
-export const STATES = {
-  IDLE: 'IDLE',
-  CAN_COMMITTING: 'CAN_COMMITTING',
-  VOTED_YES: 'VOTED_YES',
-  VOTED_NO: 'VOTED_NO',
-  PRE_COMMITTING: 'PRE_COMMITTING',
-  PRE_COMMITTED: 'PRE_COMMITTED',
-  DO_COMMITTING: 'DO_COMMITTING',
-  COMMITTED: 'COMMITTED',
-  ABORTING: 'ABORTING',
-  ABORTED: 'ABORTED',
-  CRASHED: 'CRASHED',
-}
-
-export const PHASES = {
-  IDLE: 'IDLE',
-  CAN_COMMIT_SENT: 'CAN_COMMIT_SENT',
-  VOTES_RECEIVED: 'VOTES_RECEIVED',
-  PRE_COMMIT_SENT: 'PRE_COMMIT_SENT',
-  PRE_COMMIT_ACKED: 'PRE_COMMIT_ACKED',
-  DO_COMMIT_SENT: 'DO_COMMIT_SENT',
-  DONE: 'DONE',
-}
-
-export const DECISIONS = { COMMIT: 'COMMIT', ABORT: 'ABORT', PENDING: 'PENDING' }
-
-function makeParticipant(index, config) {
-  return {
-    id: \`P\${index + 1}\`,
-    state: STATES.IDLE,
-    vote: config.votes[index] || 'yes',
-    crashed: false,
-    ackedPreCommit: false,
-    ackedDoCommit: false,
-    crashCanCommit: !!config.crashCanCommit[index],
-    crashPreCommit: !!config.crashPreCommit[index],
-    crashDoCommit: !!config.crashDoCommit[index],
-  }
-}
-
-export function createSimulation(config) {
-  return {
-    phase: PHASES.IDLE,
-    coordinator: { id: 'C', state: STATES.IDLE, decision: DECISIONS.PENDING, crashed: false, crashAfter: config.coordinatorCrashes },
-    participants: Array.from({ length: config.participantCount }, (_, i) => makeParticipant(i, config)),
-    messages: [],
-    log: [],
-    stats: { started: 0, committed: 0, aborted: 0, crashed: 0 },
-    finished: false,
-    recoveryCommit: false,
-  }
-}
-
-export function startTransaction(sim) {
-  const next = clone(sim)
-  next.phase = PHASES.CAN_COMMIT_SENT
-  next.coordinator.state = STATES.CAN_COMMITTING
-  next.stats.started += 1
-  next.participants.forEach((p) => { p.state = STATES.CAN_COMMITTING })
-  return next
-}
-
-export function collectVotes(sim) {
-  const next = clone(sim)
-  next.participants.forEach((p) => {
-    if (p.crashed) return
-    if (p.crashCanCommit) { p.crashed = true; return }
-    p.state = p.vote === 'yes' ? STATES.VOTED_YES : STATES.VOTED_NO
-  })
-  next.phase = PHASES.VOTES_RECEIVED
-  return next
-}
-
-export function makePreCommitDecision(sim) {
-  const next = clone(sim)
-  const allYes = next.participants.every((p) => p.vote === 'yes')
-  const anyNo = next.participants.some((p) => p.vote === 'no')
-  if (!allYes || anyNo) {
-    next.coordinator.decision = DECISIONS.ABORT
-    next.coordinator.state = STATES.ABORTING
-    next.participants.forEach((p) => { if (!p.crashed) p.state = STATES.ABORTING })
-  } else {
-    next.coordinator.decision = DECISIONS.COMMIT
-    next.coordinator.state = STATES.PRE_COMMITTING
-    next.participants.forEach((p) => { if (!p.crashed) p.state = STATES.PRE_COMMITTING })
-  }
-  next.phase = PHASES.PRE_COMMIT_SENT
-  return next
-}
-
-export function collectPreCommitAcks(sim) {
-  const next = clone(sim)
-  if (next.coordinator.decision === DECISIONS.ABORT) {
-    next.participants.forEach((p) => { if (!p.crashed) p.state = STATES.ABORTED })
-    next.coordinator.state = STATES.ABORTED
-    next.phase = PHASES.DONE
-    next.finished = true
-    next.stats.aborted += 1
-    return next
-  }
-  next.participants.forEach((p) => {
-    if (p.crashed) return
-    if (p.crashPreCommit) { p.crashed = true; return }
-    p.state = STATES.PRE_COMMITTED
-    p.ackedPreCommit = true
-  })
-  next.phase = PHASES.PRE_COMMIT_ACKED
-  return next
-}
-
-export function sendDoCommit(sim) {
-  const next = clone(sim)
-  if (next.coordinator.crashed) {
-    next.participants.forEach((p) => {
-      if (!p.crashed && p.state === STATES.PRE_COMMITTED) p.state = STATES.DO_COMMITTING
-    })
-  } else {
-    next.coordinator.state = STATES.DO_COMMITTING
-    next.participants.forEach((p) => { if (!p.crashed) p.state = STATES.DO_COMMITTING })
-  }
-  next.phase = PHASES.DO_COMMIT_SENT
-  return next
-}
-
-export function collectDoCommitAcks(sim) {
-  const next = clone(sim)
-  next.participants.forEach((p) => {
-    if (p.crashed) return
-    if (p.crashDoCommit) { p.crashed = true; return }
-    p.state = STATES.COMMITTED
-    p.ackedDoCommit = true
-  })
-  if (!next.coordinator.crashed) next.coordinator.state = STATES.COMMITTED
-  next.phase = PHASES.DONE
-  next.finished = true
-  next.stats.committed += 1
-  return next
-}
-
-export function step(sim) {
-  switch (sim.phase) {
-    case PHASES.IDLE: return startTransaction(sim)
-    case PHASES.CAN_COMMIT_SENT: return collectVotes(sim)
-    case PHASES.VOTES_RECEIVED: return makePreCommitDecision(sim)
-    case PHASES.PRE_COMMIT_SENT: return collectPreCommitAcks(sim)
-    case PHASES.PRE_COMMIT_ACKED: return sendDoCommit(sim)
-    case PHASES.DO_COMMIT_SENT: return collectDoCommitAcks(sim)
-    default: return sim
-  }
-}
-
-// Regras classicas do 3PC:
-// - Fase 1 (canCommit): o coordenador pergunta se todos podem commitar;
-//   cada participante responde YES ou NO.
-// - Fase 2 (preCommit): se TODOS responderem YES, o coordenador envia
-//   PRE_COMMIT; caso contrario envia ABORT. Participantes em PRE_COMMITTED
-//   nao podem mais abortar sozinhos.
-// - Fase 3 (doCommit): depois dos ACKs do PRE_COMMIT, o coordenador envia
-//   DO_COMMIT e os participantes efetivam o commit.
-// - Vantagem: se o coordenador cai DEPOIS do PRE_COMMIT, os participantes
-//   podem commitar por timeout; se cai ANTES do PRE_COMMIT, abortam.
-//   Isso evita o bloqueio do 2PC.
-`
+  return sharedDecisionColor(decision, DECISIONS)
 }

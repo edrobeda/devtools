@@ -1,6 +1,23 @@
 // Simulador de Two-Phase Commit (2PC) — 100% client-side.
 // Ilustra o protocolo classico de commit atomico em sistemas distribuidos
 // com um coordenador e N participantes.
+//
+// A maquina de fases (prepare/decision) e exclusiva do 2PC; a estrutura de
+// estado, o log, a queda/recuperacao de nos e a cor da decisao vem do harness
+// compartilhado em ./commitSimulatorShared.
+
+import {
+  clone,
+  pushLog,
+  pushMessage,
+  countCrashed,
+  clampParticipantCount,
+  commitCoordinator,
+  commitParticipant,
+  commitSimulation,
+  crashNode as sharedCrashNode,
+  decisionColor as sharedDecisionColor,
+} from './commitSimulatorShared'
 
 export const STATES = {
   IDLE: 'IDLE',
@@ -119,10 +136,7 @@ export function defaultConfig() {
 
 function makeParticipant(index, config) {
   return {
-    id: `P${index + 1}`,
-    state: STATES.IDLE,
-    vote: config.votes[index] || 'yes',
-    crashed: false,
+    ...commitParticipant(index, config, STATES.IDLE),
     acked: false,
     crashPrepare: !!config.crashPrepare[index],
     crashDecision: !!config.crashDecision[index],
@@ -130,47 +144,17 @@ function makeParticipant(index, config) {
 }
 
 export function createSimulation(config = defaultConfig()) {
-  const count = Math.max(2, Math.min(5, config.participantCount))
-  return {
+  const count = clampParticipantCount(config)
+  return commitSimulation({
     phase: PHASES.IDLE,
-    coordinator: {
-      id: 'C',
-      state: STATES.IDLE,
-      decision: DECISIONS.PENDING,
-      crashed: false,
-      crashAfter: config.coordinatorCrashes || null,
-    },
+    coordinator: commitCoordinator(STATES, DECISIONS, config),
     participants: Array.from({ length: count }, (_, i) => makeParticipant(i, config)),
-    messages: [],
-    log: [],
-    stats: { started: 0, committed: 0, aborted: 0, crashed: 0 },
-    finished: false,
-  }
-}
-
-function pushLog(sim, message, type = 'info') {
-  sim.log.unshift({
-    id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
-    step: sim.phase,
-    message,
-    type,
-    timestamp: Date.now(),
   })
-}
-
-function pushMessage(sim, from, to, type) {
-  sim.messages.push({ from, to, type, delivered: false })
-}
-
-function countCrashed(sim) {
-  const coord = sim.coordinator.crashed ? 1 : 0
-  const parts = sim.participants.filter((p) => p.crashed).length
-  sim.stats.crashed = coord + parts
 }
 
 export function startTransaction(sim) {
   if (sim.phase !== PHASES.IDLE || sim.finished) return sim
-  const next = structuredClone ? structuredClone(sim) : JSON.parse(JSON.stringify(sim))
+  const next = clone(sim)
   next.phase = PHASES.PREPARE_SENT
   next.coordinator.state = STATES.PREPARING
   next.stats.started += 1
@@ -185,7 +169,7 @@ export function startTransaction(sim) {
 
 export function collectVotes(sim) {
   if (sim.phase !== PHASES.PREPARE_SENT) return sim
-  const next = structuredClone ? structuredClone(sim) : JSON.parse(JSON.stringify(sim))
+  const next = clone(sim)
 
   next.participants.forEach((p) => {
     if (p.crashed) return
@@ -209,7 +193,7 @@ export function collectVotes(sim) {
 
 export function makeDecision(sim) {
   if (sim.phase !== PHASES.VOTES_RECEIVED) return sim
-  const next = structuredClone ? structuredClone(sim) : JSON.parse(JSON.stringify(sim))
+  const next = clone(sim)
 
   if (next.coordinator.crashAfter === 'before-decision') {
     next.coordinator.crashed = true
@@ -247,7 +231,7 @@ export function makeDecision(sim) {
 
 export function deliverDecision(sim) {
   if (sim.phase !== PHASES.DECISION_MADE || sim.finished) return sim
-  const next = structuredClone ? structuredClone(sim) : JSON.parse(JSON.stringify(sim))
+  const next = clone(sim)
 
   if (next.coordinator.crashed) {
     pushLog(next, 'Coordenador esta indisponivel. Nenhuma decisao pode ser enviada.', 'error')
@@ -272,7 +256,7 @@ export function deliverDecision(sim) {
 
 export function collectAcks(sim) {
   if (sim.phase !== PHASES.DECISION_DELIVERED) return sim
-  const next = structuredClone ? structuredClone(sim) : JSON.parse(JSON.stringify(sim))
+  const next = clone(sim)
 
   const decision = next.coordinator.decision
   next.participants.forEach((p) => {
@@ -330,24 +314,11 @@ export function resetSimulation(config) {
 }
 
 export function crashNode(sim, nodeId) {
-  const next = structuredClone ? structuredClone(sim) : JSON.parse(JSON.stringify(sim))
-  if (nodeId === 'C') {
-    next.coordinator.crashed = true
-    next.coordinator.state = STATES.CRASHED
-  } else {
-    const p = next.participants.find((x) => x.id === nodeId)
-    if (p) {
-      p.crashed = true
-      p.state = STATES.CRASHED
-    }
-  }
-  pushLog(next, `${nodeId} caiu manualmente.`, 'error')
-  countCrashed(next)
-  return next
+  return sharedCrashNode(sim, nodeId, STATES)
 }
 
 export function recoverNode(sim, nodeId) {
-  const next = structuredClone ? structuredClone(sim) : JSON.parse(JSON.stringify(sim))
+  const next = clone(sim)
   if (nodeId === 'C') {
     next.coordinator.crashed = false
     next.coordinator.state = next.coordinator.decision === DECISIONS.PENDING ? STATES.PREPARING : (next.coordinator.decision === DECISIONS.COMMIT ? STATES.COMMITTING : STATES.ABORTING)
@@ -389,132 +360,5 @@ export function stateColor(state) {
 }
 
 export function decisionColor(decision) {
-  return decision === DECISIONS.COMMIT ? '#52c41a' : decision === DECISIONS.ABORT ? '#ff4d4f' : '#8c8c8c'
-}
-
-export function sourceCode() {
-  return `// Motor do simulador de Two-Phase Commit (2PC)
-
-export const STATES = {
-  IDLE: 'IDLE',
-  PREPARING: 'PREPARING',
-  PREPARED: 'PREPARED',
-  COMMITTING: 'COMMITTING',
-  COMMITTED: 'COMMITTED',
-  ABORTING: 'ABORTING',
-  ABORTED: 'ABORTED',
-  CRASHED: 'CRASHED',
-}
-
-export const PHASES = {
-  IDLE: 'IDLE',
-  PREPARE_SENT: 'PREPARE_SENT',
-  VOTES_RECEIVED: 'VOTES_RECEIVED',
-  DECISION_MADE: 'DECISION_MADE',
-  DECISION_DELIVERED: 'DECISION_DELIVERED',
-  DONE: 'DONE',
-}
-
-export const DECISIONS = { COMMIT: 'COMMIT', ABORT: 'ABORT', PENDING: 'PENDING' }
-
-function makeParticipant(index, config) {
-  return {
-    id: \`P\${index + 1}\`,
-    state: STATES.IDLE,
-    vote: config.votes[index] || 'yes',
-    crashed: false,
-    acked: false,
-    crashPrepare: !!config.crashPrepare[index],
-    crashDecision: !!config.crashDecision[index],
-  }
-}
-
-export function createSimulation(config) {
-  return {
-    phase: PHASES.IDLE,
-    coordinator: { id: 'C', state: STATES.IDLE, decision: DECISIONS.PENDING, crashed: false, crashAfter: config.coordinatorCrashes },
-    participants: Array.from({ length: config.participantCount }, (_, i) => makeParticipant(i, config)),
-    messages: [],
-    log: [],
-    stats: { started: 0, committed: 0, aborted: 0, crashed: 0 },
-    finished: false,
-  }
-}
-
-export function startTransaction(sim) {
-  const next = structuredClone(sim)
-  next.phase = PHASES.PREPARE_SENT
-  next.coordinator.state = STATES.PREPARING
-  next.stats.started += 1
-  next.participants.forEach((p) => { p.state = STATES.PREPARING })
-  return next
-}
-
-export function collectVotes(sim) {
-  const next = structuredClone(sim)
-  next.participants.forEach((p) => {
-    if (p.crashPrepare) { p.crashed = true; return }
-    p.state = STATES.PREPARED
-  })
-  next.phase = PHASES.VOTES_RECEIVED
-  return next
-}
-
-export function makeDecision(sim) {
-  const next = structuredClone(sim)
-  const allYes = next.participants.every((p) => p.vote === 'yes' && !p.crashPrepare)
-  const anyNo = next.participants.some((p) => p.vote === 'no')
-  if (allYes && !anyNo) {
-    next.coordinator.decision = DECISIONS.COMMIT
-    next.coordinator.state = STATES.COMMITTING
-  } else {
-    next.coordinator.decision = DECISIONS.ABORT
-    next.coordinator.state = STATES.ABORTING
-  }
-  next.phase = PHASES.DECISION_MADE
-  return next
-}
-
-export function deliverDecision(sim) {
-  const next = structuredClone(sim)
-  const decision = next.coordinator.decision
-  next.participants.forEach((p) => { if (!p.crashed) p.state = decision === DECISIONS.COMMIT ? STATES.COMMITTING : STATES.ABORTING })
-  next.phase = PHASES.DECISION_DELIVERED
-  return next
-}
-
-export function collectAcks(sim) {
-  const next = structuredClone(sim)
-  const decision = next.coordinator.decision
-  next.participants.forEach((p) => {
-    if (p.crashed) return
-    p.state = decision === DECISIONS.COMMIT ? STATES.COMMITTED : STATES.ABORTED
-    p.acked = true
-  })
-  next.coordinator.state = decision === DECISIONS.COMMIT ? STATES.COMMITTED : STATES.ABORTED
-  next.phase = PHASES.DONE
-  next.finished = true
-  next.stats[decision === DECISIONS.COMMIT ? 'committed' : 'aborted'] += 1
-  return next
-}
-
-export function step(sim) {
-  switch (sim.phase) {
-    case PHASES.IDLE: return startTransaction(sim)
-    case PHASES.PREPARE_SENT: return collectVotes(sim)
-    case PHASES.VOTES_RECEIVED: return makeDecision(sim)
-    case PHASES.DECISION_MADE: return deliverDecision(sim)
-    case PHASES.DECISION_DELIVERED: return collectAcks(sim)
-    default: return sim
-  }
-}
-
-// Regras classicas:
-// - Fase 1 (prepare): o coordenador envia PREPARE; cada participante vota YES/NO.
-// - Fase 2 (decision): se TODOS votarem YES, o coordenador envia COMMIT;
-//   caso contrario envia ABORT. Os participantes aplicam e respondem ACK.
-// - Falhas: se o coordenador cai antes de decidir, os participantes podem ficar
-//   bloqueados ate a recuperacao; depois da decisao, o coordenador reenvia o
-//   veredicto para quem ainda nao respondeu.
-`
+  return sharedDecisionColor(decision, DECISIONS)
 }
