@@ -13,7 +13,7 @@ const { Title, Paragraph, Text } = Typography
 
 const translations = {
   pt: {
-    title: 'Ferramenta: Timer Pomodoro',
+    title: 'Timer Pomodoro',
     intro: (
       <>
         Um timer Pomodoro que roda 100% no navegador — foco de{' '}
@@ -44,7 +44,7 @@ const translations = {
     autoSteps: 'blocos de foco',
   },
   en: {
-    title: 'Tool: Pomodoro Timer',
+    title: 'Pomodoro Timer',
     intro: (
       <>
         A Pomodoro timer that runs 100% in the browser — <Text code>25</Text>{' '}
