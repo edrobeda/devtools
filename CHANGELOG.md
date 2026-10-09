@@ -11,6 +11,7 @@ mesmo no início de cada rodada, pra nunca repetir algo que já existe.
 
 ## 2026-10-09
 
+- Organização: remove o prefixo de tipo do título de `/extras/pomodoro-timer` (`src/pages/PomodoroTimerPage.jsx`): `"Ferramenta: Timer Pomodoro"`/`"Tool: Pomodoro Timer"` viram `"Timer Pomodoro"`/`"Pomodoro Timer"`, alinhando o título da página e o manifest ao rótulo já exibido no menu (`AppLayout.jsx`). É a única das 11 páginas de `/extras` com prefixo `X:` no título — onde o projeto usa prefixo ele é uniforme (`/styles` = `Componente:`, `/snippets` = `Snippet:`), então a correção é cosmética pura e não mexe em funcionalidade.
 - Organização: remove o alias `/tools/ulid-tool` (redirect para `/tools/uuid-v7-tool`). A página combinada "Gerador / Decoder de UUID v7 & ULID" já é única e canônica desde o commit `08e7d0c` (achado #25); o redirect residual é o que o organizador vinha re-flagrando como "duplicação" (achado #88, reincidente) a cada 3h desde 2026-10-07 — e como `scripts/resolve_housekeeping.py` só marca como resolvido com prova de commit, esse falso positivo travava todas as rodadas seguintes de housekeeping/conteúdo. Removo o alias (rota antiga cai no 404 da própria SPA, aceitável) e deixo `src/routes.jsx` sem qualquer menção a `ulid-tool`; o menu (`AppLayout.jsx`) e o manifest nunca listaram a rota.
 
 ## 2026-10-07
