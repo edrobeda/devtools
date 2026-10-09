@@ -1,13 +1,14 @@
 import React, { useMemo, useState } from 'react'
-import { Typography, Card, Space, Input, Button, Checkbox, Select, Alert, Collapse, Tag, Row, Col, message } from 'antd'
-import { CodeOutlined, CopyOutlined, SafetyOutlined, ReadOutlined } from '@ant-design/icons'
+import { Typography, Card, Space, Input, Button, Alert, Collapse, Tag, message } from 'antd'
+import { CopyOutlined, SafetyOutlined, ReadOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import { parseRegex, findMatches, tryCompile } from '../utils/regexExplainer'
+import { DEFAULT_REGEX_PATTERN, DEFAULT_REGEX_FLAGS, DEFAULT_REGEX_TEST_TEXT } from '../utils/regexShared'
+import RegexPatternBar from '../components/RegexPatternBar'
+import RegexHighlightedMatches from '../components/RegexHighlightedMatches'
 
 const { Title, Paragraph, Text } = Typography
 const { Panel } = Collapse
-
-const FLAG_OPTIONS = ['g', 'i', 'm', 's', 'u', 'y']
 
 const SOURCE_SNIPPET = `// parseia a regex e devolve tokens { type, text, depth, data }
 export function parseRegex(pattern) {
@@ -602,9 +603,9 @@ export default function RegexExplainerPage() {
   const { lang } = useLanguage()
   const t = translations[lang]
 
-  const [pattern, setPattern] = useState('^(\\d{4})-(\\d{2})-(\\d{2})$')
-  const [flags, setFlags] = useState(['m'])
-  const [testText, setTestText] = useState('2026-08-20\n2026-08-21\n2026-8-1')
+  const [pattern, setPattern] = useState(DEFAULT_REGEX_PATTERN)
+  const [flags, setFlags] = useState(DEFAULT_REGEX_FLAGS)
+  const [testText, setTestText] = useState(DEFAULT_REGEX_TEST_TEXT)
 
   const flagStr = flags.join('')
 
@@ -631,24 +632,6 @@ export default function RegexExplainerPage() {
 
   const summary = useMemo(() => buildSummary(parts, t, flags), [parts, t, flags])
 
-  const highlighted = useMemo(() => {
-    if (!testText || matches.error) return null
-    if (!matches.matches.length) return testText
-    const nodes = []
-    let lastIndex = 0
-    matches.matches.forEach((m, i) => {
-      if (m.index > lastIndex) nodes.push(<span key={`t-${i}`}>{testText.slice(lastIndex, m.index)}</span>)
-      nodes.push(
-        <mark key={`m-${i}`} style={{ background: '#ffe58f', padding: '0 1px', borderRadius: 2 }}>
-          {m.text}
-        </mark>
-      )
-      lastIndex = m.index + m.text.length
-    })
-    if (lastIndex < testText.length) nodes.push(<span key="tail">{testText.slice(lastIndex)}</span>)
-    return nodes
-  }, [matches, testText])
-
   const copy = async (value) => {
     if (!value) return
     try {
@@ -674,44 +657,27 @@ export default function RegexExplainerPage() {
       <Title level={2}><SafetyOutlined /> {t.title}</Title>
       <Paragraph type="secondary">{t.intro}</Paragraph>
 
-      <Card title={t.patternLabel}>
-        <Space direction="vertical" size="middle" style={{ width: '100%' }}>
-          <Row gutter={[16, 16]}>
-            <Col xs={24} md={14}>
-              <Input
-                value={pattern}
-                onChange={(e) => setPattern(e.target.value)}
-                placeholder={t.patternPlaceholder}
-                style={{ fontFamily: 'monospace' }}
-                addonBefore="/"
-                addonAfter={flagStr || ' '}
-              />
-            </Col>
-            <Col xs={24} md={10}>
-              <Select
-                style={{ width: '100%' }}
-                placeholder={t.presetsLabel}
-                allowClear
-                onChange={applyPreset}
-                options={PRESETS.map((p) => ({ value: p.key, label: p.name }))}
-              />
-            </Col>
-          </Row>
-          <Space direction="vertical" size={4}>
-            <Text type="secondary">{t.flagsLabel}</Text>
-            <Checkbox.Group options={FLAG_OPTIONS} value={flags} onChange={setFlags} />
-            <Text type="secondary" style={{ fontSize: 12 }}>{t.flagsHelp}</Text>
-          </Space>
-          <Space wrap>
-            <Button icon={<CopyOutlined />} onClick={() => copy(pattern)} disabled={!pattern}>
-              {t.copyPattern}
-            </Button>
-            <Button icon={<ReadOutlined />} onClick={() => copy(hasParts ? plainBreakdown(parts, t, flags) : '')} disabled={!hasParts}>
-              {t.copyBreakdown}
-            </Button>
-          </Space>
-        </Space>
-      </Card>
+      <RegexPatternBar
+        title={t.patternLabel}
+        pattern={pattern}
+        onPatternChange={setPattern}
+        placeholder={t.patternPlaceholder}
+        flagStr={flagStr}
+        flags={flags}
+        onFlagsChange={setFlags}
+        flagsLabel={t.flagsLabel}
+        flagsHelp={t.flagsHelp}
+        presetsLabel={t.presetsLabel}
+        presetOptions={PRESETS.map((p) => ({ value: p.key, label: p.name }))}
+        onPresetChange={applyPreset}
+      >
+        <Button icon={<CopyOutlined />} onClick={() => copy(pattern)} disabled={!pattern}>
+          {t.copyPattern}
+        </Button>
+        <Button icon={<ReadOutlined />} onClick={() => copy(hasParts ? plainBreakdown(parts, t, flags) : '')} disabled={!hasParts}>
+          {t.copyBreakdown}
+        </Button>
+      </RegexPatternBar>
 
       {compile.error && (
         <Alert type="error" showIcon message={t.invalidTitle} description={compile.error} />
@@ -773,7 +739,7 @@ export default function RegexExplainerPage() {
               <Text strong>{t.matchesTitle(matches.matches.length)}</Text>
               {!matches.matches.length && <Text type="secondary">{t.noMatches}</Text>}
               <div style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word', fontFamily: 'monospace' }}>
-                {highlighted}
+                <RegexHighlightedMatches text={testText} matches={matches.matches} />
               </div>
               {matches.matches.length > 0 && (
                 <Space direction="vertical" size="small" style={{ width: '100%' }}>
