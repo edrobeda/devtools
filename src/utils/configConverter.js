@@ -39,19 +39,6 @@ function isScalar(v) {
   return v === null || typeof v !== 'object'
 }
 
-function trimTrailingEmpty(lines) {
-  while (lines.length > 0 && lines[lines.length - 1].trim() === '') lines.pop()
-  return lines
-}
-
-function inferIndent(lines) {
-  for (const line of lines) {
-    const m = line.match(/^( +)[^ ]/)
-    if (m && m[1].length > 0) return m[1].length
-  }
-  return 2
-}
-
 // YAML parser compartilhado (mais robusto)
 import { parseYaml as parseYamlShared } from './yamlFormatter.js'
 
@@ -198,13 +185,17 @@ export function parseYaml(text) {
 // TOML
 // ═════════════════════════════════════════════════════════════════════════════
 
-function tomlNeedsQuotes(s) {
-  if (typeof s !== 'string') return false
-  if (s === '') return true
-  if (/^[\x00-\x08\x0A-\x1F\x7F]/.test(s)) return true
-  if (/^(true|false|[+-]?\d|[+-]?\d\.\d|[+-]?\d[eE]|[+-]?\d\.\d[eE]|\[|\{)/i.test(s)) return true
-  if (/[\x00-\x1F\x7F#\[\]=\"]/.test(s)) return true
-  return false
+// TOML parser compartilhado (mais robusto)
+import { parseToml as parseTomlShared } from './tomlFormatter.js'
+
+export function parseToml(text) {
+  try {
+    const result = parseTomlShared(String(text))
+    if (!result.ok) return result
+    return { ok: true, value: result.value }
+  } catch (e) {
+    return { ok: false, error: e.message || String(e) }
+  }
 }
 
 function tomlEscape(s) {
@@ -219,8 +210,14 @@ function tomlEscape(s) {
 function tomlValue(v) {
   if (v === null) return '""'
   if (typeof v === 'boolean') return v ? 'true' : 'false'
-  if (typeof v === 'number') return String(v)
-  if (typeof v === 'string') return tomlNeedsQuotes(v) ? '"' + tomlEscape(v) + '"' : v
+  if (typeof v === 'number') {
+    if (Number.isNaN(v)) return 'nan'
+    if (v === Infinity) return 'inf'
+    if (v === -Infinity) return '-inf'
+    return String(v)
+  }
+  // TOML não tem strings "bare": todo valor de texto precisa de aspas.
+  if (typeof v === 'string') return '"' + tomlEscape(v) + '"'
   if (Array.isArray(v)) return '[' + v.map(tomlValue).join(', ') + ']'
   return tomlValue(String(v))
 }
@@ -228,114 +225,6 @@ function tomlValue(v) {
 function tomlKey(k) {
   if (/^[A-Za-z0-9_-]+$/.test(k)) return k
   return '"' + tomlEscape(k) + '"'
-}
-
-function setPath(obj, path, value) {
-  let cur = obj
-  for (let i = 0; i < path.length - 1; i++) {
-    const k = path[i]
-    if (!(k in cur) || !isPlainObject(cur[k])) cur[k] = {}
-    cur = cur[k]
-  }
-  const last = path[path.length - 1]
-  if (last in cur && !Array.isArray(cur[last]) && !isPlainObject(cur[last])) {
-    // repetida vira array
-    cur[last] = [cur[last], value]
-  } else if (last in cur && Array.isArray(cur[last])) {
-    cur[last].push(value)
-  } else {
-    cur[last] = value
-  }
-}
-
-function parseTomlInlineArray(text) {
-  const inner = text.trim().slice(1, -1).trim()
-  if (!inner) return []
-  return splitTopLevel(inner, ',').map(parseTomlScalar)
-}
-
-function parseTomlInlineObject(text) {
-  const inner = text.trim().slice(1, -1).trim()
-  if (!inner) return {}
-  const obj = {}
-  const parts = splitTopLevel(inner, ',')
-  for (const part of parts) {
-    const eq = part.indexOf('=')
-    if (eq > 0) {
-      const key = unquoteToml(part.slice(0, eq).trim())
-      obj[key] = parseTomlScalar(part.slice(eq + 1).trim())
-    }
-  }
-  return obj
-}
-
-function unquoteToml(s) {
-  s = s.trim()
-  if (s.startsWith('"') && s.endsWith('"')) {
-    return s.slice(1, -1)
-      .replace(/\\n/g, '\n')
-      .replace(/\\t/g, '\t')
-      .replace(/\\"/g, '"')
-      .replace(/\\\\/g, '\\')
-  }
-  if (s.startsWith("'") && s.endsWith("'")) return s.slice(1, -1).replace(/''/g, "'")
-  return s
-}
-
-function parseTomlScalar(s) {
-  s = s.trim()
-  if (s === '') return ''
-  if (/^"/.test(s) || /^'/.test(s)) return unquoteToml(s)
-  if (/^(true|false)$/i.test(s)) return s.toLowerCase() === 'true'
-  if (/^[+-]?\d+$/.test(s)) return Number(s)
-  if (/^[+-]?(\d+\.\d*|\.\d+|\d+)([eE][-+]?\d+)?$/.test(s)) return Number(s)
-  if (/^\[/.test(s)) return parseTomlInlineArray(s)
-  if (/^\{/.test(s)) return parseTomlInlineObject(s)
-  return s
-}
-
-export function parseToml(text) {
-  const obj = {}
-  let currentPath = []
-  let currentTarget = obj
-  const lines = trimTrailingEmpty(text.split('\n'))
-
-  for (let raw of lines) {
-    let line = raw
-    const hash = line.indexOf('#')
-    if (hash >= 0) line = line.slice(0, hash)
-    line = line.trim()
-    if (line === '') continue
-
-    // seção
-    const secMatch = line.match(/^\[([^\]]+)\]$/)
-    if (secMatch) {
-      const path = secMatch[1].split('.').map(unquoteToml)
-      currentPath = path
-      currentTarget = obj
-      for (let i = 0; i < path.length; i++) {
-        const k = path[i]
-        if (!(k in currentTarget) || !isPlainObject(currentTarget[k])) currentTarget[k] = {}
-        currentTarget = currentTarget[k]
-      }
-      continue
-    }
-
-    const eq = line.indexOf('=')
-    if (eq <= 0) continue
-    const rawKey = line.slice(0, eq).trim()
-    const rawVal = line.slice(eq + 1).trim()
-    const key = unquoteToml(rawKey)
-    const value = parseTomlScalar(rawVal)
-
-    if (currentPath.length > 0) {
-      setPath(obj, [...currentPath, key], value)
-    } else {
-      setPath(obj, [key], value)
-    }
-  }
-
-  return { ok: true, value: obj }
 }
 
 export function stringifyToml(value, opts = {}) {
