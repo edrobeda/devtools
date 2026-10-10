@@ -2,77 +2,49 @@
 // Implementação 100% client-side e passo a passo: cada nó tem um ID, e
 // o nó com maior ID sempre vence. Quando o líder falha, o próximo nó
 // ativo com maior ID inicia eleição e se anuncia como coordenador.
+// O harness comum (estado inicial, log, fila/entrega de mensagens,
+// estabilização, queda/recuperacao e presets genericos) vive em
+// leaderElectionHarness.js — este arquivo guarda só a máquina do Bully.
+
+import {
+  BASE_MESSAGE_TYPES,
+  BASE_STATES,
+  createBaseState,
+  deliverPendingMessage,
+  logEvent,
+  presetFailLeader,
+  presetStartElection,
+  queueMessage,
+  runUntilStable as runUntilStableBase,
+  stepOnce,
+  toggleNodeFailure as toggleNodeFailureBase,
+} from './leaderElectionHarness'
 
 export const STATES = {
-  NORMAL: 'NORMAL',
-  ELECTION: 'ELECTION',
+  ...BASE_STATES,
   WAITING: 'WAITING',
-  LEADER: 'LEADER',
-  FAILED: 'FAILED',
 }
 
 export const MESSAGE_TYPES = {
-  ELECTION: 'ELECTION',
+  ...BASE_MESSAGE_TYPES,
   ALIVE: 'ALIVE',
-  COORDINATOR: 'COORDINATOR',
 }
 
-const PALETTE = ['#1677ff', '#52c41a', '#faad14', '#eb2f96', '#722ed1', '#13c2c2', '#f5222d']
-
-function majority(n) {
-  return Math.floor(n / 2) + 1
-}
+const NODE_DEFAULTS = { waitingReplies: 0 }
 
 export function createInitialState(nodeCount = 5) {
-  const nodes = Array.from({ length: nodeCount }, (_, i) => ({
-    id: i,
-    priority: i + 1,
-    state: STATES.NORMAL,
-    leaderId: null,
-    color: PALETTE[i % PALETTE.length],
-    waitingReplies: 0,
-    failed: false,
-  }))
-
-  return {
-    nodes,
-    messages: [],
-    eventCounter: 0,
-    step: 0,
-    leaderId: null,
-    log: [],
-  }
+  return createBaseState(nodeCount, NODE_DEFAULTS)
 }
 
 export function resetState(nodeCount = 5) {
   return createInitialState(nodeCount)
 }
 
-function logEvent(state, text) {
-  return {
-    ...state,
-    log: [{ step: state.step + 1, text }, ...state.log].slice(0, 100),
-  }
-}
-
 function sendMessage(state, from, to, type, payload = {}) {
   const sender = state.nodes[from]
   const receiver = state.nodes[to]
   if (!sender || sender.failed || !receiver || receiver.failed) return state
-  return {
-    ...state,
-    messages: [
-      ...state.messages,
-      {
-        id: state.eventCounter++,
-        from,
-        to,
-        type,
-        payload,
-        delivered: false,
-      },
-    ],
-  }
+  return queueMessage(state, { from, to, type, payload })
 }
 
 function sendToAllHigher(state, from, type, payload = {}) {
@@ -191,24 +163,21 @@ function handleCoordinatorMessage(state, msg) {
   return logEvent(nextState, `Nó ${msg.to} reconhece ${leaderId} como líder`)
 }
 
-function deliverNextMessage(state) {
-  const pending = state.messages.find((m) => !m.delivered)
-  if (!pending) return null
-
-  let nextState = {
-    ...state,
-    messages: state.messages.map((m) => (m.id === pending.id ? { ...m, delivered: true } : m)),
-  }
-
+function dispatchMessage(nextState, pending) {
   if (pending.type === MESSAGE_TYPES.ELECTION) {
-    nextState = handleElectionMessage(nextState, pending)
-  } else if (pending.type === MESSAGE_TYPES.ALIVE) {
-    nextState = handleAliveMessage(nextState, pending)
-  } else if (pending.type === MESSAGE_TYPES.COORDINATOR) {
-    nextState = handleCoordinatorMessage(nextState, pending)
+    return handleElectionMessage(nextState, pending)
   }
-
+  if (pending.type === MESSAGE_TYPES.ALIVE) {
+    return handleAliveMessage(nextState, pending)
+  }
+  if (pending.type === MESSAGE_TYPES.COORDINATOR) {
+    return handleCoordinatorMessage(nextState, pending)
+  }
   return nextState
+}
+
+function deliverNextMessage(state) {
+  return deliverPendingMessage(state, dispatchMessage)
 }
 
 function triggerNextTimeout(state) {
@@ -234,78 +203,26 @@ function triggerNextTimeout(state) {
 }
 
 export function stepSimulation(state) {
-  if (state.messages.some((m) => !m.delivered)) {
-    return deliverNextMessage(state)
-  }
-  return triggerNextTimeout(state)
+  return stepOnce(state, deliverNextMessage, triggerNextTimeout)
 }
 
 export function runUntilStable(state, maxSteps = 100) {
-  let current = state
-  for (let i = 0; i < maxSteps; i++) {
-    const next = stepSimulation(current)
-    if (!next) break
-    current = next
-    const hasLeader = current.nodes.some((n) => n.state === STATES.LEADER && !n.failed)
-    const pending = current.messages.some((m) => !m.delivered)
-    if (hasLeader && !pending) break
-  }
-  return current
+  return runUntilStableBase(state, stepSimulation, maxSteps)
 }
 
 export function toggleNodeFailure(state, nodeId) {
-  const node = state.nodes[nodeId]
-  if (!node) return state
-
-  if (node.failed) {
-    // recuperação: volta como NORMAL sem líder e inicia eleição
-    let nextState = {
-      ...state,
-      nodes: state.nodes.map((n) =>
-        n.id === nodeId
-          ? { ...n, failed: false, state: STATES.NORMAL, leaderId: state.leaderId, waitingReplies: 0 }
-          : n
-      ),
-      step: state.step + 1,
-    }
-    nextState = logEvent(nextState, `Nó ${nodeId} recupera e inicia eleição`)
-    return startElection(nextState, nodeId)
-  }
-
-  // falha
-  const wasLeader = node.state === STATES.LEADER
-  let nextState = {
-    ...state,
-    nodes: state.nodes.map((n) =>
-      n.id === nodeId
-        ? { ...n, failed: true, state: STATES.FAILED, leaderId: null, waitingReplies: 0 }
-        : n
-    ),
-    step: state.step + 1,
-  }
-
-  if (wasLeader) {
-    nextState = logEvent(nextState, `Nó ${nodeId} (líder) falha`)
-    nextState = { ...nextState, leaderId: null }
-  } else {
-    nextState = logEvent(nextState, `Nó ${nodeId} falha`)
-  }
-
-  return nextState
+  return toggleNodeFailureBase(state, nodeId, {
+    startElection,
+    nodeDefaults: NODE_DEFAULTS,
+  })
 }
 
 export function setPreset(preset, nodeCount = 5) {
   if (preset === 'election') {
-    let state = createInitialState(nodeCount)
-    return startElection(state, 0)
+    return presetStartElection({ createInitialState, startElection }, nodeCount)
   }
   if (preset === 'leader-failure') {
-    let state = createInitialState(nodeCount)
-    state = runUntilStable(state)
-    if (state.leaderId !== null) {
-      state = toggleNodeFailure(state, state.leaderId)
-    }
-    return state
+    return presetFailLeader({ createInitialState, runUntilStable, toggleNodeFailure }, nodeCount)
   }
   if (preset === 'highest-recovers') {
     let state = createInitialState(nodeCount)
@@ -330,8 +247,7 @@ export function setPreset(preset, nodeCount = 5) {
   }
   if (preset === 'tie-break') {
     // cenário com 2 nós: o de maior ID sempre vence
-    let state = createInitialState(2)
-    return startElection(state, 0)
+    return presetStartElection({ createInitialState, startElection }, 2)
   }
   return createInitialState(nodeCount)
 }

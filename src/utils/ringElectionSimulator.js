@@ -2,50 +2,38 @@
 // Implementação 100% client-side e passo a passo: os processos estão
 // organizados logicamente em um anel e elegem o de maior ID trocando
 // mensagens unidirecionais com o próximo vizinho ativo.
+// O harness comum (estado inicial, log, fila/entrega de mensagens,
+// estabilização, queda/recuperacao e presets genericos) vive em
+// leaderElectionHarness.js — este arquivo guarda só a máquina do anel.
+
+import {
+  BASE_MESSAGE_TYPES,
+  BASE_STATES,
+  createBaseState,
+  deliverPendingMessage,
+  logEvent,
+  presetFailLeader,
+  presetStartElection,
+  queueMessage,
+  runUntilStable as runUntilStableBase,
+  stepOnce,
+  toggleNodeFailure as toggleNodeFailureBase,
+} from './leaderElectionHarness'
 
 export const STATES = {
-  NORMAL: 'NORMAL',
-  ELECTION: 'ELECTION',
-  LEADER: 'LEADER',
-  FAILED: 'FAILED',
+  ...BASE_STATES,
 }
 
 export const MESSAGE_TYPES = {
-  ELECTION: 'ELECTION',
-  COORDINATOR: 'COORDINATOR',
+  ...BASE_MESSAGE_TYPES,
 }
 
-const PALETTE = ['#1677ff', '#52c41a', '#faad14', '#eb2f96', '#722ed1', '#13c2c2', '#f5222d']
-
 export function createInitialState(nodeCount = 5) {
-  const nodes = Array.from({ length: nodeCount }, (_, i) => ({
-    id: i,
-    priority: i + 1,
-    state: STATES.NORMAL,
-    leaderId: null,
-    color: PALETTE[i % PALETTE.length],
-    failed: false,
-  }))
-
-  return {
-    nodes,
-    messages: [],
-    eventCounter: 0,
-    step: 0,
-    leaderId: null,
-    log: [],
-  }
+  return createBaseState(nodeCount)
 }
 
 export function resetState(nodeCount = 5) {
   return createInitialState(nodeCount)
-}
-
-function logEvent(state, text) {
-  return {
-    ...state,
-    log: [{ step: state.step + 1, text }, ...state.log].slice(0, 100),
-  }
 }
 
 export function nextActiveNode(state, fromId) {
@@ -65,20 +53,7 @@ function sendMessage(state, from, type, candidateId) {
   const to = nextActiveNode(state, from)
   if (to === null) return state
 
-  return {
-    ...state,
-    messages: [
-      ...state.messages,
-      {
-        id: state.eventCounter++,
-        from,
-        to,
-        type,
-        candidateId,
-        delivered: false,
-      },
-    ],
-  }
+  return queueMessage(state, { from, to, type, candidateId })
 }
 
 export function startElection(state, nodeId) {
@@ -175,23 +150,18 @@ function handleCoordinatorMessage(state, msg) {
   return sendMessage(nextState, msg.to, MESSAGE_TYPES.COORDINATOR, leaderId)
 }
 
-function deliverNextMessage(state) {
-  const pending = state.messages.find((m) => !m.delivered)
-  if (!pending) return null
-
-  let nextState = {
-    ...state,
-    messages: state.messages.map((m) => (m.id === pending.id ? { ...m, delivered: true } : m)),
-    step: state.step + 1,
-  }
-
+function dispatchMessage(nextState, pending) {
   if (pending.type === MESSAGE_TYPES.ELECTION) {
-    nextState = handleElectionMessage(nextState, pending)
-  } else if (pending.type === MESSAGE_TYPES.COORDINATOR) {
-    nextState = handleCoordinatorMessage(nextState, pending)
+    return handleElectionMessage(nextState, pending)
   }
-
+  if (pending.type === MESSAGE_TYPES.COORDINATOR) {
+    return handleCoordinatorMessage(nextState, pending)
+  }
   return nextState
+}
+
+function deliverNextMessage(state) {
+  return deliverPendingMessage(state, dispatchMessage, true)
 }
 
 function triggerAutoElection(state) {
@@ -213,75 +183,23 @@ function triggerAutoElection(state) {
 }
 
 export function stepSimulation(state) {
-  if (state.messages.some((m) => !m.delivered)) {
-    return deliverNextMessage(state)
-  }
-  return triggerAutoElection(state)
+  return stepOnce(state, deliverNextMessage, triggerAutoElection)
 }
 
 export function runUntilStable(state, maxSteps = 200) {
-  let current = state
-  for (let i = 0; i < maxSteps; i++) {
-    const next = stepSimulation(current)
-    if (!next) break
-    current = next
-    const active = current.nodes.filter((n) => !n.failed)
-    const hasLeader = active.some((n) => n.state === STATES.LEADER)
-    const pending = current.messages.some((m) => !m.delivered)
-    if (hasLeader && !pending) break
-  }
-  return current
+  return runUntilStableBase(state, stepSimulation, maxSteps)
 }
 
 export function toggleNodeFailure(state, nodeId) {
-  const node = state.nodes[nodeId]
-  if (!node) return state
-
-  if (node.failed) {
-    let nextState = {
-      ...state,
-      nodes: state.nodes.map((n) =>
-        n.id === nodeId
-          ? { ...n, failed: false, state: STATES.NORMAL, leaderId: state.leaderId }
-          : n
-      ),
-      step: state.step + 1,
-    }
-    nextState = logEvent(nextState, `Nó ${nodeId} recupera e inicia eleição`)
-    return startElection(nextState, nodeId)
-  }
-
-  const wasLeader = node.state === STATES.LEADER
-  let nextState = {
-    ...state,
-    nodes: state.nodes.map((n) =>
-      n.id === nodeId ? { ...n, failed: true, state: STATES.FAILED, leaderId: null } : n
-    ),
-    leaderId: wasLeader ? null : state.leaderId,
-    step: state.step + 1,
-  }
-
-  if (wasLeader) {
-    nextState = logEvent(nextState, `Nó ${nodeId} (líder) falha`)
-  } else {
-    nextState = logEvent(nextState, `Nó ${nodeId} falha`)
-  }
-
-  return nextState
+  return toggleNodeFailureBase(state, nodeId, { startElection })
 }
 
 export function setPreset(preset, nodeCount = 5) {
   if (preset === 'election') {
-    let state = createInitialState(nodeCount)
-    return startElection(state, 0)
+    return presetStartElection({ createInitialState, startElection }, nodeCount)
   }
   if (preset === 'leader-failure') {
-    let state = createInitialState(nodeCount)
-    state = runUntilStable(state)
-    if (state.leaderId !== null) {
-      state = toggleNodeFailure(state, state.leaderId)
-    }
-    return state
+    return presetFailLeader({ createInitialState, runUntilStable, toggleNodeFailure }, nodeCount)
   }
   if (preset === 'highest-recovers') {
     let state = createInitialState(nodeCount)
@@ -306,8 +224,7 @@ export function setPreset(preset, nodeCount = 5) {
     return state
   }
   if (preset === 'two-nodes') {
-    let state = createInitialState(2)
-    return startElection(state, 0)
+    return presetStartElection({ createInitialState, startElection }, 2)
   }
   return createInitialState(nodeCount)
 }
