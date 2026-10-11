@@ -6,41 +6,12 @@
 // substitui. Arrays são sempre tratados como um todo (nunca mesclados)
 // — essa é a maior diferença prática entre os dois RFCs.
 
+import { deepClone, deepEqual } from './jsonDeep.js'
+
 // ├── utilidades ───────────────────────────────────────────────────
 
 export function isPlainObject(v) {
   return v !== null && typeof v === 'object' && !Array.isArray(v)
-}
-
-export function deepClone(v) {
-  if (v === undefined) return undefined
-  return JSON.parse(JSON.stringify(v))
-}
-
-// Igualdade estrutural profunda (chaves de objeto em qualquer ordem).
-export function deepEqual(a, b) {
-  if (a === b) return true
-  if (typeof a !== typeof b) return false
-  if (a === null || b === null) return a === b
-  const aArr = Array.isArray(a)
-  const bArr = Array.isArray(b)
-  if (aArr !== bArr) return false
-  if (aArr) {
-    if (a.length !== b.length) return false
-    for (let i = 0; i < a.length; i++) {
-      if (!deepEqual(a[i], b[i])) return false
-    }
-    return true
-  }
-  if (typeof a !== 'object') return false
-  const ak = Object.keys(a)
-  const bk = Object.keys(b)
-  if (ak.length !== bk.length) return false
-  for (const k of ak) {
-    if (!Object.prototype.hasOwnProperty.call(b, k)) return false
-    if (!deepEqual(a[k], b[k])) return false
-  }
-  return true
 }
 
 // ├── gerar patch a partir de dois documentos ──────────────────────
