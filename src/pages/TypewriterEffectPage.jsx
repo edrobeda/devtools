@@ -72,7 +72,7 @@ function Hero() {
 
 const translations = {
   pt: {
-    title: 'Componente: Efeito de Máquina de Escrever',
+    title: 'Snippet: useTypewriter',
     intro: (
       <>
         Hook que digita e apaga uma lista de frases em loop, caractere por
@@ -91,7 +91,7 @@ const translations = {
     pauseLabel: 'Pausa no final da frase (ms)',
   },
   en: {
-    title: 'Component: Typewriter Effect',
+    title: 'Snippet: useTypewriter',
     intro: (
       <>
         A hook that types and deletes a list of phrases in a loop, one
