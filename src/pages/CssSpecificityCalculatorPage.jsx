@@ -2,78 +2,10 @@ import React, { useMemo, useState } from 'react'
 import { Typography, Card, Space, Input, Table, Tag, Alert } from 'antd'
 import { OrderedListOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import { computeSpecificity, specificityNumber } from '../utils/cssSpecificity'
 
 const { Title, Paragraph, Text } = Typography
 const { TextArea } = Input
-
-// Especificidade CSS = (a, b, c):
-//   a = seletores de ID
-//   b = classes, seletores de atributo e pseudo-classes
-//   c = seletores de tipo (tag) e pseudo-elementos
-// Referência: https://www.w3.org/TR/selectors-3/#specificity
-// :where(...) sempre conta 0. :is()/:not() contam a especificidade do
-// conteúdo interno (aqui, aproximada contando todos os tokens internos,
-// já que o cálculo exato de "seletor mais específico entre os argumentos"
-// exigiria um parser CSS completo).
-const PSEUDO_ELEMENTS = ['before', 'after', 'first-line', 'first-letter', 'placeholder', 'selection', 'marker', 'backdrop', 'file-selector-button']
-
-function unwrapFunctionalPseudos(selector) {
-  let s = selector
-  // :where(...) contribui zero — remove por completo, mantendo espaço pra não colar tokens vizinhos
-  for (let i = 0; i < 5; i++) {
-    const next = s.replace(/:where\(([^()]*)\)/gi, ' ')
-    if (next === s) break
-    s = next
-  }
-  // :not(...) e :is(...)/:matches() — desembrulha mantendo o conteúdo interno
-  for (let i = 0; i < 5; i++) {
-    const next = s.replace(/:(?:not|is|matches)\(([^()]*)\)/gi, ' $1 ')
-    if (next === s) break
-    s = next
-  }
-  return s
-}
-
-function computeSpecificity(rawSelector) {
-  let s = unwrapFunctionalPseudos(rawSelector.trim())
-  let a = 0
-  let b = 0
-  let c = 0
-
-  // pseudo-elementos (:: sempre, ou : legado pra uma lista fixa) → c
-  s = s.replace(/::?([a-zA-Z-]+)/g, (m, name) => {
-    if (m.startsWith('::') || PSEUDO_ELEMENTS.includes(name.toLowerCase())) {
-      c += 1
-      return ' '
-    }
-    return m // devolve pra próxima etapa contar como pseudo-classe
-  })
-
-  // IDs → a
-  s = s.replace(/#[a-zA-Z_-][\w-]*/g, () => { a += 1; return ' ' })
-
-  // atributos [foo="bar"] → b
-  s = s.replace(/\[[^\]]*\]/g, () => { b += 1; return ' ' })
-
-  // classes → b
-  s = s.replace(/\.[a-zA-Z_-][\w-]*/g, () => { b += 1; return ' ' })
-
-  // pseudo-classes restantes (com ou sem argumento residual de :not/:is desembrulhado) → b
-  s = s.replace(/:[a-zA-Z-]+(\([^()]*\))?/g, () => { b += 1; return ' ' })
-
-  // o que sobra: seletores de tipo (tag), exceto universal * e combinadores
-  const rest = s.split(/[\s>+~,]+/).filter(Boolean)
-  rest.forEach((token) => {
-    if (token === '*' || token === '&') return
-    if (/^[a-zA-Z][\w-]*$/.test(token)) c += 1
-  })
-
-  return { a, b, c }
-}
-
-function specificityToNumber({ a, b, c }) {
-  return a * 1_000_000 + b * 1_000 + c
-}
 
 const translations = {
   pt: {
@@ -147,7 +79,7 @@ export default function CssSpecificityCalculatorPage() {
     return selectors
       .map((selector, idx) => {
         const spec = computeSpecificity(selector)
-        return { key: idx, selector, ...spec, sortValue: specificityToNumber(spec) }
+        return { key: idx, selector, ...spec, sortValue: specificityNumber(spec) }
       })
       .sort((r1, r2) => r2.sortValue - r1.sortValue)
       .map((r, idx) => ({ ...r, rank: idx + 1 }))

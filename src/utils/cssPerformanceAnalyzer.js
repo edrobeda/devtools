@@ -20,6 +20,13 @@
 // só o que essa análise precisa.
 // ─────────────────────────────────────────────────────────────
 
+import {
+  computeSpecificity,
+  specificityNumber,
+  specificityLabel,
+  flattenFunctionalPseudos,
+} from './cssSpecificity'
+
 const AT_RULES_WITH_BLOCK = new Set([
   'media', 'supports', 'container', 'document',
   'font-face', 'keyframes', '-webkit-keyframes', 'counter-style',
@@ -28,11 +35,6 @@ const AT_RULES_WITH_BLOCK = new Set([
 
 const AT_RULES_NO_BLOCK = new Set([
   'import', 'charset', 'namespace', 'viewport',
-])
-
-const PSEUDO_ELEMENTS = new Set([
-  'before', 'after', 'first-line', 'first-letter', 'placeholder',
-  'selection', 'marker', 'backdrop', 'file-selector-button', 'cue',
 ])
 
 // :has, :is, :not, :where, :nth-* — caros no engine de matching
@@ -44,65 +46,9 @@ const FUNCTIONAL_EXPENSIVE = [
   { re: /:nth-(?:child|last-child|of-type|last-of-type)\(/gi, name: ':nth-*()', severity: 'info', note: 'pseudoclasse posicional, simples mas custosa em listas grandes' },
 ]
 
-// ── helpers de especificidade (mesma lógica da CssSpecificityCalculator) ──
-
-function unwrapFunctionalPseudos(selector) {
-  let s = selector
-  for (let i = 0; i < 6; i++) {
-    const next = s.replace(/:(?:where|is|not|matches)\(([^()]*)\)/gi, ' $1 ')
-    if (next === s) break
-    s = next
-  }
-  // desembrulha :has() recursivamente até não mudar (limite seguro de 8)
-  for (let i = 0; i < 8; i++) {
-    const next = s.replace(/:has\(([^()]*(?:\([^()]*\)[^()]*)*)\)/gi, ' $1 ')
-    if (next === s) break
-    s = next
-  }
-  return s
-}
-
-function computeSpecificity(rawSelector) {
-  let s = unwrapFunctionalPseudos(rawSelector.trim())
-  let a = 0, b = 0, c = 0
-
-  // pseudo-elementos
-  s = s.replace(/::?([a-zA-Z-]+)/g, (m, name) => {
-    if (m.startsWith('::') || PSEUDO_ELEMENTS.has(name.toLowerCase())) {
-      c += 1
-      return ' '
-    }
-    return m
-  })
-  // IDs
-  s = s.replace(/#[a-zA-Z_-][\w-]*/g, () => { a += 1; return ' ' })
-  // atributos
-  s = s.replace(/\[[^\]]*\]/g, () => { b += 1; return ' ' })
-  // classes
-  s = s.replace(/\.[a-zA-Z_-][\w-]*/g, () => { b += 1; return ' ' })
-  // pseudo-classes restantes
-  s = s.replace(/:[a-zA-Z-]+(\([^()]*\))?/g, () => { b += 1; return ' ' })
-  // tags (sobra)
-  const rest = s.split(/[\s>+~,]+/).filter(Boolean)
-  rest.forEach((token) => {
-    if (token === '*' || token === '&') return
-    if (/^[a-zA-Z][\w-]*$/.test(token)) c += 1
-  })
-
-  return { a, b, c }
-}
-
-function specificityNumber({ a, b, c }) {
-  return a * 1_000_000 + b * 1_000 + c
-}
-
-function specificityLabel({ a, b, c }) {
-  return `(${a},${b},${c})`
-}
-
 // profundidade do seletor — conta combinadores (espaço, >, +, ~)
 function selectorDepth(selector) {
-  const unwrapped = unwrapFunctionalPseudos(selector)
+  const unwrapped = flattenFunctionalPseudos(selector)
   // quebras por combinadores (com cuidado pra não contar parens)
   const tokens = []
   let depth = 0
