@@ -49,29 +49,7 @@ export const CONDITION_TYPES = [
 export const DISPLAY_OPTIONS = ['block', 'flex', 'grid', 'inline-flex', 'inline-block', 'none']
 export const FLEX_DIRECTION_OPTIONS = ['row', 'row-reverse', 'column', 'column-reverse']
 
-const STYLE_KEYS = [
-  'backgroundColor',
-  'color',
-  'fontSize',
-  'padding',
-  'borderRadius',
-  'display',
-  'flexDirection',
-  'gap',
-]
-
-export function toKebab(str) {
-  return str.replace(/([A-Z])/g, '-$1').toLowerCase()
-}
-
-function formatStyleValue(key, value) {
-  if (value == null || value === '') return null
-  if (['fontSize', 'padding', 'borderRadius', 'gap'].includes(key)) {
-    const num = Number(value)
-    if (!Number.isNaN(num)) return `${num}px`
-  }
-  return value
-}
+import { STYLE_KEYS, toKebab, formatStyleValue } from './cssQueryStyles.js'
 
 export function buildConditionString(condition, rangeSyntax = true) {
   const { type, value, valueMax } = condition

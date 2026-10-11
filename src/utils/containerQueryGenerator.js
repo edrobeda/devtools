@@ -11,24 +11,7 @@ export const DEFAULT_BREAKPOINTS = [
   { minWidth: 700, maxWidth: null, styles: { backgroundColor: '#f6ffed', color: '#389e0d', fontSize: 18, padding: 24, flexDirection: 'row', gap: 16 } },
 ]
 
-const STYLE_KEYS = [
-  'backgroundColor',
-  'color',
-  'fontSize',
-  'padding',
-  'flexDirection',
-  'gap',
-  'borderRadius',
-]
-
-function formatValue(key, value) {
-  if (value == null || value === '') return null
-  if (['fontSize', 'padding', 'gap', 'borderRadius'].includes(key)) {
-    const num = Number(value)
-    if (!Number.isNaN(num)) return `${num}px`
-  }
-  return value
-}
+import { STYLE_KEYS_CONTAINER, toKebab, formatStyleValue } from './cssQueryStyles.js'
 
 export function buildBreakpointQuery(containerName, bp, index) {
   const conditions = []
@@ -40,9 +23,9 @@ export function buildBreakpointQuery(containerName, bp, index) {
   const selector = `.${containerName}__item`
   const declarations = []
 
-  for (const key of STYLE_KEYS) {
+  for (const key of STYLE_KEYS_CONTAINER) {
     const raw = bp.styles?.[key]
-    const value = formatValue(key, raw)
+    const value = formatStyleValue(key, raw)
     if (value != null) declarations.push(`  ${toKebab(key)}: ${value};`)
   }
 
@@ -94,6 +77,4 @@ export function buildDemoHtml(container) {
 </div>`
 }
 
-function toKebab(str) {
-  return str.replace(/([A-Z])/g, '-$1').toLowerCase()
-}
+
