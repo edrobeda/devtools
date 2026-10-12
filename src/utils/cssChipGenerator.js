@@ -4,50 +4,7 @@
 // status, ícone e botão de remover — tudo com HTML semântico e CSS pronto
 // para copiar.
 
-function parseColor(color) {
-  if (!color) return '#1677ff'
-  if (typeof color === 'string') return color
-  if (color && typeof color.toHexString === 'function') return color.toHexString()
-  return String(color)
-}
-
-function toPx(v) {
-  const n = Number(v)
-  return Number.isFinite(n) ? `${Math.round(n)}px` : '0px'
-}
-
-function clamp(n, min, max) {
-  return Math.max(min, Math.min(max, n))
-}
-
-function hexToRgb(hex) {
-  const clean = parseColor(hex).replace('#', '')
-  const bigint = parseInt(clean.length === 3 ? clean.split('').map((c) => c + c).join('') : clean, 16)
-  if (Number.isNaN(bigint)) return { r: 22, g: 119, b: 255 }
-  return {
-    r: (bigint >> 16) & 255,
-    g: (bigint >> 8) & 255,
-    b: bigint & 255,
-  }
-}
-
-function rgba(hex, alpha) {
-  const { r, g, b } = hexToRgb(hex)
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`
-}
-
-function relativeLuminance(hex) {
-  const { r, g, b } = hexToRgb(hex)
-  const [rs, gs, bs] = [r, g, b].map((v) => {
-    const s = v / 255
-    return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4)
-  })
-  return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs
-}
-
-function autoTextColor(hex) {
-  return relativeLuminance(hex) > 0.5 ? '#000000' : '#ffffff'
-}
+import { parseColor, toPx, clamp, rgba, autoTextColor } from './cssColor.js'
 
 const ICON_SVGS = {
   star: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>',
