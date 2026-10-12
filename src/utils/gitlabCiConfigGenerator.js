@@ -3,13 +3,9 @@
 // services, needs, rules e workflow. Tudo é gerado como texto YAML manualmente,
 // sem depender de bibliotecas externas.
 
-export function clone(o) {
-  try {
-    return JSON.parse(JSON.stringify(o))
-  } catch {
-    return o
-  }
-}
+import { clone, parseLines, parseVariables, yamlScalar as q, addScalar, addList } from './yamlEmit'
+
+export { clone }
 
 export function createJob() {
   return {
@@ -32,40 +28,6 @@ export function createJob() {
     dependencies: '',
     needs: '',
     when: '',
-  }
-}
-
-function parseLines(raw) {
-  const text = Array.isArray(raw) ? raw.join('\n') : String(raw || '')
-  return text
-    .split('\n')
-    .map((s) => s.trim())
-    .filter(Boolean)
-}
-
-function parseVariables(raw) {
-  return parseLines(raw).map((line) => {
-    const idx = line.indexOf('=')
-    if (idx === -1) return { key: line, value: '' }
-    return { key: line.slice(0, idx).trim(), value: line.slice(idx + 1).trim() }
-  })
-}
-
-function q(s) {
-  return JSON.stringify(String(s))
-}
-
-function addScalar(lines, key, value) {
-  const v = String(value || '').trim()
-  if (v !== '') lines.push(`${key}: ${q(v)}`)
-}
-
-function addList(lines, key, items, indent = 2) {
-  if (!items.length) return
-  const pad = ' '.repeat(indent)
-  lines.push(`${key}:`)
-  for (const item of items) {
-    lines.push(`${pad}- ${q(item)}`)
   }
 }
 
@@ -263,7 +225,7 @@ export function buildConfig(o) {
 
     const tags = parseLines(job.tags)
     const allTags = tags.length ? tags : defaultTags
-    addList(lines, '  tags', allTags, 4)
+    addList(lines, 'tags', allTags, 1)
 
     addRawBlock(lines, '  before_script', parseLines(job.beforeScript), 4)
     addRawBlock(lines, '  script', parseLines(job.script), 4)
@@ -285,7 +247,7 @@ export function buildConfig(o) {
     const artPaths = parseLines(job.artifactsPaths)
     if (artPaths.length) {
       lines.push('  artifacts:')
-      addList(lines, '    paths', artPaths, 6)
+      addList(lines, 'paths', artPaths, 2)
       const expire = String(job.artifactsExpire || '').trim()
       if (expire) lines.push(`    expire_in: ${q(expire)}`)
     }
@@ -295,15 +257,15 @@ export function buildConfig(o) {
       lines.push('  cache:')
       const key = String(job.cacheKey || '').trim()
       if (key) lines.push(`    key: ${q(key)}`)
-      addList(lines, '    paths', cachePaths, 6)
+      addList(lines, 'paths', cachePaths, 2)
     }
 
     const services = parseLines(job.services)
     const allServices = services.length ? services : globalServices
-    addList(lines, '  services', allServices, 4)
+addList(lines, 'services', allServices, 1)
 
-    addList(lines, '  dependencies', parseLines(job.dependencies), 4)
-    addList(lines, '  needs', parseLines(job.needs), 4)
+addList(lines, 'dependencies', parseLines(job.dependencies), 1)
+addList(lines, 'needs', parseLines(job.needs), 1)
   }
 
   const text = lines.join('\n')
