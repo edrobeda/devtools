@@ -24,12 +24,22 @@ OUTPUT_FILE = os.path.join(ROOT, "manifest.xml")
 
 ROUTE_RE = re.compile(r"\{\s*path:\s*['\"]([^'\"]+)['\"]\s*,\s*element:\s*<(\w+)\s*/>\s*\}")
 TITLE_RE = re.compile(r"title:\s*['\"]([^'\"]+)['\"]")
+# O bloco de traduções PT aparece de duas formas no código-fonte:
+#   (a) `const translations = { pt: {...}, en: {...} }` (ou `const TRANSLATIONS`;
+#       a maioria das páginas) — o `pt` vem primeiro no arquivo;
+#   (b) `const pt = {...}` e `const en = {...}` soltos, com a escolha feita em
+#       runtime via `lang === 'pt' ? pt : en` — caso do CsvMarkdownTablePage.jsx,
+#       onde o bloco `en` vem PRIMEIRO no arquivo.
+# Em (b) título e intro têm de ser lidos a partir do início do bloco `pt`, nunca
+# da primeira ocorrência no arquivo inteiro (que seria do `en`).
+TRANSLATIONS_PT_RE = re.compile(
+    r"const\s+translations\s*=\s*\{[\s\S]*?\bpt\s*:\s*\{", re.IGNORECASE
+)
+SEPARATE_PT_RE = re.compile(r"(?m)^\s*const\s+pt\s*=\s*\{")
 # O título real da página é SEMPRE a primeira chave `title:`/`heading:` do bloco
 # `pt:` de traduções — não a primeira ocorrência de `title:` no arquivo inteiro
 # (que pode ser um rótulo de campo, dado de exemplo ou fixture).
-PT_TITLE_RE = re.compile(
-    r"const\s+translations\s*=\s*\{[\s\S]*?pt:\s*\{[\s\S]*?(?:title|heading):\s*['\"]([^'\"]+)['\"]"
-)
+PT_TITLE_RE = re.compile(r"(?:title|heading):\s*['\"]([^'\"]+)['\"]")
 # A captura do intro precisa parar na PRIMEIRA key irmã, na MESMA indentação do
 # `intro:` — não só nas de exatamente 4 espaços. Páginas com o objeto
 # `translations` aninhado em função indentam as keys do bloco `pt:` em 6
@@ -47,8 +57,17 @@ INTRO_RE = re.compile(
 )
 
 
+def pt_block(page_src):
+    """Trecho do arquivo a partir do início do bloco de traduções `pt`."""
+    for pattern in (TRANSLATIONS_PT_RE, SEPARATE_PT_RE):
+        match = pattern.search(page_src)
+        if match:
+            return page_src[match.end():]
+    return page_src
+
+
 def extract_title(page_src, component):
-    pt_title_match = PT_TITLE_RE.search(page_src)
+    pt_title_match = PT_TITLE_RE.search(pt_block(page_src))
     if pt_title_match:
         return pt_title_match.group(1)
     title_match = TITLE_RE.search(page_src)
@@ -90,7 +109,7 @@ def main():
 
         title = extract_title(page_src, component)
 
-        intro_match = INTRO_RE.search(page_src)
+        intro_match = INTRO_RE.search(pt_block(page_src))
         description = extract_description(intro_match.group("intro_body")) if intro_match else ""
 
         category = path.split("/")[0] if "/" in path else path
