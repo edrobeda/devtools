@@ -3,50 +3,7 @@
 // Produz a classe .avatar com variações filled, gradient, outline e soft,
 // formas circle/square/rounded/hexagon, anel de status, badge e grupo.
 
-function parseColor(color) {
-  if (!color) return '#1677ff'
-  if (typeof color === 'string') return color
-  if (color && typeof color.toHexString === 'function') return color.toHexString()
-  return String(color)
-}
-
-function toPx(v) {
-  const n = Number(v)
-  return Number.isFinite(n) ? `${Math.round(n)}px` : '0px'
-}
-
-function clamp(n, min, max) {
-  return Math.max(min, Math.min(max, n))
-}
-
-function hexToRgb(hex) {
-  const clean = parseColor(hex).replace('#', '')
-  const bigint = parseInt(clean.length === 3 ? clean.split('').map((c) => c + c).join('') : clean, 16)
-  if (Number.isNaN(bigint)) return { r: 22, g: 119, b: 255 }
-  return {
-    r: (bigint >> 16) & 255,
-    g: (bigint >> 8) & 255,
-    b: bigint & 255,
-  }
-}
-
-function rgba(hex, alpha) {
-  const { r, g, b } = hexToRgb(hex)
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`
-}
-
-function relativeLuminance(hex) {
-  const { r, g, b } = hexToRgb(hex)
-  const [rs, gs, bs] = [r, g, b].map((v) => {
-    const s = v / 255
-    return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4)
-  })
-  return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs
-}
-
-function autoTextColor(hex) {
-  return relativeLuminance(hex) > 0.5 ? '#000000' : '#ffffff'
-}
+import { parseColor, toPx, clamp, rgba, autoTextColor } from './cssColor.js'
 
 const STATUS_COLORS = {
   online: '#52c41a',
