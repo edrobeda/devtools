@@ -6,17 +6,11 @@
  * here to keep the semantics predictable.
  */
 
+import { utf8ToBytes, bytesToUtf8, byteStats } from './byteEncoding'
+
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567'
 const LOWER_ALPHABET = ALPHABET.toLowerCase()
 const CHAR_TO_VALUE = new Map([...ALPHABET].map((c, i) => [c, i]))
-
-function utf8ToBytes(str) {
-  return new TextEncoder().encode(str)
-}
-
-function bytesToUtf8(bytes) {
-  return new TextDecoder().decode(bytes)
-}
 
 /**
  * Normalize user input before decoding: remove padding, whitespace and
@@ -122,10 +116,5 @@ export function expectedPaddingLength(base32LengthWithoutPadding) {
  * Simple byte/char statistics for the page UI.
  */
 export function base32Stats(input) {
-  const bytes = utf8ToBytes(String(input))
-  return {
-    chars: input.length,
-    bytes: bytes.length,
-    bits: bytes.length * 8,
-  }
+  return byteStats(input)
 }

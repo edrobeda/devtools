@@ -6,42 +6,14 @@
  * double-SHA256 checksum, commonly seen in Bitcoin addresses and WIF keys.
  */
 
+import { utf8ToBytes, bytesToUtf8, byteStats } from './byteEncoding'
+
+export { bytesToHex, hexToBytes } from './byteEncoding'
+
 const ALPHABET = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
 const CHAR_TO_VALUE = new Map([...ALPHABET].map((c, i) => [c, BigInt(i)]))
 const BASE = BigInt(58)
 const ZERO = BigInt(0)
-
-function utf8ToBytes(str) {
-  return new TextEncoder().encode(str)
-}
-
-function bytesToUtf8(bytes) {
-  return new TextDecoder().decode(bytes)
-}
-
-/**
- * Convert a Uint8Array to a lowercase hex string.
- */
-export function bytesToHex(bytes) {
-  return Array.from(bytes)
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('')
-}
-
-/**
- * Convert a lowercase/uppercase hex string to a Uint8Array.
- */
-export function hexToBytes(hex) {
-  const clean = hex.replace(/\s+/g, '').toLowerCase()
-  if (!/^[0-9a-f]*$/.test(clean) || clean.length % 2 !== 0) {
-    throw new Error('Invalid hex string')
-  }
-  const bytes = []
-  for (let i = 0; i < clean.length; i += 2) {
-    bytes.push(parseInt(clean.slice(i, i + 2), 16))
-  }
-  return new Uint8Array(bytes)
-}
 
 async function sha256(bytes) {
   const buffer = await crypto.subtle.digest('SHA-256', bytes)
@@ -250,10 +222,5 @@ export async function decodeBase58CheckString(input, expectedVersionByte) {
  * Simple byte/char statistics for the page UI.
  */
 export function base58Stats(input) {
-  const bytes = utf8ToBytes(String(input))
-  return {
-    chars: input.length,
-    bytes: bytes.length,
-    bits: bytes.length * 8,
-  }
+  return byteStats(input)
 }
