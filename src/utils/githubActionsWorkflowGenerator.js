@@ -3,13 +3,9 @@
 // variáveis, permissões, matrix e services. Tudo é gerado como texto YAML
 // manualmente, sem depender de bibliotecas externas.
 
-export function clone(o) {
-  try {
-    return JSON.parse(JSON.stringify(o))
-  } catch {
-    return o
-  }
-}
+import { clone, parseLines, parseVariables, yamlScalar as q, indent, addScalar, addList } from './yamlEmit'
+
+export { clone }
 
 export function createStep() {
   return {
@@ -64,35 +60,6 @@ export const PERMISSION_OPTIONS = [
   { value: 'security-events: write', label: 'security-events: write' },
 ]
 
-function parseLines(raw) {
-  const text = Array.isArray(raw) ? raw.join('\n') : String(raw || '')
-  return text
-    .split('\n')
-    .map((s) => s.trim())
-    .filter(Boolean)
-}
-
-function parseVariables(raw) {
-  return parseLines(raw).map((line) => {
-    const idx = line.indexOf('=')
-    if (idx === -1) return { key: line, value: '' }
-    return { key: line.slice(0, idx).trim(), value: line.slice(idx + 1).trim() }
-  })
-}
-
-function q(s) {
-  return JSON.stringify(String(s))
-}
-
-function indent(level) {
-  return '  '.repeat(level)
-}
-
-function addScalar(lines, key, value, level = 0) {
-  const v = String(value || '').trim()
-  if (v !== '') lines.push(`${indent(level)}${key}: ${q(v)}`)
-}
-
 function addRawScalar(lines, key, value, level = 0) {
   const v = String(value || '').trim()
   if (v !== '') lines.push(`${indent(level)}${key}: ${v}`)
@@ -104,15 +71,6 @@ function addVariables(lines, header, raw, level = 0) {
   lines.push(`${indent(level)}${header}:`)
   for (const { key, value } of vars) {
     lines.push(`${indent(level + 1)}${key}: ${q(value)}`)
-  }
-}
-
-function addList(lines, key, raw, level = 0) {
-  const items = parseLines(raw)
-  if (!items.length) return
-  lines.push(`${indent(level)}${key}:`)
-  for (const item of items) {
-    lines.push(`${indent(level + 1)}- ${q(item)}`)
   }
 }
 
