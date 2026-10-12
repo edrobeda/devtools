@@ -99,6 +99,7 @@ import {
   PlayCircleOutlined,
   SplitCellsOutlined,
   TagsOutlined,
+  SecurityScanOutlined,
 } from '@ant-design/icons'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -334,6 +335,7 @@ export const LABELS = {
     'saml-decoder': 'Decodificador de SAML (Assertion)',
     'jwt-signature-verifier': 'Verificador de Assinatura JWT',
     'cvss-calculator': 'Calculadora de CVSS v3.1',
+    'secret-scanner': 'Scanner de Segredos Expostos',
     'token-counter': 'Contador de Tokens',
     'pomodoro-timer': 'Timer Pomodoro',
     'env-file-validator': 'Validador de .env',
@@ -889,6 +891,7 @@ export const LABELS = {
     'saml-decoder': 'SAML Assertion Decoder',
     'jwt-signature-verifier': 'JWT Signature Verifier',
     'cvss-calculator': 'CVSS v3.1 Calculator',
+    'secret-scanner': 'Leaked Secret Scanner',
     'token-counter': 'Token Counter',
     'pomodoro-timer': 'Pomodoro Timer',
     'env-file-validator': '.env File Validator',
@@ -1704,6 +1707,7 @@ export function buildMenuItems(l) {
         { key: '/security/certificate-decoder', icon: <SafetyCertificateOutlined />, label: withNewBadge('/security/certificate-decoder', l['certificate-decoder'], l) },
         { key: '/security/saml-decoder', icon: <FileProtectOutlined />, label: withNewBadge('/security/saml-decoder', l['saml-decoder'], l) },
         { key: '/security/cvss-calculator', icon: <DashboardOutlined />, label: withNewBadge('/security/cvss-calculator', l['cvss-calculator'], l) },
+        { key: '/security/secret-scanner', icon: <SecurityScanOutlined />, label: withNewBadge('/security/secret-scanner', l['secret-scanner'], l) },
       ],
     },
     {

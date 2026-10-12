@@ -508,6 +508,7 @@ import HexDumpPage from './pages/HexDumpPage'
 import SvgPathVisualizerPage from './pages/SvgPathVisualizerPage'
 import ProtobufDecoderPage from './pages/ProtobufDecoderPage'
 import CvssCalculatorPage from './pages/CvssCalculatorPage'
+import SecretScannerPage from './pages/SecretScannerPage'
 import LuaCheatsheetPage from './pages/LuaCheatsheetPage'
 import SqlWindowFunctionsPage from './pages/SqlWindowFunctionsPage'
 import EmojiCheatsheetPage from './pages/EmojiCheatsheetPage'
@@ -1144,6 +1145,7 @@ const router = createBrowserRouter([
       { path: 'extras/redis-ttl-simulator', element: <RedisTtlSimulatorPage /> },
       { path: 'tools/protobuf-decoder', element: <ProtobufDecoderPage /> },
       { path: 'security/cvss-calculator', element: <CvssCalculatorPage /> },
+      { path: 'security/secret-scanner', element: <SecretScannerPage /> },
       { path: 'tools/zip-inspector', element: <ZipInspectorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
