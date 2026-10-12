@@ -3,6 +3,8 @@
 // Todos os cálculos são 100% client-side; nenhuma coordenada ou estimativa sai
 // do navegador.
 
+import { haversineKm } from './haversineDistance'
+
 export const SPEED_OF_LIGHT_KM_MS = 299.792458 // km por milissegundo
 
 // A luz na fibra óptica viaja aproximadamente 1/1.5 da velocidade no vácuo
@@ -70,25 +72,9 @@ export function getRegionById(id) {
   return CLOUD_REGIONS.find((r) => r.id === id) || null
 }
 
-export function toRadians(deg) {
-  return (deg * Math.PI) / 180
-}
-
 // Distância geodésica entre dois pontos na superfície da Terra usando a
-// fórmula de Haversine. Retorna quilômetros.
-export function haversineDistance(lat1, lon1, lat2, lon2) {
-  const R = 6371 // raio médio da Terra em km
-  const dLat = toRadians(lat2 - lat1)
-  const dLon = toRadians(lon2 - lon1)
-  const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(toRadians(lat1)) *
-      Math.cos(toRadians(lat2)) *
-      Math.sin(dLon / 2) *
-      Math.sin(dLon / 2)
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
-  return R * c
-}
+// fórmula de Haversine (fonte única: src/utils/haversineDistance.js).
+export { haversineKm as haversineDistance } from './haversineDistance'
 
 // Estimativa de latência a partir da distância.
 export function calculateLatency(distanceKm, cableFactor = DEFAULT_CABLE_FACTOR, realisticFactor = DEFAULT_REALISTIC_FACTOR) {
@@ -116,7 +102,7 @@ export function buildQuickTable(regionIds) {
     for (let j = i + 1; j < regions.length; j += 1) {
       const a = regions[i]
       const b = regions[j]
-      const distance = haversineDistance(a.lat, a.lon, b.lat, b.lon)
+      const distance = haversineKm(a.lat, a.lon, b.lat, b.lon)
       const { rttRealisticMs } = calculateLatency(distance)
       rows.push({
         key: `${a.id}:${b.id}`,
