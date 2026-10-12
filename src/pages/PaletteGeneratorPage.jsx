@@ -2,57 +2,9 @@ import React, { useMemo, useState } from 'react'
 import { Typography, Card, Space, Segmented, Button, message } from 'antd'
 import { BgColorsOutlined, CopyOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import { hexToHsl, hslToHex } from '../utils/colorConvert'
 
 const { Title, Paragraph, Text } = Typography
-
-const HEX_RE = /^#?([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/
-
-function normalizeHex(hex) {
-  const match = HEX_RE.exec((hex || '').trim())
-  if (!match) return null
-  let value = match[1]
-  if (value.length === 3) value = value.split('').map((c) => c + c).join('')
-  return `#${value.toLowerCase()}`
-}
-
-function hexToHsl(hex) {
-  const value = normalizeHex(hex)
-  const r = parseInt(value.slice(1, 3), 16) / 255
-  const g = parseInt(value.slice(3, 5), 16) / 255
-  const b = parseInt(value.slice(5, 7), 16) / 255
-  const max = Math.max(r, g, b)
-  const min = Math.min(r, g, b)
-  const delta = max - min
-  let h = 0
-  if (delta !== 0) {
-    if (max === r) h = ((g - b) / delta) % 6
-    else if (max === g) h = (b - r) / delta + 2
-    else h = (r - g) / delta + 4
-    h = Math.round(h * 60)
-    if (h < 0) h += 360
-  }
-  const l = (max + min) / 2
-  const s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1))
-  return { h, s: s * 100, l: l * 100 }
-}
-
-function hslToHex(h, s, l) {
-  const hh = ((h % 360) + 360) % 360
-  const ss = Math.min(100, Math.max(0, s)) / 100
-  const ll = Math.min(100, Math.max(0, l)) / 100
-  const c = (1 - Math.abs(2 * ll - 1)) * ss
-  const x = c * (1 - Math.abs(((hh / 60) % 2) - 1))
-  const m = ll - c / 2
-  let r = 0; let g = 0; let b = 0
-  if (hh < 60) { r = c; g = x; b = 0 }
-  else if (hh < 120) { r = x; g = c; b = 0 }
-  else if (hh < 180) { r = 0; g = c; b = x }
-  else if (hh < 240) { r = 0; g = x; b = c }
-  else if (hh < 300) { r = x; g = 0; b = c }
-  else { r = c; g = 0; b = x }
-  const toHex = (v) => Math.round((v + m) * 255).toString(16).padStart(2, '0')
-  return `#${toHex(r)}${toHex(g)}${toHex(b)}`
-}
 
 function buildPalette(baseHex, mode) {
   const { h, s, l } = hexToHsl(baseHex)

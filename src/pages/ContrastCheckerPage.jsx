@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react'
 import { Typography, Card, Space, Input, Row, Col, Tag, Descriptions } from 'antd'
 import { BgColorsOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import { hexToRgb, contrastRatio } from '../utils/colorConvert'
 
 const { Title, Paragraph, Text } = Typography
 
@@ -46,38 +47,6 @@ const translations = {
     fail: 'Fail',
     invalid: 'Invalid color — use hex format, e.g. #1677ff',
   },
-}
-
-function hexToRgb(hex) {
-  const clean = hex.trim().replace(/^#/, '')
-  const full = clean.length === 3
-    ? clean.split('').map((c) => c + c).join('')
-    : clean
-  if (!/^[0-9a-fA-F]{6}$/.test(full)) return null
-  return {
-    r: parseInt(full.slice(0, 2), 16),
-    g: parseInt(full.slice(2, 4), 16),
-    b: parseInt(full.slice(4, 6), 16),
-  }
-}
-
-function relativeLuminance({ r, g, b }) {
-  const [rs, gs, bs] = [r, g, b].map((v) => {
-    const c = v / 255
-    return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4)
-  })
-  return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs
-}
-
-function contrastRatio(hex1, hex2) {
-  const c1 = hexToRgb(hex1)
-  const c2 = hexToRgb(hex2)
-  if (!c1 || !c2) return null
-  const l1 = relativeLuminance(c1)
-  const l2 = relativeLuminance(c2)
-  const lighter = Math.max(l1, l2)
-  const darker = Math.min(l1, l2)
-  return (lighter + 0.05) / (darker + 0.05)
 }
 
 function PassTag({ pass, label }) {

@@ -6,6 +6,8 @@
 // clamp, hex->rgb, rgba, luminância relativa e escolha automática de cor
 // de texto.
 
+import { relativeLuminanceRgb } from './colorConvert'
+
 export function parseColor(color) {
   if (!color) return '#1677ff'
   if (typeof color === 'string') return color
@@ -39,12 +41,7 @@ export function rgba(hex, alpha) {
 }
 
 export function relativeLuminance(hex) {
-  const { r, g, b } = hexToRgb(hex)
-  const [rs, gs, bs] = [r, g, b].map((v) => {
-    const s = v / 255
-    return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4)
-  })
-  return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs
+  return relativeLuminanceRgb(hexToRgb(hex))
 }
 
 export function autoTextColor(hex) {

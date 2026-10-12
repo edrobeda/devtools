@@ -2,6 +2,7 @@ import React, { useMemo, useState, useCallback } from 'react'
 import { Typography, Space, Input, Segmented, Tag, Alert, Empty, Tooltip, message } from 'antd'
 import { SearchOutlined, BgColorsOutlined, CopyOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import { hexToRgb, rgbToHsl, relativeLuminanceRgb } from '../utils/colorConvert'
 
 const { Title, Paragraph, Text } = Typography
 
@@ -60,44 +61,6 @@ const FAMILIES = [
   { key: 'gray', pt: 'Cinzas & Neutros', en: 'Grays & Neutrals' },
 ]
 
-function hexToRgb(hex) {
-  const h = hex.replace('#', '')
-  const r = parseInt(h.substring(0, 2), 16)
-  const g = parseInt(h.substring(2, 4), 16)
-  const b = parseInt(h.substring(4, 6), 16)
-  return { r, g, b }
-}
-
-// Converte RGB (0-255) para HSL (h 0-360, s/l 0-100). Fórmula direta da especificação.
-function rgbToHsl(r, g, b) {
-  const rn = r / 255
-  const gn = g / 255
-  const bn = b / 255
-  const max = Math.max(rn, gn, bn)
-  const min = Math.min(rn, gn, bn)
-  const l = (max + min) / 2
-  let h = 0
-  let s = 0
-  if (max !== min) {
-    const d = max - min
-    s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
-    if (max === rn) h = (gn - bn) / d + (gn < bn ? 6 : 0)
-    else if (max === gn) h = (bn - rn) / d + 2
-    else h = (rn - gn) / d + 4
-    h *= 60
-  }
-  return { h: Math.round(h), s: Math.round(s * 100), l: Math.round(l * 100) }
-}
-
-// Luminância relativa (WCAG 2.x) — usada pra decidir texto preto ou branco sobre o swatch.
-function relativeLuminance({ r, g, b }) {
-  const lin = (v) => {
-    const c = v / 255
-    return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4)
-  }
-  return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b)
-}
-
 // Classifica a cor em uma família pelo matiz/saturação/luminosidade.
 function classify(h, s, l) {
   if (l >= 96 || s <= 8) return 'gray'
@@ -151,8 +114,9 @@ export default function CssColorNamesPage() {
   const colors = useMemo(() => {
     return NAMED_COLORS.map(([name, hex]) => {
       const rgb = hexToRgb(hex)
-      const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b)
-      const lum = relativeLuminance(rgb)
+      const raw = rgbToHsl(rgb)
+      const hsl = { h: raw.h, s: Math.round(raw.s), l: Math.round(raw.l) }
+      const lum = relativeLuminanceRgb(rgb)
       return {
         name,
         hex,
