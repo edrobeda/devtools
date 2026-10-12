@@ -1,4 +1,5 @@
 import QRCode from 'qrcode'
+import { hexToRgb, relativeLuminanceRgb, contrastRatioRgb } from './colorConvert'
 
 // Níveis de correção de erro do QR Code (nome → % de dados redundantes).
 // Quanto maior a redundância, mais dano físico o QR aguenta antes de ficar
@@ -66,30 +67,13 @@ export function qrToSvg(text, { ecc, scale, margin, fg, bg }) {
   )
 }
 
-function parseHex(hex) {
-  const h = hex.replace('#', '')
-  return {
-    r: parseInt(h.slice(0, 2), 16),
-    g: parseInt(h.slice(2, 4), 16),
-    b: parseInt(h.slice(4, 6), 16),
-  }
-}
-
 // Luminância relativa (WCAG) de uma cor hex #rrggbb.
 export function hexLuminance(hex) {
-  const { r, g, b } = parseHex(hex)
-  const norm = [r, g, b].map((v) => {
-    const s = v / 255
-    return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4)
-  })
-  return 0.2126 * norm[0] + 0.7152 * norm[1] + 0.0722 * norm[2]
+  return relativeLuminanceRgb(hexToRgb(hex))
 }
 
 export function contrastRatio(hexA, hexB) {
-  const la = hexLuminance(hexA)
-  const lb = hexLuminance(hexB)
-  const [hi, lo] = la >= lb ? [la, lb] : [lb, la]
-  return (hi + 0.05) / (lo + 0.05)
+  return contrastRatioRgb(hexToRgb(hexA), hexToRgb(hexB))
 }
 
 export function utf8Bytes(text) {

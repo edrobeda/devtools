@@ -2,10 +2,9 @@ import React, { useMemo, useState } from 'react'
 import { Typography, Card, Input, Space, Button, message, Row, Col } from 'antd'
 import { BgColorsOutlined, CopyOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import { normalizeHex, hexToRgb, rgbToHsl } from '../utils/colorConvert'
 
 const { Title, Paragraph, Text } = Typography
-
-const HEX_RE = /^#?([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/
 
 const translations = {
   pt: {
@@ -24,45 +23,6 @@ const translations = {
   },
 }
 
-function normalizeHex(hex) {
-  const match = HEX_RE.exec(hex.trim())
-  if (!match) return null
-  let value = match[1]
-  if (value.length === 3) {
-    value = value.split('').map((c) => c + c).join('')
-  }
-  return `#${value.toLowerCase()}`
-}
-
-function hexToRgb(hex) {
-  const value = normalizeHex(hex)
-  if (!value) return null
-  const r = parseInt(value.slice(1, 3), 16)
-  const g = parseInt(value.slice(3, 5), 16)
-  const b = parseInt(value.slice(5, 7), 16)
-  return { r, g, b }
-}
-
-function rgbToHsl({ r, g, b }) {
-  const rn = r / 255
-  const gn = g / 255
-  const bn = b / 255
-  const max = Math.max(rn, gn, bn)
-  const min = Math.min(rn, gn, bn)
-  const delta = max - min
-  let h = 0
-  if (delta !== 0) {
-    if (max === rn) h = ((gn - bn) / delta) % 6
-    else if (max === gn) h = (bn - rn) / delta + 2
-    else h = (rn - gn) / delta + 4
-    h = Math.round(h * 60)
-    if (h < 0) h += 360
-  }
-  const l = (max + min) / 2
-  const s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1))
-  return { h, s: Math.round(s * 100), l: Math.round(l * 100) }
-}
-
 export default function ColorConverterPage() {
   const { lang } = useLanguage()
   const t = translations[lang]
@@ -70,7 +30,11 @@ export default function ColorConverterPage() {
 
   const normalized = normalizeHex(hexInput)
   const rgb = useMemo(() => (normalized ? hexToRgb(normalized) : null), [normalized])
-  const hsl = useMemo(() => (rgb ? rgbToHsl(rgb) : null), [rgb])
+  const hsl = useMemo(() => {
+    if (!rgb) return null
+    const raw = rgbToHsl(rgb)
+    return { h: raw.h, s: Math.round(raw.s), l: Math.round(raw.l) }
+  }, [rgb])
 
   const rgbText = rgb ? `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})` : null
   const hslText = hsl ? `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)` : null

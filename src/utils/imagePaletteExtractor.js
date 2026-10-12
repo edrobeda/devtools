@@ -1,17 +1,6 @@
-export function rgbToHex(r, g, b) {
-  const toHex = (v) => Math.max(0, Math.min(255, v)).toString(16).padStart(2, '0')
-  return `#${toHex(r)}${toHex(g)}${toHex(b)}`.toLowerCase()
-}
+import { rgbToHex } from './colorConvert'
 
-export function hexToRgb(hex) {
-  const clean = hex.replace('#', '')
-  if (!/^([0-9a-fA-F]{6})$/.test(clean)) return null
-  return {
-    r: parseInt(clean.slice(0, 2), 16),
-    g: parseInt(clean.slice(2, 4), 16),
-    b: parseInt(clean.slice(4, 6), 16),
-  }
-}
+export { hexToRgb, rgbToHex } from './colorConvert'
 
 export function isGray(r, g, b, threshold = 15) {
   const max = Math.max(r, g, b)

@@ -8,6 +8,10 @@
 // comprimido — por isso fazemos gamma expansion, multiplicamos pela matriz
 // e voltamos com gamma compression antes de arredondar.
 
+import { hexToRgb, rgbToHex } from './colorConvert'
+
+export { hexToRgb }
+
 export const CVD_TYPES = {
   protanopia: {
     key: 'protanopia',
@@ -51,24 +55,6 @@ function gammaCompress(channel) {
   return Math.round(c * 255)
 }
 
-export function hexToRgb(hex) {
-  const clean = hex.trim().replace(/^#/, '')
-  const full = clean.length === 3
-    ? clean.split('').map((c) => c + c).join('')
-    : clean
-  if (!/^[0-9a-fA-F]{6}$/.test(full)) return null
-  return {
-    r: parseInt(full.slice(0, 2), 16),
-    g: parseInt(full.slice(2, 4), 16),
-    b: parseInt(full.slice(4, 6), 16),
-  }
-}
-
-export function rgbToHex({ r, g, b }) {
-  const toHex = (v) => Math.max(0, Math.min(255, v)).toString(16).padStart(2, '0')
-  return `#${toHex(r)}${toHex(g)}${toHex(b)}`.toLowerCase()
-}
-
 function clamp(value, min = 0, max = 255) {
   return Math.max(min, Math.min(max, value))
 }
@@ -99,20 +85,22 @@ export function simulate(rgb, type) {
   return { r, g, b }
 }
 
+const hexOf = (color) => rgbToHex(color.r, color.g, color.b)
+
 export function simulateHex(hex, type) {
   const rgb = hexToRgb(hex)
   if (!rgb) return null
-  return rgbToHex(simulate(rgb, type))
+  return hexOf(simulate(rgb, type))
 }
 
 export function simulateAll(hex) {
   const rgb = hexToRgb(hex)
   if (!rgb) return null
   return {
-    original: rgbToHex(rgb),
-    protanopia: rgbToHex(simulate(rgb, 'protanopia')),
-    deuteranopia: rgbToHex(simulate(rgb, 'deuteranopia')),
-    tritanopia: rgbToHex(simulate(rgb, 'tritanopia')),
-    achromatopsia: rgbToHex(simulate(rgb, 'achromatopsia')),
+    original: hexOf(rgb),
+    protanopia: hexOf(simulate(rgb, 'protanopia')),
+    deuteranopia: hexOf(simulate(rgb, 'deuteranopia')),
+    tritanopia: hexOf(simulate(rgb, 'tritanopia')),
+    achromatopsia: hexOf(simulate(rgb, 'achromatopsia')),
   }
 }
