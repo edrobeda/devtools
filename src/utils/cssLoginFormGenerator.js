@@ -3,21 +3,7 @@
 // Produz um formulário de login/registro estilizado usando só CSS,
 // com estados de foco, erro e sucesso, ícones inline e variações de layout.
 
-function parseColor(color) {
-  if (!color) return '#000000'
-  if (typeof color === 'string') return color
-  if (color && typeof color.toHexString === 'function') return color.toHexString()
-  return String(color)
-}
-
-function toPx(v) {
-  const n = Number(v)
-  return Number.isFinite(n) ? `${Math.round(n)}px` : '0px'
-}
-
-function clamp(n, min, max) {
-  return Math.max(min, Math.min(max, n))
-}
+import { parseColor, toPx, clamp } from './cssColor.js'
 
 function escapeHtml(text) {
   return String(text)
@@ -126,17 +112,17 @@ export function buildLoginFormCss(options = {}) {
   const fontSize = clamp(Number(opts.fontSize) || 16, 12, 32)
   const titleSize = clamp(Number(opts.titleSize) || 24, 16, 64)
 
-  const bgColor = parseColor(opts.bgColor)
-  const textColor = parseColor(opts.textColor)
-  const borderColor = parseColor(opts.borderColor)
-  const inputBg = parseColor(opts.inputBg)
-  const inputBorderColor = parseColor(opts.inputBorderColor)
-  const inputFocusColor = parseColor(opts.inputFocusColor)
-  const primaryColor = parseColor(opts.primaryColor)
-  const primaryTextColor = parseColor(opts.primaryTextColor)
-  const linkColor = parseColor(opts.linkColor)
-  const errorColor = parseColor(opts.errorColor)
-  const successColor = parseColor(opts.successColor)
+  const bgColor = parseColor(opts.bgColor, '#000000')
+  const textColor = parseColor(opts.textColor, '#000000')
+  const borderColor = parseColor(opts.borderColor, '#000000')
+  const inputBg = parseColor(opts.inputBg, '#000000')
+  const inputBorderColor = parseColor(opts.inputBorderColor, '#000000')
+  const inputFocusColor = parseColor(opts.inputFocusColor, '#000000')
+  const primaryColor = parseColor(opts.primaryColor, '#000000')
+  const primaryTextColor = parseColor(opts.primaryTextColor, '#000000')
+  const linkColor = parseColor(opts.linkColor, '#000000')
+  const errorColor = parseColor(opts.errorColor, '#000000')
+  const successColor = parseColor(opts.successColor, '#000000')
 
   const lines = [
     `.${cn} {`,

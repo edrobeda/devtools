@@ -4,21 +4,7 @@
 // Cada slide é um flex item; o track é deslocado com transform translateX
 // conforme o radio checado. Navegação por setas (prev/next) e dots.
 
-function parseColor(color) {
-  if (!color) return '#000000'
-  if (typeof color === 'string') return color
-  if (color && typeof color.toHexString === 'function') return color.toHexString()
-  return String(color)
-}
-
-function toPx(v) {
-  const n = Number(v)
-  return Number.isFinite(n) ? `${Math.round(n)}px` : '0px'
-}
-
-function clamp(n, min, max) {
-  return Math.max(min, Math.min(max, n))
-}
+import { parseColor, toPx, clamp } from './cssColor.js'
 
 function escapeHtml(text) {
   return String(text)
@@ -109,12 +95,12 @@ export function buildCarouselCss(options = {}) {
   const borderRadius = clamp(Number(opts.borderRadius) || 0, 0, 64)
   const duration = clamp(Number(opts.duration) || 0.3, 0.1, 2)
   const numSlides = clamp(Number(opts.numSlides) || 1, 2, 12)
-  const slideBg = parseColor(opts.slideBg)
-  const slideTextColor = parseColor(opts.slideTextColor)
-  const activeDotColor = parseColor(opts.activeDotColor)
-  const inactiveDotColor = parseColor(opts.inactiveDotColor)
-  const arrowBg = parseColor(opts.arrowBg)
-  const arrowColor = parseColor(opts.arrowColor)
+  const slideBg = parseColor(opts.slideBg, '#000000')
+  const slideTextColor = parseColor(opts.slideTextColor, '#000000')
+  const activeDotColor = parseColor(opts.activeDotColor, '#000000')
+  const inactiveDotColor = parseColor(opts.inactiveDotColor, '#000000')
+  const arrowBg = parseColor(opts.arrowBg, '#000000')
+  const arrowColor = parseColor(opts.arrowColor, '#000000')
   const aspectRatio = opts.slideAspectRatio || '16/9'
 
   const lines = [

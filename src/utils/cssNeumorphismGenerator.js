@@ -3,15 +3,10 @@
 // Cria efeitos de elevação e pressão usando sombras duplas e gradientes
 // suaves a partir de uma cor base. Funciona 100% no cliente.
 
-function parseColor(color) {
-  if (!color) return '#e0e5ec'
-  if (typeof color === 'string') return color
-  if (color && typeof color.toHexString === 'function') return color.toHexString()
-  return String(color)
-}
+import { parseColor, toPx, clamp } from './cssColor.js'
 
 function hexToRgb(hex) {
-  const clean = parseColor(hex).replace('#', '')
+  const clean = parseColor(hex, '#e0e5ec').replace('#', '')
   if (clean.length === 3) {
     const [r, g, b] = clean.split('').map((c) => parseInt(c + c, 16))
     return { r, g, b }
@@ -41,15 +36,6 @@ function shadeColor(hex, percent) {
     g + (t - g) * p,
     b + (t - b) * p
   )
-}
-
-function toPx(v) {
-  const n = Number(v)
-  return Number.isFinite(n) ? `${Math.round(n)}px` : '0px'
-}
-
-function clamp(n, min, max) {
-  return Math.max(min, Math.min(max, n))
 }
 
 const DEFAULTS = {
@@ -162,8 +148,8 @@ export { DEFAULTS, PRESETS }
 
 export function buildNeumorphismCss(options = {}) {
   const opts = { ...DEFAULTS, ...options }
-  const bg = parseColor(opts.bgColor)
-  const text = parseColor(opts.textColor)
+  const bg = parseColor(opts.bgColor, '#e0e5ec')
+  const text = parseColor(opts.textColor, '#e0e5ec')
   const direction = DIRECTIONS[opts.direction] || DIRECTIONS['top-left']
   const depth = clamp(Number(opts.depth) || 12, 0, 64)
   const blur = clamp(Number(opts.blur) || 24, 0, 128)

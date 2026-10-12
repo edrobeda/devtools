@@ -4,21 +4,7 @@
 // transformações e filtros na imagem no hover, e opcionalmente um overlay
 // via pseudo-elemento `::before` + `::after` para título e descrição.
 
-function parseColor(color) {
-  if (!color) return '#000000'
-  if (typeof color === 'string') return color
-  if (color && typeof color.toHexString === 'function') return color.toHexString()
-  return String(color)
-}
-
-function toPx(v) {
-  const n = Number(v)
-  return Number.isFinite(n) ? `${Math.round(n)}px` : '0px'
-}
-
-function clamp(n, min, max) {
-  return Math.max(min, Math.min(max, n))
-}
+import { parseColor, toPx, clamp } from './cssColor.js'
 
 function pct(n) {
   return `${clamp(Number(n) || 0, 0, 100)}%`
@@ -163,7 +149,7 @@ export function buildImageHoverCss(options = {}) {
   const borderRadius = clamp(Number(opts.borderRadius) || 0, 0, 50)
   const borderRadiusHover = clamp(Number(opts.borderRadiusHover) || borderRadius, 0, 50)
   const borderWidth = clamp(Number(opts.borderWidth) || 0, 0, 16)
-  const borderColor = parseColor(opts.borderColor)
+  const borderColor = parseColor(opts.borderColor, '#000000')
   const scale = clamp(Number(opts.scale) || 1, 0.5, 2)
   const rotate = clamp(Number(opts.rotate) || 0, -180, 180)
   const translateX = Number(opts.translateX) || 0
@@ -175,9 +161,9 @@ export function buildImageHoverCss(options = {}) {
   const shadow = opts.shadow || 'none'
   const shadowHover = opts.shadowHover || 'none'
   const overlay = !!opts.overlay
-  const overlayColor = parseColor(opts.overlayColor)
+  const overlayColor = parseColor(opts.overlayColor, '#000000')
   const overlayOpacity = clamp(Number(opts.overlayOpacity) || 0, 0, 1)
-  const overlayTextColor = parseColor(opts.overlayTextColor)
+  const overlayTextColor = parseColor(opts.overlayTextColor, '#000000')
   const overlayPosition = opts.overlayPosition || 'bottom'
 
   const baseFilter = buildFilter(opts, false)

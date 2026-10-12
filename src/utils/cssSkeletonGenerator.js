@@ -4,21 +4,7 @@
 // brilho) ou wave (gradiente se movendo continuamente). Totalmente client-side
 // e sem depender de bibliotecas externas.
 
-function parseColor(color) {
-  if (!color) return '#e5e5ea'
-  if (typeof color === 'string') return color
-  if (color && typeof color.toHexString === 'function') return color.toHexString()
-  return String(color)
-}
-
-function toPx(v) {
-  const n = Number(v)
-  return Number.isFinite(n) ? `${Math.round(n)}px` : '0px'
-}
-
-function clamp(n, min, max) {
-  return Math.max(min, Math.min(max, n))
-}
+import { parseColor, toPx, clamp } from './cssColor.js'
 
 const DEFAULTS = {
   variant: 'shimmer',
@@ -74,8 +60,8 @@ export { PRESETS, DEFAULTS }
 export function buildSkeletonCss(options = {}) {
   const opts = { ...DEFAULTS, ...options }
   const variant = ['pulse', 'shimmer', 'wave'].includes(opts.variant) ? opts.variant : 'shimmer'
-  const base = parseColor(opts.baseColor)
-  const highlight = parseColor(opts.highlightColor)
+  const base = parseColor(opts.baseColor, '#e5e5ea')
+  const highlight = parseColor(opts.highlightColor, '#e5e5ea')
   const borderRadius = clamp(Number(opts.borderRadius) || DEFAULTS.borderRadius, 0, 999)
   const duration = clamp(Number(opts.duration) || DEFAULTS.duration, 200, 5000)
   const lineHeight = clamp(Number(opts.lineHeight) || DEFAULTS.lineHeight, 4, 128)

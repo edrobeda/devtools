@@ -7,21 +7,7 @@
 // Opcionalmente adiciona um fade-out via ::after com gradiente transparente → fundo,
 // útil quando se quer uma transição suave ao final do texto cortado.
 
-function parseColor(color) {
-  if (!color) return '#000000'
-  if (typeof color === 'string') return color
-  if (color && typeof color.toHexString === 'function') return color.toHexString()
-  return String(color)
-}
-
-function toPx(v) {
-  const n = Number(v)
-  return Number.isFinite(n) ? `${Math.round(n)}px` : '0px'
-}
-
-function clamp(n, min, max) {
-  return Math.max(min, Math.min(max, n))
-}
+import { parseColor, toPx, clamp } from './cssColor.js'
 
 function escapeHtml(text) {
   return String(text)
@@ -90,8 +76,8 @@ export function buildLineClampCss(options = {}) {
   const lineHeight = clamp(Number(opts.lineHeight) || 1.2, 0.8, 3)
   const fontSize = clamp(Number(opts.fontSize) || 16, 10, 120)
   const textAlign = opts.textAlign || 'left'
-  const color = parseColor(opts.color)
-  const backgroundColor = parseColor(opts.backgroundColor)
+  const color = parseColor(opts.color, '#000000')
+  const backgroundColor = parseColor(opts.backgroundColor, '#000000')
   const useFadeOut = Boolean(opts.useFadeOut)
 
   let widthValue
@@ -172,8 +158,8 @@ export function buildLineClampHtml(options = {}) {
 export function buildLineClampFullDemo(options = {}) {
   const css = buildLineClampCss(options)
   const html = buildLineClampHtml(options)
-  const backgroundColor = parseColor(options.backgroundColor || DEFAULTS.backgroundColor)
-  const color = parseColor(options.color || DEFAULTS.color)
+  const backgroundColor = parseColor(options.backgroundColor || DEFAULTS.backgroundColor, '#000000')
+  const color = parseColor(options.color || DEFAULTS.color, '#000000')
 
   return `<!DOCTYPE html>
 <html lang="pt-BR">
@@ -208,7 +194,7 @@ export function buildPreviewStyle(options = {}) {
   const lineHeight = clamp(Number(opts.lineHeight) || 1.2, 0.8, 3)
   const fontSize = clamp(Number(opts.fontSize) || 16, 10, 120)
   const textAlign = opts.textAlign || 'left'
-  const color = parseColor(opts.color)
+  const color = parseColor(opts.color, '#000000')
 
   let widthValue
   const widthUnit = opts.widthUnit || 'px'
@@ -248,7 +234,7 @@ export function buildFadeOverlayStyle(options = {}) {
   const mode = opts.mode || 'multi-line'
   const lineHeight = clamp(Number(opts.lineHeight) || 1.2, 0.8, 3)
   const fontSize = clamp(Number(opts.fontSize) || 16, 10, 120)
-  const backgroundColor = parseColor(opts.backgroundColor)
+  const backgroundColor = parseColor(opts.backgroundColor, '#000000')
 
   if (mode === 'single-line') {
     return {

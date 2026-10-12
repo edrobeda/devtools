@@ -3,21 +3,7 @@
 // Monta um componente de card acessível com variações visuais, sombra,
 // bordas, hover e estrutura semântica (article > header/body/footer).
 
-function parseColor(color) {
-  if (!color) return '#ffffff'
-  if (typeof color === 'string') return color
-  if (color && typeof color.toHexString === 'function') return color.toHexString()
-  return String(color)
-}
-
-function toPx(v) {
-  const n = Number(v)
-  return Number.isFinite(n) ? `${Math.round(n)}px` : '0px'
-}
-
-function clamp(n, min, max) {
-  return Math.max(min, Math.min(max, n))
-}
+import { parseColor, toPx, clamp } from './cssColor.js'
 
 const DEFAULTS = {
   variant: 'raised',
@@ -115,9 +101,9 @@ export function buildCardCss(options = {}) {
   const width = clamp(Number(opts.width) || DEFAULTS.width, 160, 600)
   const padding = clamp(Number(opts.padding) || DEFAULTS.padding, 0, 64)
   const borderRadius = clamp(Number(opts.borderRadius) || DEFAULTS.borderRadius, 0, 48)
-  const bg = parseColor(opts.bgColor)
-  const text = parseColor(opts.textColor)
-  const border = parseColor(opts.borderColor)
+  const bg = parseColor(opts.bgColor, '#ffffff')
+  const text = parseColor(opts.textColor, '#ffffff')
+  const border = parseColor(opts.borderColor, '#ffffff')
   const borderWidth = clamp(Number(opts.borderWidth) || 0, 0, 16)
   const shadow = opts.shadow || 'none'
   const duration = clamp(Number(opts.transitionDuration) || 250, 0, 1000)
@@ -126,12 +112,12 @@ export function buildCardCss(options = {}) {
   const hoverTranslateY = clamp(Number(opts.hoverTranslateY) || -4, -32, 32)
   const headerDivider = Boolean(opts.headerDivider)
   const footerDivider = Boolean(opts.footerDivider)
-  const dividerColor = parseColor(opts.dividerColor)
+  const dividerColor = parseColor(opts.dividerColor, '#ffffff')
   const dividerWidth = clamp(Number(opts.dividerWidth) || 1, 0, 8)
   const mediaHeight = clamp(Number(opts.mediaHeight) || 160, 0, 400)
   const mediaRadius = Boolean(opts.mediaRadius)
-  const buttonBg = parseColor(opts.buttonBg)
-  const buttonColor = parseColor(opts.buttonColor)
+  const buttonBg = parseColor(opts.buttonBg, '#ffffff')
+  const buttonColor = parseColor(opts.buttonColor, '#ffffff')
   const buttonRadius = clamp(Number(opts.buttonRadius) || 6, 0, 32)
   const align = ['left', 'center', 'right'].includes(opts.align) ? opts.align : 'left'
 
