@@ -343,6 +343,7 @@ export const LABELS = {
     'xml-formatter': 'Formatador de XML',
     'deep-clone-deep-equal': 'deepClone & deepEqual',
     'priority-queue': 'Priority Queue (Binary Heap)',
+    'memoize': 'Memoization (memoize)',
     'branch-name-generator': 'Gerador de Nome de Branch',
     'lines-processor': 'Processador de Linhas',
     'search-replace': 'Pesquisar & Substituir',
@@ -899,6 +900,7 @@ export const LABELS = {
     'xml-formatter': 'XML Formatter',
     'deep-clone-deep-equal': 'deepClone & deepEqual',
     'priority-queue': 'Priority Queue (Binary Heap)',
+    'memoize': 'Memoization (memoize)',
     'branch-name-generator': 'Branch Name Generator',
     'lines-processor': 'Text Lines Processor',
     'search-replace': 'Search & Replace',
@@ -1501,6 +1503,7 @@ export function buildMenuItems(l) {
         { key: '/snippets/lru-cache', label: withNewBadge('/snippets/lru-cache', l['lru-cache'], l) },
         { key: '/snippets/deep-clone-deep-equal', label: withNewBadge('/snippets/deep-clone-deep-equal', l['deep-clone-deep-equal'], l) },
         { key: '/snippets/priority-queue', icon: <SortAscendingOutlined />, label: withNewBadge('/snippets/priority-queue', l['priority-queue'], l) },
+        { key: '/snippets/memoize', icon: <ThunderboltOutlined />, label: withNewBadge('/snippets/memoize', l['memoize'], l) },
       ],
     },
     {
