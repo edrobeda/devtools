@@ -1,5 +1,10 @@
 # Changelog do devtools
 
+## 2026-10-13
+
+- Ferramenta: Codificador/Decodificador de URL — `/tools/url-encoder-decoder` (codifica e decodifica com encodeURIComponent/decodeURIComponent para componentes ou encodeURI/decodeURI para URIs completas; suporta Unicode e emojis, tudo 100% client-side)
+- Ferramenta: Codificador/Decodificador de Entidades HTML — `/tools/html-entity-encoder-decoder` (converte `& < > " '` em entidades nomeadas, opcionalmente converte não-ASCII para entidades numéricas `&#code;`, decodifica via DOMParser seguro contra XSS; 100% client-side)
+
 Histórico do que o agente adicionou em cada execução. Rodava 1x/dia até
 2026-08-05; a partir de 2026-08-06 roda de hora em hora (`hourly-agent.sh`,
 modelo free via opencode) com no máximo 1 item por rodada. Lido por ele

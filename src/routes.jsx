@@ -541,6 +541,8 @@ import TarCompressionCheatsheetPage from './pages/TarCompressionCheatsheetPage'
 import RedisTtlSimulatorPage from './pages/RedisTtlSimulatorPage'
 import ErDiagramVisualizerPage from './pages/ErDiagramVisualizerPage'
 import ZipInspectorPage from './pages/ZipInspectorPage'
+import UrlEncoderDecoderPage from './pages/UrlEncoderDecoderPage'
+import HtmlEntityEncoderDecoderPage from './pages/HtmlEntityEncoderDecoderPage'
 
 const router = createBrowserRouter([
   {
@@ -609,6 +611,7 @@ const router = createBrowserRouter([
       { path: 'tools/case-converter', element: <Navigate to="/text/case-converter" replace /> },
       { path: 'tools/password-generator', element: <PasswordGeneratorPage /> },
       { path: 'tools/url-encoder', element: <Navigate to="/tools/string-escape" replace /> },
+      { path: 'tools/url-encoder-decoder', element: <UrlEncoderDecoderPage /> },
       { path: 'tools/url-parser', element: <UrlParserPage /> },
       { path: 'tools/utm-url-builder', element: <UtmUrlBuilderPage /> },
       { path: 'tools/email-signature-generator', element: <EmailSignatureGeneratorPage /> },
@@ -670,6 +673,7 @@ const router = createBrowserRouter([
       { path: 'references/sql-cheatsheet', element: <SqlCommandsPage /> },
       { path: 'tools/nanoid-generator', element: <NanoIdGeneratorPage /> },
       { path: 'tools/html-entity-encoder', element: <Navigate to="/tools/string-escape" replace /> },
+      { path: 'tools/html-entity-encoder-decoder', element: <HtmlEntityEncoderDecoderPage /> },
       { path: 'frontend/border-radius-generator', element: <BorderRadiusGeneratorPage /> },
       { path: 'styles/ios-toggle-switch', element: <Navigate to="/frontend/css-toggle-switch-generator" replace /> },
       { path: 'snippets/use-event-listener', element: <UseEventListenerSnippetPage /> },
