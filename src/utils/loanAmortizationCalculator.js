@@ -1,6 +1,8 @@
 // Motor 100% client-side para calculo de amortizacao SAC e Price.
 // Nenhum dado sai do navegador.
 
+import { formatCurrency as formatCurrencyShared, formatPercent as formatPercentShared } from './numberFormat'
+
 /**
  * Arredonda um numero para duas casas decimais (centavos).
  * @param {number} value
@@ -11,31 +13,27 @@ export function round2(value) {
 }
 
 /**
- * Formata um numero como moeda corrente.
+ * Formata um numero como moeda corrente (2 casas fixas).
  * @param {number} value
  * @param {string} locale
  * @param {string} currency
  * @returns {string}
  */
 export function formatCurrency(value, locale = 'pt-BR', currency = 'BRL') {
-  if (!Number.isFinite(value)) return '—'
-  return new Intl.NumberFormat(locale, {
-    style: 'currency',
-    currency,
+  return formatCurrencyShared(value, locale, currency, {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  }).format(value)
+  })
 }
 
 /**
- * Formata um numero decimal como percentual.
+ * Formata um numero decimal como percentual (toFixed, separador virgula).
  * @param {number} value
  * @param {number} [fractionDigits=2]
  * @returns {string}
  */
 export function formatPercent(value, fractionDigits = 2) {
-  if (!Number.isFinite(value)) return '—'
-  return `${(value * 100).toFixed(fractionDigits).replace('.', ',')}%`
+  return formatPercentShared(value, fractionDigits)
 }
 
 /**

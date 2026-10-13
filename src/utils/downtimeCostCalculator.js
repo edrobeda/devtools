@@ -3,6 +3,8 @@
 // usuários afetados, custo salarial da equipe durante o incidente e
 // possíveis penalidades de SLA.
 
+import { formatCurrency as formatCurrencyShared, formatNumber as formatNumberShared } from './numberFormat'
+
 export const HOURS_PER_YEAR = 365 * 24
 export const HOURS_PER_MONTH = 365 * 24 / 12
 
@@ -54,20 +56,14 @@ export function durationToHours(value, unit) {
 }
 
 export function formatCurrency(value, currency = 'USD', locale = 'en-US') {
-  if (value == null || Number.isNaN(value)) return '—'
-  return new Intl.NumberFormat(locale, {
-    style: 'currency',
-    currency,
+  return formatCurrencyShared(value, locale, currency, {
     maximumFractionDigits: 2,
-  }).format(value)
+    finiteCheck: false,
+  })
 }
 
 export function formatNumber(value, digits = 2) {
-  if (value == null || Number.isNaN(value)) return '—'
-  return Number(value).toLocaleString(undefined, {
-    minimumFractionDigits: digits,
-    maximumFractionDigits: digits,
-  })
+  return formatNumberShared(value, digits, { castNumber: true })
 }
 
 export function calculateRevenueLoss({ annualRevenue, uptimeRatio, duration, durationUnit }) {

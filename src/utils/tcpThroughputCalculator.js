@@ -1,6 +1,8 @@
 // Calculadora de throughput TCP / Bandwidth-Delay Product (BDP)
 // 100% client-side — nenhum dado de rede sai do navegador.
 
+import { formatNumber as formatNumberShared } from './numberFormat'
+
 export const DEFAULT_MSS = 1460 // bytes (típico para Ethernet IPv4 com cabeçalhos)
 
 export const BANDWIDTH_UNITS = {
@@ -61,11 +63,7 @@ export function humanizeBytes(bytes, binary = false) {
 }
 
 export function formatNumber(value, decimals = 2) {
-  if (value === null || value === undefined || Number.isNaN(value)) return '—'
-  const n = Number(value)
-  if (!Number.isFinite(n)) return '—'
-  const fixed = n.toFixed(decimals)
-  return fixed.replace(/\.(\d+)$/, (match, dec) => (parseInt(dec, 10) ? match : ''))
+  return formatNumberShared(value, decimals, { style: 'strip' })
 }
 
 // BDP em bits = largura de banda (bps) × RTT (s)

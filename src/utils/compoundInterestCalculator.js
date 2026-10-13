@@ -1,6 +1,8 @@
 // Motor 100% client-side para calculos de juros compostos.
 // Considera capitalizacao periodica e aportes mensais recorrentes.
 
+import { formatCurrency as formatCurrencyShared, formatPercent as formatPercentShared } from './numberFormat'
+
 /**
  * Numero de periodos de capitalizacao por ano.
  */
@@ -95,31 +97,27 @@ export function getSummary(rows) {
 }
 
 /**
- * Formata um numero como moeda corrente (BRL/USD simplificado).
+ * Formata um numero como moeda corrente (2 casas fixas).
  * @param {number} value
  * @param {string} locale - ex.: 'pt-BR' ou 'en-US'
  * @param {string} currency - ex.: 'BRL' ou 'USD'
  * @returns {string}
  */
 export function formatCurrency(value, locale = 'pt-BR', currency = 'BRL') {
-  if (!Number.isFinite(value)) return '—'
-  return new Intl.NumberFormat(locale, {
-    style: 'currency',
-    currency,
+  return formatCurrencyShared(value, locale, currency, {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  }).format(value)
+  })
 }
 
 /**
- * Formata um numero decimal como percentual.
+ * Formata um numero decimal como percentual (toFixed, separador virgula).
  * @param {number} value
  * @param {number} [fractionDigits=2]
  * @returns {string}
  */
 export function formatPercent(value, fractionDigits = 2) {
-  if (!Number.isFinite(value)) return '—'
-  return `${(value * 100).toFixed(fractionDigits).replace('.', ',')}%`
+  return formatPercentShared(value, fractionDigits)
 }
 
 /**

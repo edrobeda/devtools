@@ -15,15 +15,10 @@
  *   economiaAcumulada(m) = economiaMensal * m - investimentoInicial
  */
 
-function toNumber(value) {
-  if (value === null || value === undefined || value === '') return null
-  const n = typeof value === 'number' ? value : Number(value)
-  return Number.isFinite(n) ? n : null
-}
+import { formatCurrency as formatCurrencyShared, formatNumber as formatNumberShared, toNumber } from './numberFormat'
 
 export function formatCurrency(value, locale = 'pt-BR', currency = 'BRL') {
-  if (value === null || value === undefined || Number.isNaN(value)) return '—'
-  return new Intl.NumberFormat(locale, { style: 'currency', currency }).format(value)
+  return formatCurrencyShared(value, locale, currency, { finiteCheck: false })
 }
 
 export function formatHours(value, decimals = 1) {
@@ -32,8 +27,7 @@ export function formatHours(value, decimals = 1) {
 }
 
 export function formatNumber(value, decimals = 0) {
-  if (value === null || value === undefined || Number.isNaN(value)) return '—'
-  return value.toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals })
+  return formatNumberShared(value, decimals)
 }
 
 export function calculateRoi(

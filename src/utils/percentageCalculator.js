@@ -1,6 +1,8 @@
 // Motor 100% client-side para calculos comuns de porcentagem.
 // Nao envia dados para lugar nenhum.
 
+import { formatCurrency as formatCurrencyShared, formatNumber as formatNumberShared } from './numberFormat'
+
 /**
  * Quanto e `percent`% de `total`?
  * @param {number} percent - porcentagem (ex.: 20 para 20%)
@@ -82,32 +84,25 @@ export function ruleOfThree(a, b, c) {
 }
 
 /**
- * Formata um numero com casas decimais configuraveis.
+ * Formata um numero com casas decimais configuraveis (locale pt-BR).
  * @param {number} value
  * @param {number} [fractionDigits=2]
  * @returns {string}
  */
 export function formatNumber(value, fractionDigits = 2) {
-  if (!Number.isFinite(value)) return '—'
-  return value.toLocaleString('pt-BR', {
-    minimumFractionDigits: fractionDigits,
-    maximumFractionDigits: fractionDigits,
-  })
+  return formatNumberShared(value, fractionDigits, { finiteOnly: true, locale: 'pt-BR' })
 }
 
 /**
- * Formata um numero como moeda.
+ * Formata um numero como moeda (2 casas fixas).
  * @param {number} value
  * @param {string} [locale='pt-BR']
  * @param {string} [currency='BRL']
  * @returns {string}
  */
 export function formatCurrency(value, locale = 'pt-BR', currency = 'BRL') {
-  if (!Number.isFinite(value)) return '—'
-  return new Intl.NumberFormat(locale, {
-    style: 'currency',
-    currency,
+  return formatCurrencyShared(value, locale, currency, {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  }).format(value)
+  })
 }

@@ -9,6 +9,8 @@
  *   CI          = PERT ± Z × StdDev
  */
 
+import { formatNumber as formatNumberShared, toNumber } from './numberFormat'
+
 export const CONFIDENCE_LEVELS = [
   { key: '68', label: '68%', z: 1.0 },
   { key: '90', label: '90%', z: 1.645 },
@@ -21,12 +23,6 @@ export const TIME_UNITS = [
   { key: 'days', labelPt: 'dias', labelEn: 'days', factor: 8 },
   { key: 'weeks', labelPt: 'semanas', labelEn: 'weeks', factor: 40 },
 ]
-
-function toNumber(value) {
-  if (value === null || value === undefined || value === '') return null
-  const n = typeof value === 'number' ? value : Number(value)
-  return Number.isFinite(n) ? n : null
-}
 
 export function calculateTask(optimistic, mostLikely, pessimistic) {
   const o = toNumber(optimistic)
@@ -125,11 +121,7 @@ export function convertTime(value, fromUnitKey, toUnitKey) {
 }
 
 export function formatNumber(value, decimals = 2) {
-  if (value === null || value === undefined || !Number.isFinite(value)) return '—'
-  return value.toLocaleString(undefined, {
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals,
-  })
+  return formatNumberShared(value, decimals, { finiteOnly: true })
 }
 
 export function makeTask(name = '', optimistic = '', mostLikely = '', pessimistic = '') {

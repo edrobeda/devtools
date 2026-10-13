@@ -10,25 +10,19 @@
  *   Payback descontado   = período em que o fluxo acumulado descontado zera
  */
 
+import { formatCurrency as formatCurrencyShared, formatPercent as formatPercentShared, toNumber } from './numberFormat'
+
 export const PERIOD_TYPES = [
   { key: 'year', labelPt: 'ano', labelEn: 'year', labelPlPt: 'anos', labelPlEn: 'years' },
   { key: 'month', labelPt: 'mês', labelEn: 'month', labelPlPt: 'meses', labelPlEn: 'months' },
 ]
 
-function toNumber(value) {
-  if (value === null || value === undefined || value === '') return null
-  const n = typeof value === 'number' ? value : Number(value)
-  return Number.isFinite(n) ? n : null
-}
-
 export function formatCurrency(value, locale = 'pt-BR', currency = 'BRL') {
-  if (value === null || value === undefined || Number.isNaN(value)) return '—'
-  return new Intl.NumberFormat(locale, { style: 'currency', currency }).format(value)
+  return formatCurrencyShared(value, locale, currency, { finiteCheck: false })
 }
 
 export function formatPercent(value, decimals = 2) {
-  if (value === null || value === undefined || Number.isNaN(value)) return '—'
-  return `${(value * 100).toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals })}%`
+  return formatPercentShared(value, decimals, { useLocale: true })
 }
 
 export function calculateNpv(rate, initialInvestment, cashFlows) {
