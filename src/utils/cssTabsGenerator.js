@@ -1,3 +1,5 @@
+import { escapeHtml } from './htmlEscape.js'
+
 const DEFAULTS = {
   className: 'tabs',
   orientation: 'horizontal',
@@ -18,14 +20,6 @@ const DEFAULTS = {
   activeBorderColor: '#1677ff',
   contentBg: '#ffffff',
   transitionDuration: 200,
-}
-
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
 }
 
 function escapeCssString(str) {

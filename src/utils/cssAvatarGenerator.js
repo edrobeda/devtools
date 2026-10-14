@@ -4,6 +4,7 @@
 // formas circle/square/rounded/hexagon, anel de status, badge e grupo.
 
 import { parseColor, toPx, clamp, rgba, autoTextColor } from './cssColor.js'
+import { escapeHtml } from './htmlEscape.js'
 
 const STATUS_COLORS = {
   online: '#52c41a',
@@ -116,10 +117,6 @@ const PRESETS = {
 }
 
 export { DEFAULTS, PRESETS, ICON_SVGS, STATUS_COLORS }
-
-function escapeHtml(str) {
-  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-}
 
 function statusPositionOffsets(position, size, statusSize) {
   const inset = Math.round(size * 0.04)

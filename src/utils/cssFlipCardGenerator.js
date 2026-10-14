@@ -4,14 +4,7 @@
 // perspective, transform-style: preserve-3d, backface-visibility e rotateX/Y.
 
 import { parseColor, toPx, clamp } from './cssColor.js'
-
-function escapeHtml(text) {
-  return String(text)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-}
+import { escapeHtml } from './htmlEscape.js'
 
 const DEFAULTS = {
   axis: 'horizontal',

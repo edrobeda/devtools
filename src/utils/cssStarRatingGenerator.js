@@ -1,3 +1,5 @@
+import { escapeHtml } from './htmlEscape.js'
+
 const DEFAULTS = {
   className: 'star-rating',
   starCount: 5,
@@ -23,14 +25,6 @@ export const SYMBOL_OPTIONS = Object.keys(SYMBOLS)
 
 export function getSymbol(name) {
   return SYMBOLS[name] ?? SYMBOLS.star
-}
-
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
 }
 
 export function buildStarRatingCss(options = {}) {

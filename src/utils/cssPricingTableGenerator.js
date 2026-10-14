@@ -5,14 +5,7 @@
 // "Mais popular" no plano destacado.
 
 import { parseColor, toPx, clamp } from './cssColor.js'
-
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-}
+import { escapeHtml } from './htmlEscape.js'
 
 const DEFAULTS = {
   variant: 'clean',

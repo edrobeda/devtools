@@ -1,3 +1,5 @@
+import { escapeHtml } from './htmlEscape.js'
+
 const DEFAULTS = {
   className: 'marquee',
   direction: 'left',
@@ -14,15 +16,6 @@ const DEFAULTS = {
   fontSize: 16,
   borderRadius: 8,
   items: ['Lorem ipsum dolor sit amet', 'Consectetur adipiscing elit', 'Sed do eiusmod tempor incididunt'],
-}
-
-function escapeHtml(text) {
-  return String(text)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;')
 }
 
 function getTimingFunction(mode) {

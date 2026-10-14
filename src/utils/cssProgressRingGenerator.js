@@ -5,14 +5,7 @@
 // central opcional. Tudo renderiza sem JavaScript no uso final.
 
 import { parseColor, toPx, clamp } from './cssColor.js'
-
-function escapeHtml(text) {
-  return String(text)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-}
+import { escapeHtml } from './htmlEscape.js'
 
 const DEFAULTS = {
   className: 'progress-ring',

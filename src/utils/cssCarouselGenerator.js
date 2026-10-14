@@ -5,15 +5,7 @@
 // conforme o radio checado. Navegação por setas (prev/next) e dots.
 
 import { parseColor, toPx, clamp } from './cssColor.js'
-
-function escapeHtml(text) {
-  return String(text)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;')
-}
+import { escapeHtml } from './htmlEscape.js'
 
 const DEFAULTS = {
   containerWidth: 100,

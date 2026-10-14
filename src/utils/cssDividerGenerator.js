@@ -5,6 +5,7 @@
 // texto ou ícone no centro. Suporta orientação horizontal e vertical.
 
 import { parseColor, toPx, clamp } from './cssColor.js'
+import { escapeHtml } from './htmlEscape.js'
 
 function hexToRgb(hex) {
   const clean = parseColor(hex, '#d9d9d9').replace('#', '')
@@ -20,15 +21,6 @@ function hexToRgb(hex) {
 function rgba(hex, alpha) {
   const { r, g, b } = hexToRgb(hex)
   return `rgba(${r}, ${g}, ${b}, ${alpha})`
-}
-
-function escapeHtml(text) {
-  return String(text)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;')
 }
 
 const ICON_SVGS = {

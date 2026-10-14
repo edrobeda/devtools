@@ -8,15 +8,7 @@
 // útil quando se quer uma transição suave ao final do texto cortado.
 
 import { parseColor, toPx, clamp } from './cssColor.js'
-
-function escapeHtml(text) {
-  return String(text)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;')
-}
+import { escapeHtml } from './htmlEscape.js'
 
 export const DEFAULTS = {
   text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',

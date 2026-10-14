@@ -4,15 +4,7 @@
 // com estados de foco, erro e sucesso, ícones inline e variações de layout.
 
 import { parseColor, toPx, clamp } from './cssColor.js'
-
-function escapeHtml(text) {
-  return String(text)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;')
-}
+import { escapeHtml } from './htmlEscape.js'
 
 const DEFAULTS = {
   variant: 'card',
