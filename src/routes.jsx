@@ -231,6 +231,7 @@ import EslintConfigGeneratorPage from './pages/EslintConfigGeneratorPage'
 import RenovateConfigGeneratorPage from './pages/RenovateConfigGeneratorPage'
 import CorsConfigGeneratorPage from './pages/CorsConfigGeneratorPage'
 import PullRequestTemplateGeneratorPage from './pages/PullRequestTemplateGeneratorPage'
+import ReadmeGeneratorPage from './pages/ReadmeGeneratorPage'
 import TerraformConfigGeneratorPage from './pages/TerraformConfigGeneratorPage'
 import CssSpinnerGeneratorPage from './pages/CssSpinnerGeneratorPage'
 import ColorBlindnessSimulatorPage from './pages/ColorBlindnessSimulatorPage'
@@ -986,6 +987,7 @@ const router = createBrowserRouter([
       { path: 'devops/cors-config-generator', element: <CorsConfigGeneratorPage /> },
       { path: 'devops/pull-request-template-generator', element: <PullRequestTemplateGeneratorPage /> },
       { path: 'devops/terraform-config-generator', element: <TerraformConfigGeneratorPage /> },
+      { path: 'devops/readme-generator', element: <ReadmeGeneratorPage /> },
       { path: 'frontend/css-spinner-generator', element: <CssSpinnerGeneratorPage /> },
       { path: 'frontend/color-blindness-simulator', element: <ColorBlindnessSimulatorPage /> },
       { path: 'frontend/text-shadow-generator', element: <TextShadowGeneratorPage /> },

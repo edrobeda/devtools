@@ -117,7 +117,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] PM2 Config Generator
 - [x] `.gitignore` Generator (por linguagem/framework) — `/devops/gitignore-generator`
 - [ ] License Generator
-- [ ] README Generator
+- [x] README Generator — `/devops/readme-generator`
 - [ ] Changelog Generator (a partir de commits colados)
 - [ ] Semantic Version Helper (quando sobe major/minor/patch)
 - [x] Gerador de nome de branch git a partir de descrição de feature — `/devops/branch-name-generator`
