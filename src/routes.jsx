@@ -135,6 +135,7 @@ import AesEncryptDecryptPage from './pages/AesEncryptDecryptPage'
 import HashIdentifierPage from './pages/HashIdentifierPage'
 import PkceGeneratorPage from './pages/PkceGeneratorPage'
 import TokenCounterPage from './pages/TokenCounterPage'
+import EmbeddingSimilarityPage from './pages/EmbeddingSimilarityPage'
 import PomodoroTimerPage from './pages/PomodoroTimerPage'
 import EnvFileValidatorPage from './pages/EnvFileValidatorPage'
 import RemoveAccentsPage from './pages/RemoveAccentsPage'
@@ -591,6 +592,7 @@ const router = createBrowserRouter([
       { path: 'ai/llm-cost-calculator', element: <LlmCostCalculatorPage /> },
       { path: 'ai/llm-prompt-builder', element: <LlmPromptBuilderPage /> },
       { path: 'ai/rag-chunk-visualizer', element: <RagChunkVisualizerPage /> },
+      { path: 'ai/embedding-similarity', element: <EmbeddingSimilarityPage /> },
       { path: 'text/word-counter', element: <Navigate to="/tools/readability-calculator" replace /> },
       { path: 'references/git-commands', element: <Navigate to="/references/git-cheatsheet" replace /> },
       { path: 'references/git-cheatsheet', element: <GitCommandsPage /> },
