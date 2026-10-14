@@ -143,6 +143,7 @@ import XmlFormatterPage from './pages/XmlFormatterPage'
 import DeepCloneDeepEqualPage from './pages/DeepCloneDeepEqualPage'
 import PriorityQueueSnippetPage from './pages/PriorityQueueSnippetPage'
 import MemoizeSnippetPage from './pages/MemoizeSnippetPage'
+import PromisePoolSnippetPage from './pages/PromisePoolSnippetPage'
 import BranchNameGeneratorPage from './pages/BranchNameGeneratorPage'
 import LinesToolPage from './pages/LinesToolPage'
 import HtmlToJsxConverterPage from './pages/HtmlToJsxConverterPage'
@@ -742,6 +743,7 @@ const router = createBrowserRouter([
       { path: 'snippets/deep-clone-deep-equal', element: <DeepCloneDeepEqualPage /> },
       { path: 'snippets/priority-queue', element: <PriorityQueueSnippetPage /> },
       { path: 'snippets/memoize', element: <MemoizeSnippetPage /> },
+      { path: 'snippets/promise-pool', element: <PromisePoolSnippetPage /> },
       { path: 'devops/branch-name-generator', element: <BranchNameGeneratorPage /> },
       { path: 'text/lines-tool', element: <Navigate to="/text/lines-processor" replace /> },
       { path: 'text/lines-processor', element: <LinesToolPage /> },

@@ -345,6 +345,7 @@ export const LABELS = {
     'deep-clone-deep-equal': 'deepClone & deepEqual',
     'priority-queue': 'Priority Queue (Binary Heap)',
     'memoize': 'Memoization (memoize)',
+    'promise-pool': 'Promise Pool (concorrência)',
     'branch-name-generator': 'Gerador de Nome de Branch',
     'lines-processor': 'Processador de Linhas',
     'search-replace': 'Pesquisar & Substituir',
@@ -904,6 +905,7 @@ export const LABELS = {
     'deep-clone-deep-equal': 'deepClone & deepEqual',
     'priority-queue': 'Priority Queue (Binary Heap)',
     'memoize': 'Memoization (memoize)',
+    'promise-pool': 'Promise Pool (concurrency)',
     'branch-name-generator': 'Branch Name Generator',
     'lines-processor': 'Text Lines Processor',
     'search-replace': 'Search & Replace',
@@ -1508,6 +1510,7 @@ export function buildMenuItems(l) {
         { key: '/snippets/deep-clone-deep-equal', label: withNewBadge('/snippets/deep-clone-deep-equal', l['deep-clone-deep-equal'], l) },
         { key: '/snippets/priority-queue', icon: <SortAscendingOutlined />, label: withNewBadge('/snippets/priority-queue', l['priority-queue'], l) },
         { key: '/snippets/memoize', icon: <ThunderboltOutlined />, label: withNewBadge('/snippets/memoize', l['memoize'], l) },
+        { key: '/snippets/promise-pool', icon: <ThunderboltOutlined />, label: withNewBadge('/snippets/promise-pool', l['promise-pool'], l) },
       ],
     },
     {
