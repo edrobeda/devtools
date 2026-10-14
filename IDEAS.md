@@ -108,7 +108,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] Docker Compose Generator — `/devops/docker-compose-generator`
 - [x] Docker Compose Visualizer 🔥 — `/devops/docker-compose-visualizer`
 - [x] Dockerfile Generator — `/devops/dockerfile-generator`
-- [ ] Docker Logs Viewer
+- [x] Explorador de Logs (cola logs de docker/compose/kubectl/app; nível, origem, busca e timeline) — `/devops/log-explorer`
 - [ ] Docker Layer Explorer 🔥
 - [ ] Bundle Size Estimator 🔥
 - [ ] nginx Config Generator

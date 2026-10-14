@@ -172,6 +172,7 @@ import SvgPlaceholderGeneratorPage from './pages/SvgPlaceholderGeneratorPage'
 import DockerfileGeneratorPage from './pages/DockerfileGeneratorPage'
 import CubicBezierEditorPage from './pages/CubicBezierEditorPage'
 import AnsiColorsPage from './pages/AnsiColorsPage'
+import LogExplorerPage from './pages/LogExplorerPage'
 import AsciiTablePage from './pages/AsciiTablePage'
 import SvgWaveGeneratorPage from './pages/SvgWaveGeneratorPage'
 import SvgOptimizerPage from './pages/SvgOptimizerPage'
@@ -879,6 +880,7 @@ const router = createBrowserRouter([
       { path: 'devops/dockerfile-generator', element: <DockerfileGeneratorPage /> },
       { path: 'frontend/cubic-bezier-editor', element: <CubicBezierEditorPage /> },
       { path: 'devops/ansi-colors', element: <AnsiColorsPage /> },
+      { path: 'devops/log-explorer', element: <LogExplorerPage /> },
       { path: 'references/ascii-table', element: <AsciiTablePage /> },
       { path: 'frontend/svg-wave-generator', element: <SvgWaveGeneratorPage /> },
       { path: 'frontend/svg-blob-generator', element: <SvgBlobGeneratorPage /> },
