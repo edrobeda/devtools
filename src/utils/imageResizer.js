@@ -11,6 +11,8 @@
 // O encode/decode de fato é feito pelo navegador via <canvas>/toBlob; aqui
 // ficam só as regras de negócio, fáceis de testar e reutilizar.
 
+import { formatBytes as formatBytesShared, FORMAT_BYTES_INVALID } from './formatBytes'
+
 export const MIN_DIMENSION = 1
 export const MAX_DIMENSION = 8192
 
@@ -116,13 +118,13 @@ export function outputFileName(originalName, mime) {
 }
 
 export function formatBytes(bytes) {
-  if (!Number.isFinite(bytes) || bytes < 0) return '—'
-  if (bytes === 0) return '0 B'
-  const units = ['B', 'KB', 'MB', 'GB']
-  const i = Math.min(units.length - 1, Math.floor(Math.log(bytes) / Math.log(1024)))
-  const v = bytes / 1024 ** i
-  const s = v >= 100 || i === 0 ? String(Math.round(v)) : v.toFixed(1)
-  return `${s} ${units[i]}`
+  return formatBytesShared(bytes, {
+    units: ['B', 'KB', 'MB', 'GB'],
+    invalid: FORMAT_BYTES_INVALID.NOT_FINITE_OR_NEGATIVE,
+    fallback: '—',
+    clamp: true,
+    decimals: (v, i) => (v >= 100 || i === 0 ? 0 : 1),
+  })
 }
 
 // Quanto o arquivo novo é menor que o original, em % (negativo = aumentou).

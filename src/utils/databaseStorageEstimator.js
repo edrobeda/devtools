@@ -5,6 +5,8 @@
  * principais engines (InnoDB, PostgreSQL heap, SQLite, SQL Server, MongoDB).
  */
 
+import { formatBytes as formatBytesShared, FORMAT_BYTES_INVALID } from './formatBytes'
+
 export const ENGINES = {
   INNODB: 'innodb',
   POSTGRES: 'postgres',
@@ -330,12 +332,12 @@ export function estimateDatabase({ engine, growth, tables }) {
 }
 
 export function formatBytes(bytes, decimals = 2) {
-  if (bytes === 0) return '0 B'
-  const k = 1024
-  const sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB']
-  const i = Math.floor(Math.log(bytes) / Math.log(k))
-  const value = bytes / k ** i
-  return `${value.toFixed(decimals)} ${sizes[i]}`
+  return formatBytesShared(bytes, {
+    units: ['B', 'KB', 'MB', 'GB', 'TB', 'PB'],
+    decimals,
+    invalid: FORMAT_BYTES_INVALID.EXACT_ZERO,
+    clamp: false,
+  })
 }
 
 export function createEmptyColumn() {

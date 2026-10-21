@@ -7,6 +7,7 @@ import {
   CopyOutlined, LinkOutlined, ThunderboltOutlined, CodeOutlined,
 } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import { formatBytes as formatBytesShared, FORMAT_BYTES_INVALID } from '../utils/formatBytes'
 
 const { Title, Paragraph, Text } = Typography
 const { TextArea } = Input
@@ -46,9 +47,12 @@ function shellQuote(s) {
 }
 
 function formatBytes(n) {
-  if (n < 1024) return `${n} B`
-  if (n < 1024 * 1024) return `${(n / 1024).toFixed(1)} KB`
-  return `${(n / 1024 / 1024).toFixed(2)} MB`
+  return formatBytesShared(n, {
+    units: ['B', 'KB', 'MB'],
+    invalid: FORMAT_BYTES_INVALID.EXACT_ZERO,
+    clamp: true,
+    decimals: (v, i) => Math.min(i, 2),
+  })
 }
 
 function prettify(bodyText, lang) {

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Typography, Card, Input, Space, Button, Alert, message, Tabs, Descriptions } from 'antd'
 import { SwapOutlined, CopyOutlined, DownloadOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import { formatBytes as formatBytesShared, FORMAT_BYTES_INVALID } from '../utils/formatBytes'
 
 const { Title, Paragraph, Text } = Typography
 const { TextArea } = Input
@@ -20,9 +21,12 @@ function decodeUnicodeBase64(b64) {
 }
 
 function formatBytes(bytes) {
-  if (bytes < 1024) return `${bytes} B`
-  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`
-  return `${(bytes / (1024 * 1024)).toFixed(2)} MB`
+  return formatBytesShared(bytes, {
+    units: ['B', 'KB', 'MB'],
+    invalid: FORMAT_BYTES_INVALID.EXACT_ZERO,
+    clamp: true,
+    decimals: (v, i) => Math.min(i, 2),
+  })
 }
 
 const translations = {

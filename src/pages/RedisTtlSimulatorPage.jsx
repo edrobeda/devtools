@@ -31,6 +31,7 @@ import {
   StepForwardOutlined,
 } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import { formatBytes as formatBytesShared, FORMAT_BYTES_INVALID } from '../utils/formatBytes'
 
 const { Title, Paragraph, Text } = Typography
 
@@ -73,11 +74,12 @@ function parseSize(s) {
 }
 
 function formatBytes(b) {
-  if (!Number.isFinite(b) || b < 0) return '0 B'
-  if (b < 1024) return `${Math.round(b)} B`
-  if (b < 1024 * 1024) return `${(b / 1024).toFixed(b < 10240 ? 1 : 0)} KB`
-  if (b < 1024 * 1024 * 1024) return `${(b / 1024 / 1024).toFixed(b < 10485760 ? 1 : 0)} MB`
-  return `${(b / 1024 / 1024 / 1024).toFixed(2)} GB`
+  return formatBytesShared(b, {
+    units: ['B', 'KB', 'MB', 'GB'],
+    invalid: FORMAT_BYTES_INVALID.NOT_FINITE_OR_NEGATIVE,
+    clamp: true,
+    decimals: (v, i) => (i === 0 ? 0 : (i >= 3 ? 2 : (v < 10 ? 1 : 0))),
+  })
 }
 
 function formatTime(s) {
