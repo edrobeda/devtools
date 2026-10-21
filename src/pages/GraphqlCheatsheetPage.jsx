@@ -2,6 +2,7 @@ import React, { useMemo, useState, useCallback } from 'react'
 import { Typography, Card, Space, Input, List, Tag, Radio, Alert, Button, message, Collapse } from 'antd'
 import { CodeOutlined, SearchOutlined, CopyOutlined, ApiOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import useCopyText from '../hooks/useCopyText'
 
 const { Title, Paragraph, Text } = Typography
 
@@ -252,17 +253,7 @@ export default function GraphqlCheatsheetPage() {
     return head + rows.join('\n')
   }, [filtered, lang])
 
-  const copyText = useCallback(
-    async (text, okMsg) => {
-      try {
-        await navigator.clipboard.writeText(text)
-        messageApi.success(okMsg || t.copied)
-      } catch {
-        messageApi.error(t.copiedError || 'Error')
-      }
-    },
-    [t, messageApi]
-  )
+  const copyText = useCopyText(t, messageApi)
 
   const resultLabel = filtered.length === 1 ? t.resultsOne : t.resultsMany
 
