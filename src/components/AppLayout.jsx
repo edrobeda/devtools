@@ -1298,8 +1298,6 @@ export function buildMenuItems(l) {
         { key: '/tools/sql-in-list-generator', icon: <DatabaseOutlined />, label: withNewBadge('/tools/sql-in-list-generator', l['sql-in-list-generator'], l) },
         { key: '/tools/xml-json-converter', icon: <SwapOutlined />, label: withNewBadge('/tools/xml-json-converter', l['xml-json-converter'], l) },
         { key: '/tools/diff-checker', icon: <DiffOutlined />, label: withNewBadge('/tools/diff-checker', l['diff-checker'], l) },
-        { key: '/tools/git-conflict-resolver', icon: <MergeCellsOutlined />, label: withNewBadge('/tools/git-conflict-resolver', l['git-conflict-resolver'], l) },
-        { key: '/tools/git-rebase-planner', icon: <OrderedListOutlined />, label: withNewBadge('/tools/git-rebase-planner', l['git-rebase-planner'], l) },
         { key: '/tools/markdown-previewer', icon: <FileMarkdownOutlined />, label: withNewBadge('/tools/markdown-previewer', l['markdown-previewer'], l) },
         { key: '/tools/fake-data-generator', label: withNewBadge('/tools/fake-data-generator', l['fake-data-generator'], l) },
         { key: '/tools/brazilian-data-generator', icon: <IdcardOutlined />, label: withNewBadge('/tools/brazilian-data-generator', l['brazilian-data-generator'], l) },
@@ -1633,6 +1631,8 @@ export function buildMenuItems(l) {
       label: l.devops,
       children: [
         { key: '/devops/gitignore-generator', label: l['gitignore-generator'] },
+        { key: '/devops/git-conflict-resolver', icon: <MergeCellsOutlined />, label: withNewBadge('/devops/git-conflict-resolver', l['git-conflict-resolver'], l) },
+        { key: '/devops/git-rebase-planner', icon: <OrderedListOutlined />, label: withNewBadge('/devops/git-rebase-planner', l['git-rebase-planner'], l) },
         { key: '/devops/gitattributes-generator', icon: <FileTextOutlined />, label: withNewBadge('/devops/gitattributes-generator', l['gitattributes-generator'], l) },
         { key: '/devops/commit-message-generator', label: withNewBadge('/devops/commit-message-generator', l['commit-message-generator'], l) },
         { key: '/devops/changelog-generator', icon: <HistoryOutlined />, label: withNewBadge('/devops/changelog-generator', l['changelog-generator'], l) },
