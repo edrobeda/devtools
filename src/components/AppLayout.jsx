@@ -1689,6 +1689,7 @@ export function buildMenuItems(l) {
         { key: '/database/storage-estimator', icon: <DatabaseOutlined />, label: withNewBadge('/database/storage-estimator', l['storage-estimator'], l) },
         { key: '/database/sql-explain-visualizer', icon: <ClusterOutlined />, label: withNewBadge('/database/sql-explain-visualizer', l['sql-explain-visualizer'], l) },
         { key: '/database/er-diagram-visualizer', icon: <ApartmentOutlined />, label: withNewBadge('/database/er-diagram-visualizer', l['er-diagram-visualizer'], l) },
+        { key: '/database/redis-ttl-simulator', icon: <ClockCircleOutlined />, label: withNewBadge('/database/redis-ttl-simulator', l['redis-ttl-simulator'], l) },
       ],
     },
     {
@@ -1898,7 +1899,6 @@ export function buildMenuItems(l) {
         { key: '/extras/pathfinding-simulator', icon: <NodeIndexOutlined />, label: withNewBadge('/extras/pathfinding-simulator', l['pathfinding-simulator'], l) },
         { key: '/extras/binary-search-visualizer', icon: <SearchOutlined />, label: withNewBadge('/extras/binary-search-visualizer', l['binary-search-visualizer'], l) },
         { key: '/extras/event-loop-visualizer', icon: <ThunderboltOutlined />, label: withNewBadge('/extras/event-loop-visualizer', l['event-loop-visualizer'], l) },
-        { key: '/extras/redis-ttl-simulator', icon: <ClockCircleOutlined />, label: withNewBadge('/extras/redis-ttl-simulator', l['redis-ttl-simulator'], l) },
       ],
     },
   ]
