@@ -95,7 +95,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] HTTP Header Inspector
 - [x] cURL Generator (monta comando curl a partir de uma requisição) — `/apis/curl-generator`
 - [ ] HTTP Request Replay 🔥
-- [ ] Postman Import/Export
+- [x] Visualizador de Coleção Postman (JSON v2.0/v2.1: árvore, auth herdado, variáveis, laudo e código cURL/fetch/Python/HTTP) — `/tools/postman-collection-viewer`
 - [ ] OpenAPI Viewer
 - [ ] API Mock Server instantâneo 🔥
 - [ ] API Flow Designer 🔥 (desenha visualmente uma sequência de chamadas)

@@ -391,6 +391,7 @@ import CompoundInterestCalculatorPage from './pages/CompoundInterestCalculatorPa
 import PercentageCalculatorPage from './pages/PercentageCalculatorPage'
 import AbTestCalculatorPage from './pages/AbTestCalculatorPage'
 import ConnectionStringParserPage from './pages/ConnectionStringParserPage'
+import PostmanCollectionViewerPage from './pages/PostmanCollectionViewerPage'
 import BigOCheatsheetPage from './pages/BigOCheatsheetPage'
 import JsonToZodSchemaPage from './pages/JsonToZodSchemaPage'
 import LoanAmortizationCalculatorPage from './pages/LoanAmortizationCalculatorPage'
@@ -835,6 +836,7 @@ const router = createBrowserRouter([
       { path: 'tools/log-storage-cost-calculator', element: <LogStorageCostCalculatorPage /> },
       { path: 'tools/web-vitals-budget-calculator', element: <WebVitalsBudgetCalculatorPage /> },
       { path: 'tools/connection-string-parser', element: <ConnectionStringParserPage /> },
+      { path: 'tools/postman-collection-viewer', element: <PostmanCollectionViewerPage /> },
       { path: 'references/sql-joins', element: <Navigate to="/database/sql-joins" replace /> },
       { path: 'references/big-o-cheatsheet', element: <BigOCheatsheetPage /> },
       { path: 'tools/json-to-zod-schema', element: <Navigate to="/data/json-to-zod-schema" replace /> },
