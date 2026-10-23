@@ -10,7 +10,6 @@ import {
   Col,
   Tag,
   Statistic,
-  Collapse,
   Alert,
   Select,
   Empty,
@@ -21,13 +20,12 @@ import {
   SearchOutlined,
   DeleteOutlined,
   ClearOutlined,
-  CopyOutlined,
 } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import SourceCodePanel from '../components/SourceCodePanel'
 import { HASH_FUNCTIONS, createHashTable, sourceCode } from '../utils/hashTableVisualizer'
 
 const { Title, Paragraph, Text } = Typography
-const { Panel } = Collapse
 
 const PRESETS = [
   {
@@ -205,7 +203,6 @@ export default function HashTableVisualizerPage() {
   const [findInput, setFindInput] = useState('')
   const [activeIdx, setActiveIdx] = useState(null)
   const [notice, setNotice] = useState(null)
-  const [copiedKey, setCopiedKey] = useState(null)
   const [history, setHistory] = useState([])
 
   const table = useMemo(
@@ -325,12 +322,6 @@ export default function HashTableVisualizerPage() {
     if (bucketCount <= 3) return bucketCount
     return 4
   }, [bucketCount])
-
-  const copy = useCallback((text, key) => {
-    navigator.clipboard.writeText(text)
-    setCopiedKey(key)
-    setTimeout(() => setCopiedKey(null), 1500)
-  }, [])
 
   const options = useMemo(() => hashFnOptions(lang), [lang])
 
@@ -580,23 +571,12 @@ export default function HashTableVisualizerPage() {
       <Alert type="info" showIcon message={t.howItWorks} description={t.howItWorksText} />
       <Alert type="warning" showIcon message={t.quickAdvice} description={t.quickAdviceText} />
 
-      <Collapse>
-        <Panel header={t.sourceCode} key="source">
-          <div style={{ position: 'relative' }}>
-            <Button
-              size="small"
-              icon={<CopyOutlined />}
-              style={{ position: 'absolute', top: 8, right: 8 }}
-              onClick={() => copy(sourceCode(), 'source')}
-            >
-              {copiedKey === 'source' ? t.copied : t.copy}
-            </Button>
-            <pre style={{ margin: 0, overflow: 'auto', padding: 16 }}>
-              <code>{sourceCode()}</code>
-            </pre>
-          </div>
-        </Panel>
-      </Collapse>
+      <SourceCodePanel
+        code={sourceCode()}
+        header={t.sourceCode}
+        copyLabel={t.copy}
+        copiedLabel={t.copied}
+      />
     </Space>
   )
 }

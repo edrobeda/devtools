@@ -10,7 +10,6 @@ import {
   Col,
   Tag,
   Statistic,
-  Collapse,
   Alert,
   List,
   Empty,
@@ -19,11 +18,11 @@ import {
   ExperimentOutlined,
   PlusOutlined,
   SearchOutlined,
-  CopyOutlined,
   DeleteOutlined,
   ClearOutlined,
 } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import SourceCodePanel from '../components/SourceCodePanel'
 import {
   createBloomFilter,
   theoreticalFalsePositiveRate,
@@ -34,7 +33,6 @@ import {
 } from '../utils/bloomFilterSimulator'
 
 const { Title, Paragraph, Text } = Typography
-const { Panel } = Collapse
 
 const translations = {
   pt: {
@@ -148,7 +146,6 @@ export default function BloomFilterSimulatorPage() {
   const [input, setInput] = useState('')
   const [testInput, setTestInput] = useState('')
   const [testHistory, setTestHistory] = useState([])
-  const [copiedKey, setCopiedKey] = useState(null)
   const [expectedItems, setExpectedItems] = useState(100)
   const [targetFp, setTargetFp] = useState(0.01)
 
@@ -219,12 +216,6 @@ export default function BloomFilterSimulatorPage() {
     setSize(recommendedM)
     setHashCount(recommendedK)
   }, [recommendedM, recommendedK])
-
-  const copy = useCallback((text, key) => {
-    navigator.clipboard.writeText(text)
-    setCopiedKey(key)
-    setTimeout(() => setCopiedKey(null), 1500)
-  }, [])
 
   const cols = useMemo(() => {
     const c = Math.ceil(Math.sqrt(bits.length))
@@ -494,23 +485,12 @@ export default function BloomFilterSimulatorPage() {
 
       <Alert type="info" showIcon message={t.howItWorks} description={t.howItWorksText} />
 
-      <Collapse>
-        <Panel header={t.sourceCode} key="source">
-          <div style={{ position: 'relative' }}>
-            <Button
-              size="small"
-              icon={<CopyOutlined />}
-              style={{ position: 'absolute', top: 8, right: 8 }}
-              onClick={() => copy(sourceCode(), 'source')}
-            >
-              {copiedKey === 'source' ? t.copied : t.copy}
-            </Button>
-            <pre style={{ margin: 0, overflow: 'auto', padding: 16 }}>
-              <code>{sourceCode()}</code>
-            </pre>
-          </div>
-        </Panel>
-      </Collapse>
+      <SourceCodePanel
+        code={sourceCode()}
+        header={t.sourceCode}
+        copyLabel={t.copy}
+        copiedLabel={t.copied}
+      />
     </Space>
   )
 }

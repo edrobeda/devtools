@@ -11,7 +11,6 @@ import {
   Table,
   Tag,
   Statistic,
-  Collapse,
   Alert,
   Slider,
 } from 'antd'
@@ -19,11 +18,11 @@ import {
   ApartmentOutlined,
   PlusOutlined,
   MinusCircleOutlined,
-  CopyOutlined,
   BarChartOutlined,
   ReloadOutlined,
 } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import SourceCodePanel from '../components/SourceCodePanel'
 import {
   buildRing,
   assignKeys,
@@ -34,7 +33,6 @@ import {
 } from '../utils/consistentHashingSimulator'
 
 const { Title, Paragraph, Text } = Typography
-const { Panel } = Collapse
 
 const NODE_COLORS = ['#1677ff', '#52c41a', '#faad14', '#eb2f96', '#722ed1', '#13c2c2', '#f5222d', '#2f54eb']
 
@@ -120,7 +118,6 @@ export default function ConsistentHashingSimulatorPage() {
   const [vnodesPerNode, setVnodesPerNode] = useState(100)
   const [keyCount, setKeyCount] = useState(500)
   const [keys, setKeys] = useState(() => generateKeys(500))
-  const [copiedKey, setCopiedKey] = useState(null)
 
   const ringPoints = useMemo(() => buildRing(nodes, vnodesPerNode).points, [nodes, vnodesPerNode])
 
@@ -161,12 +158,6 @@ export default function ConsistentHashingSimulatorPage() {
     },
     []
   )
-
-  const copy = useCallback((text, key) => {
-    navigator.clipboard.writeText(text)
-    setCopiedKey(key)
-    setTimeout(() => setCopiedKey(null), 1500)
-  }, [])
 
   const mappingColumns = [
     { title: '#', key: 'index', width: 60, render: (_, __, idx) => idx + 1 },
@@ -495,23 +486,12 @@ export default function ConsistentHashingSimulatorPage() {
         </Space>
       </Card>
 
-      <Collapse>
-        <Panel header={t.sourceCode} key="source">
-          <div style={{ position: 'relative' }}>
-            <Button
-              size="small"
-              icon={<CopyOutlined />}
-              style={{ position: 'absolute', top: 8, right: 8 }}
-              onClick={() => copy(sourceCode(), 'source')}
-            >
-              {copiedKey === 'source' ? t.copied : t.copy}
-            </Button>
-            <pre style={{ margin: 0, overflow: 'auto', padding: 16 }}>
-              <code>{sourceCode()}</code>
-            </pre>
-          </div>
-        </Panel>
-      </Collapse>
+      <SourceCodePanel
+        code={sourceCode()}
+        header={t.sourceCode}
+        copyLabel={t.copy}
+        copiedLabel={t.copied}
+      />
     </Space>
   )
 }

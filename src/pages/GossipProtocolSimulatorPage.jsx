@@ -10,7 +10,6 @@ import {
   Col,
   Tag,
   Statistic,
-  Collapse,
   Alert,
   List,
   Empty,
@@ -22,10 +21,10 @@ import {
   PlayCircleOutlined,
   PauseCircleOutlined,
   ReloadOutlined,
-  CopyOutlined,
   ApartmentOutlined,
 } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import SourceCodePanel from '../components/SourceCodePanel'
 import {
   buildInitialState,
   stepGossip,
@@ -38,7 +37,6 @@ import {
 } from '../utils/gossipProtocolSimulator'
 
 const { Title, Paragraph, Text } = Typography
-const { Panel } = Collapse
 const { Option } = Select
 
 const translations = {
@@ -152,7 +150,6 @@ export default function GossipProtocolSimulatorPage() {
   const [speed, setSpeed] = useState(600)
   const [seed, setSeed] = useState(() => Date.now())
   const [isPlaying, setIsPlaying] = useState(false)
-  const [copiedKey, setCopiedKey] = useState(null)
 
   const [simState, setSimState] = useState(() =>
     buildInitialState(nodeCount, topology, sourceCount, seed)
@@ -263,12 +260,6 @@ export default function GossipProtocolSimulatorPage() {
     },
     []
   )
-
-  const copy = useCallback((text, key) => {
-    navigator.clipboard.writeText(text)
-    setCopiedKey(key)
-    setTimeout(() => setCopiedKey(null), 1500)
-  }, [])
 
   const convergenceEstimate = useMemo(
     () => estimateConvergence({ nodeCount, mode, fanout, removedAfterRounds }),
@@ -545,23 +536,12 @@ export default function GossipProtocolSimulatorPage() {
 
       <Alert type="info" showIcon message={t.howItWorks} description={t.howItWorksText} />
 
-      <Collapse>
-        <Panel header={t.sourceCode} key="source">
-          <div style={{ position: 'relative' }}>
-            <Button
-              size="small"
-              icon={<CopyOutlined />}
-              style={{ position: 'absolute', top: 8, right: 8 }}
-              onClick={() => copy(sourceCode(), 'source')}
-            >
-              {copiedKey === 'source' ? t.copied : t.copy}
-            </Button>
-            <pre style={{ margin: 0, overflow: 'auto', padding: 16 }}>
-              <code>{sourceCode()}</code>
-            </pre>
-          </div>
-        </Panel>
-      </Collapse>
+      <SourceCodePanel
+        code={sourceCode()}
+        header={t.sourceCode}
+        copyLabel={t.copy}
+        copiedLabel={t.copied}
+      />
     </Space>
   )
 }
