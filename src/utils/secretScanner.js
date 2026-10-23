@@ -8,7 +8,7 @@
 //      alta entropia de Shannon — pega segredos sem formato conhecido.
 //
 // A saída é um LAUDO (tipo, severidade, linha, valor mascarado), não um
-// texto redigido — mascarar o texto é o trabalho de /tools/pii-redactor.
+// texto redigido — mascarar o texto é o trabalho de /security/pii-redactor.
 
 export const SEVERITIES = ['critical', 'high', 'medium', 'low']
 

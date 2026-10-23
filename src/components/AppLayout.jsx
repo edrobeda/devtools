@@ -1316,7 +1316,6 @@ export function buildMenuItems(l) {
         { key: '/tools/combinatorics-calculator', icon: <CalculatorOutlined />, label: withNewBadge('/tools/combinatorics-calculator', l['combinatorics-calculator'], l) },
         { key: '/tools/semver-comparator', icon: <BranchesOutlined />, label: withNewBadge('/tools/semver-comparator', l['semver-comparator'], l) },
         { key: '/tools/semver-range-checker', icon: <TagsOutlined />, label: withNewBadge('/tools/semver-range-checker', l['semver-range-checker'], l) },
-        { key: '/tools/pii-redactor', icon: <EyeInvisibleOutlined />, label: withNewBadge('/tools/pii-redactor', l['pii-redactor'], l) },
         { key: '/tools/css-unit-converter', icon: <ColumnWidthOutlined />, label: withNewBadge('/tools/css-unit-converter', l['css-unit-converter'], l) },
         { key: '/tools/aspect-ratio-calculator', icon: <PictureOutlined />, label: withNewBadge('/tools/aspect-ratio-calculator', l['aspect-ratio-calculator'], l) },
         { key: '/tools/css-specificity-calculator', icon: <OrderedListOutlined />, label: withNewBadge('/tools/css-specificity-calculator', l['css-specificity-calculator'], l) },
@@ -1726,6 +1725,7 @@ export function buildMenuItems(l) {
         { key: '/security/saml-decoder', icon: <FileProtectOutlined />, label: withNewBadge('/security/saml-decoder', l['saml-decoder'], l) },
         { key: '/security/cvss-calculator', icon: <DashboardOutlined />, label: withNewBadge('/security/cvss-calculator', l['cvss-calculator'], l) },
         { key: '/security/secret-scanner', icon: <SecurityScanOutlined />, label: withNewBadge('/security/secret-scanner', l['secret-scanner'], l) },
+        { key: '/security/pii-redactor', icon: <EyeInvisibleOutlined />, label: withNewBadge('/security/pii-redactor', l['pii-redactor'], l) },
       ],
     },
     {
