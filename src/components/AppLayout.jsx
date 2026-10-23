@@ -1753,8 +1753,6 @@ export function buildMenuItems(l) {
       children: [
         { key: '/network/subnet-calculator', label: l['subnet-calculator'] },
         { key: '/network/user-agent-parser', icon: <UserOutlined />, label: withNewBadge('/network/user-agent-parser', l['user-agent-parser'], l) },
-        { key: '/network/mime-lookup', icon: <InboxOutlined />, label: withNewBadge('/network/mime-lookup', l['mime-lookup'], l) },
-        { key: '/network/common-ports', icon: <GlobalOutlined />, label: withNewBadge('/network/common-ports', l['common-ports'], l) },
         { key: '/network/ipv6-explorer', icon: <GlobalOutlined />, label: withNewBadge('/network/ipv6-explorer', l['ipv6-explorer'], l) },
         { key: '/network/mac-address-generator', icon: <GlobalOutlined />, label: withNewBadge('/network/mac-address-generator', l['mac-address-generator'], l) },
         { key: '/network/cidr-overlap-aggregator', icon: <CompressOutlined />, label: withNewBadge('/network/cidr-overlap-aggregator', l['cidr-overlap-aggregator'], l) },
@@ -1815,6 +1813,8 @@ export function buildMenuItems(l) {
         { key: '/references/ascii-table', icon: <FontSizeOutlined />, label: withNewBadge('/references/ascii-table', l['ascii-table'], l) },
         { key: '/references/regex-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/regex-cheatsheet', l['regex-cheatsheet'], l) },
         { key: '/references/http-headers', icon: <SendOutlined />, label: withNewBadge('/references/http-headers', l['http-headers'], l) },
+        { key: '/references/mime-lookup', icon: <InboxOutlined />, label: withNewBadge('/references/mime-lookup', l['mime-lookup'], l) },
+        { key: '/references/common-ports', icon: <GlobalOutlined />, label: withNewBadge('/references/common-ports', l['common-ports'], l) },
         { key: '/references/javascript-cheatsheet', icon: <CodeOutlined />, label: withNewBadge('/references/javascript-cheatsheet', l['javascript-cheatsheet'], l) },
         { key: '/references/tmux-cheatsheet', icon: <ColumnWidthOutlined />, label: withNewBadge('/references/tmux-cheatsheet', l['tmux-cheatsheet'], l) },
         { key: '/references/devtools-shortcuts', icon: <CodeOutlined />, label: withNewBadge('/references/devtools-shortcuts', l['devtools-shortcuts'], l) },
