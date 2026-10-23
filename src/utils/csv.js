@@ -1,6 +1,6 @@
 /**
  * Parser/escritor CSV compartilhado por /data/csv-json-converter,
- * /data/csv-markdown-table e /database/csv-to-sql. Antes cada página mantinha
+ * /data/csv-markdown-converter e /database/csv-to-sql. Antes cada página mantinha
  * uma cópia privada deste mesmo código — três versões da mesma máquina de
  * estados (campos entre aspas, aspas escapadas "", delimitador e quebra de
  * linha dentro do campo) que já tinham começado a divergir: uma aceitava
