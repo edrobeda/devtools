@@ -5,16 +5,11 @@
 // cor. Ajustando as espessuras das bordas laterais controlamos a largura
 // da base; a espessura da borda colorida controla a altura.
 
+import { parseColor } from './cssColor.js'
+
 const round = (v, digits = 2) => {
   const f = 10 ** digits
   return Math.round(v * f) / f
-}
-
-function parseColor(color) {
-  if (!color) return '#1677ff'
-  if (typeof color === 'string') return color
-  if (color && typeof color.toHexString === 'function') return color.toHexString()
-  return String(color)
 }
 
 function toCssNumber(v) {
@@ -40,7 +35,7 @@ export function buildTriangle({ direction = 'up', base = 100, height = 86, color
   if (h === 0 && b === 0) b = 100
   if (h === 0) h = b
 
-  const c = parseColor(color)
+  const c = parseColor(color, '#1677ff')
   const halfBase = b / 2
   const halfHeight = h / 2
 

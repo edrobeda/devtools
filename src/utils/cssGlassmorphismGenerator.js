@@ -4,6 +4,10 @@
 // saturate, borda sutil e sombra suave. Funciona melhor sobre fundos coloridos
 // ou gradientes, porque senao o blur nao tem o que borrar.
 
+import { parseColor } from './cssColor.js'
+
+const DEFAULT_COLOR = '#000000'
+
 const DEFAULTS = {
   className: 'glass-card',
   bgColor: '#ffffff',
@@ -125,15 +129,8 @@ export const BACKGROUND_PRESETS = [
   },
 ]
 
-function parseColor(color) {
-  if (!color) return '#000000'
-  if (typeof color === 'string') return color
-  if (color && typeof color.toHexString === 'function') return color.toHexString()
-  return String(color)
-}
-
 function hexToRgb(hex) {
-  const c = parseColor(hex).replace('#', '')
+  const c = parseColor(hex, DEFAULT_COLOR).replace('#', '')
   const full = c.length === 3 ? c.split('').map((ch) => ch + ch).join('') : c
   const num = parseInt(full, 16)
   if (full.length !== 6 || Number.isNaN(num)) return { r: 0, g: 0, b: 0 }

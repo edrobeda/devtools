@@ -5,12 +5,9 @@
 // visível/invisível é controlado por `:hover` e `:focus-within` no wrapper,
 // com transição suave de opacity + transform.
 
-function parseColor(color) {
-  if (!color) return '#1f2937'
-  if (typeof color === 'string') return color
-  if (color && typeof color.toHexString === 'function') return color.toHexString()
-  return String(color)
-}
+import { parseColor } from './cssColor.js'
+
+const DEFAULT_COLOR = '#1f2937'
 
 function toPx(v, fallback = 0) {
   const n = Number(v)
@@ -71,10 +68,10 @@ export function buildTooltipCss(options = {}) {
   } = options
 
   const c = safeClass(className)
-  const background = parseColor(bg)
-  const textColor = parseColor(color)
+  const background = parseColor(bg, DEFAULT_COLOR)
+  const textColor = parseColor(color, DEFAULT_COLOR)
   const shadowValue = shadow
-    ? `box-shadow: 0 4px 12px ${parseColor(shadowColor)};`
+    ? `box-shadow: 0 4px 12px ${parseColor(shadowColor, DEFAULT_COLOR)};`
     : ''
 
   const px = toPx(paddingX)

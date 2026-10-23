@@ -4,12 +4,7 @@
 // um objeto { backgroundColor, backgroundImage, backgroundSize } compatível
 // com a shorthand `background`. O output final é uma classe pronta pra colar.
 
-function parseColor(c) {
-  if (!c) return '#1677ff'
-  if (typeof c === 'string') return c
-  if (c && typeof c.toHexString === 'function') return c.toHexString()
-  return String(c)
-}
+import { parseColor } from './cssColor.js'
 
 function toPx(v) {
   const n = Math.max(0, Number(v) || 0)
@@ -178,8 +173,8 @@ export const PATTERN_KEYS = Object.keys(PATTERNS)
 
 export function buildPattern({ pattern = 'stripes-horizontal', color1 = '#e6f4ff', color2 = '#1677ff', size = 40, angle = 45, opacity = 1 } = {}) {
   const fn = PATTERNS[pattern] || PATTERNS['stripes-horizontal']
-  const c1 = withOpacity(parseColor(color1), opacity)
-  const c2 = withOpacity(parseColor(color2), opacity)
+  const c1 = withOpacity(parseColor(color1, '#1677ff'), opacity)
+  const c2 = withOpacity(parseColor(color2, '#1677ff'), opacity)
   const s = Math.max(4, Number.isFinite(Number(size)) ? Number(size) : 40)
   const a = Number.isFinite(Number(angle)) ? Number(angle) : 45
 
