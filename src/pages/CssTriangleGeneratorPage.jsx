@@ -1,7 +1,9 @@
 import React, { useMemo, useState } from 'react'
-import { Typography, Card, Space, Slider, Segmented, Alert, Button, Collapse, message, ColorPicker, Row, Col, InputNumber } from 'antd'
-import { BgColorsOutlined, CopyOutlined } from '@ant-design/icons'
+import { Typography, Card, Space, Slider, Segmented, Alert, message, ColorPicker, Row, Col, InputNumber } from 'antd'
+import { BgColorsOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import CssGeneratorOutput from '../components/CssGeneratorOutput'
+import CssGeneratorSource from '../components/CssGeneratorSource'
 import { buildTriangle, buildTriangleClass } from '../utils/cssTriangle'
 
 const { Title, Paragraph, Text } = Typography
@@ -308,30 +310,21 @@ export default function CssTriangleGeneratorPage() {
         </Col>
       </Row>
 
-      <Card
+      <CssGeneratorOutput
         title={t.output}
-        extra={<Button size="small" icon={<CopyOutlined />} onClick={copy}>{t.copy}</Button>}
+        copyValue={classCss}
+        copy={copy}
+        copyLabel={t.copy}
       >
         <pre style={{ margin: 0, overflowX: 'auto' }}>
           <code>{classCss}</code>
         </pre>
-      </Card>
+      </CssGeneratorOutput>
 
-      <Collapse
-        items={[
-          {
-            key: 'source',
-            label: `${t.sourceCol} — buildTriangle / buildTriangleClass`,
-            children: (
-              <Space direction="vertical" style={{ width: '100%' }}>
-                <Paragraph type="secondary">{t.sourceBody}</Paragraph>
-                <pre style={{ margin: 0, overflowX: 'auto', maxHeight: 320 }}>
-                  <code>{buildTriangle.toString()}</code>
-                </pre>
-              </Space>
-            ),
-          },
-        ]}
+      <CssGeneratorSource
+        sourceLabel={`${t.sourceCol} — buildTriangle / buildTriangleClass`}
+        sourceBody={t.sourceBody}
+        sourceCode={buildTriangle.toString()}
       />
     </Space>
   )

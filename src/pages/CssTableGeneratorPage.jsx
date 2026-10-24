@@ -1,10 +1,12 @@
 import React, { useMemo, useState } from 'react'
 import {
-  Typography, Card, Space, Slider, Segmented, Alert, Button, Collapse,
-  message, ColorPicker, Row, Col, Input, Switch, Tabs,
+  Typography, Card, Space, Slider, Segmented, Alert,
+  message, ColorPicker, Row, Col, Input, Switch,
 } from 'antd'
-import { CopyOutlined, TableOutlined } from '@ant-design/icons'
+import { TableOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import CssGeneratorOutput from '../components/CssGeneratorOutput'
+import CssGeneratorSource from '../components/CssGeneratorSource'
 import {
   buildTableCss,
   buildTableHtml,
@@ -513,39 +515,19 @@ export default function CssTableGeneratorPage() {
         </Col>
       </Row>
 
-      <Card
+      <CssGeneratorOutput
         title={t.presets}
-        extra={
-          <Button size="small" icon={<CopyOutlined />} onClick={() => copy(cssOutput)}>
-            {t.copy}
-          </Button>
-        }
-      >
-        <Tabs
-          items={outputTabs}
-          tabBarExtraContent={
-            <Button size="small" icon={<CopyOutlined />} onClick={() => copy(fullOutput)}>
-              {t.copy}
-            </Button>
-          }
-        />
-      </Card>
+        outputTabs={outputTabs}
+        copyValue={cssOutput}
+        tabsCopyValue={fullOutput}
+        copy={copy}
+        copyLabel={t.copy}
+      />
 
-      <Collapse
-        items={[
-          {
-            key: 'source',
-            label: `${t.sourceCol} — buildTableCss / buildTableHtml`,
-            children: (
-              <Space direction="vertical" style={{ width: '100%' }}>
-                <Paragraph type="secondary">{t.sourceBody}</Paragraph>
-                <pre style={{ margin: 0, overflowX: 'auto', maxHeight: 320 }}>
-                  <code>{buildTableCss.toString()}</code>
-                </pre>
-              </Space>
-            ),
-          },
-        ]}
+      <CssGeneratorSource
+        sourceLabel={`${t.sourceCol} — buildTableCss / buildTableHtml`}
+        sourceBody={t.sourceBody}
+        sourceCode={buildTableCss.toString()}
       />
     </Space>
   )

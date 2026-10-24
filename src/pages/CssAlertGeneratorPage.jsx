@@ -1,10 +1,12 @@
 import React, { useMemo, useState } from 'react'
 import {
-  Typography, Card, Space, Slider, Segmented, Alert, Button, Collapse,
-  message, ColorPicker, Row, Col, Input, Switch, Tabs,
+  Typography, Card, Space, Slider, Segmented, Alert, Button,
+  message, ColorPicker, Row, Col, Input, Switch,
 } from 'antd'
-import { BgColorsOutlined, CopyOutlined, PlayCircleOutlined } from '@ant-design/icons'
+import { BgColorsOutlined, PlayCircleOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import CssGeneratorOutput from '../components/CssGeneratorOutput'
+import CssGeneratorSource from '../components/CssGeneratorSource'
 import {
   buildAlertCss,
   buildAlertHtml,
@@ -541,39 +543,19 @@ export default function CssAlertGeneratorPage() {
         </Col>
       </Row>
 
-      <Card
+      <CssGeneratorOutput
         title={t.presets}
-        extra={
-          <Button size="small" icon={<CopyOutlined />} onClick={() => copy(cssOutput)}>
-            {t.copy}
-          </Button>
-        }
-      >
-        <Tabs
-          items={outputTabs}
-          tabBarExtraContent={
-            <Button size="small" icon={<CopyOutlined />} onClick={() => copy(fullOutput)}>
-              {t.copy}
-            </Button>
-          }
-        />
-      </Card>
+        outputTabs={outputTabs}
+        copyValue={cssOutput}
+        tabsCopyValue={fullOutput}
+        copy={copy}
+        copyLabel={t.copy}
+      />
 
-      <Collapse
-        items={[
-          {
-            key: 'source',
-            label: `${t.sourceCol} — buildAlertCss / buildAlertHtml`,
-            children: (
-              <Space direction="vertical" style={{ width: '100%' }}>
-                <Paragraph type="secondary">{t.sourceBody}</Paragraph>
-                <pre style={{ margin: 0, overflowX: 'auto', maxHeight: 320 }}>
-                  <code>{buildAlertCss.toString()}</code>
-                </pre>
-              </Space>
-            ),
-          },
-        ]}
+      <CssGeneratorSource
+        sourceLabel={`${t.sourceCol} — buildAlertCss / buildAlertHtml`}
+        sourceBody={t.sourceBody}
+        sourceCode={buildAlertCss.toString()}
       />
     </Space>
   )
