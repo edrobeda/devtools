@@ -54,13 +54,13 @@ const CATEGORY_LABELS = {
 
 const translations = {
   pt: {
-    title: 'Comandos SQL Essenciais',
+    title: 'Cheat Sheet de SQL',
     intro: 'Referência rápida e pesquisável dos comandos SQL mais usados no dia a dia — sintaxe padrão ANSI, compatível com PostgreSQL/MySQL/SQLite na maioria dos casos (algumas features avançadas variam por banco).',
     search: 'Buscar comando ou descrição...',
     empty: 'Nenhum comando encontrado.',
   },
   en: {
-    title: 'Essential SQL Commands',
+    title: 'SQL Cheat Sheet',
     intro: 'A quick, searchable reference of the most commonly used SQL commands — standard ANSI syntax, compatible with PostgreSQL/MySQL/SQLite in most cases (some advanced features vary by database).',
     search: 'Search command or description...',
     empty: 'No command found.',

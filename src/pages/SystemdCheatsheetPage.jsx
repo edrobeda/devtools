@@ -248,7 +248,7 @@ const ITEMS = [
 
 const translations = {
   pt: {
-    title: 'Comandos systemd',
+    title: 'Cheat Sheet de systemd',
     intro: (
       <>
         <Text code>systemctl</Text>, <Text code>journalctl</Text> e os arquivos{' '}
@@ -310,7 +310,7 @@ const translations = {
     copyError: 'Não foi possível copiar',
   },
   en: {
-    title: 'systemd Commands',
+    title: 'systemd Cheat Sheet',
     intro: (
       <>
         <Text code>systemctl</Text>, <Text code>journalctl</Text> and{' '}

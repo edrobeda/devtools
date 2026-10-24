@@ -136,7 +136,7 @@ const COMMANDS = [
 
 const translations = {
   pt: {
-    title: 'Comandos Vim',
+    title: 'Cheat Sheet de Vim',
     intro: (
       <>
         Cheat sheet pesquisável do <Text code>vim</Text>, o editor de terminal
@@ -179,7 +179,7 @@ const translations = {
     copiedError: 'Não foi possível copiar',
   },
   en: {
-    title: 'Vim Commands',
+    title: 'Vim Cheat Sheet',
     intro: (
       <>
         A searchable cheat sheet for <Text code>vim</Text>, the terminal

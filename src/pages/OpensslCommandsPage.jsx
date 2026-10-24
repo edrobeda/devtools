@@ -100,7 +100,7 @@ const COMMANDS = [
 
 const translations = {
   pt: {
-    title: 'Comandos OpenSSL',
+    title: 'Cheat Sheet de OpenSSL',
     intro: (
       <>
         Cheat sheet pesquisável do <Text code>openssl</Text> — o canivete suíço
@@ -136,7 +136,7 @@ const translations = {
     copiedError: 'Não foi possível copiar',
   },
   en: {
-    title: 'OpenSSL Commands',
+    title: 'OpenSSL Cheat Sheet',
     intro: (
       <>
         A searchable cheat sheet for <Text code>openssl</Text> — the Swiss-army
