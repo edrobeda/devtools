@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { Typography, Card, Space, Input, Button, Alert, Segmented, Collapse, message } from 'antd'
-import { CodeOutlined, CopyOutlined, CheckOutlined } from '@ant-design/icons'
+import { Typography, Space, Button, Segmented } from 'antd'
+import { CodeOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import { formatYaml, yamlStats } from '../utils/yamlFormatter'
+import FormatterShell from '../components/FormatterShell'
 
-const { Title, Paragraph, Text } = Typography
-const TextArea = Input.TextArea
+const { Text } = Typography
 
 const SAMPLE_COMPOSE = `# Exemplo: docker-compose.yml
 version: "3.9"
@@ -96,6 +96,8 @@ data:
       region: us-east-1
   note: 1234567890 # comentário é descartado na re-emissão
 `
+
+const NOTE_STYLE = { marginTop: 8 }
 
 const translateError = (key, t) => {
   switch (key) {
@@ -282,7 +284,6 @@ export default function YamlFormatterPage() {
   const [output, setOutput] = useState('')
   const [error, setError] = useState(null)
   const [result, setResult] = useState(null)
-  const [copied, setCopied] = useState(false)
 
   function process(nextMode) {
     setMode(nextMode)
@@ -310,17 +311,6 @@ export default function YamlFormatterPage() {
     setResult({ ...stats, isMin })
   }
 
-  async function handleCopy() {
-    if (!output) return
-    try {
-      await navigator.clipboard.writeText(output)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 1500)
-    } catch {
-      message.warning(t.copyErr)
-    }
-  }
-
   const saved =
     result && result.isMin && result.bytesIn > 0 && result.bytesOut < result.bytesIn
       ? Math.round(((result.bytesIn - result.bytesOut) / result.bytesIn) * 1000) / 10
@@ -329,118 +319,85 @@ export default function YamlFormatterPage() {
   const errorMsg = error ? translateError(error.key, t) : ''
 
   return (
-    <Space direction="vertical" size="large" style={{ width: '100%' }}>
-      <Title level={2}><CodeOutlined /> {t.title}</Title>
-      <Paragraph type="secondary">{t.intro}</Paragraph>
-
-      <Card title={t.inputLabel}
-        extra={(
-          <Space wrap>
-            <Button size="small" onClick={() => pastSample(SAMPLE_COMPOSE)}>{t.sampleCompose}</Button>
-            <Button size="small" onClick={() => pastSample(SAMPLE_K8S)}>{t.sampleK8s}</Button>
-            <Button size="small" onClick={() => pastSample(SAMPLE_CI)}>{t.sampleCi}</Button>
-            <Button size="small" onClick={() => pastSample(SAMPLE_CONFIG)}>{t.sampleConfig}</Button>
-            <Button size="small" disabled={!input} onClick={() => pastSample('')}>{t.clear}</Button>
-          </Space>
-        )}
-      >
-        <Space direction="vertical" size="middle" style={{ width: '100%' }}>
-          <TextArea
-            rows={14}
-            value={input}
-            onChange={(e) => { setInput(e.target.value); setOutput(''); setError(null) }}
-            placeholder={t.placeholder}
-            spellCheck={false}
-            style={{ fontFamily: 'monospace', fontSize: 13 }}
-          />
-          <Space wrap>
-            <Button type="primary" onClick={() => process('pretty')}>{t.format}</Button>
-            <Button onClick={() => process('minify')}>{t.minify}</Button>
-          </Space>
-          <Space wrap>
-            <Text type="secondary" style={{ fontSize: 13 }}>{t.indentLabel}</Text>
-            <Segmented
-              size="small"
-              value={indent}
-              onChange={setIndent}
-              options={[{ label: '2', value: 2 }, { label: '4', value: 4 }]}
-              style={{ marginRight: 16 }}
-            />
-          </Space>
+    <FormatterShell
+      icon={<CodeOutlined />}
+      title={t.title}
+      intro={t.intro}
+      input={input}
+      onInputChange={(e) => { setInput(e.target.value); setOutput(''); setError(null) }}
+      placeholder={t.placeholder}
+      rows={14}
+      mono
+      inputTitle={t.inputLabel}
+      inputExtra={(
+        <Space wrap>
+          <Button size="small" onClick={() => pastSample(SAMPLE_COMPOSE)}>{t.sampleCompose}</Button>
+          <Button size="small" onClick={() => pastSample(SAMPLE_K8S)}>{t.sampleK8s}</Button>
+          <Button size="small" onClick={() => pastSample(SAMPLE_CI)}>{t.sampleCi}</Button>
+          <Button size="small" onClick={() => pastSample(SAMPLE_CONFIG)}>{t.sampleConfig}</Button>
+          <Button size="small" disabled={!input} onClick={() => pastSample('')}>{t.clear}</Button>
         </Space>
-      </Card>
-
-      {error && (
-        <Alert
-          type="error"
-          showIcon
-          message={t.errTitle}
-          description={
-            <Space direction="vertical" size={0}>
-              <Text code>{errorMsg}</Text>
-              <Text type="secondary" style={{ fontSize: 12 }}>
-                {t.errAt} {error.line ?? '?'}, col {error.col ?? '?'}
-              </Text>
-            </Space>
-          }
-        />
       )}
-
-      {output ? (
-        <Card
-          title={
-            <Space size={8}>
-              <span>{t.resultTitle}</span>
-              {result && (
-                <Text type="secondary" style={{ fontSize: 12 }}>
-                  {t.bytesIn}: {result.bytesIn} B · {t.bytesOut}: {result.bytesOut} B{' '}
-                  {result.isMin ? `· ${t.savedLabel}: ${saved}%` : ''}
-                </Text>
-              )}
-            </Space>
-          }
-          extra={
-            <Button
-              type="primary"
-              size="small"
-              icon={copied ? <CheckOutlined /> : <CopyOutlined />}
-              onClick={handleCopy}
-            >
-              {copied ? t.copied : t.copy}
-            </Button>
-          }
-        >
-          {result && result.keys !== undefined && (
-            <Space wrap size={[12, 4]} style={{ marginBottom: 12 }}>
-              <Text code>{t.keys}: {result.keys}</Text>
-              <Text code>{t.lists}: {result.lists}</Text>
-              <Text code>{t.depth}: {result.depth}</Text>
-            </Space>
+      actions={(
+        <>
+          <Button type="primary" onClick={() => process('pretty')}>{t.format}</Button>
+          <Button onClick={() => process('minify')}>{t.minify}</Button>
+        </>
+      )}
+      options={(
+        <>
+          <Text type="secondary" style={{ fontSize: 13 }}>{t.indentLabel}</Text>
+          <Segmented
+            size="small"
+            value={indent}
+            onChange={setIndent}
+            options={[{ label: '2', value: 2 }, { label: '4', value: 4 }]}
+            style={{ marginRight: 16 }}
+          />
+        </>
+      )}
+      error={error ? {
+        title: t.errTitle,
+        description: (
+          <Space direction="vertical" size={0}>
+            <Text code>{errorMsg}</Text>
+            <Text type="secondary" style={{ fontSize: 12 }}>
+              {t.errAt} {error.line ?? '?'}, col {error.col ?? '?'}
+            </Text>
+          </Space>
+        ),
+      } : null}
+      output={output}
+      outputTitle={(
+        <Space size={8}>
+          <span>{t.resultTitle}</span>
+          {result && (
+            <Text type="secondary" style={{ fontSize: 12 }}>
+              {t.bytesIn}: {result.bytesIn} B · {t.bytesOut}: {result.bytesOut} B{' '}
+              {result.isMin ? `· ${t.savedLabel}: ${saved}%` : ''}
+            </Text>
           )}
-          <pre style={{ margin: 0, overflow: 'auto', maxHeight: 480, fontFamily: 'monospace', fontSize: 13 }}>
-            <code>{output}</code>
-          </pre>
-        </Card>
-      ) : (
-        !error && <Text type="secondary">{t.emptyHint}</Text>
+        </Space>
       )}
-
-      <Alert type="info" showIcon message={t.noteTitle} description={t.note} style={{ marginTop: 8 }} />
-
-      <Collapse
-        items={[
-          {
-            key: 'source',
-            label: `${t.howTitle} — tokenizeYaml → parseYaml → render`,
-            children: (
-              <pre style={{ margin: 0, overflowX: 'auto', fontFamily: 'monospace', fontSize: 13, maxHeight: 360, overflowY: 'auto' }}>
-                <code>{SRC_TEXT}</code>
-              </pre>
-            ),
-          },
-        ]}
-      />
-    </Space>
+      outputStyle="tall"
+      stats={result && result.keys !== undefined ? (
+        <Space wrap size={[12, 4]} style={{ marginBottom: 12 }}>
+          <Text code>{t.keys}: {result.keys}</Text>
+          <Text code>{t.lists}: {result.lists}</Text>
+          <Text code>{t.depth}: {result.depth}</Text>
+        </Space>
+      ) : null}
+      copyLabel={t.copy}
+      copiedLabel={t.copied}
+      copyError={{ type: 'warning', text: t.copyErr }}
+      emptyHint={<Text type="secondary">{t.emptyHint}</Text>}
+      note={{ title: t.noteTitle, description: t.note, style: NOTE_STYLE }}
+      source={{
+        variant: 'collapse',
+        label: `${t.howTitle} — tokenizeYaml → parseYaml → render`,
+        text: SRC_TEXT,
+      }}
+    />
   )
 
   function pastSample(text) {

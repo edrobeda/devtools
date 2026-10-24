@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { Typography, Card, Space, Input, Button, Alert, Switch, Segmented, Descriptions, message } from 'antd'
-import { FileTextOutlined, CopyOutlined, CheckOutlined } from '@ant-design/icons'
+import { Typography, Space, Button, Switch, Segmented, Descriptions } from 'antd'
+import { FileTextOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import { formatSql, minifySql, sqlStats } from '../utils/sqlFormatter'
+import FormatterShell from '../components/FormatterShell'
 
-const { Title, Paragraph, Text } = Typography
-const { TextArea } = Input
+const { Text } = Typography
 
 const SAMPLE_SELECT = `SELECT u.id, u.name, count(o.id) AS orders, max(o.created_at) AS last_order
 FROM users u
@@ -143,7 +143,6 @@ export default function SqlFormatterPage() {
   const [output, setOutput] = useState('')
   const [error, setError] = useState(null)
   const [stats, setStats] = useState(null)
-  const [copied, setCopied] = useState(false)
 
   function process(nextMode) {
     if (!input.trim()) {
@@ -179,127 +178,83 @@ export default function SqlFormatterPage() {
     setStats(null)
   }
 
-  async function handleCopy() {
-    if (!output) return
-    try {
-      await navigator.clipboard.writeText(output)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 1500)
-    } catch {
-      message.info(t.emptyHint)
-    }
-  }
-
   const saved =
     stats && mode === 'minify' && stats.in > 0 && stats.out < stats.in
       ? Math.round(((stats.in - stats.out) / stats.in) * 1000) / 10
       : 0
 
   return (
-    <Space direction="vertical" size="large" style={{ width: '100%' }}>
-      <Title level={2}><FileTextOutlined /> {t.title}</Title>
-      <Paragraph type="secondary">{t.intro}</Paragraph>
-
-      <Card title={t.inputLabel}>
-        <Space direction="vertical" size="middle" style={{ width: '100%' }}>
-          <TextArea
-            rows={12}
-            value={input}
-            onChange={(e) => { setInput(e.target.value); setOutput(''); setError(null) }}
-            placeholder={t.placeholder}
-            spellCheck={false}
-            style={{ fontFamily: 'monospace', fontSize: 13 }}
+    <FormatterShell
+      icon={<FileTextOutlined />}
+      title={t.title}
+      intro={t.intro}
+      input={input}
+      onInputChange={(e) => { setInput(e.target.value); setOutput(''); setError(null) }}
+      placeholder={t.placeholder}
+      rows={12}
+      mono
+      inputTitle={t.inputLabel}
+      actions={(
+        <>
+          <Button type="primary" onClick={() => process('format')}>{t.format}</Button>
+          <Button onClick={() => process('minify')}>{t.minify}</Button>
+        </>
+      )}
+      extraRow={(
+        <>
+          <Button size="small" onClick={() => setSample(SAMPLE_SELECT)}>{t.sampleSelect}</Button>
+          <Button size="small" onClick={() => setSample(SAMPLE_INSERT)}>{t.sampleInsert}</Button>
+          <Button size="small" onClick={() => setSample(SAMPLE_DDL)}>{t.sampleDdl}</Button>
+          <Button size="small" onClick={() => setSample(SAMPLE_MINI)}>{t.sampleMini}</Button>
+          <Button size="small" disabled={!input} onClick={() => setSample('')}>{t.clear}</Button>
+        </>
+      )}
+      options={(
+        <>
+          <Switch checked={upperKeywords} onChange={setUpperKeywords} size="small" />
+          <Text type="secondary" style={{ fontSize: 13 }}>{t.upperKeywords}</Text>
+          <Segmented
+            size="small"
+            value={indent}
+            onChange={setIndent}
+            options={[{ label: `2 ${t.indentLabel}`, value: 2 }, { label: `4 ${t.indentLabel}`, value: 4 }]}
+            style={{ marginLeft: 16 }}
           />
-          <Space wrap>
-            <Button type="primary" onClick={() => process('format')}>{t.format}</Button>
-            <Button onClick={() => process('minify')}>{t.minify}</Button>
-          </Space>
-          <Space wrap>
-            <Button size="small" onClick={() => setSample(SAMPLE_SELECT)}>{t.sampleSelect}</Button>
-            <Button size="small" onClick={() => setSample(SAMPLE_INSERT)}>{t.sampleInsert}</Button>
-            <Button size="small" onClick={() => setSample(SAMPLE_DDL)}>{t.sampleDdl}</Button>
-            <Button size="small" onClick={() => setSample(SAMPLE_MINI)}>{t.sampleMini}</Button>
-            <Button size="small" disabled={!input} onClick={() => setSample('')}>{t.clear}</Button>
-          </Space>
-          <Space wrap>
-            <Switch checked={upperKeywords} onChange={setUpperKeywords} size="small" />
-            <Text type="secondary" style={{ fontSize: 13 }}>{t.upperKeywords}</Text>
-            <Segmented
-              size="small"
-              value={indent}
-              onChange={setIndent}
-              options={[{ label: `2 ${t.indentLabel}`, value: 2 }, { label: `4 ${t.indentLabel}`, value: 4 }]}
-              style={{ marginLeft: 16 }}
-            />
-          </Space>
-        </Space>
-      </Card>
-
-      {error && (
-        <Alert
-          type="error"
-          showIcon
-          message={t.err}
-          description={<Text code>{translateError(error, t)}</Text>}
-        />
+        </>
       )}
-
-      {output ? (
-        <Card
-          title={
-            <Space size={8}>
-              <span>{t.resultTitle}</span>
-              {stats && (
-                <Text type="secondary" style={{ fontSize: 12 }}>
-                  {t.bytesOut}: {stats.out} B
-                </Text>
-              )}
-            </Space>
-          }
-          extra={
-            <Button
-              type="primary"
-              size="small"
-              icon={copied ? <CheckOutlined /> : <CopyOutlined />}
-              onClick={handleCopy}
-            >
-              {copied ? t.copied : t.copy}
-            </Button>
-          }
-        >
+      error={error ? {
+        title: t.err,
+        description: <Text code>{translateError(error, t)}</Text>,
+      } : null}
+      output={output}
+      outputTitle={(
+        <Space size={8}>
+          <span>{t.resultTitle}</span>
           {stats && (
-            <Descriptions size="small" column={3} style={{ marginBottom: 12 }}>
-              <Descriptions.Item label={t.statements}>{stats.statements}</Descriptions.Item>
-              <Descriptions.Item label={t.tokens}>{stats.tokens}</Descriptions.Item>
-              <Descriptions.Item label={t.saved}>
-                {mode === 'minify' && stats.in > 0 ? `${saved}%` : '—'}
-              </Descriptions.Item>
-              <Descriptions.Item label={t.bytesIn}>{stats.in} B</Descriptions.Item>
-              <Descriptions.Item label={t.bytesOut}>{stats.out} B</Descriptions.Item>
-            </Descriptions>
+            <Text type="secondary" style={{ fontSize: 12 }}>
+              {t.bytesOut}: {stats.out} B
+            </Text>
           )}
-          <pre style={{
-            margin: 0,
-            overflowX: 'auto',
-            maxHeight: 440,
-            overflowY: 'auto',
-            fontFamily: 'monospace',
-            fontSize: 13,
-          }}>
-            <code>{output}</code>
-          </pre>
-        </Card>
-      ) : (
-        !error && <Text type="secondary">{t.emptyHint}</Text>
+        </Space>
       )}
-
-      <Alert type="info" showIcon message={t.note} />
-
-      <Card title={t.algorithmTitle}>
-        <pre style={{ margin: 0, overflowX: 'auto', fontFamily: 'monospace', fontSize: 13 }}>
-          <code>{SOURCE_SNIPPET}</code>
-        </pre>
-      </Card>
-    </Space>
+      outputStyle="mono"
+      stats={stats ? (
+        <Descriptions size="small" column={3} style={{ marginBottom: 12 }}>
+          <Descriptions.Item label={t.statements}>{stats.statements}</Descriptions.Item>
+          <Descriptions.Item label={t.tokens}>{stats.tokens}</Descriptions.Item>
+          <Descriptions.Item label={t.saved}>
+            {mode === 'minify' && stats.in > 0 ? `${saved}%` : '—'}
+          </Descriptions.Item>
+          <Descriptions.Item label={t.bytesIn}>{stats.in} B</Descriptions.Item>
+          <Descriptions.Item label={t.bytesOut}>{stats.out} B</Descriptions.Item>
+        </Descriptions>
+      ) : null}
+      copyLabel={t.copy}
+      copiedLabel={t.copied}
+      copyError={{ type: 'info', text: t.emptyHint }}
+      emptyHint={<Text type="secondary">{t.emptyHint}</Text>}
+      note={{ title: t.note }}
+      source={{ variant: 'card', style: 'mono', title: t.algorithmTitle, text: SOURCE_SNIPPET }}
+    />
   )
 }

@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { Typography, Card, Input, Space, Button, Alert, message, Descriptions } from 'antd'
-import { FileTextOutlined, CopyOutlined } from '@ant-design/icons'
+import { Typography, Button, Descriptions } from 'antd'
+import { FileTextOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import FormatterShell from '../components/FormatterShell'
 
-const { Title, Paragraph, Text } = Typography
-const { TextArea } = Input
+const { Text } = Typography
 
 const translations = {
   pt: {
@@ -109,48 +109,42 @@ export default function JsonFormatterPage() {
     })
   }
 
-  function handleCopy() {
-    navigator.clipboard.writeText(output)
-    message.success(t.copiedMessage)
-  }
-
   return (
-    <Space direction="vertical" size="large" style={{ width: '100%' }}>
-      <Title level={2}><FileTextOutlined /> {t.title}</Title>
-      <Paragraph type="secondary">{t.intro}</Paragraph>
-
-      <Card>
-        <TextArea
-          rows={10}
-          placeholder={t.placeholder}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          style={{ fontFamily: 'monospace' }}
-        />
-        <Space style={{ marginTop: 12 }}>
+    <FormatterShell
+      icon={<FileTextOutlined />}
+      title={t.title}
+      intro={t.intro}
+      input={input}
+      onInputChange={(e) => setInput(e.target.value)}
+      placeholder={t.placeholder}
+      rows={10}
+      inputLayout="plain"
+      inputActionsWrap={false}
+      actions={(
+        <>
           <Button type="primary" onClick={handleFormat}>{t.format}</Button>
           <Button onClick={handleMinify}>{t.minify}</Button>
-        </Space>
-      </Card>
-
-      {error && <Alert type="error" showIcon message={t.invalidTitle} description={error} />}
-
-      {output && (
-        <Card
-          title={t.resultTitle}
-          extra={<Button size="small" icon={<CopyOutlined />} onClick={handleCopy}>{t.copy}</Button>}
-        >
-          {stats && (
-            <Descriptions size="small" column={2} style={{ marginBottom: 12 }}>
-              <Descriptions.Item label={t.keys}>{stats.keys}</Descriptions.Item>
-              <Descriptions.Item label={t.size}>{stats.bytes} bytes</Descriptions.Item>
-            </Descriptions>
-          )}
-          <pre style={{ margin: 0, overflowX: 'auto', maxHeight: 400, overflowY: 'auto' }}>
-            <code>{output}</code>
-          </pre>
-        </Card>
+        </>
       )}
-    </Space>
+      error={error ? { title: t.invalidTitle, description: error } : null}
+      output={output}
+      outputTitle={t.resultTitle}
+      stats={stats ? (
+        <Descriptions size="small" column={2} style={{ marginBottom: 12 }}>
+          <Descriptions.Item label={t.keys}>{stats.keys}</Descriptions.Item>
+          <Descriptions.Item label={t.size}>{stats.bytes} bytes</Descriptions.Item>
+        </Descriptions>
+      ) : null}
+      copyLabel={t.copy}
+      copyMode="toast"
+      copyToastText={t.copiedMessage}
+      // A versao original renderizava `{output && (<Card/>)}`: sem saida o
+      // React devolvia string vazia e o antd Space embrulhava isso num item
+      // vazio (com o gap vertical no fim da pagina). `emptyHint=""` mantem
+      // esse item -- com `hideEmptyHintOnError={false}` ele aparece
+      // tambem quando ha erro.
+      emptyHint=""
+      hideEmptyHintOnError={false}
+    />
   )
 }

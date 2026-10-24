@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { Typography, Card, Input, Space, Button, Alert, message, Descriptions, Switch } from 'antd'
-import { FileTextOutlined, CopyOutlined } from '@ant-design/icons'
+import { Typography, Button, Switch, Descriptions } from 'antd'
+import { FileTextOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import FormatterShell from '../components/FormatterShell'
 
-const { Title, Paragraph, Text } = Typography
-const { TextArea } = Input
+const { Text } = Typography
 
 // A técnica: DOMParser com MIME 'application/xml' já valida o XML e devolve
 // um DOM — basta checar por um nó <parsererror>. A formatação re-serializa
@@ -209,26 +209,18 @@ export default function XmlFormatterPage() {
     })
   }
 
-  function handleCopy() {
-    if (!output) return
-    navigator.clipboard.writeText(output)
-    message.success(t.copiedMessage)
-  }
-
   return (
-    <Space direction="vertical" size="large" style={{ width: '100%' }}>
-      <Title level={2}><FileTextOutlined /> {t.title}</Title>
-      <Paragraph type="secondary">{t.intro}</Paragraph>
-
-      <Card>
-        <TextArea
-          rows={10}
-          placeholder={t.placeholder}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          style={{ fontFamily: 'monospace' }}
-        />
-        <Space style={{ marginTop: 12 }} wrap>
+    <FormatterShell
+      icon={<FileTextOutlined />}
+      title={t.title}
+      intro={t.intro}
+      input={input}
+      onInputChange={(e) => setInput(e.target.value)}
+      placeholder={t.placeholder}
+      rows={10}
+      inputLayout="plain"
+      actions={(
+        <>
           <Button type="primary" onClick={() => process(false)}>{t.format}</Button>
           <Button onClick={() => process(true)}>{t.minify}</Button>
           <Button onClick={() => setInput(SAMPLE)}>{t.sample}</Button>
@@ -240,38 +232,24 @@ export default function XmlFormatterPage() {
             unCheckedChildren="XML"
           />
           <Text type="secondary">{t.wrap}</Text>
-        </Space>
-      </Card>
-
-      {error && <Alert type="error" showIcon message={t.invalidTitle} description={error} />}
-
-      {output ? (
-        <Card
-          title={t.resultTitle}
-          extra={<Button size="small" icon={<CopyOutlined />} onClick={handleCopy}>{t.copy}</Button>}
-        >
-          {stats && (
-            <Descriptions size="small" column={3} style={{ marginBottom: 12 }}>
-              <Descriptions.Item label={t.nodes}>{stats.nodes}</Descriptions.Item>
-              <Descriptions.Item label={t.elements}>{stats.elements}</Descriptions.Item>
-              <Descriptions.Item label={t.size}>{stats.bytes} bytes</Descriptions.Item>
-            </Descriptions>
-          )}
-          <pre style={{ margin: 0, overflowX: 'auto', maxHeight: 400, overflowY: 'auto' }}>
-            <code>{output}</code>
-          </pre>
-        </Card>
-      ) : (
-        !error && <Text type="secondary">{t.empty}</Text>
+        </>
       )}
-
-      <Alert type="info" message={t.note} showIcon />
-
-      <Card title={t.sourceTitle}>
-        <pre style={{ margin: 0, overflowX: 'auto' }}>
-          <code>{SNIPPET}</code>
-        </pre>
-      </Card>
-    </Space>
+      error={error ? { title: t.invalidTitle, description: error } : null}
+      output={output}
+      outputTitle={t.resultTitle}
+      stats={stats ? (
+        <Descriptions size="small" column={3} style={{ marginBottom: 12 }}>
+          <Descriptions.Item label={t.nodes}>{stats.nodes}</Descriptions.Item>
+          <Descriptions.Item label={t.elements}>{stats.elements}</Descriptions.Item>
+          <Descriptions.Item label={t.size}>{stats.bytes} bytes</Descriptions.Item>
+        </Descriptions>
+      ) : null}
+      copyLabel={t.copy}
+      copyMode="toast"
+      copyToastText={t.copiedMessage}
+      emptyHint={<Text type="secondary">{t.empty}</Text>}
+      note={{ title: t.note }}
+      source={{ variant: 'card', style: 'plain', title: t.sourceTitle, text: SNIPPET }}
+    />
   )
 }
