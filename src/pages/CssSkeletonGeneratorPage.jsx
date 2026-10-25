@@ -6,7 +6,7 @@ import {
 import { BgColorsOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import CssGeneratorOutput from '../components/CssGeneratorOutput'
-import CssGeneratorSource from '../components/CssGeneratorSource'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import {
   buildSkeletonCss,
   buildSkeletonHtml,
@@ -432,7 +432,7 @@ export default function CssSkeletonGeneratorPage() {
         copyLabel={t.copy}
       />
 
-      <CssGeneratorSource
+      <GeneratorSourceCollapse
         sourceLabel={`${t.sourceCol} — buildSkeletonCss / buildSkeletonHtml`}
         sourceBody={t.sourceBody}
         sourceCode={buildSkeletonCss.toString()}

@@ -6,7 +6,7 @@ import {
 import { BgColorsOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import CssGeneratorOutput from '../components/CssGeneratorOutput'
-import CssGeneratorSource from '../components/CssGeneratorSource'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import {
   buildPaginationCss,
   buildPaginationHtml,
@@ -577,7 +577,7 @@ export default function CssPaginationGeneratorPage() {
         copyLabel={t.copy}
       />
 
-      <CssGeneratorSource
+      <GeneratorSourceCollapse
         sourceLabel={`${t.sourceCol} — buildPaginationCss / buildPaginationHtml`}
         sourceBody={t.sourceBody}
         sourceCode={buildPaginationCss.toString()}

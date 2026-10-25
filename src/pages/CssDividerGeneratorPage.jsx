@@ -6,7 +6,7 @@ import {
 import { BgColorsOutlined, PlayCircleOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import CssGeneratorOutput from '../components/CssGeneratorOutput'
-import CssGeneratorSource from '../components/CssGeneratorSource'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import {
   buildDividerCss,
   buildDividerHtml,
@@ -510,7 +510,7 @@ export default function CssDividerGeneratorPage() {
         copyLabel={t.copy}
       />
 
-      <CssGeneratorSource
+      <GeneratorSourceCollapse
         sourceLabel={`${t.sourceCol} — buildDividerCss / buildDividerHtml`}
         sourceBody={t.sourceBody}
         sourceCode={buildDividerCss.toString()}

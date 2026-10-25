@@ -6,7 +6,7 @@ import {
 import { BgColorsOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import CssGeneratorOutput from '../components/CssGeneratorOutput'
-import CssGeneratorSource from '../components/CssGeneratorSource'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import {
   buildRadioButtonCss,
   buildRadioButtonHtml,
@@ -354,7 +354,7 @@ export default function CssRadioButtonGeneratorPage() {
         copyLabel={t.copy}
       />
 
-      <CssGeneratorSource
+      <GeneratorSourceCollapse
         sourceLabel={`${t.sourceCol} — buildRadioButtonCss / buildRadioButtonHtml`}
         sourceBody={t.sourceBody}
         sourceCode={buildRadioButtonCss.toString()}

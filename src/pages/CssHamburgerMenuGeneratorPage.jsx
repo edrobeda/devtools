@@ -6,7 +6,7 @@ import {
 import { MenuOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import CssGeneratorOutput from '../components/CssGeneratorOutput'
-import CssGeneratorSource from '../components/CssGeneratorSource'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import {
   buildHamburgerCss,
   buildHamburgerHtml,
@@ -441,7 +441,7 @@ export default function CssHamburgerMenuGeneratorPage() {
         copyLabel={t.copy}
       />
 
-      <CssGeneratorSource
+      <GeneratorSourceCollapse
         sourceLabel={`${t.sourceCol} — buildHamburgerCss / buildHamburgerHtml`}
         sourceBody={t.sourceBody}
         sourceCode={buildHamburgerCss.toString()}

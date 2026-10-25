@@ -6,7 +6,7 @@ import {
 import { BgColorsOutlined, PlayCircleOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import CssGeneratorOutput from '../components/CssGeneratorOutput'
-import CssGeneratorSource from '../components/CssGeneratorSource'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import {
   buildAlertCss,
   buildAlertHtml,
@@ -526,7 +526,7 @@ export default function CssAlertGeneratorPage() {
         copyLabel={t.copy}
       />
 
-      <CssGeneratorSource
+      <GeneratorSourceCollapse
         sourceLabel={`${t.sourceCol} — buildAlertCss / buildAlertHtml`}
         sourceBody={t.sourceBody}
         sourceCode={buildAlertCss.toString()}

@@ -6,7 +6,7 @@ import {
 import { BgColorsOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import CssGeneratorOutput from '../components/CssGeneratorOutput'
-import CssGeneratorSource from '../components/CssGeneratorSource'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import {
   buildAvatarCss,
   buildAvatarHtml,
@@ -742,7 +742,7 @@ export default function CssAvatarGeneratorPage() {
         copyLabel={t.copy}
       />
 
-      <CssGeneratorSource
+      <GeneratorSourceCollapse
         sourceLabel={`${t.sourceCol} — buildAvatarCss / buildAvatarHtml`}
         sourceBody={t.sourceBody}
         sourceCode={buildAvatarCss.toString()}

@@ -6,7 +6,7 @@ import {
 import { BgColorsOutlined, OrderedListOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import CssGeneratorOutput from '../components/CssGeneratorOutput'
-import CssGeneratorSource from '../components/CssGeneratorSource'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import {
   buildStepperCss,
   buildStepperHtml,
@@ -683,7 +683,7 @@ export default function CssStepperGeneratorPage() {
         </pre>
       </CssGeneratorOutput>
 
-      <CssGeneratorSource
+      <GeneratorSourceCollapse
         sourceLabel={`${t.sourceCol} — buildStepperCss / buildStepperHtml`}
         sourceBody={t.sourceBody}
         sourceCode={buildStepperCss.toString()}

@@ -6,7 +6,7 @@ import {
 import { BgColorsOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import CssGeneratorOutput from '../components/CssGeneratorOutput'
-import CssGeneratorSource from '../components/CssGeneratorSource'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import {
   buildPulseCss,
   buildPulseHtml,
@@ -328,7 +328,7 @@ export default function CssPulseGeneratorPage() {
         copyLabel={t.copy}
       />
 
-      <CssGeneratorSource
+      <GeneratorSourceCollapse
         sourceLabel={`${t.sourceCol} — buildPulseCss / buildPulseHtml`}
         sourceBody={t.sourceBody}
         sourceCode={buildPulseCss.toString()}

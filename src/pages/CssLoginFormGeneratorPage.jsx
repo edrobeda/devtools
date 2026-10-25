@@ -6,7 +6,7 @@ import {
 import { BgColorsOutlined, PlayCircleOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import CssGeneratorOutput from '../components/CssGeneratorOutput'
-import CssGeneratorSource from '../components/CssGeneratorSource'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import {
   buildLoginFormCss,
   buildLoginFormHtml,
@@ -566,7 +566,7 @@ export default function CssLoginFormGeneratorPage() {
         copyLabel={t.copy}
       />
 
-      <CssGeneratorSource
+      <GeneratorSourceCollapse
         sourceLabel={`${t.sourceCol} — buildLoginFormCss / buildLoginFormHtml`}
         sourceBody={t.sourceBody}
         sourceCode={buildLoginFormCss.toString()}

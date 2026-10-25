@@ -6,7 +6,7 @@ import {
 import { TableOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import CssGeneratorOutput from '../components/CssGeneratorOutput'
-import CssGeneratorSource from '../components/CssGeneratorSource'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import {
   buildTableCss,
   buildTableHtml,
@@ -498,7 +498,7 @@ export default function CssTableGeneratorPage() {
         copyLabel={t.copy}
       />
 
-      <CssGeneratorSource
+      <GeneratorSourceCollapse
         sourceLabel={`${t.sourceCol} — buildTableCss / buildTableHtml`}
         sourceBody={t.sourceBody}
         sourceCode={buildTableCss.toString()}

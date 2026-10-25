@@ -3,7 +3,7 @@ import { Typography, Card, Space, Slider, Segmented, Alert, message, ColorPicker
 import { BgColorsOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import CssGeneratorOutput from '../components/CssGeneratorOutput'
-import CssGeneratorSource from '../components/CssGeneratorSource'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import { buildTriangle, buildTriangleClass } from '../utils/cssTriangle'
 
 const { Title, Paragraph, Text } = Typography
@@ -321,7 +321,7 @@ export default function CssTriangleGeneratorPage() {
         </pre>
       </CssGeneratorOutput>
 
-      <CssGeneratorSource
+      <GeneratorSourceCollapse
         sourceLabel={`${t.sourceCol} — buildTriangle / buildTriangleClass`}
         sourceBody={t.sourceBody}
         sourceCode={buildTriangle.toString()}

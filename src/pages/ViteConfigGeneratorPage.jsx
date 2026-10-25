@@ -9,11 +9,9 @@ import {
   Switch,
   Button,
   Alert,
-  Collapse,
   Row,
   Col,
   Checkbox,
-  message,
 } from 'antd'
 import {
   FileTextOutlined,
@@ -22,6 +20,9 @@ import {
   CodeOutlined,
 } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import useCopyWithToast from '../hooks/useCopyWithToast'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
+import GeneratorPresetButtons from '../components/GeneratorPresetButtons'
 import {
   buildViteConfig,
   PRESETS,
@@ -255,10 +256,7 @@ export default function ViteConfigGeneratorPage() {
     setActivePreset('')
   }
 
-  const copyOutput = () => {
-    navigator.clipboard.writeText(output)
-    message.success(t.copied)
-  }
+  const copyOutput = useCopyWithToast(output, t.copied)
 
   const downloadOutput = () => {
     const ext = options.fileType || 'js'
@@ -291,20 +289,13 @@ export default function ViteConfigGeneratorPage() {
 
       <Alert type="info" showIcon message={t.tipsTitle} description={t.tipsBody} />
 
-      <Card title={t.presets}>
-        <Space wrap>
-          {Object.entries(PRESETS).map(([key, preset]) => (
-            <Button
-              key={key}
-              type={activePreset === key ? 'primary' : 'default'}
-              size="small"
-              onClick={() => applyPreset(key)}
-            >
-              {preset.label[lang]}
-            </Button>
-          ))}
-        </Space>
-      </Card>
+      <GeneratorPresetButtons
+        title={t.presets}
+        presets={PRESETS}
+        activePreset={activePreset}
+        onSelect={applyPreset}
+        lang={lang}
+      />
 
       <Row gutter={[16, 16]}>
         <Col xs={24} lg={12}>
@@ -591,21 +582,11 @@ export default function ViteConfigGeneratorPage() {
         </pre>
       </Card>
 
-      <Collapse
-        items={[
-          {
-            key: 'source',
-            label: t.sourceTitle,
-            children: (
-              <Space direction="vertical" style={{ width: '100%' }}>
-                <Paragraph type="secondary">{t.sourceBody}</Paragraph>
-                <pre style={{ margin: 0, overflowX: 'auto', maxHeight: 400 }}>
-                  <code>{SOURCE}</code>
-                </pre>
-              </Space>
-            ),
-          },
-        ]}
+      <GeneratorSourceCollapse
+        sourceLabel={t.sourceTitle}
+        sourceBody={t.sourceBody}
+        sourceCode={SOURCE}
+        maxHeight={400}
       />
     </Space>
   )

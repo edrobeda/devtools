@@ -6,7 +6,7 @@ import {
 import { BgColorsOutlined, PlayCircleOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import CssGeneratorOutput from '../components/CssGeneratorOutput'
-import CssGeneratorSource from '../components/CssGeneratorSource'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import {
   buildCarouselCss,
   buildCarouselHtml,
@@ -498,7 +498,7 @@ export default function CssCarouselGeneratorPage() {
         copyLabel={t.copy}
       />
 
-      <CssGeneratorSource
+      <GeneratorSourceCollapse
         sourceLabel={`${t.sourceCol} — buildCarouselCss / buildCarouselHtml`}
         sourceBody={t.sourceBody}
         sourceCode={buildCarouselCss.toString()}

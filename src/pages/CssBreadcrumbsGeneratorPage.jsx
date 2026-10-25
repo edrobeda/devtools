@@ -6,7 +6,7 @@ import {
 import { BgColorsOutlined, PartitionOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import CssGeneratorOutput from '../components/CssGeneratorOutput'
-import CssGeneratorSource from '../components/CssGeneratorSource'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import {
   buildBreadcrumbsCss,
   buildBreadcrumbsHtml,
@@ -471,7 +471,7 @@ export default function CssBreadcrumbsGeneratorPage() {
         </pre>
       </CssGeneratorOutput>
 
-      <CssGeneratorSource
+      <GeneratorSourceCollapse
         sourceLabel={`${t.sourceCol} — buildBreadcrumbsCss / buildBreadcrumbsHtml`}
         sourceBody={t.sourceBody}
         sourceCode={buildBreadcrumbsCss.toString()}

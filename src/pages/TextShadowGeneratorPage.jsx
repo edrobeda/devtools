@@ -6,7 +6,7 @@ import {
 import { FontSizeOutlined, PlusOutlined, DeleteOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import CssGeneratorOutput from '../components/CssGeneratorOutput'
-import CssGeneratorSource from '../components/CssGeneratorSource'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import { buildTextShadow, buildClassCss, PRESETS } from '../utils/textShadowGenerator'
 
 const { Title, Paragraph, Text } = Typography
@@ -308,7 +308,7 @@ export default function TextShadowGeneratorPage() {
         </pre>
       </CssGeneratorOutput>
 
-      <CssGeneratorSource
+      <GeneratorSourceCollapse
         sourceLabel={`${t.sourceCol} — buildTextShadow / buildClassCss`}
         sourceBody={t.sourceBody}
         sourceCode={buildTextShadow.toString()}

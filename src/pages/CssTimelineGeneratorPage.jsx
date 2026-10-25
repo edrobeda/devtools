@@ -6,7 +6,7 @@ import {
 import { FieldTimeOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import CssGeneratorOutput from '../components/CssGeneratorOutput'
-import CssGeneratorSource from '../components/CssGeneratorSource'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import {
   buildTimelineCss,
   buildTimelineHtml,
@@ -594,7 +594,7 @@ export default function CssTimelineGeneratorPage() {
         </pre>
       </CssGeneratorOutput>
 
-      <CssGeneratorSource
+      <GeneratorSourceCollapse
         sourceLabel={`${t.sourceCol} — buildTimelineCss / buildTimelineHtml`}
         sourceBody={t.sourceBody}
         sourceCode={buildTimelineCss.toString()}

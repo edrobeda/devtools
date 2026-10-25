@@ -6,10 +6,8 @@ import {
   Checkbox,
   Button,
   Alert,
-  Collapse,
   Input,
   Tag,
-  message,
   Row,
   Col,
 } from 'antd'
@@ -19,6 +17,8 @@ import {
   DownloadOutlined,
 } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import useCopyWithToast from '../hooks/useCopyWithToast'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import { buildDockerignore, PRESETS } from '../utils/dockerignoreGenerator'
 
 const { Title, Paragraph, Text } = Typography
@@ -171,10 +171,7 @@ export default function DockerignoreGeneratorPage() {
   const lineCount = output ? output.split('\n').length : 0
   const byteCount = useMemo(() => new Blob([output]).size, [output])
 
-  const copyOutput = () => {
-    navigator.clipboard.writeText(output)
-    message.success(t.copied)
-  }
+  const copyOutput = useCopyWithToast(output, t.copied)
 
   const downloadOutput = () => {
     const blob = new Blob([output], { type: 'text/plain' })
@@ -278,21 +275,11 @@ export default function DockerignoreGeneratorPage() {
         )}
       </Card>
 
-      <Collapse
-        items={[
-          {
-            key: 'source',
-            label: t.sourceTitle,
-            children: (
-              <Space direction="vertical" style={{ width: '100%' }}>
-                <Paragraph type="secondary">{t.sourceBody}</Paragraph>
-                <pre style={{ margin: 0, overflowX: 'auto', maxHeight: 400 }}>
-                  <code>{SOURCE}</code>
-                </pre>
-              </Space>
-            ),
-          },
-        ]}
+      <GeneratorSourceCollapse
+        sourceLabel={t.sourceTitle}
+        sourceBody={t.sourceBody}
+        sourceCode={SOURCE}
+        maxHeight={400}
       />
     </Space>
   )

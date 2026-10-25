@@ -6,7 +6,7 @@ import {
 import { FontSizeOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import CssGeneratorOutput from '../components/CssGeneratorOutput'
-import CssGeneratorSource from '../components/CssGeneratorSource'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import {
   buildTextStrokeCss,
   buildTextStrokeHtml,
@@ -438,7 +438,7 @@ export default function CssTextStrokeGeneratorPage() {
         copyLabel={t.copy}
       />
 
-      <CssGeneratorSource
+      <GeneratorSourceCollapse
         sourceLabel={`${t.sourceCol} — buildTextStrokeCss / buildTextStrokeHtml`}
         sourceBody={t.sourceBody}
         sourceCode={buildTextStrokeCss.toString()}

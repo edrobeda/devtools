@@ -3,7 +3,10 @@ import { Collapse, Space, Typography } from 'antd'
 
 const { Paragraph } = Typography
 
-export default function CssGeneratorSource({
+// Bloco "codigo-fonte" compartilhado pelas paginas de gerador: um Collapse
+// com o titulo do bloco, o paragrafo explicativo e o <pre> com o codigo.
+// Antes cada pagina trazia uma copia identica desse markup inline.
+export default function GeneratorSourceCollapse({
   sourceLabel,
   sourceBody,
   sourceCode,

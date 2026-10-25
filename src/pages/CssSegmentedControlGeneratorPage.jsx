@@ -6,7 +6,7 @@ import {
 import { BgColorsOutlined, PlusOutlined, MinusOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import CssGeneratorOutput from '../components/CssGeneratorOutput'
-import CssGeneratorSource from '../components/CssGeneratorSource'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import {
   buildSegmentedControlCss,
   buildSegmentedControlHtml,
@@ -489,7 +489,7 @@ export default function CssSegmentedControlGeneratorPage() {
         copyLabel={t.copy}
       />
 
-      <CssGeneratorSource
+      <GeneratorSourceCollapse
         sourceLabel={`${t.sourceCol} — buildSegmentedControlCss / buildSegmentedControlHtml`}
         sourceBody={t.sourceBody}
         sourceCode={buildSegmentedControlCss.toString()}

@@ -6,7 +6,7 @@ import {
 import { BgColorsOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import CssGeneratorOutput from '../components/CssGeneratorOutput'
-import CssGeneratorSource from '../components/CssGeneratorSource'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import {
   buildNeumorphismCss,
   buildNeumorphismHtml,
@@ -437,7 +437,7 @@ export default function CssNeumorphismGeneratorPage() {
         copyLabel={t.copy}
       />
 
-      <CssGeneratorSource
+      <GeneratorSourceCollapse
         sourceLabel={`${t.sourceCol} — buildNeumorphismCss / buildNeumorphismHtml`}
         sourceBody={t.sourceBody}
         sourceCode={buildNeumorphismCss.toString()}

@@ -6,7 +6,7 @@ import {
 import { BgColorsOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import CssGeneratorOutput from '../components/CssGeneratorOutput'
-import CssGeneratorSource from '../components/CssGeneratorSource'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import {
   buildToggleSwitchCss,
   buildToggleSwitchHtml,
@@ -434,7 +434,7 @@ export default function CssToggleSwitchGeneratorPage() {
         copyLabel={t.copy}
       />
 
-      <CssGeneratorSource
+      <GeneratorSourceCollapse
         sourceLabel={`${t.sourceCol} — buildToggleSwitchCss / buildToggleSwitchHtml`}
         sourceBody={t.sourceBody}
         sourceCode={buildToggleSwitchCss.toString()}

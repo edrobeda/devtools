@@ -6,7 +6,7 @@ import {
 import { BgColorsOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
 import CssGeneratorOutput from '../components/CssGeneratorOutput'
-import CssGeneratorSource from '../components/CssGeneratorSource'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import {
   buildFlipCardCss,
   buildFlipCardHtml,
@@ -592,7 +592,7 @@ export default function CssFlipCardGeneratorPage() {
         copyLabel={t.copy}
       />
 
-      <CssGeneratorSource
+      <GeneratorSourceCollapse
         sourceLabel={`${t.sourceCol} — buildFlipCardCss / buildFlipCardHtml`}
         sourceBody={t.sourceBody}
         sourceCode={buildFlipCardCss.toString()}
