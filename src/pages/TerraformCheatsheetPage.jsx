@@ -9,7 +9,7 @@ const { Title, Paragraph, Text } = Typography
 
 const translations = {
   pt: {
-    title: 'Terraform Cheat Sheet',
+    title: 'Cheat Sheet de Terraform',
     intro: (
       <>
         Referência pesquisável de <Text code>terraform</Text> e de HCL — CLI,

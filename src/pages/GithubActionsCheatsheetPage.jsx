@@ -285,7 +285,7 @@ const ITEMS = [
 
 const translations = {
   pt: {
-    title: 'GitHub Actions (workflows)',
+    title: 'Cheat Sheet de GitHub Actions',
     intro: (
       <>
         <Text code>.github/workflows/*.yml</Text> — CI/CD dentro do próprio
@@ -347,7 +347,7 @@ const translations = {
     copyError: 'Não foi possível copiar',
   },
   en: {
-    title: 'GitHub Actions (workflows)',
+    title: 'GitHub Actions Cheat Sheet',
     intro: (
       <>
         <Text code>.github/workflows/*.yml</Text> — CI/CD inside GitHub itself:

@@ -101,7 +101,7 @@ const ITEMS = [
 
 const translations = {
   pt: {
-    title: 'Regex Cheat Sheet',
+    title: 'Cheat Sheet de Regex',
     intro: (
       <>
         Referência da sintaxe de expressões regulares em JavaScript — o token,
