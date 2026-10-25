@@ -122,13 +122,15 @@ const HEADERS = [
 
 const translations = {
   pt: {
-    title: 'Cabeçalhos HTTP',
+    title: 'Cheat Sheet de Cabeçalhos HTTP',
     intro: (
       <>
         Referência pesquisável dos cabeçalhos HTTP do dia a dia — o nome, o
         sentido (requisição/resposta), um valor de exemplo e o que ele faz.
-        Complementa o <Text code>/references/http-methods</Text> (os métodos)
-        e o <Text code>/references/http-status-codes</Text> (as respostas).
+        Complementa o <Text code>/references/http-methods-cheatsheet</Text> (os
+        métodos) e o{' '}
+        <Text code>/references/http-status-codes-cheatsheet</Text> (as
+        respostas).
         Tudo client-side, nada sai do navegador.
       </>
     ),
@@ -163,13 +165,15 @@ const translations = {
     results: (n) => `${n} ${n === 1 ? 'cabeçalho' : 'cabeçalhos'}`,
   },
   en: {
-    title: 'HTTP Headers',
+    title: 'HTTP Headers Cheat Sheet',
     intro: (
       <>
         A searchable reference of the everyday HTTP headers — the name, the
         direction (request/response), an example value and what it does.
-        Complements <Text code>/references/http-methods</Text> (the methods)
-        and <Text code>/references/http-status-codes</Text> (the responses).
+        Complements <Text code>/references/http-methods-cheatsheet</Text> (the
+        methods) and{' '}
+        <Text code>/references/http-status-codes-cheatsheet</Text> (the
+        responses).
         All client-side, nothing leaves the browser.
       </>
     ),
