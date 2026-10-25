@@ -300,36 +300,6 @@ export default function CssDividerGeneratorPage() {
     return <div key={previewKey} className={className} role="separator" />
   }
 
-  const outputTabs = [
-    {
-      key: 'css',
-      label: t.outputCss,
-      children: (
-        <pre style={{ margin: 0, overflowX: 'auto' }}>
-          <code>{cssOutput}</code>
-        </pre>
-      ),
-    },
-    {
-      key: 'html',
-      label: t.outputHtml,
-      children: (
-        <pre style={{ margin: 0, overflowX: 'auto' }}>
-          <code>{htmlOutput}</code>
-        </pre>
-      ),
-    },
-    {
-      key: 'full',
-      label: t.outputFull,
-      children: (
-        <pre style={{ margin: 0, overflowX: 'auto' }}>
-          <code>{fullOutput}</code>
-        </pre>
-      ),
-    },
-  ]
-
   const isFillType = type === 'gradient' || type === 'shadow'
   const showColor2 = type === 'gradient'
   const showText = type === 'text'
@@ -529,7 +499,11 @@ export default function CssDividerGeneratorPage() {
 
       <CssGeneratorOutput
         title={t.presets}
-        outputTabs={outputTabs}
+        tabs={[
+          { key: 'css', label: t.outputCss, value: cssOutput },
+          { key: 'html', label: t.outputHtml, value: htmlOutput },
+          { key: 'full', label: t.outputFull, value: fullOutput },
+        ]}
         copyValue={cssOutput}
         tabsCopyValue={fullOutput}
         copy={copy}

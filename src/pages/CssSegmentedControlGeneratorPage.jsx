@@ -271,36 +271,6 @@ export default function CssSegmentedControlGeneratorPage() {
     setDefaultIndex((idx) => Math.min(idx, options.length - 1))
   }, [options])
 
-  const outputTabs = [
-    {
-      key: 'css',
-      label: t.outputCss,
-      children: (
-        <pre style={{ margin: 0, overflowX: 'auto' }}>
-          <code>{cssOutput}</code>
-        </pre>
-      ),
-    },
-    {
-      key: 'html',
-      label: t.outputHtml,
-      children: (
-        <pre style={{ margin: 0, overflowX: 'auto' }}>
-          <code>{htmlOutput}</code>
-        </pre>
-      ),
-    },
-    {
-      key: 'full',
-      label: t.outputFull,
-      children: (
-        <pre style={{ margin: 0, overflowX: 'auto' }}>
-          <code>{fullOutput}</code>
-        </pre>
-      ),
-    },
-  ]
-
   return (
     <Space direction="vertical" size="large" style={{ width: '100%' }}>
       {messageContextHolder}
@@ -508,7 +478,11 @@ export default function CssSegmentedControlGeneratorPage() {
 
       <CssGeneratorOutput
         title={t.presets}
-        outputTabs={outputTabs}
+        tabs={[
+          { key: 'css', label: t.outputCss, value: cssOutput },
+          { key: 'html', label: t.outputHtml, value: htmlOutput },
+          { key: 'full', label: t.outputFull, value: fullOutput },
+        ]}
         copyValue={cssOutput}
         tabsCopyValue={fullOutput}
         copy={copy}

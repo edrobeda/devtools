@@ -398,36 +398,6 @@ export default function CssPricingTableGeneratorPage() {
     }
   }
 
-  const outputTabs = [
-    {
-      key: 'css',
-      label: t.outputCss,
-      children: (
-        <pre style={{ margin: 0, overflowX: 'auto' }}>
-          <code>{cssOutput}</code>
-        </pre>
-      ),
-    },
-    {
-      key: 'html',
-      label: t.outputHtml,
-      children: (
-        <pre style={{ margin: 0, overflowX: 'auto' }}>
-          <code>{htmlOutput}</code>
-        </pre>
-      ),
-    },
-    {
-      key: 'full',
-      label: t.outputFull,
-      children: (
-        <pre style={{ margin: 0, overflowX: 'auto' }}>
-          <code>{fullOutput}</code>
-        </pre>
-      ),
-    },
-  ]
-
   const renderColorControl = (label, value, onChange) => (
     <Space style={{ width: '100%', justifyContent: 'space-between', alignItems: 'center' }}>
       <Text>{label}</Text>
@@ -650,7 +620,11 @@ export default function CssPricingTableGeneratorPage() {
 
       <CssGeneratorOutput
         title={t.presets}
-        outputTabs={outputTabs}
+        tabs={[
+          { key: 'css', label: t.outputCss, value: cssOutput },
+          { key: 'html', label: t.outputHtml, value: htmlOutput },
+          { key: 'full', label: t.outputFull, value: fullOutput },
+        ]}
         copyValue={cssOutput}
         tabsCopyValue={fullOutput}
         copy={copy}

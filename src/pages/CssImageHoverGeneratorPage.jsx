@@ -405,36 +405,6 @@ export default function CssImageHoverGeneratorPage() {
     }
   }
 
-  const outputTabs = [
-    {
-      key: 'css',
-      label: t.outputCss,
-      children: (
-        <pre style={{ margin: 0, overflowX: 'auto' }}>
-          <code>{cssOutput}</code>
-        </pre>
-      ),
-    },
-    {
-      key: 'html',
-      label: t.outputHtml,
-      children: (
-        <pre style={{ margin: 0, overflowX: 'auto' }}>
-          <code>{htmlOutput}</code>
-        </pre>
-      ),
-    },
-    {
-      key: 'full',
-      label: t.outputFull,
-      children: (
-        <pre style={{ margin: 0, overflowX: 'auto' }}>
-          <code>{fullOutput}</code>
-        </pre>
-      ),
-    },
-  ]
-
   const overlayAttr = overlay ? `${overlayTitle}${overlayText ? `\n${overlayText}` : ''}` : undefined
 
   const renderFilterSliders = (hover) => {
@@ -716,7 +686,11 @@ export default function CssImageHoverGeneratorPage() {
 
       <CssGeneratorOutput
         title={t.presets}
-        outputTabs={outputTabs}
+        tabs={[
+          { key: 'css', label: t.outputCss, value: cssOutput },
+          { key: 'html', label: t.outputHtml, value: htmlOutput },
+          { key: 'full', label: t.outputFull, value: fullOutput },
+        ]}
         copyValue={cssOutput}
         tabsCopyValue={fullOutput}
         copy={copy}

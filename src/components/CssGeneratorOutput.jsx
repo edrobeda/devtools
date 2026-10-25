@@ -5,12 +5,25 @@ import { CopyOutlined } from '@ant-design/icons'
 export default function CssGeneratorOutput({
   title,
   outputTabs,
+  tabs,
   children,
   copyValue,
   tabsCopyValue,
   copy,
   copyLabel,
 }) {
+  const tabItems = tabs
+    ? tabs.map((tab) => ({
+        key: tab.key,
+        label: tab.label,
+        children: (
+          <pre style={{ margin: 0, overflowX: 'auto' }}>
+            <code>{tab.value}</code>
+          </pre>
+        ),
+      }))
+    : outputTabs
+
   return (
     <Card
       title={title}
@@ -20,9 +33,9 @@ export default function CssGeneratorOutput({
         </Button>
       }
     >
-      {outputTabs ? (
+      {tabItems ? (
         <Tabs
-          items={outputTabs}
+          items={tabItems}
           tabBarExtraContent={
             <Button size="small" icon={<CopyOutlined />} onClick={() => copy(tabsCopyValue)}>
               {copyLabel}
