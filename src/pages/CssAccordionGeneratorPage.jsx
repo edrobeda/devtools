@@ -1,10 +1,13 @@
 import React, { useMemo, useState, useCallback } from 'react'
 import {
-  Typography, Card, Space, Slider, Segmented, Alert, Button, Collapse,
-  message, ColorPicker, Row, Col, Input, InputNumber, Tabs, Switch, Divider,
+  Typography, Card, Space, Slider, Segmented, Alert, Button, message,
+  ColorPicker, Row, Col, Input, InputNumber, Switch, Divider,
 } from 'antd'
-import { BgColorsOutlined, ContainerOutlined, CopyOutlined, PlusOutlined, MinusOutlined } from '@ant-design/icons'
+import { BgColorsOutlined, ContainerOutlined, PlusOutlined, MinusOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import useCopyWithMessage from '../hooks/useCopyWithMessage'
+import CssGeneratorTabsOutput from '../components/CssGeneratorTabsOutput'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import {
   buildAccordionCss,
   buildAccordionHtml,
@@ -251,14 +254,7 @@ export default function CssAccordionGeneratorPage() {
   const html = useMemo(() => buildAccordionHtml(options), [options])
   const fullDemo = useMemo(() => buildAccordionFullDemo(options), [options])
 
-  const copy = useCallback(async (text) => {
-    try {
-      await navigator.clipboard.writeText(text)
-      messageApi.success(t.copied)
-    } catch {
-      messageApi.error(t.copyError)
-    }
-  }, [messageApi, t])
+  const copy = useCopyWithMessage(messageApi, t)
 
   const applyPreset = useCallback((key) => {
     const preset = ACCORDION_PRESETS.find((p) => p.key === key)
@@ -589,78 +585,22 @@ export default function CssAccordionGeneratorPage() {
         </Col>
       </Row>
 
-      <Tabs
-        defaultActiveKey="css"
-        items={[
-          {
-            key: 'css',
-            label: t.outputCss,
-            children: (
-              <Card
-                extra={(
-                  <Button size="small" icon={<CopyOutlined />} onClick={() => copy(css)}>
-                    {t.copy}
-                  </Button>
-                )}
-              >
-                <pre style={{ margin: 0, overflowX: 'auto' }}>
-                  <code>{css}</code>
-                </pre>
-              </Card>
-            ),
-          },
-          {
-            key: 'html',
-            label: t.outputHtml,
-            children: (
-              <Card
-                extra={(
-                  <Button size="small" icon={<CopyOutlined />} onClick={() => copy(html)}>
-                    {t.copy}
-                  </Button>
-                )}
-              >
-                <pre style={{ margin: 0, overflowX: 'auto' }}>
-                  <code>{html}</code>
-                </pre>
-              </Card>
-            ),
-          },
-          {
-            key: 'full',
-            label: t.outputFull,
-            children: (
-              <Card
-                extra={(
-                  <Button size="small" icon={<CopyOutlined />} onClick={() => copy(fullDemo)}>
-                    {t.copy}
-                  </Button>
-                )}
-              >
-                <pre style={{ margin: 0, overflowX: 'auto' }}>
-                  <code>{fullDemo}</code>
-                </pre>
-              </Card>
-            ),
-          },
-        ]}
+      <CssGeneratorTabsOutput
+        cssValue={css}
+        htmlValue={html}
+        fullValue={fullDemo}
+        cssLabel={t.outputCss}
+        htmlLabel={t.outputHtml}
+        fullLabel={t.outputFull}
+        copy={copy}
+        copyLabel={t.copy}
       />
 
-      <Collapse
-        items={[
-          {
-            key: 'source',
-            label: `${t.sourceCol} — buildAccordionCss / buildAccordionHtml`,
-            children: (
-              <Space direction="vertical" style={{ width: '100%' }}>
-                <Paragraph type="secondary">{t.sourceBody}</Paragraph>
-                <pre style={{ margin: 0, overflowX: 'auto', maxHeight: 420 }}>
-                  <code>{buildAccordionCss.toString()}</code>
-                </pre>
-              </Space>
-            ),
-          },
-        ]}
+      <GeneratorSourceCollapse
+        sourceLabel={`${t.sourceCol} — buildAccordionCss / buildAccordionHtml`}
+        sourceBody={t.sourceBody}
+        sourceCode={buildAccordionCss.toString()}
+        maxHeight={420}
       />
     </Space>
   )
