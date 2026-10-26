@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react'
 import { Typography, Card, Space, Input, Descriptions, Alert } from 'antd'
 import { GlobalOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import { parseCidr, intToIPv4 } from '../utils/ipv4.js'
 
 const { Title, Paragraph, Text } = Typography
 
@@ -50,38 +51,20 @@ const translations = {
   },
 }
 
-function ipToInt(parts) {
-  return (parts[0] << 24 | parts[1] << 16 | parts[2] << 8 | parts[3]) >>> 0
-}
-
-function intToIp(int) {
-  return [(int >>> 24) & 255, (int >>> 16) & 255, (int >>> 8) & 255, int & 255].join('.')
-}
-
-function parseCidr(input) {
-  const match = input.trim().match(/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})\/(\d{1,2})$/)
-  if (!match) return null
-  const parts = match.slice(1, 5).map(Number)
-  const prefix = Number(match[5])
-  if (parts.some((p) => p > 255) || prefix > 32) return null
-
-  const ipInt = ipToInt(parts)
-  const maskInt = prefix === 0 ? 0 : (0xffffffff << (32 - prefix)) >>> 0
-  const wildcardInt = (~maskInt) >>> 0
-  const networkInt = (ipInt & maskInt) >>> 0
-  const broadcastInt = (networkInt | wildcardInt) >>> 0
-  const totalHosts = Math.pow(2, 32 - prefix)
-  const usableHosts = prefix >= 31 ? 0 : totalHosts - 2
-
+// O parse/máscara/rede/broadcast vem do util compartilhado (src/utils/ipv4.js),
+// o mesmo usado pelo agregador de CIDR; aqui só é montado o que a tela mostra.
+function buildSubnetResult(parsed) {
+  const { prefix, network, broadcast, size, mask, wildcard } = parsed
+  const totalHosts = Number(size)
   return {
-    netmask: intToIp(maskInt),
-    wildcard: intToIp(wildcardInt),
-    network: intToIp(networkInt),
-    broadcast: intToIp(broadcastInt),
-    firstHost: prefix >= 31 ? intToIp(networkInt) : intToIp(networkInt + 1),
-    lastHost: prefix >= 31 ? intToIp(broadcastInt) : intToIp(broadcastInt - 1),
+    netmask: intToIPv4(mask),
+    wildcard: intToIPv4(wildcard),
+    network: intToIPv4(network),
+    broadcast: intToIPv4(broadcast),
+    firstHost: intToIPv4(prefix >= 31 ? network : network + 1n),
+    lastHost: intToIPv4(prefix >= 31 ? broadcast : broadcast - 1n),
     totalHosts,
-    usableHosts,
+    usableHosts: prefix >= 31 ? 0 : totalHosts - 2,
   }
 }
 
@@ -90,7 +73,11 @@ export default function SubnetCalculatorPage() {
   const t = translations[lang]
   const [input, setInput] = useState('192.168.1.10/24')
 
-  const result = useMemo(() => (input.trim() ? parseCidr(input) : null), [input])
+  const result = useMemo(() => {
+    if (!input.trim()) return null
+    const parsed = parseCidr(input)
+    return parsed.valid ? buildSubnetResult(parsed) : null
+  }, [input])
 
   return (
     <Space direction="vertical" size="large" style={{ width: '100%' }}>

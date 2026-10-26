@@ -8,79 +8,32 @@
  *   - summarize a list of CIDRs into the single smallest supernet
  *
  * Uses BigInt internally so all 32 IPv4 bits are handled safely.
+ *
+ * The IPv4/CIDR primitives themselves (parse, integer conversion, prefix ->
+ * mask, network/broadcast) live in ./ipv4.js, shared with the subnet
+ * calculator (/network/subnet-calculator) — they were duplicated in both
+ * pages before. They are re-exported here to keep this module's public API
+ * unchanged.
  */
 
-const CIDR_RE = /^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})\/(\d{1,2})$/
+import {
+  MAX_PREFIX,
+  TOTAL_ADDRESSES,
+  intToIPv4,
+  maskToWildcard,
+  parseCidr,
+  parseIPv4,
+  prefixToMask,
+} from './ipv4.js'
 
-export const MAX_PREFIX = 32
-export const TOTAL_ADDRESSES = 2n ** 32n
-
-function isByte(n) {
-  return Number.isInteger(n) && n >= 0 && n <= 255
-}
-
-export function parseIPv4(ip) {
-  if (typeof ip !== 'string') return null
-  const match = ip.trim().match(/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/)
-  if (!match) return null
-  const parts = match.slice(1, 5).map(Number)
-  if (!parts.every(isByte)) return null
-  return (
-    (BigInt(parts[0]) << 24n) |
-    (BigInt(parts[1]) << 16n) |
-    (BigInt(parts[2]) << 8n) |
-    BigInt(parts[3])
-  )
-}
-
-export function intToIPv4(int) {
-  return [
-    Number((int >> 24n) & 255n),
-    Number((int >> 16n) & 255n),
-    Number((int >> 8n) & 255n),
-    Number(int & 255n),
-  ].join('.')
-}
-
-export function prefixToMask(prefix) {
-  if (prefix <= 0) return 0n
-  if (prefix >= 32) return TOTAL_ADDRESSES - 1n
-  return TOTAL_ADDRESSES - (2n ** BigInt(32 - prefix))
-}
-
-export function parseCidr(cidr) {
-  if (typeof cidr !== 'string') {
-    return { valid: false, original: String(cidr), error: 'not_a_string' }
-  }
-  const match = cidr.trim().match(CIDR_RE)
-  if (!match) {
-    return { valid: false, original: cidr.trim(), error: 'invalid_format' }
-  }
-  const parts = match.slice(1, 5).map(Number)
-  const prefix = Number(match[5])
-  if (!parts.every(isByte)) {
-    return { valid: false, original: cidr.trim(), error: 'octet_out_of_range' }
-  }
-  if (prefix < 0 || prefix > MAX_PREFIX) {
-    return { valid: false, original: cidr.trim(), error: 'prefix_out_of_range' }
-  }
-
-  const ipInt = parseIPv4(parts.join('.'))
-  const mask = prefixToMask(prefix)
-  const network = ipInt & mask
-  const broadcast = network | ~mask & (TOTAL_ADDRESSES - 1n)
-  const size = 2n ** BigInt(32 - prefix)
-
-  return {
-    valid: true,
-    original: cidr.trim(),
-    normalized: `${intToIPv4(network)}/${prefix}`,
-    network,
-    broadcast,
-    prefix,
-    size,
-    mask: intToIPv4(mask),
-  }
+export {
+  MAX_PREFIX,
+  TOTAL_ADDRESSES,
+  intToIPv4,
+  maskToWildcard,
+  parseCidr,
+  parseIPv4,
+  prefixToMask,
 }
 
 export function cidrContains(container, contained) {
@@ -178,16 +131,18 @@ export function aggregateCidrs(inputs) {
 
       if (siblingIndex !== -1) {
         const mask = prefixToMask(siblingPrefix)
+        const wildcard = maskToWildcard(mask)
         const mergedNetwork = current.network & mask
         next.push({
           valid: true,
           original: `${intToIPv4(mergedNetwork)}/${siblingPrefix}`,
           normalized: `${intToIPv4(mergedNetwork)}/${siblingPrefix}`,
           network: mergedNetwork,
-          broadcast: mergedNetwork | ~mask & (TOTAL_ADDRESSES - 1n),
+          broadcast: mergedNetwork | wildcard,
           prefix: siblingPrefix,
           size: 2n ** BigInt(32 - siblingPrefix),
-          mask: intToIPv4(mask),
+          mask,
+          wildcard,
         })
         i = siblingIndex + 1
         changed = true
@@ -257,7 +212,7 @@ export function summarizeCidrs(inputs) {
 
   const mask = prefixToMask(prefix)
   const network = minNetwork & mask
-  const broadcast = network | (~mask & (TOTAL_ADDRESSES - 1n))
+  const broadcast = network | maskToWildcard(mask)
 
   // Check whether the summary leaves gaps between the original CIDRs.
   const sorted = [...parsed].sort((a, b) => (a.network < b.network ? -1 : 1))
