@@ -52,6 +52,14 @@ python3 "$PROJECT_DIR/scripts/generate_manifest.py" >> "$LOG_DIR/runs.log" 2>&1
 mapfile -t BUG_LINES < <(python3 "$PROJECT_DIR/scripts/pending_bug.py")
 mapfile -t HOUSEKEEPING_LINES < <(python3 "$PROJECT_DIR/scripts/pending_housekeeping.py")
 
+# Conteúdo novo não pode passar fome: o organizador alimenta a fila de
+# housekeeping o dia todo, então depois de uma rodada de housekeeping a
+# próxima é de conteúdo, mesmo com achados pendentes (bug segue com prioridade).
+LAST_KIND_FILE="$LOG_DIR/last-round-kind"
+LAST_KIND="$(cat "$LAST_KIND_FILE" 2>/dev/null || echo content)"
+FORCE_CONTENT=0
+[ "$LAST_KIND" = "housekeeping" ] && FORCE_CONTENT=1
+
 if [ "${BUG_LINES[0]:-NONE}" != "NONE" ]; then
     ROUND_KIND="bugfix"
     BUG_ID="${BUG_LINES[0]}"
@@ -73,7 +81,7 @@ print(
 PYEOF
 )"
     echo "$(date -Iseconds) — rodada de bugfix (bug #$BUG_ID, $BUG_ITEM_KEY)" >> "$LOG_DIR/runs.log"
-elif [ "${HOUSEKEEPING_LINES[0]:-NONE}" != "NONE" ]; then
+elif [ "${HOUSEKEEPING_LINES[0]:-NONE}" != "NONE" ] && [ "$FORCE_CONTENT" -eq 0 ]; then
     ROUND_KIND="housekeeping"
     HOUSEKEEPING_ID="${HOUSEKEEPING_LINES[0]}"
     HOUSEKEEPING_ROUTES="${HOUSEKEEPING_LINES[1]}"
@@ -98,6 +106,8 @@ else
     ROUND_KIND="content"
     PROMPT="$(cat "$PROJECT_DIR/.agent-prompt.md")"
 fi
+
+echo "$ROUND_KIND" > "$LAST_KIND_FILE"
 
 HEAD_BEFORE="$(git -C "$PROJECT_DIR" rev-parse HEAD 2>/dev/null)"
 
