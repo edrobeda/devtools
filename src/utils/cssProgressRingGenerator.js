@@ -4,29 +4,8 @@
 // (track), círculo de preenchimento com stroke-dasharray/dashoffset e label
 // central opcional. Tudo renderiza sem JavaScript no uso final.
 
-function parseColor(color) {
-  if (!color) return '#ffffff'
-  if (typeof color === 'string') return color
-  if (color && typeof color.toHexString === 'function') return color.toHexString()
-  return String(color)
-}
-
-function toPx(v) {
-  const n = Number(v)
-  return Number.isFinite(n) ? `${Math.round(n)}px` : '0px'
-}
-
-function clamp(n, min, max) {
-  return Math.max(min, Math.min(max, n))
-}
-
-function escapeHtml(text) {
-  return String(text)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-}
+import { parseColor, toPx, clamp } from './cssColor.js'
+import { escapeHtml } from './htmlEscape.js'
 
 const DEFAULTS = {
   className: 'progress-ring',
@@ -117,10 +96,10 @@ export function buildProgressRingCss(options = {}) {
   const value = Number(opts.value) || 0
   const max = Math.max(1, Number(opts.max) || DEFAULTS.max)
   const percent = clamp((value / max) * 100, 0, 100)
-  const trackColor = parseColor(opts.trackColor)
-  const fillColor = parseColor(opts.fillColor)
-  const textColor = parseColor(opts.textColor)
-  const holeColor = parseColor(opts.holeColor)
+  const trackColor = parseColor(opts.trackColor, '#ffffff')
+  const fillColor = parseColor(opts.fillColor, '#ffffff')
+  const textColor = parseColor(opts.textColor, '#ffffff')
+  const holeColor = parseColor(opts.holeColor, '#ffffff')
   const roundedCap = Boolean(opts.roundedCap)
   const strokeLinecap = roundedCap ? 'round' : 'butt'
   const startAngle = Number(opts.startAngle) || -90

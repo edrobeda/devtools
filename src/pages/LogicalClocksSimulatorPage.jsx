@@ -9,7 +9,6 @@ import {
   Col,
   Table,
   Tag,
-  Collapse,
   Alert,
   Radio,
   Divider,
@@ -19,9 +18,9 @@ import {
   SendOutlined,
   PlusOutlined,
   ReloadOutlined,
-  CopyOutlined,
 } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import SourceCodePanel from '../components/SourceCodePanel'
 import {
   CLOCK_MODES,
   EVENT_TYPES,
@@ -40,7 +39,6 @@ import {
 
 const { Title, Paragraph, Text } = Typography
 const { Option } = Select
-const { Panel } = Collapse
 
 const translations = {
   pt: {
@@ -166,7 +164,6 @@ export default function LogicalClocksSimulatorPage() {
   const [state, setState] = useState(initialState)
   const [clockMode, setClockMode] = useState(CLOCK_MODES.VECTOR)
   const [selectedEventIds, setSelectedEventIds] = useState([])
-  const [copiedKey, setCopiedKey] = useState(null)
   const [sendFrom, setSendFrom] = useState('')
   const [sendTo, setSendTo] = useState('')
 
@@ -207,12 +204,6 @@ export default function LogicalClocksSimulatorPage() {
       return next
     })
   }, [sendFrom, sendTo, t.autoMessage])
-
-  const copy = useCallback((text, key) => {
-    navigator.clipboard.writeText(text)
-    setCopiedKey(key)
-    setTimeout(() => setCopiedKey(null), 1500)
-  }, [])
 
   const processOptions = useMemo(() => state.processes.map((p) => ({ value: p.id, label: p.label })), [state.processes])
 
@@ -503,24 +494,13 @@ export default function LogicalClocksSimulatorPage() {
         </Col>
       </Row>
 
-      <Collapse>
-        <Panel header={t.sourceTitle} key="source">
-          <Paragraph>{t.sourceIntro}</Paragraph>
-          <div style={{ position: 'relative' }}>
-            <Button
-              size="small"
-              icon={<CopyOutlined />}
-              style={{ position: 'absolute', top: 8, right: 8 }}
-              onClick={() => copy(sourceCode(), 'source')}
-            >
-              {copiedKey === 'source' ? t.copied : t.copy}
-            </Button>
-            <pre style={{ margin: 0, overflow: 'auto', padding: 16 }}>
-              <code>{sourceCode()}</code>
-            </pre>
-          </div>
-        </Panel>
-      </Collapse>
+      <SourceCodePanel
+        code={sourceCode()}
+        header={t.sourceTitle}
+        intro={t.sourceIntro}
+        copyLabel={t.copy}
+        copiedLabel={t.copied}
+      />
     </Space>
   )
 }

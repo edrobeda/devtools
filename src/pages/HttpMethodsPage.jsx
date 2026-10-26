@@ -144,8 +144,8 @@ const CAT_LABEL = {
 
 const translations = {
   pt: {
-    title: 'Referência de Métodos HTTP',
-    intro: (<>Cheat sheet pesquisável dos 9 métodos de requisição HTTP — o que cada um faz, quando usar, e as propriedades que decidem retry e cache (<Text code>safe</Text>, <Text code>idempotent</Text>). Complementa a <Text code>/references/http-status-codes</Text>, que trata dos códigos de resposta.</>),
+    title: 'Cheat Sheet de Métodos HTTP',
+    intro: (<>Cheat sheet pesquisável dos 9 métodos de requisição HTTP — o que cada um faz, quando usar, e as propriedades que decidem retry e cache (<Text code>safe</Text>, <Text code>idempotent</Text>). Complementa a <Text code>/references/http-status-codes-cheatsheet</Text>, que trata dos códigos de resposta.</>),
     search: 'Buscar método, uso ou exemplo...',
     all: 'Todos',
     empty: 'Nenhum método encontrado. Tente outra busca ou categoria.',
@@ -165,8 +165,8 @@ const translations = {
     safeNo: 'Não',
   },
   en: {
-    title: 'HTTP Methods Reference',
-    intro: (<>A searchable cheat sheet of the 9 HTTP request methods — what each does, when to use it, and the properties that drive retry and caching (<Text code>safe</Text>, <Text code>idempotent</Text>). Complements <Text code>/references/http-status-codes</Text>, which covers response codes.</>),
+    title: 'HTTP Methods Cheat Sheet',
+    intro: (<>A searchable cheat sheet of the 9 HTTP request methods — what each does, when to use it, and the properties that drive retry and caching (<Text code>safe</Text>, <Text code>idempotent</Text>). Complements <Text code>/references/http-status-codes-cheatsheet</Text>, which covers response codes.</>),
     search: 'Search method, use or example...',
     all: 'All',
     empty: 'No method found. Try a different search or category.',

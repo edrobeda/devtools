@@ -1,3 +1,5 @@
+import { escapeHtml } from './htmlEscape.js'
+
 const DEFAULTS = {
   className: 'modal',
   modalId: 'myModal',
@@ -21,14 +23,6 @@ const DEFAULTS = {
   closeButtonSize: 24,
   closeButtonColor: '#8c8c8c',
   closeButtonPosition: 'top-right',
-}
-
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
 }
 
 function rgba(hex, alpha) {

@@ -9,7 +9,6 @@ import {
   Col,
   Tag,
   Statistic,
-  Collapse,
   Alert,
   List,
   Empty,
@@ -18,12 +17,12 @@ import {
 import {
   ApartmentOutlined,
   PlayCircleOutlined,
-  CopyOutlined,
   CheckCircleOutlined,
   CloseCircleOutlined,
   ReloadOutlined,
 } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import SourceCodePanel from '../components/SourceCodePanel'
 import {
   buildMerkleTree,
   getInclusionProof,
@@ -36,7 +35,6 @@ import {
 } from '../utils/merkleTreeSimulator'
 
 const { Title, Paragraph, Text } = Typography
-const { Panel } = Collapse
 const { TextArea } = Input
 
 const translations = {
@@ -125,7 +123,6 @@ export default function MerkleTreeSimulatorPage() {
   const [selectedData, setSelectedData] = useState(null)
   const [proof, setProof] = useState(null)
   const [verification, setVerification] = useState(null)
-  const [copiedKey, setCopiedKey] = useState(null)
   const svgContainerRef = useRef(null)
   const [svgWidth, setSvgWidth] = useState(640)
 
@@ -196,12 +193,6 @@ export default function MerkleTreeSimulatorPage() {
     const ok = await verifyProof(proof.target, proof.siblings, proof.root)
     setVerification(ok)
   }, [proof])
-
-  const copy = useCallback((text, key) => {
-    navigator.clipboard.writeText(text)
-    setCopiedKey(key)
-    setTimeout(() => setCopiedKey(null), 1500)
-  }, [])
 
   const stats = useMemo(() => treeStats(tree), [tree])
 
@@ -531,23 +522,12 @@ export default function MerkleTreeSimulatorPage() {
 
       <Alert type="info" showIcon message={t.howItWorks} description={t.howItWorksText} />
 
-      <Collapse>
-        <Panel header={t.sourceCode} key="source">
-          <div style={{ position: 'relative' }}>
-            <Button
-              size="small"
-              icon={<CopyOutlined />}
-              style={{ position: 'absolute', top: 8, right: 8 }}
-              onClick={() => copy(sourceCode(), 'source')}
-            >
-              {copiedKey === 'source' ? t.copied : t.copy}
-            </Button>
-            <pre style={{ margin: 0, overflow: 'auto', padding: 16 }}>
-              <code>{sourceCode()}</code>
-            </pre>
-          </div>
-        </Panel>
-      </Collapse>
+      <SourceCodePanel
+        code={sourceCode()}
+        header={t.sourceCode}
+        copyLabel={t.copy}
+        copiedLabel={t.copied}
+      />
     </Space>
   )
 }

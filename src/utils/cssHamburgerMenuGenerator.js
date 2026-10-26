@@ -4,21 +4,7 @@
 // transformam em X, seta para a esquerda/direita ou traço (minus) usando
 // apenas transições CSS.
 
-function parseColor(color) {
-  if (!color) return '#333333'
-  if (typeof color === 'string') return color
-  if (color && typeof color.toHexString === 'function') return color.toHexString()
-  return String(color)
-}
-
-function toPx(v) {
-  const n = Number(v)
-  return Number.isFinite(n) ? `${Math.round(n)}px` : '0px'
-}
-
-function clamp(n, min, max) {
-  return Math.max(min, Math.min(max, n))
-}
+import { parseColor, toPx, clamp } from './cssColor.js'
 
 const DEFAULTS = {
   animation: 'x',
@@ -178,10 +164,10 @@ export function buildHamburgerCss(options = {}) {
   const easing = opts.easing || 'ease'
   const hoverScale = Number(opts.hoverScale) || 1
 
-  const color = parseColor(opts.color)
-  const activeColor = parseColor(opts.activeColor || opts.color)
-  const background = parseColor(opts.background)
-  const borderColor = parseColor(opts.borderColor)
+  const color = parseColor(opts.color, '#333333')
+  const activeColor = parseColor(opts.activeColor || opts.color, '#333333')
+  const background = parseColor(opts.background, '#333333')
+  const borderColor = parseColor(opts.borderColor, '#333333')
 
   const linesWidth = width
   const linesHeight = barHeight * 3 + gap * 2

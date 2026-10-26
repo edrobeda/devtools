@@ -1,10 +1,13 @@
 import React, { useMemo, useState } from 'react'
 import {
-  Typography, Card, Space, Slider, Segmented, Alert, Button, Collapse,
-  message, ColorPicker, Row, Col, InputNumber, Tabs, Switch, Input,
+  Typography, Card, Space, Slider, Segmented, Alert, message, ColorPicker,
+  Row, Col, InputNumber, Switch, Input,
 } from 'antd'
-import { BgColorsOutlined, CopyOutlined } from '@ant-design/icons'
+import { BgColorsOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import useCopyWithMessage from '../hooks/useCopyWithMessage'
+import CssGeneratorTabsOutput from '../components/CssGeneratorTabsOutput'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import {
   buildMarqueeCss,
   buildMarqueeHtml,
@@ -186,14 +189,7 @@ export default function CssMarqueeGeneratorPage() {
   const html = useMemo(() => buildMarqueeHtml(options), [options])
   const fullDemo = useMemo(() => buildMarqueeFullDemo(options), [options])
 
-  const copy = async (text) => {
-    try {
-      await navigator.clipboard.writeText(text)
-      messageApi.success(t.copied)
-    } catch {
-      messageApi.error(t.copyError)
-    }
-  }
+  const copy = useCopyWithMessage(messageApi, t)
 
   const applyPreset = (key) => {
     const preset = MARQUEE_PRESETS.find((p) => p.key === key)
@@ -407,78 +403,22 @@ export default function CssMarqueeGeneratorPage() {
         </Col>
       </Row>
 
-      <Tabs
-        defaultActiveKey="css"
-        items={[
-          {
-            key: 'css',
-            label: t.outputCss,
-            children: (
-              <Card
-                extra={(
-                  <Button size="small" icon={<CopyOutlined />} onClick={() => copy(css)}>
-                    {t.copy}
-                  </Button>
-                )}
-              >
-                <pre style={{ margin: 0, overflowX: 'auto' }}>
-                  <code>{css}</code>
-                </pre>
-              </Card>
-            ),
-          },
-          {
-            key: 'html',
-            label: t.outputHtml,
-            children: (
-              <Card
-                extra={(
-                  <Button size="small" icon={<CopyOutlined />} onClick={() => copy(html)}>
-                    {t.copy}
-                  </Button>
-                )}
-              >
-                <pre style={{ margin: 0, overflowX: 'auto' }}>
-                  <code>{html}</code>
-                </pre>
-              </Card>
-            ),
-          },
-          {
-            key: 'full',
-            label: t.outputFull,
-            children: (
-              <Card
-                extra={(
-                  <Button size="small" icon={<CopyOutlined />} onClick={() => copy(fullDemo)}>
-                    {t.copy}
-                  </Button>
-                )}
-              >
-                <pre style={{ margin: 0, overflowX: 'auto' }}>
-                  <code>{fullDemo}</code>
-                </pre>
-              </Card>
-            ),
-          },
-        ]}
+      <CssGeneratorTabsOutput
+        cssValue={css}
+        htmlValue={html}
+        fullValue={fullDemo}
+        cssLabel={t.outputCss}
+        htmlLabel={t.outputHtml}
+        fullLabel={t.outputFull}
+        copy={copy}
+        copyLabel={t.copy}
       />
 
-      <Collapse
-        items={[
-          {
-            key: 'source',
-            label: `${t.sourceCol} — buildMarqueeCss / buildMarqueeHtml`,
-            children: (
-              <Space direction="vertical" style={{ width: '100%' }}>
-                <Paragraph type="secondary">{t.sourceBody}</Paragraph>
-                <pre style={{ margin: 0, overflowX: 'auto', maxHeight: 420 }}>
-                  <code>{buildMarqueeCss.toString()}</code>
-                </pre>
-              </Space>
-            ),
-          },
-        ]}
+      <GeneratorSourceCollapse
+        sourceLabel={`${t.sourceCol} — buildMarqueeCss / buildMarqueeHtml`}
+        sourceBody={t.sourceBody}
+        sourceCode={buildMarqueeCss.toString()}
+        maxHeight={420}
       />
     </Space>
   )

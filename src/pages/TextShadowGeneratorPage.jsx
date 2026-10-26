@@ -1,10 +1,12 @@
 import React, { useMemo, useRef, useState } from 'react'
 import {
-  Typography, Card, Space, Button, Slider, Alert, Collapse, message, ColorPicker,
+  Typography, Card, Space, Button, Slider, Alert, message, ColorPicker,
   Row, Col, Input, Segmented,
 } from 'antd'
-import { FontSizeOutlined, CopyOutlined, PlusOutlined, DeleteOutlined } from '@ant-design/icons'
+import { FontSizeOutlined, PlusOutlined, DeleteOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import CssGeneratorOutput from '../components/CssGeneratorOutput'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import { buildTextShadow, buildClassCss, PRESETS } from '../utils/textShadowGenerator'
 
 const { Title, Paragraph, Text } = Typography
@@ -295,30 +297,21 @@ export default function TextShadowGeneratorPage() {
         </Col>
       </Row>
 
-      <Card
+      <CssGeneratorOutput
         title={t.output}
-        extra={<Button size="small" icon={<CopyOutlined />} onClick={copy}>{t.copy}</Button>}
+        copyValue={classCss}
+        copy={copy}
+        copyLabel={t.copy}
       >
         <pre style={{ margin: 0, overflowX: 'auto' }}>
           <code>{classCss}</code>
         </pre>
-      </Card>
+      </CssGeneratorOutput>
 
-      <Collapse
-        items={[
-          {
-            key: 'source',
-            label: `${t.sourceCol} — buildTextShadow / buildClassCss`,
-            children: (
-              <Space direction="vertical" style={{ width: '100%' }}>
-                <Paragraph type="secondary">{t.sourceBody}</Paragraph>
-                <pre style={{ margin: 0, overflowX: 'auto', maxHeight: 320 }}>
-                  <code>{buildTextShadow.toString()}</code>
-                </pre>
-              </Space>
-            ),
-          },
-        ]}
+      <GeneratorSourceCollapse
+        sourceLabel={`${t.sourceCol} — buildTextShadow / buildClassCss`}
+        sourceBody={t.sourceBody}
+        sourceCode={buildTextShadow.toString()}
       />
     </Space>
   )

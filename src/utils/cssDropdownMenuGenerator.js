@@ -4,21 +4,7 @@
 // :focus-within ou o checkbox hack. O HTML gerado é semântico e acessível,
 // com roles ARIA e seta indicativa opcional.
 
-function parseColor(color) {
-  if (!color) return '#1677ff'
-  if (typeof color === 'string') return color
-  if (color && typeof color.toHexString === 'function') return color.toHexString()
-  return String(color)
-}
-
-function toPx(v) {
-  const n = Number(v)
-  return Number.isFinite(n) ? `${Math.round(n)}px` : '0px'
-}
-
-function clamp(n, min, max) {
-  return Math.max(min, Math.min(max, n))
-}
+import { parseColor, toPx, clamp } from './cssColor.js'
 
 function rgba(hex, alpha) {
   const clean = parseColor(hex).replace('#', '')

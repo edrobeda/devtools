@@ -4,12 +4,7 @@
 // keyframes de nome único para evitar colisão quando várias regras coexistem
 // na mesma folha de estilo.
 
-function parseColor(color) {
-  if (!color) return '#1677ff'
-  if (typeof color === 'string') return color
-  if (color && typeof color.toHexString === 'function') return color.toHexString()
-  return String(color)
-}
+import { parseColor } from './cssColor.js'
 
 function alphaColor(color, alpha) {
   const c = parseColor(color)

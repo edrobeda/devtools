@@ -1,10 +1,12 @@
 import React, { useMemo, useState } from 'react'
 import {
-  Typography, Card, Space, Slider, Segmented, Alert, Button, Collapse,
+  Typography, Card, Space, Slider, Segmented, Alert,
   message, ColorPicker, Row, Col, Input, Switch, InputNumber,
 } from 'antd'
-import { BgColorsOutlined, CopyOutlined, PartitionOutlined } from '@ant-design/icons'
+import { BgColorsOutlined, PartitionOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import CssGeneratorOutput from '../components/CssGeneratorOutput'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import {
   buildBreadcrumbsCss,
   buildBreadcrumbsHtml,
@@ -436,60 +438,44 @@ export default function CssBreadcrumbsGeneratorPage() {
         </Col>
       </Row>
 
-      <Card
+      <CssGeneratorOutput
         title={t.outputCss}
-        extra={(
-          <Button size="small" icon={<CopyOutlined />} onClick={() => copy(css)}>
-            {t.copy}
-          </Button>
-        )}
+        copyValue={css}
+        copy={copy}
+        copyLabel={t.copy}
       >
         <pre style={{ margin: 0, overflowX: 'auto' }}>
           <code>{css}</code>
         </pre>
-      </Card>
+      </CssGeneratorOutput>
 
-      <Card
+      <CssGeneratorOutput
         title={t.outputHtml}
-        extra={(
-          <Button size="small" icon={<CopyOutlined />} onClick={() => copy(html)}>
-            {t.copy}
-          </Button>
-        )}
+        copyValue={html}
+        copy={copy}
+        copyLabel={t.copy}
       >
         <pre style={{ margin: 0, overflowX: 'auto' }}>
           <code>{html}</code>
         </pre>
-      </Card>
+      </CssGeneratorOutput>
 
-      <Card
+      <CssGeneratorOutput
         title={t.outputFull}
-        extra={(
-          <Button size="small" icon={<CopyOutlined />} onClick={() => copy(fullDemo)}>
-            {t.copy}
-          </Button>
-        )}
+        copyValue={fullDemo}
+        copy={copy}
+        copyLabel={t.copy}
       >
         <pre style={{ margin: 0, overflowX: 'auto' }}>
           <code>{fullDemo}</code>
         </pre>
-      </Card>
+      </CssGeneratorOutput>
 
-      <Collapse
-        items={[
-          {
-            key: 'source',
-            label: `${t.sourceCol} — buildBreadcrumbsCss / buildBreadcrumbsHtml`,
-            children: (
-              <Space direction="vertical" style={{ width: '100%' }}>
-                <Paragraph type="secondary">{t.sourceBody}</Paragraph>
-                <pre style={{ margin: 0, overflowX: 'auto', maxHeight: 420 }}>
-                  <code>{buildBreadcrumbsCss.toString()}</code>
-                </pre>
-              </Space>
-            ),
-          },
-        ]}
+      <GeneratorSourceCollapse
+        sourceLabel={`${t.sourceCol} — buildBreadcrumbsCss / buildBreadcrumbsHtml`}
+        sourceBody={t.sourceBody}
+        sourceCode={buildBreadcrumbsCss.toString()}
+        maxHeight={420}
       />
     </Space>
   )

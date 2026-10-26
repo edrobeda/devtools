@@ -6,6 +6,8 @@
  * Nenhum dado sai do dispositivo.
  */
 
+import { formatBytes as formatBytesShared, FORMAT_BYTES_INVALID } from './formatBytes'
+
 const encoder = new TextEncoder()
 
 export function getByteSize(text) {
@@ -13,12 +15,12 @@ export function getByteSize(text) {
 }
 
 export function formatBytes(bytes, decimals = 2) {
-  if (bytes === 0) return '0 B'
-  const k = 1024
-  const sizes = ['B', 'KB', 'MB', 'GB']
-  const i = Math.floor(Math.log(bytes) / Math.log(k))
-  const value = parseFloat((bytes / k ** i).toFixed(decimals))
-  return `${value} ${sizes[i]}`
+  return formatBytesShared(bytes, {
+    units: ['B', 'KB', 'MB', 'GB'],
+    decimals,
+    invalid: FORMAT_BYTES_INVALID.EXACT_ZERO,
+    stripZeros: true,
+  })
 }
 
 export function formatPercent(value, decimals = 1) {

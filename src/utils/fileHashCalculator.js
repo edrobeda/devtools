@@ -2,14 +2,16 @@
 // MD5 é implementado em JavaScript puro (não faz parte da Web Crypto API).
 // SHA-1/256/384/512 usam crypto.subtle.digest nativo.
 
+import { formatBytes as formatBytesShared, FORMAT_BYTES_INVALID } from './formatBytes'
+
 export const ALGORITHMS = ['MD5', 'SHA-1', 'SHA-256', 'SHA-384', 'SHA-512']
 
 export function formatBytes(bytes) {
-  if (bytes === 0) return '0 B'
-  const k = 1024
-  const sizes = ['B', 'KB', 'MB', 'GB', 'TB']
-  const i = Math.floor(Math.log(bytes) / Math.log(k))
-  return `${parseFloat((bytes / k ** i).toFixed(2))} ${sizes[i]}`
+  return formatBytesShared(bytes, {
+    units: ['B', 'KB', 'MB', 'GB', 'TB'],
+    invalid: FORMAT_BYTES_INVALID.EXACT_ZERO,
+    stripZeros: true,
+  })
 }
 
 export function formatHex(hash, uppercase = false) {

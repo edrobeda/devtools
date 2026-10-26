@@ -12,7 +12,6 @@ import {
   Table,
   Tag,
   Statistic,
-  Collapse,
   Alert,
 } from 'antd'
 import {
@@ -20,12 +19,12 @@ import {
   PlayCircleOutlined,
   PlusOutlined,
   MinusCircleOutlined,
-  CopyOutlined,
   BarChartOutlined,
   CalculatorOutlined,
   PercentageOutlined,
 } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import SourceCodePanel from '../components/SourceCodePanel'
 import {
   ALGORITHMS,
   ALGORITHM_LABELS,
@@ -37,7 +36,6 @@ import {
 
 const { Title, Paragraph, Text } = Typography
 const { Option } = Select
-const { Panel } = Collapse
 
 const translations = {
   pt: {
@@ -153,7 +151,6 @@ export default function CpuSchedulingSimulatorPage() {
     { pid: 'P2', arrival: 1, burst: 4, priority: 1 },
     { pid: 'P3', arrival: 2, burst: 2, priority: 2 },
   ])
-  const [copiedKey, setCopiedKey] = useState(null)
   const [tick, setTick] = useState(0)
 
   const validProcesses = useMemo(
@@ -201,12 +198,6 @@ export default function CpuSchedulingSimulatorPage() {
 
   const handleSimulate = () => {
     setTick((x) => x + 1)
-  }
-
-  const copy = (text, key) => {
-    navigator.clipboard.writeText(text)
-    setCopiedKey(key)
-    setTimeout(() => setCopiedKey(null), 1500)
   }
 
   const processColors = useMemo(() => {
@@ -513,23 +504,12 @@ export default function CpuSchedulingSimulatorPage() {
         </Space>
       </Card>
 
-      <Collapse>
-        <Panel header={t.sourceCode} key="source">
-          <div style={{ position: 'relative' }}>
-            <Button
-              size="small"
-              icon={<CopyOutlined />}
-              style={{ position: 'absolute', top: 8, right: 8 }}
-              onClick={() => copy(sourceCode(), 'source')}
-            >
-              {copiedKey === 'source' ? t.copied : t.copy}
-            </Button>
-            <pre style={{ margin: 0, overflow: 'auto', padding: 16 }}>
-              <code>{sourceCode()}</code>
-            </pre>
-          </div>
-        </Panel>
-      </Collapse>
+      <SourceCodePanel
+        code={sourceCode()}
+        header={t.sourceCode}
+        copyLabel={t.copy}
+        copiedLabel={t.copied}
+      />
     </Space>
   )
 }

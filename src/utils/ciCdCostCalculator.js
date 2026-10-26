@@ -2,6 +2,8 @@
 // Calcula gastos mensais/anuais de runners/agentes de build a partir do
 // tempo médio por build, frequência de commits/dias e custo por minuto.
 
+import { formatCurrency as formatCurrencyShared, formatNumber as formatNumberShared } from './numberFormat'
+
 export const PROVIDERS = [
   {
     key: 'github-actions',
@@ -87,20 +89,14 @@ export function providerByKey(key) {
 }
 
 export function formatCurrency(value, currency = 'USD', locale = 'en-US') {
-  if (value == null || Number.isNaN(value)) return '—'
-  return new Intl.NumberFormat(locale, {
-    style: 'currency',
-    currency,
+  return formatCurrencyShared(value, locale, currency, {
     maximumFractionDigits: 2,
-  }).format(value)
+    finiteCheck: false,
+  })
 }
 
 export function formatNumber(value, digits = 0) {
-  if (value == null || Number.isNaN(value)) return '—'
-  return Number(value).toLocaleString(undefined, {
-    minimumFractionDigits: digits,
-    maximumFractionDigits: digits,
-  })
+  return formatNumberShared(value, digits, { castNumber: true })
 }
 
 export function calculateCiCdCost({

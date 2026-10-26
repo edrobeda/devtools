@@ -2,6 +2,7 @@ import React, { useMemo, useState, useCallback } from 'react'
 import { Typography, Card, Space, Input, List, Tag, Radio, Alert, Button, message } from 'antd'
 import { ReadOutlined, SearchOutlined, EditOutlined, CopyOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import useCopyText from '../hooks/useCopyText'
 
 const { Title, Paragraph, Text } = Typography
 
@@ -135,7 +136,7 @@ const COMMANDS = [
 
 const translations = {
   pt: {
-    title: 'Comandos Vim',
+    title: 'Cheat Sheet de Vim',
     intro: (
       <>
         Cheat sheet pesquisável do <Text code>vim</Text>, o editor de terminal
@@ -178,7 +179,7 @@ const translations = {
     copiedError: 'Não foi possível copiar',
   },
   en: {
-    title: 'Vim Commands',
+    title: 'Vim Cheat Sheet',
     intro: (
       <>
         A searchable cheat sheet for <Text code>vim</Text>, the terminal
@@ -251,17 +252,7 @@ export default function VimCheatsheetPage() {
     return head + rows.join('\n')
   }, [filtered, lang])
 
-  const copyText = useCallback(
-    async (text, okMsg) => {
-      try {
-        await navigator.clipboard.writeText(text)
-        messageApi.success(okMsg || t.copied)
-      } catch {
-        messageApi.error(t.copiedError || 'Error')
-      }
-    },
-    [t, messageApi]
-  )
+  const copyText = useCopyText(t, messageApi)
 
   const resultLabel = filtered.length === 1 ? t.resultsOne : t.resultsMany
 

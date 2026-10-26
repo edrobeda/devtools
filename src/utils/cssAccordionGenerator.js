@@ -1,3 +1,5 @@
+import { escapeHtml } from './htmlEscape.js'
+
 const DEFAULTS = {
   className: 'accordion',
   items: [
@@ -26,14 +28,6 @@ const DEFAULTS = {
   gap: 8,
   allowMultiple: true,
   exclusiveName: 'accordion-group',
-}
-
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
 }
 
 function iconContent(kind, state) {

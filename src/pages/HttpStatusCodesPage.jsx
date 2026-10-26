@@ -41,14 +41,14 @@ const CATEGORY_COLOR = { '1xx': 'blue', '2xx': 'green', '3xx': 'gold', '4xx': 'o
 
 const translations = {
   pt: {
-    title: 'Referência de HTTP Status Codes',
+    title: 'Cheat Sheet de HTTP Status Codes',
     intro: 'Cheat sheet pesquisável e filtrável por categoria dos códigos de status HTTP mais usados no dia a dia.',
     search: 'Buscar código ou descrição...',
     all: 'Todos',
     empty: 'Nenhum código encontrado.',
   },
   en: {
-    title: 'HTTP Status Codes Reference',
+    title: 'HTTP Status Codes Cheat Sheet',
     intro: 'A searchable, category-filterable cheat sheet of the HTTP status codes used most often in day-to-day work.',
     search: 'Search code or description...',
     all: 'All',

@@ -100,7 +100,7 @@ const COMMANDS = [
 
 const translations = {
   pt: {
-    title: 'Comandos kubectl',
+    title: 'Cheat Sheet de kubectl',
     intro: (
       <>
         Cheat sheet pesquisável dos comandos <Text code>kubectl</Text> mais
@@ -133,7 +133,7 @@ const translations = {
     copiedError: 'Não foi possível copiar',
   },
   en: {
-    title: 'kubectl Commands',
+    title: 'kubectl Cheat Sheet',
     intro: (
       <>
         A searchable cheat sheet of the <Text code>kubectl</Text> commands you

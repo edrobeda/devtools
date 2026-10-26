@@ -4,21 +4,7 @@
 // com controle de hotspot (ponto de clique) e cursor de fallback.
 // Tudo é feito no navegador — nenhum dado sai do cliente.
 
-function parseColor(color) {
-  if (!color) return '#1677ff'
-  if (typeof color === 'string') return color
-  if (color && typeof color.toHexString === 'function') return color.toHexString()
-  return String(color)
-}
-
-function clamp(n, min, max) {
-  return Math.max(min, Math.min(max, n))
-}
-
-function toPx(v) {
-  const n = Number(v)
-  return Number.isFinite(n) ? `${Math.round(n)}px` : '0px'
-}
+import { parseColor, clamp } from './cssColor.js'
 
 const SHAPES = {
   arrow: {

@@ -8,12 +8,9 @@
 // linear-gradient controlado pelas variáveis --value/--min/--max; no Firefox
 // usamos ::-moz-range-progress.
 
-function parseColor(color) {
-  if (!color) return '#000000'
-  if (typeof color === 'string') return color
-  if (color && typeof color.toHexString === 'function') return color.toHexString()
-  return String(color)
-}
+import { parseColor } from './cssColor.js'
+
+const DEFAULT_COLOR = '#000000'
 
 function toPx(v, fallback = 0) {
   const n = Number(v)
@@ -57,14 +54,14 @@ export function buildRangeSliderCss(options = {}) {
   } = options
 
   const c = safeClass(className)
-  const tc = parseColor(trackColor)
-  const fc = parseColor(fillColor)
-  const thc = parseColor(thumbColor)
-  const tbc = parseColor(thumbBorderColor)
-  const htc = parseColor(hoverThumbColor)
-  const atc = parseColor(activeThumbColor)
-  const dtc = parseColor(disabledTrackColor)
-  const dhc = parseColor(disabledThumbColor)
+  const tc = parseColor(trackColor, DEFAULT_COLOR)
+  const fc = parseColor(fillColor, DEFAULT_COLOR)
+  const thc = parseColor(thumbColor, DEFAULT_COLOR)
+  const tbc = parseColor(thumbBorderColor, DEFAULT_COLOR)
+  const htc = parseColor(hoverThumbColor, DEFAULT_COLOR)
+  const atc = parseColor(activeThumbColor, DEFAULT_COLOR)
+  const dtc = parseColor(disabledTrackColor, DEFAULT_COLOR)
+  const dhc = parseColor(disabledThumbColor, DEFAULT_COLOR)
 
   const th = toPx(trackHeight)
   const tr = toPx(trackRadius)

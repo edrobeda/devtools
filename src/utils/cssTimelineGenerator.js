@@ -1,3 +1,5 @@
+import { escapeHtml } from './htmlEscape.js'
+
 const DEFAULTS = {
   className: 'timeline',
   layout: 'center', // 'center' | 'left' | 'right'
@@ -22,13 +24,6 @@ const DEFAULTS = {
   textColor: '#595959',
   connectorOffset: 24,
   alternate: true,
-}
-
-function escapeHtml(text) {
-  return String(text)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
 }
 
 function lineStyleValue(style) {

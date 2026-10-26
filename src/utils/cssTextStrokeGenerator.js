@@ -6,25 +6,11 @@
 //   - paint-order: stroke fill combinado com webkit-text-stroke
 //     (preenchimento por cima do contorno, dando aparência interna)
 
-function parseColor(color) {
-  if (!color) return '#000000'
-  if (typeof color === 'string') return color
-  if (color && typeof color.toHexString === 'function') return color.toHexString()
-  return String(color)
-}
-
-function toPx(v) {
-  const n = Number(v)
-  return Number.isFinite(n) ? `${Math.round(n)}px` : '0px'
-}
-
-function clamp(n, min, max) {
-  return Math.max(min, Math.min(max, n))
-}
+import { parseColor, toPx, clamp } from './cssColor.js'
 
 function buildTextShadowOutline(width, color, precision = 'medium') {
   const w = clamp(Number(width) || 1, 0, 20)
-  const c = parseColor(color)
+  const c = parseColor(color, '#000000')
   if (w <= 0) return 'none'
 
   const steps = { low: 4, medium: 8, high: 16 }[precision] || 8
@@ -41,7 +27,7 @@ function buildTextShadowOutline(width, color, precision = 'medium') {
 function buildTextShadowStack(width, color) {
   // Versão mais densa em camadas para simular contorno contínuo.
   const w = clamp(Number(width) || 1, 0, 20)
-  const c = parseColor(color)
+  const c = parseColor(color, '#000000')
   if (w <= 0) return 'none'
 
   const layers = []
@@ -163,29 +149,29 @@ export function buildTextStrokeCss(options = {}) {
   rules.push(`  letter-spacing: ${toPx(letterSpacing)};`)
   rules.push(`  text-transform: ${textTransform};`)
   rules.push(`  text-align: ${textAlign};`)
-  rules.push(`  color: ${parseColor(fillColor)};`)
+  rules.push(`  color: ${parseColor(fillColor, '#000000')};`)
 
   if (strokePosition === 'outside') {
-    rules.push(`  -webkit-text-fill-color: ${parseColor(fillColor)};`)
-    rules.push(`  -webkit-text-stroke: 0 ${parseColor(strokeColor)};`)
+    rules.push(`  -webkit-text-fill-color: ${parseColor(fillColor, '#000000')};`)
+    rules.push(`  -webkit-text-stroke: 0 ${parseColor(strokeColor, '#000000')};`)
     const shadow = useShadowStack
       ? buildTextShadowStack(strokeWidth, strokeColor)
       : buildTextShadowOutline(strokeWidth, strokeColor)
     rules.push(`  text-shadow: ${shadow};`)
   } else if (strokePosition === 'inside') {
-    rules.push(`  -webkit-text-fill-color: ${parseColor(fillColor)};`)
-    rules.push(`  -webkit-text-stroke: ${toPx(strokeWidth)} ${parseColor(strokeColor)};`)
+    rules.push(`  -webkit-text-fill-color: ${parseColor(fillColor, '#000000')};`)
+    rules.push(`  -webkit-text-stroke: ${toPx(strokeWidth)} ${parseColor(strokeColor, '#000000')};`)
     rules.push(`  paint-order: stroke fill;`)
   } else {
     // center
-    rules.push(`  -webkit-text-fill-color: ${parseColor(fillColor)};`)
-    rules.push(`  -webkit-text-stroke: ${toPx(strokeWidth)} ${parseColor(strokeColor)};`)
+    rules.push(`  -webkit-text-fill-color: ${parseColor(fillColor, '#000000')};`)
+    rules.push(`  -webkit-text-stroke: ${toPx(strokeWidth)} ${parseColor(strokeColor, '#000000')};`)
   }
 
-  if (shadowBlur > 0 && parseColor(shadowColor) !== 'transparent') {
+  if (shadowBlur > 0 && parseColor(shadowColor, '#000000') !== 'transparent') {
     const baseShadow = strokePosition === 'outside'
-      ? `, 0 0 ${toPx(shadowBlur)} ${parseColor(shadowColor)}`
-      : `0 0 ${toPx(shadowBlur)} ${parseColor(shadowColor)}`
+      ? `, 0 0 ${toPx(shadowBlur)} ${parseColor(shadowColor, '#000000')}`
+      : `0 0 ${toPx(shadowBlur)} ${parseColor(shadowColor, '#000000')}`
     if (strokePosition === 'outside') {
       // Já existe text-shadow; adiciona glow ao final.
       const existing = useShadowStack
@@ -222,7 +208,7 @@ export function buildTextStrokeFullDemo(options = {}) {
       place-items: center;
       min-height: 100vh;
       margin: 0;
-      background: ${parseColor(options.backgroundColor || DEFAULTS.backgroundColor)};
+      background: ${parseColor(options.backgroundColor || DEFAULTS.backgroundColor, '#000000')};
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
 ${css.split('\n').map((l) => `    ${l}`).join('\n')}
@@ -259,24 +245,24 @@ export function buildPreviewStyle(options = {}) {
     letterSpacing: toPx(letterSpacing),
     textTransform,
     textAlign,
-    color: parseColor(fillColor),
-    WebkitTextFillColor: parseColor(fillColor),
+    color: parseColor(fillColor, '#000000'),
+    WebkitTextFillColor: parseColor(fillColor, '#000000'),
   }
 
   if (strokePosition === 'outside') {
-    style.WebkitTextStroke = `0 ${parseColor(strokeColor)}`
+    style.WebkitTextStroke = `0 ${parseColor(strokeColor, '#000000')}`
     style.textShadow = useShadowStack
       ? buildTextShadowStack(strokeWidth, strokeColor)
       : buildTextShadowOutline(strokeWidth, strokeColor)
   } else if (strokePosition === 'inside') {
-    style.WebkitTextStroke = `${toPx(strokeWidth)} ${parseColor(strokeColor)}`
+    style.WebkitTextStroke = `${toPx(strokeWidth)} ${parseColor(strokeColor, '#000000')}`
     style.paintOrder = 'stroke fill'
   } else {
-    style.WebkitTextStroke = `${toPx(strokeWidth)} ${parseColor(strokeColor)}`
+    style.WebkitTextStroke = `${toPx(strokeWidth)} ${parseColor(strokeColor, '#000000')}`
   }
 
-  if (shadowBlur > 0 && parseColor(shadowColor) !== 'transparent') {
-    const glow = `0 0 ${toPx(shadowBlur)} ${parseColor(shadowColor)}`
+  if (shadowBlur > 0 && parseColor(shadowColor, '#000000') !== 'transparent') {
+    const glow = `0 0 ${toPx(shadowBlur)} ${parseColor(shadowColor, '#000000')}`
     if (strokePosition === 'outside') {
       style.textShadow = `${style.textShadow}, ${glow}`
     } else {

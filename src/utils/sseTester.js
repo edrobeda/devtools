@@ -2,16 +2,15 @@
 // Nenhum dado sai do navegador: o "servidor" de demo é uma ReadableStream
 // gerada na própria máquina, consumida pelo MESMO caminho de um fetch real.
 
+import { formatBytes as formatBytesShared, FORMAT_BYTES_INVALID } from './formatBytes'
+
 export function formatBytes(n) {
-  if (!Number.isFinite(n)) return '0 B'
-  const units = ['B', 'KB', 'MB', 'GB', 'TB']
-  let i = 0
-  let v = n
-  while (v >= 1024 && i < units.length - 1) {
-    v /= 1024
-    i += 1
-  }
-  return (v >= 100 ? v.toFixed(0) : v.toFixed(1)) + ' ' + units[i]
+  return formatBytesShared(n, {
+    units: ['B', 'KB', 'MB', 'GB', 'TB'],
+    invalid: FORMAT_BYTES_INVALID.NOT_FINITE,
+    clamp: true,
+    decimals: (v) => (v >= 100 ? 0 : 1),
+  })
 }
 
 function abortError() {

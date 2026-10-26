@@ -135,12 +135,15 @@ import AesEncryptDecryptPage from './pages/AesEncryptDecryptPage'
 import HashIdentifierPage from './pages/HashIdentifierPage'
 import PkceGeneratorPage from './pages/PkceGeneratorPage'
 import TokenCounterPage from './pages/TokenCounterPage'
+import EmbeddingSimilarityPage from './pages/EmbeddingSimilarityPage'
 import PomodoroTimerPage from './pages/PomodoroTimerPage'
 import EnvFileValidatorPage from './pages/EnvFileValidatorPage'
 import RemoveAccentsPage from './pages/RemoveAccentsPage'
 import XmlFormatterPage from './pages/XmlFormatterPage'
 import DeepCloneDeepEqualPage from './pages/DeepCloneDeepEqualPage'
 import PriorityQueueSnippetPage from './pages/PriorityQueueSnippetPage'
+import MemoizeSnippetPage from './pages/MemoizeSnippetPage'
+import PromisePoolSnippetPage from './pages/PromisePoolSnippetPage'
 import BranchNameGeneratorPage from './pages/BranchNameGeneratorPage'
 import LinesToolPage from './pages/LinesToolPage'
 import HtmlToJsxConverterPage from './pages/HtmlToJsxConverterPage'
@@ -169,6 +172,7 @@ import SvgPlaceholderGeneratorPage from './pages/SvgPlaceholderGeneratorPage'
 import DockerfileGeneratorPage from './pages/DockerfileGeneratorPage'
 import CubicBezierEditorPage from './pages/CubicBezierEditorPage'
 import AnsiColorsPage from './pages/AnsiColorsPage'
+import LogExplorerPage from './pages/LogExplorerPage'
 import AsciiTablePage from './pages/AsciiTablePage'
 import SvgWaveGeneratorPage from './pages/SvgWaveGeneratorPage'
 import SvgOptimizerPage from './pages/SvgOptimizerPage'
@@ -230,6 +234,7 @@ import EslintConfigGeneratorPage from './pages/EslintConfigGeneratorPage'
 import RenovateConfigGeneratorPage from './pages/RenovateConfigGeneratorPage'
 import CorsConfigGeneratorPage from './pages/CorsConfigGeneratorPage'
 import PullRequestTemplateGeneratorPage from './pages/PullRequestTemplateGeneratorPage'
+import ReadmeGeneratorPage from './pages/ReadmeGeneratorPage'
 import TerraformConfigGeneratorPage from './pages/TerraformConfigGeneratorPage'
 import CssSpinnerGeneratorPage from './pages/CssSpinnerGeneratorPage'
 import ColorBlindnessSimulatorPage from './pages/ColorBlindnessSimulatorPage'
@@ -386,6 +391,7 @@ import CompoundInterestCalculatorPage from './pages/CompoundInterestCalculatorPa
 import PercentageCalculatorPage from './pages/PercentageCalculatorPage'
 import AbTestCalculatorPage from './pages/AbTestCalculatorPage'
 import ConnectionStringParserPage from './pages/ConnectionStringParserPage'
+import PostmanCollectionViewerPage from './pages/PostmanCollectionViewerPage'
 import BigOCheatsheetPage from './pages/BigOCheatsheetPage'
 import JsonToZodSchemaPage from './pages/JsonToZodSchemaPage'
 import LoanAmortizationCalculatorPage from './pages/LoanAmortizationCalculatorPage'
@@ -508,6 +514,7 @@ import HexDumpPage from './pages/HexDumpPage'
 import SvgPathVisualizerPage from './pages/SvgPathVisualizerPage'
 import ProtobufDecoderPage from './pages/ProtobufDecoderPage'
 import CvssCalculatorPage from './pages/CvssCalculatorPage'
+import SecretScannerPage from './pages/SecretScannerPage'
 import LuaCheatsheetPage from './pages/LuaCheatsheetPage'
 import SqlWindowFunctionsPage from './pages/SqlWindowFunctionsPage'
 import EmojiCheatsheetPage from './pages/EmojiCheatsheetPage'
@@ -588,6 +595,7 @@ const router = createBrowserRouter([
       { path: 'ai/llm-cost-calculator', element: <LlmCostCalculatorPage /> },
       { path: 'ai/llm-prompt-builder', element: <LlmPromptBuilderPage /> },
       { path: 'ai/rag-chunk-visualizer', element: <RagChunkVisualizerPage /> },
+      { path: 'ai/embedding-similarity', element: <EmbeddingSimilarityPage /> },
       { path: 'text/word-counter', element: <Navigate to="/tools/readability-calculator" replace /> },
       { path: 'references/git-commands', element: <Navigate to="/references/git-cheatsheet" replace /> },
       { path: 'references/git-cheatsheet', element: <GitCommandsPage /> },
@@ -603,11 +611,14 @@ const router = createBrowserRouter([
       { path: 'tools/base58-tool', element: <Base58ToolPage /> },
       { path: 'tools/base85-tool', element: <Base85ToolPage /> },
       { path: 'tools/uuid-generator', element: <UuidGeneratorPage /> },
-      { path: 'tools/uuid-v7-tool', element: <UuidV7ToolPage /> },
-      { path: 'tools/snowflake-id-tool', element: <SnowflakeIdToolPage /> },
+      { path: 'tools/uuid-v7-tool', element: <Navigate to="/tools/uuid-v7-generator" replace /> },
+      { path: 'tools/uuid-v7-generator', element: <UuidV7ToolPage /> },
+      { path: 'tools/snowflake-id-tool', element: <Navigate to="/tools/snowflake-id-generator" replace /> },
+      { path: 'tools/snowflake-id-generator', element: <SnowflakeIdToolPage /> },
       { path: 'tools/case-converter', element: <Navigate to="/text/case-converter" replace /> },
       { path: 'tools/password-generator', element: <PasswordGeneratorPage /> },
       { path: 'tools/url-encoder', element: <Navigate to="/tools/string-escape" replace /> },
+      { path: 'tools/url-encoder-decoder', element: <Navigate to="/tools/string-escape" replace /> },
       { path: 'tools/url-parser', element: <UrlParserPage /> },
       { path: 'tools/utm-url-builder', element: <UtmUrlBuilderPage /> },
       { path: 'tools/email-signature-generator', element: <EmailSignatureGeneratorPage /> },
@@ -625,10 +636,13 @@ const router = createBrowserRouter([
       { path: 'frontend/gradient-generator', element: <GradientGeneratorPage /> },
       { path: 'frontend/conic-gradient-generator', element: <Navigate to="/frontend/gradient-generator" replace /> },
       { path: 'snippets/use-copy-to-clipboard', element: <UseCopyToClipboardSnippetPage /> },
-      { path: 'references/http-status-codes', element: <HttpStatusCodesPage /> },
+      { path: 'references/http-status-codes-cheatsheet', element: <HttpStatusCodesPage /> },
+      { path: 'references/http-status-codes', element: <Navigate to="/references/http-status-codes-cheatsheet" replace /> },
       { path: 'tools/diff-checker', element: <DiffCheckerPage /> },
-      { path: 'tools/git-conflict-resolver', element: <GitConflictResolverPage /> },
-      { path: 'tools/git-rebase-planner', element: <GitRebasePlannerPage /> },
+      { path: 'devops/git-conflict-resolver', element: <GitConflictResolverPage /> },
+      { path: 'devops/git-rebase-planner', element: <GitRebasePlannerPage /> },
+      { path: 'tools/git-conflict-resolver', element: <Navigate to="/devops/git-conflict-resolver" replace /> },
+      { path: 'tools/git-rebase-planner', element: <Navigate to="/devops/git-rebase-planner" replace /> },
       { path: 'frontend/box-shadow-generator', element: <BoxShadowGeneratorPage /> },
       { path: 'data/csv-json-converter', element: <CsvJsonConverterPage /> },
       { path: 'snippets/use-interval', element: <UseIntervalSnippetPage /> },
@@ -669,6 +683,7 @@ const router = createBrowserRouter([
       { path: 'references/sql-cheatsheet', element: <SqlCommandsPage /> },
       { path: 'tools/nanoid-generator', element: <NanoIdGeneratorPage /> },
       { path: 'tools/html-entity-encoder', element: <Navigate to="/tools/string-escape" replace /> },
+      { path: 'tools/html-entity-encoder-decoder', element: <Navigate to="/tools/string-escape" replace /> },
       { path: 'frontend/border-radius-generator', element: <BorderRadiusGeneratorPage /> },
       { path: 'styles/ios-toggle-switch', element: <Navigate to="/frontend/css-toggle-switch-generator" replace /> },
       { path: 'snippets/use-event-listener', element: <UseEventListenerSnippetPage /> },
@@ -734,6 +749,8 @@ const router = createBrowserRouter([
       { path: 'tools/html-formatter', element: <HtmlFormatterPage /> },
       { path: 'snippets/deep-clone-deep-equal', element: <DeepCloneDeepEqualPage /> },
       { path: 'snippets/priority-queue', element: <PriorityQueueSnippetPage /> },
+      { path: 'snippets/memoize', element: <MemoizeSnippetPage /> },
+      { path: 'snippets/promise-pool', element: <PromisePoolSnippetPage /> },
       { path: 'devops/branch-name-generator', element: <BranchNameGeneratorPage /> },
       { path: 'text/lines-tool', element: <Navigate to="/text/lines-processor" replace /> },
       { path: 'text/lines-processor', element: <LinesToolPage /> },
@@ -754,8 +771,10 @@ const router = createBrowserRouter([
       { path: 'tools/cron-builder', element: <Navigate to="/tools/cron-parser" replace /> },
       { path: 'tools/cron-schedule-timeline', element: <Navigate to="/tools/cron-parser" replace /> },
       { path: 'references/css-color-names', element: <CssColorNamesPage /> },
-      { path: 'network/mime-lookup', element: <MimeLookupPage /> },
-      { path: 'references/http-methods', element: <HttpMethodsPage /> },
+      { path: 'network/mime-lookup', element: <Navigate to="/references/mime-lookup" replace /> },
+      { path: 'references/mime-lookup', element: <MimeLookupPage /> },
+      { path: 'references/http-methods-cheatsheet', element: <HttpMethodsPage /> },
+      { path: 'references/http-methods', element: <Navigate to="/references/http-methods-cheatsheet" replace /> },
       { path: 'tools/number-to-words', element: <NumberToWordsPage /> },
       { path: 'data/json-schema-generator', element: <JsonSchemaGeneratorPage /> },
       { path: 'data/json-schema-validator', element: <JsonSchemaValidatorPage /> },
@@ -769,7 +788,8 @@ const router = createBrowserRouter([
       { path: 'database/storage-estimator', element: <DatabaseStorageEstimatorPage /> },
       { path: 'database/sql-explain-visualizer', element: <SqlExplainVisualizerPage /> },
       { path: 'database/er-diagram-visualizer', element: <ErDiagramVisualizerPage /> },
-      { path: 'network/common-ports', element: <CommonPortsPage /> },
+      { path: 'network/common-ports', element: <Navigate to="/references/common-ports" replace /> },
+      { path: 'references/common-ports', element: <CommonPortsPage /> },
       { path: 'network/ipv6-explorer', element: <Ipv6ExplorerPage /> },
       { path: 'network/mac-address-tool', element: <Navigate to="/network/mac-address-generator" replace /> },
       { path: 'network/mac-address-generator', element: <MacAddressToolPage /> },
@@ -792,7 +812,8 @@ const router = createBrowserRouter([
       { path: 'references/sql-window-functions', element: <SqlWindowFunctionsPage /> },
       { path: 'references/emoji-cheatsheet', element: <EmojiCheatsheetPage /> },
       { path: 'references/emoji-reference', element: <Navigate to="/references/emoji-cheatsheet" replace /> },
-      { path: 'tools/iban-tool', element: <IbanToolPage /> },
+      { path: 'tools/iban-tool', element: <Navigate to="/tools/iban-generator" replace /> },
+      { path: 'tools/iban-generator', element: <IbanToolPage /> },
       { path: 'tools/roman-numeral-converter', element: <RomanNumeralConverterPage /> },
       { path: 'tools/file-size-converter', element: <Navigate to="/tools/units-converter" replace /> },
       { path: 'tools/file-hash-calculator', element: <Navigate to="/tools/hash-generator" replace /> },
@@ -820,6 +841,7 @@ const router = createBrowserRouter([
       { path: 'tools/log-storage-cost-calculator', element: <LogStorageCostCalculatorPage /> },
       { path: 'tools/web-vitals-budget-calculator', element: <WebVitalsBudgetCalculatorPage /> },
       { path: 'tools/connection-string-parser', element: <ConnectionStringParserPage /> },
+      { path: 'tools/postman-collection-viewer', element: <PostmanCollectionViewerPage /> },
       { path: 'references/sql-joins', element: <Navigate to="/database/sql-joins" replace /> },
       { path: 'references/big-o-cheatsheet', element: <BigOCheatsheetPage /> },
       { path: 'tools/json-to-zod-schema', element: <Navigate to="/data/json-to-zod-schema" replace /> },
@@ -859,7 +881,8 @@ const router = createBrowserRouter([
       { path: 'tools/truth-table-generator', element: <TruthTableGeneratorPage /> },
       { path: 'tools/string-escape', element: <StringEscapePage /> },
       { path: 'tools/caesar-cipher', element: <CaesarCipherPage /> },
-      { path: 'data/csv-markdown-table', element: <CsvMarkdownTablePage /> },
+      { path: 'data/csv-markdown-converter', element: <CsvMarkdownTablePage /> },
+      { path: 'data/csv-markdown-table', element: <Navigate to="/data/csv-markdown-converter" replace /> },
       { path: 'references/markdown-syntax', element: <MarkdownSyntaxPage /> },
       { path: 'references/kubectl-commands', element: <Navigate to="/references/kubectl-cheatsheet" replace /> },
       { path: 'references/kubectl-cheatsheet', element: <KubeCtlCommandsPage /> },
@@ -869,6 +892,7 @@ const router = createBrowserRouter([
       { path: 'devops/dockerfile-generator', element: <DockerfileGeneratorPage /> },
       { path: 'frontend/cubic-bezier-editor', element: <CubicBezierEditorPage /> },
       { path: 'devops/ansi-colors', element: <AnsiColorsPage /> },
+      { path: 'devops/log-explorer', element: <LogExplorerPage /> },
       { path: 'references/ascii-table', element: <AsciiTablePage /> },
       { path: 'frontend/svg-wave-generator', element: <SvgWaveGeneratorPage /> },
       { path: 'frontend/svg-blob-generator', element: <SvgBlobGeneratorPage /> },
@@ -909,7 +933,8 @@ const router = createBrowserRouter([
       { path: 'devops/traefik-config-generator', element: <TraefikConfigGeneratorPage /> },
       { path: 'devops/htaccess-generator', element: <HtaccessGeneratorPage /> },
       { path: 'tools/units-converter', element: <UnitsConverterPage /> },
-      { path: 'references/http-headers', element: <HttpHeadersPage /> },
+      { path: 'references/http-headers-cheatsheet', element: <HttpHeadersPage /> },
+      { path: 'references/http-headers', element: <Navigate to="/references/http-headers-cheatsheet" replace /> },
       { path: 'references/javascript-cheatsheet', element: <JavascriptCheatsheetPage /> },
       { path: 'references/tmux-commands', element: <Navigate to="/references/tmux-cheatsheet" replace /> },
       { path: 'references/tmux-cheatsheet', element: <TmuxCheatsheetPage /> },
@@ -926,12 +951,14 @@ const router = createBrowserRouter([
       { path: 'references/bash-scripting-cheatsheet', element: <BashScriptingCheatsheetPage /> },
       { path: 'references/systemd-commands', element: <Navigate to="/references/systemd-cheatsheet" replace /> },
       { path: 'references/systemd-cheatsheet', element: <SystemdCheatsheetPage /> },
-      { path: 'tools/credit-card-tool', element: <CreditCardToolPage /> },
+      { path: 'tools/credit-card-tool', element: <Navigate to="/tools/credit-card-generator" replace /> },
+      { path: 'tools/credit-card-generator', element: <CreditCardToolPage /> },
       { path: 'tools/qr-code-generator', element: <QrCodeGeneratorPage /> },
       { path: 'tools/pix-payload-generator', element: <PixPayloadGeneratorPage /> },
       { path: 'tools/barcode-generator', element: <BarcodeGeneratorPage /> },
       { path: 'references/github-actions-cheatsheet', element: <GithubActionsCheatsheetPage /> },
-      { path: 'frontend/css-to-js', element: <CssToJsPage /> },
+      { path: 'frontend/css-to-js', element: <Navigate to="/tools/css-to-js" replace /> },
+      { path: 'tools/css-to-js', element: <CssToJsPage /> },
       { path: 'references/nginx-cheatsheet', element: <NginxCheatsheetPage /> },
       { path: 'references/redis-commands', element: <Navigate to="/references/redis-cheatsheet" replace /> },
       { path: 'references/redis-cheatsheet', element: <RedisCheatsheetPage /> },
@@ -945,7 +972,8 @@ const router = createBrowserRouter([
       { path: 'references/playwright-cheatsheet', element: <PlaywrightCheatsheetPage /> },
       { path: 'tools/morse-code-converter', element: <MorseConverterPage /> },
       { path: 'tools/glob-tester', element: <GlobTesterPage /> },
-      { path: 'tools/data-uri-tool', element: <DataUriToolPage /> },
+      { path: 'tools/data-uri-tool', element: <Navigate to="/tools/data-uri-generator" replace /> },
+      { path: 'tools/data-uri-generator', element: <DataUriToolPage /> },
       { path: 'tools/directory-tree-generator', element: <DirectoryTreeGeneratorPage /> },
       { path: 'tools/payload-compression-calculator', element: <PayloadCompressionCalculatorPage /> },
       { path: 'tools/passphrase-generator', element: <PassphraseGeneratorPage /> },
@@ -981,6 +1009,7 @@ const router = createBrowserRouter([
       { path: 'devops/cors-config-generator', element: <CorsConfigGeneratorPage /> },
       { path: 'devops/pull-request-template-generator', element: <PullRequestTemplateGeneratorPage /> },
       { path: 'devops/terraform-config-generator', element: <TerraformConfigGeneratorPage /> },
+      { path: 'devops/readme-generator', element: <ReadmeGeneratorPage /> },
       { path: 'frontend/css-spinner-generator', element: <CssSpinnerGeneratorPage /> },
       { path: 'frontend/color-blindness-simulator', element: <ColorBlindnessSimulatorPage /> },
       { path: 'frontend/text-shadow-generator', element: <TextShadowGeneratorPage /> },
@@ -1058,7 +1087,8 @@ const router = createBrowserRouter([
       { path: 'extras/binary-search-visualizer', element: <BinarySearchVisualizerPage /> },
       { path: 'extras/event-loop-visualizer', element: <EventLoopVisualizerPage /> },
       { path: 'tools/url-email-extractor', element: <UrlEmailExtractorPage /> },
-      { path: 'tools/pii-redactor', element: <PiiRedactorPage /> },
+      { path: 'security/pii-redactor', element: <PiiRedactorPage /> },
+      { path: 'tools/pii-redactor', element: <Navigate to="/security/pii-redactor" replace /> },
       { path: 'snippets/use-lock-body-scroll', element: <UseLockBodyScrollSnippetPage /> },
       { path: 'snippets/use-stable-callback', element: <UseStableCallbackSnippetPage /> },
       { path: 'snippets/use-hover', element: <UseHoverSnippetPage /> },
@@ -1141,9 +1171,11 @@ const router = createBrowserRouter([
       { path: 'references/file-signatures', element: <FileSignaturesPage /> },
       { path: 'references/powershell-cmd-cheatsheet', element: <WindowsPowershellCheatsheetPage /> },
       { path: 'references/tar-compression-cheatsheet', element: <TarCompressionCheatsheetPage /> },
-      { path: 'extras/redis-ttl-simulator', element: <RedisTtlSimulatorPage /> },
+      { path: 'database/redis-ttl-simulator', element: <RedisTtlSimulatorPage /> },
+      { path: 'extras/redis-ttl-simulator', element: <Navigate to="/database/redis-ttl-simulator" replace /> },
       { path: 'tools/protobuf-decoder', element: <ProtobufDecoderPage /> },
       { path: 'security/cvss-calculator', element: <CvssCalculatorPage /> },
+      { path: 'security/secret-scanner', element: <SecretScannerPage /> },
       { path: 'tools/zip-inspector', element: <ZipInspectorPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],

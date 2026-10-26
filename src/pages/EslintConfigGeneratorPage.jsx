@@ -8,11 +8,9 @@ import {
   Switch,
   Button,
   Alert,
-  Collapse,
   Row,
   Col,
   Tag,
-  message,
   Divider,
   Checkbox,
 } from 'antd'
@@ -23,6 +21,10 @@ import {
   CodeOutlined,
 } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import useCopyWithToast from '../hooks/useCopyWithToast'
+import { commaStringToArray, arrayToCommaString } from '../utils/stringList'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
+import GeneratorPresetButtons from '../components/GeneratorPresetButtons'
 import {
   buildEslintConfig,
   PRESETS,
@@ -190,19 +192,6 @@ const translations = {
   },
 }
 
-function commaStringToArray(value) {
-  if (!value || typeof value !== 'string') return []
-  return value
-    .split(',')
-    .map((s) => s.trim())
-    .filter(Boolean)
-}
-
-function arrayToCommaString(arr) {
-  if (!Array.isArray(arr)) return ''
-  return arr.join(', ')
-}
-
 export default function EslintConfigGeneratorPage() {
   const { lang } = useLanguage()
   const t = translations[lang]
@@ -242,10 +231,7 @@ export default function EslintConfigGeneratorPage() {
     setActivePreset('')
   }
 
-  const copyOutput = () => {
-    navigator.clipboard.writeText(output)
-    message.success(t.copied)
-  }
+  const copyOutput = useCopyWithToast(output, t.copied)
 
   const downloadOutput = () => {
     const isFlat = options.configType === 'flat'
@@ -287,20 +273,13 @@ export default function EslintConfigGeneratorPage() {
 
       <Alert type="info" showIcon message={t.tipsTitle} description={t.tipsBody} />
 
-      <Card title={t.presets}>
-        <Space wrap>
-          {Object.entries(PRESETS).map(([key, preset]) => (
-            <Button
-              key={key}
-              type={activePreset === key ? 'primary' : 'default'}
-              size="small"
-              onClick={() => applyPreset(key)}
-            >
-              {preset.label[lang]}
-            </Button>
-          ))}
-        </Space>
-      </Card>
+      <GeneratorPresetButtons
+        title={t.presets}
+        presets={PRESETS}
+        activePreset={activePreset}
+        onSelect={applyPreset}
+        lang={lang}
+      />
 
       <Row gutter={[16, 16]}>
         <Col xs={24} lg={12}>
@@ -536,21 +515,11 @@ export default function EslintConfigGeneratorPage() {
         </pre>
       </Card>
 
-      <Collapse
-        items={[
-          {
-            key: 'source',
-            label: t.sourceTitle,
-            children: (
-              <Space direction="vertical" style={{ width: '100%' }}>
-                <Paragraph type="secondary">{t.sourceBody}</Paragraph>
-                <pre style={{ margin: 0, overflowX: 'auto', maxHeight: 400 }}>
-                  <code>{SOURCE}</code>
-                </pre>
-              </Space>
-            ),
-          },
-        ]}
+      <GeneratorSourceCollapse
+        sourceLabel={t.sourceTitle}
+        sourceBody={t.sourceBody}
+        sourceCode={SOURCE}
+        maxHeight={400}
       />
     </Space>
   )

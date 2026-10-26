@@ -4,29 +4,8 @@
 // cabeçalho fixo, listras, hover, responsividade (scroll ou cards)
 // e paginação visual.
 
-function parseColor(color) {
-  if (!color) return '#ffffff'
-  if (typeof color === 'string') return color
-  if (color && typeof color.toHexString === 'function') return color.toHexString()
-  return String(color)
-}
-
-function toPx(v) {
-  const n = Number(v)
-  return Number.isFinite(n) ? `${Math.round(n)}px` : '0px'
-}
-
-function clamp(n, min, max) {
-  return Math.max(min, Math.min(max, n))
-}
-
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-}
+import { parseColor, toPx, clamp } from './cssColor.js'
+import { escapeHtml } from './htmlEscape.js'
 
 const DEFAULTS = {
   variant: 'clean',
@@ -159,14 +138,14 @@ export function buildTableCss(options = {}) {
   const responsiveMode = opts.responsiveMode === 'cards' ? 'cards' : 'scroll'
   const showPagination = Boolean(opts.showPagination)
 
-  const headerBg = parseColor(opts.headerBg)
-  const headerText = parseColor(opts.headerText)
-  const rowBg = parseColor(opts.rowBg)
-  const rowAltBg = parseColor(opts.rowAltBg)
-  const textColor = parseColor(opts.textColor)
-  const borderColor = parseColor(opts.borderColor)
-  const hoverBg = parseColor(opts.hoverBg)
-  const accentColor = parseColor(opts.accentColor)
+  const headerBg = parseColor(opts.headerBg, '#ffffff')
+  const headerText = parseColor(opts.headerText, '#ffffff')
+  const rowBg = parseColor(opts.rowBg, '#ffffff')
+  const rowAltBg = parseColor(opts.rowAltBg, '#ffffff')
+  const textColor = parseColor(opts.textColor, '#ffffff')
+  const borderColor = parseColor(opts.borderColor, '#ffffff')
+  const hoverBg = parseColor(opts.hoverBg, '#ffffff')
+  const accentColor = parseColor(opts.accentColor, '#ffffff')
 
   const compactPadding = Math.max(4, Math.round(padding * 0.6))
   const cellPadding = compact ? toPx(compactPadding) : toPx(padding)

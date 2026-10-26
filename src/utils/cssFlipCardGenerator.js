@@ -3,29 +3,8 @@
 // Cria cards 3D que viram no hover ou no clique usando apenas CSS:
 // perspective, transform-style: preserve-3d, backface-visibility e rotateX/Y.
 
-function parseColor(color) {
-  if (!color) return '#ffffff'
-  if (typeof color === 'string') return color
-  if (color && typeof color.toHexString === 'function') return color.toHexString()
-  return String(color)
-}
-
-function toPx(v) {
-  const n = Number(v)
-  return Number.isFinite(n) ? `${Math.round(n)}px` : '0px'
-}
-
-function clamp(n, min, max) {
-  return Math.max(min, Math.min(max, n))
-}
-
-function escapeHtml(text) {
-  return String(text)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-}
+import { parseColor, toPx, clamp } from './cssColor.js'
+import { escapeHtml } from './htmlEscape.js'
 
 const DEFAULTS = {
   axis: 'horizontal',
@@ -117,12 +96,12 @@ export function buildFlipCardCss(options = {}) {
   const perspective = clamp(Number(opts.perspective) || DEFAULTS.perspective, 200, 3000)
   const duration = clamp(Number(opts.duration) || DEFAULTS.duration, 100, 3000)
   const easing = opts.easing || 'ease'
-  const frontBg = parseColor(opts.frontBg)
-  const frontText = parseColor(opts.frontText)
-  const backBg = parseColor(opts.backBg)
-  const backText = parseColor(opts.backText)
+  const frontBg = parseColor(opts.frontBg, '#ffffff')
+  const frontText = parseColor(opts.frontText, '#ffffff')
+  const backBg = parseColor(opts.backBg, '#ffffff')
+  const backText = parseColor(opts.backText, '#ffffff')
   const borderWidth = clamp(Number(opts.borderWidth) || 0, 0, 16)
-  const borderColor = parseColor(opts.borderColor)
+  const borderColor = parseColor(opts.borderColor, '#ffffff')
   const shadow = opts.shadow || 'none'
   const hoverShadow = opts.hoverShadow || shadow
   const shadowOnFlip = Boolean(opts.shadowOnFlip)

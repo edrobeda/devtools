@@ -4,24 +4,11 @@
 // linha sólida, tracejada, pontilhada, dupla, gradiente, sombra e divisor com
 // texto ou ícone no centro. Suporta orientação horizontal e vertical.
 
-function parseColor(color) {
-  if (!color) return '#d9d9d9'
-  if (typeof color === 'string') return color
-  if (color && typeof color.toHexString === 'function') return color.toHexString()
-  return String(color)
-}
-
-function toPx(v) {
-  const n = Number(v)
-  return Number.isFinite(n) ? `${Math.round(n)}px` : '0px'
-}
-
-function clamp(n, min, max) {
-  return Math.max(min, Math.min(max, n))
-}
+import { parseColor, toPx, clamp } from './cssColor.js'
+import { escapeHtml } from './htmlEscape.js'
 
 function hexToRgb(hex) {
-  const clean = parseColor(hex).replace('#', '')
+  const clean = parseColor(hex, '#d9d9d9').replace('#', '')
   const bigint = parseInt(clean.length === 3 ? clean.split('').map((c) => c + c).join('') : clean, 16)
   if (Number.isNaN(bigint)) return { r: 217, g: 217, b: 217 }
   return {
@@ -34,15 +21,6 @@ function hexToRgb(hex) {
 function rgba(hex, alpha) {
   const { r, g, b } = hexToRgb(hex)
   return `rgba(${r}, ${g}, ${b}, ${alpha})`
-}
-
-function escapeHtml(text) {
-  return String(text)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;')
 }
 
 const ICON_SVGS = {
@@ -144,8 +122,8 @@ export function buildDividerCss(options = {}) {
   const orientation = opts.orientation || 'horizontal'
   const isHorizontal = orientation === 'horizontal'
   const thickness = clamp(Number(opts.thickness) || 1, 1, 32)
-  const color = parseColor(opts.color)
-  const color2 = parseColor(opts.color2)
+  const color = parseColor(opts.color, '#d9d9d9')
+  const color2 = parseColor(opts.color2, '#d9d9d9')
   const align = opts.align || 'center'
   const marginY = clamp(Number(opts.marginY) || 0, 0, 120)
   const marginX = clamp(Number(opts.marginX) || 0, 0, 120)

@@ -49,7 +49,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] Conversor de case (camelCase, snake_case, kebab-case, PascalCase, Title Case) — `/tools/case-converter`
 - [x] Gerador de slug (texto → url-slug) — `/tools/slug-generator`
 - [x] Conversor CSV ↔ JSON — `/data/csv-json-converter`
-- [x] CSV/TSV → Tabela Markdown e HTML — `/data/csv-markdown-table`
+- [x] CSV/TSV → Tabela Markdown e HTML — `/data/csv-markdown-converter`
 - [x] Gerador/validador de CPF e CNPJ fake (dígitos verificadores corretos) — `/tools/cpf-cnpj-generator`
 - [x] Comparador/validador de SemVer — `/tools/semver-comparator`
 - [x] Validador de JSON Schema — `/data/json-schema-validator`
@@ -95,7 +95,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] HTTP Header Inspector
 - [x] cURL Generator (monta comando curl a partir de uma requisição) — `/apis/curl-generator`
 - [ ] HTTP Request Replay 🔥
-- [ ] Postman Import/Export
+- [x] Visualizador de Coleção Postman (JSON v2.0/v2.1: árvore, auth herdado, variáveis, laudo e código cURL/fetch/Python/HTTP) — `/tools/postman-collection-viewer`
 - [ ] OpenAPI Viewer
 - [ ] API Mock Server instantâneo 🔥
 - [ ] API Flow Designer 🔥 (desenha visualmente uma sequência de chamadas)
@@ -108,7 +108,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [x] Docker Compose Generator — `/devops/docker-compose-generator`
 - [x] Docker Compose Visualizer 🔥 — `/devops/docker-compose-visualizer`
 - [x] Dockerfile Generator — `/devops/dockerfile-generator`
-- [ ] Docker Logs Viewer
+- [x] Explorador de Logs (cola logs de docker/compose/kubectl/app; nível, origem, busca e timeline) — `/devops/log-explorer`
 - [ ] Docker Layer Explorer 🔥
 - [ ] Bundle Size Estimator 🔥
 - [ ] nginx Config Generator
@@ -117,7 +117,7 @@ quando quiser fugir do óbvio (ver `.agent-prompt.md`).
 - [ ] PM2 Config Generator
 - [x] `.gitignore` Generator (por linguagem/framework) — `/devops/gitignore-generator`
 - [ ] License Generator
-- [ ] README Generator
+- [x] README Generator — `/devops/readme-generator`
 - [ ] Changelog Generator (a partir de commits colados)
 - [ ] Semantic Version Helper (quando sobe major/minor/patch)
 - [x] Gerador de nome de branch git a partir de descrição de feature — `/devops/branch-name-generator`

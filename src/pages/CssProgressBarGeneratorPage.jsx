@@ -1,10 +1,13 @@
 import React, { useMemo, useState } from 'react'
 import {
-  Typography, Card, Space, Slider, Segmented, Alert, Button, Collapse,
-  message, ColorPicker, Row, Col, InputNumber, Tabs, Switch,
+  Typography, Card, Space, Slider, Segmented, Alert, message, ColorPicker,
+  Row, Col, InputNumber, Switch,
 } from 'antd'
-import { BgColorsOutlined, CopyOutlined, LoadingOutlined } from '@ant-design/icons'
+import { BgColorsOutlined, LoadingOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import useCopyWithMessage from '../hooks/useCopyWithMessage'
+import CssGeneratorTabsOutput from '../components/CssGeneratorTabsOutput'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import {
   buildProgressBarCss,
   buildProgressBarHtml,
@@ -172,14 +175,7 @@ export default function CssProgressBarGeneratorPage() {
   const html = useMemo(() => buildProgressBarHtml(options), [options])
   const fullDemo = useMemo(() => buildProgressBarFullDemo(options), [options])
 
-  const copy = async (text) => {
-    try {
-      await navigator.clipboard.writeText(text)
-      messageApi.success(t.copied)
-    } catch {
-      messageApi.error(t.copyError)
-    }
-  }
+  const copy = useCopyWithMessage(messageApi, t)
 
   const applyPreset = (key) => {
     const preset = PROGRESS_PRESETS.find((p) => p.key === key)
@@ -375,78 +371,22 @@ export default function CssProgressBarGeneratorPage() {
         </Col>
       </Row>
 
-      <Tabs
-        defaultActiveKey="css"
-        items={[
-          {
-            key: 'css',
-            label: t.outputCss,
-            children: (
-              <Card
-                extra={(
-                  <Button size="small" icon={<CopyOutlined />} onClick={() => copy(css)}>
-                    {t.copy}
-                  </Button>
-                )}
-              >
-                <pre style={{ margin: 0, overflowX: 'auto' }}>
-                  <code>{css}</code>
-                </pre>
-              </Card>
-            ),
-          },
-          {
-            key: 'html',
-            label: t.outputHtml,
-            children: (
-              <Card
-                extra={(
-                  <Button size="small" icon={<CopyOutlined />} onClick={() => copy(html)}>
-                    {t.copy}
-                  </Button>
-                )}
-              >
-                <pre style={{ margin: 0, overflowX: 'auto' }}>
-                  <code>{html}</code>
-                </pre>
-              </Card>
-            ),
-          },
-          {
-            key: 'full',
-            label: t.outputFull,
-            children: (
-              <Card
-                extra={(
-                  <Button size="small" icon={<CopyOutlined />} onClick={() => copy(fullDemo)}>
-                    {t.copy}
-                  </Button>
-                )}
-              >
-                <pre style={{ margin: 0, overflowX: 'auto' }}>
-                  <code>{fullDemo}</code>
-                </pre>
-              </Card>
-            ),
-          },
-        ]}
+      <CssGeneratorTabsOutput
+        cssValue={css}
+        htmlValue={html}
+        fullValue={fullDemo}
+        cssLabel={t.outputCss}
+        htmlLabel={t.outputHtml}
+        fullLabel={t.outputFull}
+        copy={copy}
+        copyLabel={t.copy}
       />
 
-      <Collapse
-        items={[
-          {
-            key: 'source',
-            label: `${t.sourceCol} — buildProgressBarCss / buildProgressBarHtml`,
-            children: (
-              <Space direction="vertical" style={{ width: '100%' }}>
-                <Paragraph type="secondary">{t.sourceBody}</Paragraph>
-                <pre style={{ margin: 0, overflowX: 'auto', maxHeight: 420 }}>
-                  <code>{buildProgressBarCss.toString()}</code>
-                </pre>
-              </Space>
-            ),
-          },
-        ]}
+      <GeneratorSourceCollapse
+        sourceLabel={`${t.sourceCol} — buildProgressBarCss / buildProgressBarHtml`}
+        sourceBody={t.sourceBody}
+        sourceCode={buildProgressBarCss.toString()}
+        maxHeight={420}
       />
     </Space>
   )

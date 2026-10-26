@@ -14,15 +14,10 @@
  * O custo indireto inclui perda de produtividade, suporte e impacto de negócio.
  */
 
-function toNumber(value) {
-  if (value === null || value === undefined || value === '') return null
-  const n = typeof value === 'number' ? value : Number(value)
-  return Number.isFinite(n) ? n : null
-}
+import { formatCurrency as formatCurrencyShared, toNumber } from './numberFormat'
 
 export function formatCurrency(value, locale = 'pt-BR', currency = 'BRL') {
-  if (value === null || value === undefined || Number.isNaN(value)) return '—'
-  return new Intl.NumberFormat(locale, { style: 'currency', currency }).format(value)
+  return formatCurrencyShared(value, locale, currency, { finiteCheck: false })
 }
 
 export const PHASES = [

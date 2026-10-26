@@ -4,6 +4,7 @@
 // usando só CSS. Útil para selos "New", "Beta", "Sale", "Hot", etc.
 
 import { parseColor, toPx, clamp, rgba, autoTextColor } from './cssColor.js'
+import { escapeHtml } from './htmlEscape.js'
 
 const POSITIONS = ['top-left', 'top-right', 'bottom-left', 'bottom-right']
 
@@ -115,15 +116,6 @@ function getPlacement(position) {
     default:
       return { top: '0', right: '0', left: 'auto', bottom: 'auto' }
   }
-}
-
-function escapeHtml(text) {
-  return String(text)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;')
 }
 
 export function buildRibbonCss(options = {}) {

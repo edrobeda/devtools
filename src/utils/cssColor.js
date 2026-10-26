@@ -8,8 +8,8 @@
 
 import { relativeLuminanceRgb } from './colorConvert'
 
-export function parseColor(color) {
-  if (!color) return '#1677ff'
+export function parseColor(color, fallback = '#1677ff') {
+  if (!color) return fallback
   if (typeof color === 'string') return color
   if (color && typeof color.toHexString === 'function') return color.toHexString()
   return String(color)

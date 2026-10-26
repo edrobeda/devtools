@@ -39,13 +39,13 @@ const COMMANDS = [
 
 const translations = {
   pt: {
-    title: 'Comandos Git Essenciais',
+    title: 'Cheat Sheet de Git',
     intro: 'Referência rápida e pesquisável dos comandos git mais usados no dia a dia, com uma descrição curta de cada um.',
     search: 'Buscar comando ou descrição...',
     empty: 'Nenhum comando encontrado.',
   },
   en: {
-    title: 'Essential Git Commands',
+    title: 'Git Cheat Sheet',
     intro: 'A quick, searchable reference of the most commonly used git commands, each with a short description.',
     search: 'Search command or description...',
     empty: 'No command found.',

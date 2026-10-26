@@ -1,10 +1,12 @@
 import React, { useMemo, useState } from 'react'
 import {
-  Typography, Card, Space, Slider, Segmented, Alert, Button, Collapse,
-  message, ColorPicker, Row, Col, Input, Tabs,
+  Typography, Card, Space, Slider, Segmented, Alert, Button,
+  message, ColorPicker, Row, Col, Input,
 } from 'antd'
-import { BgColorsOutlined, CopyOutlined, PlayCircleOutlined } from '@ant-design/icons'
+import { BgColorsOutlined, PlayCircleOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import CssGeneratorOutput from '../components/CssGeneratorOutput'
+import GeneratorSourceCollapse from '../components/GeneratorSourceCollapse'
 import {
   buildDividerCss,
   buildDividerHtml,
@@ -298,36 +300,6 @@ export default function CssDividerGeneratorPage() {
     return <div key={previewKey} className={className} role="separator" />
   }
 
-  const outputTabs = [
-    {
-      key: 'css',
-      label: t.outputCss,
-      children: (
-        <pre style={{ margin: 0, overflowX: 'auto' }}>
-          <code>{cssOutput}</code>
-        </pre>
-      ),
-    },
-    {
-      key: 'html',
-      label: t.outputHtml,
-      children: (
-        <pre style={{ margin: 0, overflowX: 'auto' }}>
-          <code>{htmlOutput}</code>
-        </pre>
-      ),
-    },
-    {
-      key: 'full',
-      label: t.outputFull,
-      children: (
-        <pre style={{ margin: 0, overflowX: 'auto' }}>
-          <code>{fullOutput}</code>
-        </pre>
-      ),
-    },
-  ]
-
   const isFillType = type === 'gradient' || type === 'shadow'
   const showColor2 = type === 'gradient'
   const showText = type === 'text'
@@ -525,39 +497,23 @@ export default function CssDividerGeneratorPage() {
         </Col>
       </Row>
 
-      <Card
+      <CssGeneratorOutput
         title={t.presets}
-        extra={
-          <Button size="small" icon={<CopyOutlined />} onClick={() => copy(cssOutput)}>
-            {t.copy}
-          </Button>
-        }
-      >
-        <Tabs
-          items={outputTabs}
-          tabBarExtraContent={
-            <Button size="small" icon={<CopyOutlined />} onClick={() => copy(fullOutput)}>
-              {t.copy}
-            </Button>
-          }
-        />
-      </Card>
-
-      <Collapse
-        items={[
-          {
-            key: 'source',
-            label: `${t.sourceCol} — buildDividerCss / buildDividerHtml`,
-            children: (
-              <Space direction="vertical" style={{ width: '100%' }}>
-                <Paragraph type="secondary">{t.sourceBody}</Paragraph>
-                <pre style={{ margin: 0, overflowX: 'auto', maxHeight: 320 }}>
-                  <code>{buildDividerCss.toString()}</code>
-                </pre>
-              </Space>
-            ),
-          },
+        tabs={[
+          { key: 'css', label: t.outputCss, value: cssOutput },
+          { key: 'html', label: t.outputHtml, value: htmlOutput },
+          { key: 'full', label: t.outputFull, value: fullOutput },
         ]}
+        copyValue={cssOutput}
+        tabsCopyValue={fullOutput}
+        copy={copy}
+        copyLabel={t.copy}
+      />
+
+      <GeneratorSourceCollapse
+        sourceLabel={`${t.sourceCol} — buildDividerCss / buildDividerHtml`}
+        sourceBody={t.sourceBody}
+        sourceCode={buildDividerCss.toString()}
       />
     </Space>
   )

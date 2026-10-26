@@ -1,10 +1,15 @@
 import React, { useMemo, useState } from 'react'
-import {
-  Typography, Card, Space, Slider, Segmented, Alert, Button, Collapse,
-  message, ColorPicker, Row, Col, Input, Switch, Tabs,
-} from 'antd'
-import { BgColorsOutlined, CopyOutlined } from '@ant-design/icons'
+import { Typography, Slider } from 'antd'
+import { BgColorsOutlined } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import CssToggleGeneratorShell from '../components/CssToggleGeneratorShell'
+import {
+  SliderField,
+  ColorField,
+  SwitchField,
+  SegmentedField,
+  TextField,
+} from '../components/CssToggleFormFields'
 import {
   buildRadioButtonCss,
   buildRadioButtonHtml,
@@ -12,9 +17,14 @@ import {
   PRESETS,
   DEFAULTS,
 } from '../utils/cssRadioButtonGenerator'
+import {
+  buildToggleControlCss,
+  buildCheckMarkerLines,
+  buildDotMarkerLines,
+  buildRingMarkerLines,
+} from '../utils/cssNativeControlCss'
 
-const { Title, Paragraph, Text } = Typography
-const { useMessage } = message
+const { Text } = Typography
 
 const MARKER_OPTIONS = {
   pt: [
@@ -133,7 +143,6 @@ const PRESET_ORDER = ['default', 'material', 'ios', 'minimal', 'check']
 export default function CssRadioButtonGeneratorPage() {
   const { lang } = useLanguage()
   const t = translations[lang]
-  const [messageApi, messageContextHolder] = useMessage()
 
   const [size, setSize] = useState(DEFAULTS.size)
   const [activeColor, setActiveColor] = useState(DEFAULTS.activeColor)
@@ -197,212 +206,87 @@ export default function CssRadioButtonGeneratorPage() {
     setShadow(p.shadow)
   }
 
-  const copy = async (text) => {
-    try {
-      await navigator.clipboard.writeText(text)
-      messageApi.success(t.copied)
-    } catch {
-      messageApi.error(t.copyError)
-    }
-  }
-
-  const outputTabs = [
-    {
-      key: 'css',
-      label: t.outputCss,
-      children: (
-        <pre style={{ margin: 0, overflowX: 'auto' }}>
-          <code>{cssOutput}</code>
-        </pre>
-      ),
-    },
-    {
-      key: 'html',
-      label: t.outputHtml,
-      children: (
-        <pre style={{ margin: 0, overflowX: 'auto' }}>
-          <code>{htmlOutput}</code>
-        </pre>
-      ),
-    },
-    {
-      key: 'full',
-      label: t.outputFull,
-      children: (
-        <pre style={{ margin: 0, overflowX: 'auto' }}>
-          <code>{fullOutput}</code>
-        </pre>
-      ),
-    },
-  ]
-
   return (
-    <Space direction="vertical" size="large" style={{ width: '100%' }}>
-      {messageContextHolder}
-      <Title level={2}><BgColorsOutlined /> {t.title}</Title>
-      <Paragraph type="secondary">{t.intro}</Paragraph>
+    <CssToggleGeneratorShell
+      icon={<BgColorsOutlined />}
+      title={t.title}
+      intro={t.intro}
+      tipTitle={t.tipTitle}
+      tipBody={t.tipBody}
+      settingsTitle={t.settings}
+      presetOrder={PRESET_ORDER}
+      onPreset={applyPreset}
+      settings={
+        <>
+          <SegmentedField
+            label={t.markerStyle}
+            value={markerStyle}
+            onChange={setMarkerStyle}
+            options={MARKER_OPTIONS[lang]}
+            style={{ width: '100%', marginTop: 8 }}
+          />
 
-      <Alert type="info" showIcon message={t.tipTitle} description={t.tipBody} />
+          <SliderField label={t.size} value={size} />
+          <Slider min={12} max={96} value={size} onChange={setSize} />
 
-      <Row gutter={[24, 24]}>
-        <Col xs={24} md={10}>
-          <Card title={t.settings}>
-            <Space direction="vertical" size="small" style={{ width: '100%' }}>
-              <Segmented
-                style={{ width: '100%' }}
-                block
-                value={null}
-                onChange={applyPreset}
-                options={PRESET_ORDER.map((key) => ({
-                  value: key,
-                  label: key.charAt(0).toUpperCase() + key.slice(1),
-                }))}
-              />
+          <SliderField label={t.markerSize} value={markerSize} unit="%" />
+          <Slider min={10} max={90} value={markerSize} onChange={setMarkerSize} />
 
-              <Space direction="vertical" size={4} style={{ width: '100%', marginTop: 8 }}>
-                <Text>{t.markerStyle}</Text>
-                <Segmented
-                  style={{ width: '100%' }}
-                  block
-                  value={markerStyle}
-                  onChange={setMarkerStyle}
-                  options={MARKER_OPTIONS[lang]}
-                />
-              </Space>
+          <ColorField label={t.activeColor} value={activeColor} onChange={setActiveColor} />
+          <ColorField label={t.inactiveColor} value={inactiveColor} onChange={setInactiveColor} />
+          <ColorField label={t.markerColor} value={markerColor} onChange={setMarkerColor} />
+          <ColorField label={t.borderColor} value={borderColor} onChange={setBorderColor} />
 
-              <Space style={{ width: '100%', justifyContent: 'space-between' }}>
-                <Text>{t.size}</Text>
-                <Text code>{size}px</Text>
-              </Space>
-              <Slider min={12} max={96} value={size} onChange={setSize} />
+          <SliderField label={t.borderWidth} value={borderWidth} />
+          <Slider min={0} max={12} value={borderWidth} onChange={setBorderWidth} />
 
-              <Space style={{ width: '100%', justifyContent: 'space-between' }}>
-                <Text>{t.markerSize}</Text>
-                <Text code>{markerSize}%</Text>
-              </Space>
-              <Slider min={10} max={90} value={markerSize} onChange={setMarkerSize} />
+          <SliderField label={t.transitionDuration} value={transitionDuration} unit="ms" />
+          <Slider min={0} max={800} value={transitionDuration} onChange={setTransitionDuration} />
 
-              <Space style={{ width: '100%', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Text>{t.activeColor}</Text>
-                <ColorPicker value={activeColor} onChange={setActiveColor} showText />
-              </Space>
+          <TextField
+            label={t.shadow}
+            value={shadow}
+            onChange={(e) => setShadow(e.target.value)}
+            placeholder="0 2px 4px rgba(0,0,0,0.15)"
+          />
 
-              <Space style={{ width: '100%', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Text>{t.inactiveColor}</Text>
-                <ColorPicker value={inactiveColor} onChange={setInactiveColor} showText />
-              </Space>
-
-              <Space style={{ width: '100%', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Text>{t.markerColor}</Text>
-                <ColorPicker value={markerColor} onChange={setMarkerColor} showText />
-              </Space>
-
-              <Space style={{ width: '100%', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Text>{t.borderColor}</Text>
-                <ColorPicker value={borderColor} onChange={setBorderColor} showText />
-              </Space>
-
-              <Space style={{ width: '100%', justifyContent: 'space-between' }}>
-                <Text>{t.borderWidth}</Text>
-                <Text code>{borderWidth}px</Text>
-              </Space>
-              <Slider min={0} max={12} value={borderWidth} onChange={setBorderWidth} />
-
-              <Space style={{ width: '100%', justifyContent: 'space-between' }}>
-                <Text>{t.transitionDuration}</Text>
-                <Text code>{transitionDuration}ms</Text>
-              </Space>
-              <Slider min={0} max={800} value={transitionDuration} onChange={setTransitionDuration} />
-
-              <Space direction="vertical" size={4} style={{ width: '100%' }}>
-                <Text>{t.shadow}</Text>
-                <Input
-                  value={shadow}
-                  onChange={(e) => setShadow(e.target.value)}
-                  placeholder="0 2px 4px rgba(0,0,0,0.15)"
-                />
-              </Space>
-
-              <Space style={{ width: '100%', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Text>{t.disabled}</Text>
-                <Switch size="small" checked={disabled} onChange={setDisabled} />
-              </Space>
-
-              <Space style={{ width: '100%', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Text>{t.checked}</Text>
-                <Switch size="small" checked={checked} onChange={setChecked} />
-              </Space>
-            </Space>
-          </Card>
-        </Col>
-
-        <Col xs={24} md={14}>
-          <Card title={t.preview}>
-            <div
-              style={{
-                border: '1px solid #f0f0f0',
-                borderRadius: 8,
-                padding: 40,
-                background: '#fafafa',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                minHeight: 180,
-              }}
-            >
-              <style>{cssOutput}</style>
-              <label className="custom-radio">
-                <input
-                  type="radio"
-                  name="radio-preview"
-                  defaultChecked={checked}
-                  disabled={disabled}
-                />
-                <span className="radio-box" />
-                <span className="label-text">{t.title}</span>
-              </label>
-            </div>
-            <Paragraph type="secondary" style={{ marginTop: 12, marginBottom: 0 }}>
-              {t.previewHint}
-            </Paragraph>
-          </Card>
-        </Col>
-      </Row>
-
-      <Card
-        title={t.presets}
-        extra={
-          <Button size="small" icon={<CopyOutlined />} onClick={() => copy(cssOutput)}>
-            {t.copy}
-          </Button>
-        }
-      >
-        <Tabs
-          items={outputTabs}
-          tabBarExtraContent={
-            <Button size="small" icon={<CopyOutlined />} onClick={() => copy(fullOutput)}>
-              {t.copy}
-            </Button>
-          }
-        />
-      </Card>
-
-      <Collapse
-        items={[
-          {
-            key: 'source',
-            label: `${t.sourceCol} — buildRadioButtonCss / buildRadioButtonHtml`,
-            children: (
-              <Space direction="vertical" style={{ width: '100%' }}>
-                <Paragraph type="secondary">{t.sourceBody}</Paragraph>
-                <pre style={{ margin: 0, overflowX: 'auto', maxHeight: 320 }}>
-                  <code>{buildRadioButtonCss.toString()}</code>
-                </pre>
-              </Space>
-            ),
-          },
-        ]}
-      />
-    </Space>
+          <SwitchField label={t.disabled} checked={disabled} onChange={setDisabled} />
+          <SwitchField label={t.checked} checked={checked} onChange={setChecked} />
+        </>
+      }
+      previewTitle={t.preview}
+      previewHint={t.previewHint}
+      cssOutput={cssOutput}
+      preview={
+        <label className="custom-radio">
+          <input
+            type="radio"
+            name="radio-preview"
+            defaultChecked={checked}
+            disabled={disabled}
+          />
+          <span className="radio-box" />
+          <span className="label-text">{t.title}</span>
+        </label>
+      }
+      presetsTitle={t.presets}
+      cssLabel={t.outputCss}
+      htmlLabel={t.outputHtml}
+      fullLabel={t.outputFull}
+      htmlOutput={htmlOutput}
+      fullOutput={fullOutput}
+      copyLabel={t.copy}
+      copiedLabel={t.copied}
+      copyErrorLabel={t.copyError}
+      sourceLabel={`${t.sourceCol} — buildRadioButtonCss / buildRadioButtonHtml`}
+      sourceBody={t.sourceBody}
+      sourceCode={[
+        buildRadioButtonCss.toString(),
+        buildToggleControlCss.toString(),
+        buildDotMarkerLines.toString(),
+        buildRingMarkerLines.toString(),
+        buildCheckMarkerLines.toString(),
+      ].join('\n\n')}
+    />
   )
 }

@@ -45,13 +45,13 @@ const COMMANDS = [
 
 const translations = {
   pt: {
-    title: 'Comandos Docker & Docker Compose',
+    title: 'Cheat Sheet de Docker & Docker Compose',
     intro: 'Referência rápida e pesquisável dos comandos Docker e Docker Compose mais usados no dia a dia, com uma descrição curta de cada um.',
     search: 'Buscar comando ou descrição...',
     empty: 'Nenhum comando encontrado.',
   },
   en: {
-    title: 'Docker & Docker Compose Commands',
+    title: 'Docker & Docker Compose Cheat Sheet',
     intro: 'A quick, searchable reference of the most commonly used Docker and Docker Compose commands, each with a short description.',
     search: 'Search command or description...',
     empty: 'No command found.',

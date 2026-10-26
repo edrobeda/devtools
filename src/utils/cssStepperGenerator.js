@@ -1,3 +1,5 @@
+import { escapeHtml } from './htmlEscape.js'
+
 const DEFAULTS = {
   className: 'stepper',
   orientation: 'horizontal',
@@ -29,14 +31,6 @@ const DEFAULTS = {
 
 function toPx(value) {
   return `${value}px`
-}
-
-function escapeHtml(text) {
-  return String(text)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
 }
 
 function markerShape(radius) {

@@ -4,21 +4,7 @@
 // posicionado absolutamente. A posicao do indicador e trocada com :has()
 // conforme o input checked, produzindo a animacao de slide.
 
-function parseColor(color) {
-  if (!color) return '#1677ff'
-  if (typeof color === 'string') return color
-  if (color && typeof color.toHexString === 'function') return color.toHexString()
-  return String(color)
-}
-
-function toPx(v) {
-  const n = Number(v)
-  return Number.isFinite(n) ? `${Math.round(n)}px` : '0px'
-}
-
-function clamp(n, min, max) {
-  return Math.max(min, Math.min(max, n))
-}
+import { parseColor, toPx, clamp } from './cssColor.js'
 
 const DEFAULTS = {
   options: ['Opcao 1', 'Opcao 2', 'Opcao 3'],

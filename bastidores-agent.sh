@@ -9,7 +9,11 @@ set -uo pipefail
 
 PROJECT_DIR="/home/devtools-bot/devtools"
 OPENCODE_BIN="/home/devtools-bot/.local/bin/opencode"
-MODEL="opencode/big-pickle"  # migrado do opencode-go pago (chave expirada + limite do plano) p/ free tier Zen em 2026-09-07
+# Modelo vem do /etc/opencode-models.env (ver memória "Opencode Models
+# Central") — nunca hardcodear opencode/*-free aqui, esses modelos travam
+# sob bloqueio de IP ("abusive traffic") do tier free.
+[ -r /etc/opencode-models.env ] && . /etc/opencode-models.env
+MODEL="${MODEL_DEVTOOLS_BASTIDORES:-$MODEL_DEFAULT}"
 
 cd "$PROJECT_DIR" || exit 1
 

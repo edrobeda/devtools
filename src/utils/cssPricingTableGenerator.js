@@ -4,29 +4,8 @@
 // cards de plano, header, preço, lista de features, botão CTA e badge
 // "Mais popular" no plano destacado.
 
-function parseColor(color) {
-  if (!color) return '#ffffff'
-  if (typeof color === 'string') return color
-  if (color && typeof color.toHexString === 'function') return color.toHexString()
-  return String(color)
-}
-
-function toPx(v) {
-  const n = Number(v)
-  return Number.isFinite(n) ? `${Math.round(n)}px` : '0px'
-}
-
-function clamp(n, min, max) {
-  return Math.max(min, Math.min(max, n))
-}
-
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-}
+import { parseColor, toPx, clamp } from './cssColor.js'
+import { escapeHtml } from './htmlEscape.js'
 
 const DEFAULTS = {
   variant: 'clean',
@@ -221,27 +200,27 @@ export function buildPricingTableCss(options = {}) {
   const gap = clamp(Number(opts.gap) || 24, 0, 80)
   const padding = clamp(Number(opts.padding) || 32, 8, 80)
   const borderRadius = clamp(Number(opts.borderRadius) || 16, 0, 64)
-  const bg = parseColor(opts.bgColor)
-  const text = parseColor(opts.textColor)
-  const border = parseColor(opts.borderColor)
+  const bg = parseColor(opts.bgColor, '#ffffff')
+  const text = parseColor(opts.textColor, '#ffffff')
+  const border = parseColor(opts.borderColor, '#ffffff')
   const borderWidth = clamp(Number(opts.borderWidth) || 0, 0, 8)
   const shadow = opts.shadow || 'none'
   const headerBg = opts.headerBg || bg
-  const headerText = parseColor(opts.headerTextColor)
-  const price = parseColor(opts.priceColor)
-  const period = parseColor(opts.periodColor)
-  const feature = parseColor(opts.featureColor)
-  const featureIcon = parseColor(opts.featureIconColor)
-  const featureDisabledIcon = parseColor(opts.featureDisabledIconColor)
-  const buttonBg = parseColor(opts.buttonBg)
-  const buttonColor = parseColor(opts.buttonColor)
+  const headerText = parseColor(opts.headerTextColor, '#ffffff')
+  const price = parseColor(opts.priceColor, '#ffffff')
+  const period = parseColor(opts.periodColor, '#ffffff')
+  const feature = parseColor(opts.featureColor, '#ffffff')
+  const featureIcon = parseColor(opts.featureIconColor, '#ffffff')
+  const featureDisabledIcon = parseColor(opts.featureDisabledIconColor, '#ffffff')
+  const buttonBg = parseColor(opts.buttonBg, '#ffffff')
+  const buttonColor = parseColor(opts.buttonColor, '#ffffff')
   const buttonRadius = clamp(Number(opts.buttonRadius) || 8, 0, 32)
-  const highlightedBg = parseColor(opts.highlightedBg)
-  const highlightedBorder = parseColor(opts.highlightedBorderColor)
+  const highlightedBg = parseColor(opts.highlightedBg, '#ffffff')
+  const highlightedBorder = parseColor(opts.highlightedBorderColor, '#ffffff')
   const highlightedShadow = opts.highlightedShadow || shadow
   const highlightedScale = clamp(Number(opts.highlightedScale) || 1.04, 1, 1.15)
-  const badgeBg = parseColor(opts.badgeBg)
-  const badgeColor = parseColor(opts.badgeColor)
+  const badgeBg = parseColor(opts.badgeBg, '#ffffff')
+  const badgeColor = parseColor(opts.badgeColor, '#ffffff')
   const align = ['left', 'center', 'right'].includes(opts.align) ? opts.align : 'center'
   const showFeatures = Boolean(opts.showFeatures)
   const showButton = Boolean(opts.showButton)
@@ -341,7 +320,7 @@ export function buildPricingTableCss(options = {}) {
     '/* Header do plano */',
     '.pricing__header {',
     `  padding: ${toPx(padding)} ${toPx(padding)} ${toPx(Math.max(8, Math.round(padding * 0.5)))};`,
-    isGradientHeader ? `  background: ${headerBg};` : `  background: ${parseColor(headerBg)};`,
+    isGradientHeader ? `  background: ${headerBg};` : `  background: ${parseColor(headerBg, '#ffffff')};`,
     `  color: ${headerText};`,
     '}',
     '',
@@ -361,7 +340,7 @@ export function buildPricingTableCss(options = {}) {
     '/* Preço */',
     '.pricing__price {',
     `  padding: 0 ${toPx(padding)} ${toPx(Math.max(8, Math.round(padding * 0.5)))};`,
-    `  background: ${isGradientHeader ? 'transparent' : parseColor(headerBg)};`,
+    `  background: ${isGradientHeader ? 'transparent' : parseColor(headerBg, '#ffffff')};`,
     `  color: ${headerText};`,
     '}',
     '',

@@ -3,22 +3,20 @@
 // Usa o mesmo truque do checkbox: esconde o input real e estiliza um span
 // decorativo como a bolha do radio. O marcador é desenhado no ::after do
 // span e só aparece quando input:checked + .radio-box dispara.
+//
+// O esqueleto compartilhado (container, input oculto, bolha e estados) vem
+// de src/utils/cssNativeControlCss.js, que também é usado pelo gerador de
+// checkbox. Aqui ficam só o que é específico do radio: os presets, o cálculo
+// da geometria e a construção do marcador (ponto, anel ou check).
 
-function parseColor(color) {
-  if (!color) return '#1677ff'
-  if (typeof color === 'string') return color
-  if (color && typeof color.toHexString === 'function') return color.toHexString()
-  return String(color)
-}
-
-function toPx(v) {
-  const n = Number(v)
-  return Number.isFinite(n) ? `${Math.round(n)}px` : '0px'
-}
-
-function clamp(n, min, max) {
-  return Math.max(min, Math.min(max, n))
-}
+import { parseColor, toPx, clamp } from './cssColor.js'
+import {
+  buildToggleControlCss,
+  buildToggleControlHtml,
+  buildCheckMarkerLines,
+  buildDotMarkerLines,
+  buildRingMarkerLines,
+} from './cssNativeControlCss.js'
 
 const DEFAULTS = {
   size: 24,
@@ -121,166 +119,69 @@ export function buildRadioButtonCss(options = {}) {
 
   const markerPx = Math.round(size * (markerSize / 100))
 
-  const lines = [
-    '/* Container alinha input + label */',
-    '.custom-radio {',
-    '  display: inline-flex;',
-    '  align-items: center;',
-    '  gap: 10px;',
-    '  cursor: pointer;',
-    '  user-select: none;',
-    '  -webkit-tap-highlight-color: transparent;',
-    '}',
-    '',
-    '/* Esconde o radio real mas mantém acessibilidade */',
-    '.custom-radio input {',
-    '  position: absolute;',
-    '  opacity: 0;',
-    '  width: 0;',
-    '  height: 0;',
-    '}',
-    '',
-    '/* Bolha visual */',
-    '.custom-radio .radio-box {',
-    `  position: relative;`,
-    `  width: ${toPx(size)};`,
-    `  height: ${toPx(size)};`,
-    `  background: ${inactive};`,
-    `  border: ${borderWidth > 0 ? `${toPx(borderWidth)} solid ${border}` : 'none'};`,
-    `  border-radius: ${radius};`,
-    `  box-shadow: ${shadow};`,
-    `  transition: background ${duration}ms ease, border-color ${duration}ms ease, box-shadow ${duration}ms ease;`,
-    '  flex-shrink: 0;',
-    '}',
-    '',
-    '/* Hover na bolha */',
-    '.custom-radio:hover .radio-box {',
-    `  border-color: ${active};`,
-    '}',
-    '',
-    '/* Estado checked: fundo e borda ativos */',
-    '.custom-radio input:checked + .radio-box {',
-    `  background: ${active};`,
-    borderWidth > 0 ? `  border-color: ${active};` : null,
-    '}',
-  ]
-
+  let markerLines = []
   if (markerStyle === 'dot') {
-    lines.push(
-      '',
-      '/* Marcador como círculo sólido no centro */',
-      '.custom-radio .radio-box::after {',
-      '  content: "";',
-      '  position: absolute;',
-      '  display: block;',
-      `  width: ${toPx(markerPx)};`,
-      `  height: ${toPx(markerPx)};`,
-      `  background: ${marker};`,
-      '  border-radius: 50%;',
-      '  left: 50%;',
-      '  top: 50%;',
-      '  transform: translate(-50%, -50%) scale(0);',
-      '  transform-origin: center;',
-      `  transition: transform ${duration}ms ease;`,
-      '}',
-      '',
-      '.custom-radio input:checked + .radio-box::after {',
-      '  transform: translate(-50%, -50%) scale(1);',
-      '}'
-    )
+    markerLines = buildDotMarkerLines({
+      rootClass: 'custom-radio',
+      boxClass: 'radio-box',
+      duration,
+      color: marker,
+      markerPx,
+    })
   } else if (markerStyle === 'ring') {
-    lines.push(
-      '',
-      '/* Marcador como anel interno */',
-      '.custom-radio .radio-box::after {',
-      '  content: "";',
-      '  position: absolute;',
-      '  display: block;',
-      `  width: ${toPx(markerPx)};`,
-      `  height: ${toPx(markerPx)};`,
-      '  background: transparent;',
-      `  border: ${toPx(Math.max(2, Math.round(markerPx * 0.18)))} solid ${marker};`,
-      '  border-radius: 50%;',
-      '  left: 50%;',
-      '  top: 50%;',
-      '  transform: translate(-50%, -50%) scale(0);',
-      '  transform-origin: center;',
-      `  transition: transform ${duration}ms ease;`,
-      '}',
-      '',
-      '.custom-radio input:checked + .radio-box::after {',
-      '  transform: translate(-50%, -50%) scale(1);',
-      '}'
-    )
+    markerLines = buildRingMarkerLines({
+      rootClass: 'custom-radio',
+      boxClass: 'radio-box',
+      duration,
+      color: marker,
+      markerPx,
+    })
   } else if (markerStyle === 'check') {
-    lines.push(
-      '',
-      '/* Marcador como check centralizado */',
-      '.custom-radio .radio-box::after {',
-      '  content: "";',
-      '  position: absolute;',
-      '  display: block;',
-      `  left: ${toPx(size * 0.22)};`,
-      `  top: ${toPx(size * 0.25)};`,
-      `  width: ${toPx(size * 0.22)};`,
-      `  height: ${toPx(size * 0.42)};`,
-      '  border: solid transparent;',
-      `  border-width: 0 ${toPx(Math.max(2, Math.round(size * 0.1)))} ${toPx(Math.max(2, Math.round(size * 0.1)))} 0;`,
-      `  border-color: transparent transparent ${marker} ${marker};`,
-      '  transform: rotate(45deg) scale(0);',
-      '  transform-origin: center;',
-      `  transition: transform ${duration}ms ease;`,
-      '}',
-      '',
-      '.custom-radio input:checked + .radio-box::after {',
-      '  transform: rotate(45deg) scale(1);',
-      '}'
-    )
+    markerLines = buildCheckMarkerLines({
+      rootClass: 'custom-radio',
+      boxClass: 'radio-box',
+      duration,
+      borderWidth: Math.max(2, Math.round(size * 0.1)),
+      borderColor: `transparent transparent ${marker} ${marker}`,
+      left: size * 0.22,
+      top: size * 0.25,
+      width: size * 0.22,
+      height: size * 0.42,
+      comment: 'Marcador como check centralizado',
+    })
   }
 
-  lines.push(
-    '',
-    '/* Foco via teclado */',
-    '.custom-radio input:focus-visible + .radio-box {',
-    `  outline: 2px solid ${active};`,
-    '  outline-offset: 2px;',
-    '}',
-    '',
-    '/* Estado desabilitado */',
-    '.custom-radio input:disabled + .radio-box,',
-    '.custom-radio input:disabled ~ .label-text {',
-    '  opacity: 0.55;',
-    '  cursor: not-allowed;',
-    '}',
-    '',
-    '/* Texto ao lado */',
-    '.custom-radio .label-text {',
-    '  font-size: 14px;',
-    '  color: #262626;',
-    '  line-height: 1.4;',
-    '}'
-  )
-
-  return lines.filter(Boolean).join('\n')
+  return buildToggleControlCss({
+    rootClass: 'custom-radio',
+    boxClass: 'radio-box',
+    controlNoun: 'radio',
+    boxNoun: 'bolha',
+    size,
+    radius,
+    active,
+    inactive,
+    border,
+    borderWidth,
+    shadow,
+    duration,
+    markerLines,
+  })
 }
 
 export function buildRadioButtonHtml(options = {}) {
   const opts = { ...DEFAULTS, ...options }
-  const checkedAttr = opts.checked ? ' checked' : ''
-  const disabledAttr = opts.disabled ? ' disabled' : ''
   const nameAttr = opts.name ? ` name="${opts.name}"` : ' name="custom-radio"'
   const valueAttr = opts.value ? ` value="${opts.value}"` : ''
-  const labelText = String(opts.labelText || '')
 
-  return [
-    '<label class="custom-radio">',
-    `  <input type="radio"${nameAttr}${valueAttr}${checkedAttr}${disabledAttr}>`,
-    '  <span class="radio-box"></span>',
-    labelText ? `  <span class="label-text">${labelText}</span>` : '',
-    '</label>',
-  ]
-    .filter(Boolean)
-    .join('\n')
+  return buildToggleControlHtml({
+    rootClass: 'custom-radio',
+    boxClass: 'radio-box',
+    inputType: 'radio',
+    inputAttrs: `${nameAttr}${valueAttr}`,
+    labelText: String(opts.labelText || ''),
+    checked: opts.checked,
+    disabled: opts.disabled,
+  })
 }
 
 export function buildRadioButtonFullDemo(options = {}) {

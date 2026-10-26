@@ -9,12 +9,10 @@
  * O speedup teórico máximo (N → ∞) é 1 / (1 - P).
  */
 
+import { formatNumber as formatNumberShared } from './numberFormat'
+
 export function formatNumber(value, digits = 2) {
-  if (!Number.isFinite(value)) return '∞'
-  return value.toLocaleString(undefined, {
-    minimumFractionDigits: digits,
-    maximumFractionDigits: digits,
-  })
+  return formatNumberShared(value, digits, { finiteOnly: true, nonFinite: '∞' })
 }
 
 export function calculateAmdahl({ totalTime, parallelFraction, processors }) {

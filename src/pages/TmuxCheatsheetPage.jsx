@@ -99,7 +99,7 @@ const COMMANDS = [
 
 const translations = {
   pt: {
-    title: 'Comandos tmux',
+    title: 'Cheat Sheet de tmux',
     intro: (
       <>
         Cheat sheet pesquisável do <Text code>tmux</Text>, o terminal
@@ -138,7 +138,7 @@ const translations = {
     copiedError: 'Não foi possível copiar',
   },
   en: {
-    title: 'tmux Commands',
+    title: 'tmux Cheat Sheet',
     intro: (
       <>
         A searchable cheat sheet for <Text code>tmux</Text>, the terminal

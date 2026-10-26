@@ -1,6 +1,8 @@
 // Utilitários para análise de arquivos HAR (HTTP Archive) 100% client-side.
 // Nenhum dado sai do navegador.
 
+import { formatBytes as formatBytesShared, FORMAT_BYTES_INVALID } from './formatBytes'
+
 export function parseHar(text) {
   try {
     const data = JSON.parse(text)
@@ -94,11 +96,12 @@ export function filterEntries(data, filters) {
 }
 
 export function formatBytes(bytes) {
-  if (bytes === 0 || Number.isNaN(bytes)) return '0 B'
-  const k = 1024
-  const sizes = ['B', 'KB', 'MB', 'GB', 'TB']
-  const i = Math.min(Math.floor(Math.log(bytes) / Math.log(k)), sizes.length - 1)
-  return `${parseFloat((bytes / k ** i).toFixed(2))} ${sizes[i]}`
+  return formatBytesShared(bytes, {
+    units: ['B', 'KB', 'MB', 'GB', 'TB'],
+    invalid: FORMAT_BYTES_INVALID.ZERO_OR_NAN,
+    stripZeros: true,
+    clamp: true,
+  })
 }
 
 export function formatDuration(ms) {

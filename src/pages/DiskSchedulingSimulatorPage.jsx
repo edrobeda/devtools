@@ -12,19 +12,18 @@ import {
   Table,
   Tag,
   Statistic,
-  Collapse,
   Alert,
 } from 'antd'
 import {
   HddOutlined,
   PlayCircleOutlined,
-  CopyOutlined,
   BarChartOutlined,
   CalculatorOutlined,
   ArrowsAltOutlined,
   NumberOutlined,
 } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import SourceCodePanel from '../components/SourceCodePanel'
 import {
   ALGORITHMS,
   ALGORITHM_LABELS,
@@ -36,7 +35,6 @@ import {
 
 const { Title, Paragraph, Text } = Typography
 const { Option } = Select
-const { Panel } = Collapse
 
 const translations = {
   pt: {
@@ -122,7 +120,6 @@ export default function DiskSchedulingSimulatorPage() {
   const [maxCylinder, setMaxCylinder] = useState(200)
   const [requestsText, setRequestsText] = useState('82, 170, 43, 140, 24, 16, 190')
   const [tick, setTick] = useState(0)
-  const [copiedKey, setCopiedKey] = useState(null)
 
   const parsedRequests = useMemo(() => parseRequests(requestsText), [requestsText])
 
@@ -146,12 +143,6 @@ export default function DiskSchedulingSimulatorPage() {
     setInitialHead(preset.initialHead)
     setMaxCylinder(preset.maxCylinder)
     setRequestsText(preset.requests.join(', '))
-  }
-
-  const copy = (text, key) => {
-    navigator.clipboard.writeText(text)
-    setCopiedKey(key)
-    setTimeout(() => setCopiedKey(null), 1500)
   }
 
   const chartWidth = 640
@@ -465,23 +456,12 @@ export default function DiskSchedulingSimulatorPage() {
         </>
       )}
 
-      <Collapse>
-        <Panel header={t.sourceCode} key="source">
-          <div style={{ position: 'relative' }}>
-            <Button
-              size="small"
-              icon={<CopyOutlined />}
-              style={{ position: 'absolute', top: 8, right: 8 }}
-              onClick={() => copy(sourceCode(), 'source')}
-            >
-              {copiedKey === 'source' ? t.copied : t.copy}
-            </Button>
-            <pre style={{ margin: 0, overflow: 'auto', padding: 16 }}>
-              <code>{sourceCode()}</code>
-            </pre>
-          </div>
-        </Panel>
-      </Collapse>
+      <SourceCodePanel
+        code={sourceCode()}
+        header={t.sourceCode}
+        copyLabel={t.copy}
+        copiedLabel={t.copied}
+      />
     </Space>
   )
 }

@@ -1,6 +1,8 @@
 // Calculadora de capacidade de canal de Shannon (Teorema de Shannon-Hartley)
 // 100% client-side — nenhum dado de rede sai do navegador.
 
+import { formatNumber as formatNumberShared } from './numberFormat'
+
 export const BANDWIDTH_UNITS = {
   Hz: 1,
   kHz: 1_000,
@@ -103,11 +105,7 @@ export function formatBitsPerSecond(bps, decimals = 2) {
 }
 
 export function formatNumber(value, decimals = 2) {
-  if (value === null || value === undefined || Number.isNaN(value)) return '—'
-  const n = Number(value)
-  if (!Number.isFinite(n)) return '—'
-  const fixed = n.toFixed(decimals)
-  return fixed.replace(/\.(\d+)$/, (match, dec) => (parseInt(dec, 10) ? match : ''))
+  return formatNumberShared(value, decimals, { style: 'strip' })
 }
 
 // SNR linear mínimo para atingir uma capacidade-alvo (bps) dada uma largura de banda (Hz)

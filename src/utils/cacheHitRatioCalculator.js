@@ -10,12 +10,10 @@
  * e o hit rate mínimo necessário para atingir uma latência-alvo.
  */
 
+import { formatNumber as formatNumberShared } from './numberFormat'
+
 export function formatNumber(value, digits = 2) {
-  if (!Number.isFinite(value)) return '∞'
-  return value.toLocaleString(undefined, {
-    minimumFractionDigits: digits,
-    maximumFractionDigits: digits,
-  })
+  return formatNumberShared(value, digits, { finiteOnly: true, nonFinite: '∞' })
 }
 
 export function calculateCacheHitRatio({
