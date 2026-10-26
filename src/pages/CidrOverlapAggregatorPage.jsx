@@ -23,8 +23,8 @@ import {
   WarningOutlined,
 } from '@ant-design/icons'
 import { useLanguage } from '../i18n/LanguageContext'
+import { parseCidr } from '../utils/ipv4.js'
 import {
-  parseCidr,
   cidrsOverlap,
   cidrContains,
   aggregateCidrs,
@@ -35,7 +35,7 @@ const { Title, Paragraph, Text } = Typography
 const { TabPane } = Tabs
 const { TextArea } = Input
 
-const sourceCode = `// src/utils/cidrOverlapAggregator.js (resumo)
+const sourceCode = `// src/utils/ipv4.js (parse) + src/utils/cidrOverlapAggregator.js (resumo)
 export function parseCidr(cidr) {
   const match = cidr.trim().match(
     /^(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\/(\\d{1,2})$/

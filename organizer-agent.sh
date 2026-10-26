@@ -35,6 +35,16 @@ if ! flock -n 200; then
     exit 0
 fi
 
+# No máximo 1 achado novo por dia, e nunca com a fila já cheia: cada achado
+# consome uma rodada do agente principal, e conteúdo novo tem de ter espaço.
+DB="$PROJECT_DIR/data/devtools.db"
+RECENT="$(sqlite3 "$DB" "SELECT COUNT(*) FROM housekeeping WHERE created_at > datetime('now','-20 hours');" 2>/dev/null || echo 0)"
+PENDING="$(sqlite3 "$DB" "SELECT COUNT(*) FROM housekeeping WHERE status='pending';" 2>/dev/null || echo 0)"
+if [ "$RECENT" -ge 1 ] || [ "$PENDING" -ge 2 ]; then
+    echo "$(date -Iseconds) — organizer pulado (achados nas últimas 20h: $RECENT, pendentes: $PENDING)" >> "$LOG_DIR/runs.log"
+    exit 0
+fi
+
 # Manifest sempre fresco antes da análise — barato (<1s), determinístico.
 python3 "$PROJECT_DIR/scripts/generate_manifest.py" >> "$LOG_DIR/runs.log" 2>&1
 
