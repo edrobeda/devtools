@@ -4,8 +4,19 @@
 // pseudo-elemento ::before do label (ou do span decorativo) como a caixa. O
 // estado checked desenha o "check" via ::after com clip-path, transform ou
 // bordas em L.
+//
+// O esqueleto compartilhado (container, input oculto, caixa e estados) vem
+// de src/utils/cssNativeControlCss.js, que também é usado pelo gerador de
+// radio button. Aqui ficam só o que é específico do checkbox: os presets, o
+// cálculo da geometria e a construção do marcador (check em L ou traço).
 
 import { parseColor, toPx, clamp } from './cssColor.js'
+import {
+  buildToggleControlCss,
+  buildToggleControlHtml,
+  buildCheckMarkerLines,
+  buildDashMarkerLines,
+} from './cssNativeControlCss.js'
 
 const DEFAULTS = {
   style: 'rounded',
@@ -114,140 +125,57 @@ export function buildCustomCheckboxCss(options = {}) {
 
   const radius = style === 'circle' ? '50%' : toPx(borderRadius)
 
-  const lines = [
-    '/* Container alinha input + label */',
-    '.custom-checkbox {',
-    '  display: inline-flex;',
-    '  align-items: center;',
-    '  gap: 10px;',
-    '  cursor: pointer;',
-    '  user-select: none;',
-    '  -webkit-tap-highlight-color: transparent;',
-    '}',
-    '',
-    '/* Esconde o checkbox real mas mantém acessibilidade */',
-    '.custom-checkbox input {',
-    '  position: absolute;',
-    '  opacity: 0;',
-    '  width: 0;',
-    '  height: 0;',
-    '}',
-    '',
-    '/* Caixa visual */',
-    '.custom-checkbox .box {',
-    `  position: relative;`,
-    `  width: ${toPx(size)};`,
-    `  height: ${toPx(size)};`,
-    `  background: ${inactive};`,
-    `  border: ${borderWidth > 0 ? `${toPx(borderWidth)} solid ${border}` : 'none'};`,
-    `  border-radius: ${radius};`,
-    `  box-shadow: ${shadow};`,
-    `  transition: background ${duration}ms ease, border-color ${duration}ms ease, box-shadow ${duration}ms ease;`,
-    '  flex-shrink: 0;',
-    '}',
-    '',
-    '/* Hover na caixa */',
-    '.custom-checkbox:hover .box {',
-    `  border-color: ${active};`,
-    '}',
-    '',
-    '/* Estado checked: fundo e borda ativos */',
-    '.custom-checkbox input:checked + .box {',
-    `  background: ${active};`,
-    borderWidth > 0 ? `  border-color: ${active};` : null,
-    '}',
-  ]
+  const markerLines =
+    checkStyle === 'check'
+      ? buildCheckMarkerLines({
+          rootClass: 'custom-checkbox',
+          boxClass: 'box',
+          duration,
+          borderWidth: checkWidth,
+          borderColor: `transparent ${check} ${check} transparent`,
+          left: size * 0.18,
+          top: size * 0.22,
+          width: size * 0.22,
+          height: size * 0.45,
+          comment: 'Símbolo de check em L usando bordas',
+        })
+      : buildDashMarkerLines({
+          rootClass: 'custom-checkbox',
+          boxClass: 'box',
+          size,
+          duration,
+          color: check,
+          thickness: checkWidth,
+        })
 
-  if (checkStyle === 'check') {
-    lines.push(
-      '',
-      '/* Símbolo de check em L usando bordas */',
-      '.custom-checkbox .box::after {',
-      '  content: "";',
-      '  position: absolute;',
-      '  display: block;',
-      `  left: ${toPx(size * 0.18)};`,
-      `  top: ${toPx(size * 0.22)};`,
-      `  width: ${toPx(size * 0.22)};`,
-      `  height: ${toPx(size * 0.45)};`,
-      '  border: solid transparent;',
-      `  border-width: 0 ${toPx(checkWidth)} ${toPx(checkWidth)} 0;`,
-      `  border-color: transparent ${check} ${check} transparent;`,
-      '  transform: rotate(45deg) scale(0);',
-      '  transform-origin: center;',
-      `  transition: transform ${duration}ms ease;`,
-      '}',
-      '',
-      '.custom-checkbox input:checked + .box::after {',
-      '  transform: rotate(45deg) scale(1);',
-      '}'
-    )
-  } else {
-    lines.push(
-      '',
-      '/* Símbolo de traço (dash) */',
-      '.custom-checkbox .box::after {',
-      '  content: "";',
-      '  position: absolute;',
-      '  display: block;',
-      `  left: ${toPx(size * 0.18)};`,
-      `  top: 50%;`,
-      `  width: ${toPx(size * 0.55)};`,
-      `  height: ${toPx(checkWidth)};`,
-      `  background: ${check};`,
-      '  border-radius: 999px;',
-      '  transform: translateY(-50%) scaleX(0);',
-      '  transform-origin: left center;',
-      `  transition: transform ${duration}ms ease;`,
-      '}',
-      '',
-      '.custom-checkbox input:checked + .box::after {',
-      '  transform: translateY(-50%) scaleX(1);',
-      '}'
-    )
-  }
-
-  lines.push(
-    '',
-    '/* Foco via teclado */',
-    '.custom-checkbox input:focus-visible + .box {',
-    `  outline: 2px solid ${active};`,
-    '  outline-offset: 2px;',
-    '}',
-    '',
-    '/* Estado desabilitado */',
-    '.custom-checkbox input:disabled + .box,',
-    '.custom-checkbox input:disabled ~ .label-text {',
-    '  opacity: 0.55;',
-    '  cursor: not-allowed;',
-    '}',
-    '',
-    '/* Texto ao lado */',
-    '.custom-checkbox .label-text {',
-    '  font-size: 14px;',
-    '  color: #262626;',
-    '  line-height: 1.4;',
-    '}'
-  )
-
-  return lines.filter(Boolean).join('\n')
+  return buildToggleControlCss({
+    rootClass: 'custom-checkbox',
+    boxClass: 'box',
+    controlNoun: 'checkbox',
+    boxNoun: 'caixa',
+    size,
+    radius,
+    active,
+    inactive,
+    border,
+    borderWidth,
+    shadow,
+    duration,
+    markerLines,
+  })
 }
 
 export function buildCustomCheckboxHtml(options = {}) {
   const opts = { ...DEFAULTS, ...options }
-  const checkedAttr = opts.checked ? ' checked' : ''
-  const disabledAttr = opts.disabled ? ' disabled' : ''
-  const labelText = String(opts.labelText || '')
 
-  return [
-    '<label class="custom-checkbox">',
-    `  <input type="checkbox"${checkedAttr}${disabledAttr}>`,
-    '  <span class="box"></span>',
-    labelText ? `  <span class="label-text">${labelText}</span>` : '',
-    '</label>',
-  ]
-    .filter(Boolean)
-    .join('\n')
+  return buildToggleControlHtml({
+    rootClass: 'custom-checkbox',
+    boxClass: 'box',
+    inputType: 'checkbox',
+    labelText: String(opts.labelText || ''),
+    checked: opts.checked,
+    disabled: opts.disabled,
+  })
 }
 
 export function buildCustomCheckboxFullDemo(options = {}) {
